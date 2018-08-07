@@ -1,6 +1,21 @@
+def customUpdate(wm8904Mode, event):
+    global wm8904Baud 
+    global custom
+
+    if event["value"]==1:   # Master
+        custom = True
+    else:
+        custom = False
+
+    wm8904Baud.setVisible(custom) 
+
 def instantiateComponent(wm8904Component):
+    global custom
+    global wm8904Baud 
+
     Log.writeInfoMessage("WM8904 instantiated")
 
+    custom = True
     wm8904Index = wm8904Component.createIntegerSymbol("WM8904_INDEX", None)
     wm8904Index.setVisible(False)
     wm8904Index.setDefaultValue(0)
@@ -25,15 +40,15 @@ def instantiateComponent(wm8904Component):
     wm8904I2SDriver.setReadOnly(True)
     wm8904I2SDriver.setDefaultValue("I2S")
 
-    wm8904Mode= wm8904Component.createKeyValueSetSymbol("DRV_WM8904_USAGE_MODE", None)
+    wm8904Mode = wm8904Component.createKeyValueSetSymbol("DRV_WM8904_MASTER_MODE", None)
     wm8904Mode.setVisible(True)
     wm8904Mode.setLabel("Usage Mode")
-    wm8904Mode.addKey("MASTER", "0", "Master")
-    wm8904Mode.addKey("SLAVE", "1", "Slave")
+    wm8904Mode.addKey("SLAVE", "0", "Slave")
+    wm8904Mode.addKey("MASTER", "1", "Master")
     wm8904Mode.setDisplayMode("Description")
     wm8904Mode.setOutputMode("Key")
-    wm8904Mode.setReadOnly(True)
-    wm8904Mode.setDefaultValue(0)
+    wm8904Mode.setDefaultValue(1)
+    wm8904Mode.setDependencies(customUpdate, ["DRV_WM8904_MASTER_MODE"])
 
     wm8904Clients = wm8904Component.createIntegerSymbol("DRV_WM8904_CLIENTS_NUMBER", None)
     wm8904Clients.setVisible(True)
@@ -42,7 +57,7 @@ def instantiateComponent(wm8904Component):
     wm8904Clients.setDefaultValue(1)
 
     wm8904Baud = wm8904Component.createIntegerSymbol("DRV_WM8904_BAUD_RATE", None)
-    wm8904Baud.setVisible(True)
+    wm8904Baud.setVisible(custom)
     wm8904Baud.setLabel("Sampling Rate")
     wm8904Baud.setDefaultValue(48000)
 
@@ -61,6 +76,10 @@ def instantiateComponent(wm8904Component):
     wm8904Format.setDisplayMode("Description")
     wm8904Format.setOutputMode("Key")
     wm8904Format.setDefaultValue(1)
+
+    wm8904FormatComment = wm8904Component.createCommentSymbol("AUDIO_DATA_FORMAT_COMMENT", None)
+    wm8904FormatComment.setVisible(True)
+    wm8904FormatComment.setLabel("Must match Audio Protocol and Data Length field in I2SC/SSC PLIB")") 
 
     wm8904EnableMic = wm8904Component.createBooleanSymbol("DRV_WM8904_ENABLE_MIC_INPUT", None)
     wm8904EnableMic.setVisible(True)
@@ -161,13 +180,12 @@ def instantiateComponent(wm8904Component):
     wm8904SystemTaskFile.setSourcePath("templates/system/system_tasks.c.ftl")
     wm8904SystemTaskFile.setMarkup(True)
 
-def onDependentComponentAdded(wm8904Component, id, i2sOri2c):
-    print(id)
-    if id == "I2S driver":
-        plibUsed = wm8904Component.getSymbolByID("DRV_WM8904_I2S")
-        plibUsed.clearValue()
-        plibUsed.setValue(i2sOri2c.getID().upper(), 1)
-    if id == "I2C driver":
-        plibUsed = wm8904Component.getSymbolByID("DRV_WM8904_I2C")
-        plibUsed.clearValue()
-        plibUsed.setValue(i2sOri2c.getID().upper(), 1)
+# this callback occurs when user connects I2C or I2S driver to WM8904 driver block in Project Graph    
+def onDependencyConnected(info):
+    global i2sPlibId
+    if info["dependencyID"] == "I2S driver":
+        plibUsed = info["localComponent"].getSymbolByID("DRV_WM8904_I2S")
+    elif info["dependencyID"] == "I2C driver":
+        plibUsed = info["localComponent"].getSymbolByID("DRV_WM8904_I2C")
+    i2sOri2cId = info["remoteComponent"].getID().upper()
+    plibUsed.setValue(i2sOri2cId, 1)

@@ -402,6 +402,9 @@ typedef struct {
     control interface of Codec */
     SYS_MODULE_INDEX i2cDriverModuleIndex;
 
+    /* Master or slave mode */
+    bool masterMode;
+
     /* Sampling rate */
     uint32_t samplingRate;
 
@@ -1435,6 +1438,36 @@ void DRV_WM8904_MuteOn(DRV_HANDLE handle);
     None.
  */
 void DRV_WM8904_MuteOff(DRV_HANDLE handle);
+
+// *****************************************************************************
+/*
+  Function:
+    DRV_HANDLE DRV_WM8904_GetI2SDriver(DRV_HANDLE codecHandle)
+
+  Summary:
+    Get the handle to the I2S driver for this codec instance.
+
+  Description:
+    Returns the appropriate handle to the I2S based on the ioIent member
+    of the codec object.
+ 
+  Precondition:
+    The DRV_WM8904_Initialize routine must have been called for the specified
+    WM8904 driver instance.
+
+    DRV_WM8904_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle       - A valid open-instance handle, returned from the driver's
+                   open routine
+
+  Returns:       - A handle to the I2S driver for this codec instance
+    
+  Remarks:
+    This allows the caller to directly access portions of the I2S driver that
+    might not be available via the codec API.
+*/
+DRV_HANDLE DRV_WM8904_GetI2SDriver(DRV_HANDLE codecHandle);
 
 // *****************************************************************************
 /*

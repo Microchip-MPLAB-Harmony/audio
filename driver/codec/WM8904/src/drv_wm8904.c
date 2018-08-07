@@ -265,6 +265,7 @@ SYS_MODULE_OBJ  DRV_WM8904_Initialize
     drvObj->inUse                           = true;
     drvObj->status                          = SYS_STATUS_UNINITIALIZED;
     drvObj->numClients                      = 0;
+    drvObj->masterMode                      = wm8904Init->masterMode;
     drvObj->i2sDriverModuleIndex            = wm8904Init->i2sDriverModuleIndex;
     drvObj->samplingRate                    = wm8904Init->samplingRate;
     drvObj->audioDataFormat                 = wm8904Init->audioDataFormat;
@@ -1144,23 +1145,51 @@ static void _setAudioCommunicationFormat(DRV_WM8904_OBJ *drvObj, DRV_WM8904_AUDI
     {
         case DATA_16_BIT_LEFT_JUSTIFIED:
             WM8904_I2C_Command.reg_addr = WM8904_AUDIO_INTERFACE_1; // R25
-            WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_LEFT;
+            if (drvObj->masterMode)
+            {
+                WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_LEFT;
+            }
+            else
+            {
+                WM8904_I2C_Command.value = WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_LEFT;
+            }
             drvObj->bit_depth = 16;
             break;
         default:            
         case DATA_16_BIT_I2S:
             WM8904_I2C_Command.reg_addr = WM8904_AUDIO_INTERFACE_1; // R25
-            WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_I2S; 
+            if (drvObj->masterMode)
+            {
+                WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_I2S; 
+            }
+            else
+            {
+                WM8904_I2C_Command.value = WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_I2S;
+            }
             drvObj->bit_depth = 16;
             break;            
         case DATA_32_BIT_LEFT_JUSTIFIED:
             WM8904_I2C_Command.reg_addr = WM8904_AUDIO_INTERFACE_1; // R25
-            WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_LEFT;
+            if (drvObj->masterMode)
+            {
+                WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_LEFT;
+            }
+            else
+            {
+                WM8904_I2C_Command.value = WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_LEFT;
+            }
             drvObj->bit_depth = 32;            
             break;
         case DATA_32_BIT_I2S:
             WM8904_I2C_Command.reg_addr = WM8904_AUDIO_INTERFACE_1; // R25
-            WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_I2S;            
+            if (drvObj->masterMode)
+            {
+                WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_I2S;            
+            }
+            else
+            {
+                WM8904_I2C_Command.value = WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_I2S;
+            }
             drvObj->bit_depth = 32;            
             break;
     }    
@@ -1370,7 +1399,8 @@ uint32_t DRV_WM8904_VersionGet(void)
     This function sets the sampling rate of the media stream.
 
   Description:
-    This function sets the media sampling rate for the client handle.
+    This function sets the media sampling rate for the client handle.  Only used
+    WM8904 in master mode.
 
   Remarks:
     None.
@@ -1386,6 +1416,11 @@ void _samplingRateSet(DRV_WM8904_OBJ *drvObj, uint32_t sampleRate, bool standalo
 #define FVCO_MAX 100000000  // Fvco must be between 90 and 100 MHz
 #define FVCO_MIN 90000000    
 #define FREF 12000000       // PCK2 freq from CA70 is 12 MHz   
+
+    if (false==drvObj->masterMode)
+    {
+        return;     // can only set sample rate if we are in master mode
+    }
 
     uint32_t bitClk = sampleRate * drvObj->bit_depth * 2;     // 2 for stereo
     uint16_t bitClk_ratio;
@@ -1756,6 +1791,43 @@ void DRV_WM8904_MuteOff(DRV_HANDLE handle)
 }
 
 // *****************************************************************************
+/*
+  Function:
+    DRV_HANDLE DRV_WM8904_GetI2SDriver(DRV_HANDLE codecHandle)
+
+  Summary:
+    Get the handle to the I2S driver for this codec instance.
+
+  Description:
+    Returns the appropriate handle to the I2S based on the ioIent member
+    of the codec object.
+
+  Remarks:
+    This allows the caller to directly access portions of the I2S driver that
+    might not be available via the codec API.
+*/
+DRV_HANDLE DRV_WM8904_GetI2SDriver(DRV_HANDLE codecHandle)
+{
+    DRV_WM8904_CLIENT_OBJ* clientObj = (DRV_WM8904_CLIENT_OBJ*)codecHandle; 
+    DRV_WM8904_OBJ* drvObj = (DRV_WM8904_OBJ*)clientObj->hDriver;
+
+    if(DRV_IO_INTENT_READ == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
+    {
+        return drvObj->i2sDriverClientHandleRead;
+    }
+    else if(DRV_IO_INTENT_WRITE == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
+    {
+        return drvObj->i2sDriverClientHandleWrite;
+
+    }
+    else if(DRV_IO_INTENT_READWRITE == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
+    {
+        return drvObj->i2sDriverHandle;
+    }
+    return (DRV_HANDLE)NULL;
+} 
+
+// *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
 // *****************************************************************************
@@ -1805,6 +1877,11 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands6[] =
     { WM8904_POWER_MANAGEMENT_0, WM8904_INL_ENA | WM8904_INR_ENA, 2 },
     { WM8904_AUDIO_INTERFACE_0, /*WM8904_LOOPBACK |*/ WM8904_AIFADCR_SRC | WM8904_AIFDACR_SRC, 100 },    
 };    
+
+static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands7[] =
+{    
+    { WM8904_CLOCK_RATES_2, WM8904_CLK_SYS_ENA | WM8904_CLK_DSP_ENA, 5 },  
+};
 
 // *****************************************************************************
  /*
@@ -1930,7 +2007,14 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
             {
                 loopSize += sizeof(WM8904_I2C_InitializationCommands6) / sizeof(WM8904_I2C_InitializationCommands6[0]);    
             }
-            loopSize += WM8904_NUMBER_SAMPLERATE_COMMANDS;
+            if (drvObj->masterMode)
+            {
+                loopSize += WM8904_NUMBER_SAMPLERATE_COMMANDS;
+            }
+            else
+            {
+                loopSize += sizeof(WM8904_I2C_InitializationCommands7) / sizeof(WM8904_I2C_InitializationCommands7[0]);                
+            }
 
             if (loopSize <= WM8904_MAX_I2C_COMMANDS)
             {
@@ -1965,7 +2049,18 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
                     }
                 }
 
-                _samplingRateSet(drvObj, drvObj->samplingRate, false);                                                
+                if (drvObj->masterMode)
+                {
+                    _samplingRateSet(drvObj, drvObj->samplingRate, false);                                                
+                }
+                else
+                {
+                    loopSize = sizeof(WM8904_I2C_InitializationCommands7) / sizeof(WM8904_I2C_InitializationCommands7[0]);                        
+                    for (i=0; i < loopSize; i++)
+                    {
+                        add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands7[i], false);   // add commands to buffer
+                    }                    
+                }
 
                 drvObj->I2C_loopCount = 0;                      
                 drvObj->currentState = DRV_WM8904_STATE_DATA_TRANSMIT;      // go transmit stored commands                                                                         

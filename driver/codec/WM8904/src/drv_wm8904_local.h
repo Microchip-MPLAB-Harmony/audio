@@ -1540,6 +1540,9 @@ typedef struct _DRV_WM8904_OBJ_STRUCT
     /* Identifies control module(Timer) driver open handle */    
     DRV_HANDLE tmrDriverHandle;
 
+    /* Master or slave mode */
+    bool masterMode;
+
     /* Sampling rate */
     uint32_t samplingRate;
     

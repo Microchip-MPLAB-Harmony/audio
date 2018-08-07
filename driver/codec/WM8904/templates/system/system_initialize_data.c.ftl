@@ -9,6 +9,7 @@ const DRV_WM8904_INIT drvwm8904Codec0InitData =
 <#if DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0?has_content>
     .i2cDriverModuleIndex = DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0,
 </#if>
+    .masterMode = DRV_WM8904_MASTER_MODE,
     .samplingRate = DRV_WM8904_AUDIO_SAMPLING_RATE,
     .volume = DRV_WM8904_VOLUME,
     .audioDataFormat = DRV_WM8904_AUDIO_DATA_FORMAT_MACRO,

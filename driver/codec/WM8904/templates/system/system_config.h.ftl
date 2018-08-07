@@ -11,7 +11,13 @@
 </#if></#if>
 </#if>
 
+<#if DRV_WM8904_MASTER_MODE == "MASTER">
+#define DRV_WM8904_MASTER_MODE                              true
 #define DRV_WM8904_AUDIO_SAMPLING_RATE                      ${DRV_WM8904_BAUD_RATE}
+<#else>
+#define DRV_WM8904_MASTER_MODE                              false
+#define DRV_WM8904_AUDIO_SAMPLING_RATE                      0
+</#if>
 #define DRV_WM8904_VOLUME	                      	        ${DRV_WM8904_VOLUME}
 #define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    ${DRV_WM8904_AUDIO_DATA_FORMAT}
 #define DRV_WM8904_ENABLE_MIC_INPUT             	    	${DRV_WM8904_ENABLE_MIC_INPUT?c}
@@ -55,3 +61,4 @@
 #define DRV_CODEC_VolumeGet                                 DRV_WM8904_VolumeGet
 #define DRV_CODEC_MuteOn                                    DRV_WM8904_MuteOn
 #define DRV_CODEC_MuteOff                                   DRV_WM8904_MuteOff
+#define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver 
