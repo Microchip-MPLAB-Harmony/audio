@@ -13,6 +13,7 @@ const DRV_WM8904_INIT drvwm8904Codec0InitData =
     .samplingRate = DRV_WM8904_AUDIO_SAMPLING_RATE,
     .volume = DRV_WM8904_VOLUME,
     .audioDataFormat = DRV_WM8904_AUDIO_DATA_FORMAT_MACRO,
-    .enableMicInput = DRV_WM8904_ENABLE_MIC_INPUT
+    .enableMicInput = DRV_WM8904_ENABLE_MIC_INPUT,
+    .enableMicBias = DRV_WM8904_ENABLE_MIC_BIAS
 };
 </#if>

@@ -269,7 +269,8 @@ SYS_MODULE_OBJ  DRV_WM8904_Initialize
     drvObj->i2sDriverModuleIndex            = wm8904Init->i2sDriverModuleIndex;
     drvObj->samplingRate                    = wm8904Init->samplingRate;
     drvObj->audioDataFormat                 = wm8904Init->audioDataFormat;
-    drvObj->enableMicInput                 = wm8904Init->enableMicInput;
+    drvObj->enableMicInput                  = wm8904Init->enableMicInput;
+    drvObj->enableMicBias                   = wm8904Init->enableMicBias;
 
     drvObj->currentState    = DRV_WM8904_STATE_INIT;
     drvObj->tmrHandle     = DRV_HANDLE_INVALID;     
@@ -828,7 +829,6 @@ void DRV_WM8904_BufferAddWrite
         *bufferHandle = DRV_WM8904_BUFFER_HANDLE_INVALID;
     }
 
-
     /* See if the handle is still valid */
     if(false == clientObj->inUse)
     {
@@ -869,6 +869,112 @@ void DRV_WM8904_BufferAddWrite
         SYS_DEBUG(0, "Unable to DriverInstance mutex \r\n");
     }
 } /* DRV_WM8904_BufferAddWrite */
+
+// *****************************************************************************
+/* Function:
+	void DRV_WM8904_BufferAddWriteRead
+        (
+                const DRV_HANDLE handle,
+                DRV_WM8904_BUFFER_HANDLE *bufferHandle,
+                void *transmitBuffer,
+                void *receiveBuffer,
+                size_t size
+        )
+
+  Summary:
+    Schedule a non-blocking driver write-read operation.
+
+  Description:
+    This function schedules a non-blocking write-read operation. The function
+    returns with a valid buffer handle in the bufferHandle argument if the
+    write-read request was scheduled successfully. The function adds the request
+    to the hardware instance queue and returns immediately. While the request is
+    in the queue, the application buffer is owned by the driver and should not
+    be modified. The function returns DRV_WM8904_BUFFER_EVENT_COMPLETE:
+    - if a buffer could not be allocated to the request
+    - if the input buffer pointer is NULL
+    - if the client opened the driver for read only or write only
+    - if the buffer size is 0
+    - if the queue is full or the queue depth is insufficient
+    If the requesting client registered an event callback with the driver,
+    the driver will issue a DRV_WM8904_BUFFER_EVENT_COMPLETE event if the buffer
+    was processed successfully of DDRV_WM8904_BUFFER_EVENT_ERROR event if the
+    buffer was not processed successfully.
+
+  Remarks:
+    This function is thread safe in a RTOS application. It can be called from
+    within the WM8904 Driver Buffer Event Handler that is registered by this
+    client. It should not be called in the event handler associated with another
+    WM8904 driver instance. It should not otherwise be called directly in an ISR.
+
+    This function is useful when there is valid read expected for every
+    WM8904 write. The transmit and receive size must be same.
+
+*/
+void DRV_WM8904_BufferAddWriteRead
+(
+    const DRV_HANDLE handle,
+    DRV_WM8904_BUFFER_HANDLE *bufferHandle,
+    void *transmitBuffer, void *receiveBuffer,
+    size_t size
+)
+{
+    DRV_WM8904_CLIENT_OBJ *clientObj;
+
+    DRV_WM8904_OBJ *drvObj;
+
+    /* The Client and driver objects from the handle */
+    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+    drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
+
+    /* We first check the arguments and initialize the
+     * buffer handle */
+    if(bufferHandle != NULL)
+    {
+        *bufferHandle = DRV_WM8904_BUFFER_HANDLE_INVALID;
+    }
+
+    /* See if the handle is still valid */
+    if(false == clientObj->inUse)
+    {
+        SYS_DEBUG(0, "Invalid Driver Handle \r\n");
+        return;
+
+    }
+
+    /* Grab a mutex. */
+    if (OSAL_MUTEX_Lock(&(drvObj->mutexDriverInstance), OSAL_WAIT_FOREVER) == OSAL_RESULT_TRUE)
+    {
+        ;
+    }
+    else
+    {
+        /* The mutex acquisition timed out. Return with an
+         * invalid handle. This code will not execute
+         * if there is no RTOS. */
+        return;
+    }
+    {
+        DRV_I2S_BUFFER_HANDLE i2sBufferHandle = DRV_I2S_BUFFER_HANDLE_INVALID;
+        DRV_I2S_WriteReadBufferAdd(drvObj->i2sDriverHandle,
+                (uint8_t *) transmitBuffer, (uint8_t *) receiveBuffer, size, &i2sBufferHandle);          
+
+        if(i2sBufferHandle != DRV_I2S_BUFFER_HANDLE_INVALID)
+        {
+            *bufferHandle = (DRV_WM8904_BUFFER_HANDLE)i2sBufferHandle;
+        }
+        else
+        {
+            *bufferHandle = DRV_WM8904_BUFFER_HANDLE_INVALID;
+        }
+    }
+
+    /* Release mutex */
+    if((OSAL_MUTEX_Unlock(&(drvObj->mutexDriverInstance))) != OSAL_RESULT_TRUE)
+    {
+        SYS_DEBUG(0, "Unable to DriverInstance mutex \r\n");
+    }
+} /* DRV_WM8904_BufferAddWriteRead */
 
 // *****************************************************************************
 /*
@@ -1848,6 +1954,11 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands1[] =
 	{ WM8904_CLASS_W_0, WM8904_CP_DYN_PWR, 2 },
 	{ WM8904_DIGITAL_PULLS, WM8904_LRCLK_PU | WM8904_BCLK_PU, 2},
 };
+
+static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands1a[] =
+{
+    { WM8904_MIC_BIAS_CONTROL_0, WM8904_MICBIAS_ENA, 2 },
+};
     
 static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands3[] =
 {             
@@ -1998,7 +2109,11 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
         {                  
             uint8_t i, loopSize;                     
             // get # of entries in table                     
-            loopSize = sizeof(WM8904_I2C_InitializationCommands1) / sizeof(WM8904_I2C_InitializationCommands1[0]);  
+            loopSize = sizeof(WM8904_I2C_InitializationCommands1) / sizeof(WM8904_I2C_InitializationCommands1[0]);
+            if (drvObj->enableMicBias)
+            {  
+                loopSize += sizeof(WM8904_I2C_InitializationCommands1a) / sizeof(WM8904_I2C_InitializationCommands1a[0]);
+            }
             loopSize += WM8904_NUMBER_AUDIOFORMAT_COMMANDS;        
             loopSize += sizeof(WM8904_I2C_InitializationCommands3) / sizeof(WM8904_I2C_InitializationCommands3[0]);
             loopSize += WM8904_NUMBER_VOLUME_COMMANDS;
@@ -2022,6 +2137,15 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
                 for (i=0; i < loopSize; i++)
                 {
                     add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands1[i], false);   // add commands to buffer
+                }
+
+                if (drvObj->enableMicBias)
+                {
+                    loopSize = sizeof(WM8904_I2C_InitializationCommands1a) / sizeof(WM8904_I2C_InitializationCommands1a[0]);                        
+                    for (i=0; i < loopSize; i++)
+                    {
+                        add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands1a[i], false);   // add commands to buffer
+                    }
                 }
 
                 _setAudioCommunicationFormat(drvObj, drvObj->audioDataFormat, false);                       

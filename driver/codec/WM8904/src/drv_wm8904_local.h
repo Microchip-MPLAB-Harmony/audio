@@ -1574,6 +1574,8 @@ typedef struct _DRV_WM8904_OBJ_STRUCT
     uint8_t bit_depth;     // 16, 24 or 32 (24 not supported yet))
 
     bool enableMicInput;
+
+    bool enableMicBias;
     
     SYS_MODULE_INDEX drvIndex;
     

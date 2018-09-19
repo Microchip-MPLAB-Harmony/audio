@@ -20,7 +20,8 @@
 </#if>
 #define DRV_WM8904_VOLUME	                      	        ${DRV_WM8904_VOLUME}
 #define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    ${DRV_WM8904_AUDIO_DATA_FORMAT}
-#define DRV_WM8904_ENABLE_MIC_INPUT             	    	${DRV_WM8904_ENABLE_MIC_INPUT?c}
+#define DRV_WM8904_ENABLE_MIC_INPUT                         ${DRV_WM8904_ENABLE_MIC_INPUT?c}
+#define DRV_WM8904_ENABLE_MIC_BIAS                          ${DRV_WM8904_ENABLE_MIC_BIAS?c}
 
 <#-- Instance 0 -->
 <#if DRV_CODEC_WM8904_INST_IDX0 == true>
