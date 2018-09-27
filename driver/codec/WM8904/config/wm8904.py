@@ -107,25 +107,25 @@ def instantiateComponent(wm8904Component):
     wm8904EnableBias.setDefaultValue(False)
 
     # Enable "Generate Harmony Application Files" option in MHC
-    Database.setSymbolValue("Harmony", "ENABLE_APP_FILE", True, 1)
+    Database.setSymbolValue("HarmonyCore", "ENABLE_APP_FILE", True, 1)
 
     # Enable "Generate Harmony Driver Common Files" option in MHC
-    Database.setSymbolValue("Harmony", "ENABLE_DRV_COMMON", True, 1)
+    Database.setSymbolValue("HarmonyCore", "ENABLE_DRV_COMMON", True, 1)
 
     # Enable "Generate Harmony System Service Common Files" option in MHC
-    Database.setSymbolValue("Harmony", "ENABLE_SYS_COMMON", True, 1)
+    Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON", True, 1)
 
     # Enable "Enable System Interrupt" option in MHC
-    Database.setSymbolValue("Harmony", "ENABLE_SYS_INT", True, 1)
+    Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_INT", True, 1)
 
     # Enable "Enable System Ports" option in MHC
-    Database.setSymbolValue("Harmony", "ENABLE_SYS_PORTS", True, 1)
+    Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_PORTS", True, 1)
 
     # Enable "Enable System DMA" option in MHC
-    Database.setSymbolValue("Harmony", "ENABLE_SYS_DMA", True, 1)
+    Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_DMA", True, 1)
 
     # Enable "Enable OSAL" option in MHC
-    Database.setSymbolValue("Harmony", "ENABLE_OSAL", True, 1)
+    Database.setSymbolValue("HarmonyCore", "ENABLE_OSAL", True, 1)
 
     ############################################################################
     #### Code Generation ####
@@ -203,9 +203,9 @@ def instantiateComponent(wm8904Component):
 # this callback occurs when user connects I2C or I2S driver to WM8904 driver block in Project Graph    
 def onDependencyConnected(info):
     global i2sPlibId
-    if info["dependencyID"] == "I2S driver":
+    if info["dependencyID"] == "DRV_I2S":
         plibUsed = info["localComponent"].getSymbolByID("DRV_WM8904_I2S")
-    elif info["dependencyID"] == "I2C driver":
+    elif info["dependencyID"] == "DRV_I2C":
         plibUsed = info["localComponent"].getSymbolByID("DRV_WM8904_I2C")
     i2sOri2cId = info["remoteComponent"].getID().upper()
     plibUsed.setValue(i2sOri2cId, 1)

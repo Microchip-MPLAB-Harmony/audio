@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Module name="wm8904 codec" id="2d64ecbd-867e-4777-8d13-ac15f8f535a4" version="1.0.0">
+    <ConfigRoot path="module.py"/>
+</Module>
