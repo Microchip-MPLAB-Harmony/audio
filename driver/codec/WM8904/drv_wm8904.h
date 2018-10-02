@@ -1198,6 +1198,104 @@ void DRV_WM8904_BufferAddRead
 );
 
 // *****************************************************************************
+/* Function:
+    bool DRV_WM8904_WriteQueuePurge( const DRV_HANDLE handle )
+
+  Summary:
+    Removes all buffer requests from the write queue.
+
+  Description:
+    This function removes all the buffer requests from the write queue.
+    The client can use this function to purge the queue on timeout or to remove
+    unwanted stalled buffer requests or in any other use case.
+
+  Precondition:
+    DRV_WM8904_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle - Handle of the communication channel as returned by the
+    DRV_WM8904_Open function.
+
+  Returns:
+    True - Write queue purge is successful.
+    False - Write queue purge has failed.
+
+  Example:
+    <code>
+    // myCodecHandle is the handle returned by the DRV_WM8904_Open function.
+    // Use DRV_WM8904_BufferAddWrite to queue write requests
+
+    // Application timeout function, where remove queued buffers.
+    void APP_TimeOut(void)
+    {
+        if(false == DRV_WM8904_WriteQueuePurge(myCodecHandle))
+        {
+            //Couldn't purge the write queue, try again.
+        }
+        else
+        {
+            //Queue purge successful.
+        }
+    }
+    </code>
+
+  Remarks:
+    This function is thread safe when used in an RTOS environment.
+    Avoid this function call from within the callback.
+*/
+
+bool DRV_WM8904_WriteQueuePurge(const DRV_HANDLE handle);
+
+// *****************************************************************************
+/* Function:
+    bool DRV_WM8904_ReadQueuePurge( const DRV_HANDLE handle )
+
+  Summary:
+    Removes all buffer requests from the read queue.
+
+  Description:
+    This function removes all the buffer requests from the read queue.
+    The client can use this function to purge the queue on timeout or to remove
+    unwanted stalled buffer requests or in any other use case.
+
+  Precondition:
+    DRV_I2S_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle - Handle of the communication channel as returned by the
+    DRV_WM8904_Open function.
+
+  Returns:
+    True - Read queue purge is successful.
+    False - Read queue purge has failed.
+
+  Example:
+    <code>
+    // myCodecHandle is the handle returned by the DRV_WM8904_Open function.
+    // Use DRV_WM8904_BufferAddRead to queue read requests
+
+    // Application timeout function, where remove queued buffers.
+    void APP_TimeOut(void)
+    {
+        if(false == DRV_WM8904_ReadQueuePurge(myCodecHandle))
+        {
+            //Couldn't purge the read queue, try again.
+        }
+        else
+        {
+            //Queue purge successful.
+        }
+    }
+    </code>
+
+  Remarks:
+    This function is thread safe when used in an RTOS environment.
+    Avoid this function call from within the callback.
+*/
+
+bool DRV_WM8904_ReadQueuePurge(const DRV_HANDLE handle);
+
+// *****************************************************************************
 /*
   Function:
         void DRV_WM8904_BufferEventHandlerSet

@@ -1079,6 +1079,86 @@ void DRV_WM8904_BufferAddRead
 } /* DRV_WM8904_BufferAddRead */
 
 // *****************************************************************************
+/* Function:
+    bool DRV_WM8904_WriteQueuePurge( const DRV_HANDLE handle )
+
+  Summary:
+    Removes all buffer requests from the write queue.
+
+  Description:
+    This function removes all the buffer requests from the write queue.
+    The client can use this function to purge the queue on timeout or to remove
+    unwanted stalled buffer requests or in any other use case.
+
+  Precondition:
+    DRV_WM8904_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle - Handle of the communication channel as returned by the
+    DRV_WM8904_Open function.
+
+  Returns:
+    True - Write queue purge is successful.
+    False - Write queue purge has failed.
+
+  Remarks:
+    This function is thread safe when used in an RTOS environment.
+    Avoid this function call from within the callback.
+*/
+
+bool DRV_WM8904_WriteQueuePurge(const DRV_HANDLE handle)
+{
+    DRV_WM8904_CLIENT_OBJ *clientObj;
+    DRV_WM8904_OBJ *drvObj;
+
+    /* The Client and driver objects from the handle */
+    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+    drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
+
+    return DRV_I2S_WriteQueuePurge(drvObj->i2sDriverClientHandleWrite);
+}
+
+// *****************************************************************************
+/* Function:
+    bool DRV_WM8904_ReadQueuePurge( const DRV_HANDLE handle )
+
+  Summary:
+    Removes all buffer requests from the read queue.
+
+  Description:
+    This function removes all the buffer requests from the read queue.
+    The client can use this function to purge the queue on timeout or to remove
+    unwanted stalled buffer requests or in any other use case.
+
+  Precondition:
+    DRV_I2S_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle - Handle of the communication channel as returned by the
+    DRV_WM8904_Open function.
+
+  Returns:
+    True - Read queue purge is successful.
+    False - Read queue purge has failed.
+
+  Remarks:
+    This function is thread safe when used in an RTOS environment.
+    Avoid this function call from within the callback.
+*/
+
+bool DRV_WM8904_ReadQueuePurge(const DRV_HANDLE handle)
+{
+    DRV_WM8904_CLIENT_OBJ *clientObj;
+    DRV_WM8904_OBJ *drvObj;
+
+    /* The Client and driver objects from the handle */
+    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+    drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
+
+    return DRV_I2S_ReadQueuePurge(drvObj->i2sDriverClientHandleRead);
+}
+
+// *****************************************************************************
 /*
   Function:
 	void DRV_WM8904_BufferEventHandlerSet

@@ -56,6 +56,8 @@
 #define DRV_CODEC_BufferAddWrite                            DRV_WM8904_BufferAddWrite
 #define DRV_CODEC_BufferAddRead                             DRV_WM8904_BufferAddRead
 #define DRV_CODEC_BufferAddWriteRead                        DRV_WM8904_BufferAddWriteRead
+#define DRV_CODEC_WriteQueuePurge                           DRV_WM8904_WriteQueuePurge
+#define DRV_CODEC_ReadQueuePurge                            DRV_WM8904_ReadQueuePurge
 #define DRV_CODEC_SamplingRateSet                           DRV_WM8904_SamplingRateSet
 #define DRV_CODEC_SamplingRateGet                           DRV_WM8904_SamplingRateGet
 #define DRV_CODEC_VolumeSet                                 DRV_WM8904_VolumeSet
