@@ -45,11 +45,8 @@
 #include "peripheral/twihs/plib_twihs0.h"
 #include "system/time/sys_time.h"
 
-#include "audio_codec.h"
-#include "driver/wm8904/drv_wm8904_local.h"
-#include "driver/wm8904/drv_wm8904.h"
-#include "app_tone_lookup_table.h"
-
+#include "audio/driver/wm8904/drv_wm8904_local.h"
+#include "audio/driver/wm8904/drv_wm8904.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -60,14 +57,17 @@ extern "C" {
 // DOM-IGNORE-END
 
 #define MAX_AUDIO_NUM_SAMPLES   9600    // for array    
-
-//#define MAX_AUDIO_SAMPLES     480  // 100 Hz
-//#define MIN_AUDIO_SAMPLES     24   // 2 kHz
-    
-#define INIT_SAMPLE_INDEX     1  // 400  
+   
+#define INIT_SAMPLE_INDEX     1  // 500  
      
 #define AUDIO_FORMAT_WIDTH  16
-//#define AUDIO_FORMAT_WIDTH  32    
+//#define AUDIO_FORMAT_WIDTH  32
+    
+#define INIT_VOLUME_IDX           1
+
+#define VOLUME_STEPS              4
+ 
+#define SAMPLE_STEPS              4
 
 // *****************************************************************************
 // *****************************************************************************
@@ -107,6 +107,30 @@ typedef enum
 } BUTTON_STATES;
 
 // *****************************************************************************
+// CODEC Data
+//
+//  Summary:
+//    Holds codec data
+//
+//  Description:
+//    This structure holds the codec's data.
+//
+//  Remarks:
+// *****************************************************************************
+typedef struct
+{
+    DRV_HANDLE handle;
+    DRV_CODEC_BUFFER_HANDLE writeBufHandle1, writeBufHandle2;
+    DRV_CODEC_BUFFER_EVENT_HANDLER bufferHandler;
+    uintptr_t context;
+    uint8_t *txbufferObject1;
+    uint8_t *txbufferObject2;
+    size_t bufferSize1, bufferSize2;
+} AUDIO_CODEC_DATA;
+
+#include "app_tone_lookup_table.h"      // must come after AUDIO_CODEC_DATA  
+
+// *****************************************************************************
 /* Application Data
 
   Summary:
@@ -141,9 +165,7 @@ typedef struct
     
     uint16_t numSamples1[MAX_AUDIO_NUM_SAMPLES], numSamples2[MAX_AUDIO_NUM_SAMPLES];
     
-    /* TODO: Define any additional data used by the application. */       
-    //APP: SPI-I2S client handle
-    AUDIO_CODEC_DATA codecData; //Client and State 
+    AUDIO_CODEC_DATA codecData;
     
     uint8_t sampleTableIndex;
     
@@ -163,7 +185,8 @@ typedef struct
 /* These routines are called by drivers when certain events occur.
 */
 //APP: API to CODEC Event Handler
-void Audio_Codec_TxBufferComplete(void);
+void Audio_Codec_BufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
+    DRV_CODEC_BUFFER_HANDLE handle, uintptr_t context);
 
 // *****************************************************************************
 // *****************************************************************************

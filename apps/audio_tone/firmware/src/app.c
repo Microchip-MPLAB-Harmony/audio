@@ -36,15 +36,18 @@
 // *****************************************************************************
 
 // table designed for 48 kHz or 96 kHz samples/sec only
-uint16_t samples[] =
+// maximum value is MAX_AUDIO_NUM_SAMPLES (currently 384)
+        
+// table designed for 48 kHz samples/sec only
+uint16_t samples[SAMPLE_STEPS] =
 {
-     192, // 200 Hz at 48000 samples/sec
-      96, // 400
+     192, // 250 Hz at 48000 samples/sec
+      96, // 500
       48, // 1000
       24, // 2 kHz at 48000 samples/sec
 };
 
-uint16_t volumeLevels[] =
+uint16_t volumeLevels[VOLUME_STEPS] =
 {
     0 /* off */, 128, 192, 255
 };
@@ -138,6 +141,18 @@ void fillInNumSamplesTable(uint8_t bufferNum)
 // *****************************************************************************
 // *****************************************************************************
 
+void _audioCodecInitialize (AUDIO_CODEC_DATA* codecData)
+{
+    codecData->handle = DRV_HANDLE_INVALID;
+    codecData->context = 0;
+    codecData->bufferHandler = 
+           (DRV_CODEC_BUFFER_EVENT_HANDLER) Audio_Codec_BufferEventHandler;
+    codecData->txbufferObject1 = NULL;
+    codecData->txbufferObject2 = NULL;
+    codecData->bufferSize1 = 0;
+    codecData->bufferSize2 = 0;
+}
+
 /*******************************************************************************
   Function:
     void APP_Initialize ( void )
@@ -153,18 +168,17 @@ void APP_Initialize ( void )
      */   
     appData.state = APP_STATE_INIT;
     
-    appData.volumeIndex = 1;
+    appData.volumeIndex = INIT_VOLUME_IDX;
     appData.volume = volumeLevels[appData.volumeIndex];    
     
     appData.buttonDelay = 0;
     appData.buttonMode = false;    
     
-     Audio_Codec_Initialize (&appData.codecData);
+    _audioCodecInitialize (&appData.codecData);
 
     appData.sampleTableIndex = INIT_SAMPLE_INDEX;   
 
-    appData.pingPong = 1;
-    
+    appData.pingPong = 1; 
  
     fillInNumSamplesTable(1);
     fillInNumSamplesTable(2);  
@@ -178,6 +192,7 @@ void APP_Initialize ( void )
     See prototype in app.h.
  */
 DRV_HANDLE tmrHandle;
+bool firstSync = false;
 
 void APP_Tasks ( void )
 {    
@@ -202,55 +217,75 @@ void APP_Tasks ( void )
         
         case APP_STATE_CODEC_OPEN:
         {
-            if (Audio_Codec_Open(&appData.codecData))     // doesn't return true until codec has initialized
+			// see if codec is done initializing
+            SYS_STATUS status = DRV_CODEC_Status(sysObjdrvCodec0);
+            if (SYS_STATUS_READY == status)
             {
-                Audio_Codec_VolumeSet(&appData.codecData, appData.volume);                                 
-                
-                appData.state = APP_STATE_CODEC_SET_BUFFER_HANDLER;                
-            }                                     
-        }    
+                // This means the driver can now be be opened.
+                /* A client opens the driver object to get an Handle */
+                appData.codecData.handle = DRV_CODEC_Open(DRV_CODEC_INDEX_0, 
+                    DRV_IO_INTENT_WRITE | DRV_IO_INTENT_EXCLUSIVE);       
+                if(appData.codecData.handle != DRV_HANDLE_INVALID)
+                {
+                    DRV_CODEC_VolumeSet(appData.codecData.handle,
+                        DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);
+                        
+                    appData.state = APP_STATE_CODEC_SET_BUFFER_HANDLER;
+                }            
+            }
+        }
         break;
         
         /* Set a handler for the audio buffer completion event */
         case APP_STATE_CODEC_SET_BUFFER_HANDLER:
-        {
-            Audio_Codec_SetBufferEventHandler(&appData.codecData);
-            //Audio_Codec_SetCommandCallback(&appData.codecData);                        
+        {         
+            DRV_CODEC_BufferEventHandlerSet(appData.codecData.handle, 
+                                            appData.codecData.bufferHandler, 
+                                            appData.codecData.context);                                 
 
             fillInNumSamplesTable(1);                  
 
             APP_TONE_LOOKUP_TABLE_Initialize(&appData.codecData, 1,
-                    appData.sampleRate, appData.numSamples1, appData.numNumSamples1);             
-            
+                    appData.sampleRate, appData.numSamples1, appData.numNumSamples1);
+                                 
             appData.state = APP_STATE_CODEC_ADD_BUFFER;           
         }
         break;
        
         case APP_STATE_CODEC_ADD_BUFFER:
         {           
+            if (firstSync)
+            {
+                firstSync = false;
+                DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
+            } 
+            
             if (appData.pingPong==1)
             {
-                if (Audio_Codec_Addbuffer(&appData.codecData, 
-                        &appData.codecData.codecClient.writeBufHandle1,
-                        appData.codecData.codecClient.txbufferObject1,
-                    appData.codecData.codecClient.bufferSize1))
-                {
+                DRV_CODEC_BufferAddWrite(appData.codecData.handle,
+                        &appData.codecData.writeBufHandle1,
+                        appData.codecData.txbufferObject1,
+                        appData.codecData.bufferSize1);
+
+                if(appData.codecData.writeBufHandle1 != DRV_CODEC_BUFFER_HANDLE_INVALID)
+                {   
                     // just sent buffer 1 to DMA, so fill in buffer 2 for next time
                     fillInNumSamplesTable(2);
-                    
+
                     APP_TONE_LOOKUP_TABLE_Initialize(&appData.codecData, 2,
                             appData.sampleRate, appData.numSamples2, appData.numNumSamples2);
-                   
+
                     appData.pingPong = 2;
                     appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
-                }                
+                }               
             }
             else
             {                
-                if (Audio_Codec_Addbuffer(&appData.codecData, 
-                        &appData.codecData.codecClient.writeBufHandle2,
-                        appData.codecData.codecClient.txbufferObject2,
-                    appData.codecData.codecClient.bufferSize2))
+                DRV_CODEC_BufferAddWrite(appData.codecData.handle,
+                        &appData.codecData.writeBufHandle2,
+                        appData.codecData.txbufferObject2,
+                        appData.codecData.bufferSize2);
+                if(appData.codecData.writeBufHandle2 != DRV_CODEC_BUFFER_HANDLE_INVALID)
                 {
                     // just sent buffer 2 to DMA, so fill in buffer 1 for next time 
                     fillInNumSamplesTable(1);
@@ -281,9 +316,6 @@ void APP_Tasks ( void )
 
 #define BUTTON_DEBOUNCE 50
 #define LONG_BUTTON_PRESS 1000
-
-#define VOLUME_STEPS    4 
-#define SAMPLE_STEPS    4
 
 void APP_Button_Tasks()
 {
@@ -334,9 +366,10 @@ void APP_Button_Tasks()
                     {
                         // after changing freq, if volume 0 make sure we can hear it
                         appData.volumeIndex++;
-                        appData.volume = volumeLevels[appData.volumeIndex];                        
-                        Audio_Codec_VolumeSet(&appData.codecData, appData.volume);                       
-                        Audio_Codec_MuteOff(&appData.codecData);                        
+                        appData.volume = volumeLevels[appData.volumeIndex];
+                        DRV_CODEC_VolumeSet(appData.codecData.handle,
+                            DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);                        
+                        DRV_CODEC_MuteOff(appData.codecData.handle);                        
                     }                                                
                 }
                 else
@@ -354,15 +387,16 @@ void APP_Button_Tasks()
                     
                     if (0==appData.volume)
                     {
-                        Audio_Codec_MuteOn(&appData.codecData);                        
+                        DRV_CODEC_MuteOn(appData.codecData.handle);                       
                     }
                     else
                     {
-                        Audio_Codec_VolumeSet(&appData.codecData, appData.volume);
+                        DRV_CODEC_VolumeSet(appData.codecData.handle,
+                            DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);                                      
                         if (0==volumeLevels[oldVolumeIndex])
                         {
                             // if volume was 0, unmute codec
-                            Audio_Codec_MuteOff(&appData.codecData);                        
+                            DRV_CODEC_MuteOff(appData.codecData.handle);                     
                         }
                     }                             
                 }
@@ -375,11 +409,11 @@ void APP_Button_Tasks()
                 appData.buttonMode = !appData.buttonMode;
                 if (appData.buttonMode)
                 {
-                    LED_On();
+                    LED1_On();
                 }
                 else
                 {
-                    LED_Off();
+                    LED1_Off();
                 }               
                 
                 appData.buttonState=BUTTON_STATE_WAIT_FOR_RELEASE;                
@@ -415,11 +449,28 @@ void APP_Button_Tasks()
 //       the codec data and state. CAL
 //
 //******************************************************************************
-void Audio_Codec_TxBufferComplete()
+void Audio_Codec_BufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
+    DRV_CODEC_BUFFER_HANDLE handle, uintptr_t context)
 {
-    //Next State -- after the buffer complete interrupt.
-    //BSP_LEDOn(BSP_LED_1);   // activity light if uncommented 
-    appData.state = APP_STATE_CODEC_ADD_BUFFER;           
+    switch(event)
+    {
+        case DRV_CODEC_BUFFER_EVENT_COMPLETE:
+        {
+            //Signal to APP that Tx is complete. 
+            appData.state = APP_STATE_CODEC_ADD_BUFFER; 
+        }        
+        break;
+
+        case DRV_CODEC_BUFFER_EVENT_ERROR:
+        {
+        } 
+        break;
+
+        case DRV_CODEC_BUFFER_EVENT_ABORT:
+        {
+        } 
+        break;
+    }
 }
 
 /*******************************************************************************

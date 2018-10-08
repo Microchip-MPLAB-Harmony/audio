@@ -105,12 +105,12 @@ DRV_I2S_DATA32m *lookupTable;
 
     if (whichBuffer==1)
     {
-        codecData->codecClient.txbufferObject1 = (uint8_t *) App_Tone_Lookup_Table_tone1;
+        codecData->txbufferObject1 = (uint8_t *) App_Tone_Lookup_Table_tone1;
         lookupTable = App_Tone_Lookup_Table_tone1;
     }
     else
     {
-        codecData->codecClient.txbufferObject2 = (uint8_t *) App_Tone_Lookup_Table_tone2;
+        codecData->txbufferObject2 = (uint8_t *) App_Tone_Lookup_Table_tone2;
         lookupTable = App_Tone_Lookup_Table_tone2;              
     }
 
@@ -175,10 +175,10 @@ DRV_I2S_DATA32m *lookupTable;
     
     if (whichBuffer==1)
     {
-        codecData->codecClient.bufferSize1 = sizeof(App_Tone_Lookup_Table_tone1[0])*k;
+        codecData->bufferSize1 = sizeof(App_Tone_Lookup_Table_tone1[0])*k;
     }
     else
     {
-        codecData->codecClient.bufferSize2 = sizeof(App_Tone_Lookup_Table_tone2[0])*k;          
+        codecData->bufferSize2 = sizeof(App_Tone_Lookup_Table_tone2[0])*k;          
     }    
 }
