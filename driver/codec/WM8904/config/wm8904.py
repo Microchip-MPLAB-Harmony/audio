@@ -22,38 +22,24 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *****************************************************************************"""
 
-def customUpdate(wm8904Mode, event):
-    global wm8904Baud 
+def customUpdate(wm8904EnableMic, event):
+    global wm8904EnableBias 
     global custom
 
-    if event["value"]==1:   # Master
+    if event["value"]==True:   # Enable Mic Input
         custom = True
     else:
         custom = False
 
-    wm8904Baud.setVisible(custom)
-
-def customUpdate2(wm8904EnableMic, event):
-    global wm8904EnableBias 
-    global custom2
-
-    if event["value"]==True:   # Enable Mic Input
-        custom2 = True
-    else:
-        custom2 = False
-
-    wm8904EnableBias.setVisible(custom2) 
+    wm8904EnableBias.setVisible(custom) 
 
 def instantiateComponent(wm8904Component):
     global custom
-    global custom2
-    global wm8904Baud
     global wm8904EnableBias 
 
     Log.writeInfoMessage("WM8904 instantiated")
 
-    custom = True
-    custom2 = False
+    custom = False
     wm8904Index = wm8904Component.createIntegerSymbol("WM8904_INDEX", None)
     wm8904Index.setVisible(False)
     wm8904Index.setDefaultValue(0)
@@ -86,7 +72,6 @@ def instantiateComponent(wm8904Component):
     wm8904Mode.setDisplayMode("Description")
     wm8904Mode.setOutputMode("Key")
     wm8904Mode.setDefaultValue(1)
-    wm8904Mode.setDependencies(customUpdate, ["DRV_WM8904_MASTER_MODE"])
 
     wm8904Clients = wm8904Component.createIntegerSymbol("DRV_WM8904_CLIENTS_NUMBER", None)
     wm8904Clients.setVisible(True)
@@ -95,12 +80,12 @@ def instantiateComponent(wm8904Component):
     wm8904Clients.setDefaultValue(1)
 
     wm8904Baud = wm8904Component.createIntegerSymbol("DRV_WM8904_BAUD_RATE", None)
-    wm8904Baud.setVisible(custom)
+    wm8904Baud.setVisible(True)
     wm8904Baud.setLabel("Sampling Rate")
     wm8904Baud.setDefaultValue(48000)
 
     wm8904Volume = wm8904Component.createIntegerSymbol("DRV_WM8904_VOLUME", None)
-    wm8904Volume.setVisible(False)
+    wm8904Volume.setVisible(True)
     wm8904Volume.setLabel("Volume for the Codec in range 0(Min) to 255(Max)")
     wm8904Volume.setDefaultValue(200)
 
@@ -123,10 +108,10 @@ def instantiateComponent(wm8904Component):
     wm8904EnableMic.setVisible(True)
     wm8904EnableMic.setLabel("Enable Microphone Input")
     wm8904EnableMic.setDefaultValue(False)
-    wm8904EnableMic.setDependencies(customUpdate2, ["DRV_WM8904_ENABLE_MIC_INPUT"])
+    wm8904EnableMic.setDependencies(customUpdate, ["DRV_WM8904_ENABLE_MIC_INPUT"])
 
     wm8904EnableBias = wm8904Component.createBooleanSymbol("DRV_WM8904_ENABLE_MIC_BIAS", None)
-    wm8904EnableBias.setVisible(custom2)
+    wm8904EnableBias.setVisible(custom)
     wm8904EnableBias.setLabel("Enable Microphone Bias for electret microphones")
     wm8904EnableBias.setDefaultValue(False)
 
@@ -159,32 +144,32 @@ def instantiateComponent(wm8904Component):
     wm8904SymHeaderFile = wm8904Component.createFileSymbol("DRV_WM8904_HEADER", None)
     wm8904SymHeaderFile.setSourcePath("drv_wm8904.h")
     wm8904SymHeaderFile.setOutputName("drv_wm8904.h")
-    wm8904SymHeaderFile.setDestPath("driver/wm8904/")
-    wm8904SymHeaderFile.setProjectPath("config/" + configName + "/driver/wm8904/")
+    wm8904SymHeaderFile.setDestPath("audio/driver/wm8904/")
+    wm8904SymHeaderFile.setProjectPath("config/" + configName + "/audio/driver/wm8904/")
     wm8904SymHeaderFile.setType("HEADER")
     wm8904SymHeaderFile.setOverwrite(True)
     
 #    wm8904SymHeaderDefFile = wm8904Component.createFileSymbol("DRV_WM8904_DEF", None)
 #    wm8904SymHeaderDefFile.setSourcePath("drv_wm8904_definitions.h")
 #    wm8904SymHeaderDefFile.setOutputName("drv_wm8904_definitions.h")
-#    wm8904SymHeaderDefFile.setDestPath("")
-#    wm8904SymHeaderDefFile.setProjectPath("config/" + configName + "/")
+#    wm8904SymHeaderDefFile.setDestPath("audio/driver/wm8904/")
+#    wm8904SymHeaderDefFile.setProjectPath("config/" + configName + "/audio/driver/wm8904/")
 #    wm8904SymHeaderDefFile.setType("HEADER")
 #    wm8904SymHeaderDefFile.setOverwrite(True)
 
     wm8904SymSourceFile = wm8904Component.createFileSymbol("DRV_WM8904_SOURCE", None)
     wm8904SymSourceFile.setSourcePath("src/drv_wm8904.c")
     wm8904SymSourceFile.setOutputName("drv_wm8904.c")
-    wm8904SymSourceFile.setDestPath("driver/wm8904/")
-    wm8904SymSourceFile.setProjectPath("config/" + configName + "/driver/wm8904/")
+    wm8904SymSourceFile.setDestPath("audio/driver/wm8904/")
+    wm8904SymSourceFile.setProjectPath("config/" + configName + "/audio/driver/wm8904/")
     wm8904SymSourceFile.setType("SOURCE")
     wm8904SymSourceFile.setOverwrite(True)
 
     wm8904SymHeaderLocalFile = wm8904Component.createFileSymbol("DRV_WM8904_HEADER_LOCAL", None)
     wm8904SymHeaderLocalFile.setSourcePath("src/drv_wm8904_local.h")
     wm8904SymHeaderLocalFile.setOutputName("drv_wm8904_local.h")
-    wm8904SymHeaderLocalFile.setDestPath("driver/wm8904/")
-    wm8904SymHeaderLocalFile.setProjectPath("config/" + configName + "/driver/wm8904/")
+    wm8904SymHeaderLocalFile.setDestPath("audio/driver/wm8904/")
+    wm8904SymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/wm8904/")
     wm8904SymHeaderLocalFile.setType("SOURCE")
     wm8904SymHeaderLocalFile.setOverwrite(True)
     
