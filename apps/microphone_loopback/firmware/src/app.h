@@ -252,6 +252,12 @@ void APP_Tasks( void );
 
 void APP_Button_Tasks( void );
 
+// make E70 board SWITCH compatible with V71 board SWITCH1
+#ifdef SWITCH1_STATE_PRESSED
+#define SWITCH_Get             SWITCH1_Get
+#define SWITCH_STATE_PRESSED   SWITCH1_STATE_PRESSED
+#endif
+
 #endif /* APP_H */
 
 //DOM-IGNORE-BEGIN
