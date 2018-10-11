@@ -14,7 +14,7 @@ def configurePins(pinConfigs):
         Database.clearSymbolValue("core", "PIN_" + str(pinConfig["pin"]) + "_FUNCTION_TYPE")
         Database.clearSymbolValue("core", "PIN_" + str(pinConfig["pin"]) + "_DIR")
         Database.clearSymbolValue("core", "PIN_" + str(pinConfig["pin"]) + "_LAT")
-        Database.clearSymbolValue("core", "PIN_" + str(pinConfig["pin"]) + "_PIO_CHANNEL")
+        Database.clearSymbolValue("core", "PIN_" + str(pinConfig["pin"]) + "_PERIPHERAL_FUNCTION")
 		
         Database.setSymbolValue("core", "PIN_" + str(pinConfig["pin"]) + "_FUNCTION_TYPE", pinConfig["type"], 1)
         if (pinConfig["type"] == "GPIO"):
