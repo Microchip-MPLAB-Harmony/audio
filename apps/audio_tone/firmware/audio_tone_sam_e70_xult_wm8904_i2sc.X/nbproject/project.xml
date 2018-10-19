@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>sam_e70_xult_wm8904_ssc</name>
+            <name>audio_tone_sam_e70_xult_wm8904_i2sc</name>
             <creation-uuid>e54023e9-3948-44ef-bf6f-29d8b223e555</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
@@ -23,25 +23,13 @@
             <formatting>
                 <project-formatting-style>false</project-formatting-style>
             </formatting>
-            <formatting>
-                <project-formatting-style>false</project-formatting-style>
-            </formatting>
-            <formatting>
-                <project-formatting-style>false</project-formatting-style>
-            </formatting>
-            <formatting>
-                <project-formatting-style>false</project-formatting-style>
-            </formatting>
-            <formatting>
-                <project-formatting-style>false</project-formatting-style>
-            </formatting>
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>../src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
-                    <name>sam_e70_xult_wm8904_ssc</name>
+                    <name>sam_e70_xult_wm8904_i2sc</name>
                     <type>2</type>
                 </confElem>
             </confList>

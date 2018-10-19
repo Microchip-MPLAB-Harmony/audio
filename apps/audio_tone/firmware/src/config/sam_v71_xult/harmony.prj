@@ -291,8 +291,8 @@
           <Name dnOrder="1">bsp.h</Name>
           <LogicalPath dnOrder="2">config/sam_v71_xult/bsp/</LogicalPath>
           <PhysicalPath dnOrder="3">/bsp/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">BC09B4A3F7A40935F61F56AC75975C09</GeneratedChecksum>
-          <UserChecksum dnOrder="5">BC09B4A3F7A40935F61F56AC75975C09</UserChecksum>
+          <GeneratedChecksum dnOrder="4">5E154E6AC25965347573CFEAB6C0FF8F</GeneratedChecksum>
+          <UserChecksum dnOrder="5">5E154E6AC25965347573CFEAB6C0FF8F</UserChecksum>
         </File>
         <File dnOrder="36">
           <Type dnOrder="0">HEADER</Type>
@@ -355,8 +355,8 @@
           <Name dnOrder="1">definitions.h</Name>
           <LogicalPath dnOrder="2">config/sam_v71_xult/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">11F6BE7531740E6654314BADE8FFAAFA</GeneratedChecksum>
-          <UserChecksum dnOrder="5">11F6BE7531740E6654314BADE8FFAAFA</UserChecksum>
+          <GeneratedChecksum dnOrder="4">6C22A1F1F70A12B2AC4CEDB635ED327A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">6C22A1F1F70A12B2AC4CEDB635ED327A</UserChecksum>
         </File>
         <File dnOrder="44">
           <Type dnOrder="0">HEADER</Type>
