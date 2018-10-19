@@ -63,7 +63,7 @@
 #include "driver/i2s/drv_i2s.h"
 #include "peripheral/ssc/plib_ssc.h"
 #include "system/time/sys_time.h"
-#include "peripheral/tc/plib_TC0.h"
+#include "peripheral/tc/plib_tc0.h"
 #include "peripheral/twihs/plib_twihs0.h"
 #include "app.h"
 
