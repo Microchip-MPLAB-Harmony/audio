@@ -355,8 +355,8 @@
           <Name dnOrder="1">definitions.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F1AB0F117A6C5385DB9CDD79CBCB0CE0</GeneratedChecksum>
-          <UserChecksum dnOrder="5">F1AB0F117A6C5385DB9CDD79CBCB0CE0</UserChecksum>
+          <GeneratedChecksum dnOrder="4">0F642FBE8038BB047DD034268F7B9159</GeneratedChecksum>
+          <UserChecksum dnOrder="5">0F642FBE8038BB047DD034268F7B9159</UserChecksum>
         </File>
         <File dnOrder="44">
           <Type dnOrder="0">HEADER</Type>
