@@ -219,8 +219,8 @@ void APP_Initialize ( void )
 #ifdef  USE_CLEAR_BUFFER    
     for(uint32_t i = 0; i < NUM_SAMPLES; i++)
     {
-        App_Audio_Output_Clear_Buffer[i].leftData = 0xaaaa;
-        App_Audio_Output_Clear_Buffer[i].rightData = 0xaaaa;
+        App_Audio_Output_Clear_Buffer[i].leftData = 0x0000;
+        App_Audio_Output_Clear_Buffer[i].rightData = 0x0000;
     }
 #endif
     _audioCodecInitialize (&appData.codecData);
