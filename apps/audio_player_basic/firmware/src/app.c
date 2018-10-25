@@ -38,9 +38,9 @@
 uint16_t volumeLevels[VOL_LVLS_MAX] =
 {
     0,      // Mute
-    16,     // -66 dB
-    64,     // -48 dB
-    255     // 0 dB
+    16,     // -66 dB   : VOL_LVL_LOW
+    64,     // -48 dB   : VOL_LVL_MED
+    255     // 0 dB     : VOL_LVL_HIGH
 };
 
 
@@ -386,9 +386,11 @@ void APP_Tasks ( void )
             break;
         
         case APP_STATE_READY_TO_SCAN:
+            // Wait until the disk has been scanned for all requested file types
             break;
         
         case APP_STATE_SCANNING:
+            // Wait until the next file has been chosen to open and play
             break;
         
         case APP_STATE_OPEN_FILE:
@@ -426,7 +428,7 @@ void APP_Tasks ( void )
             
             // Set sample rate to what was found in the header
             DRV_CODEC_SamplingRateSet(appData.codecData.handle, wavHeader.sampleRate);
-
+            
             // Set volume to user chosen level since it could have been changed for a single channel .wav with 8 bit samples
             appData.volume = volumeLevels[appData.volLevel];
             DRV_CODEC_VolumeSet(appData.codecData.handle, DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);
@@ -520,7 +522,11 @@ void APP_Tasks ( void )
                 break;      // paused
             }
             
-            DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
+            if(appData.lrSync)
+            {
+                DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
+                appData.lrSync = false;
+            }
             
             if (appData.pingPong==1)
             {
@@ -538,6 +544,7 @@ void APP_Tasks ( void )
                     // try reading the file            
                     if(wavHeader.numChannels == 1)
                     {
+                        // Organize the output data according to the size of data samples
                         switch(wavHeader.bitsPerSample)
                         {
                             case 16:
@@ -628,6 +635,7 @@ void APP_Tasks ( void )
                     // try reading the file            
                     if(wavHeader.numChannels == 1)
                     {
+                        // Organize the output data according to the size of data samples
                         switch(wavHeader.bitsPerSample)
                         {
                             case 16:

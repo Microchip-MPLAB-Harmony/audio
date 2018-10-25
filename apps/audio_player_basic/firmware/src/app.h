@@ -356,6 +356,7 @@ typedef struct {
     bool deviceIsConnected;
     bool buf1Clear;
     bool buf2Clear;
+    bool lrSync;
 
     //    UpdatePlaytimeFuncPtr updatePlaytimeFunc;
     
