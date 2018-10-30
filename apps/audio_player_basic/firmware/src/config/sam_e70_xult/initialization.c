@@ -271,6 +271,7 @@ void SYS_Initialize ( void* data )
     CLK_Initialize();
 	PIO_Initialize();
 
+
     NVIC_Initialize();
     XDMAC_Initialize();
 

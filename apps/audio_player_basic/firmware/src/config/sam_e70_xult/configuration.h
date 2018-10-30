@@ -113,6 +113,8 @@ extern "C" {
 #define SYS_TIME_HW_COUNTER_PERIOD           0xFFFF
 #define SYS_TIME_HW_COUNTER_HALF_PERIOD		 (SYS_TIME_HW_COUNTER_PERIOD>>1)
 #define SYS_TIME_CPU_CLOCK_FREQUENCY         300000000
+#define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
+
 
 
 // *****************************************************************************
@@ -236,9 +238,6 @@ extern "C" {
 
 /* Reset duration in milli Seconds */ 
 #define DRV_USBHSV1_HOST_RESET_DURATION 100
-
-
-
 
 // *****************************************************************************
 // *****************************************************************************
