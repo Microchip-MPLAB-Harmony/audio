@@ -75,8 +75,8 @@
           <Name dnOrder="1">exceptions.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">AC89AA0F2AF07C0733678D30AE1A5E02</GeneratedChecksum>
-          <UserChecksum dnOrder="5">AC89AA0F2AF07C0733678D30AE1A5E02</UserChecksum>
+          <GeneratedChecksum dnOrder="4">83F3D2DC64FAD64604349F563B819485</GeneratedChecksum>
+          <UserChecksum dnOrder="5">83F3D2DC64FAD64604349F563B819485</UserChecksum>
         </File>
         <File dnOrder="9">
           <Type dnOrder="0">SOURCE</Type>
@@ -195,7 +195,7 @@
           <Name dnOrder="1">sys_time.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/system/time/</LogicalPath>
           <PhysicalPath dnOrder="3">/system/time/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">8A1D378A86909137A33772F0CC757952</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">17D464A2204B54EA269452934046A972</GeneratedChecksum>
           <UserChecksum dnOrder="5">17D464A2204B54EA269452934046A972</UserChecksum>
         </File>
         <File dnOrder="24">
@@ -291,8 +291,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">1E7C7638F9F399C39D7E628F83634D57</GeneratedChecksum>
-          <UserChecksum dnOrder="5">1E7C7638F9F399C39D7E628F83634D57</UserChecksum>
+          <GeneratedChecksum dnOrder="4">A187ED68B2985CEC41C8CA64DE84593F</GeneratedChecksum>
+          <UserChecksum dnOrder="5">A187ED68B2985CEC41C8CA64DE84593F</UserChecksum>
         </File>
         <File dnOrder="36">
           <Type dnOrder="0">HEADER</Type>
@@ -435,8 +435,8 @@
           <Name dnOrder="1">plib_tc0.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/peripheral/tc/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/tc/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">A1528AC4A26A927323D0F2EE71D21A97</GeneratedChecksum>
-          <UserChecksum dnOrder="5">A1528AC4A26A927323D0F2EE71D21A97</UserChecksum>
+          <GeneratedChecksum dnOrder="4">29E4600EA4866F74B8846F3F508CDDE5</GeneratedChecksum>
+          <UserChecksum dnOrder="5">29E4600EA4866F74B8846F3F508CDDE5</UserChecksum>
         </File>
         <File dnOrder="54">
           <Type dnOrder="0">HEADER</Type>
@@ -531,8 +531,8 @@
           <Name dnOrder="1">sys_time.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/system/time/</LogicalPath>
           <PhysicalPath dnOrder="3">/system/time/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">1E7CA67199D4FE611DF87EBB3270C507</GeneratedChecksum>
-          <UserChecksum dnOrder="5">1E7CA67199D4FE611DF87EBB3270C507</UserChecksum>
+          <GeneratedChecksum dnOrder="4">FB0B765AD1B4FF5EBDF58C8133D3C9D1</GeneratedChecksum>
+          <UserChecksum dnOrder="5">FB0B765AD1B4FF5EBDF58C8133D3C9D1</UserChecksum>
         </File>
         <File dnOrder="66">
           <Type dnOrder="0">HEADER</Type>
