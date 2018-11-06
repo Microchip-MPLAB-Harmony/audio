@@ -70,7 +70,7 @@ def enableSSCInterface(bspID, enable):
 
 def configureWM8904Interface(bspID, interface):
     print("Configuring for " + str(interface) + " Interface.")
-    if (bspID == None):
+    if bspID == None:
         print("No BSP used, will not configure")
     else:
         if (str(interface) == "SSC"):
@@ -94,6 +94,8 @@ def instantiateComponent(bspComponent):
 	
     #Check if a supported BSP is loaded
     bspID = getSupportedBSP()
+    if bspID == None:
+        return
 
     res = Database.activateComponents(componentsIDTable)
     #res = Database.connectDependencies(autoConnectTable)
@@ -111,9 +113,6 @@ def instantiateComponent(bspComponent):
     currWM8904Interface = bspComponent.createComboSymbol("currWM8904Interface", None, ["SSC", "I2SC"])
     currWM8904Interface.setDefaultValue("SSC")
     currWM8904Interface.setVisible(False)
-	
-    if (bspID != None):
-        configureWM8904Interface(bspID, str(currWM8904Interface.getValue()))
-    else:
-        print("No BSP used, only software components are configured. Please add board-specific components.")
+
+    configureWM8904Interface(bspID, str(currWM8904Interface.getValue()))
 
