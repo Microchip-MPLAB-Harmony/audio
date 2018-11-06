@@ -53,7 +53,7 @@ The audio player (audio_player_basic) application configures the development boa
 <p class="Element10">
 Once the scan is complete, the first track in the list will be opened, validated and played. The application will read the .wav file header to validate. Configuration of the number of channels, sample size, and sample rate stated in the file will be handled by the application for proper playback. If a file that can’t be played is found, it will be skipped, and the next sequential file will be tried. If the file can be played, it will then go on and read the .wav file data and write it to the codec for playback.&nbsp;</p>
 <p class="Element10">
-Command and control to the codec is done through an I2C driver. Data to the codec driver is sent through SSC via I2S Driver and the output will be audible through the headphone output jack of the WM8904 Audio Codec Module connected to the SAM E70 Xplained Ultra board.&nbsp;</p>
+Command and control of the codec is done through an I2C driver. Data to the codec driver is sent through SSC via I2S Driver and the output will be audible through the headphone output jack of the WM8904 Audio Codec Module connected to the SAM E70 Xplained Ultra board.&nbsp;</p>
 <p class="Element10">
 Supported audio files are as represented in the table below. </p><p class="Element10" style="text-align: center;">
 <strong>Supported Format</strong></p><div class="Element63">
@@ -75,7 +75,7 @@ WAVE (.wav)&nbsp;</div></td><td class="Element77" valign="top" width="20%">
 <div class="Element68">
 The WAVE file format is the native file format used by Microsoft Windows for storing digital audio data.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-The defines DISK_MAX_DIRS and DISK_MAX_FILES in the <span class="Element146">app.h</span> file, determines the maximum number of directories that should be scanned at each level (to prevent stack overflow, the traversing level is limited to 10), and the maximum number of songs in total the demonstration should scan (currently set to 4000 because of memory limitations).</p><div class="Element15">
+The defines DISK_MAX_DIRS and DISK_MAX_FILES in the <span class="Element146">app.h</span> file, determines the maximum number of directories that should be scanned at each level of the directory tree (to prevent stack overflow, the traversing level is limited to 10), and the maximum number of songs in total the demonstration should scan (currently set to 4000 because of memory limitations).</p><div class="Element15">
 Architecture</div>
 <p class="Element10">
 The application runs on the SAM E70 Xplained Ultra Board, which contains a ATSAME70Q21B microcontroller with 2 MB of Flash memory and 384 KB of RAM running at 300 MHz using the following features:</p>
@@ -88,7 +88,7 @@ The SAM E70 Xplained Ultra board does not include the WM8904 Audio Codec daughte
 <p class="Element10">
 The application currently only supports WAVE (.wav) format files.&nbsp;</p>
 <p class="Element10">
-The audio_player_basic application uses the MPLAB Harmony Configurator to setup the USB Host, file system, codec, and other items in order to read the music files on a USB mass storage device and play it back through the WM8904 Codec Module. It scans WAV (PCM) format files on mounted FAT USB thumb drive and streams audio through a WM8904 Audio Codec to a pair of heaphones. In the application, the number of audio output buffers can always set to be more than two to enhance the audio quality. And, the size of input buffer in this application is be chosen to be able to handle the data supported.&nbsp;</p>
+The audio_player_basic application uses the MPLAB Harmony Configurator to setup the USB MSD Host, file system, codec, and other items in order to read the music files on a USB mass storage device and play it back through the WM8904 Codec Module. It scans WAV (PCM) format files from a mounted FAT USB thumb drive and streams audio through a WM8904 Audio Codec to a pair of heaphones. In the application, the number of audio output buffers can always set to be more than two to enhance the audio quality. The size of input buffer in this application is be chosen to be able to handle the data supported.&nbsp;</p>
 <p class="Element10">
 The following figure shows the architecture for the demonstration. </p><p class="Element10" style="text-align: center;">
 <strong>Architecture Block Diagram</strong>&nbsp;</p>
@@ -108,13 +108,13 @@ Demonstration Features</div>
 </ul><div class="Element15">
 Tools Setup Differences</div>
 <p class="Element10">
-The project graph specifies the drivers, services, and libraries being brought into the project to further extend the applications abilities. The default configuration should be correct for the majority of the application. The following configurations will need to be changed in order for proper operations. </p><p class="Element10" style="text-align: center;">
+The project graph below specifies the drivers, services, and libraries being brought into the project to further extend the applications abilities. The default configuration should be correct for the majority of the application. The following configurations will need to be changed in order for proper operations. </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO audio_player_basic_E70_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
 <u>MPLAB Harmony Configurator: <i>Tools-&gt;Clock</i> Configuration</u>&nbsp;</p>
 <p class="Element10">
-Uncheck the Main RC Oscillator and check the “Bypass” for the Main Crystal Oscillator. When the Bypass is check, it will cause the Main Crystal Oscillator to become unchecked. </p><p class="Element10" style="text-align: center;">
+Uncheck the Main RC Oscillator and check the “Bypass” for the Main Crystal Oscillator. When the Bypass is checked, it will cause the Main Crystal Oscillator to become unchecked. </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO audio_player_basic_clock_config.png" border="0" alt="" title=""></p><p class="Element10">
-Enable the PCK2 output. </p><p class="Element10" style="text-align: center;">
+Enable the PCK2 output to enable the WM8904 master clock: </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO audio_player_basic_clock_config2.png" border="0" alt="" title=""></p><p class="Element10">
 <i>Clock Diagram-&gt;Peripheral Clock Enable</i>&nbsp;</p>
 <p class="Element10">

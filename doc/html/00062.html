@@ -46,7 +46,14 @@ DRV_WM8904_BUFFER_HANDLE Type</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Handle identifying a write buffer passed to the driver.</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
 <div class="Element10">
 <p class="Element10">
 WM8904 Driver Buffer Handle&nbsp;</p>
@@ -57,9 +64,6 @@ The buffer handle value returned from the &quot;buffer add&quot; function is ret
 <p class="Element10">
 The buffer handle assigned to a client request expires when the client has been notified of the completion of the buffer transfer (after event handler function that notifies the client returns) or after the buffer has been retired by the driver if no event handler callback was set.</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> uintptr_t <strong><span style="color: #000000">DRV_WM8904_BUFFER_HANDLE</span></strong>;</pre></div></div>
 <a name="52656D61726B73"></a><div class="Element14">
 Remarks</div>
 <div class="Element11">
@@ -67,6 +71,9 @@ Remarks</div>
 <p class="Element10">
 None</p></div>
 </div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> uintptr_t <strong><span style="color: #000000">DRV_WM8904_BUFFER_HANDLE</span></strong>;</pre></div></div>
 </div>
 <!-- End Page Content -->
 

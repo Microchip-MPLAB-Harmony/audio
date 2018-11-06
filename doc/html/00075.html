@@ -46,20 +46,41 @@ DRV_WM8904_CommandEventHandlerSet Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+      void DRV_WM8904_CommandEventHandlerSet&nbsp;</p>
+<p class="Element10">
+      (&nbsp;</p>
+<p class="Element10">
+          DRV_HANDLE handle,&nbsp;</p>
+<p class="Element10">
+          const <a href="00074.html" target="topic">DRV_WM8904_COMMAND_EVENT_HANDLER</a> eventHandler,&nbsp;</p>
+<p class="Element10">
+          const uintptr_t contextHandle&nbsp;</p>
+<p class="Element10">
+      )&nbsp;</p>
+<p class="Element10">
+&nbsp;</p></div>
+</div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This function allows a client to identify a command event handling function for the driver to call back when the last submitted command have finished.</p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
 <div class="Element10">
 <p class="Element10">
 This function allows a client to identify a command event handling function for the driver to call back when the last submitted command have finished.&nbsp;</p>
 <p class="Element10">
 The event handler should be set before the client performs any &quot;WM8904 Codec Specific Client Routines&quot; operations that could generate events. The event handler once set, persists until the client closes the driver or sets another event handler (which could be a &quot;NULL&quot; pointer to indicate no callback).</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_CommandEventHandlerSet</span></strong>(
-    DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> <a href="00074.html" target="topic">DRV_WM8904_COMMAND_EVENT_HANDLER</a> <strong><span style="color: #000000">eventHandler</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> uintptr_t <strong><span style="color: #000000">contextHandle</span></strong>
-);</pre></div></div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
@@ -106,13 +127,6 @@ Returns</div>
 <p class="Element10">
 None.</p></div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-If the client does not want to be notified when the command has completed, it does not need to register a callback.</p></div>
-</div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
@@ -146,6 +160,20 @@ DRV_WM8904_DeEmphasisFilterSet(myWM8904Handle, DRV_WM8904_DEEMPHASIS_FILTER_44_1
 }</pre></div></div>
 </div>
 </div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+If the client does not want to be notified when the command has completed, it does not need to register a callback.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_CommandEventHandlerSet</span></strong>(
+    DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
+    <strong><span style="color: #000080">const</span></strong> <a href="00074.html" target="topic">DRV_WM8904_COMMAND_EVENT_HANDLER</a> <strong><span style="color: #000000">eventHandler</span></strong>, 
+    <strong><span style="color: #000080">const</span></strong> uintptr_t <strong><span style="color: #000000">contextHandle</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 

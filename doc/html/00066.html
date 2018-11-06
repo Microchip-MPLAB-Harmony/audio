@@ -46,7 +46,41 @@ DRV_WM8904_BufferAddWriteRead Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+   void DRV_WM8904_BufferAddWriteRead&nbsp;</p>
+<p class="Element10">
+       (&nbsp;</p>
+<p class="Element10">
+               const DRV_HANDLE handle,&nbsp;</p>
+<p class="Element10">
+               <a href="00062.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> *bufferHandle,&nbsp;</p>
+<p class="Element10">
+               void *transmitBuffer, &nbsp;</p>
+<p class="Element10">
+               void *receiveBuffer,&nbsp;</p>
+<p class="Element10">
+               size_t size&nbsp;</p>
+<p class="Element10">
+       )&nbsp;</p>
+<p class="Element10">
+&nbsp;</p></div>
+</div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Schedule a non-blocking driver write-read operation. &nbsp;</p>
+<p class="Element10">
+<strong>Implementation:</strong> Dynamic&nbsp;</p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
 <div class="Element10">
 <p class="Element10">
 This function schedules a non-blocking write-read operation. The function returns with a valid buffer handle in the bufferHandle argument if the write-read request was scheduled successfully. The function adds the request to the hardware instance queue and returns immediately. While the request is in the queue, the application buffer is owned by the driver and should not be modified. The function returns DRV_WM8904_BUFFER_EVENT_COMPLETE:</p>
@@ -59,15 +93,6 @@ This function schedules a non-blocking write-read operation. The function return
 </ul><p class="Element10">
 If the requesting client registered an event callback with the driver, the driver will issue a DRV_WM8904_BUFFER_EVENT_COMPLETE event if the buffer was processed successfully of DRV_WM8904_BUFFER_EVENT_ERROR event if the buffer was not processed successfully.</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_BufferAddWriteRead</span></strong>(
-    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <a href="00062.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> * <strong><span style="color: #000000">bufferHandle</span></strong>, 
-    <strong><span style="color: #000080">void</span></strong> * <strong><span style="color: #000000">transmitBuffer</span></strong>, 
-    <strong><span style="color: #000080">void</span></strong> * <strong><span style="color: #000000">receiveBuffer</span></strong>, 
-    size_t <strong><span style="color: #000000">size</span></strong>
-);</pre></div></div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
@@ -126,15 +151,6 @@ Returns</div>
 <p class="Element10">
 The bufferHandle parameter will contain the return buffer handle. This will be <a href="00063.html" target="topic">DRV_WM8904_BUFFER_HANDLE_INVALID</a> if the function was not successful.</p></div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function is thread safe in a RTOS application. It can be called from within the WM8904 Driver Buffer Event Handler that is registered by this client. It should not be called in the event handler associated with another WM8904 driver instance. It should not otherwise be called directly in an ISR.&nbsp;</p>
-<p class="Element10">
-This function is useful when there is valid read expected for every WM8904 write. The transmit and receive size must be same.</p></div>
-</div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
@@ -188,6 +204,24 @@ DRV_WM8904_BufferAddWriteRead(mywm8904handle, &amp;bufferHandle,
 </pre></div></div>
 </div>
 </div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This function is thread safe in a RTOS application. It can be called from within the WM8904 Driver Buffer Event Handler that is registered by this client. It should not be called in the event handler associated with another WM8904 driver instance. It should not otherwise be called directly in an ISR.&nbsp;</p>
+<p class="Element10">
+This function is useful when there is valid read expected for every WM8904 write. The transmit and receive size must be same.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_BufferAddWriteRead</span></strong>(
+    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
+    <a href="00062.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> * <strong><span style="color: #000000">bufferHandle</span></strong>, 
+    <strong><span style="color: #000080">void</span></strong> * <strong><span style="color: #000000">transmitBuffer</span></strong>, 
+    <strong><span style="color: #000080">void</span></strong> * <strong><span style="color: #000000">receiveBuffer</span></strong>, 
+    size_t <strong><span style="color: #000000">size</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 

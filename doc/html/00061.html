@@ -46,7 +46,14 @@ DRV_WM8904_BUFFER_EVENT_HANDLER Type</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Pointer to a WM8904 Driver Buffer Event handler function</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
 <div class="Element10">
 <p class="Element10">
 WM8904 Driver Buffer Event Handler Function&nbsp;</p>
@@ -55,9 +62,6 @@ This data type defines the required function signature for the WM8904 driver buf
 <p class="Element10">
 The parameters and return values are described here and a partial example implementation is provided.</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">void</span></strong> (* <strong><span style="color: #000000">DRV_WM8904_BUFFER_EVENT_HANDLER</span></strong>)(<a href="00057.html" target="topic">DRV_WM8904_BUFFER_EVENT</a> event, <a href="00062.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle);</pre></div></div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
 <div class="Element11">
@@ -95,25 +99,6 @@ Returns</div>
 <p class="Element10">
 None.</p></div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-If the event is DRV_WM8904_BUFFER_EVENT_COMPLETE, this means that the data was transferred successfully.&nbsp;</p>
-<p class="Element10">
-If the event is DRV_WM8904_BUFFER_EVENT_ERROR, this means that the data was not transferred successfully. The bufferHandle parameter contains the buffer handle of the buffer that failed. The DRV_WM8904_BufferProcessedSizeGet() function can be called to find out how many bytes were processed.&nbsp;</p>
-<p class="Element10">
-The bufferHandle parameter contains the buffer handle of the buffer that associated with the event.&nbsp;</p>
-<p class="Element10">
-The context parameter contains a handle to the client context, provided at the time the event handling function was registered using the <a href="00067.html" target="topic">DRV_WM8904_BufferEventHandlerSet</a> function. This context handle value is passed back to the client as the &quot;context&quot; parameter. It can be any value necessary to identify the client context or instance (such as a pointer to the client's data) instance of the client that made the buffer add request.&nbsp;</p>
-<p class="Element10">
-The buffer handle in bufferHandle expires after this event handler exits. In that the buffer object that was allocated is deallocated by the driver after the event handler exits.&nbsp;</p>
-<p class="Element10">
-The event handler function executes in the data driver(i2S) peripheral's interrupt context when the driver is configured for interrupt mode operation. It is recommended of the application to not perform process intensive or blocking operations with in this function.&nbsp;</p>
-<p class="Element10">
-<a href="00065.html" target="topic">DRV_WM8904_BufferAddWrite</a> function can be called in the event handler to add a buffer to the driver queue.&nbsp;</p></div>
-</div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
@@ -138,6 +123,28 @@ Example</div>
 }</pre></div></div>
 </div>
 </div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+If the event is DRV_WM8904_BUFFER_EVENT_COMPLETE, this means that the data was transferred successfully.&nbsp;</p>
+<p class="Element10">
+If the event is DRV_WM8904_BUFFER_EVENT_ERROR, this means that the data was not transferred successfully. The bufferHandle parameter contains the buffer handle of the buffer that failed. The DRV_WM8904_BufferProcessedSizeGet() function can be called to find out how many bytes were processed.&nbsp;</p>
+<p class="Element10">
+The bufferHandle parameter contains the buffer handle of the buffer that associated with the event.&nbsp;</p>
+<p class="Element10">
+The context parameter contains a handle to the client context, provided at the time the event handling function was registered using the <a href="00067.html" target="topic">DRV_WM8904_BufferEventHandlerSet</a> function. This context handle value is passed back to the client as the &quot;context&quot; parameter. It can be any value necessary to identify the client context or instance (such as a pointer to the client's data) instance of the client that made the buffer add request.&nbsp;</p>
+<p class="Element10">
+The buffer handle in bufferHandle expires after this event handler exits. In that the buffer object that was allocated is deallocated by the driver after the event handler exits.&nbsp;</p>
+<p class="Element10">
+The event handler function executes in the data driver(i2S) peripheral's interrupt context when the driver is configured for interrupt mode operation. It is recommended of the application to not perform process intensive or blocking operations with in this function.&nbsp;</p>
+<p class="Element10">
+<a href="00065.html" target="topic">DRV_WM8904_BufferAddWrite</a> function can be called in the event handler to add a buffer to the driver queue.&nbsp;</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">void</span></strong> (* <strong><span style="color: #000000">DRV_WM8904_BUFFER_EVENT_HANDLER</span></strong>)(<a href="00057.html" target="topic">DRV_WM8904_BUFFER_EVENT</a> event, <a href="00062.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle);</pre></div></div>
 </div>
 <!-- End Page Content -->
 

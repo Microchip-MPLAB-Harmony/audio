@@ -46,16 +46,31 @@ DRV_WM8904_VersionStrGet Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+  int8_t* DRV_WM8904_VersionStrGet(void)&nbsp;</p>
+<p class="Element10">
+&nbsp;</p></div>
+</div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This function returns the version of WM8904 driver in string format.</p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
 <div class="Element10">
 <p class="Element10">
 The DRV_WM8904_VersionStrGet function returns a string in the format: &quot;.[.][]&quot; Where: is the WM8904 driver's version number. is the WM8904 driver's version number. is an optional &quot;patch&quot; or &quot;dot&quot; release number (which is not included in the string if it equals &quot;00&quot;). is an optional release type (&quot;a&quot; for alpha, &quot;b&quot; for beta ? not the entire word spelled out) that is not included if the release is a production version (I.e. Not an alpha or beta).&nbsp;</p>
 <p class="Element10">
 The String does not contain any spaces. For example, &quot;0.03a&quot; &quot;1.00&quot;</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100">int8_t* <strong><span style="color: #000000">DRV_WM8904_VersionStrGet</span></strong>();</pre></div></div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
@@ -70,13 +85,6 @@ Returns</div>
 <p class="Element10">
 returns a string containing the version of WM8904 driver.</p></div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-None</p></div>
-</div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
@@ -85,6 +93,16 @@ Example</div>
     WM8904string = DRV_WM8904_VersionStrGet();</pre></div></div>
 </div>
 </div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+None</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100">int8_t* <strong><span style="color: #000000">DRV_WM8904_VersionStrGet</span></strong>();</pre></div></div>
 </div>
 <!-- End Page Content -->
 

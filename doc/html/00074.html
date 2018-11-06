@@ -46,7 +46,14 @@ DRV_WM8904_COMMAND_EVENT_HANDLER Type</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Pointer to a WM8904 Driver Command Event Handler Function</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
 <div class="Element10">
 <p class="Element10">
 WM8904 Driver Command Event Handler Function&nbsp;</p>
@@ -59,9 +66,6 @@ A client must register a pointer to a command event handling function who's func
 <p class="Element10">
 The parameters and return values are described here and a partial example implementation is provided.</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">void</span></strong> (* <strong><span style="color: #000000">DRV_WM8904_COMMAND_EVENT_HANDLER</span></strong>)(uintptr_t contextHandle);</pre></div></div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
 <div class="Element11">
@@ -89,17 +93,6 @@ Returns</div>
 <p class="Element10">
 None.</p></div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-The occurrence of this call back means that the last control command was transferred successfully.&nbsp;</p>
-<p class="Element10">
-The context parameter contains a handle to the client context, provided at the time the event handling function was registered using the <a href="00075.html" target="topic">DRV_WM8904_CommandEventHandlerSet</a> function. This context handle value is passed back to the client as the &quot;context&quot; parameter. It can be any value necessary to identify the client context or instance (such as a pointer to the client's data) instance of the client that made the buffer add request.&nbsp;</p>
-<p class="Element10">
-The event handler function executes in the control data driver interrupt context. It is recommended of the application to not perform process intensive or blocking operations with in this function.</p></div>
-</div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
@@ -113,6 +106,20 @@ Example</div>
 }</pre></div></div>
 </div>
 </div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The occurrence of this call back means that the last control command was transferred successfully.&nbsp;</p>
+<p class="Element10">
+The context parameter contains a handle to the client context, provided at the time the event handling function was registered using the <a href="00075.html" target="topic">DRV_WM8904_CommandEventHandlerSet</a> function. This context handle value is passed back to the client as the &quot;context&quot; parameter. It can be any value necessary to identify the client context or instance (such as a pointer to the client's data) instance of the client that made the buffer add request.&nbsp;</p>
+<p class="Element10">
+The event handler function executes in the control data driver interrupt context. It is recommended of the application to not perform process intensive or blocking operations with in this function.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">void</span></strong> (* <strong><span style="color: #000000">DRV_WM8904_COMMAND_EVENT_HANDLER</span></strong>)(uintptr_t contextHandle);</pre></div></div>
 </div>
 <!-- End Page Content -->
 

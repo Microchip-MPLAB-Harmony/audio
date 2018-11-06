@@ -46,16 +46,28 @@ DRV_WM8904_LRCLK_Sync Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+   uint32_t DRV_WM8904_LRCLK_Sync (const DRV_HANDLE handle);&nbsp;</p>
+</div>
+</div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Synchronize to the start of the I2S LRCLK (left/right clock) signal</p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
 <div class="Element10">
 <p class="Element10">
 This function waits until low-to high transition of the I2S LRCLK (left/right clock) signal (high-low if Left-Justified format, this is determined by the PLIB). In the case where this signal is generated from a codec or other external source, this allows the caller to synchronize calls to the DMA with the LRCLK signal so the left/right channel association is valid.</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">DRV_WM8904_LRCLK_Sync</span></strong>(
-    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>
-);</pre></div></div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
@@ -90,13 +102,6 @@ Returns</div>
 <p class="Element10">
 true if the function was successful, false if a timeout occurred (no transitions seen)</p></div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-None.</p></div>
-</div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
@@ -107,6 +112,18 @@ Example</div>
     DRV_WM8904_LRCLK_Sync(myWM8904Handle);</pre></div></div>
 </div>
 </div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+None.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">DRV_WM8904_LRCLK_Sync</span></strong>(
+    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 

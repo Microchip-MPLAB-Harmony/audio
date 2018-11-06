@@ -46,12 +46,26 @@ DRV_WM8904_BUFFER_EVENT Enumeration</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Identifies the possible events that can result from a buffer add request.</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
 <div class="Element10">
 <p class="Element10">
 WM8904 Driver Events&nbsp;</p>
 <p class="Element10">
 This enumeration identifies the possible events that can result from a buffer add request caused by the client calling either the <a href="00065.html" target="topic">DRV_WM8904_BufferAddWrite</a>() or the <a href="00064.html" target="topic">DRV_WM8904_BufferAddRead</a>() function.</p></div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+One of these values is passed in the &quot;event&quot; parameter of the event handling callback function that the client registered with the driver by calling the <a href="00067.html" target="topic">DRV_WM8904_BufferEventHandlerSet</a> function when a buffer transfer request is completed.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
@@ -89,13 +103,6 @@ DRV_WM8904_BUFFER_EVENT_ABORT&nbsp;</div></td><td class="Element266" valign="top
 <div class="Element267">
 Data transfer aborted (Applicable in DMA mode)&nbsp;</div></td></tr></table></div></div>
 </div>
-</div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-One of these values is passed in the &quot;event&quot; parameter of the event handling callback function that the client registered with the driver by calling the <a href="00067.html" target="topic">DRV_WM8904_BufferEventHandlerSet</a> function when a buffer transfer request is completed.</p></div>
 </div>
 </div>
 <!-- End Page Content -->

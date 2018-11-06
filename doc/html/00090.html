@@ -46,17 +46,37 @@ DRV_WM8904_Initialize Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+      SYS_MODULE_OBJ  DRV_WM8904_Initialize&nbsp;</p>
+<p class="Element10">
+      (&nbsp;</p>
+<p class="Element10">
+              const SYS_MODULE_INDEX drvIndex,&nbsp;</p>
+<p class="Element10">
+              const SYS_MODULE_INIT *const init&nbsp;</p>
+<p class="Element10">
+      );&nbsp;</p>
+<p class="Element10">
+&nbsp;</p></div>
+</div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Initializes hardware and data for the instance of the WM8904 DAC module</p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
 <div class="Element10">
 <p class="Element10">
 This routine initializes the WM8904 driver instance for the specified driver index, making it ready for clients to open and use it. The initialization data is specified by the init parameter. The initialization may fail if the number of driver objects allocated are insufficient or if the specified driver instance is already initialized.</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100">SYS_MODULE_OBJ <strong><span style="color: #000000">DRV_WM8904_Initialize</span></strong>(
-    <strong><span style="color: #000080">const</span></strong> SYS_MODULE_INDEX <strong><span style="color: #000000">drvIndex</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> SYS_MODULE_INIT * <strong><span style="color: #000080">const</span></strong> <strong><span style="color: #000000">init</span></strong>
-);</pre></div></div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
@@ -96,15 +116,6 @@ Returns</div>
 <p class="Element10">
 If successful, returns a valid handle to a driver instance object. Otherwise, it returns SYS_MODULE_OBJ_INVALID.</p></div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This routine must be called before any other WM8904 routine is called.&nbsp;</p>
-<p class="Element10">
-This routine should only be called once during system initialization unless <a href="00077.html" target="topic">DRV_WM8904_Deinitialize</a> is called to deinitialize the driver instance. This routine will NEVER block for hardware access.</p></div>
-</div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
@@ -134,6 +145,21 @@ objectHandle = DRV_WM8904_Initialize(DRV_WM8904_0, (SYS_MODULE_INIT*)init);
 }</pre></div></div>
 </div>
 </div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This routine must be called before any other WM8904 routine is called.&nbsp;</p>
+<p class="Element10">
+This routine should only be called once during system initialization unless <a href="00077.html" target="topic">DRV_WM8904_Deinitialize</a> is called to deinitialize the driver instance. This routine will NEVER block for hardware access.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100">SYS_MODULE_OBJ <strong><span style="color: #000000">DRV_WM8904_Initialize</span></strong>(
+    <strong><span style="color: #000080">const</span></strong> SYS_MODULE_INDEX <strong><span style="color: #000000">drvIndex</span></strong>, 
+    <strong><span style="color: #000080">const</span></strong> SYS_MODULE_INIT * <strong><span style="color: #000080">const</span></strong> <strong><span style="color: #000000">init</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
