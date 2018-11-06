@@ -160,6 +160,7 @@ void _audioCodecInitialize (AUDIO_CODEC_DATA* codecData)
   Remarks:
     See prototype in app.h.
  */
+bool firstSync;
 
 void APP_Initialize ( void )
 {
@@ -181,7 +182,9 @@ void APP_Initialize ( void )
     appData.pingPong = 1; 
  
     fillInNumSamplesTable(1);
-    fillInNumSamplesTable(2);  
+    fillInNumSamplesTable(2);
+    
+    firstSync = true;
 }
 
 /******************************************************************************
@@ -192,7 +195,6 @@ void APP_Initialize ( void )
     See prototype in app.h.
  */
 DRV_HANDLE tmrHandle;
-bool firstSync = false;
 
 void APP_Tasks ( void )
 {    
