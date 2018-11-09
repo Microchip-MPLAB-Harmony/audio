@@ -139,9 +139,9 @@ Yes&nbsp;</div></td><td class="Element67" valign="top" width="50%">
 <div class="Element15">
 I2S Audio</div>
 <p class="Element10">
-There are various digital audio interfaces, designed to connect components together, either on the same board or via cables between boards. The one that is most relevant for us is I2S (Inter-IC sound) protocol which specifies a specific interface commonly used to connect hardware codecs, DACs, Bluetooth modules, and MCUs on the same board. It is not intended to be used over cables.&nbsp;</p>
+There are various digital audio interfaces, designed to connect components together, either on the same board or via cables between boards. The one that is most relevant for us is I<sup>2</sup>S (Inter-IC sound) protocol which specifies a specific interface commonly used to connect hardware codecs, DACs, Bluetooth modules, and MCUs on the same board. It is not intended to be used over cables.&nbsp;</p>
 <p class="Element10">
-An I2S interface consists of the the following signals:</p>
+An I<sup>2</sup>S interface consists of the the following signals:</p>
 <ul class="Element630">
 <li class="Element600">Word clock line, which runs at the sampling rate and also indicates left/right channel, often abbreviated as LRCLK</li>
 <li class="Element600">Bit clock line, often abbreviated as BCLK. The bit clock pulses once for each discrete bit of data on the data lines.</li>
@@ -154,17 +154,17 @@ e.g. for CD audio, 44.1 kHz * 2 channels (stereo) * 16 bits/channel = 1.4112 MHz
 </ul><p class="Element10">
 Although not part of the standard, there is often a master clock (MCLK) typically running at 256 times the sample rate used for synchronization.&nbsp;</p>
 <p class="Element10">
-A typical codec may support both I2S format, and one or two variations (left-justified and/or right justified): </p><p class="Element10" style="text-align: center;">
+A typical codec may support both I<sup>2</sup>S format, and one or two variations (left-justified and/or right justified): </p><p class="Element10" style="text-align: center;">
 <img src="AUDIO I2S.png" border="0" alt="" title=""></p><p class="Element10">
-In I2S format, as shown in the top half of the figure above, LRCLK is low for the left channel and high for the right channel. and the most-significant bit (MSb) of the left channel data starts one bit clock (BCLK) late, such that the least significant bit (LSb) is actually in the right channel side.&nbsp;</p>
+In I<sup>2</sup>S format, as shown in the top half of the figure above, LRCLK is low for the left channel and high for the right channel. The most-significant bit (MSb) of the left channel data starts one bit clock (BCLK) late, such that the least significant bit (LSb) is actually in the right channel side.&nbsp;</p>
 <p class="Element10">
 In Left-Justified format, as shown in bottom half of the figure above, LRCLK is high for the left channel, and low for the right channel, and the most-significant bit (MSb) is lined up with the LRCLK and does not spill over into the opposite channel.&nbsp;</p>
 <p class="Element10">
-Below is a oscilloscope photo showing the LRCLK in yellow, and data in blue. Only the left channel has audio. The overlap in the I2S format is clearly visible, as well as the 16 individual data bits. </p><p class="Element10" style="text-align: center;">
+Below is a oscilloscope photo showing the LRCLK in yellow, and data in blue. Only the left channel has audio. The overlap in the I<sup>2</sup>S format is clearly visible, as well as the 16 individual data bits. </p><p class="Element10" style="text-align: center;">
 <img src="AUDIO I2S2.png" border="0" alt="" title=""></p><p class="Element10">
-A codec or Bluetooth module can act as a Master, in which it generates the I2S clocks BCLK and LRCLK and sends them to the MCU (with the MCU providing a Master Clock): </p><p class="Element10" style="text-align: center;">
+A codec or Bluetooth module can act as a Master, in which it generates the I<sup>2</sup>S clocks BCLK and LRCLK and sends them to the MCU (with the MCU providing a Master Clock): </p><p class="Element10" style="text-align: center;">
 <img src="DRV AUDIO WM8904 interface-Master.png" border="0" alt="" title=""></p><p class="Element10">
-or as a Slave, in which case the MCU generates the I2S clocks BCLK and LRCLK: </p><p class="Element10" style="text-align: center;">
+If the MCU generates the I<sup>2</sup>S clocks BCLK and LRCLK, the codec or Bluetooth module is the Slave:: </p><p class="Element10" style="text-align: center;">
 <img src="DRV AUDIO WM8904 interface-Slave.png" border="0" alt="" title=""></p><p class="Element10">
 &nbsp;</p>
 <p class="Element10">

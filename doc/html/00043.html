@@ -49,15 +49,15 @@ Creating an Audio Project from Scratch</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-<u>For projects using the SSC interface and a codec as a Master (the codec generates the I2S clocks):</u>&nbsp;</p>
+<u>For projects using the SSC interface and a codec as a Master (the codec generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
 <p class="Element10">
-Start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the same based on the BSP used. Select an appropriate processor (e.g. ATSAME70Q21B or ATSAMV71Q21B) depending on your board. Click Finish.&nbsp;</p>
+Start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the same based on the BSP used. Select an appropriate processor (e.g. ATSAME70Q21B or ATSAMV71Q21B) depending on the board used. Click Finish.&nbsp;</p>
 <p class="Element10">
-In MHC, under Available Components select an appropriate BSP (e.g. SAM E70 Xplained Ultra or SAM V71 Xplained Ultra). Under <i>Audio-&gt;Templates</i>, double-click on the desired codec, e.g. WM8904. Answer Yes to all questions. Besides instantiating all the necessary components (drivers and PLIBs), picking a base BSP plus an audio template also configures all of the pins for that board needed by the application.&nbsp;</p>
+In the MHC, under Available Components select an appropriate BSP (e.g. SAM E70 Xplained Ultra or SAM V71 Xplained Ultra). Under <i>Audio&gt;Templates</i>, double-click on the desired codec, e.g. WM8904. Answer Yes to all questions. Besides instantiating all the necessary components (drivers and PLIBs), picking a base BSP plus an audio template also configures all of the pins for that board needed by the application.&nbsp;</p>
 <p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+The result will be a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO audio_tone_E70_ssc_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
-In the Project Graph, click on TC0. In Configuration Options, Expand <i>Channel 0-&gt; Enable-&gt;Operating Mode-&gt;Timer</i>. Uncheck Enable Compare Interrupt, and check Enable Periodic Interrupt.&nbsp;</p>
+In the Project Graph, click on TC0. In Configuration Options, Expand <i>Channel 0&gt; Enable&gt;Operating Mode&gt;Timer</i>. Uncheck Enable Compare Interrupt, and check Enable Periodic Interrupt.&nbsp;</p>
 <p class="Element10">
 Click on the Codec Driver. In the Configurations Options, set the desired Sample Rate if different from the default (48,000) under Sampling Rate.&nbsp;</p>
 <p class="Element10">
@@ -67,25 +67,25 @@ If using the ATSAMV71Q21B, in the Clock Diagram set MOSCEL to Main Crystal, unch
 <p class="Element10">
 Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Controller </strong>section, check the On checkbox, and set CSS to MAINCLK (12 MHz). Then check the SSC checkbox in the <strong>Peripheral Clock Controller</strong> section.&nbsp;</p>
 <p class="Element10">
-It is also possible to change the audio format from 16 to 32-bits, and from I2S to Left Justified (SSC only). These changes need to be done in MHC in both the Codec Driver and SSC/I2SC Peripherals.&nbsp;</p>
+It is also possible to change the audio format from 16 to 32-bits, and from I2S to Left Justified (SSC only). These changes need to be done in the MHC in both the Codec Driver and SSC/I2SC Peripherals.&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<u>For projects using the I2SC interface and the codec as a Slave (the MCU generates the I2S clocks):</u>&nbsp;</p>
+<u>For projects using the I2SC interface and the codec as a Slave (the MCU generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
 <p class="Element10">
 Start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the based on the BSP. Select the appropriate processor (e.g. ATSAME70Q21B).&nbsp;</p>
 <p class="Element10">
-In MHC, under Available Components select an appropriate BSP (e.g. SAM E70 Xplained Ultra). Under <i>Audio-&gt;Templates</i>, double-click on the desired codec, e.g. WM8904. Answer Yes to all questions. Click on the Codec component (<i>not</i> the Codec Driver). In the Configuration Options, select I2SC instead of SSC. Answer Yes to all of the questions.&nbsp;</p>
+In the MHC, under Available Components select an appropriate BSP (e.g. SAM E70 Xplained Ultra). Under <i>Audio&gt;Templates</i>, double-click on the desired codec, e.g. WM8904. Answer Yes to all the questions. Click on the Codec component (<i>not</i> the Codec Driver). In the Configuration Options, select I2SC instead of SSC. Answer Yes to all of the questions.&nbsp;</p>
 <p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+The result will be a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO audio_tone_E70_i2sc_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
-In the Project Graph, click on TC0. In Configuration Options, Expand <i>Channel 0-&gt; Enable-&gt;Operating Mode-&gt;Timer</i>. Uncheck Enable Compare Interrupt, and check Enable Periodic Interrupt.&nbsp;</p>
+In the Project Graph, click on TC0. In Configuration Options, Expand <i>Channel 0&gt; Enable&gt;Operating Mode&gt;Timer</i>. Uncheck Enable Compare Interrupt, and check Enable Periodic Interrupt.&nbsp;</p>
 <p class="Element10">
 Click on the Codec Driver. In the Configurations Options, under Usage Mode, change Master to Slave. Set the desired Sample Rate if different from the default (48,000) under Sampling Rate.&nbsp;</p>
 <p class="Element10">
 If using the SAM E70 Xplained Ultra board, in the Clock Diagram, set MOSCEL to Main Crystal, check the Bypass checkbox, and uncheck the RC Crystal Oscillator and Main Crystal Oscillator boxes, to make use the 12 MHz resonator on the board: </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO E70 clock diagram main bypass.png" border="0" alt="" title=""></p><p class="Element10">
-Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Controller </strong>section, check the On checkbox, and set CSS to MAINCLK (12 MHz).&nbsp;</p>
+In the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Controller </strong>section, check the On checkbox, and set CSS to MAINCLK (12 MHz).&nbsp;</p>
 <p class="Element10">
 The following tables show suggested settings for various sample rates in the Clock Diagram when using the I2SC Peripheral in Master mode. Make sure <strong>PLLA Clock</strong> checkbox is checked, and fill in the values for the PLLA Multiplier and Divider boxes. Select the I2S1 tab under <strong>Generic Clock Controller</strong>, set GCLKCSS to PLLACK, fill in the Divider value as shown, and check the checkbox next to it. </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO E70 clock diagram I2SC clocks.png" border="0" alt="" title=""></p><p class="Element10">
@@ -279,7 +279,7 @@ Error&nbsp;</div></td></tr><tr>
 <div class="Element68">
 -0.3094%&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-It is also possible to change the audio format from 16 to 32-bits. This changes need to be done in MHC in both the Codec Driver and I2SC Peripheral.</p></div>
+It is also possible to change the audio format from 16 to 32-bits. This changes need to be done in the MHC in both the Codec Driver and I2SC Peripheral.</p></div>
 </div>
 </div>
 <!-- End Page Content -->

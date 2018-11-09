@@ -49,15 +49,15 @@ Digital Audio in Harmony</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Audio projects in Harmony consist of an application, plus associated drivers and peripheral libraries (PLIBs). Projects using Harmony audio typically connect to either a hardware codec or DAC external to the MCU, using a I2S interface for audio. Some projects may also make use of USB. </p><p class="Element10" style="text-align: center;">
+Audio projects in Harmony consist of an application, plus associated drivers and peripheral libraries (PLIBs). Projects using Harmony audio typically connect to either a hardware codec or DAC external to the MCU, using a I<sup>2</sup>S interface for audio. Some projects may also make use of USB. </p><p class="Element10" style="text-align: center;">
 <img src="AUDIO audio tone simple2.svg.png" border="0" alt="" title=""></p><p class="Element10">
 The block diagram above depicts a generic audio application that sends audio to a hardware codec or DAC connected to a pair of headphones.&nbsp;</p>
 <p class="Element10">
 The application interfaces directly with a Codec Driver and a Timer. The Codec Driver in turn interfaces with an I2S Driver, and in this case, an I2C Driver which sends commands to and receives status from the DAC or codec via the I2C/TWIHS PLIB. In other instances an SPI interface might be used.&nbsp;</p>
 <p class="Element10">
-The I2S Driver interfaces with an I2S-capable PLIB, which may be implemented using an SPI, SPI, or I2SC hardware module depending on the MCU.&nbsp;</p>
+The I2S Driver interfaces with an I<sup>2</sup>S-capable PLIB, which may be implemented using an SPI, SPI, or I2SC hardware module depending on the MCU.&nbsp;</p>
 <p class="Element10">
-The I2S Driver also uses DMA to transfer audio from the application's audio buffer to the I2S-capable peripheral.</p></div>
+The I2S Driver also uses DMA to transfer audio from the application's audio buffer to the I<sup>2</sup>S-capable peripheral.</p></div>
 </div>
 </div>
 <!-- End Page Content -->

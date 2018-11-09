@@ -53,32 +53,24 @@ Configuring MHC</div>
 <p class="Element10">
 When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the based on the BSP, and select the appropriate processor (such as ATSAME70Q21B).&nbsp;</p>
 <p class="Element10">
-In MHC, under Available Components select the appropriate BSP, such as SAM E70 Xplained Ultra. Under Audio<i>-&gt;Templates</i>, double-click on a codec template such as WM8904. Answer Yes to all questions.&nbsp;</p>
+In the MHC, under Available Components select the appropriate BSP, such as SAM E70 Xplained Ultra. Under <i>Audio&gt;Templates</i>, double-click on a codec template such as WM8904. Answer Yes to all questions.&nbsp;</p>
 <p class="Element10">
 You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO audio_tone_E70_ssc_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
 Click on the WM8904 Driver component (not WM8904 Codec) and the following menu will be displayed in the Configurations Options: </p><p class="Element10" style="text-align: center;">
-<img src="DRV AUDIO WM8904 MHC.png" border="0" alt="" title=""></p><p class="Element10">
-<strong>I2C Driver Used</strong> will display the driver instance used for the I2C interface.&nbsp;</p>
-<p class="Element10">
-<strong>I2S Driver Used</strong> will display the driver instance used for the I2S interface.&nbsp;</p>
-<p class="Element10">
-<strong>Usage Mode</strong> indicates whether the WM8904 is a Master (supplies I2S clocks) or a Slave (MCU supplies I2S clocks).&nbsp;</p>
-<p class="Element10">
-<strong>Number of WM8904 Clients</strong> indicates the maximum number of clients that can be connected to the WM8904 Driver.&nbsp;</p>
-<p class="Element10">
-<strong>Sampling Rate</strong> indicates the number of samples per second per channel, 8000 to 96,000.&nbsp;</p>
-<p class="Element10">
-<strong>Volume</strong> indicates the volume in a linear scale from 0-255.&nbsp;</p>
-<p class="Element10">
-<strong>Audio Data Format</strong> is either 16-bit Left Justified, 16-bit I2S, 32-bit Left Justified, or 32-bit I2S. It must match the audio protocol and data length set up in either the SSC or I2S PLIB.&nbsp;</p>
-<p class="Element10">
-<strong>Sampling Rate</strong> indicates the number of samples per second per channel, 8000 to 96,000.&nbsp;</p>
-<p class="Element10">
-<strong>Enable Microphone Input</strong> should be checked a microphone is being used. If checked, another option,&nbsp;</p>
-<p class="Element10">
-<strong>Enable Microphone Bias </strong>should be checked if using an electret microphone.&nbsp;</p>
-<p class="Element10">
+<img src="DRV AUDIO WM8904 MHC.png" border="0" alt="" title=""></p>
+<ul class="Element630">
+<li class="Element600"><strong>I2C Driver Used</strong> will display the driver instance used for the I<sup>2</sup>C interface.</li>
+<li class="Element600"><strong>I2S Driver Used</strong> will display the driver instance used for the I<sup>2</sup>S interface.</li>
+<li class="Element600"><strong>Usage Mode</strong> indicates whether the WM8904 is a Master (supplies I<sup>2</sup>S clocks) or a Slave (MCU supplies I<sup>2</sup>S clocks).</li>
+<li class="Element600"><strong>Number of WM8904 Clients</strong> indicates the maximum number of clients that can be connected to the WM8904 Driver.</li>
+<li class="Element600"><strong>Sampling Rate</strong> indicates the number of samples per second per channel, 8000 to 96,000.</li>
+<li class="Element600"><strong>Volume</strong> indicates the volume in a linear scale from 0-255.</li>
+<li class="Element600"><strong>Audio Data Format</strong> is either 16-bit Left Justified, 16-bit I2S, 32-bit Left Justified, or 32-bit I2S. It must match the audio protocol and data length set up in either the SSC or I2S PLIB.</li>
+<li class="Element600"><strong>Sampling Rate</strong> indicates the number of samples per second per channel, 8000 to 96,000.</li>
+<li class="Element600"><strong>Enable Microphone Input</strong> should be checked a microphone is being used. If checked, another option,</li>
+<li class="Element600"><strong>Enable Microphone Bias </strong>should be checked if using an electret microphone.</li>
+</ul><p class="Element10">
 You can also bring in the WM8904 Driver by itself, by double clicking WM8904 under Audio<i>-&gt;Driver-&gt;Codec</i> in the Available Components list. You will then need to add any additional needed components manually and connect them together.&nbsp;</p>
 <p class="Element10">
 Note that the WM8904 requires the TCx Peripheral Library and TIME System Service in order to perform some of its internal timing sequences.</p></div>
