@@ -53,9 +53,11 @@ Creating an Audio Project from Scratch</div>
 <p class="Element10">
 Start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the same based on the BSP used. Select an appropriate processor (e.g. ATSAME70Q21B or ATSAMV71Q21B) depending on the board used. Click Finish.&nbsp;</p>
 <p class="Element10">
-In the MHC, under Available Components select an appropriate BSP (e.g. SAM E70 Xplained Ultra or SAM V71 Xplained Ultra). Under <i>Audio&gt;Templates</i>, double-click on the desired codec, e.g. WM8904. Answer Yes to all questions. Besides instantiating all the necessary components (drivers and PLIBs), picking a base BSP plus an audio template also configures all of the pins for that board needed by the application.&nbsp;</p>
+In the MHC, under Available Components select an appropriate BSP (e.g. SAM E70 Xplained Ultra or SAM V71 Xplained Ultra). Under <i>Audio&gt;Templates</i>, double-click on the desired codec, e.g. WM8904. Answer Yes to all questions except for the one regarding FreeRTOS; answer Yes or No to that one depending on whether you will be using FreeRTOS or not.&nbsp;</p>
 <p class="Element10">
-The result will be a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+Besides instantiating all the necessary components (drivers and PLIBs), picking a base BSP plus an audio template also configures all of the pins for that board needed by the application.&nbsp;</p>
+<p class="Element10">
+The result will be a project graph that looks like this, after rearranging the boxes, assuming a non-FreeRTOS project: </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO audio_tone_E70_ssc_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
 In the Project Graph, click on TC0. In Configuration Options, Expand <i>Channel 0&gt; Enable&gt;Operating Mode&gt;Timer</i>. Uncheck Enable Compare Interrupt, and check Enable Periodic Interrupt.&nbsp;</p>
 <p class="Element10">
@@ -69,6 +71,8 @@ Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Con
 <p class="Element10">
 It is also possible to change the audio format from 16 to 32-bits, and from I2S to Left Justified (SSC only). These changes need to be done in the MHC in both the Codec Driver and SSC/I2SC Peripherals.&nbsp;</p>
 <p class="Element10">
+If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00099.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).&nbsp;</p>
+<p class="Element10">
 &nbsp;</p>
 <p class="Element10">
 <u>For projects using the I2SC interface and the codec as a Slave (the MCU generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
@@ -77,7 +81,7 @@ Start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <
 <p class="Element10">
 In the MHC, under Available Components select an appropriate BSP (e.g. SAM E70 Xplained Ultra). Under <i>Audio&gt;Templates</i>, double-click on the desired codec, e.g. WM8904. Answer Yes to all the questions. Click on the Codec component (<i>not</i> the Codec Driver). In the Configuration Options, select I2SC instead of SSC. Answer Yes to all of the questions.&nbsp;</p>
 <p class="Element10">
-The result will be a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+The result will be a project graph that looks like this, after rearranging the boxes, assuming a non-FreeRTOS project: </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO audio_tone_E70_i2sc_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
 In the Project Graph, click on TC0. In Configuration Options, Expand <i>Channel 0&gt; Enable&gt;Operating Mode&gt;Timer</i>. Uncheck Enable Compare Interrupt, and check Enable Periodic Interrupt.&nbsp;</p>
 <p class="Element10">
@@ -279,7 +283,9 @@ Error&nbsp;</div></td></tr><tr>
 <div class="Element68">
 -0.3094%&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-It is also possible to change the audio format from 16 to 32-bits. This changes need to be done in the MHC in both the Codec Driver and I2SC Peripheral.</p></div>
+It is also possible to change the audio format from 16 to 32-bits. This changes need to be done in the MHC in both the Codec Driver and I2SC Peripheral.&nbsp;</p>
+<p class="Element10">
+If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00099.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).</p></div>
 </div>
 </div>
 <!-- End Page Content -->
