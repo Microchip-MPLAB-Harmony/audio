@@ -23,7 +23,7 @@
 ##############################################################################
 
 componentsIDTable = ["HarmonyCore", "audio_codec_wm8904"]
-deactivateIDTable = ["FreeRTOS"]
+#deactivateIDTable = ["FreeRTOS"]
 
 execfile(Module.getPath() + "../common/pin_config.py")
 execfile(Module.getPath() + "../common/bsp_utils.py")
@@ -99,7 +99,7 @@ def instantiateComponent(bspComponent):
 
     res = Database.activateComponents(componentsIDTable)
     #res = Database.connectDependencies(autoConnectTable)
-    res = Database.deactivateComponents(deactivateIDTable);
+    #res = Database.deactivateComponents(deactivateIDTable);
 	
     if getBSPSupportNode(bspID, "SSC") and getBSPSupportNode(bspID, "I2SC"):        # if both are defined
         WM8904Interface = bspComponent.createComboSymbol("WM8904Interface", None, ["SSC", "I2SC"])
