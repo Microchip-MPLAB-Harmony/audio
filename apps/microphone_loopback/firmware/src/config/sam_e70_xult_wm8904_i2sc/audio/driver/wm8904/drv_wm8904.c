@@ -1326,6 +1326,7 @@ void DRV_WM8904_I2SBufferHandlerSet
 static void _setAudioCommunicationFormat(DRV_WM8904_OBJ *drvObj, DRV_WM8904_AUDIO_DATA_FORMAT audioDataFormat, bool standalone)
 {
     WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Command;
+    WM8904_I2C_Command.end = false;     // avoid uninitialized msg under -O3
 
     switch(audioDataFormat)
     {
@@ -1932,6 +1933,7 @@ void DRV_WM8904_MuteOn(DRV_HANDLE handle)
     DRV_WM8904_OBJ *drvObj;
     DRV_WM8904_CLIENT_OBJ *clientObj;
     WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Command;
+    WM8904_I2C_Command.end = false;     // avoid uninitialized msg under -O3
 
     clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
     drvObj = (DRV_WM8904_OBJ *)clientObj->hDriver;
@@ -1964,6 +1966,7 @@ void DRV_WM8904_MuteOff(DRV_HANDLE handle)
     DRV_WM8904_OBJ *drvObj;
     DRV_WM8904_CLIENT_OBJ *clientObj;
     WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Command;
+    WM8904_I2C_Command.end = false;     // avoid uninitialized msg under -O3
 
     clientObj       = (DRV_WM8904_CLIENT_OBJ *) handle;
     drvObj          = (DRV_WM8904_OBJ *)clientObj->hDriver;

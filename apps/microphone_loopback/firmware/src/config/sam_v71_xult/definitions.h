@@ -52,19 +52,18 @@
 #include "peripheral/pio/plib_pio.h"
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/xdmac/plib_xdmac.h"
+#include "peripheral/tc/plib_tc0.h"
 #include "bsp/bsp.h"
+#include "peripheral/ssc/plib_ssc.h"
+#include "driver/i2c/drv_i2c.h"
+#include "system/time/sys_time.h"
+#include "driver/i2s/drv_i2s.h"
+#include "peripheral/twihs/plib_twihs0.h"
+#include "audio/driver/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
 #include "system/dma/sys_dma.h"
 #include "osal/osal.h"
-#include "audio/driver/wm8904/drv_wm8904.h"
-#include "driver/i2c/drv_i2c.h"
-#include "driver/i2c/drv_i2c.h"
-#include "driver/i2s/drv_i2s.h"
-#include "peripheral/ssc/plib_ssc.h"
-#include "system/time/sys_time.h"
-#include "peripheral/tc/plib_tc0.h"
-#include "peripheral/twihs/plib_twihs0.h"
 #include "app.h"
 
 
@@ -187,14 +186,14 @@ void SYS_Tasks ( void );
 
 typedef struct
 {
-    SYS_MODULE_OBJ drvwm8904Codec0;
     /* I2C0 Driver Object */
     SYS_MODULE_OBJ drvI2C0;
 
+    SYS_MODULE_OBJ  sysTime;
     /* I2S0 Driver Object */
     SYS_MODULE_OBJ drvI2S0;
 
-    SYS_MODULE_OBJ  sysTime;
+    SYS_MODULE_OBJ drvwm8904Codec0;
 
 } SYSTEM_OBJECTS;
 

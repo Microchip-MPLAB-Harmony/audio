@@ -58,6 +58,9 @@
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
+/* Handle for the APP_Tasks. */
+TaskHandle_t xAPP_Tasks;
+
 void _APP_Tasks(  void *pvParameters  )
 {
     while(1)
@@ -98,7 +101,7 @@ void SYS_Tasks ( void )
                 1024,
                 NULL,
                 1,
-                NULL);  
+                &xAPP_Tasks);
 
 
 
