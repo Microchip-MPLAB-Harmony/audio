@@ -17,6 +17,7 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>../src</sourceRootElem>
+                <sourceRootElem>../../../../../bt/apps/data/bm64_ble_comm/firmware/src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

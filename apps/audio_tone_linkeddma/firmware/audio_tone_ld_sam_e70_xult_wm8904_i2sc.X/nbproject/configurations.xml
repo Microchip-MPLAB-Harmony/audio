@@ -159,6 +159,7 @@
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/app_tone_lookup_table.h</itemPath>
+      <itemPath>../../../../../bt/apps/data/bm64_ble_comm/firmware/src/app.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -250,6 +251,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../src</Elem>
+    <Elem>../../../../../bt/apps/data/bm64_ble_comm/firmware/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
