@@ -56,6 +56,7 @@
 */
 
 #include "user.h"
+#include "toolchain_specifics.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -72,7 +73,6 @@ extern "C" {
 // *****************************************************************************
 #define DCACHE_CLEAN_BY_ADDR(data, size)       SCB_CleanDCache_by_Addr((uint32_t *)data, size)
 #define DCACHE_INVALIDATE_BY_ADDR(data, size)  SCB_InvalidateDCache_by_Addr((uint32_t *)data, size)
-
 #define DATA_CACHE_ENABLED                     true
 
 // *****************************************************************************
@@ -80,6 +80,15 @@ extern "C" {
 // Section: System Service Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* TIME System Service Configuration Options */
+#define SYS_TIME_INDEX_0                     0
+#define SYS_TIME_MAX_TIMERS                  5
+#define SYS_TIME_HW_COUNTER_WIDTH            16
+#define SYS_TIME_HW_COUNTER_PERIOD           0xFFFF
+#define SYS_TIME_HW_COUNTER_HALF_PERIOD		 (SYS_TIME_HW_COUNTER_PERIOD>>1)
+#define SYS_TIME_CPU_CLOCK_FREQUENCY         300000000
+#define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
+
 
 /* File System Service Configuration */
 
@@ -106,15 +115,6 @@ extern "C" {
 #define SYS_FS_MEDIA_IDX0_DEVICE_NAME_VOLUME_IDX0			"/dev/sda1"
 								
 
-/* TIME System Service Configuration Options */
-#define SYS_TIME_INDEX_0                     0
-#define SYS_TIME_MAX_TIMERS                  10
-#define SYS_TIME_HW_COUNTER_WIDTH            16
-#define SYS_TIME_HW_COUNTER_PERIOD           0xFFFF
-#define SYS_TIME_HW_COUNTER_HALF_PERIOD		 (SYS_TIME_HW_COUNTER_PERIOD>>1)
-#define SYS_TIME_CPU_CLOCK_FREQUENCY         300000000
-#define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
-
 
 
 // *****************************************************************************
@@ -122,6 +122,28 @@ extern "C" {
 // Section: Driver Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* I2C Driver Instance 0 Configuration Options */
+#define DRV_I2C_INDEX_0                       0
+#define DRV_I2C_CLIENTS_NUMBER_IDX0           1
+#define DRV_I2C_INT_SRC_IDX0                  TWIHS0_IRQn
+#define DRV_I2C_QUEUE_SIZE_IDX0               2
+#define DRV_I2C_CLOCK_SPEED_IDX0              400000
+
+/* I2C Driver Common Configuration Options */
+#define DRV_I2C_INSTANCES_NUMBER              1
+
+
+/* I2S Driver Instance 0 Configuration Options */
+#define DRV_I2S_INDEX_0                       0
+#define DRV_I2S_CLIENTS_NUMBER_IDX0           1
+#define DRV_I2S_QUEUE_DEPTH_COMBINED          8
+#define DRV_I2S_QUEUE_SIZE_IDX0               8
+#define DRV_I2S_DATA_LENGTH_IDX0              16
+#define DRV_I2S_INT_SRC_IDX0                  SSC_IRQn
+#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
+#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
+
+
 /*** Codec Driver Configuration ***/
 
 #define DRV_WM8904_CLIENTS_NUMBER                           1
@@ -175,30 +197,8 @@ extern "C" {
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 
 
-/* I2C Driver Common Configuration Options */
-#define DRV_I2C_INSTANCES_NUMBER              1
-
-
-/* I2C Driver Instance 0 Configuration Options */
-#define DRV_I2C_INDEX_0                       0
-#define DRV_I2C_CLIENTS_NUMBER_IDX0           1
-#define DRV_I2C_INT_SRC_IDX0                  TWIHS0_IRQn
-#define DRV_I2C_QUEUE_SIZE_IDX0               2
-#define DRV_I2C_CLOCK_SPEED_IDX0              400000
-
 /* I2S Driver Common Configuration Options */
 #define DRV_I2S_INSTANCES_NUMBER              1
-
-/* I2S Driver Instance 0 Configuration Options */
-#define DRV_I2S_INDEX_0                       0
-#define DRV_I2S_CLIENTS_NUMBER_IDX0           1
-#define DRV_I2S_QUEUE_DEPTH_COMBINED          8
-#define DRV_I2S_QUEUE_SIZE_IDX0               8
-#define DRV_I2S_DATA_LENGTH_IDX0              16
-#define DRV_I2S_INT_SRC_IDX0                  SSC_IRQn
-#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
-#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
-
 
 
 
@@ -207,63 +207,6 @@ extern "C" {
 // Section: Middleware & Other Library Configuration
 // *****************************************************************************
 // *****************************************************************************
-/*** USB Driver Configuration ***/
-
-/* Maximum USB driver instances */
-#define DRV_USBHSV1_INSTANCES_NUMBER  1
-
-/* Interrupt mode enabled */
-#define DRV_USBHSV1_INTERRUPT_MODE    true
-
-
-
-	  
-/* Number of Endpoints used */
-#define DRV_USBHSV1_ENDPOINTS_NUMBER  1  
-
-/* Disable Device Support */
-#define DRV_USBHSV1_DEVICE_SUPPORT    false
-	
-/* Enable Host Support */
-#define DRV_USBHSV1_HOST_SUPPORT      true
-
-/* Number of NAKs to wait before returning transfer failure */ 
-#define DRV_USBHSV1_HOST_NAK_LIMIT      2000 //TODO Verify with Sundar
-
-/* Maximum Number of pipes */
-#define DRV_USBHSV1_HOST_PIPES_NUMBER    10 //TODO Verify with Sundar 
-
-/* Attach Debounce duration in milli Seconds */ 
-#define DRV_USBHSV1_HOST_ATTACH_DEBOUNCE_DURATION 500
-
-/* Reset duration in milli Seconds */ 
-#define DRV_USBHSV1_HOST_RESET_DURATION 100
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: USB Host Layer Configuration
-// *****************************************************************************
-// **************************************************************************
- 
-/* Total number of devices to be supported */
-#define USB_HOST_DEVICES_NUMBER         1
-
-/* Target peripheral list entries */
-#define  USB_HOST_TPL_ENTRIES           1 
-
-/* Maximum number of configurations supported per device */
-#define USB_HOST_DEVICE_INTERFACES_NUMBER     5    
-
-#define USB_HOST_CONTROLLERS_NUMBER           1
-
-#define USB_HOST_TRANSFERS_NUMBER             10
-
-/* Provides Host pipes number */
-#define USB_HOST_PIPES_NUMBER    10
-
-/* Number of Host Layer Clients */
-#define USB_HOST_CLIENTS_NUMBER               1   
-
 /* Number of MSD Function driver instances in the application */
 #define USB_HOST_MSD_INSTANCES_NUMBER         1
 
@@ -271,6 +214,60 @@ extern "C" {
 #define USB_HOST_SCSI_INSTANCES_NUMBER        1
 #define USB_HOST_MSD_LUN_NUMBERS              1
 
+
+/*** USB Driver Configuration ***/
+
+/* Maximum USB driver instances */
+#define DRV_USBHSV1_INSTANCES_NUMBER                        1
+
+/* Interrupt mode enabled */
+#define DRV_USBHSV1_INTERRUPT_MODE                          true
+
+/* Disable Device Support */
+#define DRV_USBHSV1_DEVICE_SUPPORT                          false
+	
+/* Enable Host Support */
+#define DRV_USBHSV1_HOST_SUPPORT                            true
+
+/* Number of NAKs to wait before returning transfer failure */ 
+#define DRV_USBHSV1_HOST_NAK_LIMIT                          2000 
+
+/* Maximum Number of pipes */
+#define DRV_USBHSV1_HOST_PIPES_NUMBER                       10  
+
+/* Attach Debounce duration in milli Seconds */ 
+#define DRV_USBHSV1_HOST_ATTACH_DEBOUNCE_DURATION           500
+
+/* Reset duration in milli Seconds */ 
+#define DRV_USBHSV1_HOST_RESET_DURATION                     100
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: USB Host Layer Configuration
+// *****************************************************************************
+// **************************************************************************
+
+/* Number of Endpoints used */
+#define DRV_USBHSV1_ENDPOINTS_NUMBER                        1
+
+/* Total number of devices to be supported */
+#define USB_HOST_DEVICES_NUMBER                             1
+
+/* Target peripheral list entries */
+#define  USB_HOST_TPL_ENTRIES                               1 
+
+/* Maximum number of configurations supported per device */
+#define USB_HOST_DEVICE_INTERFACES_NUMBER                   5    
+
+#define USB_HOST_CONTROLLERS_NUMBER                         1
+
+#define USB_HOST_TRANSFERS_NUMBER                           10
+
+/* Provides Host pipes number */
+#define USB_HOST_PIPES_NUMBER                               10
+
+/* Number of Host Layer Clients */
+#define USB_HOST_CLIENTS_NUMBER                             1   
 
 
 

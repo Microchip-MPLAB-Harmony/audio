@@ -55,6 +55,9 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #define SYS_DEBUG_PRINT(level, format, ...) 
 #define SYS_DEBUG_MESSAGE(a,b, ...)
+/***** KEEP THIS, BEGIN *****/
+#undef  SYS_DEBUG
+/***** KEEP THIS, END *****/
 #define SYS_DEBUG(a,b)
 //#define SYS_DEBUG_MESSAGE(a , b)
 #endif 
