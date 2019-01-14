@@ -64,19 +64,6 @@
 #define LED1_Toggle() (PIOA_REGS->PIO_ODSR ^= (1<<5))
 #define LED1_On() (PIOA_REGS->PIO_CODR = (1<<5))
 #define LED1_Off() (PIOA_REGS->PIO_SODR = (1<<5))
-
-//KEEP - DEBUG ONLY
-#define TEST1_Lo()     (PIOA_REGS->PIO_CODR = (1<<2))
-#define TEST1_Hi()     (PIOA_REGS->PIO_SODR = (1<<2))
-#define TEST2_Lo()     (PIOC_REGS->PIO_CODR = (1<<19))
-#define TEST2_Hi()     (PIOC_REGS->PIO_SODR = (1<<19))
-#define TEST3_Lo()     (PIOD_REGS->PIO_CODR = (1<<27))
-#define TEST3_Hi()     (PIOD_REGS->PIO_SODR = (1<<27))
-#define TEST4_Lo()     (PIOA_REGS->PIO_CODR = (1<<6))
-#define TEST4_Hi()     (PIOA_REGS->PIO_SODR = (1<<6))
-#define TEST5_Lo()     (PIOD_REGS->PIO_CODR = (1<<30))
-#define TEST5_Hi()     (PIOD_REGS->PIO_SODR = (1<<30))
-
 /*** SWITCH Macros for SWITCH ***/
 #define SWITCH_Get() ((PIOA_REGS->PIO_PDSR >> 11) & 0x1)
 #define SWITCH_STATE_PRESSED 0

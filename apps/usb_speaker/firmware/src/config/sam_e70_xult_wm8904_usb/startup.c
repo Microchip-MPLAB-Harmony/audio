@@ -201,7 +201,7 @@ void __attribute__((optimize("-O1"), section(".text.Reset_Handler"), long_call))
     /* Initialize data after TCM is enabled.
      * Data initialization from the XC32 .dinit template */
     __pic32c_data_initialization();
-	
+
     /* Move the stack to Data Tightly Coupled Memory (DTCM) */
     __pic32c_TCM_StackInit();
 

@@ -56,6 +56,7 @@
 */
 
 #include "user.h"
+#include "toolchain_specifics.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -72,7 +73,6 @@ extern "C" {
 // *****************************************************************************
 #define DCACHE_CLEAN_BY_ADDR(data, size)       SCB_CleanDCache_by_Addr((uint32_t *)data, size)
 #define DCACHE_INVALIDATE_BY_ADDR(data, size)  SCB_InvalidateDCache_by_Addr((uint32_t *)data, size)
-
 #define DATA_CACHE_ENABLED                     false
 
 // *****************************************************************************
@@ -82,11 +82,13 @@ extern "C" {
 // *****************************************************************************
 /* TIME System Service Configuration Options */
 #define SYS_TIME_INDEX_0                     0
-#define SYS_TIME_MAX_TIMERS                  10
+#define SYS_TIME_MAX_TIMERS                  5
 #define SYS_TIME_HW_COUNTER_WIDTH            16
 #define SYS_TIME_HW_COUNTER_PERIOD           0xFFFF
 #define SYS_TIME_HW_COUNTER_HALF_PERIOD		 (SYS_TIME_HW_COUNTER_PERIOD>>1)
 #define SYS_TIME_CPU_CLOCK_FREQUENCY         300000000
+#define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
+
 
 
 // *****************************************************************************
@@ -94,6 +96,29 @@ extern "C" {
 // Section: Driver Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* I2C Driver Instance 0 Configuration Options */
+#define DRV_I2C_INDEX_0                       0
+#define DRV_I2C_CLIENTS_NUMBER_IDX0           1
+#define DRV_I2C_INT_SRC_IDX0                  TWIHS0_IRQn
+#define DRV_I2C_QUEUE_SIZE_IDX0               2
+#define DRV_I2C_CLOCK_SPEED_IDX0              400000
+
+/* I2C Driver Common Configuration Options */
+#define DRV_I2C_INSTANCES_NUMBER              1
+
+
+/* I2S Driver Instance 0 Configuration Options */
+#define DRV_I2S_INDEX_0                       0
+#define DRV_I2S_CLIENTS_NUMBER_IDX0           1
+//KEEP THIS - Combined queue is 128 since read/write queue is the same
+#define DRV_I2S_QUEUE_DEPTH_COMBINED          128
+#define DRV_I2S_QUEUE_SIZE_IDX0               64
+#define DRV_I2S_DATA_LENGTH_IDX0              16
+#define DRV_I2S_INT_SRC_IDX0                  SSC_IRQn
+#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
+#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
+
+
 /*** Codec Driver Configuration ***/
 
 #define DRV_WM8904_CLIENTS_NUMBER                           1
@@ -147,32 +172,8 @@ extern "C" {
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 
 
-/* I2C Driver Common Configuration Options */
-#define DRV_I2C_INSTANCES_NUMBER              1
-
-
-/* I2C Driver Instance 0 Configuration Options */
-#define DRV_I2C_INDEX_0                       0
-#define DRV_I2C_CLIENTS_NUMBER_IDX0           1
-#define DRV_I2C_INT_SRC_IDX0                  TWIHS0_IRQn
-#define DRV_I2C_QUEUE_SIZE_IDX0               2
-#define DRV_I2C_CLOCK_SPEED_IDX0              400000
-
 /* I2S Driver Common Configuration Options */
 #define DRV_I2S_INSTANCES_NUMBER              1
-
-/* I2S Driver Instance 0 Configuration Options */
-#define DRV_I2S_INDEX_0                       0
-#define DRV_I2S_CLIENTS_NUMBER_IDX0           1
-//KEEP THIS - Actual Queue Size for both Reads and Writes.
-#define DRV_I2S_QUEUE_DEPTH_COMBINED         128 
-//NOTE:  RX and TX Queue sizes
-#define DRV_I2S_QUEUE_SIZE_IDX0               64
-#define DRV_I2S_DATA_LENGTH_IDX0              16
-#define DRV_I2S_INT_SRC_IDX0                  SSC_IRQn
-#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
-#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
-
 
 
 
@@ -181,39 +182,36 @@ extern "C" {
 // Section: Middleware & Other Library Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* Number of Endpoints used */
+#define DRV_USBHSV1_ENDPOINTS_NUMBER                        3
+
+/* The USB Device Layer will not initialize the USB Driver */
+#define USB_DEVICE_DRIVER_INITIALIZE_EXPLICIT 
+
+/* Maximum device layer instances */
+#define USB_DEVICE_INSTANCES_NUMBER                         1 
+
+/* EP0 size in bytes */
+#define USB_DEVICE_EP0_BUFFER_SIZE                          64
+
+
+
+
+
+
 /*** USB Driver Configuration ***/
 
 /* Maximum USB driver instances */
-#define DRV_USBHSV1_INSTANCES_NUMBER  1
+#define DRV_USBHSV1_INSTANCES_NUMBER                        1
 
 /* Interrupt mode enabled */
-#define DRV_USBHSV1_INTERRUPT_MODE    true
-
-
-
-
-/* Number of Endpoints used */
-#define DRV_USBHSV1_ENDPOINTS_NUMBER  7 //TODO  Calculate this for Device 
+#define DRV_USBHSV1_INTERRUPT_MODE                          true
 
 /* Enables Device Support */
-#define DRV_USBHSV1_DEVICE_SUPPORT    true
+#define DRV_USBHSV1_DEVICE_SUPPORT                          true
 	
 /* Disable Host Support */
-#define DRV_USBHSV1_HOST_SUPPORT      false
-
-/* The USB Device Layer will not initialize the USB Driver */
-#define USB_DEVICE_DRIVER_INITIALIZE_EXPLICIT
-
-/* Maximum device layer instances */
-#define USB_DEVICE_INSTANCES_NUMBER     1 
-
-/* EP0 size in bytes */
-#define USB_DEVICE_EP0_BUFFER_SIZE      64
-
-
-
-
-
+#define DRV_USBHSV1_HOST_SUPPORT                            false
 
 /* Maximum instances of Audio function driver */
 #define USB_DEVICE_AUDIO_INSTANCES_NUMBER     1
@@ -221,8 +219,7 @@ extern "C" {
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-//KEEP THIS- USB generated value incorrect
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 72 
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66
 
 
 /* No of Audio streaming interfaces */

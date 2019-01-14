@@ -326,10 +326,6 @@ void APP_USBDeviceAudioEventHandler(USB_DEVICE_AUDIO_INDEX iAudio,
             case USB_DEVICE_AUDIO_EVENT_READ_COMPLETE:
             {
                 //DEBUG
-                TEST2_Hi();
-                TEST2_Lo();
-
-                //DEBUG
                 usbReadCompleteCnt++;
 
                 //We have received an audio frame from the Host.
@@ -570,12 +566,6 @@ void APP_Initialize()
 #if defined(USE_DISPLAY)
     display_init(&DISPLAY_STATS);
 #endif
-
-    //DEBUG
-    TEST1_Lo();
-    TEST2_Lo();
-    TEST3_Lo();
-    TEST4_Lo();
 } //End APP_Initialize()
 
 
@@ -732,8 +722,6 @@ void APP_Tasks()
                 usbReadFailureCnt = 0;
                 usbReadCompleteCnt = 0;
                 usbReadCompleteQLvl = 0;  
-                TEST3_Lo(); //Queue Full
-                //TEST4_Hi(); //Queue Empty
 
                 usbNextCompleteIdx = 0;
 
@@ -920,8 +908,6 @@ void APP_Tasks()
                             appData.lrSync = false;
                         }
 
-                        TEST3_Hi();
-                        TEST3_Lo();
                         #ifdef DEBUG_TONE_CODEC_TX
                         //Write stereo tone to output instead of USB data.
                         DRV_CODEC_BufferAddWrite(
@@ -1044,8 +1030,6 @@ void APP_Tasks()
 
                     if(current->usbReadCompleted && !current->codecInUse)
                     {
-                        TEST3_Hi();
-                        TEST3_Lo();
                         #ifdef DEBUG_TONE_CODEC_TX
                         //Write stereo tone to output instead of USB data.
                         DRV_CODEC_BufferAddWrite(
@@ -1328,11 +1312,7 @@ APP_CODECBufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
 
             //DEBUG
             codecWriteCompleteCnt++;
-
             appPlaybackBuffer.codecWriteCompleteCnt++;
-
-            //DEBUG
-            TEST4_Lo();  //Codec Write Complete
 
             if (appPlaybackBuffer.codecWriteIdx != appPlaybackBuffer.usbReadIdx)
             {

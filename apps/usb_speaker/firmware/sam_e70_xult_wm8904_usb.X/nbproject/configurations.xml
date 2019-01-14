@@ -4,21 +4,24 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="f1" displayName="arm" projectFiles="true">
+        <itemPath>../src/arm/toolchain_specifics.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="audio_codec" displayName="audio_codec" projectFiles="true">
         <itemPath>../src/audio_codec/audio_codec.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f1" displayName="config" projectFiles="true">
+      <logicalFolder name="f2" displayName="config" projectFiles="true">
         <logicalFolder name="f1"
                        displayName="sam_e70_xult_wm8904_usb"
                        projectFiles="true">
-          <logicalFolder name="f5" displayName="audio" projectFiles="true">
+          <logicalFolder name="f6" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
                 <itemPath>../src/config/sam_e70_xult_wm8904_usb/audio/driver/wm8904/drv_wm8904.h</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f2" displayName="bsp" projectFiles="true">
+          <logicalFolder name="f5" displayName="bsp" projectFiles="true">
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/bsp/bsp.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f3" displayName="driver" projectFiles="true">
@@ -26,11 +29,11 @@
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/i2c/drv_i2c.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/i2c/drv_i2c_definitions.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f2" displayName="i2s" projectFiles="true">
+            <logicalFolder name="f3" displayName="i2s" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/i2s/drv_i2s.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/i2s/drv_i2s_definitions.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f3" displayName="usb" projectFiles="true">
+            <logicalFolder name="f2" displayName="usb" projectFiles="true">
               <logicalFolder name="f1" displayName="usbhsv1" projectFiles="true">
                 <logicalFolder name="f1" displayName="src" projectFiles="true">
                   <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/usb/usbhsv1/src/drv_usbhsv1_variant_mapping.h</itemPath>
@@ -54,10 +57,10 @@
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/peripheral/pio/plib_pio.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f5" displayName="ssc" projectFiles="true">
+            <logicalFolder name="f6" displayName="ssc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/peripheral/ssc/plib_ssc.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="tc" projectFiles="true">
+            <logicalFolder name="f5" displayName="tc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/peripheral/tc/plib_tc0.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/peripheral/tc/plib_tc_common.h</itemPath>
             </logicalFolder>
@@ -71,19 +74,19 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f4" displayName="system" projectFiles="true">
-            <logicalFolder name="f3" displayName="dma" projectFiles="true">
+            <logicalFolder name="f4" displayName="dma" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/dma/sys_dma.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/dma/sys_dma_mapping.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f1" displayName="int" projectFiles="true">
+            <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/int/sys_int.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/int/sys_int_mapping.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f2" displayName="ports" projectFiles="true">
+            <logicalFolder name="f3" displayName="ports" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/ports/sys_ports.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/ports/sys_ports_mapping.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f4" displayName="time" projectFiles="true">
+            <logicalFolder name="f1" displayName="time" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/time/sys_time.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/time/sys_time_definitions.h</itemPath>
             </logicalFolder>
@@ -91,7 +94,7 @@
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/system_common.h</itemPath>
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/system_module.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f6" displayName="usb" projectFiles="true">
+          <logicalFolder name="f2" displayName="usb" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/src/usb_device_local.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/src/usb_device_mapping.h</itemPath>
@@ -99,28 +102,28 @@
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/src/usb_external_dependencies.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/src/usb_device_audio_local.h</itemPath>
             </logicalFolder>
-            <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_host_client_driver.h</itemPath>
-            <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_host_hub_interface.h</itemPath>
-            <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_host.h</itemPath>
-            <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_hub.h</itemPath>
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_device.h</itemPath>
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_common.h</itemPath>
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_chapter_9.h</itemPath>
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_device_audio_v1_0.h</itemPath>
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_audio_v1_0.h</itemPath>
+            <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_host_client_driver.h</itemPath>
+            <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_host_hub_interface.h</itemPath>
+            <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_host.h</itemPath>
+            <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/usb_hub.h</itemPath>
           </logicalFolder>
           <itemPath>../src/config/sam_e70_xult_wm8904_usb/definitions.h</itemPath>
           <itemPath>../src/config/sam_e70_xult_wm8904_usb/user.h</itemPath>
           <itemPath>../src/config/sam_e70_xult_wm8904_usb/configuration.h</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <logicalFolder name="f2" displayName="osal" projectFiles="true">
+      <logicalFolder name="f4" displayName="osal" projectFiles="true">
         <itemPath>../src/config/sam_e70_xult_wm8904_usb/osal/osal.h</itemPath>
         <itemPath>../src/config/sam_e70_xult_wm8904_usb/osal/osal_definitions.h</itemPath>
         <itemPath>../src/config/sam_e70_xult_wm8904_usb/osal/osal_impl_basic.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="packs" projectFiles="true">
-        <logicalFolder name="f2" displayName="ATSAME70Q21B_DFP" projectFiles="true">
+        <logicalFolder name="f1" displayName="ATSAME70Q21B_DFP" projectFiles="true">
           <logicalFolder name="f1" displayName="component" projectFiles="true">
             <itemPath>../src/packs/ATSAME70Q21B_DFP/component/acc.h</itemPath>
             <itemPath>../src/packs/ATSAME70Q21B_DFP/component/aes.h</itemPath>
@@ -165,7 +168,7 @@
           <itemPath>../src/packs/ATSAME70Q21B_DFP/device.h</itemPath>
           <itemPath>../src/packs/ATSAME70Q21B_DFP/atsame70q21b.h</itemPath>
         </logicalFolder>
-        <logicalFolder name="f1" displayName="CMSIS" projectFiles="true">
+        <logicalFolder name="f2" displayName="CMSIS" projectFiles="true">
           <logicalFolder name="f1" displayName="CMSIS" projectFiles="true">
             <logicalFolder name="f1" displayName="Core" projectFiles="true">
               <logicalFolder name="f1" displayName="Include" projectFiles="true">
@@ -203,7 +206,7 @@
         <logicalFolder name="f1"
                        displayName="sam_e70_xult_wm8904_usb"
                        projectFiles="true">
-          <logicalFolder name="f5" displayName="audio" projectFiles="true">
+          <logicalFolder name="f7" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
                 <itemPath>../src/config/sam_e70_xult_wm8904_usb/audio/driver/wm8904/drv_wm8904.c</itemPath>
@@ -211,19 +214,19 @@
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f3" displayName="bsp" projectFiles="true">
+          <logicalFolder name="f6" displayName="bsp" projectFiles="true">
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/bsp/bsp.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="f6" displayName="driver" projectFiles="true">
+          <logicalFolder name="f4" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="i2c" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/i2c/src/drv_i2c.c</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/i2c/src/drv_i2c_local.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f2" displayName="i2s" projectFiles="true">
+            <logicalFolder name="f3" displayName="i2s" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/i2s/src/drv_i2s.c</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/i2s/src/drv_i2s_local.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f3" displayName="usb" projectFiles="true">
+            <logicalFolder name="f2" displayName="usb" projectFiles="true">
               <logicalFolder name="f1" displayName="usbhsv1" projectFiles="true">
                 <logicalFolder name="f1" displayName="src" projectFiles="true">
                   <itemPath>../src/config/sam_e70_xult_wm8904_usb/driver/usb/usbhsv1/src/drv_usbhsv1.c</itemPath>
@@ -242,10 +245,10 @@
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/peripheral/pio/plib_pio.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f5" displayName="ssc" projectFiles="true">
+            <logicalFolder name="f6" displayName="ssc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/peripheral/ssc/plib_ssc.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="tc" projectFiles="true">
+            <logicalFolder name="f5" displayName="tc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/peripheral/tc/plib_tc0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f7" displayName="twihs" projectFiles="true">
@@ -258,19 +261,19 @@
           <logicalFolder name="f1" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/sam_e70_xult_wm8904_usb/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="f4" displayName="system" projectFiles="true">
-            <logicalFolder name="f2" displayName="dma" projectFiles="true">
+          <logicalFolder name="f5" displayName="system" projectFiles="true">
+            <logicalFolder name="f3" displayName="dma" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/dma/sys_dma.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f1" displayName="int" projectFiles="true">
+            <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/int/src/sys_int.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f3" displayName="time" projectFiles="true">
+            <logicalFolder name="f1" displayName="time" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/time/src/sys_time.c</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/system/time/src/sys_time_local.h</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f7" displayName="usb" projectFiles="true">
+          <logicalFolder name="f3" displayName="usb" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/src/usb_device.c</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb/src/usb_device_audio_v1_0.c</itemPath>
@@ -282,8 +285,8 @@
           <itemPath>../src/config/sam_e70_xult_wm8904_usb/exceptions.c</itemPath>
           <itemPath>../src/config/sam_e70_xult_wm8904_usb/startup.c</itemPath>
           <itemPath>../src/config/sam_e70_xult_wm8904_usb/libc_syscalls.c</itemPath>
-          <itemPath>../src/config/sam_e70_xult_wm8904_usb/tasks.c</itemPath>
           <itemPath>../src/config/sam_e70_xult_wm8904_usb/usb_device_init_data.c</itemPath>
+          <itemPath>../src/config/sam_e70_xult_wm8904_usb/tasks.c</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/main.c</itemPath>

@@ -51,9 +51,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
  **************************************************/
 	const USB_DEVICE_AUDIO_INIT audioInit0 =
 {
-//KEEP THIS- USB Generated code incorrect
 	.queueSizeRead = 64,
-	.queueSizeWrite = 8
+	.queueSizeWrite = 2
 };
 
 
@@ -100,7 +99,7 @@ const USB_DEVICE_DESCRIPTOR deviceDescriptor =
     0x0100,                         // Device release number in BCD format
     0x01,                           // Manufacturer string index
     0x02,                           // Product string index
-    0x00,                           // Device serial number string index
+	0x00,
     0x01                            // Number of possible configurations
 };
 
@@ -115,8 +114,8 @@ const uint8_t fullSpeedConfigurationDescriptor[]=
 
     0x09,                                               // Size of this descriptor in bytes
     USB_DESCRIPTOR_CONFIGURATION,                       // Descriptor Type
-    USB_DEVICE_16bitTo8bitArrange(110),    //(110 Bytes)Size of the Config descriptor
-    2,             // Number of interfaces in this cfg
+    USB_DEVICE_16bitTo8bitArrange(110),                  //(110 Bytes)Size of the Config descriptor
+    2,                                                  // Number of interfaces in this cfg
     0x01,                                               // Index value of this configuration
     0x00,                                               // Configuration string index
     USB_ATTRIBUTE_DEFAULT | USB_ATTRIBUTE_SELF_POWERED, // Attributes
@@ -314,7 +313,6 @@ USB_DEVICE_CONFIGURATION_DESCRIPTORS_TABLE fullSpeedConfigDescSet[1] =
         USB_DESCRIPTOR_STRING,
 		{'H','a','r','m','o','n','y',' ','U','S','B',' ','S','p','e','a','k','e','r',' ','E','x','a','m','p','l','e'}
     }; 
-
 /***************************************
  * Array of string descriptors
  ***************************************/
@@ -324,7 +322,6 @@ USB_DEVICE_STRING_DESCRIPTORS_TABLE stringDescriptors[3]=
     (const uint8_t *const)&sd001,
     (const uint8_t *const)&sd002
 };
-
 
 /*******************************************
  * USB Device Layer Master Descriptor Table 
