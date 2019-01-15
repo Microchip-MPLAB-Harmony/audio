@@ -24,6 +24,7 @@
 
 def customUpdate(wm8904EnableMic, event):
     global wm8904EnableBias 
+    global wm8904MicGain
     global custom
 
     if event["value"]==True:   # Enable Mic Input
@@ -32,10 +33,12 @@ def customUpdate(wm8904EnableMic, event):
         custom = False
 
     wm8904EnableBias.setVisible(custom) 
+    wm8904MicGain.setVisible(custom)
 
 def instantiateComponent(wm8904Component):
     global custom
-    global wm8904EnableBias 
+    global wm8904EnableBias
+    global wm8904MicGain 
 
     Log.writeInfoMessage("WM8904 instantiated")
 
@@ -114,6 +117,11 @@ def instantiateComponent(wm8904Component):
     wm8904EnableBias.setVisible(custom)
     wm8904EnableBias.setLabel("Enable Microphone Bias for electret microphones")
     wm8904EnableBias.setDefaultValue(False)
+
+    wm8904MicGain = wm8904Component.createIntegerSymbol("DRV_WM8904_MIC_GAIN", None)
+    wm8904MicGain.setVisible(custom)
+    wm8904MicGain.setLabel("Microphone Gain in range 0(Min) to 31(Max)")
+    wm8904MicGain.setDefaultValue(28)
 
     # Enable "Generate Harmony Application Files" option in MHC
     Database.setSymbolValue("HarmonyCore", "ENABLE_APP_FILE", True, 1)

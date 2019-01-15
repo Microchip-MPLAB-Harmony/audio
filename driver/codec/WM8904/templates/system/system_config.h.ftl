@@ -21,6 +21,7 @@
 #define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    ${DRV_WM8904_AUDIO_DATA_FORMAT}
 #define DRV_WM8904_ENABLE_MIC_INPUT                         ${DRV_WM8904_ENABLE_MIC_INPUT?c}
 #define DRV_WM8904_ENABLE_MIC_BIAS                          ${DRV_WM8904_ENABLE_MIC_BIAS?c}
+#define DRV_WM8904_MIC_GAIN	                      	        ${DRV_WM8904_MIC_GAIN}
 
 <#-- Instance 0 -->
 <#if DRV_CODEC_WM8904_INST_IDX0 == true>
@@ -63,5 +64,9 @@
 #define DRV_CODEC_VolumeGet                                 DRV_WM8904_VolumeGet
 #define DRV_CODEC_MuteOn                                    DRV_WM8904_MuteOn
 #define DRV_CODEC_MuteOff                                   DRV_WM8904_MuteOff
+#define DRV_CODEC_MicGainSet                                DRV_WM8904_MicGainSet
+#define DRV_CODEC_MicGainGet                                DRV_WM8904_MicGainGet
+#define DRV_CODEC_MicMuteOn                                 DRV_WM8904_MicMuteOn
+#define DRV_CODEC_MicMuteOff                                DRV_WM8904_MicMuteOff
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 

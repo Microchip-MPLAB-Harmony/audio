@@ -45,6 +45,7 @@
 // *****************************************************************************
 #include "configuration.h"
 #include "definitions.h"
+#include "device.h"
 
 
 // ****************************************************************************
@@ -185,7 +186,8 @@ const DRV_WM8904_INIT drvwm8904Codec0InitData =
     .volume = DRV_WM8904_VOLUME,
     .audioDataFormat = DRV_WM8904_AUDIO_DATA_FORMAT_MACRO,
     .enableMicInput = DRV_WM8904_ENABLE_MIC_INPUT,
-    .enableMicBias = DRV_WM8904_ENABLE_MIC_BIAS
+    .enableMicBias = DRV_WM8904_ENABLE_MIC_BIAS,
+    .micGain = DRV_WM8904_MIC_GAIN
 };
 
 
@@ -247,7 +249,6 @@ void SYS_Initialize ( void* data )
 
 
     I2SC1_Initialize();
-    NVIC_Initialize();
     XDMAC_Initialize();
 
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
@@ -261,6 +262,8 @@ void SYS_Initialize ( void* data )
 	BSP_Initialize();
 	TWIHS0_Initialize();
 
+
+    NVIC_Initialize();
 
     /* Initialize I2C0 Driver Instance */
     sysObj.drvI2C0 = DRV_I2C_Initialize(DRV_I2C_INDEX_0, (SYS_MODULE_INIT *)&drvI2C0InitData);
@@ -282,4 +285,3 @@ void SYS_Initialize ( void* data )
 /*******************************************************************************
  End of File
 */
-
