@@ -60,10 +60,10 @@
 // Section: BSP Macros
 // *****************************************************************************
 // *****************************************************************************
-/*** LED Macros for LED_AL_PA5 ***/
-#define LED_AL_PA5_Toggle() (PIOA_REGS->PIO_ODSR ^= (1<<5))
-#define LED_AL_PA5_On() (PIOA_REGS->PIO_CODR = (1<<5))
-#define LED_AL_PA5_Off() (PIOA_REGS->PIO_SODR = (1<<5))
+/*** LED Macros for LED1 ***/
+#define LED1_Toggle() (PIOA_REGS->PIO_ODSR ^= (1<<5))
+#define LED1_On() (PIOA_REGS->PIO_CODR = (1<<5))
+#define LED1_Off() (PIOA_REGS->PIO_SODR = (1<<5))
 /*** LED Macros for LED2 ***/
 #define LED2_Toggle() (PIOB_REGS->PIO_ODSR ^= (1<<8))
 #define LED2_On() (PIOB_REGS->PIO_CODR = (1<<8))

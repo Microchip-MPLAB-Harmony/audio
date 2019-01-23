@@ -64,10 +64,12 @@ extern "C" {
     
 #define NUM_SAMPLES             256*4
 #define BUFFER_SIZE             4*NUM_SAMPLES  
-    
+
+#if 0    
 #define LED1_On()               LED_AL_PA5_On()
 #define LED1_Off()              LED_AL_PA5_Off()
 #define LED1_Toggle()           LED_AL_PA5_Toggle()
+#endif
     
 
        
