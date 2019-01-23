@@ -66,14 +66,14 @@ void _APP_Tasks(  void *pvParameters  )
 {
     while(1)
     {
+        /* Maintain system services */
+        SYS_FS_Tasks();
         /* Maintain Device Drivers */
         DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
         /* USB HS Driver Task Routine */
         DRV_USBHSV1_Tasks(sysObj.drvUSBHSV1Object);
         /* USB Host layer tasks routine */ 
         USB_HOST_Tasks(sysObj.usbHostObject0);
-        /* Maintain system services */
-        SYS_FS_Tasks();
         APP_Tasks();
     }
 }

@@ -27,7 +27,7 @@
           <Name dnOrder="1">bsp.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_freertos/bsp/</LogicalPath>
           <PhysicalPath dnOrder="3">/bsp/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">5B0ABC7040175601AE3BFF86683325BD</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">0A540A4E9C54F2158686C86DFDF72F74</GeneratedChecksum>
           <UserChecksum dnOrder="5">5B0ABC7040175601AE3BFF86683325BD</UserChecksum>
         </File>
         <File dnOrder="3">
@@ -211,8 +211,8 @@
           <Name dnOrder="1">plib_clk.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_freertos/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">83CB984FD8E7E92FCA12DE9AA4679A47</GeneratedChecksum>
-          <UserChecksum dnOrder="5">83CB984FD8E7E92FCA12DE9AA4679A47</UserChecksum>
+          <GeneratedChecksum dnOrder="4">E9ABBA5F518923C74436FB4756E7A671</GeneratedChecksum>
+          <UserChecksum dnOrder="5">E9ABBA5F518923C74436FB4756E7A671</UserChecksum>
         </File>
         <File dnOrder="26">
           <Type dnOrder="0">SOURCE</Type>
@@ -348,7 +348,7 @@
           <LogicalPath dnOrder="2">config/sam_e70_xult_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">4CC20EC2AEC8ECE95F71B9437E0BFEDD</GeneratedChecksum>
-          <UserChecksum dnOrder="5">D44886BEB8D825090E72FA46AB8BDD8E</UserChecksum>
+          <UserChecksum dnOrder="5">EA2DA465CF9C45AF5B3D6AB0314BEFB9</UserChecksum>
         </File>
         <File dnOrder="43">
           <Type dnOrder="0">SOURCE</Type>
@@ -483,7 +483,7 @@
           <Name dnOrder="1">bsp.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_freertos/bsp/</LogicalPath>
           <PhysicalPath dnOrder="3">/bsp/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B44C1F9DBF8E5632461B769DD25F10BF</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">8684B48D95E8529001DC64C8BD6BC8DB</GeneratedChecksum>
           <UserChecksum dnOrder="5">B44C1F9DBF8E5632461B769DD25F10BF</UserChecksum>
         </File>
         <File dnOrder="60">
@@ -531,8 +531,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">8983ABFE7AA2161C157BC5F793DD24ED</GeneratedChecksum>
-          <UserChecksum dnOrder="5">8983ABFE7AA2161C157BC5F793DD24ED</UserChecksum>
+          <GeneratedChecksum dnOrder="4">E2350136689BF0C519D348DBB64BF542</GeneratedChecksum>
+          <UserChecksum dnOrder="5">E2350136689BF0C519D348DBB64BF542</UserChecksum>
         </File>
         <File dnOrder="66">
           <Type dnOrder="0">HEADER</Type>
@@ -1498,7 +1498,7 @@
       <Settings dnOrder="1">
         <Setting append="true" category="C32" delimiter=";" dnOrder="0" key="extra-include-directories" value="../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/include;"/>
         <Setting append="true" category="C32" delimiter=";" dnOrder="1" key="extra-include-directories" value="../src;../src/config/sam_e70_xult_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm"/>
-        <Setting category="C32-LD" dnOrder="2" key="heap-size" value="0"/>
+        <Setting category="C32-LD" dnOrder="2" key="heap-size" value="10000"/>
         <Setting category="C32-LD" dnOrder="3" key="no-device-startup-code" value="true"/>
         <Setting category="C32Global" dnOrder="4" key="mdtcm" value=""/>
         <Setting category="C32Global" dnOrder="5" key="mitcm" value=""/>
