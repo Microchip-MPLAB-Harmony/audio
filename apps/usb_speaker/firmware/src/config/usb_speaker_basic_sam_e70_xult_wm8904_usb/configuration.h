@@ -130,6 +130,7 @@ extern "C" {
 #define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    DATA_16_BIT_I2S
 #define DRV_WM8904_ENABLE_MIC_INPUT                         false
 #define DRV_WM8904_ENABLE_MIC_BIAS                          false
+#define DRV_WM8904_MIC_GAIN	                      	        28
 
 #define DRV_WM8904_I2S_DRIVER_MODULE_INDEX_IDX0             DRV_I2S_INDEX_0
 #define DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0             DRV_I2C_INDEX_0
@@ -169,6 +170,10 @@ extern "C" {
 #define DRV_CODEC_VolumeGet                                 DRV_WM8904_VolumeGet
 #define DRV_CODEC_MuteOn                                    DRV_WM8904_MuteOn
 #define DRV_CODEC_MuteOff                                   DRV_WM8904_MuteOff
+#define DRV_CODEC_MicGainSet                                DRV_WM8904_MicGainSet
+#define DRV_CODEC_MicGainGet                                DRV_WM8904_MicGainGet
+#define DRV_CODEC_MicMuteOn                                 DRV_WM8904_MicMuteOn
+#define DRV_CODEC_MicMuteOff                                DRV_WM8904_MicMuteOff
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 
 
@@ -219,6 +224,7 @@ extern "C" {
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
+//KEEP THIS  - Generated Value Wrong
 #define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66
 
 

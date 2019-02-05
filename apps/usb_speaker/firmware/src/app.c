@@ -93,7 +93,7 @@ typedef struct
 
 uint16_t volumeLevels[VOLUME_STEPS] =
 {
-    0 /* off */, 64, 192, 255
+    0 /* off */, 64, 128, 255
 };
 
 //NOTE: Cache Coherency, 16 byte alignment and N*16 length buffers 

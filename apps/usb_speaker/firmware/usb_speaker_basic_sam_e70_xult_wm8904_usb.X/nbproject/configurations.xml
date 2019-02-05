@@ -44,8 +44,6 @@
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/driver/usb/drv_usb.h</itemPath>
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/driver/usb/drv_usb_external_dependencies.h</itemPath>
             </logicalFolder>
-            <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/driver/driver.h</itemPath>
-            <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/driver/driver_common.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
@@ -74,17 +72,9 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f4" displayName="system" projectFiles="true">
-            <logicalFolder name="f4" displayName="dma" projectFiles="true">
-              <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/dma/sys_dma.h</itemPath>
-              <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/dma/sys_dma_mapping.h</itemPath>
-            </logicalFolder>
             <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/int/sys_int.h</itemPath>
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/int/sys_int_mapping.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="ports" projectFiles="true">
-              <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/ports/sys_ports.h</itemPath>
-              <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/ports/sys_ports_mapping.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="time" projectFiles="true">
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/time/sys_time.h</itemPath>
@@ -262,9 +252,6 @@
             <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
           <logicalFolder name="f5" displayName="system" projectFiles="true">
-            <logicalFolder name="f3" displayName="dma" projectFiles="true">
-              <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/dma/sys_dma.c</itemPath>
-            </logicalFolder>
             <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/int/src/sys_int.c</itemPath>
             </logicalFolder>
