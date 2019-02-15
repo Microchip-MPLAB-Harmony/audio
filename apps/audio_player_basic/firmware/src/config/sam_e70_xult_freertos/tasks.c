@@ -58,25 +58,28 @@
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
-
 /* Handle for the APP_Tasks. */
 TaskHandle_t xAPP_Tasks;
-
+/***** KEEP THIS, BEGIN *****/
 void _APP_Tasks(  void *pvParameters  )
 {
     while(1)
     {
-        /* Maintain system services */
-        SYS_FS_Tasks();
-        /* Maintain Device Drivers */
-        DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
         /* USB HS Driver Task Routine */
         DRV_USBHSV1_Tasks(sysObj.drvUSBHSV1Object);
+        
         /* USB Host layer tasks routine */ 
         USB_HOST_Tasks(sysObj.usbHostObject0);
+        
+        SYS_FS_Tasks();
+        
+        /* Maintain Device Drivers */
+        DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
+
         APP_Tasks();
     }
 }
+/***** KEEP THIS, END *****/
 
 
 
@@ -94,9 +97,10 @@ void _APP_Tasks(  void *pvParameters  )
     See prototype in system/common/sys_module.h.
 */
 
+/***** KEEP THIS, BEGIN *****/
 void SYS_Tasks ( void )
 {
-    
+
     /* Maintain the application's state machine. */
         /* Create OS Thread for APP_Tasks. */
     xTaskCreate((TaskFunction_t) _APP_Tasks,
@@ -106,8 +110,6 @@ void SYS_Tasks ( void )
                 1,
                 &xAPP_Tasks);
 
-
-
     /* Start RTOS Scheduler. */
     
      /**********************************************************************
@@ -116,6 +118,7 @@ void SYS_Tasks ( void )
     vTaskStartScheduler(); /* This function never returns. */
 
 }
+/***** KEEP THIS, END *****/
 
 
 /*******************************************************************************

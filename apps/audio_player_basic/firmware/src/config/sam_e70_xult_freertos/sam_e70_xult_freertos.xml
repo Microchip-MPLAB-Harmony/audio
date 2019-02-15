@@ -124,6 +124,8 @@
               <Value dnOrder="0" id="core" priority="2" value="0"/>
               <Value dnOrder="1" id="core" priority="2" value="0"/>
               <Value dnOrder="2" id="core" priority="2" value="0"/>
+              <Value dnOrder="3" id="core" priority="2" value="0"/>
+              <Value dnOrder="4" id="core" priority="2" value="0"/>
             </Dynamic>
           </Values>
         </Integer>
@@ -133,6 +135,8 @@
               <Value dnOrder="0" id="core" priority="2" value="1"/>
               <Value dnOrder="1" id="core" priority="2" value="1"/>
               <Value dnOrder="2" id="core" priority="2" value="1"/>
+              <Value dnOrder="3" id="core" priority="2" value="1"/>
+              <Value dnOrder="4" id="core" priority="2" value="1"/>
             </Dynamic>
           </Values>
         </Integer>
@@ -142,6 +146,8 @@
               <Value dnOrder="0" id="drv_i2s_0" priority="2" value="true"/>
               <Value dnOrder="1" id="drv_i2s_0" priority="2" value="true"/>
               <Value dnOrder="2" id="drv_i2s_0" priority="2" value="true"/>
+              <Value dnOrder="3" id="drv_i2s_0" priority="2" value="true"/>
+              <Value dnOrder="4" id="drv_i2s_0" priority="2" value="true"/>
             </Dynamic>
           </Values>
         </Boolean>
@@ -151,6 +157,8 @@
               <Value dnOrder="0" id="drv_i2s_0" priority="2" value="true"/>
               <Value dnOrder="1" id="drv_i2s_0" priority="2" value="true"/>
               <Value dnOrder="2" id="drv_i2s_0" priority="2" value="true"/>
+              <Value dnOrder="3" id="drv_i2s_0" priority="2" value="true"/>
+              <Value dnOrder="4" id="drv_i2s_0" priority="2" value="true"/>
             </Dynamic>
           </Values>
         </Boolean>
@@ -1345,6 +1353,7 @@
             <Dynamic dnOrder="0">
               <Value dnOrder="0" id="wm8904_codec" priority="1" value="Available"/>
             </Dynamic>
+            <User dnOrder="1" value=""/>
           </Values>
         </String>
         <String dnOrder="188" id="PIN_22_PERIPHERAL_FUNCTION">
@@ -1371,6 +1380,7 @@
             <Dynamic dnOrder="0">
               <Value dnOrder="0" id="wm8904_codec" priority="1" value="Available"/>
             </Dynamic>
+            <User dnOrder="1" value=""/>
           </Values>
         </String>
         <String dnOrder="192" id="PIN_23_PERIPHERAL_FUNCTION">
@@ -1815,6 +1825,7 @@
             <Dynamic dnOrder="0">
               <Value dnOrder="0" id="wm8904_codec" priority="1" value="Available"/>
             </Dynamic>
+            <User dnOrder="1" value=""/>
           </Values>
         </String>
         <String dnOrder="256" id="PIN_4_PERIPHERAL_FUNCTION">
@@ -2192,6 +2203,7 @@
             <Dynamic dnOrder="0">
               <Value dnOrder="0" id="wm8904_codec" priority="1" value="Available"/>
             </Dynamic>
+            <User dnOrder="1" value=""/>
           </Values>
         </String>
         <String dnOrder="311" id="PIN_6_PERIPHERAL_FUNCTION">
@@ -2257,7 +2269,7 @@
         </Integer>
         <String dnOrder="320" id="PIN_73_FUNCTION_NAME">
           <Values dnOrder="0">
-            <User dnOrder="0" value="LED_AL_PA5"/>
+            <User dnOrder="0" value="LED1"/>
           </Values>
         </String>
         <String dnOrder="321" id="PIN_73_PERIPHERAL_FUNCTION">
@@ -2404,6 +2416,7 @@
             <Dynamic dnOrder="0">
               <Value dnOrder="0" id="wm8904_codec" priority="1" value="Available"/>
             </Dynamic>
+            <User dnOrder="1" value=""/>
           </Values>
         </String>
         <String dnOrder="343" id="PIN_7_PERIPHERAL_FUNCTION">
@@ -3597,6 +3610,8 @@
               <Value dnOrder="0" id="core" priority="2" value="SSC_Receive"/>
               <Value dnOrder="1" id="core" priority="2" value="SSC_Receive"/>
               <Value dnOrder="2" id="core" priority="2" value="SSC_Receive"/>
+              <Value dnOrder="3" id="core" priority="2" value="SSC_Receive"/>
+              <Value dnOrder="4" id="core" priority="2" value="SSC_Receive"/>
             </Dynamic>
           </Values>
         </Combo>
@@ -3606,6 +3621,8 @@
               <Value dnOrder="0" id="core" priority="2" value="true"/>
               <Value dnOrder="1" id="core" priority="2" value="true"/>
               <Value dnOrder="2" id="core" priority="2" value="true"/>
+              <Value dnOrder="3" id="core" priority="2" value="true"/>
+              <Value dnOrder="4" id="core" priority="2" value="true"/>
             </Dynamic>
           </Values>
         </Boolean>
@@ -4392,6 +4409,8 @@
               <Value dnOrder="0" id="core" priority="2" value="SSC_Transmit"/>
               <Value dnOrder="1" id="core" priority="2" value="SSC_Transmit"/>
               <Value dnOrder="2" id="core" priority="2" value="SSC_Transmit"/>
+              <Value dnOrder="3" id="core" priority="2" value="SSC_Transmit"/>
+              <Value dnOrder="4" id="core" priority="2" value="SSC_Transmit"/>
             </Dynamic>
           </Values>
         </Combo>
@@ -4401,6 +4420,8 @@
               <Value dnOrder="0" id="core" priority="2" value="true"/>
               <Value dnOrder="1" id="core" priority="2" value="true"/>
               <Value dnOrder="2" id="core" priority="2" value="true"/>
+              <Value dnOrder="3" id="core" priority="2" value="true"/>
+              <Value dnOrder="4" id="core" priority="2" value="true"/>
             </Dynamic>
           </Values>
         </Boolean>
@@ -5285,6 +5306,8 @@
               <Value dnOrder="0" id="core" priority="2" value="true"/>
               <Value dnOrder="1" id="core" priority="2" value="true"/>
               <Value dnOrder="2" id="core" priority="2" value="true"/>
+              <Value dnOrder="3" id="core" priority="2" value="true"/>
+              <Value dnOrder="4" id="core" priority="2" value="true"/>
             </Dynamic>
           </Values>
         </Boolean>
@@ -5294,6 +5317,8 @@
               <Value dnOrder="0" id="core" priority="2" value="true"/>
               <Value dnOrder="1" id="core" priority="2" value="true"/>
               <Value dnOrder="2" id="core" priority="2" value="true"/>
+              <Value dnOrder="3" id="core" priority="2" value="true"/>
+              <Value dnOrder="4" id="core" priority="2" value="true"/>
             </Dynamic>
           </Values>
         </Boolean>
@@ -5563,6 +5588,8 @@
               <Value dnOrder="3" id="usb_host" priority="2" value="Host"/>
               <Value dnOrder="4" id="usb_host" priority="2" value="Host"/>
               <Value dnOrder="5" id="usb_host" priority="2" value="Host"/>
+              <Value dnOrder="6" id="usb_host" priority="2" value="Host"/>
+              <Value dnOrder="7" id="usb_host" priority="2" value="Host"/>
             </Dynamic>
           </Values>
         </Combo>
@@ -6108,28 +6135,21 @@
     </UniqueComponent>
     <UniqueComponent dnOrder="14" id="twihs0">
       <Symbols dnOrder="0">
-        <String dnOrder="0" id="TWIHS_CLK_SRC_FREQ">
-          <Values dnOrder="0">
-            <Dynamic dnOrder="0">
-              <Value dnOrder="0" id="twihs0" priority="1" value="150000000"/>
-            </Dynamic>
-          </Values>
-        </String>
-        <Integer dnOrder="1" id="TWIHS_CWGR_CHDIV">
+        <Integer dnOrder="0" id="TWIHS_CWGR_CHDIV">
           <Values dnOrder="0">
             <Dynamic dnOrder="0">
               <Value dnOrder="0" id="twihs0" priority="1" value="177"/>
             </Dynamic>
           </Values>
         </Integer>
-        <Integer dnOrder="2" id="TWIHS_CWGR_CKDIV">
+        <Integer dnOrder="1" id="TWIHS_CWGR_CKDIV">
           <Values dnOrder="0">
             <Dynamic dnOrder="0">
               <Value dnOrder="0" id="twihs0" priority="1" value="0"/>
             </Dynamic>
           </Values>
         </Integer>
-        <Integer dnOrder="3" id="TWIHS_CWGR_CLDIV">
+        <Integer dnOrder="2" id="TWIHS_CWGR_CLDIV">
           <Values dnOrder="0">
             <Dynamic dnOrder="0">
               <Value dnOrder="0" id="twihs0" priority="1" value="192"/>
@@ -6161,6 +6181,8 @@
               <Value dnOrder="3" id="usb_host_msd" priority="2" value="1"/>
               <Value dnOrder="4" id="usb_host_msd" priority="2" value="1"/>
               <Value dnOrder="5" id="usb_host_msd" priority="2" value="1"/>
+              <Value dnOrder="6" id="usb_host_msd" priority="2" value="1"/>
+              <Value dnOrder="7" id="usb_host_msd" priority="2" value="1"/>
             </Dynamic>
           </Values>
         </Integer>
@@ -6186,7 +6208,7 @@
     <GraphSettings canvasHeight="800" canvasWidth="600" dnOrder="0"/>
     <ComponentGraph dnOrder="1" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
-        <ElementPosition dnOrder="0" id="BSP_SAM_E70_Xplained_Ultra" x="589" y="22"/>
+        <ElementPosition dnOrder="0" id="BSP_SAM_E70_Xplained_Ultra" x="583" y="23"/>
         <ElementPosition dnOrder="1" id="FreeRTOS" x="654" y="58"/>
         <ElementPosition dnOrder="2" id="HarmonyCore" x="19" y="63"/>
         <ElementPosition dnOrder="3" id="audio_codec_wm8904" x="661" y="151"/>

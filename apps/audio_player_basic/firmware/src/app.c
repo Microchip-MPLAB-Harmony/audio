@@ -48,9 +48,6 @@ uint16_t volumeLevels[VOL_LVLS_MAX] =
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Single_Chnl_Buffer[NUM_SAMPLES/2];
-#ifdef USE_CLEAR_BUFFER
-DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Clear_Buffer[NUM_SAMPLES];
-#endif
 
 // *****************************************************************************
 /* Application Data
@@ -216,13 +213,6 @@ void APP_Initialize ( void )
     appData.led2Delay = 0;
     appData.playbackDelay = 2000;
 
-#ifdef  USE_CLEAR_BUFFER    
-    for(uint32_t i = 0; i < NUM_SAMPLES; i++)
-    {
-        App_Audio_Output_Clear_Buffer[i].leftData = 0x0000;
-        App_Audio_Output_Clear_Buffer[i].rightData = 0x0000;
-    }
-#endif
     _audioCodecInitialize (&appData.codecData);
     
     appData.pingPong = 1;    
@@ -500,11 +490,7 @@ void APP_Tasks ( void )
                         retval *= 2;
                     }
                 }
-#ifdef USE_CLEAR_BUFFER
-                appData.codecData.txbufferObject1 = (uint8_t *) App_Audio_Output_Clear_Buffer;
-#else
                 appData.codecData.txbufferObject1 = (uint8_t *) App_Audio_Output_Buffer1;
-#endif
                 appData.codecData.bufferSize1 = retval;
                 appData.state = APP_STATE_CODEC_ADD_BUFFER;
             }
@@ -604,11 +590,7 @@ void APP_Tasks ( void )
                                 retval *= 2;
                             }
                         }
-#ifdef USE_CLEAR_BUFFER
-                        appData.codecData.txbufferObject2 = (uint8_t *) App_Audio_Output_Clear_Buffer;
-#else
                         appData.codecData.txbufferObject2 = (uint8_t *) App_Audio_Output_Buffer2;
-#endif
                         appData.codecData.bufferSize2 = retval;
                     }                    
                     
@@ -696,11 +678,7 @@ void APP_Tasks ( void )
                                 retval *= 2;
                             }
                         }
-#ifdef USE_CLEAR_BUFFER
-                        appData.codecData.txbufferObject1 = (uint8_t *) App_Audio_Output_Clear_Buffer;
-#else
                         appData.codecData.txbufferObject1 = (uint8_t *) App_Audio_Output_Buffer1;
-#endif
                         appData.codecData.bufferSize1 = retval;
                     }                    
                 }               

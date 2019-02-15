@@ -60,17 +60,10 @@ extern "C" {
 // DOM-IGNORE-END
 
 #define WAV_STREAMING_ENABLED
-#undef  USE_CLEAR_BUFFER
     
 #define NUM_SAMPLES             256*4
 #define BUFFER_SIZE             4*NUM_SAMPLES  
 
-#if 0    
-#define LED1_On()               LED_AL_PA5_On()
-#define LED1_Off()              LED_AL_PA5_Off()
-#define LED1_Toggle()           LED_AL_PA5_Toggle()
-#endif
-    
 
        
 // *****************************************************************************
@@ -92,9 +85,6 @@ typedef struct
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Single_Chnl_Buffer[NUM_SAMPLES/2];
-#ifdef USE_CLEAR_BUFFER
-extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Clear_Buffer[NUM_SAMPLES];
-#endif
 
 // *****************************************************************************
 /* Application States
