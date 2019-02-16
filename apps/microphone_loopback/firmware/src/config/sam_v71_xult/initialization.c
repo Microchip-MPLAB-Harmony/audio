@@ -45,6 +45,8 @@
 // *****************************************************************************
 #include "configuration.h"
 #include "definitions.h"
+#include "device.h"
+
 
 
 // ****************************************************************************
@@ -83,6 +85,7 @@
 
 
 
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Driver Initialization Data
@@ -115,6 +118,16 @@ const DRV_I2C_PLIB_INTERFACE drvI2C0PLibAPI = {
     .callbackRegister = (DRV_I2C_PLIB_CALLBACK_REGISTER)TWIHS0_CallbackRegister,
 };
 
+
+const DRV_I2C_INTERRUPT_SOURCES drvI2C0InterruptSources =
+{
+    /* Peripheral has single interrupt vector */
+    .isSingleIntSrc                        = true,
+
+    /* Peripheral interrupt line */
+    .intSources.i2cInterrupt             = TWIHS0_IRQn,
+};
+
 /* I2C Driver Initialization Data */
 const DRV_I2C_INIT drvI2C0InitData =
 {
@@ -127,14 +140,14 @@ const DRV_I2C_INIT drvI2C0InitData =
     /* I2C Client Objects Pool */
     .clientObjPool = (uintptr_t)&drvI2C0ClientObjPool[0],
 
-    /* I2C IRQ */
-    .interruptI2C = DRV_I2C_INT_SRC_IDX0,
-
     /* I2C TWI Queue Size */
-    .queueSize = DRV_I2C_QUEUE_SIZE_IDX0,
+    .transferObjPoolSize = DRV_I2C_QUEUE_SIZE_IDX0,
 
     /* I2C Transfer Objects */
-    .transferObj = (uintptr_t)&drvI2C0TransferObj[0],
+    .transferObjPool = (uintptr_t)&drvI2C0TransferObj[0],
+
+    /* I2C interrupt sources */
+    .interruptSources = &drvI2C0InterruptSources,
 
     /* I2C Clock Speed */
     .clockSpeed = DRV_I2C_CLOCK_SPEED_IDX0,
@@ -185,7 +198,8 @@ const DRV_WM8904_INIT drvwm8904Codec0InitData =
     .volume = DRV_WM8904_VOLUME,
     .audioDataFormat = DRV_WM8904_AUDIO_DATA_FORMAT_MACRO,
     .enableMicInput = DRV_WM8904_ENABLE_MIC_INPUT,
-    .enableMicBias = DRV_WM8904_ENABLE_MIC_BIAS
+    .enableMicBias = DRV_WM8904_ENABLE_MIC_BIAS,
+    .micGain = DRV_WM8904_MIC_GAIN
 };
 
 
@@ -197,6 +211,7 @@ const DRV_WM8904_INIT drvwm8904Codec0InitData =
 // *****************************************************************************
 /* Structure to hold the object handles for the modules in the system. */
 SYSTEM_OBJECTS sysObj;
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Library/Stack Initialization Data
@@ -230,6 +245,7 @@ const SYS_TIME_INIT sysTimeInitData =
 // </editor-fold>
 
 
+
 /*******************************************************************************
   Function:
     void SYS_Initialize ( void *data )
@@ -242,11 +258,11 @@ const SYS_TIME_INIT sysTimeInitData =
 
 void SYS_Initialize ( void* data )
 {
+  
     CLK_Initialize();
 	PIO_Initialize();
 
 
-    NVIC_Initialize();
     XDMAC_Initialize();
 
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
@@ -277,10 +293,11 @@ void SYS_Initialize ( void* data )
     APP_Initialize();
 
 
+    NVIC_Initialize();
+
 }
 
 
 /*******************************************************************************
  End of File
 */
-

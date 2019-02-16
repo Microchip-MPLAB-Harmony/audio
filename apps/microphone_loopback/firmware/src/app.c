@@ -35,26 +35,6 @@
 // *****************************************************************************
 // *****************************************************************************
 
-uint16_t volumeLevels[VOLUME_STEPS] =
-{
-    0 /* off */, 128, 192, 255
-};
-
-uint16_t delayIndices[DELAY_STEPS] =
-{
-    25, 50, 100, 149     // .25, .50, 1, 1.5 secs            
-};
-
-typedef struct 
-{
-    /* Left channel data */
-    int16_t leftData;
-
-    /* Right channel data */
-    int16_t rightData;
-
-} DRV_I2S_DATA16;
-
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) micBuffer[MAX_BUFFERS][MAX_AUDIO_NUM_SAMPLES];
 
 // *****************************************************************************
@@ -103,35 +83,7 @@ APP_DATA appData;
 */
 static void App_TimerCallback( uintptr_t context)
 {
-    if (appData.buttonDelay)
-    {      
-        appData.buttonDelay--;
-    }        
-}
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: Application Local Functions
-// *****************************************************************************
-// *****************************************************************************
-
-/* TODO:  Add any necessary local functions.
-*/
-
-void _initDelay()
-{
-    appData.txBufferIdx = 0;
-    appData.rxBufferIdx = delayIndices[appData.delayTableIndex];
-
-    uint16_t i,j;
-    for (i=0; i < MAX_BUFFERS; i++)
-    {
-        for (j=0; j < MAX_AUDIO_NUM_SAMPLES; j++)
-        {
-            micBuffer[i][j].leftData = 0;
-            micBuffer[i][j].rightData = 0;
-        }
-    }
+    KeyRepeatTask();    // process touch key-repeat events in libaria_events.c       
 }
 
 // *****************************************************************************
@@ -164,28 +116,12 @@ void APP_Initialize ( void )
      * parameters.
      */   
     appData.state = APP_STATE_INIT;
-    
-    appData.volumeIndex = INIT_VOLUME_IDX;
-    appData.volume = volumeLevels[appData.volumeIndex];    
-    
-    appData.buttonDelay = 0;
-    appData.buttonMode = true;   
-
-    appData.delayTableIndex = INIT_BUFFER_DELAY_IDX;
-    
+       
     _audioCodecDataInitialize (&appData.codecData);
     
-    appData.txBufferIdx = 0;
-    appData.rxBufferIdx = 1;
-    
-    if (appData.buttonMode)
-    {
-        LED1_On();
-        _initDelay();
-        appData.codecData.txbufferObject = (uint8_t *) micBuffer[appData.txBufferIdx];
-        appData.codecData.rxbufferObject = (uint8_t *) micBuffer[appData.rxBufferIdx];  
-    }
-    
+    appData.delayEnabled = true;  
+   
+    APP_Initialize_sub();        // do specific gui/non-gui initialization    
 }
 
 /******************************************************************************
@@ -198,8 +134,8 @@ void APP_Initialize ( void )
 DRV_HANDLE tmrHandle;
 
 void APP_Tasks ( void )
-{    
-    APP_Button_Tasks();
+{   
+    APP_Tasks_sub();        // do specific gui/non-gui processing    
     
     /* Check the application's current state. */
     switch ( appData.state )
@@ -232,7 +168,7 @@ void APP_Tasks ( void )
                 {
                     DRV_CODEC_VolumeSet(appData.codecData.handle,
                         DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);
-                        
+                                          
                     appData.state = APP_STATE_CODEC_SET_BUFFER_HANDLER;
                 }            
             }
@@ -260,7 +196,7 @@ void APP_Tasks ( void )
             if(appData.codecData.writeBufHandle != DRV_CODEC_BUFFER_HANDLE_INVALID)
             {
                 // set up for next time
-                if (appData.buttonMode)
+                if (appData.delayEnabled)
                 {
                     appData.txBufferIdx++;
                     if (appData.txBufferIdx >= MAX_BUFFERS)
@@ -301,144 +237,6 @@ void APP_Tasks ( void )
     }
 }
 
-#define BUTTON_DEBOUNCE 50
-#define LONG_BUTTON_PRESS 1000
-
-void APP_Button_Tasks()
-{
-   //BUTTON PROCESSING
-    /* Check the buttons' current state. */      
-    switch ( appData.buttonState )
-    {
-        case BUTTON_STATE_IDLE:
-        {
-            if ( (appData.buttonDelay==0)&&
-                 (SWITCH_Get()==SWITCH_STATE_PRESSED))                
-            {
-                appData.buttonDelay=BUTTON_DEBOUNCE;       
-                appData.buttonState=BUTTON_STATE_PRESSED;               
-            }
-        }
-        break;
-        
-        case BUTTON_STATE_PRESSED:
-        { 
-            if (appData.buttonDelay>0)
-            {
-                break;      // still debouncing
-            }
-            
-            if(SWITCH_Get()==SWITCH_STATE_PRESSED) 
-            {                
-                appData.buttonDelay=LONG_BUTTON_PRESS;          // 1 sec is long press
-                appData.buttonState=BUTTON_STATE_BUTTON0_PRESSED;                  
-            }
-        }
-        break;
-          
-        case BUTTON_STATE_BUTTON0_PRESSED:
-        {
-            if ((appData.buttonDelay>0)&&
-                (SWITCH_Get()!=SWITCH_STATE_PRESSED))     // SW01 pressed and released < 1 sec
-            {
-                if (appData.buttonMode)     // if modifying delay
-                {
-                    appData.delayTableIndex++;
-                    if (appData.delayTableIndex >= DELAY_STEPS)
-                    {
-                        appData.delayTableIndex = 0;    
-                    }
-                    
-                    _initDelay();      // re-init
-                    
-                    appData.codecData.txbufferObject = (uint8_t *) micBuffer[appData.txBufferIdx];
-                    appData.codecData.rxbufferObject = (uint8_t *) micBuffer[appData.rxBufferIdx];                     
-                                     
-                    if (0==appData.volume)
-                    {
-                        // after changing delay, if volume 0 make sure we can hear it
-                        appData.volumeIndex++;
-                        appData.volume = volumeLevels[appData.volumeIndex];
-                        DRV_CODEC_VolumeSet(appData.codecData.handle,
-                            DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);                        
-                        DRV_CODEC_MuteOff(appData.codecData.handle);                        
-                    }                                                
-                }
-                else
-                {
-                    uint8_t oldVolumeIndex;
-                    
-                    oldVolumeIndex = appData.volumeIndex;
-                    appData.volumeIndex++;
-                    if (appData.volumeIndex >= VOLUME_STEPS)
-                    {
-                        appData.volumeIndex = 0;    
-                    }
-                    
-                    appData.volume = volumeLevels[appData.volumeIndex];
-                    
-                    if (0==appData.volume)
-                    {
-                        DRV_CODEC_MuteOn(appData.codecData.handle);                       
-                    }
-                    else
-                    {
-                        DRV_CODEC_VolumeSet(appData.codecData.handle,
-                            DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);                                      
-                        if (0==volumeLevels[oldVolumeIndex])
-                        {
-                            // if volume was 0, unmute codec
-                            DRV_CODEC_MuteOff(appData.codecData.handle);                     
-                        }
-                    }                             
-                }                            
-
-                appData.buttonDelay=BUTTON_DEBOUNCE;                
-                appData.buttonState=BUTTON_STATE_IDLE;              
-            }
-            else if ((appData.buttonDelay==0)&&
-                     (SWITCH_Get()==SWITCH_STATE_PRESSED))  // SW0 still pressed after 1 sec
-            {
-                appData.buttonMode = !appData.buttonMode;
-                if (appData.buttonMode)
-                {
-                    LED1_On();
-                    
-                    _initDelay();
-                }
-                else
-                {
-                    LED1_Off();
-                    
-                    appData.txBufferIdx = 0;
-                    appData.rxBufferIdx = 1;                                      
-                }
-                
-                appData.codecData.txbufferObject = (uint8_t *) micBuffer[appData.txBufferIdx];
-                appData.codecData.rxbufferObject = (uint8_t *) micBuffer[appData.rxBufferIdx];  
-                
-                appData.buttonState=BUTTON_STATE_WAIT_FOR_RELEASE;                
-            }                          
-        } 
-        break;
-
-        case BUTTON_STATE_WAIT_FOR_RELEASE:
-        {
-            if (SWITCH_Get()!=SWITCH_STATE_PRESSED)
-            {
-                appData.buttonDelay=BUTTON_DEBOUNCE;
-                appData.buttonState=BUTTON_STATE_IDLE;
-            }
-        }
-
-        /* The default state should never be executed. */
-        default:
-        {
-            /* TODO: Handle error in application's state machine. */
-            break;
-        }
-    }
-}
 //******************************************************************************
 // 
 // Audio_Codec_TxBufferComplete() - Set APP_Tasks Next state to buffer complete.
@@ -474,6 +272,3 @@ void Audio_Codec_BufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
     }
 }
 
-/*******************************************************************************
- End of File
- */
