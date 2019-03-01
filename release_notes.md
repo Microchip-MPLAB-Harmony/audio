@@ -29,42 +29,6 @@ The following table provides the list of updated applications for the SAM E70:
 | audio_player_basic | added FreeRTOS project |
 | microphone_loopback | added graphics and FreeRTOS projects |
 
-### ADDITIONS FOR 3.1.0:
-
-- **New Drivers**
-
-The following table provides the list of new audio drivers for the SAM E70/V71:
-
-| Driver | Name | Feature |
-| --- | --- | --- |
-| WM8904| WM8904 | Added WM8904 Codec Driver|
-
-- **New Audio Application Templates**
- 
-The following table provides the list new templates for the SAM E70/V71:
-
-| Template | Description |
-| --- | --- |
-| wm8904 | WM8904 Codec with E70 or V71 Xplained Ultra  |
-
-- **New Applications**
-
-The following table provides the list of new applications for the SAM E70:
-
-| Application | Description |
-| --- | --- |
-| audio_player_basic | plays PCM wave files from USB dongle using SSC|
-| audio_tone |  sine wave audio tone generator using I2SC or SSC, including a FreeRTOS project|
-| audio_tone_linkeddma | sine wave audio tone generator using linked DMA and I2SC or SSC |
-| microphone_loopback | outputs audio from microphone after optional delay using I2SC |
-
-The following table provides the list of new applications for the SAM V71:
-
-| Application | Description |
-| --- | --- |
-| audio_tone |  sine wave audio tone generator using SSC |
-| microphone_loopback | outputs audio from microphone after optional delay using SSC |
-
 ### TESTED WITH:
 
 #### Software Dependencies
@@ -141,6 +105,45 @@ This table lists the contents of this release, including a brief description, an
 | audio\apps\microphone_loopback | microphone loopback application | Beta |
 | audio\apps\usb_speaker | USB speaker application | Beta |
 | audio\driver\codec\WM8904 | WM8904 Codec Driver | Beta |
-| audio\templates\wm8904 | Audio application template for SAM E70/V71 Xplained Ultra | Beta |
+| audio\templates\wm8904 | Audio application template | Beta |
+
+## Audio Release v3.1.0 (January, 2019)
+### ADDITIONS FOR 3.1.0:
+
+- **New Drivers**
+
+The following table provides the list of new audio drivers for the SAM E70/V71:
+
+| Driver | Name | Feature |
+| --- | --- | --- |
+| WM8904| WM8904 | Added WM8904 Codec Driver|
+
+- **New Audio Application Templates**
+ 
+The following table provides the list new templates for the SAM E70/V71:
+
+| Template | Description |
+| --- | --- |
+| wm8904 | WM8904 Codec with E70 or V71 Xplained Ultra  |
+
+- **New Applications**
+
+The following table provides the list of new applications for the SAM E70:
+
+| Application | Description |
+| --- | --- |
+| audio_player_basic | plays PCM wave files from USB dongle using SSC|
+| audio_tone |  sine wave audio tone generator using I2SC or SSC, including a FreeRTOS project|
+| audio_tone_linkeddma | sine wave audio tone generator using linked DMA and I2SC or SSC |
+| microphone_loopback | outputs audio from microphone after optional delay using I2SC |
+
+The following table provides the list of new applications for the SAM V71:
+
+| Application | Description |
+| --- | --- |
+| audio_tone |  sine wave audio tone generator using SSC |
+| microphone_loopback | outputs audio from microphone after optional delay using SSC |
+
+
 
 
