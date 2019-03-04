@@ -85,25 +85,21 @@ static bool _DRV_I2S_ValidateClientHandle(DRV_I2S_OBJ * object, DRV_HANDLE handl
 
     return true;
 }
-//****************************************************************************** 
-//KEEP ALL CHANGES BELOW - Fixes the I2S Driver Queue/Cache
-//******************************************************************************
+
 static bool _DRV_I2S_ResourceLock(DRV_I2S_OBJ * object)
 {
     DRV_I2S_OBJ * dObj = object;
 
     /* Grab a mutex to avoid other threads to modify driver resource
      * asynchronously. */
-    if(OSAL_MUTEX_Lock(&(dObj->mutexDriverInstance), OSAL_WAIT_FOREVER) != 
-       OSAL_RESULT_TRUE)
+    if(OSAL_MUTEX_Lock(&(dObj->mutexDriverInstance), OSAL_WAIT_FOREVER) != OSAL_RESULT_TRUE)
     {
         return false;
     }
 
     /* We will disable I2S and/or DMA interrupt so that the driver resource
      * is not updated asynchronously. */
-    if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || 
-        (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
     {
         SYS_INT_SourceDisable(dObj->interruptDMA);
     }
@@ -235,8 +231,7 @@ static bool _DRV_I2S_ReadBufferQueuePurge( DRV_I2S_OBJ * object )
 //  2. Update the queue
 //  
 //******************************************************************************
-static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object, 
-                                     DRV_I2S_DIRECTION direction,
+static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object, DRV_I2S_DIRECTION direction,
     DRV_I2S_BUFFER_EVENT event)
 {
     DRV_I2S_OBJ * dObj = object;
@@ -294,38 +289,36 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
 
                 if( (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
                 {
+                    uint32_t bufferSizeDmaWords = newObj->size;
 
-
-                        uint32_t bufferSizeDmaWords = newObj->size;
-
-                        // if this is half word transfer, need to divide size by 2
-                        // NOTE:  dmaDataLength of 8 not supported. 
-                        if (dObj->dmaDataLength == 16)
-                        {
-                            bufferSizeDmaWords /= 2;
-                        }
-                        // if this is full word transfer, need to divide size by 4
-                        else if (dObj->dmaDataLength == 32)
-                        {
-                            bufferSizeDmaWords /= 4;
-                        }
+                    // if this is half word transfer, need to divide size by 2
+                    // NOTE:  dmaDataLength of 8 not supported. 
+                    if (dObj->dmaDataLength == 16)
+                    {
+                        bufferSizeDmaWords /= 2;
+                    }
+                    // if this is full word transfer, need to divide size by 4
+                    else if (dObj->dmaDataLength == 32)
+                    {
+                        bufferSizeDmaWords /= 4;
+                    }
 
                     SYS_DMA_ChannelTransfer(dObj->rxDMAChannel, 
                                             (const void *)dObj->rxAddress,
                                                 (const void *)newObj->rxbuffer, 
                                                 bufferSizeDmaWords);
 
-                        /************ code specific to SAM E70 ********************/
+                    /************ code specific to SAM E70 ********************/
 #if defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
-                        // Check if the data cache is enabled
-                        if( (SCB->CCR & SCB_CCR_DC_Msk) == SCB_CCR_DC_Msk)
-                        {
-                            // Invalidate cache to force CPU to access 
-                            // read buffer from SRAM - not cache
-                            SCB_InvalidateDCache_by_Addr((uint32_t*)newObj->rxbuffer, bufferSizeDmaWords);
-                        }
-                        #endif
-                        /************ end of E70 specific code ********************/
+                    // Check if the data cache is enabled
+                    if( (SCB->CCR & SCB_CCR_DC_Msk) == SCB_CCR_DC_Msk)
+                    {
+                        // Invalidate cache to force CPU to access 
+                        // read buffer from SRAM - not cache
+                        SCB_InvalidateDCache_by_Addr((uint32_t*)newObj->rxbuffer, bufferSizeDmaWords);
+                    }
+#endif
+                    /************ end of E70 specific code ********************/
 
                 } //Rx Xfer
             } //End Check Queue not Empty
@@ -341,16 +334,16 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
                 if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel))
                 {
                     uint32_t bufferSizeDmaWords = newObj->size;
-                        // if this is half word transfer, need to divide size by 2
-                        if (dObj->dmaDataLength == 16)
-                        {
+                    // if this is half word transfer, need to divide size by 2
+                    if (dObj->dmaDataLength == 16)
+                    {
                         bufferSizeDmaWords /= 2;
-                        }
-                        // if this is full word transfer, need to divide size by 4
-                        else if (dObj->dmaDataLength == 32)
-                        {
+                    }
+                    // if this is full word transfer, need to divide size by 4
+                    else if (dObj->dmaDataLength == 32)
+                    {
                         bufferSizeDmaWords /= 4;
-                        }
+                    }
                     /************ code specific to SAM E70 ********************/
 #if defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
                     // Check if the data cache is enabled
@@ -648,7 +641,7 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
     }
 
     /* Configure the buffer object */
-    bufferObj->size         = size;   //bytes
+    bufferObj->size         = size;   //bytes, not words
     bufferObj->nCount       = 0;
     bufferObj->inUse        = true;
     bufferObj->txbuffer     = buffer;
@@ -694,7 +687,6 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
             }
             /************ end of E70 specific code ********************/
 #endif
-            //DEBUG - 1st Buffer in Queue
             //--Immediate DMA Write
             SYS_DMA_ChannelTransfer(dObj->txDMAChannel, 
                                     (const void *)bufferObj->txbuffer,
@@ -722,14 +714,14 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
 
 // *****************************************************************************
 /* Function:
-	void DRV_I2S_BufferAddWriteRead(const DRV_HANDLE handle,
-                                        DRV_I2S_BUFFER_HANDLE	*bufferHandle,
+    void DRV_I2S_BufferAddWriteRead(const DRV_HANDLE handle,
+                                        DRV_I2S_BUFFER_HANDLE *bufferHandle,
                                         void *transmitBuffer, void *receiveBuffer,
                                         size_t size)
 
   Summary:
     Schedule a non-blocking driver write-read operation.
-	<p><b>Implementation:</b> Dynamic</p>
+    <p><b>Implementation:</b> Dynamic</p>
 
   Description:
     This function schedules a non-blocking write-read operation. The function
@@ -760,7 +752,7 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
 */
 void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
     void *transmitBuffer, void *receiveBuffer,
-    size_t size, DRV_I2S_BUFFER_HANDLE	*bufferHandle)
+    size_t size, DRV_I2S_BUFFER_HANDLE  *bufferHandle)
 {
     DRV_I2S_OBJ * dObj = NULL;
     DRV_I2S_BUFFER_OBJ * bufferObj = NULL;

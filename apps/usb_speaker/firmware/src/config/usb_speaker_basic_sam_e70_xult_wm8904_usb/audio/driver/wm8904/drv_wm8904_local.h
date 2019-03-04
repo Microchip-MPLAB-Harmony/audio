@@ -1576,7 +1576,7 @@ typedef struct _DRV_WM8904_OBJ_STRUCT
     bool enableMicInput;
 
     bool enableMicBias;
-    
+
     uint8_t micGain;
     
     SYS_MODULE_INDEX drvIndex;

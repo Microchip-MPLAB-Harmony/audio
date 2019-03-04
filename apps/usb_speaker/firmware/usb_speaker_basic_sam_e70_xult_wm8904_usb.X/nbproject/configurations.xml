@@ -4,13 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="arm" projectFiles="true">
-        <itemPath>../src/arm/toolchain_specifics.h</itemPath>
-      </logicalFolder>
       <logicalFolder name="audio_codec" displayName="audio_codec" projectFiles="true">
         <itemPath>../src/audio_codec/audio_codec.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f2" displayName="config" projectFiles="true">
+      <logicalFolder name="f1" displayName="config" projectFiles="true">
         <logicalFolder name="f1"
                        displayName="usb_speaker_basic_sam_e70_xult_wm8904_usb"
                        projectFiles="true">
@@ -72,6 +69,9 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f4" displayName="system" projectFiles="true">
+            <logicalFolder name="f3" displayName="cache" projectFiles="true">
+              <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/cache/sys_cache.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/int/sys_int.h</itemPath>
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/int/sys_int_mapping.h</itemPath>
@@ -79,6 +79,7 @@
             <logicalFolder name="f1" displayName="time" projectFiles="true">
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/time/sys_time.h</itemPath>
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/time/sys_time_definitions.h</itemPath>
+              <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/time/src/sys_time_local.h</itemPath>
             </logicalFolder>
             <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/system.h</itemPath>
             <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/system_common.h</itemPath>
@@ -102,17 +103,19 @@
             <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/usb/usb_host.h</itemPath>
             <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/usb/usb_hub.h</itemPath>
           </logicalFolder>
+          <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/device_cache.h</itemPath>
+          <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/toolchain_specifics.h</itemPath>
           <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/definitions.h</itemPath>
           <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/user.h</itemPath>
           <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/configuration.h</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <logicalFolder name="f4" displayName="osal" projectFiles="true">
+      <logicalFolder name="f3" displayName="osal" projectFiles="true">
         <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/osal/osal.h</itemPath>
         <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/osal/osal_definitions.h</itemPath>
         <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/osal/osal_impl_basic.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f3" displayName="packs" projectFiles="true">
+      <logicalFolder name="f2" displayName="packs" projectFiles="true">
         <logicalFolder name="f1" displayName="ATSAME70Q21B_DFP" projectFiles="true">
           <logicalFolder name="f1" displayName="component" projectFiles="true">
             <itemPath>../src/packs/ATSAME70Q21B_DFP/component/acc.h</itemPath>
@@ -163,6 +166,7 @@
             <logicalFolder name="f1" displayName="Core" projectFiles="true">
               <logicalFolder name="f1" displayName="Include" projectFiles="true">
                 <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_compiler.h</itemPath>
+                <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_iccarm.h</itemPath>
                 <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/cmsis_gcc.h</itemPath>
                 <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/tz_context.h</itemPath>
                 <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/core_cm7.h</itemPath>
@@ -189,9 +193,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="audio_codec" displayName="audio_codec" projectFiles="true">
-        <itemPath>../src/audio_codec/audio_codec.c</itemPath>
-      </logicalFolder>
       <logicalFolder name="f1" displayName="config" projectFiles="true">
         <logicalFolder name="f1"
                        displayName="usb_speaker_basic_sam_e70_xult_wm8904_usb"
@@ -252,12 +253,14 @@
             <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
           <logicalFolder name="f5" displayName="system" projectFiles="true">
+            <logicalFolder name="f3" displayName="cache" projectFiles="true">
+              <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/cache/sys_cache.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/int/src/sys_int.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="time" projectFiles="true">
               <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/time/src/sys_time.c</itemPath>
-              <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/system/time/src/sys_time_local.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f3" displayName="usb" projectFiles="true">
@@ -270,7 +273,7 @@
           <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/initialization.c</itemPath>
           <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/interrupts.c</itemPath>
           <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/exceptions.c</itemPath>
-          <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/startup.c</itemPath>
+          <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/startup_xc32.c</itemPath>
           <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/libc_syscalls.c</itemPath>
           <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/usb_device_init_data.c</itemPath>
           <itemPath>../src/config/usb_speaker_basic_sam_e70_xult_wm8904_usb/tasks.c</itemPath>
@@ -330,18 +333,6 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
-      <item path="../src/audio_codec/audio_codec.c" ex="true" overriding="false">
-        <C32>
-        </C32>
-        <C32-AS>
-        </C32-AS>
-        <C32-LD>
-        </C32-LD>
-        <C32CPP>
-        </C32CPP>
-        <C32Global>
-        </C32Global>
-      </item>
       <AtmelIceTool>
         <property key="AutoSelectMemRanges" value="auto"/>
         <property key="communication.interface" value="swd"/>
@@ -393,6 +384,9 @@
         <property key="use-iar" value="false"/>
         <property key="use-indirect-calls" value="false"/>
       </C32>
+      <C32-AR>
+        <property key="additional-options-chop-files" value="false"/>
+      </C32-AR>
       <C32-AS>
         <property key="assembler-symbols" value=""/>
         <property key="enable-symbols" value="true"/>
