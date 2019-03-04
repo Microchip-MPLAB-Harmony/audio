@@ -147,8 +147,8 @@
           <Name dnOrder="1">plib_pio.c</Name>
           <LogicalPath dnOrder="2">config/usb_speaker_basic_sam_e70_xult_wm8904_usb/peripheral/pio/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/pio/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">1056B94A4A40F8241ACC35E671D964C2</GeneratedChecksum>
-          <UserChecksum dnOrder="5">1056B94A4A40F8241ACC35E671D964C2</UserChecksum>
+          <GeneratedChecksum dnOrder="4">0B812AA6E4409E5DA31D8B680937DA2A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">0B812AA6E4409E5DA31D8B680937DA2A</UserChecksum>
         </File>
         <File dnOrder="18">
           <Type dnOrder="0">SOURCE</Type>
@@ -635,8 +635,8 @@
           <Name dnOrder="1">plib_pio.h</Name>
           <LogicalPath dnOrder="2">config/usb_speaker_basic_sam_e70_xult_wm8904_usb/peripheral/pio/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/pio/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">CB7F91AD9C5AE1B9E3F98D7CB7299ACB</GeneratedChecksum>
-          <UserChecksum dnOrder="5">CB7F91AD9C5AE1B9E3F98D7CB7299ACB</UserChecksum>
+          <GeneratedChecksum dnOrder="4">EE9D3002312E4D230BE297397BD29AB2</GeneratedChecksum>
+          <UserChecksum dnOrder="5">EE9D3002312E4D230BE297397BD29AB2</UserChecksum>
         </File>
         <File dnOrder="79">
           <Type dnOrder="0">HEADER</Type>

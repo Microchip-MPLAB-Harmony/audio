@@ -224,9 +224,7 @@ SYSTEM_OBJECTS sysObj;
 static DRV_USB_VBUS_LEVEL DRV_USBHSV1_VBUS_Comparator(void)
 {
     DRV_USB_VBUS_LEVEL retVal = DRV_USB_VBUS_LEVEL_INVALID;
-
-    //KEEP THIS - Function not defined
-    //if(true == USB_VBUS_SENSE_Get())
+    if(true == USB_VBUS_SENSE_Get())
     {
         retVal = DRV_USB_VBUS_LEVEL_VALID;
     }

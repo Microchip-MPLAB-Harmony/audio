@@ -107,14 +107,14 @@
 #define TEST2_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<19))
 #define TEST2_PIN                  PIO_PIN_PC19
 
-/*** Macros for VBUS_DETECT pin ***/
-#define VBUS_DETECT_Set()               (PIOB_REGS->PIO_SODR = (1<<8))
-#define VBUS_DETECT_Clear()             (PIOB_REGS->PIO_CODR = (1<<8))
-#define VBUS_DETECT_Toggle()            (PIOB_REGS->PIO_ODSR ^= (1<<8))
-#define VBUS_DETECT_Get()               ((PIOB_REGS->PIO_PDSR >> 8) & 0x1)
-#define VBUS_DETECT_OutputEnable()      (PIOB_REGS->PIO_OER = (1<<8))
-#define VBUS_DETECT_InputEnable()       (PIOB_REGS->PIO_ODR = (1<<8))
-#define VBUS_DETECT_PIN                  PIO_PIN_PB8
+/*** Macros for USB_VBUS_SENSE pin ***/
+#define USB_VBUS_SENSE_Set()               (PIOB_REGS->PIO_SODR = (1<<8))
+#define USB_VBUS_SENSE_Clear()             (PIOB_REGS->PIO_CODR = (1<<8))
+#define USB_VBUS_SENSE_Toggle()            (PIOB_REGS->PIO_ODSR ^= (1<<8))
+#define USB_VBUS_SENSE_Get()               ((PIOB_REGS->PIO_PDSR >> 8) & 0x1)
+#define USB_VBUS_SENSE_OutputEnable()      (PIOB_REGS->PIO_OER = (1<<8))
+#define USB_VBUS_SENSE_InputEnable()       (PIOB_REGS->PIO_ODR = (1<<8))
+#define USB_VBUS_SENSE_PIN                  PIO_PIN_PB8
 
 
 // *****************************************************************************
