@@ -658,6 +658,10 @@ void APP_Tasks ( void )
                 }
                 appData.state = APP_STATE_ERROR;
             }
+            else
+            {
+                appData.state = APP_STATE_CLOSE_FILE;
+            }
             break;
         }
         case APP_STATE_ERROR:
