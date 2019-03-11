@@ -143,7 +143,7 @@ typedef struct
 
 } APP_DATA;
 
-void InitGUI();         // located in libaria_events.c
+void InitGUI( void );         // located in libaria_events.c
 
 #endif /* APP_CONFIG_H */
 
