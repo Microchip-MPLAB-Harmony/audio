@@ -75,7 +75,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "peripheral/twihs/plib_twihs0.h"
 #include "system/time/sys_time.h"
 
-#include "audio_codec.h"
 #include "audio/driver/wm8904/drv_wm8904_local.h"
 #include "audio/driver/wm8904/drv_wm8904.h"
 
