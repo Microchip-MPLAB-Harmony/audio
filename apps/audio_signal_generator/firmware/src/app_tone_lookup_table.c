@@ -187,7 +187,7 @@ void APP_TONE_LOOKUP_TABLE_Initialize(WAVE_MODE mode, AUDIO_CODEC_DATA* codecDat
             {
                 for (i=0; i < currNumSamples; i++)
                 {
- #if AUDIO_FORMAT_WIDTH==32
+#if AUDIO_FORMAT_WIDTH==32
                     if (i < currNumSamples/2)
                     {
                         lookupTable[i+k].leftData = (int32_t)(0x7FFFFFFF);   // 0 to 0x7FFFFFFF for 0-30 samples
@@ -218,7 +218,7 @@ void APP_TONE_LOOKUP_TABLE_Initialize(WAVE_MODE mode, AUDIO_CODEC_DATA* codecDat
                 for (i=0; i < currNumSamples; i++)
                 {   
                     double slopeFrac;                    
- #if AUDIO_FORMAT_WIDTH==32
+#if AUDIO_FORMAT_WIDTH==32
                     uint32_t slopeValue;
 
                     slopeFrac = 1.0 - (double)i/(double)currNumSamples;
@@ -242,15 +242,22 @@ void APP_TONE_LOOKUP_TABLE_Initialize(WAVE_MODE mode, AUDIO_CODEC_DATA* codecDat
             {
                 for (i=0; i < currNumSamples; i++)
                 {                
-                    double slopeFrac;
                     if (i < currNumSamples/2)
                     {
- #if AUDIO_FORMAT_WIDTH==32
+#if AUDIO_FORMAT_WIDTH==32
                         uint32_t slopeValue;
-
-                        slopeFrac = 1.0 - (double)i/(double)currNumSamples;
-                        slopeValue = (uint32_t)(slopeFrac*(uint32_t)0xffffffff);                        
-                        lookupTable[i+k].leftData = (int32_t)slopeValue;   // 0 to 0x7FFFFFFF for 0-30 samples     
+                       
+                        uint32_t slopeInc = 0xffffffff/currNumSamples;
+                        if (i < currNumSamples/4)
+                        {
+                            slopeValue = (currNumSamples/2-(i*2))*slopeInc;                      
+                            lookupTable[i+k].leftData = (int32_t)(0-slopeValue);   // 0 to 0x7FFFFFFF for 0-30 samples                                      
+                        }
+                        else
+                        {
+                            slopeValue = ((i*2)-currNumSamples/2)*slopeInc;                        
+                            lookupTable[i+k].leftData = (int32_t)(0+slopeValue);   // 0 to 0x7FFFFFFF for 0-30 samples                          
+                        }                          
 #endif
 #if AUDIO_FORMAT_WIDTH==16
                         uint16_t slopeValue;
@@ -270,12 +277,22 @@ void APP_TONE_LOOKUP_TABLE_Initialize(WAVE_MODE mode, AUDIO_CODEC_DATA* codecDat
                     }                    
                     else
                     {
- #if AUDIO_FORMAT_WIDTH==32
-                        uint32_t slopeValue;
+#if AUDIO_FORMAT_WIDTH==32
+                        uint32_t slopeValue, j;
+                        //j = (currNumSamples-1)-i;   // 48-95 -> 47-0
+                        j = i - currNumSamples/2;   // 48-95 -> 0-23
 
-                        slopeFrac = (double)i/(double)currNumSamples;
-                        slopeValue = (uint32_t)(slopeFrac*(uint32_t)0xffffffff);                        
-                        lookupTable[i+k].leftData = (int32_t)slopeValue;   // 0 to 0x7FFFFFFF for 0-30 samples     
+                        uint32_t slopeInc = 0xffffffff/currNumSamples;
+                        if (i < (3*currNumSamples/4))
+                        {
+                            slopeValue = (currNumSamples/2-(j*2))*slopeInc;                  
+                            lookupTable[i+k].leftData = (int32_t)(0+slopeValue);   // 0 to 0x7FFFFFFF for 0-30 samples                                      
+                        }
+                        else
+                        {
+                            slopeValue = ((j*2)-currNumSamples/2)*slopeInc;     // j = 23->0                        
+                            lookupTable[i+k].leftData = (int32_t)(0-slopeValue);   // 0 to 0x7FFFFFFF for 0-30 samples                          
+                        }   
 #endif
 #if AUDIO_FORMAT_WIDTH==16
                         uint16_t slopeValue, j;
