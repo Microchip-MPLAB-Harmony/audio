@@ -270,6 +270,8 @@ void InitLabels();      // located in libaria_events.c
 
 void KeyRepeatTask();   // located in libaria_events.c
 
+void HiddenPlayPauseButton_ReleasedEvent(laButtonWidget* btn);      // located in libaria_events.c
+
 void SetAppVolume(uint32_t perCentVolume);
 
 /*******************************************************************************
