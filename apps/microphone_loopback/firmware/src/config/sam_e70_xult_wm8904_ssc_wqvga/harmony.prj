@@ -27,16 +27,16 @@
           <Name dnOrder="1">drv_gfx_lcc.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/driver/lcc</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/driver/controller/lcc/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">4DEFDA33064EF4F6D43456E569B0DB8C</GeneratedChecksum>
-          <UserChecksum dnOrder="5">4DEFDA33064EF4F6D43456E569B0DB8C</UserChecksum>
+          <GeneratedChecksum dnOrder="4">DC4B02CC9F5F4A500BA156314DBDA9CD</GeneratedChecksum>
+          <UserChecksum dnOrder="5">DC4B02CC9F5F4A500BA156314DBDA9CD</UserChecksum>
         </File>
         <File dnOrder="3">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">drv_i2c.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">8A7603E82B8E0581FAE0D3E9BF74B242</GeneratedChecksum>
-          <UserChecksum dnOrder="5">8A7603E82B8E0581FAE0D3E9BF74B242</UserChecksum>
+          <GeneratedChecksum dnOrder="4">00BE2152C659AE45DBA8630ACD809BD2</GeneratedChecksum>
+          <UserChecksum dnOrder="5">00BE2152C659AE45DBA8630ACD809BD2</UserChecksum>
         </File>
         <File dnOrder="4">
           <Type dnOrder="0">SOURCE</Type>
@@ -395,8 +395,8 @@
           <Name dnOrder="1">gfxu_image_raw_external.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/utils</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/utils/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">0801810E039133FFA4D7E92B7A1A7460</GeneratedChecksum>
-          <UserChecksum dnOrder="5">0801810E039133FFA4D7E92B7A1A7460</UserChecksum>
+          <GeneratedChecksum dnOrder="4">6AA78F4DD202953D04F915092DD94E43</GeneratedChecksum>
+          <UserChecksum dnOrder="5">6AA78F4DD202953D04F915092DD94E43</UserChecksum>
         </File>
         <File dnOrder="49">
           <Type dnOrder="0">SOURCE</Type>
@@ -411,8 +411,8 @@
           <Name dnOrder="1">gfxu_image_rle_external.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/utils</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/utils/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">CA501D8A1452656A8908DF1080FC0580</GeneratedChecksum>
-          <UserChecksum dnOrder="5">CA501D8A1452656A8908DF1080FC0580</UserChecksum>
+          <GeneratedChecksum dnOrder="4">98ABE6FE390AC01285D3F37FBA82D19A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">98ABE6FE390AC01285D3F37FBA82D19A</UserChecksum>
         </File>
         <File dnOrder="51">
           <Type dnOrder="0">SOURCE</Type>
@@ -491,8 +491,8 @@
           <Name dnOrder="1">initialization.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">3185B6843B878FCF9962A0640C9D7CD8</GeneratedChecksum>
-          <UserChecksum dnOrder="5">3185B6843B878FCF9962A0640C9D7CD8</UserChecksum>
+          <GeneratedChecksum dnOrder="4">9511695602CB9F6A5CAC9D62A2437A5E</GeneratedChecksum>
+          <UserChecksum dnOrder="5">9511695602CB9F6A5CAC9D62A2437A5E</UserChecksum>
         </File>
         <File dnOrder="61">
           <Type dnOrder="0">SOURCE</Type>
@@ -572,15 +572,15 @@
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/libaria</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/libaria/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">4F3E28E47ED333F12ACA51FDF35C0F45</GeneratedChecksum>
-          <UserChecksum dnOrder="5">9734146C761E3BD335EF6219ADDD0B37</UserChecksum>
+          <UserChecksum dnOrder="5">E3D84BCD994436E8C852671E611E1C5B</UserChecksum>
         </File>
         <File dnOrder="71">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">libaria_harmony.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/libaria</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/libaria/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">4819FB1FE0A52E591A0C960C0B718505</GeneratedChecksum>
-          <UserChecksum dnOrder="5">4819FB1FE0A52E591A0C960C0B718505</UserChecksum>
+          <GeneratedChecksum dnOrder="4">93D8CB7C0F98FFD0436EECAF02618C35</GeneratedChecksum>
+          <UserChecksum dnOrder="5">93D8CB7C0F98FFD0436EECAF02618C35</UserChecksum>
         </File>
         <File dnOrder="72">
           <Type dnOrder="0">SOURCE</Type>
@@ -1187,8 +1187,8 @@
           <Name dnOrder="1">plib_clk.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">2588519DC7A89BDCE90128B18290096C</GeneratedChecksum>
-          <UserChecksum dnOrder="5">2588519DC7A89BDCE90128B18290096C</UserChecksum>
+          <GeneratedChecksum dnOrder="4">5E208111E3C1AEA7F3412B68919519D9</GeneratedChecksum>
+          <UserChecksum dnOrder="5">5E208111E3C1AEA7F3412B68919519D9</UserChecksum>
         </File>
         <File dnOrder="148">
           <Type dnOrder="0">SOURCE</Type>
@@ -1259,8 +1259,8 @@
           <Name dnOrder="1">sys_cache.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/system/cache/</LogicalPath>
           <PhysicalPath dnOrder="3">/system/cache/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">25FF22692E153473C0D04CBCEAE87FEA</GeneratedChecksum>
-          <UserChecksum dnOrder="5">25FF22692E153473C0D04CBCEAE87FEA</UserChecksum>
+          <GeneratedChecksum dnOrder="4">BFFD794B7A8ACF7103CEC494FF24EB72</GeneratedChecksum>
+          <UserChecksum dnOrder="5">BFFD794B7A8ACF7103CEC494FF24EB72</UserChecksum>
         </File>
         <File dnOrder="157">
           <Type dnOrder="0">SOURCE</Type>
@@ -1467,8 +1467,8 @@
           <Name dnOrder="1">device_cache.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">DE0BBDD8687E108E911CE625D8E93CDB</GeneratedChecksum>
-          <UserChecksum dnOrder="5">DE0BBDD8687E108E911CE625D8E93CDB</UserChecksum>
+          <GeneratedChecksum dnOrder="4">3ED2C1D9BD295E1B1E1864B52AE72D95</GeneratedChecksum>
+          <UserChecksum dnOrder="5">3ED2C1D9BD295E1B1E1864B52AE72D95</UserChecksum>
         </File>
         <File dnOrder="183">
           <Type dnOrder="0">HEADER</Type>
@@ -1483,8 +1483,8 @@
           <Name dnOrder="1">drv_i2c.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F44645515479E033B969EE5CE6C40E64</GeneratedChecksum>
-          <UserChecksum dnOrder="5">F44645515479E033B969EE5CE6C40E64</UserChecksum>
+          <GeneratedChecksum dnOrder="4">7DC093674665965E223A7AD52F7BAF83</GeneratedChecksum>
+          <UserChecksum dnOrder="5">7DC093674665965E223A7AD52F7BAF83</UserChecksum>
         </File>
         <File dnOrder="185">
           <Type dnOrder="0">HEADER</Type>
@@ -1555,8 +1555,8 @@
           <Name dnOrder="1">gfx_color.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/hal</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/hal/inc/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">03D6F07EA97DC28CB23E13A6D7F2D582</GeneratedChecksum>
-          <UserChecksum dnOrder="5">03D6F07EA97DC28CB23E13A6D7F2D582</UserChecksum>
+          <GeneratedChecksum dnOrder="4">34EFDE5A865EDDC717CF3EA42DFF8415</GeneratedChecksum>
+          <UserChecksum dnOrder="5">34EFDE5A865EDDC717CF3EA42DFF8415</UserChecksum>
         </File>
         <File dnOrder="194">
           <Type dnOrder="0">HEADER</Type>
@@ -2355,8 +2355,8 @@
           <Name dnOrder="1">osal_definitions.h</Name>
           <LogicalPath dnOrder="2">/osal/</LogicalPath>
           <PhysicalPath dnOrder="3">/osal/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">0C6AF7550A40F9EDF5A15DB9444D7D8E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">0C6AF7550A40F9EDF5A15DB9444D7D8E</UserChecksum>
+          <GeneratedChecksum dnOrder="4">0AC88C49E4585B606FD5AC6804F0C340</GeneratedChecksum>
+          <UserChecksum dnOrder="5">0AC88C49E4585B606FD5AC6804F0C340</UserChecksum>
         </File>
         <File dnOrder="294">
           <Type dnOrder="0">HEADER</Type>
@@ -2379,8 +2379,8 @@
           <Name dnOrder="1">plib_clk.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">3176DF5386ABD348A93A3A6169F52E8B</GeneratedChecksum>
-          <UserChecksum dnOrder="5">3176DF5386ABD348A93A3A6169F52E8B</UserChecksum>
+          <GeneratedChecksum dnOrder="4">115B0136EFE9ED871D67D3B10CBEBDC8</GeneratedChecksum>
+          <UserChecksum dnOrder="5">115B0136EFE9ED871D67D3B10CBEBDC8</UserChecksum>
         </File>
         <File dnOrder="297">
           <Type dnOrder="0">HEADER</Type>
@@ -2699,8 +2699,8 @@
           <Name dnOrder="1">toolchain_specifics.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">ECBE73246282EC07A1EC6DB84AE3A470</GeneratedChecksum>
-          <UserChecksum dnOrder="5">ECBE73246282EC07A1EC6DB84AE3A470</UserChecksum>
+          <GeneratedChecksum dnOrder="4">05E9A0D057500FDF32C8D711811FF003</GeneratedChecksum>
+          <UserChecksum dnOrder="5">05E9A0D057500FDF32C8D711811FF003</UserChecksum>
         </File>
         <File dnOrder="337">
           <Type dnOrder="0">HEADER</Type>

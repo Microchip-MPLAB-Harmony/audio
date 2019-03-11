@@ -67,11 +67,11 @@ void _SetNumericLabel(uint32_t value, laLabelWidget* label, bool percent)
     
     if (percent)
     {
-        sprintf(valueStrBuf,"%4d%%",value);
+        sprintf(valueStrBuf,"%4d%%",(int)value);
     }
     else
     {
-        sprintf(valueStrBuf,"%4d",value);
+        sprintf(valueStrBuf,"%4d",(int)value);
     }
     tempStr = laString_CreateFromCharBuffer((char *) valueStrBuf, &LiberationSans18);
     laLabelWidget_SetText(label, tempStr);
