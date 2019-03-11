@@ -222,7 +222,6 @@ extern "C" {
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-//KEEP THIS  - Generated Value Wrong
 #define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66
 
 
