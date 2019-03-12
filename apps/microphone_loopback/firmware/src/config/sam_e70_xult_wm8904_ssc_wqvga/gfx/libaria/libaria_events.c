@@ -85,7 +85,7 @@ void _setDelayVisible()
     laWidget_SetVisible((laWidget*)delayLabel, appData.delayEnabled); 
 }
 
-void InitGUI()
+void InitGUI( void )
 {   
     _msSinceKeyPressed = -1;
     _msSinceVolumePressed = -1;   
@@ -108,7 +108,7 @@ void InitGUI()
     _setDelayVisible();    
 }
 
-void KeyRepeatTask()        // called every ms from app.c
+void KeyRepeatTask( void )        // called every ms from app.c
 {   
     if (_msSinceKeyPressed >= 0)
     {
