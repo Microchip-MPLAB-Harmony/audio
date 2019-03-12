@@ -6,174 +6,134 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="config" projectFiles="true">
         <logicalFolder name="f1"
-                       displayName="apb_sam_e70_xult_wm8904_ssc_freertos"
+                       displayName="apb_sam_e70_xult_wm8904_ssc"
                        projectFiles="true">
           <logicalFolder name="f6" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904.h</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/audio/driver/wm8904/drv_wm8904.h</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f5" displayName="bsp" projectFiles="true">
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/bsp/bsp.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/bsp/bsp.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f3" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="i2c" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/i2c/drv_i2c.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/i2c/drv_i2c_definitions.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/i2c/drv_i2c.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/i2c/drv_i2c_definitions.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/i2s/drv_i2s.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/i2s/drv_i2s_definitions.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/i2s/drv_i2s.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/i2s/drv_i2s_definitions.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="usb" projectFiles="true">
               <logicalFolder name="f1" displayName="usbhsv1" projectFiles="true">
                 <logicalFolder name="f1" displayName="src" projectFiles="true">
-                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/usb/usbhsv1/src/drv_usbhsv1_variant_mapping.h</itemPath>
-                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/usb/usbhsv1/src/drv_usbhsv1_local.h</itemPath>
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/usb/usbhsv1/src/drv_usbhsv1_variant_mapping.h</itemPath>
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/usb/usbhsv1/src/drv_usbhsv1_local.h</itemPath>
                 </logicalFolder>
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/usb/usbhsv1/drv_usbhsv1.h</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/usb/usbhsv1/drv_usbhsv1.h</itemPath>
               </logicalFolder>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/usb/drv_usb.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/usb/drv_usb_external_dependencies.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/usb/drv_usb.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/usb/drv_usb_external_dependencies.h</itemPath>
             </logicalFolder>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/driver.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/driver_common.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/driver.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/driver_common.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/clk/plib_clk.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/clk/plib_clk.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="nvic" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/nvic/plib_nvic.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/nvic/plib_nvic.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/pio/plib_pio.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/pio/plib_pio.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f6" displayName="ssc" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/ssc/plib_ssc.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/ssc/plib_ssc.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f5" displayName="tc" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/tc/plib_tc0.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/tc/plib_tc_common.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/tc/plib_tc0.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/tc/plib_tc_common.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f7" displayName="twihs" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/twihs/plib_twihs_master.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/twihs/plib_twihs0.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/twihs/plib_twihs_master.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/twihs/plib_twihs0.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="xdmac" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/xdmac/plib_xdmac_common.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/xdmac/plib_xdmac.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/xdmac/plib_xdmac_common.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/xdmac/plib_xdmac.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f4" displayName="system" projectFiles="true">
-            <logicalFolder name="f5" displayName="cache" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/cache/sys_cache.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f6" displayName="dma" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/dma/sys_dma.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/dma/sys_dma_mapping.h</itemPath>
+            <logicalFolder name="f4" displayName="cache" projectFiles="true">
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/cache/sys_cache.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="fs" projectFiles="true">
               <logicalFolder name="f1" displayName="fat_fs" projectFiles="true">
                 <logicalFolder name="f1" displayName="file_system" projectFiles="true">
-                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/fat_fs/src/file_system/ff.h</itemPath>
-                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/fat_fs/src/file_system/ffconf.h</itemPath>
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/fat_fs/src/file_system/ff.h</itemPath>
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/fat_fs/src/file_system/ffconf.h</itemPath>
                 </logicalFolder>
                 <logicalFolder name="f2" displayName="hardware_access" projectFiles="true">
-                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/fat_fs/src/hardware_access/diskio.h</itemPath>
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/fat_fs/src/hardware_access/diskio.h</itemPath>
                 </logicalFolder>
               </logicalFolder>
               <logicalFolder name="f2" displayName="mpfs" projectFiles="true">
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/mpfs/mpfs.h</itemPath>
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/mpfs/src/mpfs_local.h</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/mpfs/mpfs.h</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/mpfs/src/mpfs_local.h</itemPath>
               </logicalFolder>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/sys_fs.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/src/sys_fs_local.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/sys_fs_media_manager.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/src/sys_fs_media_manager_local.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/sys_fs.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/src/sys_fs_local.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/sys_fs_media_manager.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/src/sys_fs_media_manager_local.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="int" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/int/sys_int.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/int/sys_int_mapping.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f4" displayName="ports" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/ports/sys_ports.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/ports/sys_ports_mapping.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/int/sys_int.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/int/sys_int_mapping.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="time" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/time/sys_time.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/time/sys_time_definitions.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/time/src/sys_time_local.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/time/sys_time.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/time/sys_time_definitions.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/time/src/sys_time_local.h</itemPath>
             </logicalFolder>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system_common.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system_module.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system_media.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/system.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/system_common.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/system_module.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/system_media.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="usb" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/src/usb_host_msd_local.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/src/usb_host_scsi_local.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/src/usb_host_local.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/src/usb_host_hub_mapping.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/src/usb_external_dependencies.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/src/usb_host_msd_local.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/src/usb_host_scsi_local.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/src/usb_host_local.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/src/usb_host_hub_mapping.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/src/usb_external_dependencies.h</itemPath>
             </logicalFolder>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/usb_host_msd.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/usb_host_scsi.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/usb_msd.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/scsi.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/usb_host_client_driver.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/usb_host_hub_interface.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/usb_host.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/usb_hub.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/usb_common.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/usb_chapter_9.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/usb_host_msd.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/usb_host_scsi.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/usb_msd.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/scsi.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/usb_host_client_driver.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/usb_host_hub_interface.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/usb_host.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/usb_hub.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/usb_common.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/usb_chapter_9.h</itemPath>
           </logicalFolder>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/device_cache.h</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/toolchain_specifics.h</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/definitions.h</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/FreeRTOSConfig.h</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/user.h</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/configuration.h</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/device_cache.h</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/toolchain_specifics.h</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/definitions.h</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/user.h</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/configuration.h</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <logicalFolder name="f3" displayName="FreeRTOS" projectFiles="true">
-        <logicalFolder name="f1" displayName="Source" projectFiles="true">
-          <logicalFolder name="f1" displayName="include" projectFiles="true">
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/croutine.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/event_groups.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/FreeRTOS.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/list.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/mpu_wrappers.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/portable.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/projdefs.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/queue.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/semphr.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/stack_macros.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/deprecated_definitions.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/task.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/timers.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/mpu_prototypes.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/stream_buffer.h</itemPath>
-            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/message_buffer.h</itemPath>
-          </logicalFolder>
-          <logicalFolder name="f2" displayName="portable" projectFiles="true">
-            <logicalFolder name="f1" displayName="GCC" projectFiles="true">
-              <logicalFolder name="f1" displayName="SAM" projectFiles="true">
-                <logicalFolder name="f1" displayName="CM7" projectFiles="true">
-                  <itemPath>../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7/portmacro.h</itemPath>
-                </logicalFolder>
-              </logicalFolder>
-            </logicalFolder>
-          </logicalFolder>
-        </logicalFolder>
-      </logicalFolder>
-      <logicalFolder name="f4" displayName="osal" projectFiles="true">
-        <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/osal/osal.h</itemPath>
-        <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/osal/osal_definitions.h</itemPath>
-        <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/osal/osal_freertos.h</itemPath>
+      <logicalFolder name="f3" displayName="osal" projectFiles="true">
+        <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/osal/osal.h</itemPath>
+        <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/osal/osal_definitions.h</itemPath>
+        <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/osal/osal_impl_basic.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="packs" projectFiles="true">
         <logicalFolder name="f1" displayName="ATSAME70Q21B_DFP" projectFiles="true">
@@ -257,130 +217,100 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="config" projectFiles="true">
         <logicalFolder name="f1"
-                       displayName="apb_sam_e70_xult_wm8904_ssc_freertos"
+                       displayName="apb_sam_e70_xult_wm8904_ssc"
                        projectFiles="true">
           <logicalFolder name="f7" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904.c</itemPath>
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904_local.h</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/audio/driver/wm8904/drv_wm8904.c</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/audio/driver/wm8904/drv_wm8904_local.h</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f6" displayName="bsp" projectFiles="true">
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/bsp/bsp.c</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/bsp/bsp.c</itemPath>
           </logicalFolder>
           <logicalFolder name="f4" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="i2c" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/i2c/src/drv_i2c.c</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/i2c/src/drv_i2c_local.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/i2c/src/drv_i2c.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/i2c/src/drv_i2c_local.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/i2s/src/drv_i2s.c</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/i2s/src/drv_i2s_local.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/i2s/src/drv_i2s.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/i2s/src/drv_i2s_local.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="usb" projectFiles="true">
               <logicalFolder name="f1" displayName="usbhsv1" projectFiles="true">
                 <logicalFolder name="f1" displayName="src" projectFiles="true">
-                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/usb/usbhsv1/src/drv_usbhsv1.c</itemPath>
-                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/driver/usb/usbhsv1/src/drv_usbhsv1_host.c</itemPath>
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/usb/usbhsv1/src/drv_usbhsv1.c</itemPath>
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/driver/usb/usbhsv1/src/drv_usbhsv1_host.c</itemPath>
                 </logicalFolder>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f3" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/clk/plib_clk.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/clk/plib_clk.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="nvic" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/nvic/plib_nvic.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/nvic/plib_nvic.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/pio/plib_pio.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/pio/plib_pio.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f6" displayName="ssc" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/ssc/plib_ssc.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/ssc/plib_ssc.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f5" displayName="tc" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/tc/plib_tc0.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/tc/plib_tc0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f7" displayName="twihs" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/twihs/plib_twihs0.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/twihs/plib_twihs0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="xdmac" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/xdmac/plib_xdmac.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/peripheral/xdmac/plib_xdmac.c</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f2" displayName="stdio" projectFiles="true">
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/stdio/xc32_monitor.c</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
           <logicalFolder name="f5" displayName="system" projectFiles="true">
             <logicalFolder name="f4" displayName="cache" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/cache/sys_cache.c</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f5" displayName="dma" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/dma/sys_dma.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/cache/sys_cache.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="fs" projectFiles="true">
               <logicalFolder name="f1" displayName="fat_fs" projectFiles="true">
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/fat_fs/src/ff.c</itemPath>
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/fat_fs/src/diskio.c</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/fat_fs/src/ff.c</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/fat_fs/src/diskio.c</itemPath>
               </logicalFolder>
               <logicalFolder name="f2" displayName="mpfs" projectFiles="true">
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/mpfs/src/mpfs.c</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/mpfs/src/mpfs.c</itemPath>
               </logicalFolder>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/src/sys_fs.c</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/fs/src/sys_fs_media_manager.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/src/sys_fs.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/fs/src/sys_fs_media_manager.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="int" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/int/src/sys_int.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/int/src/sys_int.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="time" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/time/src/sys_time.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/system/time/src/sys_time.c</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f1" displayName="usb" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/src/usb_host_msd.c</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/src/usb_host_scsi.c</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb/src/usb_host.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/src/usb_host_msd.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/src/usb_host_scsi.c</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb/src/usb_host.c</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/initialization.c</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/interrupts.c</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/exceptions.c</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/startup_xc32.c</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/libc_syscalls.c</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/usb_host_init_data.c</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/freertos_hooks.c</itemPath>
-          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/tasks.c</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/initialization.c</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/interrupts.c</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/exceptions.c</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/startup_xc32.c</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/libc_syscalls.c</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/usb_host_init_data.c</itemPath>
+          <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc/tasks.c</itemPath>
         </logicalFolder>
-      </logicalFolder>
-      <logicalFolder name="f2" displayName="FreeRTOS" projectFiles="true">
-        <logicalFolder name="f1" displayName="Source" projectFiles="true">
-          <logicalFolder name="f1" displayName="portable" projectFiles="true">
-            <logicalFolder name="f2" displayName="GCC" projectFiles="true">
-              <logicalFolder name="f1" displayName="SAM" projectFiles="true">
-                <logicalFolder name="f1" displayName="CM7" projectFiles="true">
-                  <itemPath>../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7/port.c</itemPath>
-                </logicalFolder>
-              </logicalFolder>
-            </logicalFolder>
-            <logicalFolder name="f1" displayName="MemMang" projectFiles="true">
-              <itemPath>../src/third_party/rtos/FreeRTOS/Source/portable/MemMang/heap_1.c</itemPath>
-            </logicalFolder>
-          </logicalFolder>
-          <itemPath>../src/third_party/rtos/FreeRTOS/Source/croutine.c</itemPath>
-          <itemPath>../src/third_party/rtos/FreeRTOS/Source/list.c</itemPath>
-          <itemPath>../src/third_party/rtos/FreeRTOS/Source/queue.c</itemPath>
-          <itemPath>../src/third_party/rtos/FreeRTOS/Source/FreeRTOS_tasks.c</itemPath>
-          <itemPath>../src/third_party/rtos/FreeRTOS/Source/timers.c</itemPath>
-          <itemPath>../src/third_party/rtos/FreeRTOS/Source/event_groups.c</itemPath>
-          <itemPath>../src/third_party/rtos/FreeRTOS/Source/stream_buffer.c</itemPath>
-        </logicalFolder>
-      </logicalFolder>
-      <logicalFolder name="f3" displayName="osal" projectFiles="true">
-        <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/osal/osal_freertos.c</itemPath>
       </logicalFolder>
       <itemPath>../src/disk.c</itemPath>
       <itemPath>../src/main.c</itemPath>
@@ -394,10 +324,11 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../src</Elem>
+    <Elem>../../../audio_player/firmware/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="apb_sam_e70_xult_wm8904_ssc_freertos" type="2">
+    <conf name="apb_sam_e70_xult_wm8904_ssc" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <targetDevice>ATSAME70Q21B</targetDevice>
@@ -469,7 +400,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/apb_sam_e70_xult_wm8904_ssc_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/apb_sam_e70_xult_wm8904_ssc_freertos"/>
+                  value="../src;../src/config/apb_sam_e70_xult_wm8904_ssc;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -530,7 +461,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="0"/>
+        <property key="heap-size" value="10000"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
@@ -698,7 +629,6 @@
         <property key="codecoverage.enabled" value="Disable"/>
         <property key="codecoverage.enableoutputtofile" value="false"/>
         <property key="codecoverage.outputfile" value=""/>
-        <property key="codecoverage.report" value=""/>
         <property key="oscillator.auxfrequency" value="120"/>
         <property key="oscillator.auxfrequencyunit" value="Mega"/>
         <property key="oscillator.frequency" value="1"/>
@@ -823,6 +753,8 @@
                   value="report"/>
         <property key="warningmessagebreakoptions.W0034_CORE_UNALIGNED_MEMORY_ACCESS"
                   value="report"/>
+        <property key="warningmessagebreakoptions.W0035_CORE_UNIMPLEMENTED_RAMACCESS_NOTRAP"
+                  value="report"/>
         <property key="warningmessagebreakoptions.W0040_FPU_DIFF_CP10_CP11"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0041_FPU_ACCESS_DENIED"
@@ -871,6 +803,10 @@
         <property key="warningmessagebreakoptions.W0116_SIM_STACK_OVERFLOW"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0117_SIM_STACK_UNDERFLOW"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0118_SIM_INVALID_FIELD_VALUE"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0119_SIM_SAMPLING_RATE_VIOLATION"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0201_ADC_NO_STIMULUS_FILE"
                   value="report"/>
@@ -968,6 +904,20 @@
                   value="report"/>
         <property key="warningmessagebreakoptions.W0702_CLC_CIRCULAR_LOOP"
                   value="report"/>
+        <property key="warningmessagebreakoptions.W0800_ACC_INPUT_INVALID_CONFIG"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0801_ACC_INPUT_NOT_SUPPORTED"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0802_ACC_INVERTED_WINDOW_LIMITS"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0803_ACC_MISMATCHED_POS_INPUTS"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0804_ACC_WINDOW_COMP_DISABLED"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0805_ACC_WINDOW_COMPS_MODES"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0806_ACC_FEATURE_NOT_SUPPORTED"
+                  value="report"/>
         <property key="warningmessagebreakoptions.W10001_RESERVED_IRQ_HANDLER_INVOKED"
                   value="report"/>
         <property key="warningmessagebreakoptions.W10002_UNSUPPORTED_CLK_SOURCE"
@@ -979,6 +929,8 @@
         <property key="warningmessagebreakoptions.W10103_UNSUPPORTED_RECEIVER_FILTER"
                   value="report"/>
         <property key="warningmessagebreakoptions.W10301_NO_PORT_PINS_FOUND"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W10500_UNSUPPORTED_SOURCE"
                   value="report"/>
         <property key="warningmessagebreakoptions.W1201_DATAFLASH_MEM_OUTSIDE_RANGE"
                   value="report"/>
