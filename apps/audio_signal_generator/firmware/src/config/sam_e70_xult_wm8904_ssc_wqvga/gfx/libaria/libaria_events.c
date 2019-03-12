@@ -92,7 +92,7 @@ void _SetTitleType(char* titleType)
     laString_Destroy(&tempStr);      
 }
 
-void InitLabels()
+void InitLabels( void )
 {
     _SetTitleType("Sine Wave");
     
@@ -116,7 +116,7 @@ void InitLabels()
     _setEndFreqVisible();
 }
 
-void KeyRepeatTask()        // called every ms from app.c
+void KeyRepeatTask( void )        // called every ms from app.c
 {   
     if (_msSinceKeyPressed >= 0)
     {
