@@ -95,7 +95,7 @@ unsigned int WAV_HdrGetFileSize(void)
     return (unsigned int) wavHeader.extralen;
 }
 
-uint16_t WAV_GetSampleRate(void){
+uint32_t WAV_GetSampleRate(void){
     return wavDecoder.wavSampleRate;
 }
 

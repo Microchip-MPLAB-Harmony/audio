@@ -93,7 +93,7 @@ typedef struct {
 
 typedef struct{
     // Common attributes for every decoder
-    uint16_t wavSampleRate;
+    uint32_t wavSampleRate;
     uint32_t wavBitRate;
     uint32_t wavDuration;
     // start point for decoder to decode
@@ -109,7 +109,7 @@ int WAV_HdrGetSamplesPerSec(void);
 int WAV_HdrGetBytesPerSec(void);
 int WAV_HdrGetDataLen(void);
 unsigned int WAV_HdrGetFileSize(void);
-uint16_t WAV_GetSampleRate(void);
+uint32_t WAV_GetSampleRate(void);
 uint32_t WAV_GetBitRate(void);
 uint32_t WAV_GetDuration(void);
 
