@@ -83,7 +83,7 @@ APP_DATA appData;
 */
 static void App_TimerCallback( uintptr_t context)
 {
-    KeyRepeatTask();    // process touch key-repeat events in libaria_events.c       
+    KeyRepeatTask();    // used to debounce button or touch events       
 }
 
 // *****************************************************************************

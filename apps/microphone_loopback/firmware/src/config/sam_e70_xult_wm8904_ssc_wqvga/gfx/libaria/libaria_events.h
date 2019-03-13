@@ -81,6 +81,10 @@ void hiddenToggleOnButton_PressedEvent(laButtonWidget* btn);
 // Generated Event Handler - Origin: hiddenToggleOffButton, Event: PressedEvent
 void hiddenToggleOffButton_PressedEvent(laButtonWidget* btn);
 
+// KEEP THESE LINES:
+void InitGUI( void );           // routine in libaria_events.c called from gui.c
+
+void KeyRepeatTask_sub( void );     // routine in libaria_events.c called from gui.c
 
 
 //DOM-IGNORE-BEGIN

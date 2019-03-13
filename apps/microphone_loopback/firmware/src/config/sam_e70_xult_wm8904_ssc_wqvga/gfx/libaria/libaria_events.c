@@ -108,7 +108,7 @@ void InitGUI( void )
     _setDelayVisible();    
 }
 
-void KeyRepeatTask( void )        // called every ms from app.c
+void KeyRepeatTask_sub( void )        // called every ms from gui.c
 {   
     if (_msSinceKeyPressed >= 0)
     {

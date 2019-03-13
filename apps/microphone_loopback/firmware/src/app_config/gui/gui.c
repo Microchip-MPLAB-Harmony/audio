@@ -29,13 +29,19 @@
 
 #include "app.h"        // also beings in app_tone_lookup_table.h
 
+#include "gfx/libaria/libaria_events.h"
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Application Callback Functions
 // *****************************************************************************
 // *****************************************************************************
 
-// KeyRepeatTask() defined in libaria_events.c
+// called every millisecond from App_TimerCallback
+void KeyRepeatTask ( void )
+{
+    KeyRepeatTask_sub();    // in turn calls routine in libaria_events.c   
+}
 
 // *****************************************************************************
 // *****************************************************************************

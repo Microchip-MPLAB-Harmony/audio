@@ -133,7 +133,7 @@ void APP_Tasks( void );
 
 void APP_Tasks_sub( void );
 
-void KeyRepeatTask( void );   // located in libaria_events.c
+void KeyRepeatTask( void );
 
 #endif /* APP_H */
 
