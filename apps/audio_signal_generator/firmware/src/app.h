@@ -266,12 +266,6 @@ void Audio_Codec_BufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
 
 void APP_Initialize ( void );
 
-void InitLabels( void );      // located in libaria_events.c
-
-void KeyRepeatTask( void );   // located in libaria_events.c
-
-void HiddenPlayPauseButton_ReleasedEvent(laButtonWidget* btn);      // located in libaria_events.c
-
 void SetAppVolume(uint32_t perCentVolume);
 
 /*******************************************************************************

@@ -29,6 +29,8 @@
 
 #include "app.h"        // also beings in app_tone_lookup_table.h
 
+#include "gfx/libaria/libaria_events.h"
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions

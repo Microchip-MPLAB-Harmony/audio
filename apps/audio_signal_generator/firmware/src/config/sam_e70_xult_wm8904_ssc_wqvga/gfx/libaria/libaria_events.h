@@ -174,6 +174,10 @@ void HiddenSawtoothButton2_PressedEvent(laButtonWidget* btn);
 // Generated Event Handler - Origin: HiddenTriangleButton2, Event: PressedEvent
 void HiddenTriangleButton2_PressedEvent(laButtonWidget* btn);
 
+// KEEP THESE LINES:
+void InitLabels( void );      // routine in libaria_events.c called from app.c
+
+void KeyRepeatTask( void );   // routine in libaria_events.c called from app.c
 
 
 //DOM-IGNORE-BEGIN
