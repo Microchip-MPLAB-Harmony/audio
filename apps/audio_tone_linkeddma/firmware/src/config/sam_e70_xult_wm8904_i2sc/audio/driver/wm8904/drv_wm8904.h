@@ -418,7 +418,11 @@ typedef struct {
     /* true if mic input path enabled */
     bool enableMicInput;
 
+    /* true if mic requires bias (e.g. electret) */
     bool enableMicBias;
+
+    /* Microphone gain */
+    uint8_t micGain;
 
 } DRV_WM8904_INIT;
 
@@ -1662,6 +1666,177 @@ void DRV_WM8904_MuteOn(DRV_HANDLE handle);
     None.
  */
 void DRV_WM8904_MuteOff(DRV_HANDLE handle);
+
+
+// *****************************************************************************
+/*
+  Function:
+    void DRV_WM8904_MicGainSet(DRV_HANDLE handle, uint8_t gain)
+
+  Summary:
+    This function sets the microphone gain for the WM8904 CODEC.
+
+  Description:
+    This functions sets the microphone gain value from 0-31 which can range
+    from -1.5 to 28.3 dB
+
+  Precondition:
+    The DRV_WM8904_Initialize routine must have been called for the specified
+    WM8904 driver instance.
+
+    DRV_WM8904_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle       - A valid open-instance handle, returned from the driver's
+                   open routine
+
+    gain         - Gain value, in range 0-31
+
+  Returns:
+    None.
+
+    <code>
+    // myAppObj is an application specific object.
+    MY_APP_OBJ myAppObj;
+
+    // myWM8904Handle is the handle returned
+    // by the DRV_WM8904_Open function.
+
+        DRV_WM8904_MicGainSet(myWM8904Handle, 15);	//WM8904 mic gain set to 15
+
+    </code>
+
+  Remarks:
+    None.
+*/
+void DRV_WM8904_MicGainSet(DRV_HANDLE handle, uint8_t gain);
+
+
+// *****************************************************************************
+/*
+  Function:
+    uint8_t DRV_WM8904_MicGainGet(DRV_HANDLE handle)
+
+  Summary:
+    This function gets the microphone gain for the WM8904 Codec.
+
+  Description:
+    This functions gets the current microphone gain programmed to the Codec WM8904.
+
+  Precondition:
+    The DRV_WM8904_Initialize routine must have been called for the specified
+    WM8904 driver instance.
+
+    DRV_WM8904_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle       - A valid open-instance handle, returned from the driver's
+                   open routine
+
+  Returns:
+    Microphone gain, in range 0-31.
+
+  Example:
+    <code>
+    // myAppObj is an application specific object.
+    MY_APP_OBJ myAppObj;
+    uint8_t gain;
+
+    // myWM8904Handle is the handle returned
+    // by the DRV_WM8904_Open function.
+
+      gain = DRV_WM8904_MicGainGet(myWM8904Handle);
+    </code>
+
+  Remarks:
+    None.
+ */
+uint8_t DRV_WM8904_MicGainGet(DRV_HANDLE handle);
+
+
+// *****************************************************************************
+/*
+  Function:
+    void DRV_WM8904_MicMuteOn(DRV_HANDLE handle);
+
+  Summary:
+    Mutes the WM8904's microphone input
+
+  Description:
+    This function mutes the WM8904's microphone input
+
+  Precondition:
+    The DRV_WM8904_Initialize routine must have been called for the specified
+    WM8904 driver instance.
+
+    DRV_WM8904_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle       - A valid open-instance handle, returned from the driver's
+                   open routine
+
+  Returns:
+    None.
+
+  Example:
+    <code>
+    // myAppObj is an application specific object.
+    MY_APP_OBJ myAppObj;
+
+    // myWM8904Handle is the handle returned
+    // by the DRV_WM8904_Open function.
+
+    DRV_WM8904_MicMuteOn(myWM8904Handle);	//WM8904 microphone muted
+
+    </code>
+
+  Remarks:
+    None.
+ */
+void DRV_WM8904_MicMuteOn(DRV_HANDLE handle);
+
+
+// *****************************************************************************
+/*
+  Function:
+        void DRV_WM8904_MicMuteOff(DRV_HANDLE handle)
+
+  Summary:
+    Umutes th WM8904's microphone input.
+
+  Description:
+    This function unmutes the WM8904's microphone input.
+
+  Precondition:
+    The DRV_WM8904_Initialize routine must have been called for the specified
+    WM8904 driver instance.
+
+    DRV_WM8904_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle       - A valid open-instance handle, returned from the driver's
+                   open routine
+
+  Returns:
+    None.
+
+  Example:
+    <code>
+    // myAppObj is an application specific object.
+    MY_APP_OBJ myAppObj;
+
+    // myWM8904Handle is the handle returned
+    // by the DRV_WM8904_Open function.
+
+        DRV_WM8904_MicMuteOff(myWM8904Handle);	//WM8904 microphone unmuted
+
+    </code>
+
+  Remarks:
+    None.
+ */
+void DRV_WM8904_MicMuteOff(DRV_HANDLE handle);
+
 
 // *****************************************************************************
 /*

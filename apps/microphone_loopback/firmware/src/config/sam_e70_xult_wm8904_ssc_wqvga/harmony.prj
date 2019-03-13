@@ -572,7 +572,7 @@
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/libaria</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/libaria/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">4F3E28E47ED333F12ACA51FDF35C0F45</GeneratedChecksum>
-          <UserChecksum dnOrder="5">E3D84BCD994436E8C852671E611E1C5B</UserChecksum>
+          <UserChecksum dnOrder="5">AD70392C4C757F46666E03609C79014B</UserChecksum>
         </File>
         <File dnOrder="71">
           <Type dnOrder="0">SOURCE</Type>
@@ -1948,7 +1948,7 @@
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/libaria</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/libaria/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">2F3185D8B85E14179062702FFFE3B9CE</GeneratedChecksum>
-          <UserChecksum dnOrder="5">2F3185D8B85E14179062702FFFE3B9CE</UserChecksum>
+          <UserChecksum dnOrder="5">10BAA39102621B0ACAD81DFF54F05E1B</UserChecksum>
         </File>
         <File dnOrder="243">
           <Type dnOrder="0">HEADER</Type>

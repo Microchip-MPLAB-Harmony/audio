@@ -27,8 +27,8 @@
           <Name dnOrder="1">drv_i2c.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">8A7603E82B8E0581FAE0D3E9BF74B242</GeneratedChecksum>
-          <UserChecksum dnOrder="5">8A7603E82B8E0581FAE0D3E9BF74B242</UserChecksum>
+          <GeneratedChecksum dnOrder="4">00BE2152C659AE45DBA8630ACD809BD2</GeneratedChecksum>
+          <UserChecksum dnOrder="5">00BE2152C659AE45DBA8630ACD809BD2</UserChecksum>
         </File>
         <File dnOrder="3">
           <Type dnOrder="0">SOURCE</Type>
@@ -83,8 +83,8 @@
           <Name dnOrder="1">initialization.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">8A891A8F93331E7D66C9EABBABFC79E7</GeneratedChecksum>
-          <UserChecksum dnOrder="5">8A891A8F93331E7D66C9EABBABFC79E7</UserChecksum>
+          <GeneratedChecksum dnOrder="4">B86FE25BE2B0609D3155E87B3273EC1C</GeneratedChecksum>
+          <UserChecksum dnOrder="5">B86FE25BE2B0609D3155E87B3273EC1C</UserChecksum>
         </File>
         <File dnOrder="10">
           <Type dnOrder="0">SOURCE</Type>
@@ -115,8 +115,8 @@
           <Name dnOrder="1">plib_clk.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">09836381DEEA5D07CD8D57BB4D92562A</GeneratedChecksum>
-          <UserChecksum dnOrder="5">09836381DEEA5D07CD8D57BB4D92562A</UserChecksum>
+          <GeneratedChecksum dnOrder="4">252C752A745CDF1504C8A5D53826C4D6</GeneratedChecksum>
+          <UserChecksum dnOrder="5">252C752A745CDF1504C8A5D53826C4D6</UserChecksum>
         </File>
         <File dnOrder="14">
           <Type dnOrder="0">SOURCE</Type>
@@ -147,8 +147,8 @@
           <Name dnOrder="1">plib_tc0.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/peripheral/tc/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/tc/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">46EA4F82715892BA088DD80386091086</GeneratedChecksum>
-          <UserChecksum dnOrder="5">46EA4F82715892BA088DD80386091086</UserChecksum>
+          <GeneratedChecksum dnOrder="4">7C5108E6C3731A8536455E8503AA9900</GeneratedChecksum>
+          <UserChecksum dnOrder="5">7C5108E6C3731A8536455E8503AA9900</UserChecksum>
         </File>
         <File dnOrder="18">
           <Type dnOrder="0">SOURCE</Type>
@@ -179,8 +179,8 @@
           <Name dnOrder="1">sys_cache.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/system/cache/</LogicalPath>
           <PhysicalPath dnOrder="3">/system/cache/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">25FF22692E153473C0D04CBCEAE87FEA</GeneratedChecksum>
-          <UserChecksum dnOrder="5">25FF22692E153473C0D04CBCEAE87FEA</UserChecksum>
+          <GeneratedChecksum dnOrder="4">BFFD794B7A8ACF7103CEC494FF24EB72</GeneratedChecksum>
+          <UserChecksum dnOrder="5">BFFD794B7A8ACF7103CEC494FF24EB72</UserChecksum>
         </File>
         <File dnOrder="22">
           <Type dnOrder="0">SOURCE</Type>
@@ -379,8 +379,8 @@
           <Name dnOrder="1">device_cache.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">DE0BBDD8687E108E911CE625D8E93CDB</GeneratedChecksum>
-          <UserChecksum dnOrder="5">DE0BBDD8687E108E911CE625D8E93CDB</UserChecksum>
+          <GeneratedChecksum dnOrder="4">3ED2C1D9BD295E1B1E1864B52AE72D95</GeneratedChecksum>
+          <UserChecksum dnOrder="5">3ED2C1D9BD295E1B1E1864B52AE72D95</UserChecksum>
         </File>
         <File dnOrder="47">
           <Type dnOrder="0">HEADER</Type>
@@ -403,8 +403,8 @@
           <Name dnOrder="1">drv_i2c.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F44645515479E033B969EE5CE6C40E64</GeneratedChecksum>
-          <UserChecksum dnOrder="5">F44645515479E033B969EE5CE6C40E64</UserChecksum>
+          <GeneratedChecksum dnOrder="4">7DC093674665965E223A7AD52F7BAF83</GeneratedChecksum>
+          <UserChecksum dnOrder="5">7DC093674665965E223A7AD52F7BAF83</UserChecksum>
         </File>
         <File dnOrder="50">
           <Type dnOrder="0">HEADER</Type>
@@ -531,8 +531,8 @@
           <Name dnOrder="1">osal_definitions.h</Name>
           <LogicalPath dnOrder="2">/osal/</LogicalPath>
           <PhysicalPath dnOrder="3">/osal/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">0C6AF7550A40F9EDF5A15DB9444D7D8E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">0C6AF7550A40F9EDF5A15DB9444D7D8E</UserChecksum>
+          <GeneratedChecksum dnOrder="4">0AC88C49E4585B606FD5AC6804F0C340</GeneratedChecksum>
+          <UserChecksum dnOrder="5">0AC88C49E4585B606FD5AC6804F0C340</UserChecksum>
         </File>
         <File dnOrder="66">
           <Type dnOrder="0">HEADER</Type>
@@ -555,8 +555,8 @@
           <Name dnOrder="1">plib_clk.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">3176DF5386ABD348A93A3A6169F52E8B</GeneratedChecksum>
-          <UserChecksum dnOrder="5">3176DF5386ABD348A93A3A6169F52E8B</UserChecksum>
+          <GeneratedChecksum dnOrder="4">115B0136EFE9ED871D67D3B10CBEBDC8</GeneratedChecksum>
+          <UserChecksum dnOrder="5">115B0136EFE9ED871D67D3B10CBEBDC8</UserChecksum>
         </File>
         <File dnOrder="69">
           <Type dnOrder="0">HEADER</Type>
@@ -851,8 +851,8 @@
           <Name dnOrder="1">toolchain_specifics.h</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_i2sc/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">ECBE73246282EC07A1EC6DB84AE3A470</GeneratedChecksum>
-          <UserChecksum dnOrder="5">ECBE73246282EC07A1EC6DB84AE3A470</UserChecksum>
+          <GeneratedChecksum dnOrder="4">05E9A0D057500FDF32C8D711811FF003</GeneratedChecksum>
+          <UserChecksum dnOrder="5">05E9A0D057500FDF32C8D711811FF003</UserChecksum>
         </File>
         <File dnOrder="106">
           <Type dnOrder="0">HEADER</Type>

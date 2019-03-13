@@ -45,6 +45,8 @@
 // *****************************************************************************
 #include "configuration.h"
 #include "definitions.h"
+#include "device.h"
+
 
 
 // ****************************************************************************
@@ -52,34 +54,10 @@
 // Section: Configuration Bits
 // ****************************************************************************
 // ****************************************************************************
-// DOM-IGNORE-BEGIN
-/*******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
-*
-* Subject to your compliance with these terms, you may use Microchip software
-* and any derivatives exclusively with Microchip products. It is your
-* responsibility to comply with third party license terms applicable to your
-* use of third party software (including open source software) that may
-* accompany Microchip software.
-*
-* THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
-* EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
-* WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
-* PARTICULAR PURPOSE.
-*
-* IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
-* INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
-* WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
-* BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
-* FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
-* ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
-* THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
-*******************************************************************************/
-
-// DOM-IGNORE-END
 #pragma config TCM_CONFIGURATION = 0
 #pragma config SECURITY_BIT = CLEAR
 #pragma config BOOT_MODE = SET
+
 
 
 
@@ -91,10 +69,10 @@
 // <editor-fold defaultstate="collapsed" desc="DRV_I2C Instance 0 Initialization Data">
 
 /* I2C Client Objects Pool */
-static DRV_I2C_CLIENT_OBJ drvI2C0ClientObjPool[DRV_I2C_CLIENTS_NUMBER_IDX0] = {0};
+static DRV_I2C_CLIENT_OBJ drvI2C0ClientObjPool[DRV_I2C_CLIENTS_NUMBER_IDX0];
 
 /* I2C Transfer Objects Pool */
-static DRV_I2C_TRANSFER_OBJ drvI2C0TransferObj[DRV_I2C_QUEUE_SIZE_IDX0] = {0};
+static DRV_I2C_TRANSFER_OBJ drvI2C0TransferObj[DRV_I2C_QUEUE_SIZE_IDX0];
 
 /* I2C PLib Interface Initialization */
 const DRV_I2C_PLIB_INTERFACE drvI2C0PLibAPI = {
@@ -115,6 +93,16 @@ const DRV_I2C_PLIB_INTERFACE drvI2C0PLibAPI = {
     .callbackRegister = (DRV_I2C_PLIB_CALLBACK_REGISTER)TWIHS0_CallbackRegister,
 };
 
+
+const DRV_I2C_INTERRUPT_SOURCES drvI2C0InterruptSources =
+{
+    /* Peripheral has single interrupt vector */
+    .isSingleIntSrc                        = true,
+
+    /* Peripheral interrupt line */
+    .intSources.i2cInterrupt             = TWIHS0_IRQn,
+};
+
 /* I2C Driver Initialization Data */
 const DRV_I2C_INIT drvI2C0InitData =
 {
@@ -127,14 +115,14 @@ const DRV_I2C_INIT drvI2C0InitData =
     /* I2C Client Objects Pool */
     .clientObjPool = (uintptr_t)&drvI2C0ClientObjPool[0],
 
-    /* I2C IRQ */
-    .interruptI2C = DRV_I2C_INT_SRC_IDX0,
-
     /* I2C TWI Queue Size */
-    .queueSize = DRV_I2C_QUEUE_SIZE_IDX0,
+    .transferObjPoolSize = DRV_I2C_QUEUE_SIZE_IDX0,
 
     /* I2C Transfer Objects */
-    .transferObj = (uintptr_t)&drvI2C0TransferObj[0],
+    .transferObjPool = (uintptr_t)&drvI2C0TransferObj[0],
+
+    /* I2C interrupt sources */
+    .interruptSources = &drvI2C0InterruptSources,
 
     /* I2C Clock Speed */
     .clockSpeed = DRV_I2C_CLOCK_SPEED_IDX0,
@@ -185,7 +173,8 @@ const DRV_WM8904_INIT drvwm8904Codec0InitData =
     .volume = DRV_WM8904_VOLUME,
     .audioDataFormat = DRV_WM8904_AUDIO_DATA_FORMAT_MACRO,
     .enableMicInput = DRV_WM8904_ENABLE_MIC_INPUT,
-    .enableMicBias = DRV_WM8904_ENABLE_MIC_BIAS
+    .enableMicBias = DRV_WM8904_ENABLE_MIC_BIAS,
+    .micGain = DRV_WM8904_MIC_GAIN
 };
 
 
@@ -197,6 +186,7 @@ const DRV_WM8904_INIT drvwm8904Codec0InitData =
 // *****************************************************************************
 /* Structure to hold the object handles for the modules in the system. */
 SYSTEM_OBJECTS sysObj;
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Library/Stack Initialization Data
@@ -230,6 +220,7 @@ const SYS_TIME_INIT sysTimeInitData =
 // </editor-fold>
 
 
+
 /*******************************************************************************
   Function:
     void SYS_Initialize ( void *data )
@@ -242,12 +233,12 @@ const SYS_TIME_INIT sysTimeInitData =
 
 void SYS_Initialize ( void* data )
 {
+  
     CLK_Initialize();
 	PIO_Initialize();
 
 
     I2SC1_Initialize();
-    NVIC_Initialize();
     XDMAC_Initialize();
 
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
@@ -276,10 +267,11 @@ void SYS_Initialize ( void* data )
     APP_Initialize();
 
 
+    NVIC_Initialize();
+
 }
 
 
 /*******************************************************************************
  End of File
 */
-

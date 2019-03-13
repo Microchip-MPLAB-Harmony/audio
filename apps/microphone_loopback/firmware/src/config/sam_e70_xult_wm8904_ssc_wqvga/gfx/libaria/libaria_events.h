@@ -86,7 +86,6 @@ void InitGUI( void );           // routine in libaria_events.c called from gui.c
 
 void KeyRepeatTask_sub( void );     // routine in libaria_events.c called from gui.c
 
-
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
 }

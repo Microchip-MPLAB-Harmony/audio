@@ -54,6 +54,7 @@ static void _DRV_WM8904_I2SBufferEventHandler(DRV_I2S_BUFFER_EVENT event,
     DRV_I2S_BUFFER_HANDLE bufferHandle, uintptr_t contextHandle);
 static void _samplingRateSet(DRV_WM8904_OBJ *drvObj, uint32_t sampleRate, bool standalone);
 static void _volumeSet(DRV_WM8904_OBJ *drvObj, DRV_WM8904_CHANNEL chan, uint8_t volume, bool standalone);
+static void _micGainSet(DRV_WM8904_OBJ *drvObj, uint8_t volume, bool standalone);
 
 static const uint8_t testWriteData[APP_WRITE_DATA_LENGTH] = 
 {
@@ -271,6 +272,7 @@ SYS_MODULE_OBJ  DRV_WM8904_Initialize
     drvObj->audioDataFormat                 = wm8904Init->audioDataFormat;
     drvObj->enableMicInput                  = wm8904Init->enableMicInput;
     drvObj->enableMicBias                   = wm8904Init->enableMicBias;
+    drvObj->micGain                         = wm8904Init->micGain;
 
     drvObj->currentState    = DRV_WM8904_STATE_INIT;
     drvObj->tmrHandle     = DRV_HANDLE_INVALID;     
@@ -1872,8 +1874,8 @@ uint8_t volumeSteps[256]=
 
     if (standalone)
     {
-    start_I2C_Commands(drvObj);    
-}
+        start_I2C_Commands(drvObj);    
+    }
 }
 
 void DRV_WM8904_VolumeSet(DRV_HANDLE handle, DRV_WM8904_CHANNEL chan, uint8_t volume)
@@ -1979,6 +1981,215 @@ void DRV_WM8904_MuteOff(DRV_HANDLE handle)
     start_I2C_Commands(drvObj);    
 }
 
+
+// *****************************************************************************
+/*
+  Function:
+    void DRV_WM8904_MicGainSet(DRV_HANDLE handle, uint8_t gain)
+
+  Summary:
+    This function sets the microphone gain for the WM8904 CODEC.
+
+  Description:
+    This functions sets the microphone gain value from 0-31 which can range
+    from -1.5 to 28.3 dB
+
+  Remarks:
+    None.
+*/
+#define WM8904_NUMBER_MICGAIN_COMMANDS   2
+
+static void _micGainSet(DRV_WM8904_OBJ *drvObj, uint8_t gain, bool standalone)
+{
+    WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Commands[WM8904_NUMBER_MICGAIN_COMMANDS];
+    uint8_t loopSize;
+
+    if (standalone)
+    {
+        // if standalone, mute first per datasheet using old gain
+        WM8904_I2C_Commands[0].reg_addr = WM8904_ANALOGUE_LEFT_INPUT_0;  // R44
+        WM8904_I2C_Commands[0].value = WM8904_LIN_VOL(drvObj->micGain) | WM8904_LINMUTE;
+        WM8904_I2C_Commands[1].reg_addr = WM8904_ANALOGUE_RIGHT_INPUT_0; // R45
+        WM8904_I2C_Commands[1].value = WM8904_RIN_VOL(drvObj->micGain) | WM8904_RINMUTE;         
+        loopSize = 2;
+
+        uint8_t i;                                      
+        for (i=0; i < loopSize; i++)
+        {
+            WM8904_I2C_Commands[i].delay = (i==loopSize-1) ? 20 : 2;   // will delay a little bit after mute             
+            add_I2C_Command(drvObj, WM8904_I2C_Commands[i], false);   // add commands to buffer
+        }
+
+        drvObj->micGain = gain;
+    }            
+    WM8904_I2C_Commands[0].reg_addr = WM8904_ANALOGUE_LEFT_INPUT_0;  // R44
+    WM8904_I2C_Commands[0].value = WM8904_LIN_VOL(gain);        // will also unmute
+    WM8904_I2C_Commands[1].reg_addr = WM8904_ANALOGUE_RIGHT_INPUT_0; // R45
+    WM8904_I2C_Commands[1].value = WM8904_RIN_VOL(gain);        // will also unmute         
+    loopSize = 2;      
+
+    uint8_t i;                                      
+    for (i=0; i < loopSize; i++)
+    {
+        WM8904_I2C_Commands[i].delay = (i==loopSize-1) ? 5 : 2;             
+        add_I2C_Command(drvObj, WM8904_I2C_Commands[i], (i==loopSize-1)&&standalone);   // add commands to buffer
+    }  
+
+    if (standalone)
+    {
+        start_I2C_Commands(drvObj);    
+    }
+}
+
+void DRV_WM8904_MicGainSet(DRV_HANDLE handle, uint8_t gain)
+{
+    DRV_WM8904_OBJ *drvObj;
+    DRV_WM8904_CLIENT_OBJ *clientObj;
+    
+    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+    drvObj = (DRV_WM8904_OBJ *)clientObj->hDriver;
+
+    _micGainSet(drvObj, gain, true);
+}
+
+
+// *****************************************************************************
+/*
+  Function:
+    uint8_t DRV_WM8904_MicGainGet(DRV_HANDLE handle)
+
+  Summary:
+    This function gets the microphone gain for the WM8904 Codec.
+
+  Description:
+    This functions gets the current microphone gain programmed to the Codec WM8904.
+
+  Precondition:
+    The DRV_WM8904_Initialize routine must have been called for the specified
+    WM8904 driver instance.
+
+    DRV_WM8904_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle       - A valid open-instance handle, returned from the driver's
+                   open routine
+
+  Returns:
+    Microphone gain, in range 0-31 (-1.5 to 28.3 dB).
+
+  Example:
+    <code>
+    // myAppObj is an application specific object.
+    MY_APP_OBJ myAppObj;
+    uint8_t gain;
+
+    // myWM8904Handle is the handle returned
+    // by the DRV_WM8904_Open function.
+
+      gain = DRV_WM8904_MicGainGet(myWM8904Handle);
+    </code>
+
+  Remarks:
+    None.
+ */
+uint8_t DRV_WM8904_MicGainGet(DRV_HANDLE handle)
+{
+    DRV_WM8904_OBJ *drvObj;
+    DRV_WM8904_CLIENT_OBJ *clientObj;    
+
+    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+    drvObj = (DRV_WM8904_OBJ *)clientObj->hDriver;
+
+    /* Return the gain */
+    return drvObj->micGain;
+}
+
+// *****************************************************************************
+/*
+  Function:
+    void DRV_WM8904_MicMuteOn(DRV_HANDLE handle);
+
+  Summary:
+    Mutes the WM8904's microphone input
+
+  Description:
+    This function mutes the WM8904's microphone input
+
+  Remarks:
+    None.
+ */
+#define WM8904_NUMBER_MICMUTEON_COMMANDS   2
+
+void DRV_WM8904_MicMuteOn(DRV_HANDLE handle)
+{
+    DRV_WM8904_OBJ *drvObj;
+    DRV_WM8904_CLIENT_OBJ *clientObj;    
+
+    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+    drvObj = (DRV_WM8904_OBJ *)clientObj->hDriver;
+
+    WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Commands[WM8904_NUMBER_MICMUTEON_COMMANDS];
+    uint8_t loopSize;
+
+    WM8904_I2C_Commands[0].reg_addr = WM8904_ANALOGUE_LEFT_INPUT_0;  // R44
+    WM8904_I2C_Commands[0].value = WM8904_LIN_VOL(drvObj->micGain) | WM8904_LINMUTE;
+    WM8904_I2C_Commands[1].reg_addr = WM8904_ANALOGUE_RIGHT_INPUT_0; // R45
+    WM8904_I2C_Commands[1].value = WM8904_RIN_VOL(drvObj->micGain) | WM8904_RINMUTE;  
+    loopSize = 2;      
+
+    uint8_t i;                                      
+    for (i=0; i < loopSize; i++)
+    {
+        WM8904_I2C_Commands[i].delay = (i==loopSize-1) ? 5 : 2;             
+        add_I2C_Command(drvObj, WM8904_I2C_Commands[i], (i==loopSize-1));   // add commands to buffer
+    }
+
+    start_I2C_Commands(drvObj);   
+}
+
+// *****************************************************************************
+/*
+  Function:
+        void DRV_WM8904_MicMuteOff(DRV_HANDLE handle)
+
+  Summary:
+    Umutes th WM8904's microphone input.
+
+  Description:
+    This function unmutes the WM8904's microphone input.
+
+  Remarks:
+    None.
+ */
+#define WM8904_NUMBER_MICMUTEON_COMMANDS   2
+
+void DRV_WM8904_MicMuteOff(DRV_HANDLE handle)
+{
+    DRV_WM8904_OBJ *drvObj;
+    DRV_WM8904_CLIENT_OBJ *clientObj;    
+
+    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+    drvObj = (DRV_WM8904_OBJ *)clientObj->hDriver;
+
+    WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Commands[WM8904_NUMBER_MICMUTEON_COMMANDS];
+    uint8_t loopSize;
+
+    WM8904_I2C_Commands[0].reg_addr = WM8904_ANALOGUE_LEFT_INPUT_0;  // R44
+    WM8904_I2C_Commands[0].value = WM8904_LIN_VOL(drvObj->micGain);         // will also unmute
+    WM8904_I2C_Commands[1].reg_addr = WM8904_ANALOGUE_RIGHT_INPUT_0; // R45
+    WM8904_I2C_Commands[1].value = WM8904_RIN_VOL(drvObj->micGain);         // will also unmute  
+    loopSize = 2;      
+
+    uint8_t i;                                      
+    for (i=0; i < loopSize; i++)
+    {
+        WM8904_I2C_Commands[i].delay = (i==loopSize-1) ? 5 : 2;             
+        add_I2C_Command(drvObj, WM8904_I2C_Commands[i], (i==loopSize-1));   // add commands to buffer
+    }
+
+    start_I2C_Commands(drvObj);   
+}
+
 // *****************************************************************************
 /*
   Function:
@@ -2033,7 +2244,6 @@ DRV_HANDLE DRV_WM8904_GetI2SDriver(DRV_HANDLE codecHandle)
   Remarks:
     None.                                            
 */
-
 bool DRV_WM8904_LRCLK_Sync (const DRV_HANDLE handle)
 {
     DRV_WM8904_OBJ *drvObj;
@@ -2095,8 +2305,8 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands5[] =
 static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands6[] =
 {
 	{ WM8904_POWER_MANAGEMENT_6, WM8904_DACL_ENA | WM8904_DACR_ENA | WM8904_ADCL_ENA | WM8904_ADCR_ENA, 2 }, 
-	{ WM8904_ANALOGUE_LEFT_INPUT_0, WM8904_LIN_VOL(0x1C), 2 },
-	{ WM8904_ANALOGUE_RIGHT_INPUT_0, WM8904_RIN_VOL(0x1C), 2 },    
+	{ WM8904_ANALOGUE_LEFT_INPUT_0, WM8904_LINMUTE, 2 },     // mic will be unmuted and gain set by _micGainSet
+	{ WM8904_ANALOGUE_RIGHT_INPUT_0, WM8904_RINMUTE, 2 },    
     { WM8904_POWER_MANAGEMENT_0, WM8904_INL_ENA | WM8904_INR_ENA, 2 },
     { WM8904_AUDIO_INTERFACE_0, /*WM8904_LOOPBACK |*/ WM8904_AIFADCR_SRC | WM8904_AIFDACR_SRC, 100 },    
 };    
@@ -2283,6 +2493,7 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
                     {
                         add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands6[i], false);   // add commands to buffer
                     }
+                    _micGainSet(drvObj, drvObj->micGain, false);
                 }
 
                 if (drvObj->masterMode)

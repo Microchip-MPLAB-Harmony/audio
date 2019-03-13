@@ -71,9 +71,8 @@ extern "C" {
 // Section: System Configuration
 // *****************************************************************************
 // *****************************************************************************
-#define DCACHE_CLEAN_BY_ADDR(data, size)       SCB_CleanDCache_by_Addr((uint32_t *)data, size)
-#define DCACHE_INVALIDATE_BY_ADDR(data, size)  SCB_InvalidateDCache_by_Addr((uint32_t *)data, size)
-#define DATA_CACHE_ENABLED                     true
+
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -84,7 +83,7 @@ extern "C" {
 #define SYS_TIME_INDEX_0                     0
 #define SYS_TIME_MAX_TIMERS                  5
 #define SYS_TIME_HW_COUNTER_WIDTH            16
-#define SYS_TIME_HW_COUNTER_PERIOD           0xFFFF
+#define SYS_TIME_HW_COUNTER_PERIOD           65535U
 #define SYS_TIME_HW_COUNTER_HALF_PERIOD		 (SYS_TIME_HW_COUNTER_PERIOD>>1)
 #define SYS_TIME_CPU_CLOCK_FREQUENCY         300000000
 #define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
@@ -99,7 +98,6 @@ extern "C" {
 /* I2C Driver Instance 0 Configuration Options */
 #define DRV_I2C_INDEX_0                       0
 #define DRV_I2C_CLIENTS_NUMBER_IDX0           1
-#define DRV_I2C_INT_SRC_IDX0                  TWIHS0_IRQn
 #define DRV_I2C_QUEUE_SIZE_IDX0               2
 #define DRV_I2C_CLOCK_SPEED_IDX0              400000
 
@@ -129,6 +127,7 @@ extern "C" {
 #define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    DATA_16_BIT_I2S
 #define DRV_WM8904_ENABLE_MIC_INPUT                         false
 #define DRV_WM8904_ENABLE_MIC_BIAS                          false
+#define DRV_WM8904_MIC_GAIN	                      	        28
 
 #define DRV_WM8904_I2S_DRIVER_MODULE_INDEX_IDX0             DRV_I2S_INDEX_0
 #define DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0             DRV_I2C_INDEX_0
@@ -168,6 +167,10 @@ extern "C" {
 #define DRV_CODEC_VolumeGet                                 DRV_WM8904_VolumeGet
 #define DRV_CODEC_MuteOn                                    DRV_WM8904_MuteOn
 #define DRV_CODEC_MuteOff                                   DRV_WM8904_MuteOff
+#define DRV_CODEC_MicGainSet                                DRV_WM8904_MicGainSet
+#define DRV_CODEC_MicGainGet                                DRV_WM8904_MicGainGet
+#define DRV_CODEC_MicMuteOn                                 DRV_WM8904_MicMuteOn
+#define DRV_CODEC_MicMuteOff                                DRV_WM8904_MicMuteOff
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 
 

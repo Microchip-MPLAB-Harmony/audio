@@ -179,7 +179,6 @@ void InitLabels( void );      // routine in libaria_events.c called from app.c
 
 void KeyRepeatTask( void );   // routine in libaria_events.c called from app.c
 
-
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
 }
