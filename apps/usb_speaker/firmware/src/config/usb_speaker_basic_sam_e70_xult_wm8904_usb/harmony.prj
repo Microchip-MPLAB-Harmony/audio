@@ -99,8 +99,8 @@
           <Name dnOrder="1">initialization.c</Name>
           <LogicalPath dnOrder="2">config/usb_speaker_basic_sam_e70_xult_wm8904_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">0684399B095DF157D548E826A6BEDCCA</GeneratedChecksum>
-          <UserChecksum dnOrder="5">0684399B095DF157D548E826A6BEDCCA</UserChecksum>
+          <GeneratedChecksum dnOrder="4">6B7CFE3D07FE7857F91A10DCD28A5297</GeneratedChecksum>
+          <UserChecksum dnOrder="5">6B7CFE3D07FE7857F91A10DCD28A5297</UserChecksum>
         </File>
         <File dnOrder="12">
           <Type dnOrder="0">SOURCE</Type>
@@ -131,8 +131,8 @@
           <Name dnOrder="1">plib_clk.c</Name>
           <LogicalPath dnOrder="2">config/usb_speaker_basic_sam_e70_xult_wm8904_usb/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">8ABB399715C8C4F055478FF69DDBCEAA</GeneratedChecksum>
-          <UserChecksum dnOrder="5">8ABB399715C8C4F055478FF69DDBCEAA</UserChecksum>
+          <GeneratedChecksum dnOrder="4">8212322099321A9DABAF6B5EAF0F122A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">8212322099321A9DABAF6B5EAF0F122A</UserChecksum>
         </File>
         <File dnOrder="16">
           <Type dnOrder="0">SOURCE</Type>
@@ -379,7 +379,7 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/usb_speaker_basic_sam_e70_xult_wm8904_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">6C9EF21AE6E1B140E2FEB649706CA607</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">993F552D6372DC0091AA530E7FC788D9</GeneratedChecksum>
           <UserChecksum dnOrder="5">A990311C73B58BA98E47C6A20B11E87F</UserChecksum>
         </File>
         <File dnOrder="47">
@@ -427,8 +427,8 @@
           <Name dnOrder="1">drv_i2c.h</Name>
           <LogicalPath dnOrder="2">config/usb_speaker_basic_sam_e70_xult_wm8904_usb/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F44645515479E033B969EE5CE6C40E64</GeneratedChecksum>
-          <UserChecksum dnOrder="5">F44645515479E033B969EE5CE6C40E64</UserChecksum>
+          <GeneratedChecksum dnOrder="4">7DC093674665965E223A7AD52F7BAF83</GeneratedChecksum>
+          <UserChecksum dnOrder="5">7DC093674665965E223A7AD52F7BAF83</UserChecksum>
         </File>
         <File dnOrder="53">
           <Type dnOrder="0">HEADER</Type>
@@ -595,8 +595,8 @@
           <Name dnOrder="1">osal_definitions.h</Name>
           <LogicalPath dnOrder="2">/osal/</LogicalPath>
           <PhysicalPath dnOrder="3">/osal/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">0C6AF7550A40F9EDF5A15DB9444D7D8E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">0C6AF7550A40F9EDF5A15DB9444D7D8E</UserChecksum>
+          <GeneratedChecksum dnOrder="4">0AC88C49E4585B606FD5AC6804F0C340</GeneratedChecksum>
+          <UserChecksum dnOrder="5">0AC88C49E4585B606FD5AC6804F0C340</UserChecksum>
         </File>
         <File dnOrder="74">
           <Type dnOrder="0">HEADER</Type>
@@ -619,8 +619,8 @@
           <Name dnOrder="1">plib_clk.h</Name>
           <LogicalPath dnOrder="2">config/usb_speaker_basic_sam_e70_xult_wm8904_usb/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">3176DF5386ABD348A93A3A6169F52E8B</GeneratedChecksum>
-          <UserChecksum dnOrder="5">3176DF5386ABD348A93A3A6169F52E8B</UserChecksum>
+          <GeneratedChecksum dnOrder="4">115B0136EFE9ED871D67D3B10CBEBDC8</GeneratedChecksum>
+          <UserChecksum dnOrder="5">115B0136EFE9ED871D67D3B10CBEBDC8</UserChecksum>
         </File>
         <File dnOrder="77">
           <Type dnOrder="0">HEADER</Type>
@@ -883,8 +883,8 @@
           <Name dnOrder="1">toolchain_specifics.h</Name>
           <LogicalPath dnOrder="2">config/usb_speaker_basic_sam_e70_xult_wm8904_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">ECBE73246282EC07A1EC6DB84AE3A470</GeneratedChecksum>
-          <UserChecksum dnOrder="5">ECBE73246282EC07A1EC6DB84AE3A470</UserChecksum>
+          <GeneratedChecksum dnOrder="4">05E9A0D057500FDF32C8D711811FF003</GeneratedChecksum>
+          <UserChecksum dnOrder="5">05E9A0D057500FDF32C8D711811FF003</UserChecksum>
         </File>
         <File dnOrder="110">
           <Type dnOrder="0">HEADER</Type>
