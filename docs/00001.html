@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00018.html" target="topic">Audio Demonstrations</a> &gt; <a href="00016.html" target="topic">Demonstrations</a> &gt; <a href="00000.html" target="topic">microphone_loopback</a> &gt; <a href="00001.html" target="topic">Building the Application</a></div>
+<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00000.html" target="topic">audio_enc</a> &gt; <a href="00001.html" target="topic">Building the Application</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,13 +26,13 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00042.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
 <a href="00000.html" target="topic">Previous</a> | <a href="00000.html" target="topic">Up</a> | <a href="00002.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_enc_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
 Building the Application</div>
 </div>
@@ -49,34 +49,37 @@ Building the Application</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-The parent folder for these files is <span class="Element146">audio/apps/audio_microphone_loopback</span>. To build this project, you must open the audio/apps/audio/audio_microphone_loopback/firmware/*.X project file in MPLAB X IDE that corresponds to your hardware configuration.</p><div class="Element15">
-MPLAB X IDE Project Configurations</div>
+The parent folder for these files is <span class="Element146">audio/apps/audio_enc</span>. To build this project, you must open the <span class="Element146">audio/apps/audio_enc/firmware/*.X</span> project file in MPLAB X IDE that corresponds to your hardware configuration.&nbsp;</p>
 <p class="Element10">
-The following table lists and describes supported configurations. </p><div class="Element63">
+&nbsp;</p>
+<p class="Element10">
+<strong>MPLAB X IDE Project Configurations</strong>&nbsp;</p>
+<p class="Element10">
+The following table lists and describes supported project configurations. </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="11%">
+<td class="Element65" valign="top" width="5%">
 <div class="Element66">
-Project Name&nbsp;</div></td><td class="Element65" valign="top" width="5%">
+Project Name&nbsp;</div></td><td class="Element65" valign="top" width="3%">
 <div class="Element66">
-BSP Used&nbsp;</div></td><td class="Element65" valign="top" width="84%">
+BSP Used&nbsp;</div></td><td class="Element65" valign="top" width="92%">
 <div class="Element66">
 Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="11%">
+<td class="Element67" valign="top" width="5%">
 <div class="Element68">
-mic_loopback_sam_e70_xult_wm8904_i2sc&nbsp;</div></td><td class="Element67" valign="top" width="5%">
+audio_enc_i2sc&nbsp;</div></td><td class="Element67" valign="top" width="3%">
 <div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="84%">
+sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="92%">
 <div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board. The configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the I2SC PLIB.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="11%">
+This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board with the WM8904 Audio Codec Module attached. The project configuration is for encode/playback of an audio file to/from a USB Mass Storage Device. Data to be tx/rx to/from the Codec via I2S audio protocol using the I2SC PLIB. The WM8904 codec is configured as the slave, and the I2SC peripheral as the master.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="5%">
 <div class="Element68">
-mic_loopback_sam_v71_xult&nbsp;</div></td><td class="Element67" valign="top" width="5%">
+audio_enc_i2sc_freertos&nbsp;</div></td><td class="Element67" valign="top" width="3%">
 <div class="Element68">
-sam_v71_xult&nbsp;</div></td><td class="Element67" valign="top" width="84%">
+sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="92%">
 <div class="Element68">
-This demonstration runs on the ATSAMV71Q21B processor on the SAMV71 Xplained Ultra board along with the on-board WM8904 codec. The configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the SSC PLIB.&nbsp;</div></td></tr></table></div></div>
+This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board with the WM8904 Audio Codec Module attached. The project configuration is for encode/playback of an audio file to/from a USB Mass Storage Device. Data to be tx/rx to/from the Codec via I2S audio protocol using the I2SC PLIB. The WM8904 codec is configured as the slave, and the I2SC peripheral as the master. This demonstration also uses FreeRTOS.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -84,7 +87,7 @@ This demonstration runs on the ATSAMV71Q21B processor on the SAMV71 Xplained Ult
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00018.html" target="topic">Audio Demonstrations</a> &gt; <a href="00016.html" target="topic">Demonstrations</a> &gt; <a href="00000.html" target="topic">microphone_loopback</a> &gt; <a href="00001.html" target="topic">Building the Application</a></div>
+<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00000.html" target="topic">audio_enc</a> &gt; <a href="00001.html" target="topic">Building the Application</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -92,13 +95,13 @@ This demonstration runs on the ATSAMV71Q21B processor on the SAMV71 Xplained Ult
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00042.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
 <a href="00000.html" target="topic">Previous</a> | <a href="00000.html" target="topic">Up</a> | <a href="00002.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_enc_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

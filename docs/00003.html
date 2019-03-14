@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00018.html" target="topic">Audio Demonstrations</a> &gt; <a href="00016.html" target="topic">Demonstrations</a> &gt; <a href="00000.html" target="topic">microphone_loopback</a> &gt; <a href="00003.html" target="topic">Running the Demonstration</a></div>
+<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00000.html" target="topic">audio_enc</a> &gt; <a href="00003.html" target="topic">Running the Demonstration</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,13 +26,13 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00042.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00002.html" target="topic">Previous</a> | <a href="00000.html" target="topic">Up</a> | <a href="00040.html" target="topic">Next</a></div>
+<a href="00002.html" target="topic">Previous</a> | <a href="00000.html" target="topic">Up</a> | <a href="00008.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_enc_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
 Running the Demonstration</div>
 </div>
@@ -60,43 +60,112 @@ Running the Demonstration</div>
 <div class="Element68">
 Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-Four different delays can be generated. <strong>Table 1</strong> provides a summary of the button actions that can used to control the volume and delay amount.</p>
+Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project based. Refer to Building the Application for details.</p>
 <ol class="Element630">
-<li value="1" class="Element600">Connect headphones to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>), or the HEADPHONE jack of the SAM V71 Xplained Ultra board.</li>
-<li value="2" class="Element600">Connect a microphone to the MIC IN jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>), or the MICROPHONE jack of the SAM V71 Xplained Ultra board.</li>
-<li value="3" class="Element600">Initially the program will be in delay-setting mode (LED1 on) at a medium volume setting. Pressing SW1 with LED1 on will cycle through four delay settings.</li>
-<li value="4" class="Element600">Pressing SW1 longer than one second will change to volume-setting mode (LED1 off). Pressing SW1 with LED1 off will cycle through four volume settings (including mute).</li>
-<li value="5" class="Element600">Pressing SW1 longer than one second again will switch back to delay-setting mode again (LED1 on).</li>
-</ol><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO mic_loopback_e70_xult.png" border="0" alt="" title=""></p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table0">
-<tr>
-<td class="Element77" valign="top" width="100%" style="border:none;">
-<div class="Element78">
-<strong>Figure 1: WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board</strong>&nbsp;</div></td></tr></table></div></div>
+<li value="1" class="Element600">Connect headphones to the green HP OUT jack of the WM8904 Audio Codec Daughter Board, and a microphone to the pink MIC IN jack.</li>
+<li value="2" class="Element600">Connect power to the board. The system will be in a wait state for USB to be connected (amber LED1 blinking).</li>
+<li value="3" class="Element600">Connect a USB mass storage device (thumb drive) to the USB TARGET connector of the SAM E70 Xplained Ultra board. You will probably need a USB-A Female to Micro-B Male adapter cable to do so. The application currently can only record WAVE (.wav) format audio files.</li>
+</ol><p class="Element10">
+&nbsp;</p>
 <div class="Element15">
-Control Descriptions</div>
+Control Description</div>
 <p class="Element10">
-<strong>Table 1: Button Controls for SAM E70 Xplained Ultra board</strong> <strong>and</strong> <strong>SAM V71 Xplained Ultra board</strong> </p><div class="Element63">
+&nbsp;</p>
+
+<ol class="Element630">
+<li value="1" class="Element600">Long presses of the push button cause the app to attempt to playback the last encoded file that is saved on the MSD. The two LEDs flash if there is no file that has been encoded.</li>
+<li value="2" class="Element600">Short presses of the push button cause the app to start or stop encoding.</li>
+</ol><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+Button control is shown in the table below. </p><p class="Element10" style="text-align: center;">
+<strong>Button Operations</strong></p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="20%">
+<td class="Element65" valign="top" width="52%">
 <div class="Element66">
-Control&nbsp;</div></td><td class="Element65" valign="top" width="80%">
+Operation&nbsp;</div></td><td class="Element65" valign="top" width="48%">
 <div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
+Function&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="52%">
 <div class="Element68">
-SW1 short press&nbsp;</div></td><td class="Element67" valign="top" width="80%">
+Long Press (&gt; 1 sec)&nbsp;</div></td><td class="Element67" valign="top" width="48%">
 <div class="Element68">
-If LED1 if off, SW1 cycles through four volume levels (one muted). If LED1 is on, SW1 cycles through four delays: ¼ second, ½ second, 1 second and 1½ seconds.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
+Playback last encoded&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="52%">
 <div class="Element68">
-SW1 long press<br>(&gt; 1 second)&nbsp;</div></td><td class="Element67" valign="top" width="80%">
+Short Press (&lt; 1 sec)&nbsp;</div></td><td class="Element67" valign="top" width="48%">
 <div class="Element68">
-Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></div>
+Start/Stop Encoding&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<div class="Element15">
+Status Indicator Description</div>
+<p class="Element10">
+&nbsp;</p>
+
+<ol class="Element630">
+<li value="1" class="Element600">When the application first starts running, it looks to find an attached storage device. If one is not found, LED1 will toggle on and off about every 100 ms indicating that a storage device is not attached.</li>
+<li value="2" class="Element600">If/When a storage device is attached, LED1 will turn off.</li>
+<li value="3" class="Element600">LED2 will turn on when the application is ready to start encoding or playback the last encoded file. If playback is chosen without first creating an encoded file, LED1 and LED2 will toggle briefly then the app will wait for encoding to start.</li>
+</ol><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+LED status indication is shown in the table below. </p><p class="Element10" style="text-align: center;">
+<strong>LED Status</strong></p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="61%">
+<div class="Element66">
+Operation&nbsp;</div></td><td class="Element65" valign="top" width="16%">
+<div class="Element66">
+LED 1 Status&nbsp;</div></td><td class="Element65" valign="top" width="23%">
+<div class="Element66">
+LED 2 Status&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+No Storage Device Connected&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Toggling&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Off&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Storage Device Connected&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Don’t Care&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Ready to Encode/Playback&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Don’t Care&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Not Ready to Encode/Playback&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Off&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Encoding&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Toggling&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Playback before Encoded File Created&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Toggling&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Toggling&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -104,7 +173,7 @@ Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00018.html" target="topic">Audio Demonstrations</a> &gt; <a href="00016.html" target="topic">Demonstrations</a> &gt; <a href="00000.html" target="topic">microphone_loopback</a> &gt; <a href="00003.html" target="topic">Running the Demonstration</a></div>
+<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00000.html" target="topic">audio_enc</a> &gt; <a href="00003.html" target="topic">Running the Demonstration</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -112,13 +181,13 @@ Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00042.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00002.html" target="topic">Previous</a> | <a href="00000.html" target="topic">Up</a> | <a href="00040.html" target="topic">Next</a></div>
+<a href="00002.html" target="topic">Previous</a> | <a href="00000.html" target="topic">Up</a> | <a href="00008.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_enc_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

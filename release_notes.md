@@ -26,7 +26,7 @@ The following table provides the list of updated applications for the SAM E70:
 
 | Application | Description |
 | --- | --- |
-| audio_player_basic | added FreeRTOS project |
+| audio_player_basic | added FreeRTOS project, and fixed a bug that caused slow playback of 96K sample rate WAVE files |
 | microphone_loopback | added graphics and FreeRTOS projects |
 
 ### TESTED WITH:
@@ -64,6 +64,7 @@ This release supports applications for the following development kits
 
 The current known issues are as follows:
 
+* Applications are compliant to MISRA C 2012 Mandatory guidelines, except for Rules R.9.1 and R.17.3
 * The ICD4 loads the reset line of the SAM V71 Xplained Ultra board. When running demo projects using the V71, the ICD4 flex cable should be removed after programming to run the application.
 * Interactive help using the Show User Manual Entry in the Right-click menu for configuration options provided by this module is not yet available from within the MPLAB Harmony Configurator (MHC).  Please see the *Configuring the Library* section in the help documentation in the doc folder for this Harmony 3 module instead.  Help is available in both CHM and PDF formats.
 * audio_enc demonstration:
@@ -83,7 +84,7 @@ playback times.
 * audio_signal_generator demonstration:
     - Not all frequencies selected can be output.  The nearest possible frequency to the one chosen will be used. 
 * audio_tone_linkeddma demonstration:
-    - When changing the frequency the first time, SW1
+    - When changing the frequency the first time, the pushbutton
 must be pressed twice.
 
 ### RELEASE CONTENTS

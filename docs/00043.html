@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Creating an Audio Project from Scratch</title>
+<title>How the Library Works</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00042.html" target="topic">Audio Overview</a> &gt; <a href="00043.html" target="topic">Creating an Audio Project from Scratch</a></div>
+<a href="00052.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00045.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00051.html" target="topic">Using the Library</a> &gt; <a href="00043.html" target="topic">How the Library Works</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00042.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00045.html" target="topic">Previous</a> | <a href="00042.html" target="topic">Up</a> | <a href="00018.html" target="topic">Next</a></div>
+<a href="00047.html" target="topic">Previous</a> | <a href="00051.html" target="topic">Up</a> | <a href="00039.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Creating an Audio Porject from Scratch Topic Title: Creating an Audio Project from Scratch)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO DRIVER CODEC How the Library Works (Drivers) Topic Title: How the Library Works)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Creating an Audio Project from Scratch</div>
+How the Library Works</div>
 </div>
 </div>
 
@@ -46,253 +46,42 @@ Creating an Audio Project from Scratch</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="546F70696373"></a><div class="Element14">
+Topics</div>
+<div class="Element11">
 <div class="Element10">
-<p class="Element10">
-<u>For projects using the SSC interface and a codec as a Master (the codec generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
-<p class="Element10">
-Start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the same based on the BSP used. Select an appropriate processor (e.g. ATSAME70Q21B or ATSAMV71Q21B) depending on the board used. Click Finish.&nbsp;</p>
-<p class="Element10">
-In the MHC, under Available Components select an appropriate BSP (e.g. SAM E70 Xplained Ultra or SAM V71 Xplained Ultra). Under <i>Audio&gt;Templates</i>, double-click on the desired codec, e.g. WM8904. Answer Yes to all questions except for the one regarding FreeRTOS; answer Yes or No to that one depending on whether you will be using FreeRTOS or not.&nbsp;</p>
-<p class="Element10">
-Besides instantiating all the necessary components (drivers and PLIBs), picking a base BSP plus an audio template also configures all of the pins for that board needed by the application.&nbsp;</p>
-<p class="Element10">
-The result will be a project graph that looks like this, after rearranging the boxes, assuming a non-FreeRTOS project: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone_E70_ssc_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
-In the Project Graph, click on TC0. In Configuration Options, Expand <i>Channel 0&gt; Enable&gt;Operating Mode&gt;Timer</i>. Uncheck Enable Compare Interrupt, and check Enable Periodic Interrupt.&nbsp;</p>
-<p class="Element10">
-Click on the Codec Driver. In the Configurations Options, set the desired Sample Rate if different from the default (48,000) under Sampling Rate.&nbsp;</p>
-<p class="Element10">
-If using the SAM E70 Xplained Ultra board, in the Clock Diagram, set MOSCEL to Main Crystal, check the Bypass checkbox, and uncheck the RC Crystal Oscillator and Main Crystal Oscillator boxes, to make use the 12 MHz resonator on the board: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E70 clock diagram main bypass.png" border="0" alt="" title=""></p><p class="Element10">
-If using the ATSAMV71Q21B, in the Clock Diagram set MOSCEL to Main Crystal, uncheck the Bypass checkbox and RC Crystal Oscillator checkbox, and check the Main Crystal Oscillator box.&nbsp;</p>
-<p class="Element10">
-Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Controller </strong>section, check the On checkbox, and set CSS to MAINCLK (12 MHz). Then check the SSC checkbox in the <strong>Peripheral Clock Controller</strong> section.&nbsp;</p>
-<p class="Element10">
-It is also possible to change the audio format from 16 to 32-bits, and from I2S to Left Justified (SSC only). These changes need to be done in the MHC in both the Codec Driver and SSC/I2SC Peripherals.&nbsp;</p>
-<p class="Element10">
-If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00099.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<u>For projects using the I2SC interface and the codec as a Slave (the MCU generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
-<p class="Element10">
-Start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the based on the BSP. Select the appropriate processor (e.g. ATSAME70Q21B).&nbsp;</p>
-<p class="Element10">
-In the MHC, under Available Components select an appropriate BSP (e.g. SAM E70 Xplained Ultra). Under <i>Audio&gt;Templates</i>, double-click on the desired codec, e.g. WM8904. Answer Yes to all the questions. Click on the Codec component (<i>not</i> the Codec Driver). In the Configuration Options, select I2SC instead of SSC. Answer Yes to all of the questions.&nbsp;</p>
-<p class="Element10">
-The result will be a project graph that looks like this, after rearranging the boxes, assuming a non-FreeRTOS project: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone_E70_i2sc_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
-In the Project Graph, click on TC0. In Configuration Options, Expand <i>Channel 0&gt; Enable&gt;Operating Mode&gt;Timer</i>. Uncheck Enable Compare Interrupt, and check Enable Periodic Interrupt.&nbsp;</p>
-<p class="Element10">
-Click on the Codec Driver. In the Configurations Options, under Usage Mode, change Master to Slave. Set the desired Sample Rate if different from the default (48,000) under Sampling Rate.&nbsp;</p>
-<p class="Element10">
-If using the SAM E70 Xplained Ultra board, in the Clock Diagram, set MOSCEL to Main Crystal, check the Bypass checkbox, and uncheck the RC Crystal Oscillator and Main Crystal Oscillator boxes, to make use the 12 MHz resonator on the board: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E70 clock diagram main bypass.png" border="0" alt="" title=""></p><p class="Element10">
-In the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Controller </strong>section, check the On checkbox, and set CSS to MAINCLK (12 MHz).&nbsp;</p>
-<p class="Element10">
-The following tables show suggested settings for various sample rates in the Clock Diagram when using the I2SC Peripheral in Master mode. Make sure <strong>PLLA Clock</strong> checkbox is checked, and fill in the values for the PLLA Multiplier and Divider boxes. Select the I2S1 tab under <strong>Generic Clock Controller</strong>, set GCLKCSS to PLLACK, fill in the Divider value as shown, and check the checkbox next to it. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E70 clock diagram I2SC clocks.png" border="0" alt="" title=""></p><p class="Element10">
-The values in the first table give the lowest error rate, but have varying PLLACK values so it is best to use the UPPCLKDIV selection for CSS under <strong>Master Clock Controller</strong>, for a Processor Clock of 240 MHz. </p><div class="Element63">
+<div class="Element212">
 <div class="TableDiv">
-<table cellspacing="0" class="Table2">
+<table cellspacing="0" class="Table1">
 <tr>
-<td class="Element65" valign="top" width="17%">
-<div class="Element66">
-Desired Sample Rate&nbsp;</div></td><td class="Element65" valign="top" width="8%">
-<div class="Element66">
-PLLA Multipler&nbsp;</div></td><td class="Element65" valign="top" width="9%">
-<div class="Element66">
-PLLA Divider&nbsp;</div></td><td class="Element65" valign="top" width="16%">
-<div class="Element66">
-PLLACK&nbsp;</div></td><td class="Element65" valign="top" width="15%">
-<div class="Element66">
-I2SC Generic Clock Divider&nbsp;</div></td><td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Calculated Sample Rate&nbsp;</div></td><td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Error&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-8000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-43&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-258 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-126&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-7998&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.025%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-16000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-43&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-258 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-63&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-15997&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.0187%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-44100&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-1&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-16&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-192 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-17&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-41117&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-0.0385%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-48000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-43&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-258 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-21&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-47991&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.0187%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-96000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-3&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-43&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-172 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-7&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-95982&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.0187%&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-The values in the second table have somewhat higher error rates, but use a PLLACK value of 294 MHz which is suitable to be used as a Processor Clock (using the PLLACK selection for CSS) which is closer to the maximum of 300 MHz. </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="17%">
-<div class="Element66">
-Desired Sample Rate&nbsp;</div></td><td class="Element65" valign="top" width="8%">
-<div class="Element66">
-PLLA Multipler&nbsp;</div></td><td class="Element65" valign="top" width="9%">
-<div class="Element66">
-PLLA Divider&nbsp;</div></td><td class="Element65" valign="top" width="16%">
-<div class="Element66">
-PLLACK&nbsp;</div></td><td class="Element65" valign="top" width="15%">
-<div class="Element66">
-I2SC Generic Clock Divider&nbsp;</div></td><td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Calculated Sample Rate&nbsp;</div></td><td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Error&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-8000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-144&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-7975&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.3125%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-16000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-72&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-15950&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.3125%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-44100&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-26&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-41170&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-0.1587%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-48000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-24&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-47851&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.3104%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-96000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-3&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-12&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-95703&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.3094%&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-It is also possible to change the audio format from 16 to 32-bits. This changes need to be done in the MHC in both the Codec Driver and I2SC Peripheral.&nbsp;</p>
-<p class="Element10">
-If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00099.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).</p></div>
+<td class="Element200" valign="top" width="35%">
+<div class="Element201">
+Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
+<div class="Element205">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00039.html" target="topic">Setup (Initialization)</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This topic describes system initialization, implementations, and includes a system access code example.&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00038.html" target="topic">Client Access</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This topic describes driver initialization and provides a code example.&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00040.html" target="topic">Client Operations</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This topic provides information on client operations.&nbsp;</div></td></tr></table></div></div>
+</div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00042.html" target="topic">Audio Overview</a> &gt; <a href="00043.html" target="topic">Creating an Audio Project from Scratch</a></div>
+<a href="00052.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00045.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00051.html" target="topic">Using the Library</a> &gt; <a href="00043.html" target="topic">How the Library Works</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -300,13 +89,13 @@ If using FreeRTOS, in the code you will need to move the call to <span class="El
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00042.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00045.html" target="topic">Previous</a> | <a href="00042.html" target="topic">Up</a> | <a href="00018.html" target="topic">Next</a></div>
+<a href="00047.html" target="topic">Previous</a> | <a href="00051.html" target="topic">Up</a> | <a href="00039.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Creating an Audio Porject from Scratch Topic Title: Creating an Audio Project from Scratch)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO DRIVER CODEC How the Library Works (Drivers) Topic Title: How the Library Works)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->
