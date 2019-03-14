@@ -25,8 +25,6 @@
               <itemPath>../src/config/sam_v71_xult/driver/i2s/drv_i2s.h</itemPath>
               <itemPath>../src/config/sam_v71_xult/driver/i2s/drv_i2s_definitions.h</itemPath>
             </logicalFolder>
-            <itemPath>../src/config/sam_v71_xult/driver/driver.h</itemPath>
-            <itemPath>../src/config/sam_v71_xult/driver/driver_common.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
@@ -55,20 +53,12 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f4" displayName="system" projectFiles="true">
-            <logicalFolder name="f4" displayName="cache" projectFiles="true">
+            <logicalFolder name="f3" displayName="cache" projectFiles="true">
               <itemPath>../src/config/sam_v71_xult/system/cache/sys_cache.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f5" displayName="dma" projectFiles="true">
-              <itemPath>../src/config/sam_v71_xult/system/dma/sys_dma.h</itemPath>
-              <itemPath>../src/config/sam_v71_xult/system/dma/sys_dma_mapping.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/sam_v71_xult/system/int/sys_int.h</itemPath>
               <itemPath>../src/config/sam_v71_xult/system/int/sys_int_mapping.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="ports" projectFiles="true">
-              <itemPath>../src/config/sam_v71_xult/system/ports/sys_ports.h</itemPath>
-              <itemPath>../src/config/sam_v71_xult/system/ports/sys_ports_mapping.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="time" projectFiles="true">
               <itemPath>../src/config/sam_v71_xult/system/time/sys_time.h</itemPath>
@@ -223,9 +213,6 @@
           <logicalFolder name="f5" displayName="system" projectFiles="true">
             <logicalFolder name="f3" displayName="cache" projectFiles="true">
               <itemPath>../src/config/sam_v71_xult/system/cache/sys_cache.c</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f4" displayName="dma" projectFiles="true">
-              <itemPath>../src/config/sam_v71_xult/system/dma/sys_dma.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/sam_v71_xult/system/int/src/sys_int.c</itemPath>

@@ -163,7 +163,7 @@
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/app_tone_lookup_table.h</itemPath>
-      <itemPath>../../../../../bt/apps/data/bm64_ble_comm/firmware/src/app.h</itemPath>
+      <itemPath>../src/app.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -246,8 +246,8 @@
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/app_tone_lookup_table.c</itemPath>
-      <itemPath>../src/app.c</itemPath>
       <itemPath>../src/main.c</itemPath>
+      <itemPath>../src/app.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
