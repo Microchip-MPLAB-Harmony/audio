@@ -26,7 +26,7 @@ The following table provides the list of updated applications for the SAM E70:
 
 | Application | Description |
 | --- | --- |
-| audio_player_basic | added FreeRTOS project, and fixed a bug that caused slow playback of 96K sample rate WAVE files |
+| audio_player_basic | fixed a bug that caused slow playback of 96K sample rate WAVE files |
 | microphone_loopback | added graphics and FreeRTOS projects |
 
 ### TESTED WITH:
