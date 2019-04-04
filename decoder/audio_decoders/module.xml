@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Module name="audio_decoders" id="44e1201d-5f6a-4f07-a71f-ceed2bfccf22" version="1.0.0">			       
+    <ConfigRoot path="config/module.py"/>
+</Module>
