@@ -9,13 +9,6 @@
                        displayName="apb_sam_e70_xult_wm8904_ssc_freertos"
                        projectFiles="true">
           <logicalFolder name="f1" displayName="audio" projectFiles="true">
-            <logicalFolder name="f1" displayName="decoder" projectFiles="true">
-              <logicalFolder name="f1" displayName="audio_decoders" projectFiles="true">
-                <logicalFolder name="f2" displayName="wav" projectFiles="true">
-                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder/audio_decoders/wav/wav_dec.h</itemPath>
-                </logicalFolder>
-              </logicalFolder>
-            </logicalFolder>
             <logicalFolder name="f2" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
                 <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904.h</itemPath>
@@ -75,8 +68,12 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f5" displayName="system" projectFiles="true">
-            <logicalFolder name="f4" displayName="cache" projectFiles="true">
+            <logicalFolder name="f5" displayName="cache" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/cache/sys_cache.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f6" displayName="dma" projectFiles="true">
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/dma/sys_dma.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/dma/sys_dma_mapping.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="fs" projectFiles="true">
               <logicalFolder name="f1" displayName="fat_fs" projectFiles="true">
@@ -101,6 +98,10 @@
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/int/sys_int.h</itemPath>
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/int/sys_int_mapping.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f4" displayName="ports" projectFiles="true">
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/ports/sys_ports.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/ports/sys_ports_mapping.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f1" displayName="time" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/time/sys_time.h</itemPath>
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/time/sys_time_definitions.h</itemPath>
@@ -109,7 +110,6 @@
             <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system.h</itemPath>
             <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system_common.h</itemPath>
             <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system_module.h</itemPath>
-            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system_media.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="usb" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
@@ -245,7 +245,7 @@
       </logicalFolder>
       <itemPath>../src/data_structures.h</itemPath>
       <itemPath>../src/disk.h</itemPath>
-      <itemPath>../src/app.h</itemPath>
+      <itemPath>../../../../../../H3_Apr01/audio/apps/audio_player_basic/firmware/src/app.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -259,13 +259,6 @@
                        displayName="apb_sam_e70_xult_wm8904_ssc_freertos"
                        projectFiles="true">
           <logicalFolder name="f1" displayName="audio" projectFiles="true">
-            <logicalFolder name="f1" displayName="decoder" projectFiles="true">
-              <logicalFolder name="f1" displayName="audio_decoders" projectFiles="true">
-                <logicalFolder name="f1" displayName="wav" projectFiles="true">
-                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder/audio_decoders/wav/wav_dec.c</itemPath>
-                </logicalFolder>
-              </logicalFolder>
-            </logicalFolder>
             <logicalFolder name="f2" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
                 <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904.c</itemPath>
@@ -323,6 +316,9 @@
           <logicalFolder name="f6" displayName="system" projectFiles="true">
             <logicalFolder name="f4" displayName="cache" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/cache/sys_cache.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f5" displayName="dma" projectFiles="true">
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/dma/sys_dma.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="fs" projectFiles="true">
               <logicalFolder name="f1" displayName="fat_fs" projectFiles="true">
@@ -387,7 +383,7 @@
       </logicalFolder>
       <itemPath>../src/disk.c</itemPath>
       <itemPath>../src/main.c</itemPath>
-      <itemPath>../src/app.c</itemPath>
+      <itemPath>../../../../../../H3_Apr01/audio/apps/audio_player_basic/firmware/src/app.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -398,6 +394,7 @@
   <sourceRootList>
     <Elem>../src</Elem>
     <Elem>../../../audio_player_simple/audio_player_basic/firmware/src/config/apb_sam_e70_xult_wm8904_ssc/audio/decoder/audio_decoders/wav</Elem>
+    <Elem>../../../../../../H3_Apr01/audio/apps/audio_player_basic/firmware/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -413,8 +410,8 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="SAME70_DFP" vendor="Microchip" version="3.0.10"/>
         <pack name="CMSIS" vendor="ARM" version="5.0.1"/>
+        <pack name="SAME70_DFP" vendor="Microchip" version="3.0.10"/>
       </packs>
       <compileType>
         <linkerTool>
