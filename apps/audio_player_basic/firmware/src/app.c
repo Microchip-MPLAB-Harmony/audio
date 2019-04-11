@@ -29,11 +29,16 @@
 
 #include "app.h"
 #include "disk.h"
-// *****************************************************************************
+#ifdef GFX_ENABLED
+#include "gfx/libaria/libaria_init.h"
+#include "gfx/libaria/inc/libaria_widget_circular_slider.h"
+#endif
 // *****************************************************************************
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
+DRV_HANDLE tmrHandle;
+WAV_FILE_HEADER wavHeader;
 
 uint16_t volumeLevels[VOL_LVLS_MAX] =
 {
@@ -49,6 +54,19 @@ DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPL
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Single_Chnl_Buffer[NUM_SAMPLES/2];
 
+#ifdef GFX_ENABLED
+extern laCircularSliderWidget * VolumeWidget;
+extern laProgressBarWidget * ProgressBarWidget;
+extern laLabelWidget * lblSampleRate;
+extern laLabelWidget * lblChannels;
+extern laLabelWidget * lblBitDepth;
+extern laLabelWidget * lblTrackTitle;
+extern laLabelWidget * lblVolumePercent;
+extern laLabelWidget * lblCurrPosition;
+extern laLabelWidget * lblEndPosition;
+
+laString laTmpStr;
+#endif
 // *****************************************************************************
 /* Application Data
 
@@ -101,10 +119,6 @@ const uint8_t writeData[12]  __attribute__((aligned(16))) = "Hello World ";
 */
 static void App_TimerCallback( uintptr_t context)
 {
-    if (appData.buttonDelay)
-    {      
-        appData.buttonDelay--;
-    }
     if (appData.led1Delay)
     {
         appData.led1Delay--;
@@ -117,6 +131,16 @@ static void App_TimerCallback( uintptr_t context)
     {
         appData.playbackDelay--;
     }
+    if (appData.buttonDelay)
+    {      
+        appData.buttonDelay--;
+    }
+#ifdef GFX_ENABLED
+    if (appData.guiUpdate)
+    {
+        appData.guiUpdate--;
+    }
+#endif
 }
 
 // *****************************************************************************
@@ -170,6 +194,151 @@ void APP_PlayerInitialize ( void )
 /* TODO:  Add any necessary local functions.
 */
 
+#ifdef GFX_ENABLED
+void APP_Set_GUI_BitDepthStr( void )
+{
+    static char bdStr[5];
+    if( wavHeader.bitsPerSample )
+    {
+        switch( wavHeader.bitsPerSample )
+        {
+            case 8:
+                strcpy( bdStr, "8b");
+                break;
+            case 16:
+                strcpy( bdStr, "16b");
+                break;
+            default:
+                strcpy( bdStr, "NA");
+                break;
+        }
+        laTmpStr = laString_CreateFromCharBuffer( bdStr, 
+                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
+        laLabelWidget_SetText( lblBitDepth, laTmpStr );
+        laString_Destroy( &laTmpStr );
+    }
+}
+
+void APP_Set_GUI_SampleRateStr( void )
+{
+    static char srStr[10];
+    
+    if( wavHeader.sampleRate )
+    {
+        sprintf( srStr, "%d", (int)wavHeader.sampleRate );
+        laTmpStr = laString_CreateFromCharBuffer( srStr, 
+                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
+        laLabelWidget_SetText( lblSampleRate, laTmpStr );
+        laString_Destroy( &laTmpStr );
+    }
+}
+void APP_Get_GUI_Volume( void )
+{
+    static char volPctStr[5];
+    static uint16_t oldVolPercent;
+    uint16_t volPercent;
+    
+    if( (appData.state != APP_STATE_IDLE) && (appData.state != APP_STATE_INIT) && (appData.state != APP_STATE_CODEC_OPEN) )
+    {
+        // Returns 32 bit value
+        volPercent = laCircularSliderWidget_GetValue( VolumeWidget );
+        if( oldVolPercent != volPercent )
+        {
+            appData.volume = (volPercent * 255) / 100;
+            DRV_CODEC_VolumeSet( appData.codecData.handle, DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume );
+            snprintf( volPctStr, sizeof(volPctStr)-1, "%d%s", (uint8_t)volPercent, "%");
+            laTmpStr = laString_CreateFromCharBuffer( volPctStr, 
+                                    GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
+            laLabelWidget_SetText( lblVolumePercent, laTmpStr );
+            laString_Destroy( &laTmpStr );
+            oldVolPercent = volPercent;
+        }
+    }
+}
+void APP_Set_GUI_ChnlStr( void )
+{
+    static char chnlStr[10];
+    
+    if( wavHeader.numChannels )
+    {
+        switch( wavHeader.numChannels )
+        {
+            case 1:
+                strcpy( chnlStr, "Mono");
+                break;
+            case 2:
+                strcpy( chnlStr, "Stereo");
+                break;
+            case 3:
+                strcpy( chnlStr, "2.1");
+                break;
+            case 6:
+                strcpy( chnlStr, "5.1");
+                break;
+            case 8:
+                strcpy( chnlStr, "7.1");
+                break;
+            default:
+                strcpy( chnlStr, "NA");
+        }
+        laTmpStr = laString_CreateFromCharBuffer( chnlStr, 
+                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
+        laLabelWidget_SetText( lblChannels, laTmpStr );
+        laString_Destroy( &laTmpStr );
+    }
+}
+
+void APP_Set_GUI_TrackPositionStr( void )
+{
+    uint32_t time, mins, secs;
+    static char totalTimeStr[10];
+    static char currTimeStr[10];
+    if( wavHeader.sampleRate && wavHeader.numChannels )
+    {
+        time = (appData.fileSize - sizeof( WAV_FILE_HEADER))/(wavHeader.sampleRate*2*wavHeader.numChannels);
+
+        mins = time / 60;
+        secs = time % 60;
+        sprintf( totalTimeStr, "%02d:%02d", (int)mins, (int)secs);
+        laTmpStr = laString_CreateFromCharBuffer( totalTimeStr, 
+                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
+        laLabelWidget_SetText( lblEndPosition, laTmpStr );
+        laString_Destroy( &laTmpStr );
+
+        time = (appData.currPos - sizeof( WAV_FILE_HEADER))/(wavHeader.sampleRate*2*wavHeader.numChannels);
+        mins = time / 60;
+        secs = time % 60;
+        sprintf( currTimeStr, "%02d:%02d", (int)mins, (int)secs);
+        laTmpStr = laString_CreateFromCharBuffer( currTimeStr, 
+                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
+        laLabelWidget_SetText( lblCurrentPosition, laTmpStr );
+        laString_Destroy( &laTmpStr );
+        
+        laProgressBarWidget_SetValue( ProgressBarWidget, (appData.currPos - sizeof( WAV_FILE_HEADER))*100/(appData.fileSize- sizeof( WAV_FILE_HEADER)) );
+    }
+}
+
+void APP_Set_GUI_FileNameStr( void )
+{
+    static char fileNameStr[40];
+    
+    if( strlen(appData.fileName) > strlen("/mnt/myDrive1/") )
+    {
+        int i = strlen(appData.fileName);
+        while(i--)
+        {
+            if( appData.fileName[i] == '/' )
+                break;
+        }
+        sprintf( fileNameStr, "%s", &appData.fileName[i+1]);
+        laTmpStr = laString_CreateFromCharBuffer( fileNameStr, 
+                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
+        laLabelWidget_SetText( lblTrackTitle, laTmpStr );
+        laString_Destroy( &laTmpStr );
+    }
+}
+#endif
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -208,10 +377,17 @@ void APP_Initialize ( void )
     appData.volLevel = VOL_LVL_LOW;
    
     appData.buttonDelay = 0;
-    appData.buttonMode = false;    
+    appData.pause = false;    
     appData.led1Delay = 0;
     appData.led2Delay = 0;
     appData.playbackDelay = 2000;
+    appData.headphone_out = true;
+    wavHeader.numChannels = 0;
+    wavHeader.sampleRate = 0;
+    wavHeader.bitsPerSample = 0;
+#ifdef GFX_ENABLED
+    appData.guiUpdate = _20ms;
+#endif
 
     _audioCodecInitialize (&appData.codecData);
     
@@ -289,13 +465,15 @@ bool APP_IsSupportedAudioFile(char *name)
   Remarks:
     See prototype in app.h.
  */
-DRV_HANDLE tmrHandle;
-WAV_FILE_HEADER wavHeader;
 
 void APP_Tasks ( void )
 {
     int retval;
     
+#ifdef GFX_ENABLED
+    APP_Update_GUI_Tasks();
+#else
+#endif
    	APP_Button_Tasks();
     DISK_Tasks();
     APP_LED_Tasks();
@@ -404,6 +582,7 @@ void APP_Tasks ( void )
                 appData.state = APP_STATE_READ_FILE;
                 // Read the header data
                 retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) &wavHeader, sizeof(wavHeader));
+                appData.fileSize = SYS_FS_FileSize( appData.fileHandle );
             }
             break;
 
@@ -503,8 +682,9 @@ void APP_Tasks ( void )
                 appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
                 break;
             }
-            if (appData.buttonMode || (appData.volLevel == VOL_LVL_MUTE))
+            if (appData.pause || (appData.volLevel == VOL_LVL_MUTE))
             {
+                __NOP();
                 break;      // paused
             }
             
@@ -686,7 +866,10 @@ void APP_Tasks ( void )
                 {
                     appData.state = APP_STATE_SCANNING;
                 }
-            }                       
+            }
+#ifdef GFX_ENABLED
+            appData.currPos = SYS_FS_FileTell( appData.fileHandle );
+#endif
             break;
 
         // audio data Transmission under process
@@ -700,6 +883,43 @@ void APP_Tasks ( void )
     }
 }
  
+#ifdef GFX_ENABLED
+
+void APP_Update_GUI_Tasks( void )
+{
+    if( !appData.guiUpdate )
+    {
+        switch( appData.guiState )
+        {
+            case GUI_STATE_VOLUME:
+                APP_Get_GUI_Volume();
+                break;
+            case GUI_STATE_BIT_DEPTH:
+                APP_Set_GUI_BitDepthStr();
+                break;
+            case GUI_STATE_TRACK_POSITION:
+                APP_Set_GUI_TrackPositionStr();
+                break;
+            case GUI_STATE_FILENAME:
+                APP_Set_GUI_FileNameStr();
+                break;
+            case GUI_STATE_CHANNELS:
+                APP_Set_GUI_ChnlStr();
+                break;
+            case GUI_STATE_SAMPLE_RATE:
+                APP_Set_GUI_SampleRateStr();
+            default:
+                break;
+        }
+        appData.guiState++;
+        appData.guiState %= GUI_STATE_MAX;
+        appData.guiUpdate = _20ms;
+    }
+}
+
+
+#endif
+
 
 void APP_LED_Tasks( void )
 {
@@ -750,7 +970,7 @@ void APP_LED_Tasks( void )
         {
             LED2_Off();
         }
-        appData.led2Delay = 500;
+        appData.led2Delay = _500ms;
     }
 }
 
@@ -802,9 +1022,11 @@ void APP_Button_Tasks()
                             case VOL_LVL_MED:
                             case VOL_LVL_HIGH:
                             case VOL_LVL_MUTE:
+#ifndef GFX_ENABLED
                                 appData.volume = volumeLevels[appData.volLevel];
                                 DRV_CODEC_VolumeSet(appData.codecData.handle,
-                                    DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);                                      
+                                    DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);
+#endif
                             default:
                                 break;
                         }

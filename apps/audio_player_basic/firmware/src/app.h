@@ -34,20 +34,6 @@
 #include <string.h>
 #include "configuration.h"
 #include "definitions.h"
-#include "peripheral/clk/plib_clk.h"
-#include "peripheral/nvic/plib_nvic.h"
-#include "peripheral/pio/plib_pio.h"
-#include "bsp/bsp.h"
-#include "system/int/sys_int.h"
-#include "system/ports/sys_ports.h"
-#include "osal/osal.h"
-#include "driver/i2s/drv_i2s.h"
-#include "driver/i2c/drv_i2c.h"
-#include "peripheral/twihs/plib_twihs0.h"
-#include "system/time/sys_time.h"
-
-#include "audio/driver/wm8904/drv_wm8904_local.h"
-#include "audio/driver/wm8904/drv_wm8904.h"
 
 #include "disk.h"
 
@@ -63,6 +49,17 @@ extern "C" {
     
 #define NUM_SAMPLES             256*4
 #define BUFFER_SIZE             4*NUM_SAMPLES  
+
+#define _10ms       10
+#define _20ms       2*_10ms
+#define _50ms       5*_10ms
+#define _100ms      2*_50ms
+#define _200ms      2*_100ms
+#define _500ms      5*_100ms
+#define _1sec       2*_500ms
+
+#define LED_PRD_MIN _50ms
+#define LED_PRD_MAX _1sec
 
 
        
@@ -141,6 +138,19 @@ typedef enum
     BUTTON_STATE_BUTTON0_PRESSED,                   
     BUTTON_STATE_WAIT_FOR_RELEASE    
 } BUTTON_STATES;
+
+#ifdef GFX_ENABLED
+typedef enum
+{
+    GUI_STATE_VOLUME,
+    GUI_STATE_BIT_DEPTH,
+    GUI_STATE_TRACK_POSITION,
+    GUI_STATE_FILENAME,
+    GUI_STATE_CHANNELS,
+    GUI_STATE_SAMPLE_RATE,
+    GUI_STATE_MAX
+} GUI_STATES;
+#endif
 
 // *****************************************************************************
 // CODEC Data
@@ -341,7 +351,7 @@ typedef struct {
        
     AUDIO_CODEC_DATA codecData;
     
-    bool buttonMode;
+    bool pause;
     
     uint8_t volumeIndex;   
     
@@ -349,6 +359,8 @@ typedef struct {
     bool buf1Clear;
     bool buf2Clear;
     bool lrSync;
+    bool playback;
+    bool headphone_out;
 
     //    UpdatePlaytimeFuncPtr updatePlaytimeFunc;
     
@@ -359,6 +371,12 @@ typedef struct {
     AUDIO_QUEUEBUFFER  audioBuffer[AUDIO_QUEUEBUFFER_NUMBER];
     bool trackPlayed[DISK_MAX_FILES];
     char fileName[64];
+#ifdef GFX_ENABLED
+    uint8_t numOfChnls;
+    uint16_t bit_depth;
+    uint32_t guiUpdate, sampleRate, currPos;
+    GUI_STATES guiState;
+#endif
 }APP_DATA ;
 
 
@@ -462,6 +480,9 @@ bool                APP_PlayerEventHandler ( PLAYER_EVENT event, uint32_t data )
 void                APP_Initialize( void );
 bool                APP_PlayerDecode( uint8_t *ptr, int16_t* out );
 APP_DECODER_TYPE    APP_GetCurrentFileType ( char *ext );
+#ifdef GFX_ENABLED
+void                APP_Update_GUI_Tasks( void );
+#endif
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

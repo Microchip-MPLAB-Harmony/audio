@@ -53,8 +53,8 @@ extern "C" {
 #include "data_structures.h"
 #include <string.h>
     
-#define DISK_MAX_DIRS   10
-#define DISK_MAX_FILES  4000
+#define DISK_MAX_DIRS   5
+#define DISK_MAX_FILES  500
 
 typedef enum{
     DISK_EVENT_REMOVED,
