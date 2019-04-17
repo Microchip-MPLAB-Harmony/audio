@@ -108,8 +108,7 @@ extern "C" {
 /* I2S Driver Instance 0 Configuration Options */
 #define DRV_I2S_INDEX_0                       0
 #define DRV_I2S_CLIENTS_NUMBER_IDX0           1
-//KEEP THIS - Combined queue is 128 since read/write queue is the same
-#define DRV_I2S_QUEUE_DEPTH_COMBINED          128
+#define DRV_I2S_QUEUE_DEPTH_COMBINED          64
 #define DRV_I2S_QUEUE_SIZE_IDX0               64
 #define DRV_I2S_DATA_LENGTH_IDX0              16
 #define DRV_I2S_INT_SRC_IDX0                  SSC_IRQn
@@ -222,7 +221,7 @@ extern "C" {
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 130
 
 
 /* No of Audio streaming interfaces */
