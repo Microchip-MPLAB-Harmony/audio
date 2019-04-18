@@ -46,6 +46,9 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 #include "app.h"
 #include "disk.h"
+#ifdef USE_SDMMC
+#include "definitions.h"
+#endif
 
 static APP_DATA * appDataPtr;
 static DISK_TASK_DATA diskData;
@@ -63,7 +66,11 @@ void DISK_Initialize( void )
     diskData.state = DISK_STATE_HALT;
 
     rootNode.fstat.fattrib = SYS_FS_ATTR_DIR;
+#ifdef USE_SDMMC
+    strcpy(rootNode.path, "/mnt/myDrive1");
+#else
     strcpy(rootNode.path, SYS_FS_MEDIA_IDX0_MOUNT_NAME_VOLUME_IDX0);
+#endif
     strcat(rootNode.path, "/");
     appDataPtr = APP_GetAppDataInstance();
 }

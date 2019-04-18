@@ -61,6 +61,10 @@ extern "C" {
 #define LED_PRD_MIN _50ms
 #define LED_PRD_MAX _1sec
 
+#ifdef USE_SDMMC
+#define SDCARD_MOUNT_NAME       "/mnt/myDrive1"
+#define SDCARD_DEV_NAME         "/dev/mmcblka1"
+#endif
 
        
 // *****************************************************************************
@@ -79,9 +83,24 @@ typedef struct
 
 } DRV_I2S_DATA16;
 
+#ifdef DATA32_ENABLED
+typedef struct 
+{
+    /* Left channel data */
+    int32_t leftData;
+
+    /* Right channel data */
+    int32_t rightData;
+
+} DRV_I2S_DATA32;
+
+extern DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
+extern DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
+#else
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
-extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Single_Chnl_Buffer[NUM_SAMPLES/2];
+#endif
+extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Single_Chnl_Buffer[NUM_SAMPLES];
 
 // *****************************************************************************
 /* Application States

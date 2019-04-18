@@ -49,10 +49,14 @@ uint16_t volumeLevels[VOL_LVLS_MAX] =
 };
 
 
-
+#ifdef DATA32_ENABLED
+DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
+DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
+#else
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
-DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Single_Chnl_Buffer[NUM_SAMPLES/2];
+#endif
+DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Single_Chnl_Buffer[NUM_SAMPLES];
 
 #ifdef GFX_ENABLED
 extern laCircularSliderWidget * VolumeWidget;
@@ -395,6 +399,7 @@ void APP_Initialize ( void )
     APP_PlayerInitialize();
 }
 
+#ifndef USE_SDMMC
 USB_HOST_EVENT_RESPONSE APP_USBHostEventHandler (USB_HOST_EVENT event, void * eventData, uintptr_t context)
 {
     switch (event)
@@ -407,6 +412,7 @@ USB_HOST_EVENT_RESPONSE APP_USBHostEventHandler (USB_HOST_EVENT event, void * ev
     }
     return(USB_HOST_EVENT_RESPONSE_NONE);
 }
+#endif
 
 void APP_SYSFSEventHandler(SYS_FS_EVENT event, void * eventData, uintptr_t context)
 {
@@ -525,18 +531,36 @@ void APP_Tasks ( void )
 
         case APP_STATE_BUS_ENABLE:
            // set the event handler and enable the bus
+#ifndef USE_SDMMC
             SYS_FS_EventHandlerSet(APP_SYSFSEventHandler, (uintptr_t)NULL);
             USB_HOST_EventHandlerSet(APP_USBHostEventHandler, 0);
             USB_HOST_BusEnable(0);
             appData.state = APP_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE;
+#else
+            appData.state = APP_STATE_MOUNT_DISK;
+#endif
             break;
             
+#ifndef USE_SDMMC
         case APP_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE:
             if(USB_HOST_BusIsEnabled(0))
             {
                 appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
             }
             break;
+#endif
+
+#ifdef USE_SDMMC            
+        case APP_STATE_MOUNT_DISK:
+            if( SYS_FS_Mount( SDCARD_DEV_NAME, SDCARD_MOUNT_NAME, FAT, 0, NULL) == SYS_FS_RES_SUCCESS )
+            {
+                appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
+                appData.deviceIsConnected = true;
+                LED1_Off();
+            }
+            break;
+#endif
+       
        
         case APP_STATE_WAIT_FOR_DEVICE_ATTACH:
             /* Wait for device attach. The state machine will move
@@ -609,14 +633,20 @@ void APP_Tasks ( void )
                 switch(wavHeader.bitsPerSample)
                 {
                     case 16:
-                        /***Clicking happens during the SYS_FS_FileRead()***/
                         retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/2);
                         for(int16_t i=0; i<NUM_SAMPLES/2; i++)
                         {
+#ifdef DATA32_ENABLED
+                            App_Audio_Output_Buffer1[i*2].rightData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
+                            App_Audio_Output_Buffer1[i*2].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
+                            App_Audio_Output_Buffer1[(i*2)+1].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
+                            App_Audio_Output_Buffer1[(i*2)+1].leftData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
+#else
                             App_Audio_Output_Buffer1[i*2].rightData = App_Single_Chnl_Buffer[i].leftData;
                             App_Audio_Output_Buffer1[i*2].leftData = App_Single_Chnl_Buffer[i].leftData;
                             App_Audio_Output_Buffer1[(i*2)+1].rightData = App_Single_Chnl_Buffer[i].rightData;
                             App_Audio_Output_Buffer1[(i*2)+1].leftData = App_Single_Chnl_Buffer[i].rightData;
+#endif
                         }
                         break;
                         
@@ -625,6 +655,16 @@ void APP_Tasks ( void )
                         for(int16_t i=0; i<NUM_SAMPLES/4; i++)
                         {
                             // Data in LSB
+#ifdef DATA32_ENABLED
+                            App_Audio_Output_Buffer1[i*4].rightData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
+                            App_Audio_Output_Buffer1[i*4].leftData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
+                            App_Audio_Output_Buffer1[(i*4)+1].rightData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
+                            App_Audio_Output_Buffer1[(i*4)+1].leftData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
+                            App_Audio_Output_Buffer1[(i*4)+2].rightData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
+                            App_Audio_Output_Buffer1[(i*4)+2].leftData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
+                            App_Audio_Output_Buffer1[(i*4)+3].rightData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
+                            App_Audio_Output_Buffer1[(i*4)+3].leftData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
+#else
                             App_Audio_Output_Buffer1[i*4].rightData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
                             App_Audio_Output_Buffer1[i*4].leftData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
                             App_Audio_Output_Buffer1[(i*4)+1].rightData = (App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF;
@@ -633,6 +673,7 @@ void APP_Tasks ( void )
                             App_Audio_Output_Buffer1[(i*4)+2].leftData = App_Single_Chnl_Buffer[i].rightData & 0x00FF;
                             App_Audio_Output_Buffer1[(i*4)+3].rightData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
                             App_Audio_Output_Buffer1[(i*4)+3].leftData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
+#endif
                         }
                         // Temporarily set volume to max level since there is no data in the MSB
                         DRV_CODEC_VolumeSet(appData.codecData.handle, DRV_CODEC_CHANNEL_LEFT_RIGHT, volumeLevels[VOL_LVL_HIGH]);                                      
@@ -646,7 +687,20 @@ void APP_Tasks ( void )
             }
             else
             {
+#ifdef DATA32_ENABLED
+                retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE);
+                for(int16_t i=0; i<NUM_SAMPLES; i++)
+                {
+                    App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
+                    App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
+                }
+                if( retval != -1 )
+                {
+                    retval *= 2;
+                }
+#else
                 retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Output_Buffer1, BUFFER_SIZE);
+#endif
             }
             if (retval == -1)
             {
@@ -668,10 +722,17 @@ void APP_Tasks ( void )
                         // 16 bits/sample
                         retval *= 2;
                     }
+#ifdef DATA32_ENABLED
+                    if( retval != -1 )
+                    {
+                        retval *= 2;
+                    }
+#endif
                 }
                 appData.codecData.txbufferObject1 = (uint8_t *) App_Audio_Output_Buffer1;
                 appData.codecData.bufferSize1 = retval;
                 appData.state = APP_STATE_CODEC_ADD_BUFFER;
+                appData.lrSync = true;
             }
             break;        
        
@@ -717,10 +778,17 @@ void APP_Tasks ( void )
                                 retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/2);
                                 for(int16_t i=0; i<NUM_SAMPLES/2; i++)
                                 {
+#ifdef DATA32_ENABLED
+                                    App_Audio_Output_Buffer2[i*2].rightData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
+                                    App_Audio_Output_Buffer2[i*2].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
+                                    App_Audio_Output_Buffer2[(i*2)+1].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
+                                    App_Audio_Output_Buffer2[(i*2)+1].leftData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
+#else
                                     App_Audio_Output_Buffer2[i*2].rightData = App_Single_Chnl_Buffer[i].leftData;
                                     App_Audio_Output_Buffer2[i*2].leftData = App_Single_Chnl_Buffer[i].leftData;
                                     App_Audio_Output_Buffer2[(i*2)+1].rightData = App_Single_Chnl_Buffer[i].rightData;
                                     App_Audio_Output_Buffer2[(i*2)+1].leftData = App_Single_Chnl_Buffer[i].rightData;
+#endif
                                 }
                                 break;
 
@@ -728,7 +796,16 @@ void APP_Tasks ( void )
                                 retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/4);
                                 for(int16_t i=0; i<NUM_SAMPLES/4; i++)
                                 {
-                                    // Data in LSB
+#ifdef DATA32_ENABLED
+                                    App_Audio_Output_Buffer2[i*4].rightData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer2[i*4].leftData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer2[(i*4)+1].rightData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer2[(i*4)+1].leftData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer2[(i*4)+2].rightData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer2[(i*4)+2].leftData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer2[(i*4)+3].rightData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer2[(i*4)+3].leftData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
+#else
                                     App_Audio_Output_Buffer2[i*4].rightData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
                                     App_Audio_Output_Buffer2[i*4].leftData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
                                     App_Audio_Output_Buffer2[(i*4)+1].rightData = (App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF;
@@ -737,6 +814,7 @@ void APP_Tasks ( void )
                                     App_Audio_Output_Buffer2[(i*4)+2].leftData = App_Single_Chnl_Buffer[i].rightData & 0x00FF;
                                     App_Audio_Output_Buffer2[(i*4)+3].rightData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
                                     App_Audio_Output_Buffer2[(i*4)+3].leftData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
+#endif
                                 }
                                 break;
 
@@ -748,7 +826,20 @@ void APP_Tasks ( void )
                     }
                     else
                     {
+#ifdef DATA32_ENABLED
+                        retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE);
+                        for(int16_t i=0; i<NUM_SAMPLES; i++)
+                        {
+                            App_Audio_Output_Buffer2[i].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
+                            App_Audio_Output_Buffer2[i].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
+                        }
+                        if( retval != -1 )
+                        {
+                            retval *= 2;
+                        }
+#else
                         retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Output_Buffer2, BUFFER_SIZE);
+#endif
                     }
                     if (retval == -1)
                     {
@@ -769,6 +860,12 @@ void APP_Tasks ( void )
                                 // 16 bits/sample
                                 retval *= 2;
                             }
+#ifdef DATA32_ENABLED
+                            if( retval != -1 )
+                            {
+                                retval *= 2;
+                            }
+#endif
                         }
                         appData.codecData.txbufferObject2 = (uint8_t *) App_Audio_Output_Buffer2;
                         appData.codecData.bufferSize2 = retval;
@@ -804,10 +901,17 @@ void APP_Tasks ( void )
                                 retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/2);
                                 for(int16_t i=0; i<NUM_SAMPLES/2; i++)
                                 {
+#ifdef DATA32_ENABLED
+                                    App_Audio_Output_Buffer1[i*2].rightData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
+                                    App_Audio_Output_Buffer1[i*2].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
+                                    App_Audio_Output_Buffer1[(i*2)+1].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
+                                    App_Audio_Output_Buffer1[(i*2)+1].leftData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
+#else
                                     App_Audio_Output_Buffer1[i*2].rightData = App_Single_Chnl_Buffer[i].leftData;
                                     App_Audio_Output_Buffer1[i*2].leftData = App_Single_Chnl_Buffer[i].leftData;
                                     App_Audio_Output_Buffer1[(i*2)+1].rightData = App_Single_Chnl_Buffer[i].rightData;
                                     App_Audio_Output_Buffer1[(i*2)+1].leftData = App_Single_Chnl_Buffer[i].rightData;
+#endif
                                 }
                                 break;
 
@@ -815,7 +919,16 @@ void APP_Tasks ( void )
                                 retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/4);
                                 for(int16_t i=0; i<NUM_SAMPLES/4; i++)
                                 {
-                                    // Data in LSB
+#ifdef DATA32_ENABLED
+                                    App_Audio_Output_Buffer1[i*4].rightData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer1[i*4].leftData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer1[(i*4)+1].rightData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer1[(i*4)+1].leftData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer1[(i*4)+2].rightData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer1[(i*4)+2].leftData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer1[(i*4)+3].rightData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
+                                    App_Audio_Output_Buffer1[(i*4)+3].leftData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
+#else
                                     App_Audio_Output_Buffer1[i*4].rightData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
                                     App_Audio_Output_Buffer1[i*4].leftData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
                                     App_Audio_Output_Buffer1[(i*4)+1].rightData = (App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF;
@@ -824,6 +937,7 @@ void APP_Tasks ( void )
                                     App_Audio_Output_Buffer1[(i*4)+2].leftData = App_Single_Chnl_Buffer[i].rightData & 0x00FF;
                                     App_Audio_Output_Buffer1[(i*4)+3].rightData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
                                     App_Audio_Output_Buffer1[(i*4)+3].leftData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
+#endif
                                 }
                                 break;
 
@@ -835,7 +949,20 @@ void APP_Tasks ( void )
                     }
                     else
                     {
+#ifdef DATA32_ENABLED
+                        retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE);
+                        for(int16_t i=0; i<NUM_SAMPLES; i++)
+                        {
+                            App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
+                            App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
+                        }
+                        if( retval != -1 )
+                        {
+                            retval *= 2;
+                        }
+#else
                         retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Output_Buffer1, BUFFER_SIZE);
+#endif
                     }
                     if (retval == -1)
                     {
@@ -857,6 +984,12 @@ void APP_Tasks ( void )
                                 // 16 bits/sample
                                 retval *= 2;
                             }
+#ifdef DATA32_ENABLED
+                            if( retval != -1 )
+                            {
+                                retval *= 2;
+                            }
+#endif
                         }
                         appData.codecData.txbufferObject1 = (uint8_t *) App_Audio_Output_Buffer1;
                         appData.codecData.bufferSize1 = retval;
@@ -931,6 +1064,7 @@ void APP_LED_Tasks( void )
             case APP_STATE_CODEC_OPEN:
             case APP_STATE_BUS_ENABLE:
             case APP_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE:
+            case APP_STATE_MOUNT_DISK:
             case APP_STATE_WAIT_FOR_DEVICE_ATTACH:
                 LED1_Toggle();
                 appData.led1Delay = 100;
