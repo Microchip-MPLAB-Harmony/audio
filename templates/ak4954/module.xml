@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Module name="ak4954 codec" id="2e0fd69a-89a2-43bf-ba53-6a2103c173e3" version="1.0.0">
+    <ConfigRoot path="module.py"/>
+</Module>
