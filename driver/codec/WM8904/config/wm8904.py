@@ -105,7 +105,7 @@ def instantiateComponent(wm8904Component):
 
     wm8904FormatComment = wm8904Component.createCommentSymbol("AUDIO_DATA_FORMAT_COMMENT", None)
     wm8904FormatComment.setVisible(True)
-    wm8904FormatComment.setLabel("Must match Audio Protocol and Data Length field in I2SC/SSC PLIB")") 
+    wm8904FormatComment.setLabel("Must match Audio Protocol and Data Length field in I2SC/SSC/I2S PLIB") 
 
     wm8904EnableMic = wm8904Component.createBooleanSymbol("DRV_WM8904_ENABLE_MIC_INPUT", None)
     wm8904EnableMic.setVisible(True)
@@ -157,14 +157,6 @@ def instantiateComponent(wm8904Component):
     wm8904SymHeaderFile.setType("HEADER")
     wm8904SymHeaderFile.setOverwrite(True)
     
-#    wm8904SymHeaderDefFile = wm8904Component.createFileSymbol("DRV_WM8904_DEF", None)
-#    wm8904SymHeaderDefFile.setSourcePath("drv_wm8904_definitions.h")
-#    wm8904SymHeaderDefFile.setOutputName("drv_wm8904_definitions.h")
-#    wm8904SymHeaderDefFile.setDestPath("audio/driver/wm8904/")
-#    wm8904SymHeaderDefFile.setProjectPath("config/" + configName + "/audio/driver/wm8904/")
-#    wm8904SymHeaderDefFile.setType("HEADER")
-#    wm8904SymHeaderDefFile.setOverwrite(True)
-
     wm8904SymSourceFile = wm8904Component.createFileSymbol("DRV_WM8904_SOURCE", None)
     wm8904SymSourceFile.setSourcePath("src/drv_wm8904.c")
     wm8904SymSourceFile.setOutputName("drv_wm8904.c")

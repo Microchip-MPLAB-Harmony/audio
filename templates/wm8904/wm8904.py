@@ -29,6 +29,7 @@ execfile(Module.getPath() + "../common/pin_config.py")
 execfile(Module.getPath() + "../common/bsp_utils.py")
 
 #Add BSP support
+execfile(Module.getPath() + "Support_BSP_SAM_E54_Curiosity_Ultra.py")
 execfile(Module.getPath() + "Support_BSP_SAM_E70_Xplained_Ultra.py")
 execfile(Module.getPath() + "Support_BSP_SAM_V71_Xplained_Ultra.py")
 
@@ -45,6 +46,13 @@ def enableSSCPins(bspID, enable):
         resetPins(SSCPinConfigs)
         if (enable == True):
             configurePins(SSCPinConfigs)
+
+def enableI2SPins(bspID, enable):
+    I2SPinConfigs = getBSPSupportNode(bspID, "I2S").getPinConfig()
+    if I2SPinConfigs:
+        resetPins(I2SPinConfigs)
+        if (enable == True):
+            configurePins(I2SPinConfigs)
 
 def enableI2SCInterface(bspID, enable):
     if getBSPSupportNode(bspID, "I2SC"):
@@ -68,6 +76,17 @@ def enableSSCInterface(bspID, enable):
             res = Database.deactivateComponents(componentIDTable)
         enableSSCPins(bspID, enable)
 
+def enableI2SInterface(bspID, enable):
+    if getBSPSupportNode(bspID, "I2S"):
+        componentIDTable = getBSPSupportNode(bspID, "I2S").getComponentActivateList()
+        autoConnectTable = getBSPSupportNode(bspID, "I2S").getComponentAutoConnectList()
+        if (enable == True):
+            res = Database.activateComponents(componentIDTable)
+            res = Database.connectDependencies(autoConnectTable)
+        elif (enable == False):
+            res = Database.deactivateComponents(componentIDTable)
+        enableI2SPins(bspID, enable)
+
 def configureWM8904Interface(bspID, interface):
     print("Configuring for " + str(interface) + " Interface.")
     if bspID == None:
@@ -76,9 +95,15 @@ def configureWM8904Interface(bspID, interface):
         if (str(interface) == "SSC"):
             enableI2SCInterface(bspID, False)
             enableSSCInterface(bspID, True)
+            enableI2SInterface(bspID, False)
         elif (str(interface) == "I2SC"):
             enableSSCInterface(bspID, False)
             enableI2SCInterface(bspID, True)
+            enableI2SInterface(bspID, False)
+        elif (str(interface) == "I2S"):
+            enableSSCInterface(bspID, False)
+            enableI2SCInterface(bspID, False)
+            enableI2SInterface(bspID, True)
 
 def onWM8904InterfaceSelected(interfaceSelected, event):
     bspID = getSupportedBSP()
@@ -91,7 +116,7 @@ def instantiateComponent(bspComponent):
     global componentsIDTable
     global autoConnectTable
     global supportedBSPsIDList
-	
+
     #Check if a supported BSP is loaded
     bspID = getSupportedBSP()
     if bspID == None:
@@ -101,18 +126,21 @@ def instantiateComponent(bspComponent):
     #res = Database.connectDependencies(autoConnectTable)
     #res = Database.deactivateComponents(deactivateIDTable);
 	
-    if getBSPSupportNode(bspID, "SSC") and getBSPSupportNode(bspID, "I2SC"):        # if both are defined
-        WM8904Interface = bspComponent.createComboSymbol("WM8904Interface", None, ["SSC", "I2SC"])
-        WM8904Interface.setLabel("WM8904 Interface")
-        WM8904Interface.setDescription("Configures the interface to the WM8904 codec.")
-        WM8904Interface.setDefaultValue("SSC")
-        WM8904Interface.setDependencies(onWM8904InterfaceSelected, ["WM8904Interface"])
-        WM8904Interface.setVisible(True)
-    	
-    # Shadow display interface symbol
-    currWM8904Interface = bspComponent.createComboSymbol("currWM8904Interface", None, ["SSC", "I2SC"])
-    currWM8904Interface.setDefaultValue("SSC")
-    currWM8904Interface.setVisible(False)
+    if not getBSPSupportNode(bspID, "I2S"):
+        if getBSPSupportNode(bspID, "SSC") and getBSPSupportNode(bspID, "I2SC"):        # if both are defined
+            WM8904Interface = bspComponent.createComboSymbol("WM8904Interface", None, ["SSC", "I2SC"])
+            WM8904Interface.setLabel("WM8904 Interface")
+            WM8904Interface.setDescription("Configures the interface to the WM8904 codec.")
+            WM8904Interface.setDefaultValue("SSC")
+            WM8904Interface.setDependencies(onWM8904InterfaceSelected, ["WM8904Interface"])
+            WM8904Interface.setVisible(True)
+        	
+        # Shadow display interface symbol
+        currWM8904Interface = bspComponent.createComboSymbol("currWM8904Interface", None, ["SSC", "I2SC"])
+        currWM8904Interface.setDefaultValue("SSC")
+        currWM8904Interface.setVisible(False)
 
-    configureWM8904Interface(bspID, str(currWM8904Interface.getValue()))
+        configureWM8904Interface(bspID, str(currWM8904Interface.getValue()))
+    else:
+        configureWM8904Interface(bspID, "I2S")
 
