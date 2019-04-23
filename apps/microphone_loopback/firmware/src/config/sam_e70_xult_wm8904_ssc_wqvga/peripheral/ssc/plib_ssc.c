@@ -93,7 +93,7 @@ void SSC_Initialize ( void )
                            SSC_TFMR_FSEDGE(0) |
                            SSC_TFMR_FSLEN_EXT(0) ;
 
-    SSC_REGS->SSC_CMR = 0x0;       // not used when SSC is in slave mode
+    SSC_REGS->SSC_CMR = 0;       // not used when SSC is in slave mode
 
     SSC_REGS->SSC_CR = SSC_CR_TXEN_Msk | SSC_CR_RXEN_Msk;        
 }

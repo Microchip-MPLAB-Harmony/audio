@@ -35,7 +35,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-DRV_I2S_DATA16 __attribute__ ((aligned (32))) micBuffer[MAX_BUFFERS][MAX_AUDIO_NUM_SAMPLES];
+DRV_I2S_DATA __attribute__ ((aligned (32))) micBuffer[MAX_BUFFERS][MAX_AUDIO_NUM_SAMPLES];
 
 // *****************************************************************************
 /* Application Data

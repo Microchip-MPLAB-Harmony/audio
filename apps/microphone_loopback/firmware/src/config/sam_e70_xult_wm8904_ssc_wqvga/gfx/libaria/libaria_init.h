@@ -89,6 +89,9 @@ extern laButtonWidget* hiddenToggleOnButton;
 extern laButtonWidget* hiddenToggleOffButton;
 
 
+
+
+
 int32_t libaria_initialize(void);
 
 //DOM-IGNORE-BEGIN

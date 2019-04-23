@@ -37,7 +37,11 @@
 
 uint16_t volumeLevels[VOLUME_STEPS] =
 {
+#ifdef DRV_AK4954_VOLUME
+    0 /* off */, 192, 208, 224          // if using AK4954, use narrower range  
+#else            
     0 /* off */, 128, 192, 255
+#endif  
 };
 
 uint16_t delayIndices[DELAY_STEPS] =

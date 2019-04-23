@@ -62,6 +62,8 @@ typedef struct
 
 } DRV_I2S_DATA16;
 
+#define DRV_I2S_DATA DRV_I2S_DATA16
+
 // *****************************************************************************
 /* Application states
 
