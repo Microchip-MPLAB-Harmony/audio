@@ -49,7 +49,12 @@ uint16_t samples[SAMPLE_STEPS] =
 
 uint16_t volumeLevels[VOLUME_STEPS] =
 {
+#ifdef DRV_AK4954_VOLUME
+    0 /* off */, 192, 208, 224          // if using AK4954, use narrower range  
+#else            
     0 /* off */, 128, 192, 255
+#endif            
+          
 };
 
 // *****************************************************************************
@@ -259,7 +264,7 @@ void APP_Tasks ( void )
             if (firstSync)
             {
                 firstSync = false;
-                DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
+//!!                DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
             } 
             
             if (appData.pingPong==1)

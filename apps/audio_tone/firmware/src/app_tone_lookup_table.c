@@ -132,7 +132,7 @@ DRV_I2S_DATA32m *lookupTable;
                 //double radians = (M_PI*(double)3.0*(double)i)/180.0;
 
 #if AUDIO_FORMAT_WIDTH==32
-                audioBuffer[i+k].leftData = (int32_t)(0x7FFFFFFF*sin(radians));   // 0 to 0x7FFFFFFF for 0-30 samples
+                lookupTable[i+k].leftData = (int32_t)(0x7FFFFFFF*sin(radians));   // 0 to 0x7FFFFFFF for 0-30 samples
 #endif
 #if AUDIO_FORMAT_WIDTH==16
                 lookupTable[i+k].leftData = (int16_t)(0x7FFF*sin(radians));   // 0 to 0x7FFFFFFF for 0-30 samples        

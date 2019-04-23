@@ -61,7 +61,9 @@
 #include "peripheral/twihs/plib_twihs0.h"
 #include "audio/driver/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
+#include "system/ports/sys_ports.h"
 #include "system/cache/sys_cache.h"
+#include "system/dma/sys_dma.h"
 #include "osal/osal.h"
 #include "app.h"
 

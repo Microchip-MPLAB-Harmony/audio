@@ -33,20 +33,7 @@
 #include <stdlib.h>
 #include "configuration.h"
 #include "definitions.h"
-#include "peripheral/clk/plib_clk.h"
-#include "peripheral/nvic/plib_nvic.h"
-#include "peripheral/pio/plib_pio.h"
-#include "bsp/bsp.h"
-#include "system/int/sys_int.h"
-#include "system/ports/sys_ports.h"
-#include "osal/osal.h"
-#include "driver/i2s/drv_i2s.h"
-#include "driver/i2c/drv_i2c.h"
-#include "peripheral/twihs/plib_twihs0.h"
-#include "system/time/sys_time.h"
-
-#include "audio/driver/wm8904/drv_wm8904_local.h"
-#include "audio/driver/wm8904/drv_wm8904.h"
+#include "app_config.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -54,14 +41,9 @@
 extern "C" {
 
 #endif
-// DOM-IGNORE-END
-
-#define MAX_AUDIO_NUM_SAMPLES   9600    // for array    
+// DOM-IGNORE-END  
    
 #define INIT_SAMPLE_INDEX     1  // 500  
-     
-#define AUDIO_FORMAT_WIDTH  16
-//#define AUDIO_FORMAT_WIDTH  32
     
 #define INIT_VOLUME_IDX           1
 
@@ -268,7 +250,11 @@ void APP_Button_Tasks( void );
 #define SWITCH_STATE_PRESSED   SWITCH1_STATE_PRESSED
 #endif
 
-#endif /* APP_H */
+#ifdef LED1_On
+#define LED_On                 LED1_On
+#define LED_Off                LED1_Off
+#define LED_Toggle             LED1_Toggle
+#endif
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
@@ -276,7 +262,5 @@ void APP_Button_Tasks( void );
 #endif
 //DOM-IGNORE-END
 
-/*******************************************************************************
- End of File
- */
+#endif /* APP_H */
 
