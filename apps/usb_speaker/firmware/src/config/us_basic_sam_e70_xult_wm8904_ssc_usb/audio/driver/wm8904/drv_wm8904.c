@@ -2381,6 +2381,9 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
                                       APP_WRITE_DATA_LENGTH,
                                       &drvObj->hWriteTransfer );
             
+            // resets the WM8904, so wait a bit
+            drvObj->WM8904Delay = 300;
+            
             if( drvObj->hWriteTransfer == DRV_I2C_TRANSFER_HANDLE_INVALID )
             {
                 drvObj->currentState = DRV_WM8904_STATE_ERROR;

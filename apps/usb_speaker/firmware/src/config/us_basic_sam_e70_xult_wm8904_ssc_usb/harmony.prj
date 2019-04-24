@@ -75,16 +75,16 @@
           <Name dnOrder="1">drv_wm8904.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb/audio/driver/wm8904/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/wm8904/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F2E155AF2D36CC05BBC1D39E46E17F9E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">F2E155AF2D36CC05BBC1D39E46E17F9E</UserChecksum>
+          <GeneratedChecksum dnOrder="4">6588257EF5B3AF12EC0231EF884C9A4B</GeneratedChecksum>
+          <UserChecksum dnOrder="5">6588257EF5B3AF12EC0231EF884C9A4B</UserChecksum>
         </File>
         <File dnOrder="9">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">drv_wm8904_local.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb/audio/driver/wm8904/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/wm8904/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B98711310FC86731A2472F04CD1CFCD1</GeneratedChecksum>
-          <UserChecksum dnOrder="5">B98711310FC86731A2472F04CD1CFCD1</UserChecksum>
+          <GeneratedChecksum dnOrder="4">9D29C13630DD4B005FE28A01D8E8B258</GeneratedChecksum>
+          <UserChecksum dnOrder="5">05F1AA42730C78942E9EB4D2EE77C0B2</UserChecksum>
         </File>
         <File dnOrder="10">
           <Type dnOrder="0">SOURCE</Type>
@@ -523,8 +523,8 @@
           <Name dnOrder="1">drv_wm8904.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb/audio/driver/wm8904/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/wm8904/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B22694D69E6B2041E35E5D79CF02BA99</GeneratedChecksum>
-          <UserChecksum dnOrder="5">B22694D69E6B2041E35E5D79CF02BA99</UserChecksum>
+          <GeneratedChecksum dnOrder="4">27D3AF0E2D34B2400EBB65C50D05C927</GeneratedChecksum>
+          <UserChecksum dnOrder="5">27D3AF0E2D34B2400EBB65C50D05C927</UserChecksum>
         </File>
         <File dnOrder="65">
           <Type dnOrder="0">HEADER</Type>
