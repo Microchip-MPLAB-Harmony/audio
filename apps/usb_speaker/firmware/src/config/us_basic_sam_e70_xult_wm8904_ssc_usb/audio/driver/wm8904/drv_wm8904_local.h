@@ -1413,7 +1413,7 @@
     Codec WM8904. This define is used by the I2C Driver Read API.
  */
 
-#define APP_READ_DATA_LENGTH             3    
+#define APP_READ_DATA_LENGTH             2    
 
 /**********************************************
  * Driver Client Obj
