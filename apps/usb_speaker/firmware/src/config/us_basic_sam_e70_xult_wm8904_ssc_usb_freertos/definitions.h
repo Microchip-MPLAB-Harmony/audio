@@ -54,6 +54,7 @@
 #include "peripheral/xdmac/plib_xdmac.h"
 #include "usb/usb_chapter_9.h"
 #include "usb/usb_device.h"
+#include "peripheral/efc/plib_efc.h"
 #include "peripheral/tc/plib_tc0.h"
 #include "usb/usb_device_audio_v1_0.h"
 #include "usb/usb_audio_v1_0.h"
@@ -63,7 +64,10 @@
 #include "driver/usb/usbhsv1/drv_usbhsv1.h"
 #include "bsp/bsp.h"
 #include "driver/i2s/drv_i2s.h"
+#include "peripheral/uart/plib_uart1.h"
 #include "peripheral/twihs/plib_twihs0.h"
+#include "system/console/sys_console.h"
+#include "system/console/src/sys_console_uart_definitions.h"
 #include "audio/driver/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
@@ -202,6 +206,8 @@ typedef struct
 
     /* I2S0 Driver Object */
     SYS_MODULE_OBJ drvI2S0;
+
+    SYS_MODULE_OBJ  sysConsole0;
 
     SYS_MODULE_OBJ drvwm8904Codec0;
 

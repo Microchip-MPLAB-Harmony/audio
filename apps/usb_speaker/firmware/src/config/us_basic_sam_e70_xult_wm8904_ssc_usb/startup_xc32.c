@@ -205,6 +205,8 @@ void __attribute__((optimize("-O1"), section(".text.Reset_Handler"), long_call))
     /* Enable Instruction Cache */
     ICache_Enable();
 
+    /* Enable Data Cache    */
+    DCache_Enable();
 
     /* Call the optional application-provided _on_bootstrap() function. */
     if (_on_bootstrap)

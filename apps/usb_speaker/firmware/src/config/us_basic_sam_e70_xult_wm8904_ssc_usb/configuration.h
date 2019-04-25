@@ -88,6 +88,18 @@ extern "C" {
 #define SYS_TIME_CPU_CLOCK_FREQUENCY         300000000
 #define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
 
+/* Console System Service Configuration Options */
+#define SYS_CONSOLE_DEVICE_MAX_INSTANCES   1
+#define SYS_CONSOLE_UART_MAX_INSTANCES     1
+
+
+/* RX queue size has one additional element for the empty spot needed in circular queue */
+#define SYS_CONSOLE_UART_RD_QUEUE_DEPTH_IDX0    11
+
+/* TX queue size has one additional element for the empty spot needed in circular queue */
+#define SYS_CONSOLE_UART_WR_QUEUE_DEPTH_IDX0    129
+#define SYS_CONSOLE_BUFFER_DMA_READY
+
 
 
 // *****************************************************************************
@@ -221,7 +233,8 @@ extern "C" {
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 130
+//KEEP THIS- Not generated correctly
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66 
 
 
 /* No of Audio streaming interfaces */

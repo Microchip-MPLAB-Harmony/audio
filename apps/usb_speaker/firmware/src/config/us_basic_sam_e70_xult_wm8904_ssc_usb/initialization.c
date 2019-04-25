@@ -255,6 +255,52 @@ const SYS_TIME_INIT sysTimeInitData =
 };
 
 // </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="SYS_CONSOLE Instance 0 Initialization Data">
+
+static QElement sysConsole0UARTRdQueueElements[SYS_CONSOLE_UART_RD_QUEUE_DEPTH_IDX0];
+static QElement sysConsole0UARTWrQueueElements[SYS_CONSOLE_UART_WR_QUEUE_DEPTH_IDX0];
+
+/* Declared in console device implementation (sys_console_uart.c) */
+extern const SYS_CONSOLE_DEV_DESC sysConsoleUARTDevDesc;
+
+const SYS_CONSOLE_UART_PLIB_INTERFACE sysConsole0UARTPlibAPI =
+{
+    .read = (SYS_CONSOLE_UART_PLIB_READ)UART1_Read,
+    .write = (SYS_CONSOLE_UART_PLIB_WRITE)UART1_Write,
+    .readCallbackRegister = (SYS_CONSOLE_UART_PLIB_REGISTER_CALLBACK_READ)UART1_ReadCallbackRegister,
+    .writeCallbackRegister = (SYS_CONSOLE_UART_PLIB_REGISTER_CALLBACK_WRITE)UART1_WriteCallbackRegister,
+    .errorGet = (SYS_CONSOLE_UART_PLIB_ERROR_GET)UART1_ErrorGet,
+};
+
+
+const SYS_CONSOLE_UART_INTERRUPT_SOURCES sysConsole0UARTInterruptSources =
+{
+    /* Peripheral has single interrupt vector */
+    .isSingleIntSrc                        = true,
+
+    /* Peripheral interrupt line */
+    .intSources.usartInterrupt             = UART1_IRQn,
+};
+
+const SYS_CONSOLE_UART_INIT_DATA sysConsole0UARTInitData =
+{
+    .uartPLIB = &sysConsole0UARTPlibAPI,
+    .readQueueElementsArr = sysConsole0UARTRdQueueElements,
+    .writeQueueElementsArr = sysConsole0UARTWrQueueElements,
+    .readQueueDepth = SYS_CONSOLE_UART_RD_QUEUE_DEPTH_IDX0,
+    .writeQueueDepth = SYS_CONSOLE_UART_WR_QUEUE_DEPTH_IDX0,
+    .interruptSources = &sysConsole0UARTInterruptSources,
+};
+
+const SYS_CONSOLE_INIT sysConsole0Init =
+{
+    .deviceInitData = (const void*)&sysConsole0UARTInitData,
+    .consDevDesc = &sysConsoleUARTDevDesc,
+    .deviceIndex = 0,
+};
+
+// </editor-fold>
+
 
 
 
@@ -270,6 +316,8 @@ const SYS_TIME_INIT sysTimeInitData =
 
 void SYS_Initialize ( void* data )
 {
+
+    EFC_Initialize();
   
     CLK_Initialize();
 	PIO_Initialize();
@@ -287,6 +335,8 @@ void SYS_Initialize ( void* data )
 	SSC_Initialize();
 
 	BSP_Initialize();
+	UART1_Initialize();
+
 	TWIHS0_Initialize();
 
 
@@ -299,6 +349,8 @@ void SYS_Initialize ( void* data )
 
 
     sysObj.sysTime = SYS_TIME_Initialize(SYS_TIME_INDEX_0, (SYS_MODULE_INIT *)&sysTimeInitData);
+    sysObj.sysConsole0 = SYS_CONSOLE_Initialize(SYS_CONSOLE_INDEX_0, (SYS_MODULE_INIT *)&sysConsole0Init);
+
 
 
 	 /* Initialize the USB device layer */

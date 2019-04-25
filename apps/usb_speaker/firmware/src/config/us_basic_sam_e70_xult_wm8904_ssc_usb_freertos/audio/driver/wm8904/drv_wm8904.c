@@ -2380,7 +2380,7 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
                                       (void *)&testWriteData[0],
                                       APP_WRITE_DATA_LENGTH,
                                       &drvObj->hWriteTransfer );
-            
+ 
             // resets the WM8904, so wait a bit
             drvObj->WM8904Delay = 300;
             

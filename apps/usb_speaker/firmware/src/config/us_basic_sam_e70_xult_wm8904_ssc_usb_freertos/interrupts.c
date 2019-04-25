@@ -89,7 +89,7 @@ void WDT_Handler                ( void ) __attribute__((weak, alias("Dummy_Handl
 void PMC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 void EFC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 void UART0_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void UART1_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
+void UART1_InterruptHandler     ( void ) __attribute__((weak, alias("Dummy_Handler")));
 void PIOA_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 void PIOB_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 void PIOC_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -182,7 +182,7 @@ const DeviceVectors exception_table=
     .pfnPMC_Handler                = ( void * ) PMC_Handler,
     .pfnEFC_Handler                = ( void * ) EFC_Handler,
     .pfnUART0_Handler              = ( void * ) UART0_Handler,
-    .pfnUART1_Handler              = ( void * ) UART1_Handler,
+    .pfnUART1_Handler              = ( void * ) UART1_InterruptHandler,
     .pfnPIOA_Handler               = ( void * ) PIOA_Handler,
     .pfnPIOB_Handler               = ( void * ) PIOB_Handler,
     .pfnPIOC_Handler               = ( void * ) PIOC_Handler,
