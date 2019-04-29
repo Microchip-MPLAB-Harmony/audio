@@ -9,6 +9,14 @@
                        displayName="apb_sam_e70_xult_wm8904_ssc_freertos"
                        projectFiles="true">
           <logicalFolder name="f1" displayName="audio" projectFiles="true">
+            <logicalFolder name="f1" displayName="decoder" projectFiles="true">
+              <logicalFolder name="f1" displayName="audio_decoders" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder/audio_decoders/wav/wav_dec.h</itemPath>
+              </logicalFolder>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder/audio_decoders.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder/audio_decoders_config.h</itemPath>
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder/gfx_decoders.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f2" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
                 <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904.h</itemPath>
@@ -45,20 +53,23 @@
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/clk/plib_clk.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f5" displayName="efc" projectFiles="true">
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/efc/plib_efc.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f3" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/nvic/plib_nvic.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/pio/plib_pio.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="ssc" projectFiles="true">
+            <logicalFolder name="f7" displayName="ssc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/ssc/plib_ssc.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f5" displayName="tc" projectFiles="true">
+            <logicalFolder name="f6" displayName="tc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/tc/plib_tc0.h</itemPath>
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/tc/plib_tc_common.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="twihs" projectFiles="true">
+            <logicalFolder name="f8" displayName="twihs" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/twihs/plib_twihs_master.h</itemPath>
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/twihs/plib_twihs0.h</itemPath>
             </logicalFolder>
@@ -110,6 +121,7 @@
             <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system.h</itemPath>
             <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system_common.h</itemPath>
             <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system_module.h</itemPath>
+            <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/system/system_media.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="usb" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
@@ -245,7 +257,7 @@
       </logicalFolder>
       <itemPath>../src/data_structures.h</itemPath>
       <itemPath>../src/disk.h</itemPath>
-      <itemPath>../../../../../../H3_Apr01/audio/apps/audio_player_basic/firmware/src/app.h</itemPath>
+      <itemPath>../src/app.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -259,6 +271,11 @@
                        displayName="apb_sam_e70_xult_wm8904_ssc_freertos"
                        projectFiles="true">
           <logicalFolder name="f1" displayName="audio" projectFiles="true">
+            <logicalFolder name="f1" displayName="decoder" projectFiles="true">
+              <logicalFolder name="f1" displayName="audio_decoders" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder/audio_decoders/wav/wav_dec.c</itemPath>
+              </logicalFolder>
+            </logicalFolder>
             <logicalFolder name="f2" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
                 <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904.c</itemPath>
@@ -291,19 +308,22 @@
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/clk/plib_clk.c</itemPath>
             </logicalFolder>
+            <logicalFolder name="f5" displayName="efc" projectFiles="true">
+              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/efc/plib_efc.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f3" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/nvic/plib_nvic.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/pio/plib_pio.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="ssc" projectFiles="true">
+            <logicalFolder name="f7" displayName="ssc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/ssc/plib_ssc.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f5" displayName="tc" projectFiles="true">
+            <logicalFolder name="f6" displayName="tc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/tc/plib_tc0.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="twihs" projectFiles="true">
+            <logicalFolder name="f8" displayName="twihs" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/peripheral/twihs/plib_twihs0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="xdmac" projectFiles="true">
@@ -383,7 +403,7 @@
       </logicalFolder>
       <itemPath>../src/disk.c</itemPath>
       <itemPath>../src/main.c</itemPath>
-      <itemPath>../../../../../../H3_Apr01/audio/apps/audio_player_basic/firmware/src/app.c</itemPath>
+      <itemPath>../src/app.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -404,14 +424,14 @@
         <targetDevice>ATSAME70Q21B</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>ICD4Tool</platformTool>
+        <platformTool>EdbgTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>2.15</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="CMSIS" vendor="ARM" version="5.0.1"/>
         <pack name="SAME70_DFP" vendor="Microchip" version="3.0.10"/>
+        <pack name="CMSIS" vendor="ARM" version="5.0.1"/>
       </packs>
       <compileType>
         <linkerTool>
@@ -470,7 +490,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/apb_sam_e70_xult_wm8904_ssc_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/include"/>
+                  value="../src;../src/config/apb_sam_e70_xult_wm8904_ssc_freertos;../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder;../src/config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder/audio_decoders;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/include"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -591,6 +611,32 @@
         <property key="save-temps" value="false"/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
+      <EdbgTool>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="communication.interface" value="jtag"/>
+        <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.exclude.configurationmemory" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram.ranges"
+                  value="${memories.instruction.ram.ranges}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.ranges" value="400000-5fffff"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveeeprom.ranges" value=""/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+      </EdbgTool>
       <ICD4Tool>
         <property key="AutoSelectMemRanges" value="auto"/>
         <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>

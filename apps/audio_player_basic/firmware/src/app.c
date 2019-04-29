@@ -34,13 +34,12 @@
 #include "gfx/libaria/inc/libaria_widget_circular_slider.h"
 #endif
 // *****************************************************************************
+// *****************************************************************************
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
-DRV_HANDLE tmrHandle;
-WAV_FILE_HEADER wavHeader;
 
-uint16_t volumeLevels[VOL_LVLS_MAX] =
+uint16_t volumeLevels[VOL_LVL_MAX] =
 {
     0,      // Mute
     16,     // -66 dB   : VOL_LVL_LOW
@@ -52,11 +51,15 @@ uint16_t volumeLevels[VOL_LVLS_MAX] =
 #ifdef DATA32_ENABLED
 DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
 DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
+DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_TempBuf[NUM_SAMPLES];
 #else
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
 #endif
-DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Single_Chnl_Buffer[NUM_SAMPLES];
+DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Input_Buffer[NUM_SAMPLES];
+
+static WAV_FILE_HEADER wavHdr;
+extern WAV_DEC wavDecoder;
 
 #ifdef GFX_ENABLED
 extern laCircularSliderWidget * VolumeWidget;
@@ -71,6 +74,7 @@ extern laLabelWidget * lblEndPosition;
 
 laString laTmpStr;
 #endif
+
 // *****************************************************************************
 /* Application Data
 
@@ -86,12 +90,22 @@ laString laTmpStr;
     Application strings and buffers are be defined outside this structure.
 */
 APP_DATA appData;
+LED_DATA ledData;
+USB_DATA usbData;
+BTN_DATA btnData;
 
+static uint16_t rd, wrtn;
 
 /* This is the string that will written to the file */
 const uint8_t writeData[12]  __attribute__((aligned(16))) = "Hello World ";
 
  #define char_tolower(c)      (char) ((c >= 'A' && c <= 'Z') ? (c | 0x20) : c)
+
+
+#define BUTTON_DEBOUNCE 50
+#define LONG_BUTTON_PRESS 1000
+
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -123,26 +137,27 @@ const uint8_t writeData[12]  __attribute__((aligned(16))) = "Hello World ";
 */
 static void App_TimerCallback( uintptr_t context)
 {
-    if (appData.led1Delay)
+    if (ledData.led1Delay)
     {
-        appData.led1Delay--;
+        ledData.led1Delay--;
     }
-    if (appData.led2Delay)
+    if (ledData.led2Delay)
     {
-        appData.led2Delay--;
+        ledData.led2Delay--;
     }
     if (appData.playbackDelay)
     {
         appData.playbackDelay--;
     }
-    if (appData.buttonDelay)
-    {      
-        appData.buttonDelay--;
-    }
 #ifdef GFX_ENABLED
     if (appData.guiUpdate)
     {
         appData.guiUpdate--;
+    }
+#else
+    if (btnData.delay)
+    {      
+        btnData.delay--;
     }
 #endif
 }
@@ -197,23 +212,20 @@ void APP_PlayerInitialize ( void )
 
 /* TODO:  Add any necessary local functions.
 */
-
 #ifdef GFX_ENABLED
 void APP_Set_GUI_BitDepthStr( void )
 {
     static char bdStr[5];
-    if( wavHeader.bitsPerSample )
+    if( appData.bit_depth )
     {
-        switch( wavHeader.bitsPerSample )
+        switch( appData.bit_depth )
         {
             case 8:
                 strcpy( bdStr, "8b");
                 break;
             case 16:
-                strcpy( bdStr, "16b");
-                break;
             default:
-                strcpy( bdStr, "NA");
+                strcpy( bdStr, "16b");
                 break;
         }
         laTmpStr = laString_CreateFromCharBuffer( bdStr, 
@@ -227,9 +239,9 @@ void APP_Set_GUI_SampleRateStr( void )
 {
     static char srStr[10];
     
-    if( wavHeader.sampleRate )
+    if( appData.sampleRate )
     {
-        sprintf( srStr, "%d", (int)wavHeader.sampleRate );
+        sprintf( srStr, "%d", (int)appData.sampleRate );
         laTmpStr = laString_CreateFromCharBuffer( srStr, 
                                 GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
         laLabelWidget_SetText( lblSampleRate, laTmpStr );
@@ -239,23 +251,22 @@ void APP_Set_GUI_SampleRateStr( void )
 void APP_Get_GUI_Volume( void )
 {
     static char volPctStr[5];
-    static uint16_t oldVolPercent;
     uint16_t volPercent;
     
     if( (appData.state != APP_STATE_IDLE) && (appData.state != APP_STATE_INIT) && (appData.state != APP_STATE_CODEC_OPEN) )
     {
         // Returns 32 bit value
         volPercent = laCircularSliderWidget_GetValue( VolumeWidget );
-        if( oldVolPercent != volPercent )
+        if( appData.oldVolPercent != volPercent )
         {
             appData.volume = (volPercent * 255) / 100;
-            DRV_CODEC_VolumeSet( appData.codecData.handle, DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume );
+            //DRV_CODEC_VolumeSet( appData.codecData.handle, DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume );
             snprintf( volPctStr, sizeof(volPctStr)-1, "%d%s", (uint8_t)volPercent, "%");
             laTmpStr = laString_CreateFromCharBuffer( volPctStr, 
                                     GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
             laLabelWidget_SetText( lblVolumePercent, laTmpStr );
             laString_Destroy( &laTmpStr );
-            oldVolPercent = volPercent;
+            appData.oldVolPercent = appData.volPercent;
         }
     }
 }
@@ -263,14 +274,15 @@ void APP_Set_GUI_ChnlStr( void )
 {
     static char chnlStr[10];
     
-    if( wavHeader.numChannels )
+    if( appData.numOfChnls )
     {
-        switch( wavHeader.numChannels )
+        switch( appData.numOfChnls )
         {
             case 1:
                 strcpy( chnlStr, "Mono");
                 break;
             case 2:
+            default:
                 strcpy( chnlStr, "Stereo");
                 break;
             case 3:
@@ -282,8 +294,6 @@ void APP_Set_GUI_ChnlStr( void )
             case 8:
                 strcpy( chnlStr, "7.1");
                 break;
-            default:
-                strcpy( chnlStr, "NA");
         }
         laTmpStr = laString_CreateFromCharBuffer( chnlStr, 
                                 GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
@@ -297,9 +307,9 @@ void APP_Set_GUI_TrackPositionStr( void )
     uint32_t time, mins, secs;
     static char totalTimeStr[10];
     static char currTimeStr[10];
-    if( wavHeader.sampleRate && wavHeader.numChannels )
+    if( appData.sampleRate && appData.numOfChnls )
     {
-        time = (appData.fileSize - sizeof( WAV_FILE_HEADER))/(wavHeader.sampleRate*2*wavHeader.numChannels);
+        time = (appData.fileSize - sizeof( WAV_FILE_HEADER))/(appData.sampleRate*2*appData.numOfChnls);
 
         mins = time / 60;
         secs = time % 60;
@@ -309,7 +319,7 @@ void APP_Set_GUI_TrackPositionStr( void )
         laLabelWidget_SetText( lblEndPosition, laTmpStr );
         laString_Destroy( &laTmpStr );
 
-        time = (appData.currPos - sizeof( WAV_FILE_HEADER))/(wavHeader.sampleRate*2*wavHeader.numChannels);
+        time = (appData.currPos - sizeof( WAV_FILE_HEADER))/(appData.sampleRate*2*appData.numOfChnls);
         mins = time / 60;
         secs = time % 60;
         sprintf( currTimeStr, "%02d:%02d", (int)mins, (int)secs);
@@ -324,17 +334,11 @@ void APP_Set_GUI_TrackPositionStr( void )
 
 void APP_Set_GUI_FileNameStr( void )
 {
-    static char fileNameStr[40];
+    static char fileNameStr[20];
     
     if( strlen(appData.fileName) > strlen("/mnt/myDrive1/") )
     {
-        int i = strlen(appData.fileName);
-        while(i--)
-        {
-            if( appData.fileName[i] == '/' )
-                break;
-        }
-        sprintf( fileNameStr, "%s", &appData.fileName[i+1]);
+        sprintf( fileNameStr, "%s", &appData.fileName[strlen("/mnt/myDrive1/")]);
         laTmpStr = laString_CreateFromCharBuffer( fileNameStr, 
                                 GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
         laLabelWidget_SetText( lblTrackTitle, laTmpStr );
@@ -342,7 +346,6 @@ void APP_Set_GUI_FileNameStr( void )
     }
 }
 #endif
-
 
 // *****************************************************************************
 // *****************************************************************************
@@ -362,6 +365,7 @@ void _audioCodecInitialize (AUDIO_CODEC_DATA* codecData)
     codecData->bufferSize2 = 0;
 }
 
+
 /*******************************************************************************
   Function:
     void APP_Initialize ( void )
@@ -375,27 +379,24 @@ void APP_Initialize ( void )
     /* TODO: Initialize your application's state machine and other
      * parameters.
      */   
-    appData.state = APP_STATE_INIT;
-	appData.deviceIsConnected = false;
-    
+    appData.state = APP_STATE_IDLE;
+    usbData.state = USB_STATE_INIT;
+	usbData.deviceIsConnected = false;
+    btnData.state = BTN_STATE_IDLE;
     appData.volLevel = VOL_LVL_LOW;
-   
+    appData.prevVol = 0;
+    appData.volume = volumeLevels[appData.volLevel];
     appData.buttonDelay = 0;
-    appData.pause = false;    
-    appData.led1Delay = 0;
-    appData.led2Delay = 0;
-    appData.playbackDelay = 2000;
-    appData.headphone_out = true;
-    wavHeader.numChannels = 0;
-    wavHeader.sampleRate = 0;
-    wavHeader.bitsPerSample = 0;
+    LED_Set_Mode( 1, LED_STATE_TOGGLE, _100ms );
+    LED_Set_Mode( 2, LED_STATE_OFF, _50ms );
+    appData.playbackDelay = _1sec;
 #ifdef GFX_ENABLED
-    appData.guiUpdate = _20ms;
+    appData.guiUpdate = _200ms;
 #endif
-
     _audioCodecInitialize (&appData.codecData);
     
-    appData.pingPong = 1;    
+    appData.pingPong = true;
+    appData.headphone_out = true;
     APP_PlayerInitialize();
 }
 
@@ -405,25 +406,29 @@ USB_HOST_EVENT_RESPONSE APP_USBHostEventHandler (USB_HOST_EVENT event, void * ev
     switch (event)
     {
         case USB_HOST_EVENT_DEVICE_UNSUPPORTED:
-            appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
+            usbData.state = USB_STATE_WAIT_FOR_DEVICE_ATTACH;
             break;
         default:
             break;
     }
     return(USB_HOST_EVENT_RESPONSE_NONE);
 }
-#endif
 
 void APP_SYSFSEventHandler(SYS_FS_EVENT event, void * eventData, uintptr_t context)
 {
     switch(event)
     {
         case SYS_FS_EVENT_MOUNT:
-            appData.deviceIsConnected = true;
+            usbData.deviceIsConnected = true;
+            LED_Set_Mode( 1, LED_STATE_OFF, 0 );
             break;
             
         case SYS_FS_EVENT_UNMOUNT:
-            appData.deviceIsConnected = false;
+            usbData.deviceIsConnected = false;
+            appData.usbConnect = false;
+            usbData.state = USB_STATE_WAIT_FOR_DEVICE_ATTACH;
+            LED_Set_Mode( 1, LED_STATE_TOGGLE, 0 );
+            LED_Set_Mode( 2, LED_STATE_OFF, _50ms );
             appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
             break;
             
@@ -431,7 +436,7 @@ void APP_SYSFSEventHandler(SYS_FS_EVENT event, void * eventData, uintptr_t conte
             break;
     }
 }
-
+#endif
 
 bool APP_IsSupportedAudioFile(char *name)
 {
@@ -454,13 +459,11 @@ bool APP_IsSupportedAudioFile(char *name)
     lowercase[2] = char_tolower(name[i+3]);
     lowercase[3] = '\0';
     
-#ifdef WAV_STREAMING_ENABLED
-    if(strcmp(lowercase, "wav")==0)
+    if( strcmp( lowercase, "wav" ) == 0 )
     {
+        strcpy( appData.ext, "wav" );
         return true;
     }
-#endif
-    
     return false;
 }
 
@@ -471,18 +474,20 @@ bool APP_IsSupportedAudioFile(char *name)
   Remarks:
     See prototype in app.h.
  */
+DRV_HANDLE tmrHandle;
 
 void APP_Tasks ( void )
 {
-    int retval;
+    int retval = 0;
     
+    USB_Tasks();
+    DISK_Tasks();
+    APP_LED_Tasks();
 #ifdef GFX_ENABLED
     APP_Update_GUI_Tasks();
 #else
+   	BTN_Tasks();
 #endif
-   	APP_Button_Tasks();
-    DISK_Tasks();
-    APP_LED_Tasks();
     
     // check the application's current state
     switch ( appData.state )
@@ -496,7 +501,7 @@ void APP_Tasks ( void )
             if ( SYS_TIME_HANDLE_INVALID != tmrHandle )
             {
                appData.state = APP_STATE_CODEC_OPEN;
-            }            
+            }
             break;
         
         case APP_STATE_CODEC_OPEN:
@@ -511,9 +516,8 @@ void APP_Tasks ( void )
                         DRV_IO_INTENT_WRITE | DRV_IO_INTENT_EXCLUSIVE);       
                     if(appData.codecData.handle != DRV_HANDLE_INVALID)
                     {
-                        appData.state = APP_STATE_BUS_ENABLE;
                         appData.state = APP_STATE_CODEC_SET_BUFFER_HANDLER;
-                        srand(appData.playbackDelay);
+                        //srand(appData.playbackDelay);
                     }            
                 }
             }
@@ -525,50 +529,18 @@ void APP_Tasks ( void )
             DRV_CODEC_BufferEventHandlerSet(appData.codecData.handle, 
                                             appData.codecData.bufferHandler, 
                                             appData.codecData.context);
-            appData.state = APP_STATE_OPEN_FILE;
-            appData.state = APP_STATE_BUS_ENABLE;
+            appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
             break;
 
-        case APP_STATE_BUS_ENABLE:
-           // set the event handler and enable the bus
-#ifndef USE_SDMMC
-            SYS_FS_EventHandlerSet(APP_SYSFSEventHandler, (uintptr_t)NULL);
-            USB_HOST_EventHandlerSet(APP_USBHostEventHandler, 0);
-            USB_HOST_BusEnable(0);
-            appData.state = APP_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE;
-#else
-            appData.state = APP_STATE_MOUNT_DISK;
-#endif
-            break;
-            
-#ifndef USE_SDMMC
-        case APP_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE:
-            if(USB_HOST_BusIsEnabled(0))
-            {
-                appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
-            }
-            break;
-#endif
-
-#ifdef USE_SDMMC            
-        case APP_STATE_MOUNT_DISK:
-            if( SYS_FS_Mount( SDCARD_DEV_NAME, SDCARD_MOUNT_NAME, FAT, 0, NULL) == SYS_FS_RES_SUCCESS )
-            {
-                appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
-                appData.deviceIsConnected = true;
-                LED1_Off();
-            }
-            break;
-#endif
-       
-       
         case APP_STATE_WAIT_FOR_DEVICE_ATTACH:
             /* Wait for device attach. The state machine will move
              * to the next state when the attach event
              * is received.  */
-            if(appData.deviceIsConnected)
+            if(usbData.deviceIsConnected)
             {
                 appData.state = APP_STATE_DEVICE_CONNECTED;
+                appData.usbConnect = true;
+                LED_Set_Mode( 1, LED_STATE_OFF, _50ms );
             }
             break;
 
@@ -586,13 +558,13 @@ void APP_Tasks ( void )
             break;
         
         case APP_STATE_OPEN_FILE:
-            if(!appData.totalAudioFiles)
+            if( !appData.totalAudioFiles )
             {
                 appData.state = APP_STATE_SCANNING;
                 break;
             }
-            if(appData.playbackDelay)
-                break;
+            appData.pause = false;
+            LED_Set_Mode( 2, LED_STATE_ON, _50ms );
             // try opening the file for reading
             appData.fileHandle = SYS_FS_FileOpen(appData.fileName, (SYS_FS_FILE_OPEN_READ));
             if(appData.fileHandle == SYS_FS_HANDLE_INVALID)
@@ -602,150 +574,81 @@ void APP_Tasks ( void )
             }
             else
             {
-                // file opened successfully -- read from file
-                appData.state = APP_STATE_READ_FILE;
-                // Read the header data
-                retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) &wavHeader, sizeof(wavHeader));
                 appData.fileSize = SYS_FS_FileSize( appData.fileHandle );
+                if( appData.fileSize == -1 )
+                {
+                    appData.state = APP_STATE_SCANNING;
+                }
+                else
+                {
+                    // file opened successfully -- read from file
+                    appData.state = APP_STATE_READ_FILE;
+                    // Read the header data
+                    retval = SYS_FS_FileRead( appData.fileHandle, &wavHdr, sizeof(wavHdr));
+                    WAV_Initialize_N( (uint8_t *)&wavHdr, appData.fileHandle );
+                }
             }
             break;
 
         case APP_STATE_READ_FILE:
+            
             // Go to next track if it's not a WAVE header or the data is not in PCM format or 8000 > samplerate > 96000
-            if((wavHeader.audioFormat != 1) || (strncmp(wavHeader.format, "WAVE", 4) != 0) || 
-                    (strncmp(wavHeader.chunkID, "RIFF", 4) != 0) || (wavHeader.sampleRate < 8000) || (wavHeader.sampleRate > 96000))
+            appData.numOfChnls = WAV_GetChannels();
+            appData.bytesRemaining = WAV_HdrGetDataLen();
+            appData.sampleRate = WAV_GetSampleRate();
+            appData.playbackDuration = WAV_GetDuration();
+            appData.bit_depth = wavHdr.bitsPerSample;
+            
+            if((strncmp(wavHdr.chunkID, "RIFF", 4) != 0) || (strncmp(wavHdr.format, "WAVE", 4) != 0) || 
+                    (strncmp(wavHdr.subChunk1Id, "fmt ", 4) != 0 ) || (strncmp(wavHdr.subChunk2Id, "data", 4) != 0 ) ||
+                    (wavHdr.audioFormat != 1) || (appData.sampleRate < 8000) || (appData.sampleRate > 96000))
             {
                 appData.state = APP_STATE_SCANNING;
                 break;
             }
             
             // Set sample rate to what was found in the header
-            DRV_CODEC_SamplingRateSet(appData.codecData.handle, wavHeader.sampleRate);
+            DRV_CODEC_SamplingRateSet(appData.codecData.handle, appData.sampleRate);
             
-            // Set volume to user chosen level since it could have been changed for a single channel .wav with 8 bit samples
-            appData.volume = volumeLevels[appData.volLevel];
-            DRV_CODEC_VolumeSet(appData.codecData.handle, DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);
-            
-            // try reading the file  
-            // If the file is single channel, arrange to be stereo format
-            if(wavHeader.numChannels == 1)
+            retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, BUFFER_SIZE);
+            if ( (retval == -1) || (retval == 0) )
             {
-                switch(wavHeader.bitsPerSample)
-                {
-                    case 16:
-                        retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/2);
-                        for(int16_t i=0; i<NUM_SAMPLES/2; i++)
-                        {
-#ifdef DATA32_ENABLED
-                            App_Audio_Output_Buffer1[i*2].rightData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
-                            App_Audio_Output_Buffer1[i*2].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
-                            App_Audio_Output_Buffer1[(i*2)+1].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
-                            App_Audio_Output_Buffer1[(i*2)+1].leftData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
-#else
-                            App_Audio_Output_Buffer1[i*2].rightData = App_Single_Chnl_Buffer[i].leftData;
-                            App_Audio_Output_Buffer1[i*2].leftData = App_Single_Chnl_Buffer[i].leftData;
-                            App_Audio_Output_Buffer1[(i*2)+1].rightData = App_Single_Chnl_Buffer[i].rightData;
-                            App_Audio_Output_Buffer1[(i*2)+1].leftData = App_Single_Chnl_Buffer[i].rightData;
-#endif
-                        }
-                        break;
-                        
-                    case 8:
-                        retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/4);
-                        for(int16_t i=0; i<NUM_SAMPLES/4; i++)
-                        {
-                            // Data in LSB
-#ifdef DATA32_ENABLED
-                            App_Audio_Output_Buffer1[i*4].rightData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
-                            App_Audio_Output_Buffer1[i*4].leftData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
-                            App_Audio_Output_Buffer1[(i*4)+1].rightData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
-                            App_Audio_Output_Buffer1[(i*4)+1].leftData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
-                            App_Audio_Output_Buffer1[(i*4)+2].rightData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
-                            App_Audio_Output_Buffer1[(i*4)+2].leftData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
-                            App_Audio_Output_Buffer1[(i*4)+3].rightData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
-                            App_Audio_Output_Buffer1[(i*4)+3].leftData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
-#else
-                            App_Audio_Output_Buffer1[i*4].rightData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
-                            App_Audio_Output_Buffer1[i*4].leftData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
-                            App_Audio_Output_Buffer1[(i*4)+1].rightData = (App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF;
-                            App_Audio_Output_Buffer1[(i*4)+1].leftData = (App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF;
-                            App_Audio_Output_Buffer1[(i*4)+2].rightData = App_Single_Chnl_Buffer[i].rightData & 0x00FF;
-                            App_Audio_Output_Buffer1[(i*4)+2].leftData = App_Single_Chnl_Buffer[i].rightData & 0x00FF;
-                            App_Audio_Output_Buffer1[(i*4)+3].rightData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
-                            App_Audio_Output_Buffer1[(i*4)+3].leftData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
-#endif
-                        }
-                        // Temporarily set volume to max level since there is no data in the MSB
-                        DRV_CODEC_VolumeSet(appData.codecData.handle, DRV_CODEC_CHANNEL_LEFT_RIGHT, volumeLevels[VOL_LVL_HIGH]);                                      
-                        break;
-                        
-                    default:
-                        // Currently non supported bits/sample
-                       retval = -1;
-                       break;
-                }
-            }
-            else
-            {
-#ifdef DATA32_ENABLED
-                retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE);
-                for(int16_t i=0; i<NUM_SAMPLES; i++)
-                {
-                    App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
-                    App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
-                }
-                if( retval != -1 )
-                {
-                    retval *= 2;
-                }
-#else
-                retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Output_Buffer1, BUFFER_SIZE);
-#endif
-            }
-            if (retval == -1)
-            {
-                // read was not successful -- assume end of file
+                // read was not successful or no data read -- assume end of file
                 appData.state = APP_STATE_SCANNING;
             }
             else
             {
-                // Adjust the number of bytes that need to be sent out
-                if(wavHeader.numChannels == 1)
+#ifndef DATA32_ENABLED
+                WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                        (int16_t *) App_Audio_Output_Buffer1, &wrtn);
+#else
+                WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                        (int16_t *) App_Audio_Output_TempBuf, &wrtn);
+                for( int i = 0; i < NUM_SAMPLES; i++ )
                 {
-                    // 8 bits/sample
-                    if(wavHeader.bitsPerSample == 8)
-                    {
-                        retval *= 4;
-                    }
-                    else
-                    {
-                        // 16 bits/sample
-                        retval *= 2;
-                    }
-#ifdef DATA32_ENABLED
-                    if( retval != -1 )
-                    {
-                        retval *= 2;
-                    }
-#endif
+                    App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
+                    App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
                 }
-                appData.codecData.txbufferObject1 = (uint8_t *) App_Audio_Output_Buffer1;
-                appData.codecData.bufferSize1 = retval;
-                appData.state = APP_STATE_CODEC_ADD_BUFFER;
+                wrtn *= 2;
+#endif
+                appData.codecData.txbufferObject1 = (uint8_t *)App_Audio_Output_Buffer1;
+                appData.codecData.bufferSize1 = wrtn;
                 appData.lrSync = true;
+                appData.state = APP_STATE_CODEC_ADD_BUFFER;
             }
             break;        
        
         case APP_STATE_CODEC_ADD_BUFFER:
+            if(appData.playbackDelay)
+                break;
             // Don't try to r/w more data if the storage device is not mounted
-            if(!appData.deviceIsConnected)
+            if(!usbData.deviceIsConnected)
             {
                 appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
                 break;
             }
-            if (appData.pause || (appData.volLevel == VOL_LVL_MUTE))
+            if ( appData.pause || (appData.volLevel == VOL_LVL_MUTE))
             {
-                __NOP();
                 break;      // paused
             }
             
@@ -754,8 +657,7 @@ void APP_Tasks ( void )
                 DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
                 appData.lrSync = false;
             }
-            
-            if (appData.pingPong==1)
+            if ( appData.pingPong )
             {
                 DRV_CODEC_BufferAddWrite(appData.codecData.handle,
                                             &appData.codecData.writeBufHandle1,
@@ -765,110 +667,31 @@ void APP_Tasks ( void )
                 // initiated a write to the codec via I2S, read next buffer full
                 if(appData.codecData.writeBufHandle1 != DRV_CODEC_BUFFER_HANDLE_INVALID)
                 {
-                    appData.pingPong = 2;
+                    appData.pingPong = false;
                     appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
-                    
-                    // try reading the file            
-                    if(wavHeader.numChannels == 1)
+                    retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, BUFFER_SIZE);
+                    if ( (retval == -1) || (retval == 0) )
                     {
-                        // Organize the output data according to the size of data samples
-                        switch(wavHeader.bitsPerSample)
-                        {
-                            case 16:
-                                retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/2);
-                                for(int16_t i=0; i<NUM_SAMPLES/2; i++)
-                                {
-#ifdef DATA32_ENABLED
-                                    App_Audio_Output_Buffer2[i*2].rightData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
-                                    App_Audio_Output_Buffer2[i*2].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
-                                    App_Audio_Output_Buffer2[(i*2)+1].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
-                                    App_Audio_Output_Buffer2[(i*2)+1].leftData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
-#else
-                                    App_Audio_Output_Buffer2[i*2].rightData = App_Single_Chnl_Buffer[i].leftData;
-                                    App_Audio_Output_Buffer2[i*2].leftData = App_Single_Chnl_Buffer[i].leftData;
-                                    App_Audio_Output_Buffer2[(i*2)+1].rightData = App_Single_Chnl_Buffer[i].rightData;
-                                    App_Audio_Output_Buffer2[(i*2)+1].leftData = App_Single_Chnl_Buffer[i].rightData;
-#endif
-                                }
-                                break;
-
-                            case 8:
-                                retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/4);
-                                for(int16_t i=0; i<NUM_SAMPLES/4; i++)
-                                {
-#ifdef DATA32_ENABLED
-                                    App_Audio_Output_Buffer2[i*4].rightData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer2[i*4].leftData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer2[(i*4)+1].rightData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer2[(i*4)+1].leftData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer2[(i*4)+2].rightData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer2[(i*4)+2].leftData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer2[(i*4)+3].rightData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer2[(i*4)+3].leftData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
-#else
-                                    App_Audio_Output_Buffer2[i*4].rightData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
-                                    App_Audio_Output_Buffer2[i*4].leftData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
-                                    App_Audio_Output_Buffer2[(i*4)+1].rightData = (App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF;
-                                    App_Audio_Output_Buffer2[(i*4)+1].leftData = (App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF;
-                                    App_Audio_Output_Buffer2[(i*4)+2].rightData = App_Single_Chnl_Buffer[i].rightData & 0x00FF;
-                                    App_Audio_Output_Buffer2[(i*4)+2].leftData = App_Single_Chnl_Buffer[i].rightData & 0x00FF;
-                                    App_Audio_Output_Buffer2[(i*4)+3].rightData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
-                                    App_Audio_Output_Buffer2[(i*4)+3].leftData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
-#endif
-                                }
-                                break;
-
-                            default:
-                                // Currently non supported bits/sample
-                               retval = -1;
-                               break;
-                        }
-                    }
-                    else
-                    {
-#ifdef DATA32_ENABLED
-                        retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE);
-                        for(int16_t i=0; i<NUM_SAMPLES; i++)
-                        {
-                            App_Audio_Output_Buffer2[i].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
-                            App_Audio_Output_Buffer2[i].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
-                        }
-                        if( retval != -1 )
-                        {
-                            retval *= 2;
-                        }
-#else
-                        retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Output_Buffer2, BUFFER_SIZE);
-#endif
-                    }
-                    if (retval == -1)
-                    {
-                        // read was not successful -- assume end of file
+                        // read was not successful or no data read -- assume end of file
                         appData.state = APP_STATE_SCANNING;
                     }
                     else
                     {
-                        if(wavHeader.numChannels == 1)
+#ifndef DATA32_ENABLED
+                        WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                                (int16_t *) App_Audio_Output_Buffer2, &wrtn);
+#else
+                        WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                                (int16_t *) App_Audio_Output_TempBuf, &wrtn);
+                        for( int i = 0; i < NUM_SAMPLES; i++ )
                         {
-                            // 8 bits/sample
-                            if(wavHeader.bitsPerSample == 8)
-                            {
-                                retval *= 4;
-                            }
-                            else
-                            {
-                                // 16 bits/sample
-                                retval *= 2;
-                            }
-#ifdef DATA32_ENABLED
-                            if( retval != -1 )
-                            {
-                                retval *= 2;
-                            }
-#endif
+                            App_Audio_Output_Buffer2[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
+                            App_Audio_Output_Buffer2[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
                         }
+                        wrtn *= 2;
+#endif
                         appData.codecData.txbufferObject2 = (uint8_t *) App_Audio_Output_Buffer2;
-                        appData.codecData.bufferSize2 = retval;
+                        appData.codecData.bufferSize2 = wrtn;
                     }                    
                     
                 }
@@ -889,110 +712,32 @@ void APP_Tasks ( void )
                 // initiated a write to the codec via I2S, read next buffer full
                 if(appData.codecData.writeBufHandle2 != DRV_CODEC_BUFFER_HANDLE_INVALID)
                 {
-                    appData.pingPong = 1;
+                    appData.pingPong = true;
                     appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
                     // try reading the file            
-                    if(wavHeader.numChannels == 1)
+                    retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, BUFFER_SIZE);
+                    if ( (retval == -1) || (retval == 0) )
                     {
-                        // Organize the output data according to the size of data samples
-                        switch(wavHeader.bitsPerSample)
-                        {
-                            case 16:
-                                retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/2);
-                                for(int16_t i=0; i<NUM_SAMPLES/2; i++)
-                                {
-#ifdef DATA32_ENABLED
-                                    App_Audio_Output_Buffer1[i*2].rightData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
-                                    App_Audio_Output_Buffer1[i*2].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
-                                    App_Audio_Output_Buffer1[(i*2)+1].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
-                                    App_Audio_Output_Buffer1[(i*2)+1].leftData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
-#else
-                                    App_Audio_Output_Buffer1[i*2].rightData = App_Single_Chnl_Buffer[i].leftData;
-                                    App_Audio_Output_Buffer1[i*2].leftData = App_Single_Chnl_Buffer[i].leftData;
-                                    App_Audio_Output_Buffer1[(i*2)+1].rightData = App_Single_Chnl_Buffer[i].rightData;
-                                    App_Audio_Output_Buffer1[(i*2)+1].leftData = App_Single_Chnl_Buffer[i].rightData;
-#endif
-                                }
-                                break;
-
-                            case 8:
-                                retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE/4);
-                                for(int16_t i=0; i<NUM_SAMPLES/4; i++)
-                                {
-#ifdef DATA32_ENABLED
-                                    App_Audio_Output_Buffer1[i*4].rightData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer1[i*4].leftData = (int32_t)(App_Single_Chnl_Buffer[i].leftData & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer1[(i*4)+1].rightData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer1[(i*4)+1].leftData = (int32_t)((App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer1[(i*4)+2].rightData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer1[(i*4)+2].leftData = (int32_t)(App_Single_Chnl_Buffer[i].rightData & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer1[(i*4)+3].rightData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
-                                    App_Audio_Output_Buffer1[(i*4)+3].leftData = (int32_t)((App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF)<<16;
-#else
-                                    App_Audio_Output_Buffer1[i*4].rightData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
-                                    App_Audio_Output_Buffer1[i*4].leftData = App_Single_Chnl_Buffer[i].leftData & 0x00FF;
-                                    App_Audio_Output_Buffer1[(i*4)+1].rightData = (App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF;
-                                    App_Audio_Output_Buffer1[(i*4)+1].leftData = (App_Single_Chnl_Buffer[i].leftData >> 8) & 0x00FF;
-                                    App_Audio_Output_Buffer1[(i*4)+2].rightData = App_Single_Chnl_Buffer[i].rightData & 0x00FF;
-                                    App_Audio_Output_Buffer1[(i*4)+2].leftData = App_Single_Chnl_Buffer[i].rightData & 0x00FF;
-                                    App_Audio_Output_Buffer1[(i*4)+3].rightData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
-                                    App_Audio_Output_Buffer1[(i*4)+3].leftData = (App_Single_Chnl_Buffer[i].rightData >> 8) & 0x00FF;
-#endif
-                                }
-                                break;
-
-                            default:
-                                // Currently non supported bits/sample
-                               retval = -1;
-                               break;
-                        }
-                    }
-                    else
-                    {
-#ifdef DATA32_ENABLED
-                        retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Single_Chnl_Buffer, BUFFER_SIZE);
-                        for(int16_t i=0; i<NUM_SAMPLES; i++)
-                        {
-                            App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Single_Chnl_Buffer[i].rightData<<16;
-                            App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Single_Chnl_Buffer[i].leftData<<16;
-                        }
-                        if( retval != -1 )
-                        {
-                            retval *= 2;
-                        }
-#else
-                        retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Output_Buffer1, BUFFER_SIZE);
-#endif
-                    }
-                    if (retval == -1)
-                    {
-                        // read was not successful -- assume end of file
+                        // read was not successful or no data read -- assume end of file
                         // this one needs to be modified
                         appData.state = APP_STATE_SCANNING;
                     }
                     else
                     {
-                        if(wavHeader.numChannels == 1)
+#ifndef DATA32_ENABLED
+                        WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                                (int16_t *) App_Audio_Output_Buffer1, &wrtn);
+#else
+                        WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                                (int16_t *) App_Audio_Output_TempBuf, &wrtn);
+                        // The library only deals with 16 bit data.  32 data needs to be manipulated..
+                        for( int i = 0; i < NUM_SAMPLES; i++ )
                         {
-                            // 8 bits/sample
-                            if(wavHeader.bitsPerSample == 8)
-                            {
-                                retval *= 4;
-                            }
-                            else
-                            {
-                                // 16 bits/sample
-                                retval *= 2;
-                            }
-#ifdef DATA32_ENABLED
-                            if( retval != -1 )
-                            {
-                                retval *= 2;
-                            }
-#endif
+                            App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
+                            App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
                         }
-                        appData.codecData.txbufferObject1 = (uint8_t *) App_Audio_Output_Buffer1;
-                        appData.codecData.bufferSize1 = retval;
+                        wrtn *= 2;
+#endif
                     }                    
                 }               
                 else
@@ -1000,22 +745,32 @@ void APP_Tasks ( void )
                     appData.state = APP_STATE_SCANNING;
                 }
             }
-#ifdef GFX_ENABLED
+            if( appData.prevVol != appData.volume )
+            {
+                DRV_CODEC_VolumeSet(appData.codecData.handle,
+                    DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);
+                appData.prevVol = appData.volume;
+            }
             appData.currPos = SYS_FS_FileTell( appData.fileHandle );
-#endif
             break;
 
         // audio data Transmission under process
         case APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE:
             break;
+            
+        case APP_STATE_CLOSE_FILE:
+            SYS_FS_FileClose( appData.fileHandle );
+            appData.state = APP_STATE_SCANNING;
+            break;
         
         case APP_STATE_NO_MEDIA:
             appData.state = APP_STATE_SCANNING;
+            appData.pause = true;
 		default:
             break;
     }
 }
- 
+
 #ifdef GFX_ENABLED
 
 void APP_Update_GUI_Tasks( void )
@@ -1053,146 +808,293 @@ void APP_Update_GUI_Tasks( void )
 
 #endif
 
-
 void APP_LED_Tasks( void )
 {
-    if(!appData.led1Delay)
+    if( !ledData.led1Delay )
     {
-        switch(appData.state)
+        switch( ledData.led1State )
         {
-            case APP_STATE_INIT:
-            case APP_STATE_CODEC_OPEN:
-            case APP_STATE_BUS_ENABLE:
-            case APP_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE:
-            case APP_STATE_MOUNT_DISK:
-            case APP_STATE_WAIT_FOR_DEVICE_ATTACH:
-                LED1_Toggle();
-                appData.led1Delay = 100;
-                appData.totalAudioFiles = 0;
+            case LED_STATE_ON:
+                LED1_On();
+                ledData.led1On = true;
+                ledData.led1Delay = ledData.led1Period;
                 break;
+            case LED_STATE_OFF:
             default:
-                if(appData.volLevel == VOL_LVL_MUTE)
+                LED1_Off();
+                ledData.led1On = false;
+                ledData.led1Delay = ledData.led1Period;
+                break;
+            case LED_STATE_TOGGLE:
+                LED1_Toggle();
+                ledData.led1On = !ledData.led1On;
+                ledData.led1Delay = ledData.led1Period;
+                break;
+            case LED_STATE_BLINK:
+                ledData.led1Delay = ( ledData.led1BlinkCnt ) ? _200ms : _500ms;
+                if( ledData.led1On )
                 {
-                    LED1_Toggle();
-                    appData.led1Delay = 500;
+                    LED1_Off();
+                    ledData.led1On = false;
+                    ledData.led1Blinks = ( ledData.led1Blinks ) ? : 1;
+                    ledData.led1BlinkCnt = ( ledData.led1BlinkCnt ) ? : ledData.led1Blinks;
                 }
                 else
                 {
-                    switch(appData.playerBtnMode)
-                    {
-                        case VOL_ADJUST:
-                        default:
-                            LED1_Off();
-                            break;
-
-                        case LINEAR_TRACK_CHANGE:
-                            LED1_On();
-                            break;
-                    }
-                    appData.led1Delay = 500;
+                    LED1_On();
+                    ledData.led1On = true;
+                    ledData.led1BlinkCnt--;
+                }
+                break;
+        }
+        
+    }
+    if( !ledData.led2Delay )
+    {
+        switch( ledData.led2State )
+        {
+            case LED_STATE_ON:
+                LED2_On();
+                ledData.led2On = true;
+                ledData.led2Delay = ledData.led2Period;
+                break;
+            case LED_STATE_OFF:
+            default:
+                LED2_Off();
+                ledData.led2On = false;
+                ledData.led2Delay = ledData.led2Period;
+                break;
+            case LED_STATE_TOGGLE:
+                LED2_Toggle();
+                ledData.led2On = !ledData.led2On;
+                ledData.led2Delay = ledData.led2Period;
+                break;
+            case LED_STATE_BLINK:
+                ledData.led2Delay = ( ledData.led2BlinkCnt ) ? _200ms : _500ms;
+                if( ledData.led2On )
+                {
+                    LED2_Off();
+                    ledData.led2On = false;
+                    ledData.led2Blinks = ( ledData.led2Blinks ) ? : 1;
+                    ledData.led2BlinkCnt = ( ledData.led2BlinkCnt ) ? : ledData.led2Blinks;
+                }
+                else
+                {
+                    LED2_On();
+                    ledData.led2On = true;
+                    ledData.led2BlinkCnt--;
                 }
                 break;
         }
     }
-    if(!appData.led2Delay)
+}
+
+
+void LED_Set_Mode( uint8_t led, LED_STATES state, uint32_t prd_blinks)
+{
+    switch( state )
     {
-        if(appData.totalAudioFiles)
-        {
-            LED2_On();
-        }
-        else
-        {
-            LED2_Off();
-        }
-        appData.led2Delay = _500ms;
+        case LED_STATE_ON:
+        case LED_STATE_OFF:
+        case LED_STATE_TOGGLE:
+        default:
+            switch( led )
+            {
+                case 1:
+                    ledData.led1State = state;
+                    ledData.led1Period = ( prd_blinks <= LED_PRD_MAX ) ? prd_blinks = ( prd_blinks > LED_PRD_MIN )?
+                        prd_blinks : LED_PRD_MIN : LED_PRD_MAX;
+                    break;
+                case 2:
+                    ledData.led2State = state;
+                    ledData.led2Period = ( prd_blinks <= LED_PRD_MAX ) ? prd_blinks = ( prd_blinks > LED_PRD_MIN )?
+                        prd_blinks : LED_PRD_MIN : LED_PRD_MAX;
+                default:
+                    break;
+            }
+            break;
+        case LED_STATE_BLINK:
+            switch( led )
+            {
+                case 1:
+                    ledData.led1State = state;
+                    ledData.led1Blinks = ( !prd_blinks ) ? ledData.led1Blinks : prd_blinks;
+                    ledData.led1BlinkCnt = ledData.led1Blinks;
+                    break;
+                case 2:
+                    ledData.led2State = state;
+                    ledData.led2Blinks = ( !prd_blinks ) ? ledData.led2Blinks : prd_blinks;
+                    ledData.led2BlinkCnt = ledData.led2Blinks;
+                default:
+                    break;
+            }
+            break;
     }
 }
 
 
 
-#define BUTTON_DEBOUNCE 50
-#define LONG_BUTTON_PRESS 1000
-
-void APP_Button_Tasks()
+void USB_Tasks ( void )
 {
-   //BUTTON PROCESSING
-    /* Check the buttons' current state. */      
-    switch ( appData.buttonState )
+    switch(usbData.state)
     {
-        case BUTTON_STATE_IDLE:
-            if ( (appData.buttonDelay==0)&&
-                 (SWITCH_Get()==SWITCH_STATE_PRESSED))                
+        case USB_STATE_INIT:
+        {
+            usbData.state = USB_STATE_BUS_ENABLE;
+            break;
+        }
+        case USB_STATE_BUS_ENABLE:
+        {
+           // set the event handler and enable the bus
+#ifndef USE_SDMMC
+            SYS_FS_EventHandlerSet(APP_SYSFSEventHandler, (uintptr_t)NULL);
+            USB_HOST_EventHandlerSet(APP_USBHostEventHandler, 0);
+            USB_HOST_BusEnable(0);
+            usbData.state = USB_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE;
+#else
+            usbData.state = USB_STATE_MOUNT_DISK;
+#endif
+            break;
+        }
+        case USB_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE:
+        {
+#ifndef USE_SDMMC
+            if(USB_HOST_BusIsEnabled(0))
+
             {
-                appData.buttonDelay=BUTTON_DEBOUNCE;       
-                appData.buttonState=BUTTON_STATE_PRESSED;               
+                usbData.state = USB_STATE_WAIT_FOR_DEVICE_ATTACH;
+            }
+#endif
+            break;
+        }
+
+#ifdef USE_SDMMC            
+        case USB_STATE_MOUNT_DISK:
+            if( SYS_FS_Mount( SDCARD_DEV_NAME, SDCARD_MOUNT_NAME, FAT, 0, NULL) == SYS_FS_RES_SUCCESS )
+            {
+                usbData.state = USB_STATE_WAIT_FOR_DEVICE_ATTACH;
+                usbData.deviceIsConnected = true;
+                LED_Set_Mode( 1, LED_STATE_OFF, _50ms );
             }
             break;
-        
-        case BUTTON_STATE_PRESSED:
-            if (appData.buttonDelay>0)
+#endif
+
+        case USB_STATE_WAIT_FOR_DEVICE_ATTACH:
+        {
+            /* Wait for device attach. The state machine will move
+             * to the next state when the attach event
+             * is received.  */
+            if(usbData.deviceIsConnected)
+            {
+                usbData.state = USB_STATE_DEVICE_CONNECTED;
+            }
+            break;
+        }
+        case USB_STATE_DEVICE_CONNECTED:
+        {
+            // device was mounted. We can r/w the disk
+            usbData.state = USB_STATE_IDLE;
+            appData.state = APP_STATE_INIT;
+            break;
+        }
+        case USB_STATE_IDLE:
+        default:
+        {
+            break;
+        }
+    }
+}
+
+void BTN_ShortPress( void )
+{
+    switch( appData.playerBtnMode )
+    {
+        case VOL_ADJUST:
+            appData.volLevel++;
+            appData.volLevel %= VOL_LVL_MAX;
+            if( appData.volLevel == VOL_LVL_MUTE )
+            {
+                LED_Set_Mode( 1, LED_STATE_TOGGLE, _500ms );
+            }
+            else
+            {
+                LED_Set_Mode( 1, LED_STATE_OFF, _500ms );
+            }
+            appData.volume = volumeLevels[appData.volLevel];
+            break;
+        case LINEAR_TRACK_CHANGE:
+            SYS_FS_FileSeek( appData.fileHandle, 0, SYS_FS_SEEK_END );
+            break;
+        default:
+            break;
+    }
+}
+
+void BTN_LongPress( void )
+{
+    appData.playerBtnMode++;
+    appData.playerBtnMode %= MAX_MODES;
+    if( appData.playerBtnMode == LINEAR_TRACK_CHANGE )
+    {
+        LED_Set_Mode( 1, LED_STATE_ON, _50ms );
+    }
+    else
+    {
+        LED_Set_Mode( 1, LED_STATE_OFF, _50ms );
+    }
+}
+    
+    
+void BTN_Tasks()
+{
+   //BUTTON PROCESSING
+    /* Check the buttons' current state. */
+    switch ( btnData.state )
+    {
+        case BTN_STATE_IDLE:
+            if(( btnData.delay == 0 ) &&
+                 ( SWITCH_Get() == SWITCH_STATE_PRESSED ))                
+            {
+                btnData.delay = BUTTON_DEBOUNCE;       
+                btnData.state = BTN_STATE_PRESSED;               
+            }
+            break;
+
+        case BTN_STATE_PRESSED:
+            if( btnData.delay > 0 )
             {
                 break;      // still debouncing
             }
-            
-            if(SWITCH_Get()==SWITCH_STATE_PRESSED) 
+
+            if( SWITCH_Get() == SWITCH_STATE_PRESSED ) 
             {                
-                appData.buttonDelay=LONG_BUTTON_PRESS;          // 1 sec is long press
-                appData.buttonState=BUTTON_STATE_BUTTON0_PRESSED;                  
+                btnData.delay = LONG_BUTTON_PRESS;          // 1 sec is long press
+                btnData.state = BTN_STATE_BUTTON0_PRESSED;                  
             }
             break;
-          
-        case BUTTON_STATE_BUTTON0_PRESSED:
-            if ((appData.buttonDelay>0)&&
-                (SWITCH_Get()!=SWITCH_STATE_PRESSED))     // SW01 pressed and released < 1 sec
-            {
-                switch(appData.playerBtnMode)
-                {
-                    case VOL_ADJUST:
-                        appData.volLevel++;
-                        appData.volLevel %= VOL_LVLS_MAX;
-                        switch(appData.volLevel)
-                        {
-                            case VOL_LVL_LOW:
-                            case VOL_LVL_MED:
-                            case VOL_LVL_HIGH:
-                            case VOL_LVL_MUTE:
-#ifndef GFX_ENABLED
-                                appData.volume = volumeLevels[appData.volLevel];
-                                DRV_CODEC_VolumeSet(appData.codecData.handle,
-                                    DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);
-#endif
-                            default:
-                                break;
-                        }
-                        break;
-                    case LINEAR_TRACK_CHANGE:
-//                    case RANDOM_TRACK_CHANGE:
-                    default:
-                        SYS_FS_FileSeek(appData.fileHandle, 0, SYS_FS_SEEK_END);
-                        break;
-                }
 
-                appData.buttonDelay=BUTTON_DEBOUNCE;                
-                appData.buttonState=BUTTON_STATE_IDLE;              
-            }
-            else if ((appData.buttonDelay==0)&&
-                     (SWITCH_Get()==SWITCH_STATE_PRESSED))  // SW0 still pressed after 1 sec
+        case BTN_STATE_BUTTON0_PRESSED:
+            if(( btnData.delay > 0 ) &&
+                ( SWITCH_Get() != SWITCH_STATE_PRESSED ))     // SW01 pressed and released < 1 sec
             {
-                if(appData.volLevel != VOL_LVL_MUTE)
-                {
-                    // Index through modes if we are not muted
-                    appData.playerBtnMode++;
-                    appData.playerBtnMode %= MAX_MODES;
-                }
-                appData.buttonState=BUTTON_STATE_WAIT_FOR_RELEASE;                
+                BTN_ShortPress();
+                btnData.delay = BUTTON_DEBOUNCE;                
+                btnData.state = BTN_STATE_IDLE;    
+                
+            }
+            else if(( btnData.delay == 0 ) &&
+                     ( SWITCH_Get() == SWITCH_STATE_PRESSED ))  // SW0 still pressed after 1 sec
+            {
+                BTN_LongPress();
+                btnData.state = BTN_STATE_WAIT_FOR_RELEASE;                
             }                          
             break;
 
-        case BUTTON_STATE_WAIT_FOR_RELEASE:
-            if (SWITCH_Get()!=SWITCH_STATE_PRESSED)
+        case BTN_STATE_WAIT_FOR_RELEASE:
+            if( SWITCH_Get() != SWITCH_STATE_PRESSED )
             {
-                appData.buttonDelay=BUTTON_DEBOUNCE;
-                appData.buttonState=BUTTON_STATE_IDLE;
+                btnData.delay = BUTTON_DEBOUNCE;
+                btnData.state = BTN_STATE_IDLE;
             }
 
         /* The default state should never be executed. */

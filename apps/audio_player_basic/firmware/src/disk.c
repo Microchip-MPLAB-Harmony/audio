@@ -256,7 +256,7 @@ void DISK_Tasks()
             break;
 
         case DISK_STATE_RUNNING:
-            if(!appDataPtr->deviceIsConnected) 
+            if(!appDataPtr->usbConnect) 
             {
                 diskData.state = DISK_STATE_HALT;
                 SYS_FS_FileClose(appDataPtr->fileHandle);
@@ -643,6 +643,6 @@ void DISK_SetNextTrack( void )
             break;
     }
     appDataPtr->nextSongIdx %= appDataPtr->totalAudioFiles;
-    appDataPtr->playbackDelay = 1000;
+    appDataPtr->playbackDelay = _500ms;
 }
 

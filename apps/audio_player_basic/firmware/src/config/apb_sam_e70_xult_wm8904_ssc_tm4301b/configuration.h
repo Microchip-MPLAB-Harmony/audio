@@ -71,10 +71,14 @@ extern "C" {
 // Section: System Configuration
 // *****************************************************************************
 // *****************************************************************************
+
 /***** KEEP THIS, BEGIN *****/
 #define GFX_ENABLED
+#define NUM_SAMPLES                     256*4
+#define BUFFER_SIZE                     4*NUM_SAMPLES  
+#define DECODER_MAX_OUTPUT_BUFFER_SIZE  BUFFER_SIZE
+#define DECODER_MAX_INPUT_BUFFER_SIZE   BUFFER_SIZE
 /***** KEEP THIS, END *****/
-
 
 
 // *****************************************************************************

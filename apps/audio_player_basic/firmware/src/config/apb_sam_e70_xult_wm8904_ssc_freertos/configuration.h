@@ -72,6 +72,12 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 
+/***** KEEP THIS, BEGIN *****/
+#define NUM_SAMPLES                     256*4
+#define BUFFER_SIZE                     4*NUM_SAMPLES  
+#define DECODER_MAX_OUTPUT_BUFFER_SIZE  BUFFER_SIZE
+#define DECODER_MAX_INPUT_BUFFER_SIZE   BUFFER_SIZE
+/***** KEEP THIS, END *****/
 
 
 // *****************************************************************************

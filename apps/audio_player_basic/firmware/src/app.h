@@ -37,6 +37,9 @@
 
 #include "disk.h"
 
+#include "wav/wav_dec.h"
+
+
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -47,8 +50,6 @@ extern "C" {
 
 #define WAV_STREAMING_ENABLED
     
-#define NUM_SAMPLES             256*4
-#define BUFFER_SIZE             4*NUM_SAMPLES  
 
 #define _10ms       10
 #define _20ms       2*_10ms
@@ -65,6 +66,7 @@ extern "C" {
 #define SDCARD_MOUNT_NAME       "/mnt/myDrive1"
 #define SDCARD_DEV_NAME         "/dev/mmcblka1"
 #endif
+
 
        
 // *****************************************************************************
@@ -100,7 +102,8 @@ extern DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NU
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
 #endif
-extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Single_Chnl_Buffer[NUM_SAMPLES];
+extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Input_Buffer[NUM_SAMPLES];
+extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_TempBuf[NUM_SAMPLES];
 
 // *****************************************************************************
 /* Application States
@@ -124,10 +127,6 @@ typedef enum
     APP_STATE_CODEC_SET_BUFFER_HANDLER,
     APP_STATE_CODEC_ADD_BUFFER,
     APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE, 
-
-	// USB stuff
-	APP_STATE_BUS_ENABLE,
-    APP_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE,
     APP_STATE_WAIT_FOR_DEVICE_ATTACH,
     APP_STATE_DEVICE_CONNECTED,
     APP_STATE_MOUNT_DISK,
@@ -150,15 +149,35 @@ typedef enum
     APP_STATE_ERROR
 } APP_STATES;
 
+/* State machine for bringing up the USB MSD */
 typedef enum
 {
-    BUTTON_STATE_IDLE=0,
-    BUTTON_STATE_PRESSED,
-    BUTTON_STATE_BUTTON0_PRESSED,                   
-    BUTTON_STATE_WAIT_FOR_RELEASE    
-} BUTTON_STATES;
+    USB_STATE_INIT,
+	USB_STATE_BUS_ENABLE,
+    USB_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE,
+    USB_STATE_MOUNT_DISK,
+    USB_STATE_WAIT_FOR_DEVICE_ATTACH,
+    USB_STATE_DEVICE_CONNECTED,
+    USB_STATE_IDLE,
+} USB_STATES;
 
-#ifdef GFX_ENABLED
+
+typedef enum
+{
+    BTN_STATE_IDLE,
+    BTN_STATE_PRESSED,
+    BTN_STATE_BUTTON0_PRESSED,                   
+    BTN_STATE_WAIT_FOR_RELEASE    
+} BTN_STATES;
+
+typedef enum
+{
+    LED_STATE_ON,
+    LED_STATE_OFF,
+    LED_STATE_TOGGLE,
+    LED_STATE_BLINK,
+} LED_STATES;
+
 typedef enum
 {
     GUI_STATE_VOLUME,
@@ -169,7 +188,7 @@ typedef enum
     GUI_STATE_SAMPLE_RATE,
     GUI_STATE_MAX
 } GUI_STATES;
-#endif
+
 
 // *****************************************************************************
 // CODEC Data
@@ -282,7 +301,7 @@ typedef enum{
     VOL_LVL_LOW,
     VOL_LVL_MED,
     VOL_LVL_HIGH,
-    VOL_LVLS_MAX,
+    VOL_LVL_MAX,
 }VOL_LEVEL;
 
 typedef enum{
@@ -296,7 +315,7 @@ typedef struct{
     char chunkID[4];        // "RIFF"
     uint32_t chunkSize;
     char format[4];         // "WAVE"
-    char subChunkId1[4];    // "fmt "
+    char subChunk1Id[4];    // "fmt "
     uint32_t subChunk1Size;
     uint16_t audioFormat;
     uint16_t numChannels;
@@ -322,6 +341,22 @@ typedef struct{
     size_t bufferSize;
 }AUDIO_QUEUEBUFFER;
 
+typedef struct
+{
+    LED_STATES led1State;
+    LED_STATES led2State;
+    uint32_t led1Delay;
+    uint32_t led2Delay;
+    uint32_t led1Period;
+    uint32_t led2Period;
+    uint32_t led1Blinks;        // Number of blinks at _100ms on/off rate
+    uint32_t led2Blinks;
+    uint32_t led1BlinkCnt;      // Number of remaining blinks before _1sec off
+    uint32_t led2BlinkCnt;
+    bool led1On;
+    bool led2On;
+} LED_DATA;
+
 
 
 typedef struct {
@@ -334,52 +369,20 @@ typedef struct {
     
     /* Application's current state */
     APP_STATES state;
+    GUI_STATES guiState;
 
     PLAYER_MODE playerBtnMode;
     VOL_LEVEL volLevel;
     /*Unfolding audio files*/
-    uint16_t currentSongIdx;
-    uint16_t nextSongIdx;
-    uint16_t previousSongIdx;
-    uint16_t totalAudioFiles;
-
-    /* Number of bytes read */
-    uint32_t nBytesRead;
-    uint32_t diskCurrentFile;
-    int32_t  fileSize;
-    int32_t readBytes;
-    uint32_t current_filesize;
+    uint16_t currentSongIdx, nextSongIdx, previousSongIdx, totalAudioFiles, playerDecodeDataSize, bit_depth, volPercent, oldVolPercent;
     
-    int8_t readIdx;
-    uint8_t writeIdx;
-    uint16_t playerDecodeDataSize;
+    uint32_t buttonDelay, playbackDelay, bytesRemaining, playbackDuration, guiUpdate;
+    uint32_t nBytesRead, diskCurrentFile, fileSize, currPos, readBytes, current_filesize, sampleRate;
     
-    bool nextTrack;
-    bool readbyte_flag;
-
-    uint32_t playbackDelay;
-    uint32_t buttonDelay;
-    uint32_t led1Delay;
-    uint32_t led2Delay;
-    
-    BUTTON_STATES buttonState;
-
-    uint8_t volume;
-       
-    uint8_t pingPong;
-       
     AUDIO_CODEC_DATA codecData;
+    uint8_t volumeIndex, volume, prevVol, readIdx, writeIdx, numOfChnls;   
     
-    bool pause;
-    
-    uint8_t volumeIndex;   
-    
-    bool deviceIsConnected;
-    bool buf1Clear;
-    bool buf2Clear;
-    bool lrSync;
-    bool playback;
-    bool headphone_out;
+    bool usbConnect, lrSync, readbyte_flag, pingPong, pause, headphone_out;
 
     //    UpdatePlaytimeFuncPtr updatePlaytimeFunc;
     
@@ -390,13 +393,20 @@ typedef struct {
     AUDIO_QUEUEBUFFER  audioBuffer[AUDIO_QUEUEBUFFER_NUMBER];
     bool trackPlayed[DISK_MAX_FILES];
     char fileName[64];
-#ifdef GFX_ENABLED
-    uint8_t numOfChnls;
-    uint16_t bit_depth;
-    uint32_t guiUpdate, sampleRate, currPos;
-    GUI_STATES guiState;
-#endif
+    char ext[5];
 }APP_DATA ;
+
+typedef struct
+{
+    USB_STATES state;
+    bool deviceIsConnected;
+} USB_DATA;
+
+typedef struct
+{
+    BTN_STATES state;
+    uint32_t delay;
+} BTN_DATA;
 
 
 // *****************************************************************************
@@ -482,9 +492,10 @@ void APP_Initialize ( void );
 
 void                APP_Tasks( void );
 
-void                APP_Button_Tasks( void );
+void                BTN_Tasks( void );
+void                USB_Tasks( void );
 void                APP_LED_Tasks( void );
-
+void                LED_Set_Mode( uint8_t led, LED_STATES state, uint32_t prd_blinks);
 void                DISK_Tasks( void );
 
 bool                APP_GetSpiAudioMode( void );
