@@ -2252,7 +2252,10 @@ bool DRV_WM8904_LRCLK_Sync (const DRV_HANDLE handle)
     clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
     drvObj = (DRV_WM8904_OBJ *)clientObj->hDriver;
 
-    return DRV_I2S_LRCLK_Sync (drvObj->i2sDriverHandle, drvObj->samplingRate);
+    // if no sampling rate set, pass something reasonable to calculate delay times
+    uint32_t samplingRate = (drvObj->samplingRate) ? drvObj->samplingRate : 48000;
+
+    return DRV_I2S_LRCLK_Sync (drvObj->i2sDriverHandle, samplingRate);
 }
 
 // *****************************************************************************
@@ -2380,6 +2383,9 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
                                       (void *)&testWriteData[0],
                                       APP_WRITE_DATA_LENGTH,
                                       &drvObj->hWriteTransfer );
+ 
+            // resets the WM8904, so wait a bit
+            drvObj->WM8904Delay = 300;
             
             if( drvObj->hWriteTransfer == DRV_I2C_TRANSFER_HANDLE_INVALID )
             {

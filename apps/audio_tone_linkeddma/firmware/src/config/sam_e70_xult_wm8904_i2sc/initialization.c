@@ -233,10 +233,11 @@ const SYS_TIME_INIT sysTimeInitData =
 
 void SYS_Initialize ( void* data )
 {
+
+    EFC_Initialize();
   
     CLK_Initialize();
 	PIO_Initialize();
-
 
     I2SC1_Initialize();
     XDMAC_Initialize();

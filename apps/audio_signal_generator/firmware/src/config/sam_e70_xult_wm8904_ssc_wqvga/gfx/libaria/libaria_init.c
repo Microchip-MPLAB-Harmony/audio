@@ -40,6 +40,7 @@
 // DOM-IGNORE-END
 
 #include "gfx/libaria/libaria_init.h"
+#include "gfx/libaria/inc/libaria_utils.h"
 
 laScheme defaultScheme;
 laScheme textFieldScheme;
@@ -173,7 +174,7 @@ int32_t libaria_initialize(void)
     titleScheme.foreground = 0x4;
     titleScheme.foregroundInactive = 0x5;
     titleScheme.foregroundDisabled = 0x84;
-    titleScheme.background = 0xEF;	// KEEP THIS LINE (until MH3-4858 fixed)
+    titleScheme.background = 0x57;
     titleScheme.backgroundInactive = 0x5;
     titleScheme.backgroundDisabled = 0x0;
     titleScheme.text = 0x4;
@@ -187,14 +188,14 @@ int32_t libaria_initialize(void)
     whiteText.highlight = 0x0;
     whiteText.highlightLight = 0x57;
     whiteText.shadow = 0x84;
-    whiteText.shadowDark = 0x1;	// KEEP THIS LINE (until MH3-4858 fixed)
+    whiteText.shadowDark = 0x3;
     whiteText.foreground = 0x4;
     whiteText.foregroundInactive = 0x5;
     whiteText.foregroundDisabled = 0x84;
     whiteText.background = 0x57;
     whiteText.backgroundInactive = 0x5;
     whiteText.backgroundDisabled = 0x0;
-    whiteText.text = 0x1;		// KEEP THIS LINE (until MH3-4858 fixed)
+    whiteText.text = 0x4;
     whiteText.textHighlight = 0x6;
     whiteText.textHighlightText = 0x57;
     whiteText.textInactive = 0x5;
@@ -1066,6 +1067,7 @@ static void ScreenCreate_trigger(laScreen* screen)
     laWidget_AddChild((laWidget*)layer0, (laWidget*)ImageWidget4);
 
 }
+
 
 
 

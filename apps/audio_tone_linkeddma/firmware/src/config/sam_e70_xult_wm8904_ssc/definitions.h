@@ -52,6 +52,7 @@
 #include "peripheral/pio/plib_pio.h"
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/xdmac/plib_xdmac.h"
+#include "peripheral/efc/plib_efc.h"
 #include "peripheral/tc/plib_tc0.h"
 #include "peripheral/ssc/plib_ssc.h"
 #include "driver/i2c/drv_i2c.h"
@@ -61,7 +62,9 @@
 #include "peripheral/twihs/plib_twihs0.h"
 #include "audio/driver/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
+#include "system/ports/sys_ports.h"
 #include "system/cache/sys_cache.h"
+#include "system/dma/sys_dma.h"
 #include "osal/osal.h"
 #include "app.h"
 

@@ -119,8 +119,6 @@ Clock Initialize
 *********************************************************************************/
 void CLK_Initialize( void )
 {
-    /* Set Flash Wait States and  Enable Code Loop Optimization */
-    EFC_REGS->EEFC_FMR = EEFC_FMR_FWS(5) | EEFC_FMR_CLOE_Msk;
 
 
     /* Initialize Main Clock */

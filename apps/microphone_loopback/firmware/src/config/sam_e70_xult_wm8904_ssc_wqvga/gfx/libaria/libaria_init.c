@@ -119,7 +119,7 @@ int32_t libaria_initialize(void)
     titleScheme.foreground = 0x4;
     titleScheme.foregroundInactive = 0x5;
     titleScheme.foregroundDisabled = 0x2E;
-    titleScheme.background = 0x30;
+    titleScheme.background = 0x8;   // KEEP THIS LINE until MH3-4858 fixed
     titleScheme.backgroundInactive = 0x5;
     titleScheme.backgroundDisabled = 0x0;
     titleScheme.text = 0x4;
@@ -134,7 +134,7 @@ int32_t libaria_initialize(void)
     ButtonScheme.highlightLight = 0x30;
     ButtonScheme.shadow = 0x2E;
     ButtonScheme.shadowDark = 0x3;
-    ButtonScheme.foreground = 0x4;
+    ButtonScheme.foreground = 0xB;   // KEEP THIS LINE until MH3-4858 fixed
     ButtonScheme.foregroundInactive = 0x5;
     ButtonScheme.foregroundDisabled = 0x2E;
     ButtonScheme.background = 0x30;
@@ -158,7 +158,7 @@ int32_t libaria_initialize(void)
     whiteText.background = 0x30;
     whiteText.backgroundInactive = 0x5;
     whiteText.backgroundDisabled = 0x0;
-    whiteText.text = 0x4;
+    whiteText.text = 0x1;            // KEEP THIS LINE until MH3-4858 fixed
     whiteText.textHighlight = 0x6;
     whiteText.textHighlightText = 0x30;
     whiteText.textInactive = 0x5;

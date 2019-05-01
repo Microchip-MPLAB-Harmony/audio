@@ -106,7 +106,8 @@ static void App_TimerCallback( uintptr_t context)
     if (appData.buttonDelay)
     {      
         appData.buttonDelay--;
-    }        
+    }
+    //LED2_Toggle();        // uncomment to calibrate timer -- should toggle every 1 ms
 }
 
 // *****************************************************************************
@@ -264,7 +265,7 @@ void APP_Tasks ( void )
             if (firstSync)
             {
                 firstSync = false;
-//!!                DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
+                DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
             } 
             
             if (appData.pingPong==1)

@@ -54,7 +54,6 @@
 // Section: Configuration Bits
 // ****************************************************************************
 // ****************************************************************************
-
 #pragma config BOD33_DIS = SET
 #pragma config BOD33USERLEVEL = 0x1c
 #pragma config BOD33_ACTION = RESET
@@ -250,13 +249,13 @@ const SYS_TIME_INIT sysTimeInitData =
 
 void SYS_Initialize ( void* data )
 {
+    NVMCTRL_Initialize( );
+  
   
     PORT_Initialize();
 
     CLOCK_Initialize();
 
-
-    SERCOM1_USART_Initialize();
 
     SERCOM6_I2C_Initialize();
 

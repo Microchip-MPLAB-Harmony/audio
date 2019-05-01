@@ -58,7 +58,7 @@
 
 
 /* SERCOM1 USART baud value for 115200 Hz baud rate */
-#define SERCOM1_USART_INT_BAUD_VALUE            (63019U)
+#define SERCOM1_USART_INT_BAUD_VALUE            (55469U)
 
 
 // *****************************************************************************
@@ -123,7 +123,7 @@ void SERCOM1_USART_Initialize( void )
 
 uint32_t SERCOM1_USART_FrequencyGet( void )
 {
-    return (uint32_t) (48000000UL);
+    return (uint32_t) (12000000UL);
 }
 
 bool SERCOM1_USART_SerialSetup( USART_SERIAL_SETUP * serialSetup, uint32_t clkFrequency )
