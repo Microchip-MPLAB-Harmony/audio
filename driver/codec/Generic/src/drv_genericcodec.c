@@ -2015,7 +2015,10 @@ bool DRV_GENERICCODEC_LRCLK_Sync (const DRV_HANDLE handle)
     clientObj = (DRV_GENERICCODEC_CLIENT_OBJ *) handle;
     drvObj = (DRV_GENERICCODEC_OBJ *)clientObj->hDriver;
 
-    return DRV_I2S_LRCLK_Sync (drvObj->i2sDriverHandle, drvObj->samplingRate);
+    // if no sampling rate set, pass something reasonable to calculate delay times
+    uint32_t samplingRate = (drvObj->samplingRate) ? drvObj->samplingRate : 48000;
+
+    return DRV_I2S_LRCLK_Sync (drvObj->i2sDriverHandle, samplingRate);
 }
 
 // *****************************************************************************

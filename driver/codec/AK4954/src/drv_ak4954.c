@@ -2965,6 +2965,75 @@ uint8_t _getAK4954_samplerate(uint32_t samplingRate)
     
     return ak4954_rate;
 }
+
+// *****************************************************************************
+/*
+  Function:
+    DRV_HANDLE DRV_AK4954_GetI2SDriver(DRV_HANDLE codecHandle)
+
+  Summary:
+    Get the handle to the I2S driver for this codec instance.
+
+  Description:
+    Returns the appropriate handle to the I2S based on the ioIent member
+    of the codec object.
+
+  Remarks:
+    This allows the caller to directly access portions of the I2S driver that
+    might not be available via the codec API.
+*/
+DRV_HANDLE DRV_AK4954_GetI2SDriver(DRV_HANDLE codecHandle)
+{
+    DRV_AK4954_CLIENT_OBJ* clientObj = (DRV_AK4954_CLIENT_OBJ*)codecHandle; 
+    DRV_AK4954_OBJ* drvObj = (DRV_AK4954_OBJ*)clientObj->hDriver;
+
+    if(DRV_IO_INTENT_READ == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
+    {
+        return drvObj->i2sDriverClientHandleRead;
+    }
+    else if(DRV_IO_INTENT_WRITE == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
+    {
+        return drvObj->i2sDriverClientHandleWrite;
+
+    }
+    else if(DRV_IO_INTENT_READWRITE == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
+    {
+        return drvObj->i2sDriverHandle;
+    }
+    return (DRV_HANDLE)NULL;
+} 
+
+// *****************************************************************************
+/* Function:
+    uint32_t DRV_AK4954_LRCLK_Sync (const DRV_HANDLE handle);
+    
+  Summary:
+    Synchronize to the start of the I2S LRCLK (left/right clock) signal
+    
+  Description:
+    This function waits until low-to high transition of the I2S LRCLK (left/right clock)
+    signal (high-low if Left-Justified format, this is determined by the PLIB).
+    In the case where this signal is generated from a codec or other external
+    source, this allows the caller to synchronize calls to the DMA with the LRCLK signal
+    so the left/right channel association is valid.
+    
+  Remarks:
+    None.                                            
+*/
+bool DRV_AK4954_LRCLK_Sync (const DRV_HANDLE handle)
+{
+    DRV_AK4954_OBJ *drvObj;
+    DRV_AK4954_CLIENT_OBJ *clientObj;
+
+    clientObj = (DRV_AK4954_CLIENT_OBJ *) handle;
+    drvObj = (DRV_AK4954_OBJ *)clientObj->hDriver;
+    
+    // if no sampling rate set, pass something reasonable to calculate delay times
+    uint32_t samplingRate = (drvObj->samplingRate) ? drvObj->samplingRate : 48000;
+
+    return DRV_I2S_LRCLK_Sync (drvObj->i2sDriverHandle, samplingRate);
+}
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: AK4954 Command Queue Implementations
