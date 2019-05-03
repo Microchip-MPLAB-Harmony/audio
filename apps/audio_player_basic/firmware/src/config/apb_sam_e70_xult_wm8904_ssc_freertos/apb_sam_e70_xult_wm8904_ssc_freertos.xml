@@ -4090,44 +4090,37 @@
     </GeneratorComponent>
     <UniqueComponent dnOrder="8" id="drv_usbhs_v1">
       <Symbols dnOrder="0">
-        <String dnOrder="0" id="USB_DEVICE_VBUS_SENSE_PIN_NAME">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="visible">
-              <Value dnOrder="0">true</Value>
-            </Boolean>
-          </Attributes>
-        </String>
-        <Integer dnOrder="1" id="USB_DRV_HOST_ATTACH_DEBOUNCE_DURATION">
+        <Integer dnOrder="0" id="USB_DRV_HOST_ATTACH_DEBOUNCE_DURATION">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="visible">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </Integer>
-        <Integer dnOrder="2" id="USB_DRV_HOST_RESET_DUARTION">
+        <Integer dnOrder="1" id="USB_DRV_HOST_RESET_DUARTION">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="visible">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </Integer>
-        <Combo dnOrder="3" id="USB_OPERATION_MODE">
+        <Combo dnOrder="2" id="USB_OPERATION_MODE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="usb_host" value="Host"/>
           </Values>
         </Combo>
       </Symbols>
     </UniqueComponent>
-    <UniqueComponent dnOrder="9" id="efc"/>
-    <UniqueComponent dnOrder="10" id="FreeRTOS">
+    <UniqueComponent dnOrder="9" id="efc">
       <Symbols dnOrder="0">
-        <Integer dnOrder="0" id="FREERTOS_CPU_CLOCK_HZ">
+        <Integer dnOrder="0" id="NVM_RWS">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="FreeRTOS" value="300000000"/>
+            <Dynamic dnOrder="0" id="efc" value="6"/>
           </Values>
         </Integer>
       </Symbols>
     </UniqueComponent>
+    <UniqueComponent dnOrder="10" id="FreeRTOS"/>
     <UniqueComponent dnOrder="11" id="HarmonyCore">
       <Symbols dnOrder="0">
         <File dnOrder="0" id="APP0_C">
@@ -4322,89 +4315,96 @@
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="30" id="OSAL_SYSDEF_H">
+        <File dnOrder="30" id="OSAL_IMPL_BASIC_H">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <File dnOrder="31" id="OSAL_SYSDEF_H">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="31" id="PORTS_DEF">
+        <File dnOrder="32" id="PORTS_DEF">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="32" id="PORTS_HEADER">
+        <File dnOrder="33" id="PORTS_HEADER">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="33" id="PORTS_MAPPING">
+        <File dnOrder="34" id="PORTS_MAPPING">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <Combo dnOrder="34" id="SELECT_RTOS">
+        <Combo dnOrder="35" id="SELECT_RTOS">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="HarmonyCore" value="FreeRTOS"/>
           </Values>
         </Combo>
-        <File dnOrder="35" id="SYSTEM_COMMON">
+        <File dnOrder="36" id="SYSTEM_COMMON">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="36" id="SYSTEM_MODULE">
+        <File dnOrder="37" id="SYSTEM_MODULE">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="37" id="SYSTEM_ROOT">
+        <File dnOrder="38" id="SYSTEM_ROOT">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="38" id="SYS_CACHE_DEF">
+        <File dnOrder="39" id="SYS_CACHE_DEF">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="39" id="SYS_CACHE_HEADER">
+        <File dnOrder="40" id="SYS_CACHE_HEADER">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="40" id="SYS_CACHE_SOURCE">
+        <File dnOrder="41" id="SYS_CACHE_SOURCE">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="41" id="TASKS_C">
+        <File dnOrder="42" id="TASKS_C">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="42" id="USER_H">
+        <File dnOrder="43" id="USER_H">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
@@ -4473,13 +4473,27 @@
             <User dnOrder="0" value="SYS_FS_MEDIA_TYPE_MSD"/>
           </Values>
         </Combo>
-        <Integer dnOrder="8" id="SYS_FS_VOLUME_NUMBER">
+        <Menu dnOrder="8" id="SYS_FS_RTOS_MENU">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="visible">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </Menu>
+        <Integer dnOrder="9" id="SYS_FS_VOLUME_NUMBER">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="visible">
               <Value dnOrder="0">false</Value>
             </Boolean>
           </Attributes>
         </Integer>
+        <File dnOrder="10" id="sysFSSystemRtosTaskFile">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
       </Symbols>
       <Attachments dnOrder="1">
         <MultiCapability dnOrder="0" id="sys_fs_DRV_MEDIA_dependency">
@@ -4771,14 +4785,13 @@
     <UniqueComponent dnOrder="19" id="wm8904_codec"/>
   </Components>
   <UserData>
-    <GraphSettings canvasHeight="800" canvasWidth="400" dnOrder="0"/>
-    <ComponentGraph dnOrder="1" id="__ROOTVIEW">
+    <ComponentGraph dnOrder="0" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="BSP_SAM_E70_Xplained_Ultra" x="498" y="22"/>
-        <ElementPosition dnOrder="1" id="FreeRTOS" x="631" y="53"/>
+        <ElementPosition dnOrder="1" id="FreeRTOS" x="597" y="57"/>
         <ElementPosition dnOrder="2" id="HarmonyCore" x="15" y="50"/>
         <ElementPosition dnOrder="3" id="audio_codec_wm8904" x="621" y="135"/>
-        <ElementPosition dnOrder="4" id="audio_decoders" x="-16" y="205"/>
+        <ElementPosition dnOrder="4" id="audio_decoders" x="-14" y="210"/>
         <ElementPosition dnOrder="5" id="cmsis" x="120" y="20"/>
         <ElementPosition dnOrder="6" id="core" x="20" y="20"/>
         <ElementPosition dnOrder="7" id="dfp" x="260" y="20"/>
@@ -4796,5 +4809,6 @@
         <ElementPosition dnOrder="19" id="wm8904_codec" x="475" y="227"/>
       </ElementPositions>
     </ComponentGraph>
+    <GraphSettings canvasHeight="800" canvasWidth="400" dnOrder="1"/>
   </UserData>
 </Configuration>
