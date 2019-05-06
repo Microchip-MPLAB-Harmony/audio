@@ -175,9 +175,10 @@ void HiddenSawtoothButton2_PressedEvent(laButtonWidget* btn);
 void HiddenTriangleButton2_PressedEvent(laButtonWidget* btn);
 
 // KEEP THESE LINES:
+#define LIBARIA_EVENTS_DEFINED  1       // if file is regenerated via Bamboo, this will remain undefined
 void InitLabels( void );      // routine in libaria_events.c called from app.c
-
 void KeyRepeatTask( void );   // routine in libaria_events.c called from app.c
+
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

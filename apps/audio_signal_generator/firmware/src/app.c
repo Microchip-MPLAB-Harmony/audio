@@ -95,9 +95,11 @@ void App_TimerCallback( uintptr_t context)
     }        
     msCounter++;
 
+#ifdef LIBARIA_EVENTS_DEFINED    // if project is regenerated via Bamboo, this will remain undefined 
     KeyRepeatTask();    // process touch key-repeat events in libaria_events.c
+#endif    
 
-    LED1_Toggle();      // for testing only
+    //LED1_Toggle();      // uncomment to calibrate timer -- should toggle every 1 ms
 }
 
 static uint32_t _calcDelayLoop()
@@ -222,7 +224,9 @@ void fillInNumSamplesTable(uint8_t bufferNum)
             appData.currNumSamples = appData.startNumSamples;
             if (false==appData.loopEnabled)
             {
+#ifdef LIBARIA_EVENTS_DEFINED    // if project is regenerated via Bamboo, this will remain undefined                 
                 HiddenPlayPauseButton_ReleasedEvent(NULL);      // simulate pressing and releasing button
+#endif                
             }
             initSweep();
             
@@ -302,8 +306,10 @@ void APP_Initialize ( void )
     appData.playOrPaused = false;
     
     appData.lastPlayOrPaused = false;
-       
+      
+#ifdef LIBARIA_EVENTS_DEFINED    // if project is regenerated via Bamboo, this will remain undefined    
     InitLabels();
+#endif    
     
     initSweep();    
 

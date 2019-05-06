@@ -40,7 +40,9 @@
 // called every millisecond from App_TimerCallback
 void KeyRepeatTask ( void )
 {
-    KeyRepeatTask_sub();    // in turn calls routine in libaria_events.c   
+#ifdef LIBARIA_EVENTS_DEFINED    // if project is regenerated via Bamboo, this will remain undefined     
+    KeyRepeatTask_sub();    // in turn calls routine in libaria_events.c
+#endif    
 }
 
 // *****************************************************************************

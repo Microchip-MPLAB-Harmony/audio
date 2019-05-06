@@ -82,9 +82,10 @@ void hiddenToggleOnButton_PressedEvent(laButtonWidget* btn);
 void hiddenToggleOffButton_PressedEvent(laButtonWidget* btn);
 
 // KEEP THESE LINES:
-void InitGUI( void );           // routine in libaria_events.c called from gui.c
-
+#define LIBARIA_EVENTS_DEFINED  1   // if file is regenerated via Bamboo, this will remain undefined
+void InitGUI( void );               // routine in libaria_events.c called from gui.c
 void KeyRepeatTask_sub( void );     // routine in libaria_events.c called from gui.c
+
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

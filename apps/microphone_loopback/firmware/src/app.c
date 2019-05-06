@@ -84,7 +84,7 @@ APP_DATA appData;
 static void App_TimerCallback( uintptr_t context)
 {
     KeyRepeatTask();    // used to debounce button or touch events
-    LED2_Toggle();      // uncomment to calibrate timer -- should toggle every 1 ms
+    //LED2_Toggle();      // uncomment to calibrate timer -- should toggle every 1 ms
 }
 
 // *****************************************************************************
