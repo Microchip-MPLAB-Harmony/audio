@@ -331,8 +331,7 @@ const USB_DEVICE_MASTER_DESCRIPTOR usbMasterDescriptor =
     &deviceDescriptor,                                      // Full speed descriptor
     1,                                                      // Total number of full speed configurations available
     fullSpeedConfigDescSet,                                 // Pointer to array of full speed configurations descriptors
-	//KEEP THIS - The correct value from above. 
-    &deviceDescriptor,          /* High speed device descriptor*/
+	NULL, 
 	0,
 	NULL,
     3,														// Total number of string descriptors available.
