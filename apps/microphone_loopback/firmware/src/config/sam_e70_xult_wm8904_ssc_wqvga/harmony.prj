@@ -867,8 +867,8 @@
           <Name dnOrder="1">libaria_widget_imageplus_skin_classic.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/libaria</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/libaria/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">46BD2F156B707497750CA91FEFBF148A</GeneratedChecksum>
-          <UserChecksum dnOrder="5">46BD2F156B707497750CA91FEFBF148A</UserChecksum>
+          <GeneratedChecksum dnOrder="4">30C059CE062A627CF3A73CC63A0AC7D0</GeneratedChecksum>
+          <UserChecksum dnOrder="5">30C059CE062A627CF3A73CC63A0AC7D0</UserChecksum>
         </File>
         <File dnOrder="108">
           <Type dnOrder="0">SOURCE</Type>

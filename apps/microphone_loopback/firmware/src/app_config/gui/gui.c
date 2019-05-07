@@ -151,8 +151,9 @@ void APP_Initialize_sub ( void )
     {
         oldDelay = INITIAL_DELAY;   
     }
-  
+#ifdef LIBARIA_EVENTS_DEFINED    // if project is regenerated via Bamboo, this will remain undefined   
     InitGUI();         // located in libaria_events.c
+#endif    
 }
 
 void APP_Tasks_sub ( void )
