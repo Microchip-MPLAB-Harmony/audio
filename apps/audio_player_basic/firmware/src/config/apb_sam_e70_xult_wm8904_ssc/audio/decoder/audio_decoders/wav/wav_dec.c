@@ -155,10 +155,10 @@ uint32_t WAV_GetAudioSize(){
 
 bool WAV_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *output, uint16_t *written)
 {
-    memcpy ( output, input, WAV_INPUT_BUFFER_SIZE );
+    memcpy ( output, input, inSize );
 
-    *read = WAV_INPUT_BUFFER_SIZE;
-    *written = WAV_INPUT_BUFFER_SIZE;
+    *read = inSize;
+    *written = inSize;
     return true;
 }
 

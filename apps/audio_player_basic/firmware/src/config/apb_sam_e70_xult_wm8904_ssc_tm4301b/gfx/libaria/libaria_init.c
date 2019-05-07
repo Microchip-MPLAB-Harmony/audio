@@ -255,7 +255,7 @@ static void ScreenCreate_GainLableWidget(laScreen* screen)
     laWidget_SetBackgroundType((laWidget*)VolumeWidget, LA_WIDGET_BACKGROUND_NONE);
     laWidget_SetBorderType((laWidget*)VolumeWidget, LA_WIDGET_BORDER_NONE);
     laCircularSliderWidget_SetStartAngle(VolumeWidget, 270);
-    laCircularSliderWidget_SetValue(VolumeWidget, 25);
+    laCircularSliderWidget_SetValue(VolumeWidget, 20);
     laCircularSliderWidget_SetDirection(VolumeWidget, CIRCULAR_SLIDER_DIR_CLOCKWISE);
     laCircularSliderWidget_SetArcThickness(VolumeWidget, ACTIVE_AREA, 20);
     laCircularSliderWidget_SetValueChangedEventCallback(VolumeWidget, &VolumeWidget_ValueChangedEvent);

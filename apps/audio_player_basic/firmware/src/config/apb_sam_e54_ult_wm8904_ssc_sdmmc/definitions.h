@@ -50,6 +50,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "peripheral/sercom/usart/plib_sercom1_usart.h"
+#include "peripheral/evsys/plib_evsys.h"
 #include "driver/sdmmc/drv_sdmmc.h"
 #include "peripheral/sercom/i2cm/plib_sercom6_i2c.h"
 #include "peripheral/port/plib_port.h"

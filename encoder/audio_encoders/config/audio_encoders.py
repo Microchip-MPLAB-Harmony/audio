@@ -424,7 +424,8 @@ oggCntnrTable= [("LIB_", "../audio_containers/lib_ogg_1_3_2/include/ogg/", "ogg.
 wavCntnrTable= [("LIB_", "../audio_containers/include/", "wav_format_container.h", "audio/encoder/audio_containers/include")]
 
 ftlTable     = [("LIB_", "../templates/", "audio_encoder_config.h.ftl", "audio/encoder/audio_containers/include"),
-                ("LIB_", "../audio_encoders/templates/", "encoder.c.ftl", "audio/encoder/audio_containers/include")]
+                # ("LIB_", "../audio_encoders/templates/", "encoder.c.ftl", "audio/encoder/audio_containers/include"),
+                ]
 
 oggFtlTable     = [("LIB_", "../audio_containers/templates/", "ogg_format_container.c.ftl", "audio/encoder/audio_containers")]
 
@@ -693,7 +694,7 @@ def instantiateComponent(audioEncoderComponent):
     CONFIG_USE_WAV_CONTAINER.setDependencies(enableWavContainer, ["CONFIG_USE_WAV_CONTAINER"])
    
     CONFIG_USE_OGG_CONTAINER = audioEncoderComponent.createBooleanSymbol("CONFIG_USE_OGG_CONTAINER", AUDIO_FILE_CONTAINERS)
-    CONFIG_USE_OGG_CONTAINER.setVisible(True)
+    CONFIG_USE_OGG_CONTAINER.setVisible(False)
     CONFIG_USE_OGG_CONTAINER.setLabel("Enable OGG Container")
     CONFIG_USE_OGG_CONTAINER.setDefaultValue(False)
     CONFIG_USE_OGG_CONTAINER.setDependencies(enableOggContainer, ["CONFIG_USE_OGG_CONTAINER"])

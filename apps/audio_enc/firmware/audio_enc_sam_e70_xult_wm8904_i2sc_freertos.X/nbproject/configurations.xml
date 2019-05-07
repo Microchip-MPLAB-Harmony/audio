@@ -8,24 +8,35 @@
         <logicalFolder name="f1"
                        displayName="audio_enc_sam_e70_xult_wm8904_i2sc_freertos"
                        projectFiles="true">
-          <logicalFolder name="f6" displayName="audio" projectFiles="true">
-            <logicalFolder name="f1" displayName="driver" projectFiles="true">
+          <logicalFolder name="f1" displayName="audio" projectFiles="true">
+            <logicalFolder name="f1" displayName="decoder" projectFiles="true">
+              <logicalFolder name="f1" displayName="audio_decoders" projectFiles="true">
+                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/decoder/audio_decoders/wav/wav_dec.h</itemPath>
+              </logicalFolder>
+              <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/decoder/audio_decoders.h</itemPath>
+              <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/decoder/audio_decoders_config.h</itemPath>
+              <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/decoder/gfx_decoders.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f3" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
                 <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/driver/wm8904/drv_wm8904.h</itemPath>
               </logicalFolder>
             </logicalFolder>
-          </logicalFolder>
-          <logicalFolder name="f5" displayName="bsp" projectFiles="true">
-            <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/bsp/bsp.h</itemPath>
-          </logicalFolder>
-          <logicalFolder name="f8" displayName="decoder" projectFiles="true">
-            <logicalFolder name="f1" displayName="audio_decoders" projectFiles="true">
-              <logicalFolder name="f1" displayName="wav" projectFiles="true">
-                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/decoder/audio_decoders/wav/wav_dec.h</itemPath>
+            <logicalFolder name="f2" displayName="encoder" projectFiles="true">
+              <logicalFolder name="f2" displayName="audio_containers" projectFiles="true">
+                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/encoder/audio_containers/include/wav_format_container.h</itemPath>
               </logicalFolder>
+              <logicalFolder name="f1" displayName="audio_encoders" projectFiles="true">
+                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/encoder/audio_encoders/pcm/pcm_enc.h</itemPath>
+                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/encoder/audio_encoders/encoder.h</itemPath>
+              </logicalFolder>
+              <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/encoder/audio_containers/include/audio_encoder_config.h</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f3" displayName="driver" projectFiles="true">
+          <logicalFolder name="f6" displayName="bsp" projectFiles="true">
+            <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/bsp/bsp.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f4" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="i2c" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/driver/i2c/drv_i2c.h</itemPath>
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/driver/i2c/drv_i2c_definitions.h</itemPath>
@@ -48,22 +59,12 @@
             <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/driver/driver.h</itemPath>
             <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/driver/driver_common.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f7" displayName="encoder" projectFiles="true">
-            <logicalFolder name="f1" displayName="audio_containers" projectFiles="true">
-              <logicalFolder name="f1" displayName="include" projectFiles="true">
-                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/encoder/audio_containers/include/wav_format_container.h</itemPath>
-              </logicalFolder>
-            </logicalFolder>
-            <logicalFolder name="f2" displayName="audio_encoders" projectFiles="true">
-              <logicalFolder name="f1" displayName="pcm" projectFiles="true">
-                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/encoder/audio_encoders/pcm/pcm_enc.h</itemPath>
-              </logicalFolder>
-              <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/encoder/audio_encoders/encoder.h</itemPath>
-            </logicalFolder>
-          </logicalFolder>
-          <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
+          <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f2" displayName="clk" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/clk/plib_clk.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f6" displayName="efc" projectFiles="true">
+              <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/efc/plib_efc.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="i2sc" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/i2sc/plib_i2sc1.h</itemPath>
@@ -74,11 +75,11 @@
             <logicalFolder name="f3" displayName="pio" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/pio/plib_pio.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="tc" projectFiles="true">
+            <logicalFolder name="f7" displayName="tc" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/tc/plib_tc0.h</itemPath>
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/tc/plib_tc_common.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="twihs" projectFiles="true">
+            <logicalFolder name="f8" displayName="twihs" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/twihs/plib_twihs_master.h</itemPath>
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/twihs/plib_twihs0.h</itemPath>
             </logicalFolder>
@@ -87,7 +88,7 @@
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/xdmac/plib_xdmac.h</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f4" displayName="system" projectFiles="true">
+          <logicalFolder name="f5" displayName="system" projectFiles="true">
             <logicalFolder name="f5" displayName="cache" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/system/cache/sys_cache.h</itemPath>
             </logicalFolder>
@@ -132,7 +133,7 @@
             <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/system/system_module.h</itemPath>
             <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/system/system_media.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f2" displayName="usb" projectFiles="true">
+          <logicalFolder name="f3" displayName="usb" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/usb/src/usb_host_msd_local.h</itemPath>
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/usb/src/usb_host_scsi_local.h</itemPath>
@@ -277,25 +278,29 @@
         <logicalFolder name="f1"
                        displayName="audio_enc_sam_e70_xult_wm8904_i2sc_freertos"
                        projectFiles="true">
-          <logicalFolder name="f7" displayName="audio" projectFiles="true">
-            <logicalFolder name="f1" displayName="driver" projectFiles="true">
+          <logicalFolder name="f1" displayName="audio" projectFiles="true">
+            <logicalFolder name="f1" displayName="decoder" projectFiles="true">
+              <logicalFolder name="f1" displayName="audio_decoders" projectFiles="true">
+                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/decoder/audio_decoders/wav/wav_dec.c</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f3" displayName="driver" projectFiles="true">
               <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
                 <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/driver/wm8904/drv_wm8904.c</itemPath>
                 <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/driver/wm8904/drv_wm8904_local.h</itemPath>
               </logicalFolder>
             </logicalFolder>
-          </logicalFolder>
-          <logicalFolder name="f6" displayName="bsp" projectFiles="true">
-            <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/bsp/bsp.c</itemPath>
-          </logicalFolder>
-          <logicalFolder name="f9" displayName="decoder" projectFiles="true">
-            <logicalFolder name="f1" displayName="audio_decoders" projectFiles="true">
-              <logicalFolder name="f1" displayName="wav" projectFiles="true">
-                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/decoder/audio_decoders/wav/wav_dec.c</itemPath>
+            <logicalFolder name="f2" displayName="encoder" projectFiles="true">
+              <logicalFolder name="f1" displayName="audio_encoders" projectFiles="true">
+                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/encoder/audio_encoders/pcm/pcm_enc.c</itemPath>
               </logicalFolder>
+              <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/encoder/audio_containers/wav_format_container.c</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f4" displayName="driver" projectFiles="true">
+          <logicalFolder name="f7" displayName="bsp" projectFiles="true">
+            <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/bsp/bsp.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f5" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="i2c" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/driver/i2c/src/drv_i2c.c</itemPath>
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/driver/i2c/src/drv_i2c_local.h</itemPath>
@@ -313,21 +318,12 @@
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f8" displayName="encoder" projectFiles="true">
-            <logicalFolder name="f2" displayName="audio_containers" projectFiles="true">
-              <logicalFolder name="f1" displayName="include" projectFiles="true">
-              </logicalFolder>
-              <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/encoder/audio_containers/wav_format_container.c</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f1" displayName="audio_encoders" projectFiles="true">
-              <logicalFolder name="f1" displayName="pcm" projectFiles="true">
-                <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/encoder/audio_encoders/pcm/pcm_enc.c</itemPath>
-              </logicalFolder>
-            </logicalFolder>
-          </logicalFolder>
-          <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
+          <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f2" displayName="clk" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/clk/plib_clk.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f6" displayName="efc" projectFiles="true">
+              <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/efc/plib_efc.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="i2sc" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/i2sc/plib_i2sc1.c</itemPath>
@@ -338,20 +334,20 @@
             <logicalFolder name="f3" displayName="pio" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/pio/plib_pio.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="tc" projectFiles="true">
+            <logicalFolder name="f7" displayName="tc" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/tc/plib_tc0.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="twihs" projectFiles="true">
+            <logicalFolder name="f8" displayName="twihs" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/twihs/plib_twihs0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f5" displayName="xdmac" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/xdmac/plib_xdmac.c</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f3" displayName="stdio" projectFiles="true">
+          <logicalFolder name="f4" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="f5" displayName="system" projectFiles="true">
+          <logicalFolder name="f6" displayName="system" projectFiles="true">
             <logicalFolder name="f4" displayName="cache" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/system/cache/sys_cache.c</itemPath>
             </logicalFolder>
@@ -376,7 +372,7 @@
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/system/time/src/sys_time.c</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f2" displayName="usb" projectFiles="true">
+          <logicalFolder name="f3" displayName="usb" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/usb/src/usb_host_msd.c</itemPath>
               <itemPath>../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/usb/src/usb_host_scsi.c</itemPath>
@@ -505,7 +501,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/include"/>
+                  value="../src;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/decoder;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/decoder/audio_decoders;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/encoder/audio_encoders;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/audio/encoder/audio_containers"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>

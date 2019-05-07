@@ -49,7 +49,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 <#if CONFIG_USE_WAV_STREAMING == true>
-#include "decoder/audio_decoders/wav/wav_dec.h"
+#include "wav/wav_dec.h"
 </#if>
 <#if CONFIG_USE_MP3_DECODER == true>
 #include "decoder/premium/decoder_mp3/support/mp3_dec.h"
@@ -61,16 +61,16 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "decoder/premium/decoder_wma/support/wma_dec.h"
 </#if>
 <#if CONFIG_USE_OGG_SPEEX_DECODER == true>
-#include "decoder/audio_decoders/speex/speex_dec.h"
+#include "speex/speex_dec.h"
 </#if>
 <#if CONFIG_USE_OGG_OPUS_DECODER == true>
-#include "decoder/audio_decoders/opus/support/opus_dec.h"
+#include "opus/support/opus_dec.h"
 </#if>
 <#if CONFIG_USE_FLAC_DECODER == true>
-#include "decoder/audio_decoders/flac/flac_dec.h"
+#include "flac/flac_dec.h"
 </#if>
 <#if CONFIG_USE_ADPCM_STREAMING == true>
-#include "decoder/audio_decoders/adpcm/adpcm_dec.h"
+#include "adpcm/adpcm_dec.h"
 </#if>
 
 <#--

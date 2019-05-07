@@ -26,13 +26,17 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+#include "audio/decoder/audio_decoders_config.h"
+#include "audio_decoders.h"
 
 // *****************************************************************************
 // *****************************************************************************
 // Section: User Configuration macros
 // *****************************************************************************
 // *****************************************************************************
-
+#define NUM_SAMPLES                     256*4
+#define BUFFER_SIZE                     4*NUM_SAMPLES
+#define GFX_ENABLED
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

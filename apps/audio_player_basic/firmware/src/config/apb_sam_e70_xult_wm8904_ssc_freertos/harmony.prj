@@ -99,8 +99,8 @@
           <Name dnOrder="1">drv_wm8904.c</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/wm8904/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">6588257EF5B3AF12EC0231EF884C9A4B</GeneratedChecksum>
-          <UserChecksum dnOrder="5">6588257EF5B3AF12EC0231EF884C9A4B</UserChecksum>
+          <GeneratedChecksum dnOrder="4">33E64985667DC137B41E4D530CE51942</GeneratedChecksum>
+          <UserChecksum dnOrder="5">33E64985667DC137B41E4D530CE51942</UserChecksum>
         </File>
         <File dnOrder="12">
           <Type dnOrder="0">SOURCE</Type>
@@ -403,8 +403,8 @@
           <Name dnOrder="1">wav_dec.c</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder/audio_decoders</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/decoder/audio_decoders/wav/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">84216AEF8318A9FF794C19CD7CFC7930</GeneratedChecksum>
-          <UserChecksum dnOrder="5">84216AEF8318A9FF794C19CD7CFC7930</UserChecksum>
+          <GeneratedChecksum dnOrder="4">4B3C05FAE434E6CC4703D5E01641614E</GeneratedChecksum>
+          <UserChecksum dnOrder="5">4B3C05FAE434E6CC4703D5E01641614E</UserChecksum>
         </File>
         <File dnOrder="50">
           <Type dnOrder="0">SOURCE</Type>
@@ -499,8 +499,8 @@
           <Name dnOrder="1">audio_decoders.h</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_freertos/audio/decoder</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/decoder/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">01BE2781738BBC487269405F29BA799E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">01BE2781738BBC487269405F29BA799E</UserChecksum>
+          <GeneratedChecksum dnOrder="4">96569B35AF469E6764B9A4DC45656E5E</GeneratedChecksum>
+          <UserChecksum dnOrder="5">96569B35AF469E6764B9A4DC45656E5E</UserChecksum>
         </File>
         <File dnOrder="62">
           <Type dnOrder="0">HEADER</Type>
@@ -564,7 +564,7 @@
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">5FC34C33A6561B86C2BBAE8C62C7B51E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">00C2C39D18B4FC8E97914ECB017ADA87</UserChecksum>
+          <UserChecksum dnOrder="5">5FC34C33A6561B86C2BBAE8C62C7B51E</UserChecksum>
         </File>
         <File dnOrder="70">
           <Type dnOrder="0">HEADER</Type>

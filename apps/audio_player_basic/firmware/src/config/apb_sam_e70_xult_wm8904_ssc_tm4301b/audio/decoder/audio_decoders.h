@@ -48,5 +48,5 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: Include Files
 // *****************************************************************************
 // *****************************************************************************
-#include "decoder/audio_decoders/wav/wav_dec.h"
+#include "wav/wav_dec.h"
 

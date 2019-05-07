@@ -99,8 +99,8 @@
           <Name dnOrder="1">drv_wm8904.c</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/wm8904/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/wm8904/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">6588257EF5B3AF12EC0231EF884C9A4B</GeneratedChecksum>
-          <UserChecksum dnOrder="5">6588257EF5B3AF12EC0231EF884C9A4B</UserChecksum>
+          <GeneratedChecksum dnOrder="4">33E64985667DC137B41E4D530CE51942</GeneratedChecksum>
+          <UserChecksum dnOrder="5">33E64985667DC137B41E4D530CE51942</UserChecksum>
         </File>
         <File dnOrder="12">
           <Type dnOrder="0">SOURCE</Type>
@@ -139,8 +139,8 @@
           <Name dnOrder="1">gfx_assets.c</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_tm4301b/gfx</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">E41B063F7A14E1AEA490BBCF955E8960</GeneratedChecksum>
-          <UserChecksum dnOrder="5">E41B063F7A14E1AEA490BBCF955E8960</UserChecksum>
+          <GeneratedChecksum dnOrder="4">673783E055146F3E6EFBD7342D3FEA08</GeneratedChecksum>
+          <UserChecksum dnOrder="5">673783E055146F3E6EFBD7342D3FEA08</UserChecksum>
         </File>
         <File dnOrder="17">
           <Type dnOrder="0">SOURCE</Type>
@@ -619,8 +619,8 @@
           <Name dnOrder="1">libaria_init.c</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_tm4301b/gfx/libaria</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/libaria/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">4AD78B0E3CE2D1A0828B4F2CF6A06529</GeneratedChecksum>
-          <UserChecksum dnOrder="5">4AD78B0E3CE2D1A0828B4F2CF6A06529</UserChecksum>
+          <GeneratedChecksum dnOrder="4">04E75C079577A5A8989220314ED6D0DC</GeneratedChecksum>
+          <UserChecksum dnOrder="5">04E75C079577A5A8989220314ED6D0DC</UserChecksum>
         </File>
         <File dnOrder="77">
           <Type dnOrder="0">SOURCE</Type>
@@ -1411,8 +1411,8 @@
           <Name dnOrder="1">wav_dec.c</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/decoder/audio_decoders</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/decoder/audio_decoders/wav/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">84216AEF8318A9FF794C19CD7CFC7930</GeneratedChecksum>
-          <UserChecksum dnOrder="5">84216AEF8318A9FF794C19CD7CFC7930</UserChecksum>
+          <GeneratedChecksum dnOrder="4">4B3C05FAE434E6CC4703D5E01641614E</GeneratedChecksum>
+          <UserChecksum dnOrder="5">4B3C05FAE434E6CC4703D5E01641614E</UserChecksum>
         </File>
         <File dnOrder="176">
           <Type dnOrder="0">SOURCE</Type>
@@ -1491,8 +1491,8 @@
           <Name dnOrder="1">audio_decoders.h</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/decoder</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/decoder/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">01BE2781738BBC487269405F29BA799E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">01BE2781738BBC487269405F29BA799E</UserChecksum>
+          <GeneratedChecksum dnOrder="4">96569B35AF469E6764B9A4DC45656E5E</GeneratedChecksum>
+          <UserChecksum dnOrder="5">96569B35AF469E6764B9A4DC45656E5E</UserChecksum>
         </File>
         <File dnOrder="186">
           <Type dnOrder="0">HEADER</Type>
@@ -1556,7 +1556,7 @@
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_tm4301b/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">ECD6308EAF53CB9E23DDD75BAF8107B4</GeneratedChecksum>
-          <UserChecksum dnOrder="5">0A38C5A1FF138D829731A7870751C0D0</UserChecksum>
+          <UserChecksum dnOrder="5">ECD6308EAF53CB9E23DDD75BAF8107B4</UserChecksum>
         </File>
         <File dnOrder="194">
           <Type dnOrder="0">HEADER</Type>
@@ -3355,7 +3355,7 @@
             </String>
             <String desc="" dnOrder="20" folder="\" name="strVolumePercentage">
               <Entries dnOrder="0">
-                <Entry dnOrder="0" index="0">25%</Entry>
+                <Entry dnOrder="0" index="0">20%</Entry>
               </Entries>
             </String>
           </Strings>
@@ -3665,64 +3665,64 @@
         <Font antialias="false" bold="false" dnOrder="7" ext="ttf" italic="false" location="0" name="LiberationSans_Regular" size="11" sourceName="LiberationSans-Regular.ttf">
           <Data dnOrder="0">rO0ABXNyAA1qYXZhLmF3dC5Gb250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAEc2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJsZTtMAARuYW1ldAASTGphdmEvbGFuZy9TdHJpbmc7eHAAAAABP4AAAAAAAAEAAAAAcHQAD0xpYmVyYXRpb24gU2Fuc3g=</Data>
           <Strings dnOrder="1">
-            <String dnOrder="0" name="strTotalTime">
+            <String dnOrder="0" name="strStop">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="1" name="strPlay">
+            <String dnOrder="1" name="strStartTime">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="2" name="strNoOfChannelsLabel">
+            <String dnOrder="2" name="strBitDepth">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="3" name="strVolumeCntlLabel">
+            <String dnOrder="3" name="strVolumePercentage">
               <Language dnOrder="0" index="0"/>
             </String>
             <String dnOrder="4" name="strBitDepthLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="5" name="strTitleLabel">
+            <String dnOrder="5" name="strContainerType">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="6" name="strStop">
+            <String dnOrder="6" name="strContainerTypeLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="7" name="strNoOfChannels">
+            <String dnOrder="7" name="strSampleRateLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="8" name="strHPEnableLabel">
+            <String dnOrder="8" name="strSampleRate">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="9" name="strContainerType">
+            <String dnOrder="9" name="strNoOfChannels">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="10" name="strBitDepth">
+            <String dnOrder="10" name="strRec">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="11" name="StringChars">
+            <String dnOrder="11" name="strTitleLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="12" name="strRec">
+            <String dnOrder="12" name="strTotalTime">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="13" name="strEncoderType">
+            <String dnOrder="13" name="strHPEnableLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="14" name="strVolumePercentage">
+            <String dnOrder="14" name="StringChars">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="15" name="strStartTime">
+            <String dnOrder="15" name="strEncoderType">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="16" name="strContainerTypeLabel">
+            <String dnOrder="16" name="strPlay">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="17" name="strSampleRateLabel">
+            <String dnOrder="17" name="strNoOfChannelsLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="18" name="strSampleRate">
+            <String dnOrder="18" name="strTrackTitle">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="19" name="strTrackTitle">
+            <String dnOrder="19" name="strVolumeCntlLabel">
               <Language dnOrder="0" index="0"/>
             </String>
           </Strings>
@@ -4484,7 +4484,7 @@
                   <StartAngle dnOrder="21">270</StartAngle>
                   <StartValue dnOrder="22">0</StartValue>
                   <EndValue dnOrder="23">100</EndValue>
-                  <Value dnOrder="24">25</Value>
+                  <Value dnOrder="24">20</Value>
                   <OutsideBorderArcVisible dnOrder="25">true</OutsideBorderArcVisible>
                   <OutsideBorderArcThickness dnOrder="26">5</OutsideBorderArcThickness>
                   <InsideBorderArcVisible dnOrder="27">true</InsideBorderArcVisible>

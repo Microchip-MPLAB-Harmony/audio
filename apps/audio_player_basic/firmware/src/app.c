@@ -102,9 +102,6 @@ const uint8_t writeData[12]  __attribute__((aligned(16))) = "Hello World ";
  #define char_tolower(c)      (char) ((c >= 'A' && c <= 'Z') ? (c | 0x20) : c)
 
 
-#define BUTTON_DEBOUNCE 50
-#define LONG_BUTTON_PRESS 1000
-
 
 
 // *****************************************************************************
@@ -459,11 +456,13 @@ bool APP_IsSupportedAudioFile(char *name)
     lowercase[2] = char_tolower(name[i+3]);
     lowercase[3] = '\0';
     
+#ifdef WAV_STREAMING_ENABLED
     if( strcmp( lowercase, "wav" ) == 0 )
     {
         strcpy( appData.ext, "wav" );
         return true;
     }
+#endif
     return false;
 }
 
@@ -598,6 +597,8 @@ void APP_Tasks ( void )
             appData.sampleRate = WAV_GetSampleRate();
             appData.playbackDuration = WAV_GetDuration();
             appData.bit_depth = wavHdr.bitsPerSample;
+            appData.codecData.bufferSize1 = BUFFER_SIZE;
+            appData.codecData.bufferSize2 = BUFFER_SIZE;
             
             if((strncmp(wavHdr.chunkID, "RIFF", 4) != 0) || (strncmp(wavHdr.format, "WAVE", 4) != 0) || 
                     (strncmp(wavHdr.subChunk1Id, "fmt ", 4) != 0 ) || (strncmp(wavHdr.subChunk2Id, "data", 4) != 0 ) ||
@@ -610,7 +611,7 @@ void APP_Tasks ( void )
             // Set sample rate to what was found in the header
             DRV_CODEC_SamplingRateSet(appData.codecData.handle, appData.sampleRate);
             
-            retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, BUFFER_SIZE);
+            retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, appData.codecData.bufferSize1);
             if ( (retval == -1) || (retval == 0) )
             {
                 // read was not successful or no data read -- assume end of file
@@ -632,7 +633,7 @@ void APP_Tasks ( void )
                 wrtn *= 2;
 #endif
                 appData.codecData.txbufferObject1 = (uint8_t *)App_Audio_Output_Buffer1;
-                appData.codecData.bufferSize1 = wrtn;
+                //appData.codecData.bufferSize1 = wrtn;
                 appData.lrSync = true;
                 appData.state = APP_STATE_CODEC_ADD_BUFFER;
             }
@@ -662,14 +663,14 @@ void APP_Tasks ( void )
                 DRV_CODEC_BufferAddWrite(appData.codecData.handle,
                                             &appData.codecData.writeBufHandle1,
                                             appData.codecData.txbufferObject1,
-                                            appData.codecData.bufferSize1);
+                                            wrtn);
 
                 // initiated a write to the codec via I2S, read next buffer full
                 if(appData.codecData.writeBufHandle1 != DRV_CODEC_BUFFER_HANDLE_INVALID)
                 {
                     appData.pingPong = false;
                     appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
-                    retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, BUFFER_SIZE);
+                    retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, appData.codecData.bufferSize2);
                     if ( (retval == -1) || (retval == 0) )
                     {
                         // read was not successful or no data read -- assume end of file
@@ -691,7 +692,7 @@ void APP_Tasks ( void )
                         wrtn *= 2;
 #endif
                         appData.codecData.txbufferObject2 = (uint8_t *) App_Audio_Output_Buffer2;
-                        appData.codecData.bufferSize2 = wrtn;
+                        //appData.codecData.bufferSize2 = wrtn;
                     }                    
                     
                 }
@@ -707,7 +708,7 @@ void APP_Tasks ( void )
                 DRV_CODEC_BufferAddWrite(appData.codecData.handle,
                                             &appData.codecData.writeBufHandle2,
                                             appData.codecData.txbufferObject2,
-                                            appData.codecData.bufferSize2);
+                                            wrtn);
                 
                 // initiated a write to the codec via I2S, read next buffer full
                 if(appData.codecData.writeBufHandle2 != DRV_CODEC_BUFFER_HANDLE_INVALID)
@@ -715,7 +716,7 @@ void APP_Tasks ( void )
                     appData.pingPong = true;
                     appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
                     // try reading the file            
-                    retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, BUFFER_SIZE);
+                    retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, appData.codecData.bufferSize1);
                     if ( (retval == -1) || (retval == 0) )
                     {
                         // read was not successful or no data read -- assume end of file

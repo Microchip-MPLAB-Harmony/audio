@@ -34,26 +34,7 @@
 #include <string.h>
 #include "configuration.h"
 #include "definitions.h"
-#include "peripheral/clk/plib_clk.h"
-#include "peripheral/nvic/plib_nvic.h"
-#include "peripheral/pio/plib_pio.h"
-#include "bsp/bsp.h"
-#include "system/int/sys_int.h"
-#include "system/ports/sys_ports.h"
-#include "osal/osal.h"
-#include "driver/i2s/drv_i2s.h"
-#include "driver/i2c/drv_i2c.h"
-#include "peripheral/twihs/plib_twihs0.h"
-#include "system/time/sys_time.h"
-
-#include "audio/driver/wm8904/drv_wm8904_local.h"
-#include "audio/driver/wm8904/drv_wm8904.h"
-
-#include "encoder/audio_containers/include/wav_format_container.h"
-#include "encoder/audio_encoders/encoder.h"
-#include "encoder/audio_encoders/pcm/pcm_enc.h"
-
-#include "decoder/audio_decoders/wav/wav_dec.h"
+#include "user.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -67,15 +48,6 @@ extern "C" {
 // *****************************************************************************
 // Section: Type Definitions
 // *****************************************************************************
-#define PCM_ENCODER
-#define WAV_CONTAINER
-#undef  OGG_CONTAINER
-#undef  SSC_PLIB
-
-#define NUM_SAMPLES             256*4
-#define BUFFER_SIZE             4*NUM_SAMPLES  
-#define DECODER_MAX_OUTPUT_BUFFER_SIZE  BUFFER_SIZE
-    
 
 // *****************************************************************************
 // *****************************************************************************

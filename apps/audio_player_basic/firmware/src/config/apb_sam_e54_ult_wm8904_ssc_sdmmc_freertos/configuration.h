@@ -72,17 +72,6 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 
-/***** KEEP THIS, BEGIN *****/
-#define USE_SDMMC
-#define DATA32_ENABLED
-#define NUM_SAMPLES                     256*4
-#define BUFFER_SIZE                     4*NUM_SAMPLES  
-#define DECODER_MAX_OUTPUT_BUFFER_SIZE  BUFFER_SIZE
-#define DECODER_MAX_INPUT_BUFFER_SIZE   BUFFER_SIZE
-#define SWITCH_Get()                    SWITCH1_Get()
-#define SWITCH_STATE_PRESSED            SWITCH1_STATE_PRESSED
-#define SWITCH_STATE_RELEASED           SWITCH1_STATE_RELEASED
-/***** KEEP THIS, END *****/
 
 
 // *****************************************************************************

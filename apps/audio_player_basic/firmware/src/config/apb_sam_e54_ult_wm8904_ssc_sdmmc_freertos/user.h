@@ -26,13 +26,24 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+#include "audio/decoder/audio_decoders_config.h"
+#include "audio_decoders.h"
 
 // *****************************************************************************
 // *****************************************************************************
 // Section: User Configuration macros
 // *****************************************************************************
 // *****************************************************************************
+#define USE_SDMMC
+#define DATA32_ENABLED
+#define NUM_SAMPLES                     256*4
+#define BUFFER_SIZE                     4*NUM_SAMPLES  
+#define SWITCH_Get()                    SWITCH1_Get()
+#define SWITCH_STATE_PRESSED            SWITCH1_STATE_PRESSED
+#define SWITCH_STATE_RELEASED           SWITCH1_STATE_RELEASED
 
+#define BUTTON_DEBOUNCE 50
+#define LONG_BUTTON_PRESS 1000
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
