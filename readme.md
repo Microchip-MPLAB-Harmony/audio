@@ -19,6 +19,14 @@ reference information.
  - [MPLAB Harmony 3 Audio Wiki](https://github.com/Microchip-MPLAB-Harmony/audio/wiki)
  - [MPLAB Harmony 3 Audio API Help](https://microchip-mplab-harmony.github.io/audio)
 
+# Features
+
+ - Multiple external audio codec drivers
+ - USB host and device audio solutions
+ - Basic audio device interation, I2S, microphone and speaker support
+ - Multiple audio codec libraries, solutions for playback compressed audio
+ - MISRA C (manadatory) compliant
+ 
 # Contents Summary
 
 | Folder | Description |
