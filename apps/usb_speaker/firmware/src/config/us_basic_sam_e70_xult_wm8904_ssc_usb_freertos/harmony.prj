@@ -187,8 +187,8 @@
           <Name dnOrder="1">plib_clk.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">72050E9E745CC2CF510417856D22725C</GeneratedChecksum>
-          <UserChecksum dnOrder="5">72050E9E745CC2CF510417856D22725C</UserChecksum>
+          <GeneratedChecksum dnOrder="4">782DD0B499A72A552B5B2601C33BFF9C</GeneratedChecksum>
+          <UserChecksum dnOrder="5">782DD0B499A72A552B5B2601C33BFF9C</UserChecksum>
         </File>
         <File dnOrder="23">
           <Type dnOrder="0">SOURCE</Type>
@@ -211,8 +211,8 @@
           <Name dnOrder="1">plib_pio.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/peripheral/pio/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/pio/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">D7382C3772229A1E676105D3EB87C0F6</GeneratedChecksum>
-          <UserChecksum dnOrder="5">D7382C3772229A1E676105D3EB87C0F6</UserChecksum>
+          <GeneratedChecksum dnOrder="4">2E9868B8C1A0F515B4B431FE1D7FE33F</GeneratedChecksum>
+          <UserChecksum dnOrder="5">2E9868B8C1A0F515B4B431FE1D7FE33F</UserChecksum>
         </File>
         <File dnOrder="26">
           <Type dnOrder="0">SOURCE</Type>
@@ -499,7 +499,7 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">8EF9C4A60674A1286A2AE78470680D8A</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">CF59BCEC5FC925E923EC795255BB6BBD</GeneratedChecksum>
           <UserChecksum dnOrder="5">1AC515314F512477756B89F1A3A8DEF4</UserChecksum>
         </File>
         <File dnOrder="62">
