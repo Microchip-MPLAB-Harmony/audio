@@ -859,7 +859,7 @@ void APP_Tasks()
                 //appData.ledState = LED_ON;
                 //Set the volume
                 LED1_On();  //Volume mode
-                //DRV_CODEC_LRCLK_Sync(appData.codecClientWrite.handle);
+                DRV_CODEC_LRCLK_Sync(appData.codecClientWrite.handle);
                 //DRV_CODEC_VolumeSet(appData.codecClientWrite.handle, 
                 //                    DRV_CODEC_CHANNEL_LEFT_RIGHT, 
                 //                    appData.volume);
