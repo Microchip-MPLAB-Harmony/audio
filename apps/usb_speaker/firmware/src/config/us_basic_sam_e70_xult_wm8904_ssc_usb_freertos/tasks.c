@@ -118,7 +118,8 @@ void SYS_Tasks ( void )
     
 
     /* Maintain Device Drivers */
-        DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
+    //KEEP THIS
+    //DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
 
 
 

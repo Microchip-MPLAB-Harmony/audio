@@ -187,8 +187,8 @@
           <Name dnOrder="1">plib_clk.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">782DD0B499A72A552B5B2601C33BFF9C</GeneratedChecksum>
-          <UserChecksum dnOrder="5">782DD0B499A72A552B5B2601C33BFF9C</UserChecksum>
+          <GeneratedChecksum dnOrder="4">C6C62BB0C7F214EE66FE065D5225AA06</GeneratedChecksum>
+          <UserChecksum dnOrder="5">C6C62BB0C7F214EE66FE065D5225AA06</UserChecksum>
         </File>
         <File dnOrder="23">
           <Type dnOrder="0">SOURCE</Type>
@@ -227,16 +227,16 @@
           <Name dnOrder="1">plib_tc0.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/peripheral/tc/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/tc/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">1755D2E0B55455498F704515EF27AF8F</GeneratedChecksum>
-          <UserChecksum dnOrder="5">1755D2E0B55455498F704515EF27AF8F</UserChecksum>
+          <GeneratedChecksum dnOrder="4">00ACDC40480E9A09BEF028DDB9C3C6E0</GeneratedChecksum>
+          <UserChecksum dnOrder="5">00ACDC40480E9A09BEF028DDB9C3C6E0</UserChecksum>
         </File>
         <File dnOrder="28">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">plib_twihs0.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/peripheral/twihs/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/twihs/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B071107B04B9958B4F4192F9A090202A</GeneratedChecksum>
-          <UserChecksum dnOrder="5">B071107B04B9958B4F4192F9A090202A</UserChecksum>
+          <GeneratedChecksum dnOrder="4">878E506153F78CFE0ECB49D1EB08BDEE</GeneratedChecksum>
+          <UserChecksum dnOrder="5">878E506153F78CFE0ECB49D1EB08BDEE</UserChecksum>
         </File>
         <File dnOrder="29">
           <Type dnOrder="0">SOURCE</Type>
@@ -316,7 +316,7 @@
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">20C6D95D5A731CDA2CEC3322B96D3BB6</GeneratedChecksum>
-          <UserChecksum dnOrder="5">9033A01FE4581F4EAE4A910B2696F554</UserChecksum>
+          <UserChecksum dnOrder="5">5C49C10ABB9708BE5078E3E9772156F3</UserChecksum>
         </File>
         <File dnOrder="39">
           <Type dnOrder="0">SOURCE</Type>
@@ -379,8 +379,8 @@
           <Name dnOrder="1">FreeRTOSConfig.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">28432422EC71335CA88AFE702509D041</GeneratedChecksum>
-          <UserChecksum dnOrder="5">28432422EC71335CA88AFE702509D041</UserChecksum>
+          <GeneratedChecksum dnOrder="4">6BB3D3FAA5A213165985829C90F31D0F</GeneratedChecksum>
+          <UserChecksum dnOrder="5">6BB3D3FAA5A213165985829C90F31D0F</UserChecksum>
         </File>
         <File dnOrder="47">
           <Type dnOrder="0">HEADER</Type>
@@ -499,8 +499,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">CF59BCEC5FC925E923EC795255BB6BBD</GeneratedChecksum>
-          <UserChecksum dnOrder="5">1AC515314F512477756B89F1A3A8DEF4</UserChecksum>
+          <GeneratedChecksum dnOrder="4">F3AAF06F5EEB4D718CD9D083BC207A33</GeneratedChecksum>
+          <UserChecksum dnOrder="5">71B598BBC3AB32D7E75430D1A7D733FD</UserChecksum>
         </File>
         <File dnOrder="62">
           <Type dnOrder="0">HEADER</Type>

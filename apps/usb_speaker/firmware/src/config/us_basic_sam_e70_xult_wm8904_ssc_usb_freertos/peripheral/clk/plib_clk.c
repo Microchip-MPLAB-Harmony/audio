@@ -58,8 +58,8 @@ static void CLK_PLLAInitialize(void)
 {
     /* Configure and Enable PLLA */
     PMC_REGS->CKGR_PLLAR = CKGR_PLLAR_ONE_Msk | CKGR_PLLAR_PLLACOUNT(0x3f) |
-                              CKGR_PLLAR_MULA(43 - 1) |
-                              CKGR_PLLAR_DIVA(2);
+                              CKGR_PLLAR_MULA(25 - 1) |
+                              CKGR_PLLAR_DIVA(1);
 
     while ( (PMC_REGS->PMC_SR & PMC_SR_LOCKA_Msk) != PMC_SR_LOCKA_Msk);
 
