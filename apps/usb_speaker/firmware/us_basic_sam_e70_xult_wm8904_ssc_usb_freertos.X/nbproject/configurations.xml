@@ -116,14 +116,46 @@
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/device_cache.h</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/toolchain_specifics.h</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/definitions.h</itemPath>
+          <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/FreeRTOSConfig.h</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/user.h</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/configuration.h</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <logicalFolder name="f3" displayName="osal" projectFiles="true">
+      <logicalFolder name="f3" displayName="FreeRTOS" projectFiles="true">
+        <logicalFolder name="f1" displayName="Source" projectFiles="true">
+          <logicalFolder name="f1" displayName="include" projectFiles="true">
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/croutine.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/event_groups.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/FreeRTOS.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/list.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/mpu_wrappers.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/portable.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/projdefs.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/queue.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/semphr.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/stack_macros.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/deprecated_definitions.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/task.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/timers.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/mpu_prototypes.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/stream_buffer.h</itemPath>
+            <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/include/message_buffer.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="portable" projectFiles="true">
+            <logicalFolder name="f1" displayName="GCC" projectFiles="true">
+              <logicalFolder name="f1" displayName="SAM" projectFiles="true">
+                <logicalFolder name="f1" displayName="CM7" projectFiles="true">
+                  <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7/portmacro.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+            </logicalFolder>
+          </logicalFolder>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="osal" projectFiles="true">
         <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/osal/osal.h</itemPath>
         <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/osal/osal_definitions.h</itemPath>
-        <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/osal/osal_impl_basic.h</itemPath>
+        <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/osal/osal_freertos.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="packs" projectFiles="true">
         <logicalFolder name="f1" displayName="ATSAME70Q21B_DFP" projectFiles="true">
@@ -289,12 +321,38 @@
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/initialization.c</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/interrupts.c</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/exceptions.c</itemPath>
-          <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/exceptionsHandler.S</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/startup_xc32.c</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/libc_syscalls.c</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/usb_device_init_data.c</itemPath>
+          <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/freertos_hooks.c</itemPath>
           <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/tasks.c</itemPath>
         </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="FreeRTOS" projectFiles="true">
+        <logicalFolder name="f1" displayName="Source" projectFiles="true">
+          <logicalFolder name="f1" displayName="portable" projectFiles="true">
+            <logicalFolder name="f2" displayName="GCC" projectFiles="true">
+              <logicalFolder name="f1" displayName="SAM" projectFiles="true">
+                <logicalFolder name="f1" displayName="CM7" projectFiles="true">
+                  <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7/port.c</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f1" displayName="MemMang" projectFiles="true">
+              <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/portable/MemMang/heap_1.c</itemPath>
+            </logicalFolder>
+          </logicalFolder>
+          <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/croutine.c</itemPath>
+          <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/list.c</itemPath>
+          <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/queue.c</itemPath>
+          <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/FreeRTOS_tasks.c</itemPath>
+          <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/timers.c</itemPath>
+          <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/event_groups.c</itemPath>
+          <itemPath ex="false">../src/third_party/rtos/FreeRTOS/Source/stream_buffer.c</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="osal" projectFiles="true">
+        <itemPath ex="false">../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/osal/osal_freertos.c</itemPath>
       </logicalFolder>
       <itemPath ex="false">../src/main.c</itemPath>
       <itemPath ex="false">../src/app.c</itemPath>
@@ -307,7 +365,6 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../src</Elem>
-    <Elem>../../../usb_speaker_1/firmware/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -323,8 +380,8 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="SAME70_DFP" vendor="Microchip" version="4.0.29"/>
         <pack name="CMSIS" vendor="ARM" version="5.0.1"/>
+        <pack name="SAME70_DFP" vendor="Microchip" version="3.0.10"/>
       </packs>
       <compileType>
         <linkerTool>
@@ -383,7 +440,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/audio_codec;../src;../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm"/>
+                  value="../src;../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/decoder;../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/decoder/audio_decoders;../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/encoder/audio_encoders;../src/config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/encoder/audio_containers"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -444,7 +501,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="8000"/>
+        <property key="heap-size" value="5000"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
@@ -497,21 +554,18 @@
         <property key="common-include-directories" value=""/>
         <property key="gp-relative-option" value=""/>
         <property key="legacy-libc" value="false"/>
-        <property key="mdtcm" value="0x8000"/>
-        <property key="mitcm" value="0x8000"/>
-        <property key="mstacktcm" value="true"/>
+        <property key="mdtcm" value=""/>
+        <property key="mitcm" value=""/>
+        <property key="mstacktcm" value="false"/>
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
       <EdbgTool>
         <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="communication.interface" value="swd"/>
-        <property key="communication.speed" value="2.000"/>
-        <property key="debugoptions.useswbreakpoints" value="true"/>
-        <property key="firmware.path"
-                  value="Press to browse for a specific firmware version"/>
-        <property key="firmware.update.action" value="firmware.update.use.latest"/>
+        <property key="communication.interface" value="jtag"/>
+        <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
@@ -524,19 +578,14 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="0x400000-0x5fffff"/>
-        <property key="poweroptions.powerenable" value="false"/>
-        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="memories.programmemory.ranges" value="400000-5fffff"/>
         <property key="programoptions.preservedataflash" value="false"/>
-        <property key="programoptions.preservedataflash.ranges"
-                  value="${memories.dataflash.default}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programoptions.preserveeeprom.ranges" value=""/>
         <property key="programoptions.preserveprogram.ranges" value=""/>
         <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
-        <property key="voltagevalue" value=""/>
       </EdbgTool>
       <ICD4Tool>
         <property key="AutoSelectMemRanges" value="auto"/>
@@ -770,8 +819,6 @@
         <property key="warningmessagebreakoptions.W0033_CORE_UNPREDICTABLE_OPCODE"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0034_CORE_UNALIGNED_MEMORY_ACCESS"
-                  value="report"/>
-        <property key="warningmessagebreakoptions.W0035_CORE_UNIMPLEMENTED_RAMACCESS_NOTRAP"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0040_FPU_DIFF_CP10_CP11"
                   value="report"/>
@@ -1046,32 +1093,6 @@
                   value=""/>
         <property key="warningmessagebreakoptions.warningmessages" value="holdstate"/>
       </Simulator>
-      <mEdbgTool>
-        <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="communication.interface" value="swd"/>
-        <property key="communication.speed" value="2.000"/>
-        <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="memories.aux" value="false"/>
-        <property key="memories.bootflash" value="true"/>
-        <property key="memories.configurationmemory" value="true"/>
-        <property key="memories.configurationmemory2" value="true"/>
-        <property key="memories.dataflash" value="true"/>
-        <property key="memories.eeprom" value="true"/>
-        <property key="memories.exclude.configurationmemory" value="true"/>
-        <property key="memories.flashdata" value="true"/>
-        <property key="memories.id" value="true"/>
-        <property key="memories.instruction.ram.ranges"
-                  value="${memories.instruction.ram.ranges}"/>
-        <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="400000-5fffff"/>
-        <property key="programoptions.preservedataflash" value="false"/>
-        <property key="programoptions.preserveeeprom" value="false"/>
-        <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges" value=""/>
-        <property key="programoptions.preserveprogramrange" value="false"/>
-        <property key="programoptions.preserveuserid" value="false"/>
-        <property key="programoptions.programuserotp" value="false"/>
-      </mEdbgTool>
     </conf>
   </confs>
 </configurationDescriptor>

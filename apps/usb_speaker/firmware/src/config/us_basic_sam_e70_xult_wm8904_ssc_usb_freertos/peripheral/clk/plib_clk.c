@@ -58,8 +58,8 @@ static void CLK_PLLAInitialize(void)
 {
     /* Configure and Enable PLLA */
     PMC_REGS->CKGR_PLLAR = CKGR_PLLAR_ONE_Msk | CKGR_PLLAR_PLLACOUNT(0x3f) |
-                              CKGR_PLLAR_MULA(25 - 1) |
-                              CKGR_PLLAR_DIVA(1);
+                              CKGR_PLLAR_MULA(43 - 1) |
+                              CKGR_PLLAR_DIVA(2);
 
     while ( (PMC_REGS->PMC_SR & PMC_SR_LOCKA_Msk) != PMC_SR_LOCKA_Msk);
 
@@ -126,6 +126,20 @@ static void CLK_USBClockInitialize ( void )
     PMC_REGS->PMC_SCER = PMC_SCER_USBCLK_Msk;
 }
 
+/*********************************************************************************
+Initialize Generic clock
+*********************************************************************************/
+
+static void CLK_GenericClockInitialize(void)
+{
+
+
+    /* Setup Generic/Peripheral Clock for I2S1 */
+    PMC_REGS->PMC_PCR =  PMC_PCR_PID(70) | PMC_PCR_CMD_Msk   | PMC_PCR_GCLKEN_Msk |  PMC_PCR_EN_Msk | PMC_PCR_GCLKCSS_PLLA_CLK | PMC_PCR_GCLKDIV(62);
+
+    MATRIX_REGS->CCFG_PCCR |=  CCFG_PCCR_I2SC1CC_Msk ;
+
+}
 
 
 
@@ -173,11 +187,13 @@ void CLK_Initialize( void )
     /* Initialize USB Clock */
     CLK_USBClockInitialize();
 
+    /* Initialize Generic Clock */
+    CLK_GenericClockInitialize();
 
     /* Initialize Programmable Clock */
     CLK_ProgrammableClockInitialize();
 
     /* Enable Peripheral Clock */
-    PMC_REGS->PMC_PCER0=0xcb1c00;
+    PMC_REGS->PMC_PCER0=0x8b1c00;
     PMC_REGS->PMC_PCER1=0x4000004;
 }

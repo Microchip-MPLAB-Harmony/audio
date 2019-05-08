@@ -85,7 +85,7 @@ extern "C" {
 #define SYS_TIME_HW_COUNTER_WIDTH            16
 #define SYS_TIME_HW_COUNTER_PERIOD           65535U
 #define SYS_TIME_HW_COUNTER_HALF_PERIOD		 (SYS_TIME_HW_COUNTER_PERIOD>>1)
-#define SYS_TIME_CPU_CLOCK_FREQUENCY         300000000
+#define SYS_TIME_CPU_CLOCK_FREQUENCY         258000000
 #define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
 
 
@@ -121,12 +121,12 @@ extern "C" {
 #define DRV_WM8904_CLIENTS_NUMBER                           1
 #define DRV_WM8904_INSTANCES_NUMBER                         1
 
-#define DRV_WM8904_MASTER_MODE                              true
+#define DRV_WM8904_MASTER_MODE                              false
 #define DRV_WM8904_AUDIO_SAMPLING_RATE                      48000
 #define DRV_WM8904_VOLUME	                      	        200
 #define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    DATA_16_BIT_I2S
 #define DRV_WM8904_ENABLE_MIC_INPUT                         false
-#define DRV_WM8904_ENABLE_MIC_BIAS                          false
+#define DRV_WM8904_ENABLE_MIC_BIAS                          true
 #define DRV_WM8904_MIC_GAIN	                      	        28
 
 #define DRV_WM8904_I2S_DRIVER_MODULE_INDEX_IDX0             DRV_I2S_INDEX_0
@@ -221,8 +221,7 @@ extern "C" {
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-//KEEP THIS - Not generated correctly
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66 
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66
 
 
 /* No of Audio streaming interfaces */

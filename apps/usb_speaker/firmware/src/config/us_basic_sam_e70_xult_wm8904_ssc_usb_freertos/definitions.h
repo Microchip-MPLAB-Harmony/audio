@@ -65,6 +65,8 @@
 #include "bsp/bsp.h"
 #include "driver/i2s/drv_i2s.h"
 #include "peripheral/twihs/plib_twihs0.h"
+#include "FreeRTOS.h"
+#include "task.h"
 #include "audio/driver/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
