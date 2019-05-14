@@ -40,6 +40,7 @@
 // DOM-IGNORE-END
 
 #include "gfx/libaria/libaria_init.h"
+#include "gfx/libaria/inc/libaria_utils.h"
 
 laScheme defaultScheme;
 laScheme whiteText;
@@ -415,6 +416,7 @@ static void ScreenCreate_GainLableWidget(laScreen* screen)
     laWidget_AddChild((laWidget*)layer0, (laWidget*)lblCurrentPosition);
 
 }
+
 
 
 

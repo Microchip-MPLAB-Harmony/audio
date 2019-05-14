@@ -70,7 +70,7 @@ BTN_DATA btnData;
 LED_DATA ledData;
 
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Input_Buffer[2][NUM_SAMPLES];
-DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer[NUM_SAMPLES];
+DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer[2][NUM_SAMPLES];
 
 const HAR_ENCODER *rtEncoderInst;
 //static uint8_t pheader[AUDIO_FILE_METADATA_HEADER_SIZE];
@@ -80,6 +80,8 @@ static uint32_t _audio_frame_count = 0;
 static StreamInfo streamInfo;
 static uint32_t encoded_data_size;
 static EncoderType encType;
+
+uint16_t inSize, read, written;
 
 
 // *****************************************************************************
@@ -301,8 +303,8 @@ bool APP_Encode( void )
             retVal = SYS_FS_FileRead( appData.dataFileHandle, App_Audio_Input_Buffer[appData.rxBufIdx], BUFFER_SIZE );
             if( retVal != -1 )
             {
-                pcm_encode_frame( App_Audio_Input_Buffer[appData.rxBufIdx], retVal, App_Audio_Output_Buffer, &retVal );
-                SYS_FS_FileWrite( appData.fileHandle, App_Audio_Output_Buffer, retVal );
+                pcm_encode_frame( App_Audio_Input_Buffer[appData.rxBufIdx], retVal, App_Audio_Output_Buffer[appData.txBufIdx], &retVal );
+                SYS_FS_FileWrite( appData.fileHandle, App_Audio_Output_Buffer[appData.txBufIdx], retVal );
             }
         } while( !SYS_FS_FileEOF( appData.dataFileHandle ));
     }
@@ -315,13 +317,13 @@ bool APP_Encode( void )
 
 void APP_Decode( void )
 {
-    uint16_t inSize = BUFFER_SIZE;
-    uint16_t read, written;
+    inSize = BUFFER_SIZE;
     
-    appData.codecData.txbufferObject = (uint8_t *)App_Audio_Input_Buffer[appData.txBufIdx];
-    appData.codecData.rxbufferObject = (uint8_t *)App_Audio_Input_Buffer[appData.rxBufIdx];
     WAV_Decoder( (void *)App_Audio_Input_Buffer[appData.rxBufIdx], inSize, &read,
-                (void *)App_Audio_Input_Buffer[appData.txBufIdx], &written);
+                (void *)App_Audio_Output_Buffer[appData.txBufIdx], &written);
+    appData.codecData.bufferSize = written;
+    appData.codecData.txbufferObject = (uint8_t *)App_Audio_Output_Buffer[appData.txBufIdx];
+    appData.codecData.rxbufferObject = (uint8_t *)App_Audio_Input_Buffer[appData.rxBufIdx];
 }
 
 void APP_EncoderInit( void )
@@ -341,7 +343,7 @@ void APP_DecoderInit( void )
 {
     // 
     WAV_Initialize_N( (uint8_t *)&decWavHdr, appData.fileHandle );
-    appData.codecData.txbufferObject = (uint8_t *)App_Audio_Input_Buffer[appData.txBufIdx];
+    appData.codecData.txbufferObject = (uint8_t *)App_Audio_Output_Buffer[appData.txBufIdx];
     appData.codecData.rxbufferObject = (uint8_t *)App_Audio_Input_Buffer[appData.rxBufIdx];
 }
 
@@ -640,6 +642,9 @@ void APP_Tasks ( void )
                         appData.codecData.txbufferObject, appData.codecData.rxbufferObject, appData.codecData.bufferSize );
                 if( appData.codecData.rdBufHandle != DRV_CODEC_BUFFER_HANDLE_INVALID )
                 {
+                    appData.rxBufIdx = 1 - appData.rxBufIdx;
+                    appData.txBufIdx = 1 - appData.rxBufIdx;
+                    
                     // Read and decode the next buffer
                     retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer[appData.rxBufIdx], BUFFER_SIZE);
                     if(( retval == -1 ) || SYS_FS_FileEOF( appData.fileHandle ))

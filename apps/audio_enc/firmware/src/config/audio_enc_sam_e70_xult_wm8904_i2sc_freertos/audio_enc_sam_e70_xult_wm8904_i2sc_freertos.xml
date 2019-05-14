@@ -1556,28 +1556,21 @@
             </Boolean>
           </Attributes>
         </Boolean>
-        <String dnOrder="1" id="USB_DEVICE_VBUS_SENSE_PIN_NAME">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="visible">
-              <Value dnOrder="0">false</Value>
-            </Boolean>
-          </Attributes>
-        </String>
-        <Integer dnOrder="2" id="USB_DRV_HOST_ATTACH_DEBOUNCE_DURATION">
+        <Integer dnOrder="1" id="USB_DRV_HOST_ATTACH_DEBOUNCE_DURATION">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="visible">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </Integer>
-        <Integer dnOrder="3" id="USB_DRV_HOST_RESET_DUARTION">
+        <Integer dnOrder="2" id="USB_DRV_HOST_RESET_DUARTION">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="visible">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </Integer>
-        <Combo dnOrder="4" id="USB_OPERATION_MODE">
+        <Combo dnOrder="3" id="USB_OPERATION_MODE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="usb_host" value="Host"/>
           </Values>
@@ -1588,7 +1581,8 @@
       <Symbols dnOrder="0">
         <Integer dnOrder="0" id="NVM_RWS">
           <Values dnOrder="0">
-            <User dnOrder="0" value="6"/>
+            <Dynamic dnOrder="0" id="efc" value="5"/>
+            <User dnOrder="1" value="6"/>
           </Values>
         </Integer>
       </Symbols>
@@ -2231,8 +2225,8 @@
         <ElementPosition dnOrder="1" id="FreeRTOS" x="31" y="226"/>
         <ElementPosition dnOrder="2" id="HarmonyCore" x="16" y="55"/>
         <ElementPosition dnOrder="3" id="audio_codec_wm8904" x="617" y="141"/>
-        <ElementPosition dnOrder="4" id="audio_decoders" x="311" y="385"/>
-        <ElementPosition dnOrder="5" id="audio_encoders" x="82" y="384"/>
+        <ElementPosition dnOrder="4" id="audio_decoders" x="66" y="397"/>
+        <ElementPosition dnOrder="5" id="audio_encoders" x="272" y="397"/>
         <ElementPosition dnOrder="6" id="cmsis" x="340" y="20"/>
         <ElementPosition dnOrder="7" id="core" x="240" y="20"/>
         <ElementPosition dnOrder="8" id="dfp" x="20" y="20"/>

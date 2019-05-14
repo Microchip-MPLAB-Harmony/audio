@@ -48,8 +48,8 @@ extern "C" {
 #define NUM_SAMPLES                     256*4
 #define BUFFER_SIZE                     4*NUM_SAMPLES  
 
-#define BUTTON_DEBOUNCE 50
-#define LONG_BUTTON_PRESS 1000
+#define BUTTON_DEBOUNCE                 50
+#define LONG_BUTTON_PRESS               500
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

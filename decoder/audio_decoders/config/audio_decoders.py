@@ -671,19 +671,19 @@ def instantiateComponent(audioDecoderComponent):
     CONFIG_USE_MP3_DECODER.setVisible(False)
     CONFIG_USE_MP3_DECODER.setLabel("Enable MP3 Decoder")
     CONFIG_USE_MP3_DECODER.setDefaultValue(False)
-    CONFIG_USE_MP3_DECODER.setDependencies(enableOpusDecoder, ["CONFIG_USE_MP3_DECODER"])
+#    CONFIG_USE_MP3_DECODER.setDependencies(enableMp3Decoder, ["CONFIG_USE_MP3_DECODER"])
     
     CONFIG_USE_AAC_DECODER = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_AAC_DECODER", None)
     CONFIG_USE_AAC_DECODER.setVisible(False)
     CONFIG_USE_AAC_DECODER.setLabel("Enable AAC Decoder")
     CONFIG_USE_AAC_DECODER.setDefaultValue(False)
-    CONFIG_USE_AAC_DECODER.setDependencies(enableOpusDecoder, ["CONFIG_USE_AAC_DECODER"])
+#    CONFIG_USE_AAC_DECODER.setDependencies(enableAacDecoder, ["CONFIG_USE_AAC_DECODER"])
     
     CONFIG_USE_JPEG_DECODER = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_JPEG_DECODER", None)
     CONFIG_USE_JPEG_DECODER.setVisible(False)
     CONFIG_USE_JPEG_DECODER.setLabel("Enable JPEG Decoder")
     CONFIG_USE_JPEG_DECODER.setDefaultValue(False)
-    CONFIG_USE_JPEG_DECODER.setDependencies(enableOpusDecoder, ["CONFIG_USE_JPEG_DECODER"])
+#    CONFIG_USE_JPEG_DECODER.setDependencies(enableOpusDecoder, ["CONFIG_USE_JPEG_DECODER"])
     
 
 
@@ -738,93 +738,93 @@ def instantiateComponent(audioDecoderComponent):
         exec(symbol + ".setType(\"" + type + "\")")
         exec(symbol + ".setEnabled(CONFIG_USE_ADPCM_STREAMING.getValue() == True)")
 
-    for fileSymbol, srcPath, file, destPath in flacTable:
-        # Set type
-        baseFileName = os.path.splitext(file)[0]
-        ext = os.path.splitext(file)[-1].lower()
-        if ext in src_ext:
-            type = "SOURCE"
-        elif ext in hdr_ext:
-            type = "HEADER"
-        else:
-            type = "IMPORTANT"
+    # for fileSymbol, srcPath, file, destPath in flacTable:
+        # # Set type
+        # baseFileName = os.path.splitext(file)[0]
+        # ext = os.path.splitext(file)[-1].lower()
+        # if ext in src_ext:
+            # type = "SOURCE"
+        # elif ext in hdr_ext:
+            # type = "HEADER"
+        # else:
+            # type = "IMPORTANT"
 
-        # Create unique file symbol
-        symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+        # # Create unique file symbol
+        # symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
 
-        exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
-        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
-        exec(symbol + ".setOutputName(\"" + file + "\")")
-        exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
-        exec(symbol + ".setType(\"" + type + "\")")
-        exec(symbol + ".setEnabled(CONFIG_USE_FLAC_DECODER.getValue() == True)")
+        # exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        # exec(symbol + ".setOutputName(\"" + file + "\")")
+        # exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        # exec(symbol + ".setType(\"" + type + "\")")
+        # exec(symbol + ".setEnabled(CONFIG_USE_FLAC_DECODER.getValue() == True)")
 
-    for fileSymbol, srcPath, file, destPath in speexTable:
-        # Set type
-        baseFileName = os.path.splitext(file)[0]
-        ext = os.path.splitext(file)[-1].lower()
-        if ext in src_ext:
-            type = "SOURCE"
-        elif ext in hdr_ext:
-            type = "HEADER"
-        else:
-            type = "IMPORTANT"
+    # for fileSymbol, srcPath, file, destPath in speexTable:
+        # # Set type
+        # baseFileName = os.path.splitext(file)[0]
+        # ext = os.path.splitext(file)[-1].lower()
+        # if ext in src_ext:
+            # type = "SOURCE"
+        # elif ext in hdr_ext:
+            # type = "HEADER"
+        # else:
+            # type = "IMPORTANT"
 
-        # Create unique file symbol
-        symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+        # # Create unique file symbol
+        # symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
 
-        exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
-        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
-        exec(symbol + ".setOutputName(\"" + file + "\")")
-        exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
-        exec(symbol + ".setType(\"" + type + "\")")
-        exec(symbol + ".setEnabled(CONFIG_USE_OGG_SPEEX_DECODER.getValue() == True)")
+        # exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        # exec(symbol + ".setOutputName(\"" + file + "\")")
+        # exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        # exec(symbol + ".setType(\"" + type + "\")")
+        # exec(symbol + ".setEnabled(CONFIG_USE_OGG_SPEEX_DECODER.getValue() == True)")
 
-    for fileSymbol, srcPath, file, destPath in opusTable:
-        # Set type
-        baseFileName = os.path.splitext(file)[0]
-        ext = os.path.splitext(file)[-1].lower()
-        if ext in src_ext:
-            type = "SOURCE"
-        elif ext in hdr_ext:
-            type = "HEADER"
-        else:
-            type = "IMPORTANT"
+    # for fileSymbol, srcPath, file, destPath in opusTable:
+        # # Set type
+        # baseFileName = os.path.splitext(file)[0]
+        # ext = os.path.splitext(file)[-1].lower()
+        # if ext in src_ext:
+            # type = "SOURCE"
+        # elif ext in hdr_ext:
+            # type = "HEADER"
+        # else:
+            # type = "IMPORTANT"
 
-        # Create unique file symbol
-        symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+        # # Create unique file symbol
+        # symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
 
-        exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
-        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
-        exec(symbol + ".setOutputName(\"" + file + "\")")
-        exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
-        exec(symbol + ".setType(\"" + type + "\")")
-        exec(symbol + ".setEnabled(CONFIG_USE_OGG_OPUS_DECODER.getValue() == True)")
+        # exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        # exec(symbol + ".setOutputName(\"" + file + "\")")
+        # exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        # exec(symbol + ".setType(\"" + type + "\")")
+        # exec(symbol + ".setEnabled(CONFIG_USE_OGG_OPUS_DECODER.getValue() == True)")
 
-    for fileSymbol, srcPath, file, destPath in oggTable:
-        # Set type
-        baseFileName = os.path.splitext(file)[0]
-        ext = os.path.splitext(file)[-1].lower()
-        if ext in src_ext:
-            type = "SOURCE"
-        elif ext in hdr_ext:
-            type = "HEADER"
-        else:
-            type = "IMPORTANT"
+    # for fileSymbol, srcPath, file, destPath in oggTable:
+        # # Set type
+        # baseFileName = os.path.splitext(file)[0]
+        # ext = os.path.splitext(file)[-1].lower()
+        # if ext in src_ext:
+            # type = "SOURCE"
+        # elif ext in hdr_ext:
+            # type = "HEADER"
+        # else:
+            # type = "IMPORTANT"
 
-        # Create unique file symbol
-        symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+        # # Create unique file symbol
+        # symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
 
-        exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
-        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
-        exec(symbol + ".setOutputName(\"" + file + "\")")
-        exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
-        exec(symbol + ".setType(\"" + type + "\")")
-        exec(symbol + ".setEnabled(CONFIG_USE_OGG_OPUS_DECODER.getValue() == True)")
+        # exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        # exec(symbol + ".setOutputName(\"" + file + "\")")
+        # exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        # exec(symbol + ".setType(\"" + type + "\")")
+        # exec(symbol + ".setEnabled(CONFIG_USE_OGG_OPUS_DECODER.getValue() == True)")
 
     for fileSymbol, srcPath, file, destPath in ftlTable:
         # Set type
@@ -851,13 +851,13 @@ def instantiateComponent(audioDecoderComponent):
         exec(symbol + ".setEnabled(True)")
         exec(symbol + ".setMarkup(True)")
 
-    if("PIC32" in Variables.get("__PROCESSOR")):
-       CONFIG_USE_WMA_DECODER.setReadOnly(True)
-       CONFIG_USE_AAC_DECODER.setReadOnly(True)
-       CONFIG_USE_MP3_DECODER.setReadOnly(True)
-       CONFIG_USE_WMA_DECODER.setVisible(False)
-       CONFIG_USE_AAC_DECODER.setVisible(False)
-       CONFIG_USE_MP3_DECODER.setVisible(False)
+    # if("PIC32" in Variables.get("__PROCESSOR")):
+       # CONFIG_USE_WMA_DECODER.setReadOnly(True)
+       # CONFIG_USE_AAC_DECODER.setReadOnly(True)
+       # CONFIG_USE_MP3_DECODER.setReadOnly(True)
+       # CONFIG_USE_WMA_DECODER.setVisible(False)
+       # CONFIG_USE_AAC_DECODER.setVisible(False)
+       # CONFIG_USE_MP3_DECODER.setVisible(False)
     # else:
        # CONFIG_USE_FLAC_DECODER.setVisible(False)
        # CONFIG_USE_OGG_SPEEX_DECODER.setVisible(False)

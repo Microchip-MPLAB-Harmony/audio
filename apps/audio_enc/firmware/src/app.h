@@ -83,7 +83,7 @@ typedef struct
 } DRV_I2S_DATA16;
 
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Input_Buffer[2][NUM_SAMPLES];
-extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer[NUM_SAMPLES];
+extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer[2][NUM_SAMPLES];
 
 //  512 samples
 //  Audio       Sample Rate

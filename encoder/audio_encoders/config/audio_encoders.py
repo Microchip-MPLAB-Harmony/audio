@@ -752,71 +752,71 @@ def instantiateComponent(audioEncoderComponent):
         exec(symbol + ".setType(\"" + type + "\")")
         exec(symbol + ".setEnabled(CONFIG_USE_ADPCM_ENCODER.getValue() == True)")
 
-    for fileSymbol, srcPath, file, destPath in speexTable:
-        # Set type
-        baseFileName = os.path.splitext(file)[0]
-        ext = os.path.splitext(file)[-1].lower()
-        if ext in src_ext:
-            type = "SOURCE"
-        elif ext in hdr_ext:
-            type = "HEADER"
-        else:
-            type = "IMPORTANT"
+    # for fileSymbol, srcPath, file, destPath in speexTable:
+        # # Set type
+        # baseFileName = os.path.splitext(file)[0]
+        # ext = os.path.splitext(file)[-1].lower()
+        # if ext in src_ext:
+            # type = "SOURCE"
+        # elif ext in hdr_ext:
+            # type = "HEADER"
+        # else:
+            # type = "IMPORTANT"
 
-        # Create unique file symbol
-        symbol = fileSymbol + srcPath.replace("/", "_").replace(".", "").upper() + baseFileName.upper() + "_" + type.upper()
+        # # Create unique file symbol
+        # symbol = fileSymbol + srcPath.replace("/", "_").replace(".", "").upper() + baseFileName.upper() + "_" + type.upper()
 
-        exec(symbol + " = audioEncoderComponent.createFileSymbol(\"" + symbol + "\", None)")
-        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
-        exec(symbol + ".setOutputName(\"" + file + "\")")
-        exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/encoder/audio_encoders\")")
-        exec(symbol + ".setType(\"" + type + "\")")
-        exec(symbol + ".setEnabled(CONFIG_USE_SPEEX_ENCODER.getValue() == True)")
+        # exec(symbol + " = audioEncoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        # exec(symbol + ".setOutputName(\"" + file + "\")")
+        # exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/encoder/audio_encoders\")")
+        # exec(symbol + ".setType(\"" + type + "\")")
+        # exec(symbol + ".setEnabled(CONFIG_USE_SPEEX_ENCODER.getValue() == True)")
 
-    for fileSymbol, srcPath, file, destPath in opusTable:
-        # Set type
-        baseFileName = os.path.splitext(file)[0]
-        ext = os.path.splitext(file)[-1].lower()
-        if ext in src_ext:
-            type = "SOURCE"
-        elif ext in hdr_ext:
-            type = "HEADER"
-        else:
-            type = "IMPORTANT"
+    # for fileSymbol, srcPath, file, destPath in opusTable:
+        # # Set type
+        # baseFileName = os.path.splitext(file)[0]
+        # ext = os.path.splitext(file)[-1].lower()
+        # if ext in src_ext:
+            # type = "SOURCE"
+        # elif ext in hdr_ext:
+            # type = "HEADER"
+        # else:
+            # type = "IMPORTANT"
 
-        # Create unique file symbol
-        symbol = fileSymbol + srcPath.replace("/", "_").replace(".", "").upper() + baseFileName.upper() + "_" + type.upper()
+        # # Create unique file symbol
+        # symbol = fileSymbol + srcPath.replace("/", "_").replace(".", "").upper() + baseFileName.upper() + "_" + type.upper()
 
-        exec(symbol + " = audioEncoderComponent.createFileSymbol(\"" + symbol + "\", None)")
-        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
-        exec(symbol + ".setOutputName(\"" + file + "\")")
-        exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/encoder/audio_encoders\")")
-        exec(symbol + ".setType(\"" + type + "\")")
-        exec(symbol + ".setEnabled(CONFIG_USE_OPUS_ENCODER.getValue() == True)")
+        # exec(symbol + " = audioEncoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        # exec(symbol + ".setOutputName(\"" + file + "\")")
+        # exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/encoder/audio_encoders\")")
+        # exec(symbol + ".setType(\"" + type + "\")")
+        # exec(symbol + ".setEnabled(CONFIG_USE_OPUS_ENCODER.getValue() == True)")
 
-    for fileSymbol, srcPath, file, destPath in oggCntnrTable:
-        # Set type
-        baseFileName = os.path.splitext(file)[0]
-        ext = os.path.splitext(file)[-1].lower()
-        if ext in src_ext:
-            type = "SOURCE"
-        elif ext in hdr_ext:
-            type = "HEADER"
-        else:
-            type = "IMPORTANT"
+    # for fileSymbol, srcPath, file, destPath in oggCntnrTable:
+        # # Set type
+        # baseFileName = os.path.splitext(file)[0]
+        # ext = os.path.splitext(file)[-1].lower()
+        # if ext in src_ext:
+            # type = "SOURCE"
+        # elif ext in hdr_ext:
+            # type = "HEADER"
+        # else:
+            # type = "IMPORTANT"
 
-        # Create unique file symbol
-        symbol = fileSymbol + srcPath.replace("/", "_").replace(".", "").upper() + baseFileName.upper() + "_" + type.upper()
+        # # Create unique file symbol
+        # symbol = fileSymbol + srcPath.replace("/", "_").replace(".", "").upper() + baseFileName.upper() + "_" + type.upper()
 
-        exec(symbol + " = audioEncoderComponent.createFileSymbol(\"" + symbol + "\", None)")
-        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
-        exec(symbol + ".setOutputName(\"" + file + "\")")
-        exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/encoder/audio_containers\")")
-        exec(symbol + ".setType(\"" + type + "\")")
-        exec(symbol + ".setEnabled(CONFIG_USE_OGG_CONTAINER.getValue() == True)")
+        # exec(symbol + " = audioEncoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        # exec(symbol + ".setOutputName(\"" + file + "\")")
+        # exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/encoder/audio_containers\")")
+        # exec(symbol + ".setType(\"" + type + "\")")
+        # exec(symbol + ".setEnabled(CONFIG_USE_OGG_CONTAINER.getValue() == True)")
 
     for fileSymbol, srcPath, file, destPath in wavCntnrTable:
         # Set type
@@ -887,30 +887,30 @@ def instantiateComponent(audioEncoderComponent):
         exec(symbol + ".setEnabled(True)")
         exec(symbol + ".setMarkup(True)")
 
-    for fileSymbol, srcPath, file, destPath in oggFtlTable:
-        # Set type
-        baseFileName1 = os.path.splitext(file)[0]       # Strip the .ftl extension
-        baseFileName = os.path.splitext(baseFileName1)[0]
-        ext = os.path.splitext(baseFileName1)[-1].lower()
-        #print("baseFileName1: " + baseFileName1 + ", baseFileName: " + baseFileName + ", ext: " + ext)
-        if ext in src_ext:
-            type = "SOURCE"
-        elif ext in hdr_ext:
-            type = "HEADER"
-        else:
-            type = "IMPORTANT"
+    # for fileSymbol, srcPath, file, destPath in oggFtlTable:
+        # # Set type
+        # baseFileName1 = os.path.splitext(file)[0]       # Strip the .ftl extension
+        # baseFileName = os.path.splitext(baseFileName1)[0]
+        # ext = os.path.splitext(baseFileName1)[-1].lower()
+        # #print("baseFileName1: " + baseFileName1 + ", baseFileName: " + baseFileName + ", ext: " + ext)
+        # if ext in src_ext:
+            # type = "SOURCE"
+        # elif ext in hdr_ext:
+            # type = "HEADER"
+        # else:
+            # type = "IMPORTANT"
 
-        # Create unique file symbol
-        symbol = fileSymbol + srcPath.replace("/", "_").replace(".", "").upper() + baseFileName.upper() + "_" + type.upper()
+        # # Create unique file symbol
+        # symbol = fileSymbol + srcPath.replace("/", "_").replace(".", "").upper() + baseFileName.upper() + "_" + type.upper()
 
-        exec(symbol + " = audioEncoderComponent.createFileSymbol(\"" + symbol + "\", None)")
-        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
-        exec(symbol + ".setOutputName(\"" + baseFileName1 + "\")")
-        exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/encoder\")")
-        exec(symbol + ".setType(\"" + type + "\")")
-        exec(symbol + ".setEnabled(CONFIG_USE_OGG_CONTAINER.getValue() == True)")
-        exec(symbol + ".setMarkup(True)")
+        # exec(symbol + " = audioEncoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        # exec(symbol + ".setOutputName(\"" + baseFileName1 + "\")")
+        # exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/encoder\")")
+        # exec(symbol + ".setType(\"" + type + "\")")
+        # exec(symbol + ".setEnabled(CONFIG_USE_OGG_CONTAINER.getValue() == True)")
+        # exec(symbol + ".setMarkup(True)")
 
     for fileSymbol, srcPath, file, destPath in wavFtlTable:
         # Set type

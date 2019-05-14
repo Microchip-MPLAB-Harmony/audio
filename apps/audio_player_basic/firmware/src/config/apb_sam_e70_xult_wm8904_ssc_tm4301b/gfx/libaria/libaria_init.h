@@ -95,6 +95,9 @@ extern laLabelWidget* lblEndPosition;
 extern laLabelWidget* lblCurrentPosition;
 
 
+
+
+
 int32_t libaria_initialize(void);
 
 //DOM-IGNORE-BEGIN
