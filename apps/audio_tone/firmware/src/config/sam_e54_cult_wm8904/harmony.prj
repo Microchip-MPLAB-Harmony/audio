@@ -83,8 +83,8 @@
           <Name dnOrder="1">initialization.c</Name>
           <LogicalPath dnOrder="2">config/sam_e54_cult_wm8904/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">C233DC9317F48204161717B6439FF17E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">DC22018D766763240ADD8B636C2240EA</UserChecksum>
+          <GeneratedChecksum dnOrder="4">076BA4D9FAE1E3716B7E52C281B73403</GeneratedChecksum>
+          <UserChecksum dnOrder="5">076BA4D9FAE1E3716B7E52C281B73403</UserChecksum>
         </File>
         <File dnOrder="10">
           <Type dnOrder="0">SOURCE</Type>

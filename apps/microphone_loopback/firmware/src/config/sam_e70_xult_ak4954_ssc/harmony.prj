@@ -139,8 +139,8 @@
           <Name dnOrder="1">plib_pio.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_ak4954_ssc/peripheral/pio/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/pio/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">9217E240DB10EBA4FAD2B7B22E46CAEF</GeneratedChecksum>
-          <UserChecksum dnOrder="5">9217E240DB10EBA4FAD2B7B22E46CAEF</UserChecksum>
+          <GeneratedChecksum dnOrder="4">87F8A83FD00E7383DF8B93E0E65F4380</GeneratedChecksum>
+          <UserChecksum dnOrder="5">87F8A83FD00E7383DF8B93E0E65F4380</UserChecksum>
         </File>
         <File dnOrder="17">
           <Type dnOrder="0">SOURCE</Type>

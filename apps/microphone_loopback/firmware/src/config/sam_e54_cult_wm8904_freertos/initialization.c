@@ -173,7 +173,6 @@ DRV_I2S_INIT drvI2S0InitData =
     .i2sTransmitAddress = (void *)&(I2S_REGS->I2S_TXDATA),
     .i2sReceiveAddress = (void *)&(I2S_REGS->I2S_RXDATA),
 
-    // KEEP THIS LINE AS IS UNTIL MULTIPLE DMA INTERRUPTS ADDED (MH3-9357)
     .interruptDMA = DMAC_0_IRQn,
 
     .dmaDataLength = DRV_I2S_DATA_LENGTH_IDX0,
