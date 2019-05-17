@@ -603,8 +603,8 @@
           <Name dnOrder="1">libaria_events.c</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_tm4301b/gfx/libaria</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/libaria/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">27A5CC87BE5D59A3960FA3EF03390BEC</GeneratedChecksum>
-          <UserChecksum dnOrder="5">D342E42F1B3F71CFD94B17F50DC75F27</UserChecksum>
+          <GeneratedChecksum dnOrder="4">4C58C91313BC20394F1355F1310187B4</GeneratedChecksum>
+          <UserChecksum dnOrder="5">544A6860A7376F7287195E4FA0858A4F</UserChecksum>
         </File>
         <File dnOrder="75">
           <Type dnOrder="0">SOURCE</Type>
@@ -1251,8 +1251,8 @@
           <Name dnOrder="1">plib_pio.c</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_tm4301b/peripheral/pio/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/pio/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">7A02BCCEC2614A5815299840445EB3A8</GeneratedChecksum>
-          <UserChecksum dnOrder="5">7A02BCCEC2614A5815299840445EB3A8</UserChecksum>
+          <GeneratedChecksum dnOrder="4">CB635D316DFCC6BF425D0412495C7516</GeneratedChecksum>
+          <UserChecksum dnOrder="5">CB635D316DFCC6BF425D0412495C7516</UserChecksum>
         </File>
         <File dnOrder="156">
           <Type dnOrder="0">SOURCE</Type>
@@ -3244,10 +3244,15 @@
   </Configurator>
   <MHGC>
     <GAC dnOrder="0">
-      <Locations dnOrder="0">
+      <MemoryManager address="2818572288" dnOrder="0" size="33554432">
+        <Blocks dnOrder="0">
+          <FrameBufferBlock address="0" buffer="0" dnOrder="0" layer="0" movable="true" name="Frame Layer 0 Buffer 0" renameable="false" resizable="false" size="261120"/>
+        </Blocks>
+      </MemoryManager>
+      <Locations dnOrder="1">
         <Location dnOrder="0" fileName="gfx_assets" index="0" maxSize="512000"/>
       </Locations>
-      <Assets dnOrder="1">
+      <Assets dnOrder="2">
         <StringTable dnOrder="0" encoding="ASCII" location="0" name="stringTable">
           <Languages default="0" dnOrder="0">
             <Language dnOrder="0" enabled="true" name="default"/>
@@ -3668,58 +3673,58 @@
             <String dnOrder="0" name="strStop">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="1" name="strStartTime">
+            <String dnOrder="1" name="strNoOfChannels">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="2" name="strBitDepth">
+            <String dnOrder="2" name="strSampleRate">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="3" name="strVolumePercentage">
+            <String dnOrder="3" name="strBitDepth">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="4" name="strBitDepthLabel">
+            <String dnOrder="4" name="strEncoderType">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="5" name="strContainerType">
+            <String dnOrder="5" name="strSampleRateLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="6" name="strContainerTypeLabel">
+            <String dnOrder="6" name="StringChars">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="7" name="strSampleRateLabel">
+            <String dnOrder="7" name="strStartTime">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="8" name="strSampleRate">
+            <String dnOrder="8" name="strPlay">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="9" name="strNoOfChannels">
+            <String dnOrder="9" name="strTotalTime">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="10" name="strRec">
+            <String dnOrder="10" name="strContainerTypeLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="11" name="strTitleLabel">
+            <String dnOrder="11" name="strVolumePercentage">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="12" name="strTotalTime">
+            <String dnOrder="12" name="strRec">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="13" name="strHPEnableLabel">
+            <String dnOrder="13" name="strTrackTitle">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="14" name="StringChars">
+            <String dnOrder="14" name="strNoOfChannelsLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="15" name="strEncoderType">
+            <String dnOrder="15" name="strHPEnableLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="16" name="strPlay">
+            <String dnOrder="16" name="strContainerType">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="17" name="strNoOfChannelsLabel">
+            <String dnOrder="17" name="strBitDepthLabel">
               <Language dnOrder="0" index="0"/>
             </String>
-            <String dnOrder="18" name="strTrackTitle">
+            <String dnOrder="18" name="strTitleLabel">
               <Language dnOrder="0" index="0"/>
             </String>
             <String dnOrder="19" name="strVolumeCntlLabel">
@@ -4043,7 +4048,7 @@
           </GACImage>
         </Image>
       </Assets>
-      <FolderTree dnOrder="2">
+      <FolderTree dnOrder="3">
         <ImageTree dnOrder="0">
           <Folder dnOrder="0" expanded="false" name="Assets"/>
         </ImageTree>
@@ -4429,9 +4434,9 @@
                   <Event dnOrder="0" enabled="true" name="PressedEvent" pretty_name="Pressed">
                     <Actions dnOrder="0">
                       <Action dnOrder="0" name="Start playback" type="custom">
-                        <Text dnOrder="0">appData.pause&amp;#160;=&amp;#160;false;&#13;
-&#13;
-</Text>
+                        <Text dnOrder="0">#ifdef&amp;#160;APP_H_DEFINED&#13;
+appData.pause&amp;#160;=&amp;#160;false;&#13;
+#endif</Text>
                       </Action>
                     </Actions>
                   </Event>
@@ -4665,12 +4670,13 @@
                         </Properties>
                       </Action>
                       <Action dnOrder="2" name="Enable Head Phone Output" type="custom">
-                        <Text dnOrder="0">if(&amp;#160;!appData.headphone_out&amp;#160;)
+                        <Text dnOrder="0">#ifdef&amp;#160;APP_H_DEFINED
+if(&amp;#160;!appData.headphone_out&amp;#160;)
 {
 	appData.headphone_out&amp;#160;=&amp;#160;true;
 	DRV_CODEC_MuteOff(&amp;#160;appData.codecData.handle&amp;#160;);
 }
-</Text>
+#endif</Text>
                       </Action>
                     </Actions>
                   </Event>
@@ -4741,11 +4747,13 @@
                         </Properties>
                       </Action>
                       <Action dnOrder="2" name="Disable Head Phone Output" type="custom">
-                        <Text dnOrder="0">if(&amp;#160;appData.headphone_out&amp;#160;)
+                        <Text dnOrder="0">#ifdef&amp;#160;APP_H_DEFINED
+if(&amp;#160;appData.headphone_out&amp;#160;)
 {
 	appData.headphone_out&amp;#160;=&amp;#160;false;
 	DRV_CODEC_MuteOn(&amp;#160;appData.codecData.handle&amp;#160;);
-}</Text>
+}
+#endif</Text>
                       </Action>
                     </Actions>
                   </Event>
@@ -4976,7 +4984,9 @@
                   <Event dnOrder="0" enabled="true" name="PressedEvent" pretty_name="Pressed">
                     <Actions dnOrder="0">
                       <Action dnOrder="0" name="Seek to start of file" type="custom">
-                        <Text dnOrder="0">SYS_FS_FileSeek(appData.fileHandle,&amp;#160;sizeof(WAV_FILE_HEADER),&amp;#160;SYS_FS_SEEK_SET);</Text>
+                        <Text dnOrder="0">#ifdef&amp;#160;APP_H_DEFINED
+SYS_FS_FileSeek(appData.fileHandle,&amp;#160;sizeof(WAV_FILE_HEADER),&amp;#160;SYS_FS_SEEK_SET);
+#endif</Text>
                       </Action>
                     </Actions>
                   </Event>
@@ -5029,7 +5039,9 @@
                   <Event dnOrder="0" enabled="true" name="PressedEvent" pretty_name="Pressed">
                     <Actions dnOrder="0">
                       <Action dnOrder="0" name="Seek to end and close the file" type="custom">
-                        <Text dnOrder="0">SYS_FS_FileSeek(&amp;#160;appData.fileHandle,&amp;#160;0,&amp;#160;SYS_FS_SEEK_END);</Text>
+                        <Text dnOrder="0">#ifdef&amp;#160;APP_H_DEFINED
+SYS_FS_FileSeek(&amp;#160;appData.fileHandle,&amp;#160;0,&amp;#160;SYS_FS_SEEK_END);
+#endif</Text>
                       </Action>
                     </Actions>
                   </Event>
@@ -5082,8 +5094,9 @@
                   <Event dnOrder="0" enabled="true" name="PressedEvent" pretty_name="Pressed">
                     <Actions dnOrder="0">
                       <Action dnOrder="0" name="Pause playback" type="custom">
-                        <Text dnOrder="0">appData.pause&amp;#160;=&amp;#160;true;
-</Text>
+                        <Text dnOrder="0">#ifdef&amp;#160;APP_H_DEFINED
+appData.pause&amp;#160;=&amp;#160;true;
+#endif</Text>
                       </Action>
                     </Actions>
                   </Event>

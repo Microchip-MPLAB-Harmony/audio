@@ -251,8 +251,8 @@
           <Name dnOrder="1">plib_pio.c</Name>
           <LogicalPath dnOrder="2">config/audio_enc_sam_e70_xult_wm8904_i2sc_freertos/peripheral/pio/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/pio/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">4F052C46093B1D973F7E412825FBE652</GeneratedChecksum>
-          <UserChecksum dnOrder="5">4F052C46093B1D973F7E412825FBE652</UserChecksum>
+          <GeneratedChecksum dnOrder="4">81BB795395AA580F539033A64ED76510</GeneratedChecksum>
+          <UserChecksum dnOrder="5">81BB795395AA580F539033A64ED76510</UserChecksum>
         </File>
         <File dnOrder="31">
           <Type dnOrder="0">SOURCE</Type>

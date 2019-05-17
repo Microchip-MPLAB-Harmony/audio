@@ -44,13 +44,16 @@
 #include "app.h"
 
 extern APP_DATA appData;
+#define APP_H_DEFINED
 /***** KEEP THIS, END *****/
 
 // PlayStopBtn - PressedEvent
 void PlayStopBtn_PressedEvent(laButtonWidget* btn)
 {
     // Start playback
+    #ifdef APP_H_DEFINED
     appData.pause = false;
+    #endif
     }
 
 // VolumeWidget - ValueChangedEvent
@@ -73,11 +76,13 @@ void HPEnableBtn_PressedEvent(laButtonWidget* btn)
     laImageWidget_SetImage((laImageWidget*)HeadPhoneEnableImg, &toggleon61x31);
 
     // Enable Head Phone Output
+    #ifdef APP_H_DEFINED
     if( !appData.headphone_out )
     {
     	appData.headphone_out = true;
     	DRV_CODEC_MuteOff( appData.codecData.handle );
     }
+    #endif
 }
 
 // HPDisableBtnWidget - PressedEvent
@@ -90,32 +95,40 @@ void HPDisableBtnWidget_PressedEvent(laButtonWidget* btn)
     laImageWidget_SetImage((laImageWidget*)HeadPhoneEnableImg, &toggleoff61x31);
 
     // Disable Head Phone Output
+    #ifdef APP_H_DEFINED
     if( appData.headphone_out )
     {
     	appData.headphone_out = false;
     	DRV_CODEC_MuteOn( appData.codecData.handle );
     }
+    #endif
 }
 
 // RewindBtn - PressedEvent
 void RewindBtn_PressedEvent(laButtonWidget* btn)
 {
     // Seek to start of file
+    #ifdef APP_H_DEFINED
     SYS_FS_FileSeek(appData.fileHandle, sizeof(WAV_FILE_HEADER), SYS_FS_SEEK_SET);
+    #endif
 }
 
 // NextTrackBtn - PressedEvent
 void NextTrackBtn_PressedEvent(laButtonWidget* btn)
 {
     // Seek to end and close the file
+    #ifdef APP_H_DEFINED
     SYS_FS_FileSeek( appData.fileHandle, 0, SYS_FS_SEEK_END);
+    #endif
 }
 
 // PauseBtn - PressedEvent
 void PauseBtn_PressedEvent(laButtonWidget* btn)
 {
     // Pause playback
+    #ifdef APP_H_DEFINED
     appData.pause = true;
+    #endif
 }
 
 
