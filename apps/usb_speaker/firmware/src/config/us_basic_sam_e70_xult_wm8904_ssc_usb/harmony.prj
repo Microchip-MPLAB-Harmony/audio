@@ -75,8 +75,8 @@
           <Name dnOrder="1">drv_wm8904.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb/audio/driver/wm8904/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/wm8904/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">6588257EF5B3AF12EC0231EF884C9A4B</GeneratedChecksum>
-          <UserChecksum dnOrder="5">6588257EF5B3AF12EC0231EF884C9A4B</UserChecksum>
+          <GeneratedChecksum dnOrder="4">33E64985667DC137B41E4D530CE51942</GeneratedChecksum>
+          <UserChecksum dnOrder="5">33E64985667DC137B41E4D530CE51942</UserChecksum>
         </File>
         <File dnOrder="9">
           <Type dnOrder="0">SOURCE</Type>
@@ -163,8 +163,8 @@
           <Name dnOrder="1">plib_pio.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb/peripheral/pio/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/pio/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">80B7DF199C0F8019BC2272C70741C20E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">80B7DF199C0F8019BC2272C70741C20E</UserChecksum>
+          <GeneratedChecksum dnOrder="4">68C3D3762A0A610FFAE9299CF417F7CE</GeneratedChecksum>
+          <UserChecksum dnOrder="5">68C3D3762A0A610FFAE9299CF417F7CE</UserChecksum>
         </File>
         <File dnOrder="20">
           <Type dnOrder="0">SOURCE</Type>
@@ -324,7 +324,7 @@
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">F88F2A94D93C9BC77BA5187A605D78ED</GeneratedChecksum>
-          <UserChecksum dnOrder="5">AA3C834E39E81B2E5B97964C657A0F1F</UserChecksum>
+          <UserChecksum dnOrder="5">F88F2A94D93C9BC77BA5187A605D78ED</UserChecksum>
         </File>
         <File dnOrder="40">
           <Type dnOrder="0">SOURCE</Type>
@@ -451,7 +451,7 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">C63EEB2B5CD06207C119E89C88A8F2FE</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">1C5619824B0BA751095695B907DC3AE8</GeneratedChecksum>
           <UserChecksum dnOrder="5">504AE0DCE981E88065DC75722E478699</UserChecksum>
         </File>
         <File dnOrder="56">

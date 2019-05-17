@@ -228,7 +228,7 @@ extern "C" {
 #define DRV_USBHSV1_HOST_SUPPORT                            false
 
 /* Maximum instances of Audio function driver */
-#define USB_DEVICE_AUDIO_INSTANCES_NUMBER     1
+#define USB_DEVICE_AUDIO_INSTANCES_NUMBER    1 
 
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
