@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Running the Demonstration</title>
+<title>Introduction</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00004.html" target="topic">microphone_loopback</a> &gt; <a href="00007.html" target="topic">Running the Demonstration</a></div>
+<a href="00094.html" target="topic">Audio Libraries Help</a> &gt; <a href="00087.html" target="topic">Decoder Library Help</a> &gt; <a href="00006.html" target="topic">ADPCM Decoder Library</a> &gt; <a href="00007.html" target="topic">Introduction</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00006.html" target="topic">Previous</a> | <a href="00004.html" target="topic">Up</a> | <a href="00026.html" target="topic">Next</a></div>
+<a href="00006.html" target="topic">Previous</a> | <a href="00006.html" target="topic">Up</a> | <a href="00009.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: ADPCM Decoder Library Introduction Topic Title: Introduction)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Running the Demonstration</div>
+Introduction</div>
 </div>
 </div>
 
@@ -48,81 +48,19 @@ Running the Demonstration</div>
 <a name="PageContent"></a><div class="Element58">
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table0">
-<tr>
-<td class="Element67" valign="top" width="5%" style="border:none;">
-<div class="Element68">
-<img src="Important icon.png" border="0" alt="" title=""><br>&nbsp;</div></td><td class="Element67" valign="top" width="12%" style="border:none;">
-<div class="Element68">
-<strong>Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="83%" style="border:none;">
-<div class="Element68">
-Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-&nbsp;</p>
+Adaptive Differential Pulse Code Modulation (ADPCM) is a royalty-free audio codec. It is a lossy compression standard. It is a variant of Differential Pulse-Code Modulation (DPCM). The file format used to contain an ADPCM files, is the same as WAV.&nbsp;</p>
 <p class="Element10">
-<strong>Projects using a Pushbutton LED User interface:</strong>&nbsp;</p>
+Decoding is fast and requires little processing power.&nbsp;</p>
 <p class="Element10">
-Four different delays can be generated. <strong>Table 1</strong> provides a summary of the button actions that can used to control the volume and delay amount.</p>
-<ol class="Element630">
-<li value="1" class="Element600">Connect headphones to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>), or the HEADPHONE jack of the SAM V71 Xplained Ultra board.</li>
-<li value="2" class="Element600">Connect a microphone to the MIC IN jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>), or the MICROPHONE jack of the SAM V71 Xplained Ultra board.</li>
-<li value="3" class="Element600">Initially the program will be in delay-setting mode (LED1 on) at a medium volume setting. Pressing SW1 with LED1 on will cycle through four delay settings.</li>
-<li value="4" class="Element600">Pressing SW1 longer than one second will change to volume-setting mode (LED1 off). Pressing SW1 with LED1 off will cycle through four volume settings (including mute).</li>
-<li value="5" class="Element600">Pressing SW1 longer than one second again will switch back to delay-setting mode again (LED1 on).</li>
-</ol><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO mic_loopback_e70_xult.png" border="0" alt="" title=""></p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table0">
-<tr>
-<td class="Element77" valign="top" width="100%" style="border:none;">
-<div class="Element78">
-<strong>Figure 1: WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board</strong>&nbsp;</div></td></tr></table></div></div>
-<div class="Element15">
-Control Descriptions</div>
-<p class="Element10">
-<strong>Table 1: Button Controls for SAM E70 Xplained Ultra board</strong> <strong>and</strong> <strong>SAM V71 Xplained Ultra board</strong> </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="20%">
-<div class="Element66">
-Control&nbsp;</div></td><td class="Element65" valign="top" width="80%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
-<div class="Element68">
-SW1 short press&nbsp;</div></td><td class="Element67" valign="top" width="80%">
-<div class="Element68">
-If LED1 if off, SW1 cycles through four volume levels (one muted). If LED1 is on, SW1 cycles through four delays: ¼ second, ½ second, 1 second and 1½ seconds.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
-<div class="Element68">
-SW1 long press<br>(&gt; 1 second)&nbsp;</div></td><td class="Element67" valign="top" width="80%">
-<div class="Element68">
-Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<strong>Project using a Graphical User Interface:</strong></p>
-<ol class="Element630">
-<li value="1" class="Element600">Connect headphones to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>).</li>
-<li value="2" class="Element600">Connect a microphone to the MIC IN jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>).</li>
-<li value="3" class="Element600">Initially the program will be in delay-setting mode, with a 800 ms delay and a medium volume setting.</li>
-<li value="4" class="Element600">The Delay can be adjusted from 10 ms to 1000 ms (1 second) using the center circular control.</li>
-<li value="5" class="Element600">The Output Volume can be adjusted from 0% to 100% using the circular control on the right.</li>
-<li value="6" class="Element600">The Microphone Gain can be adjusted from 0% to 100% using the slider on the left.</li>
-<li value="7" class="Element600">Adjusting the microphone gain or output volume causes the delay to be temporarily disabled. Re-enable the previous value using the Enable Delay switch.</li>
-<li value="8" class="Element600">The Enable Delay swtich can also be manually toggled at any time to disable the delay and provide immediate microphone loopback to the headphones.</li>
-</ol><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO microphone_loopback GUI.png" border="0" alt="" title=""></p></div>
+Typical applications using ADPCM are for speech. This implementation currently supports 16 bit stereo.</p></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00004.html" target="topic">microphone_loopback</a> &gt; <a href="00007.html" target="topic">Running the Demonstration</a></div>
+<a href="00094.html" target="topic">Audio Libraries Help</a> &gt; <a href="00087.html" target="topic">Decoder Library Help</a> &gt; <a href="00006.html" target="topic">ADPCM Decoder Library</a> &gt; <a href="00007.html" target="topic">Introduction</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -130,13 +68,13 @@ Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00006.html" target="topic">Previous</a> | <a href="00004.html" target="topic">Up</a> | <a href="00026.html" target="topic">Next</a></div>
+<a href="00006.html" target="topic">Previous</a> | <a href="00006.html" target="topic">Up</a> | <a href="00009.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: ADPCM Decoder Library Introduction Topic Title: Introduction)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

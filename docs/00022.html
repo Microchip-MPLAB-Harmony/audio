@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Running the Demonstration</title>
+<title>adpcm_encoder_free Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00019.html" target="topic">audio_tone_linkeddma</a> &gt; <a href="00022.html" target="topic">Running the Demonstration</a></div>
+<a href="00094.html" target="topic">Audio Libraries Help</a> &gt; <a href="00091.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a> &gt; <a href="00015.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00022.html" target="topic">adpcm_encoder_free Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00021.html" target="topic">Previous</a> | <a href="00019.html" target="topic">Up</a> | <a href="00004.html" target="topic">Next</a></div>
+<a href="00021.html" target="topic">Previous</a> | <a href="00015.html" target="topic">Up</a> | <a href="00014.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_tone_linkeddma_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: adpcm_encoder_free Topic Title: adpcm_encoder_free Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Running the Demonstration</div>
+adpcm_encoder_free Function</div>
 </div>
 </div>
 
@@ -48,71 +48,18 @@ Running the Demonstration</div>
 <a name="PageContent"></a><div class="Element58">
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table0">
-<tr>
-<td class="Element67" valign="top" width="5%" style="border:none;">
-<div class="Element68">
-<img src="Important icon.png" border="0" alt="" title=""><br>&nbsp;</div></td><td class="Element67" valign="top" width="12%" style="border:none;">
-<div class="Element68">
-<strong>Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="83%" style="border:none;">
-<div class="Element68">
-Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-All configurations:&nbsp;</p>
-<p class="Element10">
-Continuous sine tones of four frequencies can be generated. <strong>Table 1</strong> provides a summary of the button actions that can used to control the volume and frequency.&nbsp;</p>
-<p class="Element10">
-Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project based. Refer to Building the Applications for details.</p>
-<ol class="Element630">
-<li value="1" class="Element600">Connect headphones to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>).</li>
-<li value="2" class="Element600">The tone can be quite loud, especially when using a pair of headphones.</li>
-<li value="3" class="Element600">Initially the program will be in volume-setting mode (LED1 off) at a medium volume setting. Pressing SW1 with LED1 off will cycle through four volume settings (including mute).</li>
-<li value="4" class="Element600">Pressing SW1 longer than one second will change to frequency-setting mode (LED1 on). Pressing SW1 with LED1 on will cycle through four frequency settings -- 250 Hz, 500 Hz, 1 kHz, and 2 kHz.</li>
-<li value="5" class="Element600">Pressing SW1 longer than one second again will switch back to volume-setting mode again (LED1 off).</li>
-</ol><p class="Element10">
-&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone_e70_xult.png" border="0" alt="" title=""></p><p class="Element10">
-&nbsp;</p>
-<div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table0">
-<tr>
-<td class="Element77" valign="top" width="100%" style="border:none;">
-<div class="Element78">
-<strong>Figure 1: WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board</strong>&nbsp;</div></td></tr></table></div></div>
-<div class="Element15">
-Control Descriptions</div>
-<p class="Element10">
-<strong>Table 1: Button Controls for SAM E70 Xplained Ultra board</strong> </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="23%">
-<div class="Element66">
-Control&nbsp;</div></td><td class="Element65" valign="top" width="77%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="23%">
-<div class="Element68">
-SW1 short press&nbsp;</div></td><td class="Element67" valign="top" width="77%">
-<div class="Element68">
-If LED1 if off, SW1 cycles through four volume levels (one muted). If LED1 is on, SW1 cycles through four frequencies of sine tone.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="23%">
-<div class="Element68">
-SW1 long press<br>(&gt; 1 second)&nbsp;</div></td><td class="Element67" valign="top" width="77%">
-<div class="Element68">
-Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></div>
+This is function adpcm_encoder_free.</p></div>
 </div>
-</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">adpcm_encoder_free</span></strong>();</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00019.html" target="topic">audio_tone_linkeddma</a> &gt; <a href="00022.html" target="topic">Running the Demonstration</a></div>
+<a href="00094.html" target="topic">Audio Libraries Help</a> &gt; <a href="00091.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a> &gt; <a href="00015.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00022.html" target="topic">adpcm_encoder_free Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -120,13 +67,13 @@ Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00021.html" target="topic">Previous</a> | <a href="00019.html" target="topic">Up</a> | <a href="00004.html" target="topic">Next</a></div>
+<a href="00021.html" target="topic">Previous</a> | <a href="00015.html" target="topic">Up</a> | <a href="00014.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_tone_linkeddma_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: adpcm_encoder_free Topic Title: adpcm_encoder_free Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

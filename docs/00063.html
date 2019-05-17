@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>drv_wm8904.h</title>
+<title>Configuring the Hardware</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00052.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00045.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00041.html" target="topic">Files</a> &gt; <a href="00063.html" target="topic">drv_wm8904.h</a></div>
+<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00061.html" target="topic">microphone_loopback</a> &gt; <a href="00063.html" target="topic">Configuring the Hardware</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00041.html" target="topic">Previous</a> | <a href="00041.html" target="topic">Up</a></div>
+<a href="00062.html" target="topic">Previous</a> | <a href="00061.html" target="topic">Up</a> | <a href="00064.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: drv_wm8904.h Topic Title: drv_wm8904.h)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_configure Topic Title: Configuring the Hardware)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-drv_wm8904.h</div>
+Configuring the Hardware</div>
 </div>
 </div>
 
@@ -46,35 +46,84 @@ drv_wm8904.h</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46696C65204E616D65"></a><div class="Element11">
+<a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-drv_wm8904.h</p></div>
-</div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
+<u>Using the SAM E54 Curiosity Ultra board and the WM8904 Audio Codec Daughter Board, and the SSC PLIB</u>. All jumpers on the WM8904 should be toward the <strong>front:</strong> </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO wm8904-ssc.png" border="0" alt="" title=""></p><p class="Element10">
+In addition, make sure the J401 jumper (CLK SELECT) is set for the PA17 pin: </p><p class="Element10" style="text-align: center;">
+<img src="E54-J401-PA17.png" border="0" alt="" title=""></p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="9%" style="border:none;">
+<div class="Element68">
+<strong>Note:</strong><br>&nbsp;</div></td><td class="Element67" valign="top" width="86%" style="border:none;">
+<div class="Element68">
+The SAM E54 Curiosity Ultra board does not include the WM8904 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC328904.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-WM8904 Codec Driver Interface header file</p></div>
-</div>
-</div>
-<a name="4465736372697074696F6E"></a><div class="Element14">
-Description</div>
-<div class="Element11">
-<div class="Element10">
+&nbsp;</p>
 <p class="Element10">
-WM8904 Codec Driver Interface&nbsp;</p>
+<u>Using the SAM E70 Xplained Ultra board and the AK4954 Audio Codec Daughter Board, and the SSC PLIB.</u> No special configuration needed. </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="7%" style="border:none;">
+<div class="Element68">
+<strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="88%" style="border:none;">
+<div class="Element68">
+The SAM E70 Xplained Ultra board does not include the AK4954 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC324954.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-The WM8904 Codec device driver interface provides a simple interface to manage the WM8904 16/24/32-Bit Codec that can be interfaced to a Microchip microcontroller. This file provides the public interface definitions for the WM8904 Codec device driver.</p></div>
+&nbsp;</p>
+<p class="Element10">
+<u>Using the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board, and the I2SC PLIB</u>. All jumpers on the WM8904 should be toward the <strong>back:</strong> </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO wm8904-i2sc.png" border="0" alt="" title=""></p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="9%" style="border:none;">
+<div class="Element68">
+<strong>Note:</strong><br>&nbsp;</div></td><td class="Element67" valign="top" width="86%" style="border:none;">
+<div class="Element68">
+The SAM E70 Xplained Ultra board does not include the WM8904 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC328904.&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>Using the SAM E70 Xplained Ultra board and the AK4954 Audio Codec Daughter Board, and the SSC PLIB and the 480x272 display.</u></p>
+<ul class="Element630">
+<li class="Element600">Attach the flat cable of the PDA TM4301B 480x272 (WQVGA) display to the 565 daughterboard connected to the SAM E70 Xplained Ultra board GFX CONNECTOR.</li>
+<li class="Element600">Add a jumper from connector EXT1 pin 13 to J601 (CAMERA INTERFACE) pin 14 as shown:</li>
+</ul><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO mic_loopback_e70_xult_jumper.png" border="0" alt="" title=""></p><p class="Element10">
+The WM8904 Audio Codec Daughter Board will be using the SSC PLIB; all jumpers on the WM8904 should be toward the <strong>front:</strong> </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO wm8904-ssc.png" border="0" alt="" title=""></p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="6%" style="border:none;">
+<div class="Element68">
+<strong>Note:</strong><br>&nbsp;</div></td><td class="Element67" valign="top" width="89%" style="border:none;">
+<div class="Element68">
+The SAM E70 Xplained Ultra board does not include the PDA TM4301B 480x272 (WQVGA) display, which is sold separately on microchipDIRECT as part number AC320005-4, or the WM8904 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC328904.&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>Using the SAM V71 Xplained Ultra board with on-board WM8904, with the SSC PLIB.</u> No special configuration needed.</p></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00052.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00045.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00041.html" target="topic">Files</a> &gt; <a href="00063.html" target="topic">drv_wm8904.h</a></div>
+<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00061.html" target="topic">microphone_loopback</a> &gt; <a href="00063.html" target="topic">Configuring the Hardware</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -82,13 +131,13 @@ The WM8904 Codec device driver interface provides a simple interface to manage t
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00041.html" target="topic">Previous</a> | <a href="00041.html" target="topic">Up</a></div>
+<a href="00062.html" target="topic">Previous</a> | <a href="00061.html" target="topic">Up</a> | <a href="00064.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: drv_wm8904.h Topic Title: drv_wm8904.h)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_configure Topic Title: Configuring the Hardware)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

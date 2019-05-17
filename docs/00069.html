@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_WM8904_BUFFER_EVENT Enumeration</title>
+<title>audio_signal_generator</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00052.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00045.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00046.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00069.html" target="topic">DRV_WM8904_BUFFER_EVENT Enumeration</a></div>
+<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00069.html" target="topic">audio_signal_generator</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00064.html" target="topic">Previous</a> | <a href="00046.html" target="topic">Up</a> | <a href="00073.html" target="topic">Next</a></div>
+<a href="00068.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00070.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BUFFER_EVENT Topic Title: DRV_WM8904_BUFFER_EVENT Enumeration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_signal_generator Topic Title: audio_signal_generator)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_WM8904_BUFFER_EVENT Enumeration</div>
+audio_signal_generator</div>
 </div>
 </div>
 
@@ -46,62 +46,124 @@ DRV_WM8904_BUFFER_EVENT Enumeration</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="53756D6D617279"></a><div class="Element11">
+<a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Identifies the possible events that can result from a buffer add request.</p></div>
+In this demonstration application the Codec Driver sets up the WM8904 Codec. The demonstration sends out generated audio waveforms (sine wave, square wave, sawtooth wave, and triangle wave) with volume, duration and frequency modifiable through buttons on a touch screen. Success is indicated by an audible output corresponding to displayed parameters.&nbsp;</p>
+<p class="Element10">
+The tones can be varied from 50 Hz to 6000 Hz, sent by default at 48,000 samples/second, which is modifiable in the MHC as described below.&nbsp;</p>
+<p class="Element10">
+To know more about the MPLAB Harmony Codec Drivers, configuring the Codec Drivers, and the APIs provided by the Codec Drivers, refer to Codec Driver Libraries.</p><div class="Element15">
+Architecture</div>
+<p class="Element10">
+<u>SAM E70 Xplained Ultra Projects:</u>&nbsp;</p>
+<p class="Element10">
+There is one project which runs on the SAM E70 Xplained Ultra Board, which contains a ATSAME70Q21B microcontroller with 2 MB of Flash memory and 384 KB of RAM running at 300 MHz using the following features:</p>
+<ul class="Element630">
+<li class="Element600">WM8904 Codec Daughter Board mounted on a X32 socket</li>
+<li class="Element600">PDA TM4301B 480x272 (WQVGA) Display</li>
+</ul><p class="Element10">
+The SAM E70 Xplained Ultra board does not include either the WM8904 Audio Codec daughterboard or the TM4301B graphics card, which are sold separately on microchipDIRECT as part numbers AC328904 and AC320005-4, respectively.&nbsp;</p>
+<p class="Element10">
+The program takes up to approximately 18% (350 KB) of the ATSAME70Q21B microcontroller’s program space. The 16-bit configuration uses 87% (332 KB) of the RAM. A 32 KB heap is used.&nbsp;</p>
+<p class="Element10">
+The following figure illustrates the application architecture for the SAM E70 Xplained Ultra configuration:&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_sig_gen E70 gfx Architecture Diagram.png" border="0" alt="" title="">&nbsp;</p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+The WM8904 codec is configured in master mode, meaning it generates the I<sup>2</sup>S clocks (LRCLK and BCLK), and the SSC peripheral is configured as a slave. The I2SC peripheral cannot be used with this project as its interface conflicts with the graphics interface.&nbsp;</p>
+<p class="Element10">
+The SAM E70 microcontroller (MCU) runs the application code, and communicates with the WM8904 codec via an I<sup>2</sup>C interface. The audio interface between the SAM E70 and the WM8904 codec use the I<sup>2</sup>S interface. Audio is configured as 16-bit, 48,000 samples/second, I<sup>2</sup>S format. (16-bit, 48 kHz is the standard rate used for DVD audio. An alternate that could be used is 44,100 samples/second. This is the same sample rate used for CD's. The sample rate is configurable in the MHC.&nbsp;</p>
+<p class="Element10">
+The Master Clock (MCLK) signal used by the codec is generated by the Peripheral Clock section of the SAM E70, and is fixed at 12 MHz.&nbsp;</p>
+<p class="Element10">
+As with any MPLAB Harmony application, the SYS_Initialize function, which is located in the <span class="Element146">initialization.c</span> source file, makes calls to initialize various subsystems as needed, such as the clock, ports, board support package (BSP), display, WM8904 codec, I2S, I2C, DMA, timers, and interrupts.&nbsp;</p>
+<p class="Element10">
+The codec driver and the application state machines are all updated through calls located in the SYS_Tasks function in the <span class="Element146">tasks.c</span> file.&nbsp;</p>
+<p class="Element10">
+The application code is contained in the several source files. The application’s state machine (<span class="Element146">APP_Tasks</span>) is contained in <span class="Element146">app.c</span>. It first gets a handle to a timer driver instance and sets up a periodic (alarm) callback. In the next state it gets a handle to the codec driver by calling the <span class="Element146">DRV_CODEC_Open</span> function with a mode of <span class="Element146">DRV_IO_INTENT_WRITE</span> and sets up the volume.&nbsp;</p>
+<p class="Element10">
+The application state machine then registers an event handler <span class="Element146">APP_CODEC_BufferEventHandler</span> as a callback with the codec driver (which in turn is called by the DMA driver).&nbsp;</p>
+<p class="Element10">
+Two buffers are used for generating the various waveformse in a ping-pong fashion. Initially values for the first buffer are calculated, and then the buffer is handed off to the DMA using a <span class="Element146">DRV_CODEC_BufferAddWrite</span>. While the DMA is transferring data to the SSC peripheral, causing audio to be sent to the codec over I<sup>2</sup>S, the program calculates the values for the next cycle. (In the current version of the program, this is always the same unless the frequency is changed manually.) Then when the DMA callback <span class="Element146">Audio_Codec_BufferEventHandler</span> is called, the second buffer is handed off and the first buffer re-initialized, back and forth.&nbsp;</p>
+<p class="Element10">
+A local routine called initSweep calculates the total number of cycles that are to be generated, based on the starting frequency, ending frequency and sample rate. This results in an average period, which is divided into the duration to yield the the total number of cycles. The cycles for each frequency step is then calculated, and based on this, the number of cycles per buffer is calculated based on the size of the buffer.&nbsp;</p>
+<p class="Element10">
+A second local routine fillInNumSamplesTable is then called to fill in the current buffer based on the calculated parameters. A table (<span class="Element146">appData.numSamples1</span> or <span class="Element146">2</span>) is filled in with the number of samples for each cycle to be generated. <strong> </strong>This table with the number of samples per cycle to be generated is then passed to the function <span class="Element146">APP_TONE_LOOKUP_TABLE_Initialize</span> along with which buffer to work with (1 or 2) and the sample rate.&nbsp;</p>
+<p class="Element10">
+For sine waves, the 16-bit value for each sample is calculated based on the relative distance (angle) from 0, based in turn on the current sample number and total number of samples for one cycle. First the angle is calculated in radians:&nbsp;</p>
+<p class="Element10">
+<span class="Element146">double radians = (M_PI*(double)(360.0/(double)currNumSamples)*(double)i)/180.0;</span>&nbsp;</p>
+<p class="Element10">
+Then the sample value is calculated using the sine function:&nbsp;</p>
+<p class="Element10">
+<span class="Element146">lookupTable[i].leftData = (int16_t)(0x7FFF*sin(radians));</span>&nbsp;</p>
+<p class="Element10">
+If the number of samples divides into the sample rate evenly, then only 1/4 (90°) of the samples are calculated, and the remainder is filled in by reflection. Otherwise each sample is calculated individually. Before returning, the size of the buffer is calculated based on the number of samples filled in.&nbsp;</p>
+<p class="Element10">
+For the other waveforms, the 16-bit value of each sample is computed algorithmically based on the shape of the waveform and the position of the sample within the cycle -- square waves, half positive and half negative; sawtooth a steady ramp, and triangle waves, a ramp up followed by a ramp down.</p><div class="Element15">
+Demonstration Features</div>
+
+<ul class="Element630">
+<li class="Element600">Calculation of a sine wave based on the number of samples and sample rate using the sin function, with reflection if possible</li>
+<li class="Element600">Calculation of other waveforms based on the number of samples and sample rate and shape of the waveform.</li>
+<li class="Element600">Uses the Codec Driver Library to write audio samples to the WM8904</li>
+<li class="Element600">At a lower level, uses the I2S Driver Library between the codec library and the chosen peripheral (SSC or I2SC) to send the audio to the codec</li>
+<li class="Element600">Use of ping-pong buffers and DMA</li>
+<li class="Element600">Use of two timers: one as a periodic 1 ms timer for the application for button debouncing, and a second used by the Codec Driver (see Timer Driver Library)</li>
+</ul><div class="Element15">
+Tools Setup Differences</div>
+<p class="Element10">
+When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the same based on the BSP used (SAM E70 Xplained Ultra). Select the appropriate processor (ATSAME70Q21B). Click Finish.&nbsp;</p>
+<p class="Element10">
+In the MHC, under Available Components select the BSP (SAM E70 Xplained Ultra). Under <i>Graphics&gt;Templates</i>, double-click on Aria Graphics w/ PDA TM4301B Display. Answer Yes to all questions except for the one regarding FreeRTOS; answer No to that one.&nbsp;</p>
+<p class="Element10">
+Then under <i>Audio&gt;Templates</i>, double-click on WM8904 Codec. Answer Yes to all questions.&nbsp;</p>
+<p class="Element10">
+You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_sig_gen_E70_WQVGA_project_graph.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p><p class="Element10">
+Click on the WM8904 Driver. In the Configurations Options, set the desired Sample Rate if different from the default (48,000) under Sampling Rate.&nbsp;</p>
+<p class="Element10">
+If using the SAM E70 Xplained Ultra board, in the Clock Diagram, set MOSCEL to Main Crystal, check the Bypass checkbox, and uncheck the RC Crystal Oscillator and Main Crystal Oscillator boxes, to make use of the 12 MHz external oscillator: </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO E70 clock diagram main bypass.png" border="0" alt="" title=""></p><p class="Element10">
+Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Controller </strong>section, check the On checkbox, and set CSS to MAINCLK (12 MHz). Then check the SSC checkbox in the <strong>Peripheral Clock Controller</strong> section.&nbsp;</p>
+<p class="Element10">
+It is also possible to change the audio format from 16 to 32-bits, and from I2S to Left Justified (SSC only). These changes need to be done in the MHC in both the WM8904, and SSC/I2SC Peripherals. In the current application code (app.h), a #define is also set to the current width.</p></div>
 </div>
-<a name="4465736372697074696F6E"></a><div class="Element14">
-Description</div>
+<a name="546F70696373"></a><div class="Element14">
+Topics</div>
 <div class="Element11">
 <div class="Element10">
-<p class="Element10">
-WM8904 Driver Events&nbsp;</p>
-<p class="Element10">
-This enumeration identifies the possible events that can result from a buffer add request caused by the client calling either the <a href="00077.html" target="topic">DRV_WM8904_BufferAddWrite</a>() or the <a href="00076.html" target="topic">DRV_WM8904_BufferAddRead</a>() function.</p></div>
-</div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-One of these values is passed in the &quot;event&quot; parameter of the event handling callback function that the client registered with the driver by calling the <a href="00079.html" target="topic">DRV_WM8904_BufferEventHandlerSet</a> function when a buffer transfer request is completed.</p></div>
-</div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">enum</span></strong> {
-  <strong><span style="color: #000000">DRV_WM8904_BUFFER_EVENT_COMPLETE</span></strong>,
-  <strong><span style="color: #000000">DRV_WM8904_BUFFER_EVENT_ERROR</span></strong>,
-  <strong><span style="color: #000000">DRV_WM8904_BUFFER_EVENT_ABORT</span></strong>
-} DRV_WM8904_BUFFER_EVENT;</pre></div></div>
-<a name="4D656D62657273"></a><div class="Element14">
-Members</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element272">
+<div class="Element212">
 <div class="TableDiv">
-<table cellspacing="0" class="Table4">
+<table cellspacing="0" class="Table1">
 <tr>
-<td class="Element260" valign="top" width="35%">
-<div class="Element261">
-Members&nbsp;</div></td><td class="Element264" valign="top" width="65%">
-<div class="Element265">
+<td class="Element200" valign="top" width="35%">
+<div class="Element201">
+Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
+<div class="Element205">
 Description&nbsp;</div></td></tr><tr>
-<td class="Element262" valign="top" width="35%">
-<div class="Element263">
-DRV_WM8904_BUFFER_EVENT_COMPLETE&nbsp;</div></td><td class="Element266" valign="top" width="65%">
-<div class="Element267">
-Data was transferred successfully.&nbsp;</div></td></tr><tr>
-<td class="Element262" valign="top" width="35%">
-<div class="Element263">
-DRV_WM8904_BUFFER_EVENT_ERROR&nbsp;</div></td><td class="Element266" valign="top" width="65%">
-<div class="Element267">
-Error while processing the request&nbsp;</div></td></tr><tr>
-<td class="Element262" valign="top" width="35%">
-<div class="Element263">
-DRV_WM8904_BUFFER_EVENT_ABORT&nbsp;</div></td><td class="Element266" valign="top" width="65%">
-<div class="Element267">
-Data transfer aborted (Applicable in DMA mode)&nbsp;</div></td></tr></table></div></div>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00070.html" target="topic">Building the Application</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This section identifies the MPLAB X IDE project name and location and lists and describes the available configurations for the demonstration.&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00071.html" target="topic">Configuring the Hardware</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This section describes how to configure the supported hardware.&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00072.html" target="topic">Running the Demonstration</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -109,7 +171,7 @@ Data transfer aborted (Applicable in DMA mode)&nbsp;</div></td></tr></table></di
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00052.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00045.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00046.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00069.html" target="topic">DRV_WM8904_BUFFER_EVENT Enumeration</a></div>
+<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00069.html" target="topic">audio_signal_generator</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -117,13 +179,13 @@ Data transfer aborted (Applicable in DMA mode)&nbsp;</div></td></tr></table></di
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00064.html" target="topic">Previous</a> | <a href="00046.html" target="topic">Up</a> | <a href="00073.html" target="topic">Next</a></div>
+<a href="00068.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00070.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BUFFER_EVENT Topic Title: DRV_WM8904_BUFFER_EVENT Enumeration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_signal_generator Topic Title: audio_signal_generator)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

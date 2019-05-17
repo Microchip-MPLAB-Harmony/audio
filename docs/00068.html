@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<title>Running the Demonstration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoadEx('frames.html', 'topic', '00068.html');" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00065.html" target="topic">audio_player_basic</a> &gt; <a href="00068.html" target="topic">Running the Demonstration</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element1">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element2">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element90">
+<a href="00067.html" target="topic">Previous</a> | <a href="00065.html" target="topic">Up</a> | <a href="00069.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element96">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_player_basic_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table><div class="Element5">
+Running the Demonstration</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<a name="PageContent"></a><div class="Element58">
+<a name="4465736372697074696F6E"></a><div class="Element11">
+<div class="Element10">
+<div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Important icon.png" border="0" alt="" title=""><br>&nbsp;</div></td><td class="Element67" valign="top" width="12%" style="border:none;">
+<div class="Element68">
+<strong>Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="83%" style="border:none;">
+<div class="Element68">
+Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project based. Refer to Building the Application for details.</p>
+<ol class="Element630">
+<li value="1" class="Element600">Connect headphones to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>).</li>
+<li value="2" class="Element600">Connect power to the board. The system will be in a wait state for USB to be connected (amber LED1 blinking).</li>
+<li value="3" class="Element600">Connect a USB mass storage device (thumb drive) that contains songs of supported audio format to the USB TARGET connector of the SAM E70 Xplained Ultra board. You will probably need a USB-A Female to Micro-B Male adapter cable to do so. The application currently can only stream WAVE (.wav) format audio files.</li>
+<li value="4" class="Element600">When the USB device is connected the system will scan for audio files. Once the scanning is complete and at least one file is found (green LED2 on steady), listen to the audio output on headphones connected to the board. Use Switch SW1 as described under Control Description to change the volume or advance to the next track.</li>
+</ol><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_player_basic_sam_e70.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<strong>Figure 1: WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board</strong></p><p class="Element10">
+<strong>Control Description</strong>&nbsp;</p>
+<p class="Element10">
+Long presses of the push button cycle between volume control and the linear track change mode.&nbsp;</p>
+<p class="Element10">
+When in volume control mode, short presses of the push button cycle between Low, Medium, High, and Mute volume outputs. While in the Mute mode, a pause of the playback will also take place.&nbsp;</p>
+<p class="Element10">
+When in the linear track change mode, short presses of the push button will seek to the end of the currently playing track and start the next track that was found in sequence. After all tracks have been played, the first track will start again in the same sequential order.&nbsp;</p>
+<p class="Element10">
+Button control is shown in the table below. </p><p class="Element10" style="text-align: center;">
+<strong>Button Operations</strong></p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="39%">
+<div class="Element66">
+Long Press (&gt; 1 sec)&nbsp;</div></td><td class="Element65" valign="top" width="61%">
+<div class="Element66">
+Short Press (&lt; 1 sec)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="39%">
+<div class="Element68">
+Volume Control&nbsp;</div></td><td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Low (-66 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="39%">
+<div class="Element68">
+&nbsp;</div></td><td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Medium (-48 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="39%">
+<div class="Element68">
+&nbsp;</div></td><td class="Element67" valign="top" width="61%">
+<div class="Element68">
+High (0 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="39%">
+<div class="Element68">
+&nbsp;</div></td><td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Mute/Pause&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="39%">
+<div class="Element68">
+Linear Track Change&nbsp;</div></td><td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Next sequential track&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+<strong>Status Indicator Description</strong>&nbsp;</p>
+<p class="Element10">
+When the application first starts running, it looks to find an attached storage device. If one is not found, LED1 will toggle on and off about every 100ms indicating that a storage device is not attached.&nbsp;</p>
+<p class="Element10">
+When a storage device is attached, LED1 will turn off. At this time, the file system will be scanned for WAVE files with a .wav extension.&nbsp;</p>
+<p class="Element10">
+If no WAVE files are found on the storage device, LED2 will remain off and scanning of the device will continue.&nbsp;</p>
+<p class="Element10">
+If any WAVE files are found, LED2 will turn on and playback of the first file found in sequence will start.&nbsp;</p>
+<p class="Element10">
+LED status indication is shown in the table below. </p><p class="Element10" style="text-align: center;">
+<strong>LED Status</strong></p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="44%">
+<div class="Element66">
+Operation&nbsp;</div></td><td class="Element65" valign="top" width="20%">
+<div class="Element66">
+LED1 Status (Red)&nbsp;</div></td><td class="Element65" valign="top" width="36%">
+<div class="Element66">
+LED2 Status (Green)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="44%">
+<div class="Element68">
+No Storage Device Connected&nbsp;</div></td><td class="Element67" valign="top" width="20%">
+<div class="Element68">
+Toggle 100ms&nbsp;</div></td><td class="Element67" valign="top" width="36%">
+<div class="Element68">
+Off&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="44%">
+<div class="Element68">
+Storage Device Connected&nbsp;</div></td><td class="Element67" valign="top" width="20%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="36%">
+<div class="Element68">
+See Files Found Operation&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="44%">
+<div class="Element68">
+Playback: Volume Control&nbsp;</div></td><td class="Element67" valign="top" width="20%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="36%">
+<div class="Element68">
+See Files Found Operation&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="44%">
+<div class="Element68">
+Playback: Volume Mute&nbsp;</div></td><td class="Element67" valign="top" width="20%">
+<div class="Element68">
+Toggle 500ms&nbsp;</div></td><td class="Element67" valign="top" width="36%">
+<div class="Element68">
+See Files Found Operation&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="44%">
+<div class="Element68">
+Playback: Linear Track Change&nbsp;</div></td><td class="Element67" valign="top" width="20%">
+<div class="Element68">
+On&nbsp;</div></td><td class="Element67" valign="top" width="36%">
+<div class="Element68">
+See Files Found Operation&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="44%">
+<div class="Element68">
+Files Found (Yes/No)&nbsp;</div></td><td class="Element67" valign="top" width="20%">
+<div class="Element68">
+See above operations&nbsp;</div></td><td class="Element67" valign="top" width="36%">
+<div class="Element68">
+On/Off&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00065.html" target="topic">audio_player_basic</a> &gt; <a href="00068.html" target="topic">Running the Demonstration</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element3">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element4">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element91">
+<a href="00067.html" target="topic">Previous</a> | <a href="00065.html" target="topic">Up</a> | <a href="00069.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_player_basic_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Example Audio Projects</title>
+<title>audio_enc</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00054.html" target="topic">Audio Overview</a> &gt; <a href="00057.html" target="topic">Example Audio Projects</a></div>
+<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00057.html" target="topic">audio_enc</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00055.html" target="topic">Previous</a> | <a href="00054.html" target="topic">Up</a> | <a href="00030.html" target="topic">Next</a></div>
+<a href="00081.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00058.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Example Audio Projects Topic Title: Example Audio Projects)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_enc Topic Title: audio_enc)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Example Audio Projects</div>
+audio_enc</div>
 </div>
 </div>
 
@@ -49,52 +49,215 @@ Example Audio Projects</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-<strong><i>The audio_enc Demonstration</i></strong>&nbsp;</p>
+ &nbsp;</p>
 <p class="Element10">
-The audio_enc (encoder) application records and encodes PCM audio as wave (.wav) files on a mass storage device (e.g. thumb drive) connected to the USB Host port. Playback is an optional feature. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA, Timer and USB library. A FreeRTOS version is also available.&nbsp;</p>
+The audio encoder (audio_enc) application configures the SAM E70 Xplained Ultra development board to be in USB Host Mass Storage Device (MSD) mode. The application supports read/write from/to the FAT file system. When a mass storage device is connected to the development board via its target USB port, the device is mounted. After the MSD is mounted, the application waits for a short button press (&lt; 1 sec) to start recording data from the mic input on the WM8904 Audio Codec Module. This recording will continue until another short press is detected signaling to stop recording. The recorded data is then PCM encoded and packed into a .wav container file and saved on the MSD. The app then waits to playback the last recorded file or encode another file.&nbsp;</p>
 <p class="Element10">
-&nbsp;</p>
+All encodings are at 16K sample rate, stereo, and 16 bit depth. The name of the encoded file will be created in according to the following (enc16K16b&lt;000-999&gt;.wav). A file will not be written over if it already exists. If a file is found to be already on the MSD, the numeric part of the file name will increment once until an unused file name is found. If trying to playback the last encoded file but there has been no file encoded yet, both LEDs will flash and the app will go back to waiting to start encoding a file. If there is a file available to be played, the app will read the .wav file data and write it to the codec for playback.&nbsp;</p>
 <p class="Element10">
-<strong><i>The audio_player_basic Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The audio_player_basic application scans a mass storage device (e.g. thumb drive) connected to the USB Host port for wave (.wav) files, and then plays them out one by one through a codec. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA, Timer and USB library.&nbsp;</p>
+Command and control to the codec is done through an I2C driver. Data to the codec driver is sent through I2SC via I2S Driver and the output will be audible through the headphone output jack of the WM8904 Audio Codec Module connected to the SAM E70 Xplained Ultra board. The below architecture diagram depicts a representation of the application.&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong><i>The audio_signal_generator Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The audio_tone application sends out generated audio (sine, square, sawtooth and triangle waveforms) with volume and frequency modifiable through a touch screendisplay. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA and Timer.&nbsp;</p>
+The current development board, SAM E70 Xplained Ultra, supplies one button and two LEDs for control and status feedback. LED 1 is amber and LED 2 is green. The application currently only supports PCM encoding and playback to and from a .wav file container.&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong><i>The audio_tone Demonstration</i></strong>&nbsp;</p>
+Supported audio files are as represented in the table below. </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="5%">
+<div class="Element66">
+Audio Format&nbsp;</div></td><td class="Element65" valign="top" width="6%">
+<div class="Element66">
+Sample Rate (kHz)&nbsp;</div></td><td class="Element65" valign="top" width="89%">
+<div class="Element66">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="5%">
+<div class="Element68">
+PCM&nbsp;</div></td><td class="Element67" valign="top" width="6%">
+<div class="Element68">
+16&nbsp;</div></td><td class="Element67" valign="top" width="89%">
+<div class="Element68">
+PCM (Pulse Code Modulation) is an uncompressed format. The digital data is a direct representation of the analog audio waveform. The container for the data will be a WAVE file (.wav) format. It is the native file format used by Microsoft Windows for storing digital audio data.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-The audio_tone application sends out generated audio waveforms (sine tone) with volume and frequency modifiable through the on-board push button. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC or I2SC), DMA and Timer. A FreeRTOS version is also available. </p><p class="Element10" style="text-align: center;">
+&nbsp;</p>
+<div class="Element15">
+Architecture</div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+The audio encoder (audio_enc) application uses the MPLAB Harmony Configurator to setup the USB Host, FS, Codec, and other items in order to read the music files on a USB MSD drive and play it back on the WM8904 Codec Module. It scans WAV (PCM) format files on mounted FAT USB thumb drive and streams audio through a WM8904 Audio Codec to a speaker. In the application, the number of audio output buffers can always set to be more than two to enhance the audio quality. And, the size of input buffer in this application is be chosen to be able to handle all data supported. The following figure shows the architecture for the demonstration.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><p class="Element10" style="text-align: center;">
+<strong>Architecture Block Diagram</strong>&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_enc_architecture.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p><div class="Element15">
+Demonstration Features</div>
+<p class="Element10">
+&nbsp;</p>
+
+<ul class="Element630">
+<li class="Element600">USB MSD Host Client Driver (see H3 USB MSD Host Client Driver Library)</li>
+<li class="Element600">FAT File System (see H3 File System Service Library)</li>
+<li class="Element600">Audio real-time buffer handling</li>
+<li class="Element600">WM8904 Codec Driver (see H3 CODEC Driver Libraries)</li>
+<li class="Element600">I2S usage in audio system (see H3 I2S Driver Library Help)</li>
+<li class="Element600">DMA (see H3 DMA area)</li>
+<li class="Element600">Timer (see H3 Timer area)</li>
+<li class="Element600">GPIO Control (see H3 GPIO area)</li>
+</ul><p class="Element10">
+&nbsp;</p>
+<div class="Element15">
+Harmony Configuration</div>
+<p class="Element10">
+&nbsp;</p>
+
+<ol class="Element630">
+<li value="1" class="Element600">Add BSP-&gt;SAM E70 Xplained Ultra BSP</li>
+<li value="2" class="Element600">Add Audio-&gt;Templates-&gt;WM8904 Codec
+<ul class="Element631">
+<li class="Element601">Yes to all popups</li>
+<li class="Element601">Modify WM8904 Codec from SSC to I2SC
+<ul class="Element632">
+<li class="Element602">Yes to all popups</li>
+</ul></li>
+</ul></li>
+<li value="3" class="Element600">Add Libraries-&gt;USB-&gt;Host Stack-&gt;MSD Client Driver
+<ul class="Element631">
+<li class="Element601">a. Yes to all popups</li>
+</ul></li>
+<li value="4" class="Element600">Add Harmony-&gt;System Services-&gt;FILE SYSTEM</li>
+<li value="5" class="Element600">Add Harmony-&gt;Audio-&gt;Decoder-&gt;AudioDecoderLibraries</li>
+<li value="6" class="Element600">Add Harmony-&gt;Audio-&gt;Encoder-&gt;AudioEncoderLibraries</li>
+<li value="7" class="Element600">Remove FreeRTOS if Bare Metal version</li>
+<li value="8" class="Element600">Connect MSD Client Driver: DRV_MEDIA to FILE SYSTEM: DRV_MEDIA</li>
+</ol><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+After reorganization, your graph should look similar to the following: </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO enc_sam_e70_xult_wm8904_i2sc.png" border="0" alt="" title=""></p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+If using FreeRTOS, your diagram will be slightly different. You will see an additional block for FreeRTOS as shown below. </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO enc_sam_e70_xult_wm8904_i2sc_freertos.png" border="0" alt="" title=""></p><p class="Element10">
+&nbsp;</p>
+<div class="Element15">
+Tools Setup Differences</div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+The default configuration should be correct for the majority of the app. There following configurations will need to be changed in order for proper operations.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>MPLAB Harmony Configurator: Tools-&gt;Clock Configuration</u>&nbsp;</p>
+<p class="Element10">
+Uncheck the Main RC Oscillator and check the “Bypass” for the Main Crystal Oscillator. When the Bypass is check, it will cause the Main Crystal Oscillator to become unchecked.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_enc_clock_diagram.png" border="0" alt="" title="">&nbsp;</p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+Enable the PLLA Clock output.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_enc_clock_diagram2.png" border="0" alt="" title="">&nbsp;</p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+Enable clocking for the I2S1.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_enc_clock_diagram3.png" border="0" alt="" title="">&nbsp;</p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+To set the sample rate to a fixed 16KHz, set the PLLA divisor to 2 and the multiplier to 43. Also, set the I2S1 divisor to 63. Please see the two images above.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>MPLAB Harmony Configurator: WM8904</u> &nbsp;</p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_enc_wm8904.png" border="0" alt="" title="">&nbsp;</p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>MPLAB Harmony Configurator: File System</u>&nbsp;</p>
+<p class="Element10">
+The Auto Mount feature must be selected in order to expose the media type selection. The media type that is being used in this application is Mass Storage Device. This must be correctly configured, or the storage device will not mount.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_enc_file_system.png" border="0" alt="" title="">&nbsp;</p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>MPLAB Harmony Configurator: I2C Driver</u>&nbsp;</p>
+<p class="Element10">
+If your are using FreeRTOS, set the driver mode back to Asynchronous.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_enc_i2c.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
 &nbsp;</p>
 <p class="Element10" style="text-align: center;">
 &nbsp;</p><p class="Element10">
-<strong><i>The audio_tone_linkeddma Demonstration</i></strong>&nbsp;</p>
+<u>MPLAB Harmony Configurator: System</u>&nbsp;</p>
 <p class="Element10">
-The audio_tone_linkeddma application sends out generated audio waveforms (sine tone) with volume and frequency modifiable through the on-board push button, using the linked DMA feature of the MCU (where available). It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC or I2SC), DMA and Timer. Linked DMA allows the DMA to process multiple buffers sequentially, without MCU intervention.&nbsp;</p>
+Set the heap size in Harmony if it is not already set for the linker.&nbsp;</p>
 <p class="Element10">
+&nbsp;</p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_enc_heap.png" border="0" alt="" title="">&nbsp;</p><p class="Element10">
+<u>MPLAB Harmony Configurator: EFC</u>&nbsp;</p>
+<p class="Element10">
+Set the memory wait states to 6, if not already set. </p><p class="Element10" style="text-align: center;">
+<img src="efc wait states.png" border="0" alt="" title=""></p><p class="Element10">
+<u>MPLAB Harmony Configurator: Audio Decoder Libraries</u>&nbsp;</p>
+<p class="Element10">
+Disable the ADPCM Decoder for this particular app. </p><p class="Element10" style="text-align: center;">
+<img src="wav and adpcm decoder.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
 &nbsp;</p>
-<p class="Element10">
-<strong><i>The microphone_loopback Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The microphone_loopback application receives audio data from the microphone input on a codec, and then sends this same audio data back out through the codec to a pair of headphones after a delay. The volume and delay are configurable using the on-board pushbutton or touch screen display. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC or I2SC), DMA and Timer. A FreeRTOS version is also available.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<strong><i>The usb_speaker Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The usb_speaker application aacts as a USB device, playing streaming audio from a USB host such as a PC. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA and Timer.</p></div>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p><p class="Element10">
+Save and generate code for the framework.</p></div>
+</div>
+<a name="546F70696373"></a><div class="Element14">
+Topics</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table1">
+<tr>
+<td class="Element200" valign="top" width="35%">
+<div class="Element201">
+Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
+<div class="Element205">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00058.html" target="topic">Building the Application</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This section identifies the MPLAB X IDE project name and location and lists and describes the available configurations for the demonstration.&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00059.html" target="topic">Configuring the Hardware</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This section describes how to configure the supported hardware.&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00060.html" target="topic">Running the Demonstration</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></table></div></div>
+</div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00054.html" target="topic">Audio Overview</a> &gt; <a href="00057.html" target="topic">Example Audio Projects</a></div>
+<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00057.html" target="topic">audio_enc</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -102,13 +265,13 @@ The usb_speaker application aacts as a USB device, playing streaming audio from 
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00055.html" target="topic">Previous</a> | <a href="00054.html" target="topic">Up</a> | <a href="00030.html" target="topic">Next</a></div>
+<a href="00081.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00058.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Example Audio Projects Topic Title: Example Audio Projects)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_enc Topic Title: audio_enc)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

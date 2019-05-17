@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>usb_speaker</title>
+<title>ADPCM_HdrGetBlockAlign Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00026.html" target="topic">usb_speaker</a></div>
+<a href="00094.html" target="topic">Audio Libraries Help</a> &gt; <a href="00087.html" target="topic">Decoder Library Help</a> &gt; <a href="00006.html" target="topic">ADPCM Decoder Library</a> &gt; <a href="00008.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00026.html" target="topic">ADPCM_HdrGetBlockAlign Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00007.html" target="topic">Previous</a> | <a href="00024.html" target="topic">Up</a> | <a href="00027.html" target="topic">Next</a></div>
+<a href="00029.html" target="topic">Previous</a> | <a href="00008.html" target="topic">Up</a> | <a href="00027.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker Topic Title: usb_speaker)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: ADPCM_HdrGetBlockAlign Topic Title: ADPCM_HdrGetBlockAlign Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-usb_speaker</div>
+ADPCM_HdrGetBlockAlign Function</div>
 </div>
 </div>
 
@@ -49,340 +49,17 @@ usb_speaker</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-The USB Device driver in Full Speed mode will interface to a USB Host (such as a personal computer) via the USB Device Stack using the V1.0 Audio Function Driver. The embedded system will enumerate with a USB audio device endpoint and enable the host system to input audio from the USB port using a standard USB Full-Speed implementation. The embedded system will stream USB playback audio to the Codec. The Codec Driver sets up the audio interface, timing, DMA channels and buffer queue to enable a continuous audio stream. The digital audio is transmitted to the codec through an I2S data module for playback through a headphone jack.</p><div class="Element15">
-Architecture</div>
-<p class="Element10">
-The application runs on the SAM E70 Xplained Ultra Board, which contains a at 300 MHz using the following features:</p>
-<ul class="Element630">
-<li class="Element600">One push button</li>
-<li class="Element600">Two LEDs (amber and green). Only the amber LED can be used for a USB Device requiring VBUS sense.</li>
-<li class="Element600">WM8904 Codec Daughter Board mounted on a X32 socket</li>
-</ul><p class="Element10">
-The SAM E70 Xplained Ultra board does not include the WM8904 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC328904.&nbsp;</p>
-<p class="Element10">
-The usb_speaker_basic application uses the MPLAB Harmony Configurator to setup the USB Audio Device, codec, and other items in order to play back the USB audio through the WM8904 Codec Module.&nbsp;</p>
-<p class="Element10">
-A USB Host system is connected to the micro-mini USB device connector. The application detects the cable connection, which can also supply device power; recognizes the type of connection (Full Speed); enumerates its functions with the host, isochronous audio streaming playback through device. Audio stream data is buffered in 1 ms frames for playback using the WM8904 Codec daughter board. Audio is heard through the Headphone jack (HP OUT).&nbsp;</p>
-<p class="Element10">
-The following figure shows the basic architecture for the demonstration. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb speaker block diagram.png" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-&nbsp;</p><p class="Element10">
-&nbsp;</p>
-<div class="Element15">
-Demonstration Features</div>
-
-<ul class="Element630">
-<li class="Element600">Playback using an WM8904 codec daughterboard on the SAM E70 Xplained Ultra (E70 XULT) board.</li>
-<li class="Element600">USB connection to a host system using the USB Library Device Stack for a USB Speaker device using E70 XULT</li>
-<li class="Element600">E70XULT Button processing for volume/mute control</li>
-<li class="Element600">USB Attach/Detach and mute status using an LED.</li>
-</ul><p class="Element10">
-The following API calls are made to the USB Library:</p>
-<ul class="Element630">
-<li class="Element600">USB_DEVICE_Open - Configures the USB Device</li>
-<li class="Element600">USB_DEVICE_EventHandlerSet -- Registers APP_USBDeviceEventHandler.</li>
-<li class="Element600">USB_DEVICE_AUDIO_Read -- Reads a 48Kh/16bit stereo audio buffer.</li>
-</ul><p class="Element10">
-The following callbacks are registered to the USB Device Library:</p>
-<ul class="Element630">
-<li class="Element600">APP_USBDeviceEventHandler - Handles USB interface events</li>
-<li class="Element600">APP_USBDeviceAudioEventHandler - Handles Read/Write buffer complete events.</li>
-</ul><p class="Element10">
-Note that all the calls to the USB Library Device Stack library use the form USB_DEVICE_xxx This makes the code more generic, such that another library could be substituted without having to make changes to the application code except for the location of the library public header files.&nbsp;</p>
-<p class="Element10">
-The codec driver API calls used are:&nbsp;</p>
-<p class="Element10">
-• DRV_CODEC_Open – Open the driver for write Only.&nbsp;</p>
-<p class="Element10">
-• DRV_CODEC_BufferEventHandlerSet – Register APP_CODECBufferEventHandler&nbsp;</p>
-<p class="Element10">
-• DRV_CODEC_SamplingRateSet – Change sampling rate&nbsp;</p>
-<p class="Element10">
-• DRV_CODEC_BufferAddWrite – add an input buffer to the receive buffer queue&nbsp;</p>
-<p class="Element10">
-• DRV_CODEC_Mute&lt;On,Off&gt; - Codec mute control&nbsp;</p>
-<p class="Element10">
-The following callbacks are registered to the Codec driver:&nbsp;</p>
-<p class="Element10">
-• APP_CODECBufferEventHandler - Handles audio buffer complete events&nbsp;</p>
-<p class="Element10">
-Note that all the calls to the WM8904 codec driver use the form DRV_CODEC_xxx rather than DRV_WM8904_xxx. This is to make the code more generic, such that another codec could be substituted for another without having to make changes to the application code except for the location of the driver’s public header file.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p><div class="Element15">
-Tools Setup Differences</div>
-<p class="Element10">
-<strong>Harmony Configuration</strong>&nbsp;</p>
-<p class="Element10">
-The MHC Project Graph for usb_speaker_basic is shown below. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker project graph.png" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-<i>USB Speaker Basic MHC Project Graph</i>&nbsp;</p><p class="Element10">
-Each block provides configuration parameters to generate the application framework code. This includes all the needed drivers, middleware, libraries. The generated framework code is placed under the firmware/src/config directory for this usb_speaker application (usb_speaker_basic_sam_e70_xult_wm8904_usb). The usb_speaker_basic application code is located in the firmware/src directory app.c and app.h files, which utilize the framework drivers, middleware and library APIs located in definitions.h (as generated by the configurator).&nbsp;</p>
-<p class="Element10">
-&nbsp;</p><div class="Element15">
-Harmony Code Generation</div>
-<p class="Element10">
-All Harmony applications use the function SYS_Initialize function located in the source file also located in initialization.c. This is executed from main to initialize various subsystems such as the clock, ports, BSP (board support package), codec, usb, timers, and interrupts. The application APP_Initialize function in app.c is also executed in this routine to setup the application code state machine.&nbsp;</p>
-<p class="Element10">
-The USB, WM8904 driver, and the application state machines (APP_Tasks routine) are all updated via calls located in the function SYS_Tasks, executed from the main polling loop, located in tasks.c.&nbsp;</p>
-<p class="Element10">
-The application code is contained in the standard source file app.c. The application utilizes a simple state machine (APP_Tasks executed from SYS_Tasks) with the following functions</p>
-<ol class="Element630">
-<li value="1" class="Element600">Setup the drivers and USB Library interface</li>
-<li value="2" class="Element600">Respond to USB Host control commands (“Attach”, “Detach”, “Suspend”)</li>
-<li value="3" class="Element600">Initiate and maintains the bidirectional data audio streaming for the &quot;USB Playback&quot; function.</li>
-</ol><p class="Element10">
-&nbsp;</p>
-<div class="Element15">
-USB Configuration</div>
-<p class="Element10">
-The application uses USB Library as a &quot;Device&quot; stack, which will connect to a &quot;Host&quot;. The USB High Speed Driver is selected to by “Full Speed” (not “High Speed”): </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker full speed.png" border="0" alt="" title=""></p><p class="Element10">
-The USB Device Layer is configured by selecting the “usb_speaker_demo” with an endpoint buffer size of 64 (bytes). The Audio Function Driver is configured for 5 USB endpoints with a single function having 3 interfaces. All of these are defined for a USB Speaker device in the fullSpeedConfigurationDescriptor array variable structure (located in initialization.c under the config folder). This structure defines the connection to the host at 48 Khz with 16 bit stereo channel data. A packet queue of length APP_QUEUE_SIZE (set to 32) is used for playback data. The maximum USB packets size is set to 48 * 2 channels/sample * 2 bytes/channel= 192 bytes, which gives a 1ms stereo sample packet size at 48Khz (the standard data frame length at this rate), thus the buffer size needs to be of the same size. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker endpoints.png" border="0" alt="" title=""></p><p class="Element10">
-The Audio Function Driver is configured with a Audio Read Queue that matches that of the codec driver write queue for this Audio V1.0 USB Speaker interface. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker audio function.png" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<div class="Element15">
-The WM8904 Codec</div>
-<p class="Element10">
-The WM8904 codec uses a TWIHS (I2C) interface for configuration and control register setting and a SSC (I2S) interface for audio data. The default settings are used as shown below: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker wm8904.png" border="0" alt="" title=""></p><p class="Element10">
-The SSC uses a Transfer queue size that matches that of the USB Read Queue: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker queue size.png" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<div class="Element15">
-Pin Manager</div>
-<p class="Element10">
-The buttons, LED, Switch, I2S and I2C interfaces using GPIO pins via the Microchip Harmony Configurator (MHC) Pin Manager, as follows: </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="30%">
-<div class="Element66">
-NAME&nbsp;</div></td><td class="Element65" valign="top" width="15%">
-<div class="Element66">
-PORT&nbsp;</div></td><td class="Element65" valign="top" width="11%">
-<div class="Element66">
-Rev 4.0 PIN&nbsp;</div></td><td class="Element65" valign="top" width="45%">
-<div class="Element66">
-Notes&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-SSC_TK&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PB01&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-20&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-I2S BCLK&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-SSC_TF&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PB00&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-21&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-I2S LRCK&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-PMC_PCK2&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PA18&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-24&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-I2S MCLK (Master Clock)&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-SSC_TD&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PD26&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-53&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-I2S Data&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-SWITCH&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PA11&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-66&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-Push Button&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-LED&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PA05&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-73&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-TWIHS0_TWCK0&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PA04&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-77&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-I2C&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-TWIHS0_TWD0&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PA03&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-91&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-I2C&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-STDBY&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PD11&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-98&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="30%">
-<div class="Element68">
-LED2/VBUS DETECT(J204)&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-PB08&nbsp;</div></td><td class="Element67" valign="top" width="11%">
-<div class="Element68">
-141&nbsp;</div></td><td class="Element67" valign="top" width="45%">
-<div class="Element68">
-J204 (On Rev4.0 and new Rev2.0) set to VBUS DETECT for USB Device&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-&nbsp;</p>
-<div class="Element15">
-Clock Manager</div>
-<p class="Element10">
-All clocks are generated from the 12 MHz Main Clock oscillator. From this clock is derived the following clocks: </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Clock&nbsp;</div></td><td class="Element65" valign="top" width="22%">
-<div class="Element66">
-Value&nbsp;</div></td><td class="Element65" valign="top" width="60%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="18%">
-<div class="Element68">
-HCLK&nbsp;</div></td><td class="Element67" valign="top" width="22%">
-<div class="Element68">
-300 MHz&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Processor Clock&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="18%">
-<div class="Element68">
-PCK2&nbsp;</div></td><td class="Element67" valign="top" width="22%">
-<div class="Element68">
-12 MHz&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Peripheral Clock 2&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="18%">
-<div class="Element68">
-USB FS&nbsp;</div></td><td class="Element67" valign="top" width="22%">
-<div class="Element68">
-48 MHz&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-USB Full Speed Clock&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-The I2S clocks are setup for 48KHz sampling rate, with stereo 16 bit samples, giving a 32 bit sample frame. The I2S clocks are generated from the WM8904 acting as I2S master using the 12.288 Mhz master clock obtained from Peripheral Clock 2 (PCK2). The I2S clocks will then be generated, as follows: </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="20%">
-<div class="Element66">
-I2S Function&nbsp;</div></td><td class="Element65" valign="top" width="33%">
-<div class="Element66">
-Value&nbsp;</div></td><td class="Element65" valign="top" width="47%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
-<div class="Element68">
-LRCK&nbsp;</div></td><td class="Element67" valign="top" width="33%">
-<div class="Element68">
-48.000000 K&nbsp;</div></td><td class="Element67" valign="top" width="47%">
-<div class="Element68">
-Sample rate clock&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
-<div class="Element68">
-BCLK&nbsp;</div></td><td class="Element67" valign="top" width="33%">
-<div class="Element68">
-3072000 Hz&nbsp;</div></td><td class="Element67" valign="top" width="47%">
-<div class="Element68">
-Bit Rate Clock&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
-<div class="Element68">
-MCLK&nbsp;</div></td><td class="Element67" valign="top" width="33%">
-<div class="Element68">
-12.288000 MHz&nbsp;</div></td><td class="Element67" valign="top" width="47%">
-<div class="Element68">
-Master Clock&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-&nbsp;</p>
-<div class="Element15">
-MPLAB Harmony Configurator: Tools&gt;Clock Configuration</div>
-<p class="Element10">
-Uncheck the Main RC Oscillator and check the “Bypass” for the Main Crystal Oscillator. When the Bypass is checked, it will cause the Main Crystal Oscillator to become disabled. An external MEMS oscillator input on the XIN pin is used for Main Clock generation. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker clock diagram.png" border="0" alt="" title=""></p><p class="Element10">
-Enable the PCK2 output to enable the WM8904 master clock generation, to enable clocking for the SSC operating as a slave I2S: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker clock diagram2.png" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-<i>Clock Diagram&gt;Peripheral Clock Enable</i></p><p class="Element10">
-Enable the peripheral clock to the SSC using the Peripheral Clock Enable of the Peripheral Clock Controller: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker clock diagram3.png" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-&nbsp;</p>
+This is function ADPCM_HdrGetBlockAlign.</p></div>
 </div>
-</div>
-<a name="546F70696373"></a><div class="Element14">
-Topics</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element212">
-<div class="TableDiv">
-<table cellspacing="0" class="Table1">
-<tr>
-<td class="Element200" valign="top" width="35%">
-<div class="Element201">
-Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
-<div class="Element205">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00027.html" target="topic">Building the Application</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-This section identifies the MPLAB X IDE project name and location and lists and describes the available configurations for the demonstration.&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00028.html" target="topic">Configuring the Hardware</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-This section describes how to configure the supported hardware.&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00029.html" target="topic">Running the Demonstration</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></table></div></div>
-</div>
-</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">int</span></strong> <strong><span style="color: #000000">ADPCM_HdrGetBlockAlign</span></strong>();</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00030.html" target="topic">Audio Demonstrations</a> &gt; <a href="00024.html" target="topic">Demonstrations</a> &gt; <a href="00026.html" target="topic">usb_speaker</a></div>
+<a href="00094.html" target="topic">Audio Libraries Help</a> &gt; <a href="00087.html" target="topic">Decoder Library Help</a> &gt; <a href="00006.html" target="topic">ADPCM Decoder Library</a> &gt; <a href="00008.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00026.html" target="topic">ADPCM_HdrGetBlockAlign Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -390,13 +67,13 @@ This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></t
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00054.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00007.html" target="topic">Previous</a> | <a href="00024.html" target="topic">Up</a> | <a href="00027.html" target="topic">Next</a></div>
+<a href="00029.html" target="topic">Previous</a> | <a href="00008.html" target="topic">Up</a> | <a href="00027.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker Topic Title: usb_speaker)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: ADPCM_HdrGetBlockAlign Topic Title: ADPCM_HdrGetBlockAlign Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->
