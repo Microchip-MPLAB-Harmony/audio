@@ -42,8 +42,8 @@ extern "C" {
 #define SWITCH_STATE_PRESSED            SWITCH1_STATE_PRESSED
 #define SWITCH_STATE_RELEASED           SWITCH1_STATE_RELEASED
 
-#define BUTTON_DEBOUNCE 50
-#define LONG_BUTTON_PRESS 1000
+#define BUTTON_DEBOUNCE                 50
+#define LONG_BUTTON_PRESS               4000
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
