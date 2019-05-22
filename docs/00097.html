@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Digital Audio in Harmony</title>
+<title>DATA_LENGTH Type</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Overview</a> &gt; <a href="00097.html" target="topic">Digital Audio in Harmony</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00359.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00097.html" target="topic">DATA_LENGTH Type</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00095.html" target="topic">Previous</a> | <a href="00096.html" target="topic">Up</a> | <a href="00098.html" target="topic">Next</a></div>
+<a href="00265.html" target="topic">Previous</a> | <a href="00359.html" target="topic">Up</a> | <a href="00216.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Digital Audio in Harmony Topic Title: Digital Audio in Harmony)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DATA_LENGTH Topic Title: DATA_LENGTH Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Digital Audio in Harmony</div>
+DATA_LENGTH Type</div>
 </div>
 </div>
 
@@ -49,22 +49,17 @@ Digital Audio in Harmony</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Audio projects in Harmony consist of an application, plus associated drivers and peripheral libraries (PLIBs). Projects using Harmony audio typically connect to either a hardware codec or DAC external to the MCU, using a I<sup>2</sup>S interface for audio. Some projects may also make use of USB. </p><p class="Element10" style="text-align: center;">
-<img src="AUDIO audio tone simple2.svg.png" border="0" alt="" title=""></p><p class="Element10">
-The block diagram above depicts a generic audio application that sends audio to a hardware codec or DAC connected to a pair of headphones.&nbsp;</p>
-<p class="Element10">
-The application interfaces directly with a Codec Driver and a Timer. The Codec Driver in turn interfaces with an I2S Driver, and in this case, an I2C Driver which sends commands to and receives status from the DAC or codec via the I2C/TWIHS PLIB. In other instances an SPI interface might be used.&nbsp;</p>
-<p class="Element10">
-The I2S Driver interfaces with an I<sup>2</sup>S-capable PLIB, which may be implemented using an SPI, SPI, or I2SC hardware module depending on the MCU.&nbsp;</p>
-<p class="Element10">
-The I2S Driver also uses DMA to transfer audio from the application's audio buffer to the I<sup>2</sup>S-capable peripheral.</p></div>
+in bits</p></div>
 </div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">enum</span></strong> DATA_LENGTH@4 <strong><span style="color: #000000">DATA_LENGTH</span></strong>;</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Overview</a> &gt; <a href="00097.html" target="topic">Digital Audio in Harmony</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00359.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00097.html" target="topic">DATA_LENGTH Type</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -72,13 +67,13 @@ The I2S Driver also uses DMA to transfer audio from the application's audio buff
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00095.html" target="topic">Previous</a> | <a href="00096.html" target="topic">Up</a> | <a href="00098.html" target="topic">Next</a></div>
+<a href="00265.html" target="topic">Previous</a> | <a href="00359.html" target="topic">Up</a> | <a href="00216.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Digital Audio in Harmony Topic Title: Digital Audio in Harmony)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DATA_LENGTH Topic Title: DATA_LENGTH Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

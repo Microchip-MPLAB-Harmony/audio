@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Audio Overview</title>
+<title>Example Audio Projects</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Overview</a></div>
+<a href="00094.html" target="topic">Audio Overview</a> &gt; <a href="00096.html" target="topic">Example Audio Projects</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00095.html" target="topic">Next</a></div>
+<a href="00095.html" target="topic">Previous</a> | <a href="00094.html" target="topic">Up</a> | <a href="00088.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Audio Overview Topic Title: Audio Overview)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Example Audio Projects Topic Title: Example Audio Projects)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Audio Overview</div>
+Example Audio Projects</div>
 </div>
 </div>
 
@@ -49,66 +49,52 @@ Audio Overview</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This distribution package contains a variety of audio-related firmware projects that demonstrate the capabilities of the MPLAB Harmony audio offerings. Each project describes its hardware setup and requirements.&nbsp;</p>
+<strong><i>The audio_enc Demonstration</i></strong>&nbsp;</p>
 <p class="Element10">
-This package also contains drivers for hardware codecs that can be connected to development boards, such as the WM8904 Codec Daughterboard.&nbsp;</p>
+The audio_enc (encoder) application records and encodes PCM audio as wave (.wav) files on a mass storage device (e.g. thumb drive) connected to the USB Host port. Playback is an optional feature. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA, Timer and USB library. A FreeRTOS version is also available.&nbsp;</p>
 <p class="Element10">
-Finally, it contains a BSP Audio Template that can be used to make configuring a new audio project a matter of just a few mouse clicks.&nbsp;</p>
+&nbsp;</p>
 <p class="Element10">
-Prior to using this demonstration, it is recommended to review the MPLAB Harmony Release Notes (<span class="Element146">release_notes.md</span>) for any known issues. It is located in the <span class="Element146">audio</span> folder.&nbsp;</p>
+<strong><i>The audio_player_basic Demonstration</i></strong>&nbsp;</p>
 <p class="Element10">
-The sample demonstration projects are in the <span class="Element146">audio/apps</span> folder. The Codec Driver is in the <span class="Element146">audio/driver</span> folder. The Audio Template is in the <span class="Element146">audio/templates</span> folder. </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table0">
-<tr>
-<td class="Element67" valign="top" width="5%" style="border:none;">
-<div class="Element68">
-<img src="Important Star.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="4%" style="border:none;">
-<div class="Element68">
-<strong>Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="91%" style="border:none;">
-<div class="Element68">
-This repository only contains the files for the audio applications, drivers and templates.<br>Although you can build the applications standalone from within this repository, you will <i>not</i> be able to run the MHC or regenerate the code without the other Harmony repositories.<br>Please refer to the MPLAB Harmony Release Notes in the <span class="Element146">audio</span> for the other Harmony repositories required to work with this one.&nbsp;</div></td></tr></table></div></div>
-<div class="Element15">
-Legal</div>
+The audio_player_basic application scans a mass storage device (e.g. thumb drive) connected to the USB Host port for wave (.wav) files, and then plays them out one by one through a codec. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA, Timer and USB library.&nbsp;</p>
 <p class="Element10">
-Please review the Software License Agreement (<span class="Element146">mplab_harmony_license.md</span>) prior to using MPLAB Harmony. It is the responsibility of the end-user to know and understand the software license agreement terms regarding the Microchip and third-party software that is provided in this installation. A copy of the agreement is available in the <span class="Element146">audio</span> folder of your MPLAB Harmony installation.</p></div>
-</div>
-<a name="546F70696373"></a><div class="Element14">
-Topics</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element212">
-<div class="TableDiv">
-<table cellspacing="0" class="Table1">
-<tr>
-<td class="Element200" valign="top" width="35%">
-<div class="Element201">
-Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
-<div class="Element205">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00095.html" target="topic">Digital Audio Basics</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-This topic covers key concepts in digital audio.&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00097.html" target="topic">Digital Audio in Harmony</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-This topic describes how digital audio is implemented in Harmony.&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00098.html" target="topic">Example Audio Projects</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-Example projects showing Harmony audio in action.&nbsp;</div></td></tr></table></div></div>
-</div>
+&nbsp;</p>
+<p class="Element10">
+<strong><i>The audio_signal_generator Demonstration</i></strong>&nbsp;</p>
+<p class="Element10">
+The audio_tone application sends out generated audio (sine, square, sawtooth and triangle waveforms) with volume and frequency modifiable through a touch screendisplay. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA and Timer.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong><i>The audio_tone Demonstration</i></strong>&nbsp;</p>
+<p class="Element10">
+The audio_tone application sends out generated audio waveforms (sine tone) with volume and frequency modifiable through the on-board push button. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC or I2SC), DMA and Timer. A FreeRTOS version is also available. </p><p class="Element10" style="text-align: center;">
+&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p><p class="Element10">
+<strong><i>The audio_tone_linkeddma Demonstration</i></strong>&nbsp;</p>
+<p class="Element10">
+The audio_tone_linkeddma application sends out generated audio waveforms (sine tone) with volume and frequency modifiable through the on-board push button, using the linked DMA feature of the MCU (where available). It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC or I2SC), DMA and Timer. Linked DMA allows the DMA to process multiple buffers sequentially, without MCU intervention.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong><i>The microphone_loopback Demonstration</i></strong>&nbsp;</p>
+<p class="Element10">
+The microphone_loopback application receives audio data from the microphone input on a codec, and then sends this same audio data back out through the codec to a pair of headphones after a delay. The volume and delay are configurable using the on-board pushbutton or touch screen display. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC or I2SC), DMA and Timer. A FreeRTOS version is also available.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong><i>The usb_speaker Demonstration</i></strong>&nbsp;</p>
+<p class="Element10">
+The usb_speaker application aacts as a USB device, playing streaming audio from a USB host such as a PC. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA and Timer. A FreeRTOS version is also available.</p></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Overview</a></div>
+<a href="00094.html" target="topic">Audio Overview</a> &gt; <a href="00096.html" target="topic">Example Audio Projects</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -116,13 +102,13 @@ Example projects showing Harmony audio in action.&nbsp;</div></td></tr></table><
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00095.html" target="topic">Next</a></div>
+<a href="00095.html" target="topic">Previous</a> | <a href="00094.html" target="topic">Up</a> | <a href="00088.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Audio Overview Topic Title: Audio Overview)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Example Audio Projects Topic Title: Example Audio Projects)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

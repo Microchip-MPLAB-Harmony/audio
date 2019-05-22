@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00061.html" target="topic">microphone_loopback</a></div>
+<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00061.html" target="topic">microphone_loopback</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,7 +26,7 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
 <a href="00079.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00062.html" target="topic">Next</a></div>
@@ -435,7 +435,7 @@ Error&nbsp;</div></td></tr><tr>
 <p class="Element10">
 It is also possible to change the audio format from 16 to 32-bits. This changes need to be done in the MHC in both the WM8904 Driver and SSC Peripheral. In the current application code (app.h), a #define is also set to the current width.&nbsp;</p>
 <p class="Element10">
-If using FreeRTOS, in the code you will need to move the call to <a href="00279.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0); from the SYS_Tasks function in src/config/&lt;config_name&gt;/tasks.c to inside the while(1) loop of _APP_Tasks (just before the call to APP_Tasks).&nbsp;</p>
+If using FreeRTOS, in the code you will need to move the call to <a href="00278.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0); from the SYS_Tasks function in src/config/&lt;config_name&gt;/tasks.c to inside the while(1) loop of _APP_Tasks (just before the call to APP_Tasks).&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
@@ -453,7 +453,8 @@ If building an application that is going to use the 480x272 display, then do the
 <p class="Element10">
 Then under <i>Audio&gt;Templates</i>, double-click on WM8904 Codec. Answer Yes to all questions.&nbsp;</p>
 <p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10">
+You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_sig_gen_E70_WQVGA_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
 &nbsp;</p>
 <p class="Element10">
 In either case, click on the WM8904 Driver. In the Configurations Options, set the desired Sample Rate if different from the default (48,000) under Sampling Rate. Select Enable Microphone Input, and Enable Microphone Bias for elecret microphones if appropriate.&nbsp;</p>
@@ -468,7 +469,7 @@ Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Con
 <p class="Element10">
 It is also possible to change the audio format from 16 to 32-bits, and from I2S to Left Justified (SSC only). These changes need to be done in the MHC in both the WM8904, and SSC/I2SC Peripherals. In the current application code (app.h), a #define is also set to the current width.&nbsp;</p>
 <p class="Element10">
-If using FreeRTOS, in the code you will need to move the call to <a href="00279.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0); from the SYS_Tasks function in src/config/&lt;config_name&gt;/tasks.c to inside the while(1) loop of _APP_Tasks (just before the call to APP_Tasks).</p></div>
+If using FreeRTOS, in the code you will need to move the call to <a href="00278.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0); from the SYS_Tasks function in src/config/&lt;config_name&gt;/tasks.c to inside the while(1) loop of _APP_Tasks (just before the call to APP_Tasks).</p></div>
 </div>
 <a name="546F70696373"></a><div class="Element14">
 Topics</div>
@@ -505,7 +506,7 @@ This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></t
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00061.html" target="topic">microphone_loopback</a></div>
+<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00061.html" target="topic">microphone_loopback</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -513,7 +514,7 @@ This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></t
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
 <a href="00079.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00062.html" target="topic">Next</a></div>

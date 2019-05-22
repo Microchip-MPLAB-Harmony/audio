@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Files</title>
+<title>Client Access</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00355.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00351.html" target="topic">Files</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00364.html" target="topic">Using the Library</a> &gt; <a href="00356.html" target="topic">How the Library Works</a> &gt; <a href="00351.html" target="topic">Client Access</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00252.html" target="topic">Previous</a> | <a href="00355.html" target="topic">Up</a> | <a href="00216.html" target="topic">Next</a></div>
+<a href="00352.html" target="topic">Previous</a> | <a href="00356.html" target="topic">Up</a> | <a href="00353.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC Files Topic Title: Files)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC DRV Client Access Topic Title: Client Access)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Files</div>
+Client Access</div>
 </div>
 </div>
 
@@ -49,39 +49,72 @@ Files</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-<span style="color: #0000FF">This section will list only the library's interface header file(s).</span></p></div>
-</div>
-<a name="46696C6573"></a><div class="Element14">
-Files</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element212">
+ &nbsp;</p>
+<p class="Element10">
+For the application to start using an instance of the module, it must call the <a href="00273.html" target="topic">DRV_WM8904_Open</a> function. The <a href="00273.html" target="topic">DRV_WM8904_Open</a> function provides a driver handle to the WM8904 Codec Driver instance for operations. If the driver is deinitialized using the function <a href="00245.html" target="topic">DRV_WM8904_Deinitialize</a>, the application must call the <a href="00273.html" target="topic">DRV_WM8904_Open</a> function again to set up the instance of the driver.&nbsp;</p>
+<p class="Element10">
+For the various options available for IO_INTENT, please refer to Data Types and Constants in the Library Interface section. </p><div class="Element63">
 <div class="TableDiv">
-<table cellspacing="0" class="Table1">
+<table cellspacing="0" class="Table0">
 <tr>
-<td class="Element200" valign="top" width="35%">
-<div class="Element201">
-Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
-<div class="Element205">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00216.html" target="topic">drv_wm8904.h</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-WM8904 Codec Driver Interface header file&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00244.html" target="topic">drv_wm8904_config_template.h</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-WM8904 Codec Driver Configuration Template.&nbsp;</div></td></tr></table></div></div>
-</div>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="6%" style="border:none;">
+<div class="Element68">
+<strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="89%" style="border:none;">
+<div class="Element68">
+It is necessary to check the status of driver initialization before opening a driver instance. The status of the WM8904 Codec Driver can be known by calling DRV_ WM8904_Status.&nbsp;</div></td></tr></table></div></div>
+<div class="Element15">
+Example:</div>
+<p class="Element10">
+<span class="Element146">DRV_HANDLE handle;</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146">SYS_STATUS wm8904Status;</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146">wm8904Status Status = <a href="00277.html" target="topic">DRV_WM8904_Status</a>(sysObjects.wm8904Status DevObject);</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146">if (SYS_STATUS_READY == wm8904Status)</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146">{</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> // The driver can now be opened.</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> appData.wm8904Client.handle = <a href="00273.html" target="topic">DRV_WM8904_Open</a></span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> (<a href="00251.html" target="topic">DRV_WM8904_INDEX_0</a>, DRV_IO_INTENT_WRITE | DRV_IO_INTENT_EXCLUSIVE);</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> if(appData.wm8904Client.handle != DRV_HANDLE_INVALID)</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> {</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> appData.state = APP_STATE_WM8904_SET_BUFFER_HANDLER;</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> }</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> else</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> {</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> SYS_DEBUG(0, &quot;Find out what's wrong \r\n&quot;);</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> }</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146">}</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146">else</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146">{</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146"> /* WM8904 Driver Is not ready */</span>&nbsp;</p>
+<p class="Element10">
+<span class="Element146">}</span>&nbsp;</p></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00355.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00351.html" target="topic">Files</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00364.html" target="topic">Using the Library</a> &gt; <a href="00356.html" target="topic">How the Library Works</a> &gt; <a href="00351.html" target="topic">Client Access</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -89,13 +122,13 @@ WM8904 Codec Driver Configuration Template.&nbsp;</div></td></tr></table></div><
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00252.html" target="topic">Previous</a> | <a href="00355.html" target="topic">Up</a> | <a href="00216.html" target="topic">Next</a></div>
+<a href="00352.html" target="topic">Previous</a> | <a href="00356.html" target="topic">Up</a> | <a href="00353.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC Files Topic Title: Files)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC DRV Client Access Topic Title: Client Access)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

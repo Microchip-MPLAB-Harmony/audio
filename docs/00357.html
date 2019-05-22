@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Library Overview</title>
+<title>Introduction</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00355.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00361.html" target="topic">Using the Library</a> &gt; <a href="00357.html" target="topic">Library Overview</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00357.html" target="topic">Introduction</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00341.html" target="topic">Previous</a> | <a href="00361.html" target="topic">Up</a> | <a href="00353.html" target="topic">Next</a></div>
+<a href="00358.html" target="topic">Previous</a> | <a href="00358.html" target="topic">Up</a> | <a href="00364.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC Library Overview Topic Title: Library Overview)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC Introduction Topic Title: Introduction)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Library Overview</div>
+Introduction</div>
 </div>
 </div>
 
@@ -49,66 +49,25 @@ Library Overview</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-<span style="color: #000000">Refer to the Driver Library Overview section for information on how the driver operates in a system.</span>&nbsp;</p>
+The WM8904 module is 24-bit Audio Codec from Cirrus Logic, which can operate in 16-, 20-, 24-, and 32-bit audio modes. The WM8904 can be interfaced to Microchip microcontrollers through I<sup>2</sup>C and I<sup>2</sup>S serial interfaces. The I<sup>2</sup>C interface is used to send commands and receive status, and the I<sup>2</sup>S interface is used for audio data output (to headphones or line-out) and input (from microphone or line-in).&nbsp;</p>
 <p class="Element10">
-<span style="color: #000000">The WM8904 Codec Driver Library provides an API interface to transfer control commands and digital audio data to the serially interfaced WM8904 Codec module. The library interface routines are divided into various sub-sections, which address one of the blocks or the overall operation of the WM8904 Codec Driver Library.</span> </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="40%">
-<div class="Element66">
-Library Interface Section&nbsp;</div></td><td class="Element65" valign="top" width="60%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
-<div class="Element68">
-System Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Provides system module interfaces, device initialization, deinitialization, reinitialization, tasks and status functions.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
-<div class="Element68">
-Client Setup Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Provides open and close functions.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
-<div class="Element68">
-Data Transfer Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Provides data transfer functions, such as Buffer Read and Write.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
-<div class="Element68">
-Settings Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Provides driver specific functions for settings, such as volume control and sampling rate.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
-<div class="Element68">
-Other Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Miscellaneous functions, such as getting the driver’s version number and syncing to the LRCLK signal.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
-<div class="Element68">
-Data Types and Constants&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-These data types and constants are required while interacting and setting up the WM8904 Codec Driver Library.&nbsp;</div></td></tr></table></div></div>
-<div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table0">
-<tr>
-<td class="Element67" valign="top" width="5%" style="border:none;">
-<div class="Element68">
-<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="2%" style="border:none;">
-<div class="Element68">
-<strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="93%" style="border:none;">
-<div class="Element68">
-All functions and constants in this section are named with the format <span class="Element146">DRV_ WM8904_xxx</span>, where 'xxx' is a function name or constant. These names are redefined in the appropriate configuration’s <span class="Element146">configuration.h</span> file to the format <span class="Element146">DRV_CODEC_xxx</span> using #defines so that code in the application that references the library can be written as generically as possible (e.g., by writing <span class="Element146">DRV_CODEC_Open</span> instead of <span class="Element146">DRV_ WM8904_Open</span> etc.). This allows the codec type to be changed in the MHC without having to modify the application’s source code.&nbsp;</div></td></tr></table></div></div>
-</div>
+The WM8904 can be configured as either an I<sup>2</sup>S clock slave (receives all clocks from the host), or I<sup>2</sup>S clock master (generates I<sup>2</sup>S clocks from a master clock input MCLK). Currently the driver only supports master mode with headphone output and (optionally) microphone input.&nbsp;</p>
+<p class="Element10">
+A typical interface of WM8904 to a Microchip microcontroller using an I<sup>2</sup>C and SSC interface (configured as I<sup>2</sup>S), with the WM8904 set up as the I<sup>2</sup>S clock master, is provided in the following diagram: </p><p class="Element10">
+The WM8904 Codec supports the following features:</p>
+<ul class="Element630">
+<li class="Element600">Audio Interface Format: 16-/20-/24-/32-bit interface, LSB justified or I2S format (only 16 and 32-bit interfaces supported in the driver)</li>
+<li class="Element600">Sampling Frequency Range: 8 kHz to 96 kHz</li>
+<li class="Element600">Digital Volume Control: -71.625 to 0 dB in 192 steps (converted to a linear scale 0-255 in the driver)</li>
+<li class="Element600">Soft mute capability</li>
+</ul></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00355.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00361.html" target="topic">Using the Library</a> &gt; <a href="00357.html" target="topic">Library Overview</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00357.html" target="topic">Introduction</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -116,13 +75,13 @@ All functions and constants in this section are named with the format <span clas
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00341.html" target="topic">Previous</a> | <a href="00361.html" target="topic">Up</a> | <a href="00353.html" target="topic">Next</a></div>
+<a href="00358.html" target="topic">Previous</a> | <a href="00358.html" target="topic">Up</a> | <a href="00364.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC Library Overview Topic Title: Library Overview)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC Introduction Topic Title: Introduction)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

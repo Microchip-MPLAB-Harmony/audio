@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_WM8904_Status Function</title>
+<title>DRV_WM8904_Tasks Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00355.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00356.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00278.html" target="topic">DRV_WM8904_Status Function</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00359.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00278.html" target="topic">DRV_WM8904_Tasks Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00246.html" target="topic">Previous</a> | <a href="00356.html" target="topic">Up</a> | <a href="00279.html" target="topic">Next</a></div>
+<a href="00277.html" target="topic">Previous</a> | <a href="00359.html" target="topic">Up</a> | <a href="00273.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_Status@SYS_MODULE_OBJ Topic Title: DRV_WM8904_Status Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_Tasks@SYS_MODULE_OBJ Topic Title: DRV_WM8904_Tasks Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_WM8904_Status Function</div>
+DRV_WM8904_Tasks Function</div>
 </div>
 </div>
 
@@ -49,7 +49,7 @@ DRV_WM8904_Status Function</div>
 <a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-   SYS_STATUS DRV_WM8904_Status( SYS_MODULE_OBJ object)&nbsp;</p>
+   void  DRV_WM8904_Tasks(SYS_MODULE_OBJ object);&nbsp;</p>
 <p class="Element10">
 &nbsp;</p></div>
 </div>
@@ -59,7 +59,7 @@ DRV_WM8904_Status Function</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Gets the current status of the WM8904 driver module.</p></div>
+Maintains the driver's control and data interface state machine.</p></div>
 </div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
@@ -67,14 +67,14 @@ Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This routine provides the current status of the WM8904 driver module.</p></div>
+This routine is used to maintain the driver's internal control and data interface state machine and implement its control and data interface implementations. This function should be called from the SYS_Tasks() function.</p></div>
 </div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Function <a href="00264.html" target="topic">DRV_WM8904_Initialize</a> should have been called before calling this function.</p></div>
+The <a href="00263.html" target="topic">DRV_WM8904_Initialize</a> routine must have been called for the specified WM8904 driver instance.</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -93,7 +93,7 @@ Description&nbsp;</div></td></tr><tr>
 <div class="Element303">
 object&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-Driver object handle, returned from the <a href="00264.html" target="topic">DRV_WM8904_Initialize</a> routine&nbsp;</div></td></tr></table></div></div>
+Object handle for the specified driver instance (returned from <a href="00263.html" target="topic">DRV_WM8904_Initialize</a>)&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -101,26 +101,19 @@ Returns</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-SYS_STATUS_DEINITIALIZED - Indicates that the driver has been deinitialized&nbsp;</p>
-<p class="Element10">
-SYS_STATUS_READY - Indicates that any previous module operation for the specified module has completed&nbsp;</p>
-<p class="Element10">
-SYS_STATUS_BUSY - Indicates that a previous module operation for the specified module has not yet completed&nbsp;</p>
-<p class="Element10">
-SYS_STATUS_ERROR - Indicates that the specified module is in an error state</p></div>
+None.</p></div>
 </div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
 <div class="Element10">
 <div class="Element13"><div class="Element12"><pre class="Element12">SYS_MODULE_OBJ      object;     <i><span style="color: #008000">// Returned from DRV_WM8904_Initialize</span></i>
-SYS_STATUS          WM8904Status;
 
-WM8904Status = DRV_WM8904_Status(object);
-<strong><span style="color: #000080">if</span></strong> (SYS_STATUS_READY == WM8904Status)
+<strong><span style="color: #000080">while</span></strong> (<strong><span style="color: #000080">true</span></strong>)
 {
-    <i><span style="color: #008000">// This means the driver can be opened using the</span></i>
-    <i><span style="color: #008000">// DRV_WM8904_Open() function.</span></i>
+    DRV_WM8904_Tasks (object);
+
+    <i><span style="color: #008000">// Do other tasks</span></i>
 }</pre></div></div>
 </div>
 </div>
@@ -129,11 +122,11 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-A driver can opened only when its status is SYS_STATUS_READY.</p></div>
+This routine is normally not called directly by an application. It is called by the system's Tasks routine (SYS_Tasks).</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100">SYS_STATUS <strong><span style="color: #000000">DRV_WM8904_Status</span></strong>(
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_Tasks</span></strong>(
     SYS_MODULE_OBJ <strong><span style="color: #000000">object</span></strong>
 );</pre></div></div>
 </div>
@@ -141,7 +134,7 @@ C</div>
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00355.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00356.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00278.html" target="topic">DRV_WM8904_Status Function</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00359.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00278.html" target="topic">DRV_WM8904_Tasks Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -149,13 +142,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00246.html" target="topic">Previous</a> | <a href="00356.html" target="topic">Up</a> | <a href="00279.html" target="topic">Next</a></div>
+<a href="00277.html" target="topic">Previous</a> | <a href="00359.html" target="topic">Up</a> | <a href="00273.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_Status@SYS_MODULE_OBJ Topic Title: DRV_WM8904_Status Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_Tasks@SYS_MODULE_OBJ Topic Title: DRV_WM8904_Tasks Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

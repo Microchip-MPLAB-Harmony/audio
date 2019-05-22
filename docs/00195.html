@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_GENERICCODEC_Initialize Function</title>
+<title>DRV_GENERICCODEC_LRCLK_Sync Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00299.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00195.html" target="topic">DRV_GENERICCODEC_Initialize Function</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00299.html" target="topic">Library Interface</a> &gt; Other Functions &gt; <a href="00195.html" target="topic">DRV_GENERICCODEC_LRCLK_Sync Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00299.html" target="topic">Previous</a> | <a href="00299.html" target="topic">Up</a> | <a href="00184.html" target="topic">Next</a></div>
+<a href="00183.html" target="topic">Previous</a> | <a href="00299.html" target="topic">Up</a> | <a href="00167.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_Initialize@SYS_MODULE_INDEX@SYS_MODULE_INIT * const Topic Title: DRV_GENERICCODEC_Initialize Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_LRCLK_Sync@DRV_HANDLE Topic Title: DRV_GENERICCODEC_LRCLK_Sync Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_GENERICCODEC_Initialize Function</div>
+DRV_GENERICCODEC_LRCLK_Sync Function</div>
 </div>
 </div>
 
@@ -49,15 +49,7 @@ DRV_GENERICCODEC_Initialize Function</div>
 <a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-        SYS_MODULE_OBJ  DRV_GENERICCODEC_Initialize&nbsp;</p>
-<p class="Element10">
-        (&nbsp;</p>
-<p class="Element10">
-                const SYS_MODULE_INDEX drvIndex,&nbsp;</p>
-<p class="Element10">
-                const SYS_MODULE_INIT *const init&nbsp;</p>
-<p class="Element10">
-        );&nbsp;</p>
+   uint32_t DRV_GENERICCODEC_LRCLK_Sync (const DRV_HANDLE handle);&nbsp;</p>
 </div>
 </div>
 <a name="53756D6D617279"></a><div class="Element14">
@@ -66,7 +58,7 @@ DRV_GENERICCODEC_Initialize Function</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Initializes hardware and data for the instance of the Generic Codec module</p></div>
+Synchronize to the start of the I2S LRCLK (left/right clock) signal</p></div>
 </div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
@@ -74,14 +66,14 @@ Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This routine initializes the Generic Codec driver instance for the specified driver index, making it ready for clients to open and use it. The initialization data is specified by the init parameter. The initialization may fail if the number of driver objects allocated are insufficient or if the specified driver instance is already initialized.</p></div>
+This function waits until low-to high transition of the I2S LRCLK (left/right clock) signal (high-low if Left-Justified format, this is determined by the PLIB). In the case where this signal is generated from a codec or other external source, this allows the caller to synchronize calls to the DMA with the LRCLK signal so the left/right channel association is valid.</p></div>
 </div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-DRV_I2S_Initialize must be called before calling this function to initialize the data interface of this Codec driver. DRV_I2C_Initialize must be called if SPI driver is used for handling the control interface of this Codec driver.</p></div>
+None.</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -98,14 +90,9 @@ Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
 Description&nbsp;</div></td></tr><tr>
 <td class="Element302" valign="top" width="35%">
 <div class="Element303">
-drvIndex&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-Identifier for the driver instance to be initialized&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-init&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Pointer to the data structure containing any data necessary to initialize the hardware. This pointer may be null if no data is required and default initialization is to be used.&nbsp;</div></td></tr></table></div></div>
+A valid open-instance handle, returned from the driver's open routine&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -113,35 +100,16 @@ Returns</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-If successful, returns a valid handle to a driver instance object. Otherwise, it returns SYS_MODULE_OBJ_INVALID.</p></div>
+true if the function was successful, false if a timeout occurred (no transitions seen)</p></div>
 </div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12"><a href="00194.html" target="topic">DRV_GENERICCODEC_INIT</a>               init;
-SYS_MODULE_OBJ                  objectHandle;
+<div class="Element13"><div class="Element12"><pre class="Element12">    <i><span style="color: #008000">// myGENERICCODECHandle is the handle returned</span></i>
+    <i><span style="color: #008000">// by the DRV_GENERICCODEC_Open function.</span></i>
 
-init-&gt;inUse                           = <strong><span style="color: #000080">true</span></strong>;
-init-&gt;status                          = SYS_STATUS_BUSY;
-init-&gt;numClients                      = 0;
-init-&gt;i2sDriverModuleIndex            = genercicodecInit-&gt;i2sDriverModuleIndex;
-init-&gt;i2cDriverModuleIndex            = genercicodecInit-&gt;i2cDriverModuleIndex;
-init-&gt;samplingRate                    = <a href="00168.html" target="topic">DRV_GENERICCODEC_AUDIO_SAMPLING_RATE</a>;
-init-&gt;audioDataFormat                 = <a href="00167.html" target="topic">DRV_GENERICCODEC_AUDIO_DATA_FORMAT_MACRO</a>;
-
-init-&gt;isInInterruptContext            = <strong><span style="color: #000080">false</span></strong>;
-
-init-&gt;commandCompleteCallback = (<a href="00180.html" target="topic">DRV_GENERICCODEC_COMMAND_EVENT_HANDLER</a>)0;
-init-&gt;commandContextData = 0;
-init-&gt;mclk_multiplier = DRV_GENERICCODEC_MCLK_SAMPLE_FREQ_MULTPLIER;
-
-
-objectHandle = DRV_GENERICCODEC_Initialize(DRV_GENERICCODEC_0, (SYS_MODULE_INIT*)init);
-<strong><span style="color: #000080">if</span></strong> (SYS_MODULE_OBJ_INVALID == objectHandle)
-{
-    <i><span style="color: #008000">// Handle error</span></i>
-}</pre></div></div>
+    DRV_GENERICCODEC_LRCLK_Sync(myGENERICCODECHandle);</pre></div></div>
 </div>
 </div>
 <a name="52656D61726B73"></a><div class="Element14">
@@ -149,22 +117,19 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This routine must be called before any other Generic Codec routine is called.&nbsp;</p>
-<p class="Element10">
-This routine should only be called once during system initialization unless <a href="00184.html" target="topic">DRV_GENERICCODEC_Deinitialize</a> is called to deinitialize the driver instance. This routine will NEVER block for hardware access.</p></div>
+None.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100">SYS_MODULE_OBJ <strong><span style="color: #000000">DRV_GENERICCODEC_Initialize</span></strong>(
-    <strong><span style="color: #000080">const</span></strong> SYS_MODULE_INDEX <strong><span style="color: #000000">drvIndex</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> SYS_MODULE_INIT * <strong><span style="color: #000080">const</span></strong> <strong><span style="color: #000000">init</span></strong>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">DRV_GENERICCODEC_LRCLK_Sync</span></strong>(
+    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>
 );</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00299.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00195.html" target="topic">DRV_GENERICCODEC_Initialize Function</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00299.html" target="topic">Library Interface</a> &gt; Other Functions &gt; <a href="00195.html" target="topic">DRV_GENERICCODEC_LRCLK_Sync Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -172,13 +137,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00299.html" target="topic">Previous</a> | <a href="00299.html" target="topic">Up</a> | <a href="00184.html" target="topic">Next</a></div>
+<a href="00183.html" target="topic">Previous</a> | <a href="00299.html" target="topic">Up</a> | <a href="00167.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_Initialize@SYS_MODULE_INDEX@SYS_MODULE_INIT * const Topic Title: DRV_GENERICCODEC_Initialize Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_LRCLK_Sync@DRV_HANDLE Topic Title: DRV_GENERICCODEC_LRCLK_Sync Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

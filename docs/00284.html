@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_WM8904_VolumeSet Function</title>
+<title>DRV_WM8904_WriteQueuePurge Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00355.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00356.html" target="topic">Library Interface</a> &gt; Settings Functions &gt; <a href="00284.html" target="topic">DRV_WM8904_VolumeSet Function</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00359.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00284.html" target="topic">DRV_WM8904_WriteQueuePurge Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00283.html" target="topic">Previous</a> | <a href="00356.html" target="topic">Up</a> | <a href="00249.html" target="topic">Next</a></div>
+<a href="00274.html" target="topic">Previous</a> | <a href="00359.html" target="topic">Up</a> | <a href="00267.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_VolumeSet@DRV_HANDLE@DRV_WM8904_CHANNEL@uint8_t Topic Title: DRV_WM8904_VolumeSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_WriteQueuePurge@DRV_HANDLE Topic Title: DRV_WM8904_WriteQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_WM8904_VolumeSet Function</div>
+DRV_WM8904_WriteQueuePurge Function</div>
 </div>
 </div>
 
@@ -49,7 +49,7 @@ DRV_WM8904_VolumeSet Function</div>
 <a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-  void DRV_WM8904_VolumeSet(DRV_HANDLE handle, <a href="00235.html" target="topic">DRV_WM8904_CHANNEL</a> channel, uint8_t volume);&nbsp;</p>
+   bool DRV_WM8904_WriteQueuePurge( const DRV_HANDLE handle )&nbsp;</p>
 <p class="Element10">
 &nbsp;</p></div>
 </div>
@@ -59,7 +59,7 @@ DRV_WM8904_VolumeSet Function</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This function sets the volume for WM8904 Codec.</p></div>
+Removes all buffer requests from the write queue.</p></div>
 </div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
@@ -67,16 +67,14 @@ Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This function sets the volume value from 0-255. The codec has DAC value to volume range mapping as :- 00 H : +12dB FF H : -115dB In order to make the volume value to dB mapping monotonically increasing from 00 to FF, re-mapping is introduced which reverses the volume value to dB mapping as well as normalizes the volume range to a more audible dB range. The current driver implementation assumes that all dB values under -60 dB are inaudible to the human ear. Re-Mapped values 00 H : -60 dB FF H : +12 dB</p></div>
+This function removes all the buffer requests from the write queue. The client can use this function to purge the queue on timeout or to remove unwanted stalled buffer requests or in any other use case.</p></div>
 </div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-The <a href="00264.html" target="topic">DRV_WM8904_Initialize</a> routine must have been called for the specified WM8904 driver instance.&nbsp;</p>
-<p class="Element10">
-<a href="00274.html" target="topic">DRV_WM8904_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p></div>
+<a href="00273.html" target="topic">DRV_WM8904_Open</a> must have been called to obtain a valid opened device handle.</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -95,17 +93,7 @@ Description&nbsp;</div></td></tr><tr>
 <div class="Element303">
 handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-A valid open-instance handle, returned from the driver's open routine&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-channel&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-argument indicating Left or Right or Both channel volume to be modified&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-volume&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-volume value specified in the range 0-255 (0x00 to 0xFF)&nbsp;</div></td></tr></table></div></div>
+Handle of the communication channel as returned by the <a href="00273.html" target="topic">DRV_WM8904_Open</a> function.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -113,23 +101,27 @@ Returns</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-None</p></div>
+True - Write queue purge is successful. False - Write queue purge has failed.</p></div>
 </div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12"><i><span style="color: #008000">// myAppObj is an application specific object.</span></i>
-MY_APP_OBJ myAppObj;
+<div class="Element13"><div class="Element12"><pre class="Element12"><i><span style="color: #008000">// myCodecHandle is the handle returned by the DRV_WM8904_Open function.</span></i>
+<i><span style="color: #008000">// Use DRV_WM8904_BufferAddWrite to queue write requests</span></i>
 
-uint8_t mybuffer[MY_BUFFER_SIZE];
-DRV_BUFFER_HANDLE bufferHandle;
-
-<i><span style="color: #008000">// myWM8904Handle is the handle returned</span></i>
-<i><span style="color: #008000">// by the DRV_WM8904_Open function.</span></i>
-
-    DRV_WM8904_VolumeSet(myWM8904Handle,DRV_WM8904_CHANNEL_LEFT, 120);  
-</pre></div></div>
+<i><span style="color: #008000">// Application timeout function, where remove queued buffers.</span></i>
+<strong><span style="color: #000080">void</span></strong> APP_TimeOut(<strong><span style="color: #000080">void</span></strong>)
+{
+    <strong><span style="color: #000080">if</span></strong>(<strong><span style="color: #000080">false</span></strong> == DRV_WM8904_WriteQueuePurge(myCodecHandle))
+    {
+        <i><span style="color: #008000">//Couldn't purge the write queue, try again.</span></i>
+    }
+    <strong><span style="color: #000080">else</span></strong>
+    {
+        <i><span style="color: #008000">//Queue purge successful.</span></i>
+    }
+}</pre></div></div>
 </div>
 </div>
 <a name="52656D61726B73"></a><div class="Element14">
@@ -137,21 +129,19 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-None.</p></div>
+This function is thread safe when used in an RTOS environment. Avoid this function call from within the callback.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_VolumeSet</span></strong>(
-    DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <a href="00235.html" target="topic">DRV_WM8904_CHANNEL</a> <strong><span style="color: #000000">channel</span></strong>, 
-    uint8_t <strong><span style="color: #000000">volume</span></strong>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">DRV_WM8904_WriteQueuePurge</span></strong>(
+    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>
 );</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00355.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00356.html" target="topic">Library Interface</a> &gt; Settings Functions &gt; <a href="00284.html" target="topic">DRV_WM8904_VolumeSet Function</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00359.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00284.html" target="topic">DRV_WM8904_WriteQueuePurge Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -159,13 +149,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00283.html" target="topic">Previous</a> | <a href="00356.html" target="topic">Up</a> | <a href="00249.html" target="topic">Next</a></div>
+<a href="00274.html" target="topic">Previous</a> | <a href="00359.html" target="topic">Up</a> | <a href="00267.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_VolumeSet@DRV_HANDLE@DRV_WM8904_CHANNEL@uint8_t Topic Title: DRV_WM8904_VolumeSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_WriteQueuePurge@DRV_HANDLE Topic Title: DRV_WM8904_WriteQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

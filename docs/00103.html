@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</title>
+<title>DRV_AK4954_BUFFER_EVENT Type</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00040.html" target="topic">Configuring the Library</a> &gt; <a href="00054.html" target="topic">System Configuration</a> &gt; <a href="00103.html" target="topic">DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00103.html" target="topic">DRV_AK4954_BUFFER_EVENT Type</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00054.html" target="topic">Previous</a> | <a href="00054.html" target="topic">Up</a> | <a href="00104.html" target="topic">Next</a></div>
+<a href="00099.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00104.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Topic Title: DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BUFFER_EVENT Topic Title: DRV_AK4954_BUFFER_EVENT Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</div>
+DRV_AK4954_BUFFER_EVENT Type</div>
 </div>
 </div>
 
@@ -49,35 +49,33 @@ DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</div>
 <a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Specifies the audio data format for the codec.</p></div>
+Identifies the possible events that can result from a buffer add request.</p></div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
 Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-AK4954 Audio Data Format&nbsp;</p>
+AK4954 Driver Events&nbsp;</p>
 <p class="Element10">
-Sets up the length of each sample plus the format (I2S or left-justified) for the audio.&nbsp;</p>
-<p class="Element10">
-Valid choices are: &quot;DRV_AK4954_AUDIO_DATA_FORMAT_24BIT_MSB_SDTO_24BIT_LSB_SDTI&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_24BIT_MSB_SDTO_16BIT_LSB_SDTI&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_24BIT_MSB_SDTO_24BIT_MSB_SDTI&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_I2S_16BIT_24BIT&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_32BIT_MSB_SDTO_32BIT_MSB_SDTI&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_I2S_32BIT&quot; where SDTO is input line (ADC) and STDI is output line (DAC)</p></div>
+This enumeration identifies the possible events that can result from a buffer add request caused by the client calling either the <a href="00108.html" target="topic">DRV_AK4954_BufferAddWrite</a>() or the <a href="00107.html" target="topic">DRV_AK4954_BufferAddRead</a>() function.</p></div>
 </div>
 <a name="52656D61726B73"></a><div class="Element14">
 Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-If 24-bit audio is needed, it should be sent, left-justified, in a 32-bit format.</p></div>
+One of these values is passed in the &quot;event&quot; parameter of the event handling callback function that the client registered with the driver by calling the <a href="00110.html" target="topic">DRV_AK4954_BufferEventHandlerSet</a> function when a buffer transfer request is completed.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">#define</span></strong> <strong><span style="color: #000000">DRV_AK4954_AUDIO_DATA_FORMAT_MACRO</span></strong> </pre></div></div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">enum</span></strong> DRV_AK4954_BUFFER_EVENT@1 <strong><span style="color: #000000">DRV_AK4954_BUFFER_EVENT</span></strong>;</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00040.html" target="topic">Configuring the Library</a> &gt; <a href="00054.html" target="topic">System Configuration</a> &gt; <a href="00103.html" target="topic">DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00103.html" target="topic">DRV_AK4954_BUFFER_EVENT Type</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -85,13 +83,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00054.html" target="topic">Previous</a> | <a href="00054.html" target="topic">Up</a> | <a href="00104.html" target="topic">Next</a></div>
+<a href="00099.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00104.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Topic Title: DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BUFFER_EVENT Topic Title: DRV_AK4954_BUFFER_EVENT Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

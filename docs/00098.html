@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Example Audio Projects</title>
+<title>drv_ak4954.h</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Overview</a> &gt; <a href="00098.html" target="topic">Example Audio Projects</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00046.html" target="topic">Files</a> &gt; <a href="00098.html" target="topic">drv_ak4954.h</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00097.html" target="topic">Previous</a> | <a href="00096.html" target="topic">Up</a> | <a href="00089.html" target="topic">Next</a></div>
+<a href="00046.html" target="topic">Previous</a> | <a href="00046.html" target="topic">Up</a> | <a href="00116.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Example Audio Projects Topic Title: Example Audio Projects)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: drv_ak4954.h Topic Title: drv_ak4954.h)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Example Audio Projects</div>
+drv_ak4954.h</div>
 </div>
 </div>
 
@@ -46,55 +46,35 @@ Example Audio Projects</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="46696C65204E616D65"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-<strong><i>The audio_enc Demonstration</i></strong>&nbsp;</p>
+drv_ak4954.h</p></div>
+</div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
 <p class="Element10">
-The audio_enc (encoder) application records and encodes PCM audio as wave (.wav) files on a mass storage device (e.g. thumb drive) connected to the USB Host port. Playback is an optional feature. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA, Timer and USB library. A FreeRTOS version is also available.&nbsp;</p>
+AK4954 Codec Driver Interface header file</p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
 <p class="Element10">
-&nbsp;</p>
+AK4954 Codec Driver Interface&nbsp;</p>
 <p class="Element10">
-<strong><i>The audio_player_basic Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The audio_player_basic application scans a mass storage device (e.g. thumb drive) connected to the USB Host port for wave (.wav) files, and then plays them out one by one through a codec. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA, Timer and USB library.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<strong><i>The audio_signal_generator Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The audio_tone application sends out generated audio (sine, square, sawtooth and triangle waveforms) with volume and frequency modifiable through a touch screendisplay. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA and Timer.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<strong><i>The audio_tone Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The audio_tone application sends out generated audio waveforms (sine tone) with volume and frequency modifiable through the on-board push button. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC or I2SC), DMA and Timer. A FreeRTOS version is also available. </p><p class="Element10" style="text-align: center;">
-&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-&nbsp;</p><p class="Element10">
-<strong><i>The audio_tone_linkeddma Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The audio_tone_linkeddma application sends out generated audio waveforms (sine tone) with volume and frequency modifiable through the on-board push button, using the linked DMA feature of the MCU (where available). It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC or I2SC), DMA and Timer. Linked DMA allows the DMA to process multiple buffers sequentially, without MCU intervention.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<strong><i>The microphone_loopback Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The microphone_loopback application receives audio data from the microphone input on a codec, and then sends this same audio data back out through the codec to a pair of headphones after a delay. The volume and delay are configurable using the on-board pushbutton or touch screen display. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC or I2SC), DMA and Timer. A FreeRTOS version is also available.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<strong><i>The usb_speaker Demonstration</i></strong>&nbsp;</p>
-<p class="Element10">
-The usb_speaker application aacts as a USB device, playing streaming audio from a USB host such as a PC. It uses the I2S Driver, I2C Driver, codec driver (e.g. WM8904), I2S peripheral (e.g. SSC), DMA and Timer. A FreeRTOS version is also available.</p></div>
+The AK4954 Codec device driver interface provides a simple interface to manage the AK4954 16/24/32-Bit Codec that can be interfaced to a Microchip microcontroller. This file provides the public interface definitions for the AK4954 Codec device driver.</p></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Overview</a> &gt; <a href="00098.html" target="topic">Example Audio Projects</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00046.html" target="topic">Files</a> &gt; <a href="00098.html" target="topic">drv_ak4954.h</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -102,13 +82,13 @@ The usb_speaker application aacts as a USB device, playing streaming audio from 
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00097.html" target="topic">Previous</a> | <a href="00096.html" target="topic">Up</a> | <a href="00089.html" target="topic">Next</a></div>
+<a href="00046.html" target="topic">Previous</a> | <a href="00046.html" target="topic">Up</a> | <a href="00116.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Example Audio Projects Topic Title: Example Audio Projects)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: drv_ak4954.h Topic Title: drv_ak4954.h)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

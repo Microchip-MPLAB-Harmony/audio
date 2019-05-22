@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00297.html" target="topic">Introduction</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00297.html" target="topic">Introduction</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,7 +26,7 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
 <a href="00298.html" target="topic">Previous</a> | <a href="00298.html" target="topic">Up</a> | <a href="00306.html" target="topic">Next</a></div>
@@ -51,27 +51,24 @@ Introduction</div>
 <p class="Element10">
 <strong>Description</strong>&nbsp;</p>
 <p class="Element10">
-The Generic Codec module is 24-bit Audio Codec from Cirrus Logic, which can operate in 16-, 20-, 24-, and 32-bit audio modes. The Generic Codec can be interfaced to Microchip microcontrollers through I<sup>2</sup>C and I<sup>2</sup>S serial interfaces. The I<sup>2</sup>C interface is used to send commands and receive status, and the I<sup>2</sup>S interface is used for audio data output (to headphones or line-out) and input (from microphone or line-in).&nbsp;</p>
+This file contains the implementation of the Generic Codec driver, which provides a simple interface to manage a codec that can be interfaced to Microchip microcontroller. The user will need to modify it to match the requirements of their codec. Areas where code needs to be added or changed are marked with TO-DO!!&nbsp;</p>
 <p class="Element10">
-The Generic Codec can be configured as either an I<sup>2</sup>S clock slave (receives all clocks from the host), or I<sup>2</sup>S clock master (generates I<sup>2</sup>S clocks from a master clock input MCLK). Currently the driver only supports slave mode with headphone output and (optionally) internal or external microphone input.&nbsp;</p>
+Note: this module assumes the codec is controlled over an I<sup>2</sup>2C interface. The I<sup>2</sup>C Driver will need to be enabled in the MHC Project Graph. If another type of interface is used, the user will need to modify the code to suit. This module makes use of SYS_TIME. It will need to be enabled in the Project Graph.&nbsp;</p>
+<p class="Element10">
+This module assumes the an I<sup>2</sup>S interface is used for audio data output (to headphones or line-out) and input (from microphone or line-in).&nbsp;</p>
+<p class="Element10">
+The Generic Codec can be configured as either an I<sup>2</sup>S clock slave (receives all clocks from the host), or I<sup>2</sup>S clock master (generates I<sup>2</sup>S clocks from a master clock input MCLK).&nbsp;</p>
 <p class="Element10">
 A typical interface of Generic Codec to a Microchip microcontroller using an I<sup>2</sup>C and SSC interface (configured as I<sup>2</sup>S), with the Generic Codec set up as the I<sup>2</sup>S clock slave, is provided in the following diagram:&nbsp;</p>
 <p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-The Generic Codec supports the following features:</p>
-<ul class="Element630">
-<li class="Element600">Audio Interface Format: 16-/20-/24-/32-bit interface, LSB justified or I2S format (only 16 and 32-bit interfaces supported in the driver)</li>
-<li class="Element600">Sampling Frequency Range: 8 kHz to 96 kHz</li>
-<li class="Element600">Digital Volume Control: -71.625 to 0 dB in 192 steps (converted to a linear scale 0-255 in the driver)</li>
-</ul></div>
+&nbsp;</p></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00090.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00297.html" target="topic">Introduction</a></div>
+<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00297.html" target="topic">Introduction</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -79,7 +76,7 @@ The Generic Codec supports the following features:</p>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00096.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
 <a href="00298.html" target="topic">Previous</a> | <a href="00298.html" target="topic">Up</a> | <a href="00306.html" target="topic">Next</a></div>
