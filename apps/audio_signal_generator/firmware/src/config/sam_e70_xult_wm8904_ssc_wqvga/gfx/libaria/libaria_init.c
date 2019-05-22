@@ -174,7 +174,7 @@ int32_t libaria_initialize(void)
     titleScheme.foreground = 0x4;
     titleScheme.foregroundInactive = 0x5;
     titleScheme.foregroundDisabled = 0x84;
-    titleScheme.background = 0x57;
+    titleScheme.background = 0xEF;   // KEEP THIS LINE until MH3-4858 fixed    
     titleScheme.backgroundInactive = 0x5;
     titleScheme.backgroundDisabled = 0x0;
     titleScheme.text = 0x4;
@@ -195,7 +195,7 @@ int32_t libaria_initialize(void)
     whiteText.background = 0x57;
     whiteText.backgroundInactive = 0x5;
     whiteText.backgroundDisabled = 0x0;
-    whiteText.text = 0x4;
+    whiteText.text = 0x1;            // KEEP THIS LINE until MH3-4858 fixed    
     whiteText.textHighlight = 0x6;
     whiteText.textHighlightText = 0x57;
     whiteText.textInactive = 0x5;

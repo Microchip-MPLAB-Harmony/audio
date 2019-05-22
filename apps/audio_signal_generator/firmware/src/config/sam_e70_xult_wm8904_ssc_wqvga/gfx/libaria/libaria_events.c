@@ -40,10 +40,9 @@
 // DOM-IGNORE-END
 
 #include "gfx/libaria/libaria_events.h"
-
-// KEEP LINES BELOW
 #include "app.h"
 
+// KEEP ALL LINES BELOW
 // locals
 int32_t _msSinceKeyPressed;
 int32_t _msSinceVolumePressed;
@@ -219,6 +218,10 @@ void _processKeyPressed(uint32_t* value, bool incOrDec, uint32_t minMaxValue, la
             _SetNumericLabel(*value, label, percent); 
         }    
     }
+    if (slider != NULL)
+    {
+        laSliderWidget_SetSliderPercentage(slider,*value);                    
+    }    
 }
 
 void _resetKeyPressed()

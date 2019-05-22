@@ -40,10 +40,9 @@
 // DOM-IGNORE-END
 
 #include "gfx/libaria/libaria_events.h"
+#include "app.h"
 
-// KEEP LINES BELOW
-#include "app.h"        // brings in appData
-
+// KEEP ALL LINES BELOW
 // locals
 int32_t _msSinceKeyPressed;
 int32_t _msSinceVolumePressed;

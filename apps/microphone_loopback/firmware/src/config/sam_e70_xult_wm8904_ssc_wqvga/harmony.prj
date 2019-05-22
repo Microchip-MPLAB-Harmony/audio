@@ -571,8 +571,8 @@
           <Name dnOrder="1">libaria_events.c</Name>
           <LogicalPath dnOrder="2">config/sam_e70_xult_wm8904_ssc_wqvga/gfx/libaria</LogicalPath>
           <PhysicalPath dnOrder="3">/gfx/libaria/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">4F3E28E47ED333F12ACA51FDF35C0F45</GeneratedChecksum>
-          <UserChecksum dnOrder="5">AD70392C4C757F46666E03609C79014B</UserChecksum>
+          <GeneratedChecksum dnOrder="4">755E90490D7155A3FCAB08E38C0B7A51</GeneratedChecksum>
+          <UserChecksum dnOrder="5">081B63B7135C380DF7037217C383410C</UserChecksum>
         </File>
         <File dnOrder="71">
           <Type dnOrder="0">SOURCE</Type>

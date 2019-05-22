@@ -127,6 +127,7 @@ void TC0_TimerStop( void )
 
 uint32_t TC0_TimerFrequencyGet( void )
 {
+    // KEEP THE FOLLOWING LINE AS IS, COUNTER WAS RUNNING 4 TIMES TOO FAST
     return (uint32_t)(12000000UL);
 }
 
