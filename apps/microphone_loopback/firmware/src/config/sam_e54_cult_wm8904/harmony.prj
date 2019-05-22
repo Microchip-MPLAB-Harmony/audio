@@ -115,8 +115,8 @@
           <Name dnOrder="1">plib_clock.c</Name>
           <LogicalPath dnOrder="2">config/sam_e54_cult_wm8904/peripheral/clock/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clock/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">79B3170ED26C4A3B431A7D5A79C606B9</GeneratedChecksum>
-          <UserChecksum dnOrder="5">79B3170ED26C4A3B431A7D5A79C606B9</UserChecksum>
+          <GeneratedChecksum dnOrder="4">1C4DE7A42328959D295927A8660BF034</GeneratedChecksum>
+          <UserChecksum dnOrder="5">1C4DE7A42328959D295927A8660BF034</UserChecksum>
         </File>
         <File dnOrder="14">
           <Type dnOrder="0">SOURCE</Type>
@@ -371,8 +371,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/sam_e54_cult_wm8904/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">616B96DDB684A5729A812B0811E5C104</GeneratedChecksum>
-          <UserChecksum dnOrder="5">616B96DDB684A5729A812B0811E5C104</UserChecksum>
+          <GeneratedChecksum dnOrder="4">6BEC3567394141F465EFFB0158AF4120</GeneratedChecksum>
+          <UserChecksum dnOrder="5">6BEC3567394141F465EFFB0158AF4120</UserChecksum>
         </File>
         <File dnOrder="46">
           <Type dnOrder="0">HEADER</Type>
