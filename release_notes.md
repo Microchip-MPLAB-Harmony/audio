@@ -4,65 +4,46 @@
 
 - **New Applications/Projects**
 
-The following table provides the list of new applications/projects for the SAM E54:
+The following table provides the list of new applications/projects:
 
-| Application | Description |
+| Application | Description | E54 | E70 |
 | --- | --- |
-| audio_player_basic | added project using WM8904 and SD card instead of USB, including FreeRTOS version |
-| audio_tone | added bare metal and FreeRTOS projects using WM8904 |
-| microphone_loopback | added bare metal and FreeRTOS projects using WM8904  |
-
-The following table provides the list of new applications/projects for the SAM E70:
-
-| Application | Description |
-| --- | --- |
-| audio_player_basic | added graphics and FreeRTOS projects using WM8904|
-| audio_tone | added project using AK4954 |
-| microphone_loopback | added project using AK4954|
-| usb_speaker | added FreeRTOS project |
+| audio_player_basic | added project using WM8904 and SD card instead of USB, including FreeRTOS version | x | |
+| audio_player_basic | added graphics and FreeRTOS projects using WM8904| | x |
+| audio_tone | added bare metal and FreeRTOS projects using WM8904 | x | |
+| audio_tone | added project using AK4954 | | x |
+| microphone_loopback | added bare metal and FreeRTOS projects using WM8904 | x | |
+| usb_speaker | added FreeRTOS project | | x |
 
 - **Updated Applications/Projects**
 
-The following table provides the list of updated applications/projects for the SAM E70:
+The following table provides the list of updated applications/projects:
 
-| Application | Description |
+| Application | Description | E54 | E70 |
 | --- | --- |
-| audio_player_basic | all projects now use WAV library instead of inline decoding; fixed issue in WAV decoder where inSize argument was ignored and substituted with a fixed length |
+| audio_player_basic | all projects now use WAV library instead of inline decoding; fixed issue in WAV decoder where inSize argument was ignored and substituted with a fixed length | | x |
 
 - **New Drivers**
 
-The following table provides the list of new audio drivers for the SAM E54:
+The following table provides the list of new audio drivers:
 
-| Driver | Description |
+| Driver | Description | E54 | E70 |
 | --- | --- |
-| Generic Codec| Generic Codec Driver|
-| Encoder Library| Encoder Library with ADPCM and PCM encoders|
-| Decoder Library|  Decoder Library with ADPCM and WAV decoders|
-
-The following table provides the list of new audio drivers for the SAM E70/V71:
-
-| Driver | Description |
-| --- | --- |
-| AK4954| AK4954 Codec Driver|
-| Generic Codec| Generic Codec Driver|
-| Encoder Library| Encoder Library with ADPCM and PCM encoders|
-| Decoder Library| Decoder Library with ADPCM and WAV decoders|
+| AK4954| AK4954 Codec Driver | | x |
+| Generic Codec| Generic Codec Driver | x | x |
+| Encoder Library| Encoder Library with ADPCM and PCM encoders | x | x |
+| Decoder Library|  Decoder Library with ADPCM and WAV decoders | x |  x|
 
 - **New Audio Application Templates**
 
-The following table provides the list new templates for the SAM E54:
+The following table provides the list new templates:
 
-| Template | Description |
+| Template | Description | E54 | E70 |
 | --- | --- |
-| generic | Generic Codec with E54 Curiosity Ultra  |
-| wm8904 | WM8904 Codec with E54 Curiosity Ultra  |
-
-The following table provides the list new templates for the SAM E70:
-
-| Template | Description |
-| --- | --- |
-| ak4954 | AK4954 Codec with E70 Xplained Ultra  |
-| generic | Generic Codec with E70 Xplained Ultra  |
+| ak4954 | AK4954 Codec with E70 Xplained Ultra | | x |
+| generic | Generic Codec with E54 Curiosity Ultra | x | |
+| generic | Generic Codec with E70 Xplained Ultra | | x |
+| wm8904 | WM8904 Codec with E54 Curiosity Ultra | x | |
 
 ### TESTED WITH:
 
@@ -92,9 +73,9 @@ This release supports applications for the following development kits
 
 | Development Kits |
 | --- |
-| [SAM E54 Curiosity Ultra Evaluation Kit](https://www.microchip.com/developmenttools/listing/) |
-| [SAM E70 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
-| [SAM V71 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/ATSAMV71-XULT) |
+| SAM E54 Curiosity Ultra Evaluation Kit (DM320210) |
+| [SAM E70 Xplained Ultra Evaluation Kit (DM320113)](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
+| [SAM V71 Xplained Ultra Evaluation Kit (ATSAMV71-XULT)](https://www.microchip.com/developmenttools/ProductDetails/PartNO/ATSAMV71-XULT) |
 
 ### KNOWN ISSUES
 
