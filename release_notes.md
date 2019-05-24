@@ -116,7 +116,7 @@ currently supported.
 supported. May result in garbled audio and longer
 playback times.
     - Only CBR (Constant Bit Rate) encoding is supported.
-    - Audible artifacts may occur when using FreeRTOS
+    - Audible artifacts and/or L/R channel swapping may occur when using FreeRTOS.
 * audio_signal_generator demonstration:
     - Not all frequencies selected can be output.  The nearest possible frequency to the one chosen will be used.
 * audio_tone demonstration:

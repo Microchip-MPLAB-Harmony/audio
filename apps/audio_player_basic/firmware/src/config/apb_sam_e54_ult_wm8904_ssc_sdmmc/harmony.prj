@@ -187,8 +187,8 @@
           <Name dnOrder="1">plib_i2s.c</Name>
           <LogicalPath dnOrder="2">config/apb_sam_e54_ult_wm8904_ssc_sdmmc/peripheral/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">FC4AEB94F58FBBE01A0587C93E5EF817</GeneratedChecksum>
-          <UserChecksum dnOrder="5">FC4AEB94F58FBBE01A0587C93E5EF817</UserChecksum>
+          <GeneratedChecksum dnOrder="4">CEF3B4F4C9A55F6E7A5472471C285AF0</GeneratedChecksum>
+          <UserChecksum dnOrder="5">CEF3B4F4C9A55F6E7A5472471C285AF0</UserChecksum>
         </File>
         <File dnOrder="23">
           <Type dnOrder="0">SOURCE</Type>
