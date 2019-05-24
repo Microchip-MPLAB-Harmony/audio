@@ -53,7 +53,15 @@
 #include "configuration.h"
 #include "definitions.h"
 
+/***** KEEP ALL MODS, BEGIN *****/
 
+#ifdef GFX_ENABLED
+// This variable is modulus with random prime numbers so the bracketed tasks
+// will not run as frequently and run at different iterations than the other bracketed tasks
+// within SYS_Tasks().  This is done to give APP_Tasks() as much time as possible to keep
+// sync.
+uint32_t updateDelay = 0;
+#endif
 // *****************************************************************************
 // *****************************************************************************
 // Section: System "Tasks" Routine
@@ -70,38 +78,45 @@
 
 void SYS_Tasks ( void )
 {
+
+
+    /* Maintain Device Drivers */
+    if( updateDelay%409 == 0 )
+    {
     /* Maintain system services */
     
 SYS_FS_Tasks();
 
+        GFX_Update();
 
 
-    /* Maintain Device Drivers */
-    
-    GFX_Update();
-
-
-    DRV_MAXTOUCH_Tasks(sysObj.drvMAXTOUCH);
-
+        DRV_MAXTOUCH_Tasks(sysObj.drvMAXTOUCH);
+    }
     DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
 
 
 
     /* Maintain Middleware & Other Libraries */
     	/* USB Host Task Routine */ 
+    if( updateDelay%787 == 0 )
+    {
      USB_HOST_Tasks(sysObj.usbHostObject0);
 
 	/* USB HS Driver Task Routine */ 
     DRV_USBHSV1_Tasks(sysObj.drvUSBHSV1Object);
+    }
+    
 
 
     SYS_INP_Tasks();
 
+    if( (updateDelay%401) == 0 )
+    {
+        LibAria_Tasks();
+    }
+    updateDelay++;
 
-    LibAria_Tasks();
-
-
-
+/***** KEEP ALL MODS, END *****/
     /* Maintain the application's state machine. */
         /* Call Application task APP. */
     APP_Tasks();

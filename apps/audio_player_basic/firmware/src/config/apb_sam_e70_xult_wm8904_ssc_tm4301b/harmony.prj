@@ -1372,7 +1372,7 @@
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_tm4301b/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">293D482437E279F8284F8162A968D6D2</GeneratedChecksum>
-          <UserChecksum dnOrder="5">293D482437E279F8284F8162A968D6D2</UserChecksum>
+          <UserChecksum dnOrder="5">93566DB88BEC7532B51E0F4B589FF897</UserChecksum>
         </File>
         <File dnOrder="171">
           <Type dnOrder="0">SOURCE</Type>

@@ -38,7 +38,6 @@
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
-
 uint16_t volumeLevels[VOL_LVL_MAX] =
 {
     0,      // Mute
@@ -482,9 +481,7 @@ void APP_Tasks ( void )
     USB_Tasks();
     DISK_Tasks();
     APP_LED_Tasks();
-#ifdef GFX_ENABLED
-    APP_Update_GUI_Tasks();
-#else
+#ifndef GFX_ENABLED
    	BTN_Tasks();
 #endif
     
@@ -493,6 +490,7 @@ void APP_Tasks ( void )
     {       
         // application's initial state.
         case APP_STATE_INIT:
+        {
             // open the timer Driver
             tmrHandle = SYS_TIME_CallbackRegisterMS(App_TimerCallback, 
                     (uintptr_t)0, 1/*ms*/, SYS_TIME_PERIODIC);
@@ -502,7 +500,7 @@ void APP_Tasks ( void )
                appData.state = APP_STATE_CODEC_OPEN;
             }
             break;
-        
+        }
         case APP_STATE_CODEC_OPEN:
             {
                 // see if codec is done initializing
@@ -656,7 +654,9 @@ void APP_Tasks ( void )
             if(appData.lrSync)
             {
                 DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
+#ifndef USE_SDMMC
                 appData.lrSync = false;
+#endif
             }
             if ( appData.pingPong )
             {
@@ -739,6 +739,7 @@ void APP_Tasks ( void )
                         }
                         wrtn *= 2;
 #endif
+                        appData.codecData.txbufferObject1 = (uint8_t *)App_Audio_Output_Buffer1;
                     }                    
                 }               
                 else
@@ -746,6 +747,9 @@ void APP_Tasks ( void )
                     appData.state = APP_STATE_SCANNING;
                 }
             }
+#ifdef GFX_ENABLED
+            APP_Update_GUI_Tasks();
+#endif
             if( appData.prevVol != appData.volume )
             {
                 DRV_CODEC_VolumeSet(appData.codecData.handle,

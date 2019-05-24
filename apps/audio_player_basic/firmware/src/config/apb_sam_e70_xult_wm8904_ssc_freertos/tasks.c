@@ -101,9 +101,6 @@ void _APP_Tasks(  void *pvParameters  )
         DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
 /***** KEEP THIS, END *****/
         APP_Tasks();
-/***** KEEP THIS, BEGIN *****/
-        vTaskDelay(1 / portTICK_PERIOD_MS);
-/***** KEEP THIS, END *****/
     }
 }
 

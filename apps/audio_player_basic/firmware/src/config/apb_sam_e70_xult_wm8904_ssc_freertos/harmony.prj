@@ -356,7 +356,7 @@
           <LogicalPath dnOrder="2">config/apb_sam_e70_xult_wm8904_ssc_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">4CC20EC2AEC8ECE95F71B9437E0BFEDD</GeneratedChecksum>
-          <UserChecksum dnOrder="5">6117CC59CBC53162DF168B16F80B3F2A</UserChecksum>
+          <UserChecksum dnOrder="5">EE39A0BF3B514568EC0E8231A2DDC998</UserChecksum>
         </File>
         <File dnOrder="44">
           <Type dnOrder="0">SOURCE</Type>

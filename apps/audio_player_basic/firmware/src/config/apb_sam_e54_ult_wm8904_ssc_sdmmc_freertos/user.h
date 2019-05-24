@@ -36,7 +36,7 @@ extern "C" {
 // *****************************************************************************
 #define USE_SDMMC
 #define DATA32_ENABLED
-#define NUM_SAMPLES                     256*4
+#define NUM_SAMPLES                     256*4*4
 #define BUFFER_SIZE                     4*NUM_SAMPLES  
 #define SWITCH_Get()                    SWITCH1_Get()
 #define SWITCH_STATE_PRESSED            SWITCH1_STATE_PRESSED
