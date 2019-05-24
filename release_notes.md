@@ -101,7 +101,8 @@ playback times.
 * audio_signal_generator demonstration:
     - Not all frequencies selected can be output.  The nearest possible frequency to the one chosen will be used.
 * audio_tone demonstration:
-    - In both E54/WM8904 projects, only 32-bit audio has been tested.  
+    - In both E54/WM8904 projects, only 32-bit audio has been tested.
+    - The E70 FreeRTOS project may not build correctly on Linux systems.  
 * audio_tone_linkeddma demonstration:
     - When changing the frequency the first time, the pushbutton
 must be pressed twice.
