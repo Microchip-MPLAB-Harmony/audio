@@ -7,7 +7,7 @@
 The following table provides the list of new applications/projects:
 
 | Application | Description | E54 | E70 |
-| --- | --- |
+| --- | --- | --- | --- |
 | audio_player_basic | added project using WM8904 and SD card instead of USB, including FreeRTOS version | x | |
 | audio_player_basic | added graphics and FreeRTOS projects using WM8904| | x |
 | audio_tone | added bare metal and FreeRTOS projects using WM8904 | x | |
@@ -20,7 +20,7 @@ The following table provides the list of new applications/projects:
 The following table provides the list of updated applications/projects:
 
 | Application | Description | E54 | E70 |
-| --- | --- |
+| --- | --- | --- | --- |
 | audio_player_basic | all projects now use WAV library instead of inline decoding; fixed issue in WAV decoder where inSize argument was ignored and substituted with a fixed length | | x |
 
 - **New Drivers**
@@ -28,7 +28,7 @@ The following table provides the list of updated applications/projects:
 The following table provides the list of new audio drivers:
 
 | Driver | Description | E54 | E70 |
-| --- | --- |
+| --- | --- | --- | --- |
 | AK4954| AK4954 Codec Driver | | x |
 | Generic Codec| Generic Codec Driver | x | x |
 | Encoder Library| Encoder Library with ADPCM and PCM encoders | x | x |
@@ -39,7 +39,7 @@ The following table provides the list of new audio drivers:
 The following table provides the list new templates:
 
 | Template | Description | E54 | E70 |
-| --- | --- |
+| --- | --- | --- | --- |
 | ak4954 | AK4954 Codec with E70 Xplained Ultra | | x |
 | generic | Generic Codec with E54 Curiosity Ultra | x | |
 | generic | Generic Codec with E70 Xplained Ultra | | x |
