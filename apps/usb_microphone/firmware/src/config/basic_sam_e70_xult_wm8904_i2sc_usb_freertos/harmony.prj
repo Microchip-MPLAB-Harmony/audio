@@ -323,8 +323,8 @@
           <Name dnOrder="1">tasks.c</Name>
           <LogicalPath dnOrder="2">config/basic_sam_e70_xult_wm8904_i2sc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">7529196A8BB768074740D217BCD3C349</GeneratedChecksum>
-          <UserChecksum dnOrder="5">F7FAD8F6018D97733FFFC93EFD47D529</UserChecksum>
+          <GeneratedChecksum dnOrder="4">20C6D95D5A731CDA2CEC3322B96D3BB6</GeneratedChecksum>
+          <UserChecksum dnOrder="5">1BB33F91F755468E3843924F62682A2B</UserChecksum>
         </File>
         <File dnOrder="40">
           <Type dnOrder="0">SOURCE</Type>
@@ -363,7 +363,7 @@
           <Name dnOrder="1">usb_device_init_data.c</Name>
           <LogicalPath dnOrder="2">config/basic_sam_e70_xult_wm8904_i2sc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">CB39EA7F83AB5E219735AE91F6E92E99</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">C9C1074D1AC84580BCFE059EF556A0DF</GeneratedChecksum>
           <UserChecksum dnOrder="5">D89065F23B4DA5CC2B30CF15FD247ED3</UserChecksum>
         </File>
         <File dnOrder="45">
@@ -507,7 +507,7 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/basic_sam_e70_xult_wm8904_i2sc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">4956381175822F730C97CBDD8D347C81</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">04659595129862625EFE770E112BCB4F</GeneratedChecksum>
           <UserChecksum dnOrder="5">1733E55313C383AD31AA4756AEB812DC</UserChecksum>
         </File>
         <File dnOrder="63">
@@ -539,8 +539,8 @@
           <Name dnOrder="1">definitions.h</Name>
           <LogicalPath dnOrder="2">config/basic_sam_e70_xult_wm8904_i2sc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">CAD2E6DECE041E54D18E2585F9C7E74E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">CAD2E6DECE041E54D18E2585F9C7E74E</UserChecksum>
+          <GeneratedChecksum dnOrder="4">A5D713044BD4A8DCCBD3C3ECCB0E5629</GeneratedChecksum>
+          <UserChecksum dnOrder="5">A5D713044BD4A8DCCBD3C3ECCB0E5629</UserChecksum>
         </File>
         <File dnOrder="67">
           <Type dnOrder="0">HEADER</Type>
