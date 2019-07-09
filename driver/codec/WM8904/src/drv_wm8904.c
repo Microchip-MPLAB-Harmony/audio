@@ -13,9 +13,10 @@
   Description:
     This file contains the Dynamic mode implementation of the WM8904 driver.
 *******************************************************************************/
+
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2018-2019 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -45,16 +46,28 @@
 #include "drv_wm8904_local.h"
 #include "math.h"       // for floor
 
-static bool add_I2C_Command(DRV_WM8904_OBJ *drvObj, WM8904_I2C_COMMAND_BUFFER I2C_CommandPtr,
+static bool add_I2C_Command(
+                DRV_WM8904_OBJ *drvObj, 
+                WM8904_I2C_COMMAND_BUFFER I2C_CommandPtr,
         bool end);
-static void start_I2C_Commands(DRV_WM8904_OBJ *drvObj);
-static void _DRV_WM8904_ControlTasks(DRV_WM8904_OBJ *drvObj);
-static void WM8904_TimerCallback( uintptr_t context );
-static void _DRV_WM8904_I2SBufferEventHandler(DRV_I2S_BUFFER_EVENT event,
+static void start_I2C_Commands(
+                DRV_WM8904_OBJ *drvObj);
+static void _DRV_WM8904_ControlTasks(
+                DRV_WM8904_OBJ *drvObj);
+static void WM8904_TimerCallback( 
+                uintptr_t context );
+static void _DRV_WM8904_I2SBufferEventHandler(
+                DRV_I2S_BUFFER_EVENT event,
     DRV_I2S_BUFFER_HANDLE bufferHandle, uintptr_t contextHandle);
-static void _samplingRateSet(DRV_WM8904_OBJ *drvObj, uint32_t sampleRate, bool standalone);
-static void _volumeSet(DRV_WM8904_OBJ *drvObj, DRV_WM8904_CHANNEL chan, uint8_t volume, bool standalone);
-static void _micGainSet(DRV_WM8904_OBJ *drvObj, uint8_t volume, bool standalone);
+static void _samplingRateSet(
+                DRV_WM8904_OBJ *drvObj, 
+                uint32_t sampleRate, bool standalone);
+static void _volumeSet(
+                DRV_WM8904_OBJ *drvObj, DRV_WM8904_CHANNEL chan, 
+                uint8_t volume, bool standalone);
+static void _micGainSet(
+                DRV_WM8904_OBJ *drvObj, uint8_t volume, 
+                bool standalone);
 
 static const uint8_t testWriteData[APP_WRITE_DATA_LENGTH] = 
 {
@@ -328,7 +341,8 @@ SYS_MODULE_OBJ  DRV_WM8904_Initialize
      if(!gDrvwm8904CommonDataObj.membersAreInitialized)
      {
          /* This means that mutexes where not created. Create them. */
-         if((OSAL_MUTEX_Create(&(gDrvwm8904CommonDataObj.mutexClientObjects)) != OSAL_RESULT_TRUE))
+         if((OSAL_MUTEX_Create(&(gDrvwm8904CommonDataObj.mutexClientObjects)) 
+             != OSAL_RESULT_TRUE))
          {
             return SYS_MODULE_OBJ_INVALID;
          }
@@ -559,8 +573,10 @@ void DRV_WM8904_Tasks(SYS_MODULE_OBJ object)
     identifying both the caller and the module instance).
 
     If an error occurs, the return value is DRV_HANDLE_INVALID. Error can occur
-    - if the number of client objects allocated via DRV_WM8904_CLIENTS_NUMBER is insufficient.
-    - if the client is trying to open the driver but driver has been opened exclusively by another client.
+    - if the number of client objects allocated via DRV_WM8904_CLIENTS_NUMBER is 
+      insufficient.
+    - if the client is trying to open the driver but driver has been opened 
+      exclusively by another client.
     - if the driver hardware instance being opened is not initialized or is invalid.
     - if the ioIntent options passed are not relevant to this driver.
 
@@ -617,7 +633,8 @@ DRV_HANDLE DRV_WM8904_Open
     hClient = (DRV_WM8904_CLIENT_OBJ *)&gDrvwm8904ClientObj[iClient];
 
     /* Grab client object mutex here */
-    if(OSAL_MUTEX_Lock(&(gDrvwm8904CommonDataObj.mutexClientObjects), OSAL_WAIT_FOREVER) == OSAL_RESULT_TRUE)
+    if(OSAL_MUTEX_Lock(&(gDrvwm8904CommonDataObj.mutexClientObjects), 
+       OSAL_WAIT_FOREVER) == OSAL_RESULT_TRUE)
     {
         /* Setup client operations */
         /* Find available slot in array of client objects */
@@ -627,28 +644,33 @@ DRV_HANDLE DRV_WM8904_Open
             {
                 /* Set the exclusive mode for the driver instance */
                 /* Set the exclusive mode for the driver instance */
-                if (DRV_IO_INTENT_EXCLUSIVE == (ioIntent & DRV_IO_INTENT_EXCLUSIVE))
+                if (DRV_IO_INTENT_EXCLUSIVE == 
+                    (ioIntent & DRV_IO_INTENT_EXCLUSIVE))
                 {
                     drvObj->isExclusive = true;
                 }
 
-                if(DRV_IO_INTENT_READWRITE == (ioIntent & DRV_IO_INTENT_READWRITE))
+                if (DRV_IO_INTENT_READWRITE == (ioIntent & DRV_IO_INTENT_READWRITE))
                 {
                     hClient->ioIntent = DRV_IO_INTENT_READWRITE;
                     drvObj->i2sDriverHandle = DRV_I2S_Open(drvObj->i2sDriverModuleIndex,
                         (DRV_IO_INTENT_READWRITE | DRV_IO_INTENT_NONBLOCKING));
                 }
-                else if(DRV_IO_INTENT_WRITE == (ioIntent & DRV_IO_INTENT_READWRITE))
+                else if (DRV_IO_INTENT_WRITE == (ioIntent & DRV_IO_INTENT_READWRITE))
                 {
                     hClient->ioIntent = DRV_IO_INTENT_WRITE;
-                    drvObj->i2sDriverClientHandleWrite = DRV_I2S_Open(drvObj->i2sDriverModuleIndex,
+                    drvObj->i2sDriverClientHandleWrite = 
+                        DRV_I2S_Open(
+                            drvObj->i2sDriverModuleIndex,
                         (DRV_IO_INTENT_WRITE | DRV_IO_INTENT_NONBLOCKING));
                     drvObj->i2sDriverHandle = drvObj->i2sDriverClientHandleWrite;
                 }
                 else if(DRV_IO_INTENT_READ == (ioIntent & DRV_IO_INTENT_READWRITE))
                 {
                     hClient->ioIntent = DRV_IO_INTENT_READ;
-                    drvObj->i2sDriverClientHandleRead = DRV_I2S_Open(drvObj->i2sDriverModuleIndex,
+                    drvObj->i2sDriverClientHandleRead = 
+                        DRV_I2S_Open(
+                             drvObj->i2sDriverModuleIndex,
                         (DRV_IO_INTENT_READ | DRV_IO_INTENT_NONBLOCKING));
                     drvObj->i2sDriverHandle = drvObj->i2sDriverClientHandleRead;
                 }
@@ -669,7 +691,9 @@ DRV_HANDLE DRV_WM8904_Open
                  * Release the mutex and return with
                  * the driver handle */
                 /* An operation mode is needed */
-                if((OSAL_MUTEX_Unlock(&(gDrvwm8904CommonDataObj.mutexClientObjects))) != OSAL_RESULT_TRUE)
+                if((OSAL_MUTEX_Unlock(
+                        &(gDrvwm8904CommonDataObj.mutexClientObjects))) 
+                    != OSAL_RESULT_TRUE)
                 {
                     SYS_DEBUG(0, "Unable to unlock open routine mutex \r\n");
                     return DRV_HANDLE_INVALID;
@@ -731,16 +755,19 @@ void DRV_WM8904_Close( const DRV_HANDLE handle)
 
     drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
 
-    if(DRV_IO_INTENT_READ == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
+    if (DRV_IO_INTENT_READ == (clientObj->ioIntent & 
+                               DRV_IO_INTENT_READWRITE))
     {
         DRV_I2S_Close (drvObj->i2sDriverClientHandleRead);
     }
-    else if(DRV_IO_INTENT_WRITE == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
+    else if (DRV_IO_INTENT_WRITE == 
+            (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
     {
         DRV_I2S_Close (drvObj->i2sDriverClientHandleWrite);
 
     }
-    else if(DRV_IO_INTENT_READWRITE == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
+    else if (DRV_IO_INTENT_READWRITE == 
+             (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
     {
         DRV_I2S_Close (drvObj->i2sDriverHandle);
     }
@@ -839,7 +866,8 @@ void DRV_WM8904_BufferAddWrite
     }
 
     /* Grab a mutex. */
-    if (OSAL_MUTEX_Lock(&(drvObj->mutexDriverInstance), OSAL_WAIT_FOREVER) == OSAL_RESULT_TRUE)
+    if (OSAL_MUTEX_Lock(&(drvObj->mutexDriverInstance), OSAL_WAIT_FOREVER) == 
+        OSAL_RESULT_TRUE)
     {
         ;
     }
@@ -945,7 +973,8 @@ void DRV_WM8904_BufferAddWriteRead
     }
 
     /* Grab a mutex. */
-    if (OSAL_MUTEX_Lock(&(drvObj->mutexDriverInstance), OSAL_WAIT_FOREVER) == OSAL_RESULT_TRUE)
+    if (OSAL_MUTEX_Lock(&(drvObj->mutexDriverInstance), OSAL_WAIT_FOREVER) == 
+        OSAL_RESULT_TRUE)
     {
         ;
     }
@@ -959,7 +988,9 @@ void DRV_WM8904_BufferAddWriteRead
     {
         DRV_I2S_BUFFER_HANDLE i2sBufferHandle = DRV_I2S_BUFFER_HANDLE_INVALID;
         DRV_I2S_WriteReadBufferAdd(drvObj->i2sDriverHandle,
-                (uint8_t *) transmitBuffer, (uint8_t *) receiveBuffer, size, &i2sBufferHandle);          
+                                   (uint8_t *) transmitBuffer, 
+                                   (uint8_t *) receiveBuffer, 
+                                   size, &i2sBufferHandle);          
 
         if(i2sBufferHandle != DRV_I2S_BUFFER_HANDLE_INVALID)
         {
@@ -1240,25 +1271,28 @@ void DRV_WM8904_BufferEventHandlerSet
     clientObj->pEventCallBack = eventHandler;
     clientObj->hClientArg = contextHandle;
 
-    if((clientObj->ioIntent & DRV_IO_INTENT_READWRITE) == DRV_IO_INTENT_READWRITE)
+    if ((clientObj->ioIntent & DRV_IO_INTENT_READWRITE) == DRV_IO_INTENT_READWRITE)
     {
         DRV_I2S_BufferEventHandlerSet(drvObj->i2sDriverHandle,
         (DRV_I2S_BUFFER_EVENT_HANDLER) _DRV_WM8904_I2SBufferEventHandler,
         (uintptr_t)(clientObj));
     }
-    else if((clientObj->ioIntent & DRV_IO_INTENT_READWRITE) == DRV_IO_INTENT_WRITE)
+    else if ((clientObj->ioIntent & DRV_IO_INTENT_READWRITE) == 
+             DRV_IO_INTENT_WRITE)
     {
         DRV_I2S_BufferEventHandlerSet(drvObj->i2sDriverClientHandleWrite,
         (DRV_I2S_BUFFER_EVENT_HANDLER) _DRV_WM8904_I2SBufferEventHandler,
         (uintptr_t)(clientObj));
     }
-    else if((clientObj->ioIntent & DRV_IO_INTENT_READWRITE) == DRV_IO_INTENT_READ)
+    else if ((clientObj->ioIntent & DRV_IO_INTENT_READWRITE) == 
+             DRV_IO_INTENT_READ)
     {
         DRV_I2S_BufferEventHandlerSet(drvObj->i2sDriverClientHandleRead,
         (DRV_I2S_BUFFER_EVENT_HANDLER) _DRV_WM8904_I2SBufferEventHandler,
         (uintptr_t)(clientObj));
     }
 } /* DRV_WM8904_BufferEventHandlerSet */
+
 
 void DRV_WM8904_I2SBufferHandlerSet
 (
@@ -1269,7 +1303,7 @@ void DRV_WM8904_I2SBufferHandlerSet
     DRV_WM8904_CLIENT_OBJ *clientObj;
     DRV_WM8904_OBJ *drvObj;
 
-    if((DRV_HANDLE_INVALID == handle) || (0 == handle))
+    if ((DRV_HANDLE_INVALID == handle) || (0 == handle))
     {
         /* This means the handle is invalid */
         SYS_DEBUG(0, "Handle is invalid \r\n");
@@ -1277,7 +1311,7 @@ void DRV_WM8904_I2SBufferHandlerSet
     }
 
     clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
-    if(false == clientObj->inUse)
+    if (false == clientObj->inUse)
     {
         SYS_DEBUG(0, "Invalid driver handle \r\n");
         return;
@@ -1325,7 +1359,10 @@ void DRV_WM8904_I2SBufferHandlerSet
 
 #define WM8904_NUMBER_AUDIOFORMAT_COMMANDS   1
 
-static void _setAudioCommunicationFormat(DRV_WM8904_OBJ *drvObj, DRV_WM8904_AUDIO_DATA_FORMAT audioDataFormat, bool standalone)
+static void _setAudioCommunicationFormat(
+                DRV_WM8904_OBJ *drvObj, 
+                DRV_WM8904_AUDIO_DATA_FORMAT audioDataFormat, 
+                bool standalone)
 {
     WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Command;
     WM8904_I2C_Command.end = false;     // avoid uninitialized msg under -O3
@@ -1336,11 +1373,13 @@ static void _setAudioCommunicationFormat(DRV_WM8904_OBJ *drvObj, DRV_WM8904_AUDI
             WM8904_I2C_Command.reg_addr = WM8904_AUDIO_INTERFACE_1; // R25
             if (drvObj->masterMode)
             {
-                WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_LEFT;
+                WM8904_I2C_Command.value = 
+                    WM8904_BCLK_DIR | WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_LEFT;
             }
             else
             {
-                WM8904_I2C_Command.value = WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_LEFT;
+                WM8904_I2C_Command.value = 
+                    WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_LEFT;
             }
             drvObj->bit_depth = 16;
             break;
@@ -1349,11 +1388,13 @@ static void _setAudioCommunicationFormat(DRV_WM8904_OBJ *drvObj, DRV_WM8904_AUDI
             WM8904_I2C_Command.reg_addr = WM8904_AUDIO_INTERFACE_1; // R25
             if (drvObj->masterMode)
             {
-                WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_I2S; 
+                WM8904_I2C_Command.value = 
+                    WM8904_BCLK_DIR | WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_I2S; 
             }
             else
             {
-                WM8904_I2C_Command.value = WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_I2S;
+                WM8904_I2C_Command.value = 
+                    WM8904_AIF_WL_16BIT | WM8904_AIF_FMT_I2S;
             }
             drvObj->bit_depth = 16;
             break;            
@@ -1361,11 +1402,13 @@ static void _setAudioCommunicationFormat(DRV_WM8904_OBJ *drvObj, DRV_WM8904_AUDI
             WM8904_I2C_Command.reg_addr = WM8904_AUDIO_INTERFACE_1; // R25
             if (drvObj->masterMode)
             {
-                WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_LEFT;
+                WM8904_I2C_Command.value = 
+                    WM8904_BCLK_DIR | WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_LEFT;
             }
             else
             {
-                WM8904_I2C_Command.value = WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_LEFT;
+                WM8904_I2C_Command.value = 
+                    WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_LEFT;
             }
             drvObj->bit_depth = 32;            
             break;
@@ -1373,18 +1416,20 @@ static void _setAudioCommunicationFormat(DRV_WM8904_OBJ *drvObj, DRV_WM8904_AUDI
             WM8904_I2C_Command.reg_addr = WM8904_AUDIO_INTERFACE_1; // R25
             if (drvObj->masterMode)
             {
-                WM8904_I2C_Command.value = WM8904_BCLK_DIR | WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_I2S;            
+                WM8904_I2C_Command.value = 
+                    WM8904_BCLK_DIR | WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_I2S;            
             }
             else
             {
-                WM8904_I2C_Command.value = WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_I2S;
+                WM8904_I2C_Command.value = 
+                    WM8904_AIF_WL_32BIT | WM8904_AIF_FMT_I2S;
             }
             drvObj->bit_depth = 32;            
             break;
     }    
     
     WM8904_I2C_Command.delay = (standalone) ? 5 : 2;             
-    add_I2C_Command(drvObj, WM8904_I2C_Command, standalone);   // add command to buffer
+    add_I2C_Command(drvObj, WM8904_I2C_Command, standalone);  
 
     if (standalone)
     {
@@ -1680,19 +1725,23 @@ void _samplingRateSet(DRV_WM8904_OBJ *drvObj, uint32_t sampleRate, bool standalo
         WM8904_I2C_Commands[0].value = 0;       // disable while changing             
 
         WM8904_I2C_Commands[1].reg_addr = WM8904_CLOCK_RATES_1; // R21
-        WM8904_I2C_Commands[1].value = WM8904_CLK_SYS_RATE(sysclk_ratio_i) | WM8904_SAMPLE_RATE(5); 
+        WM8904_I2C_Commands[1].value = WM8904_CLK_SYS_RATE(sysclk_ratio_i) | 
+                                       WM8904_SAMPLE_RATE(5); 
 
         WM8904_I2C_Commands[2].reg_addr = WM8904_CLOCK_RATES_0; // R20    
         WM8904_I2C_Commands[2].value = 0x0000;
 
         WM8904_I2C_Commands[3].reg_addr = WM8904_CLOCK_RATES_2; // R221    
-        WM8904_I2C_Commands[3].value = WM8904_SYSCLK_SRC | WM8904_CLK_SYS_ENA | WM8904_CLK_DSP_ENA;                 
+        WM8904_I2C_Commands[3].value = WM8904_SYSCLK_SRC | 
+                                       WM8904_CLK_SYS_ENA | 
+                                       WM8904_CLK_DSP_ENA;                 
 
         WM8904_I2C_Commands[4].reg_addr = WM8904_AUDIO_INTERFACE_2; // R26
         WM8904_I2C_Commands[4].value = WM8904_BCLK_DIV(bitClk_ratio_i); 
 
         WM8904_I2C_Commands[5].reg_addr = WM8904_AUDIO_INTERFACE_3; // R27    
-        WM8904_I2C_Commands[5].value = WM8904_LRCLK_DIR | WM8904_LRCLK_RATE(lrclk_rate);  
+        WM8904_I2C_Commands[5].value = WM8904_LRCLK_DIR | 
+                                       WM8904_LRCLK_RATE(lrclk_rate);  
 
         WM8904_I2C_Commands[6].reg_addr = WM8904_FLL_CONTROL_2; // R117   
         WM8904_I2C_Commands[6].value = WM8904_FLL_OUTDIV((uint16_t)(fll_outdiv-1)); 
@@ -1714,7 +1763,8 @@ void _samplingRateSet(DRV_WM8904_OBJ *drvObj, uint32_t sampleRate, bool standalo
         for (i=0; i < loopSize; i++)
         {
             WM8904_I2C_Commands[i].delay = (i==loopSize-1) ? 5 : 2;             
-            add_I2C_Command(drvObj, WM8904_I2C_Commands[i], (i==loopSize-1)&&standalone);   // add commands to buffer
+            add_I2C_Command(drvObj, WM8904_I2C_Commands[i], 
+                            (i==loopSize-1)&&standalone);   // add commands to buffer
         }  
 
         if (standalone)        
@@ -1781,14 +1831,7 @@ uint32_t DRV_WM8904_SamplingRateGet(DRV_HANDLE handle)
 */
 #define WM8904_NUMBER_VOLUME_COMMANDS   4
 
-static void _volumeSet(DRV_WM8904_OBJ *drvObj, DRV_WM8904_CHANNEL chan, uint8_t volume, bool standalone)
-{
-    WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Commands[WM8904_NUMBER_VOLUME_COMMANDS];
-    uint8_t loopSize;
-    
-    // map of 0-255 to internal values WM8904 volume levels 0-192
-    
-uint8_t volumeSteps[256]=
+const uint8_t volumeSteps[256]=
 {  // 64 is -48 dB, 96 is -36 dB, 104 is -33 dB
   0,  64,  96, 104, 112, 113, 114, 115,     // 112 is -30 dB
 116, 117, 118, 119, 120, 120, 121, 123, 
@@ -1824,7 +1867,17 @@ uint8_t volumeSteps[256]=
 191, 191, 191, 191, 192, 192, 192, 192, 	// 192 is 0 dB
 };
 
-    uint8_t indexedVolume = volumeSteps[volume];   // convert to 0-100% and then do lookup
+static void _volumeSet(DRV_WM8904_OBJ *drvObj, 
+                       DRV_WM8904_CHANNEL chan, 
+                       uint8_t volume, bool standalone)
+{
+    WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Commands[WM8904_NUMBER_VOLUME_COMMANDS];
+    uint8_t loopSize;
+    
+    // map of 0-255 to internal values WM8904 volume levels 0-192
+    
+     // convert to 0-100% and then do lookup
+    uint8_t indexedVolume = volumeSteps[volume];  
 
     if(DRV_WM8904_CHANNEL_LEFT == chan)
     {
@@ -1869,7 +1922,9 @@ uint8_t volumeSteps[256]=
     for (i=0; i < loopSize; i++)
     {
         WM8904_I2C_Commands[i].delay = (i==loopSize-1) ? 5 : 2;             
-        add_I2C_Command(drvObj, WM8904_I2C_Commands[i], (i==loopSize-1)&&standalone);   // add commands to buffer
+        add_I2C_Command(drvObj, 
+                        WM8904_I2C_Commands[i], 
+                        (i==loopSize-1)&&standalone);   // add commands to buffer
     }  
 
     if (standalone)
@@ -1878,7 +1933,8 @@ uint8_t volumeSteps[256]=
     }
 }
 
-void DRV_WM8904_VolumeSet(DRV_HANDLE handle, DRV_WM8904_CHANNEL chan, uint8_t volume)
+void DRV_WM8904_VolumeSet(DRV_HANDLE handle, 
+                          DRV_WM8904_CHANNEL chan, uint8_t volume)
 {
     DRV_WM8904_OBJ *drvObj;
     DRV_WM8904_CLIENT_OBJ *clientObj;
@@ -1974,7 +2030,8 @@ void DRV_WM8904_MuteOff(DRV_HANDLE handle)
     drvObj          = (DRV_WM8904_OBJ *)clientObj->hDriver;
     
     WM8904_I2C_Command.reg_addr = WM8904_DAC_DIGITAL_1; // R33
-    WM8904_I2C_Command.value = 	WM8904_DAC_MUTERATE|WM8904_DAC_UNMUTE_RAMP|WM8904_DEEMPH(0);       // re-enable      
+    WM8904_I2C_Command.value =     
+        WM8904_DAC_MUTERATE|WM8904_DAC_UNMUTE_RAMP|WM8904_DEEMPH(0);       // re-enable      
     WM8904_I2C_Command.delay = 5;             
 
     add_I2C_Command(drvObj, WM8904_I2C_Command, true);   // add command to buffer
@@ -1997,6 +2054,71 @@ void DRV_WM8904_MuteOff(DRV_HANDLE handle)
   Remarks:
     None.
 */
+
+
+// *****************************************************************************
+/*
+  Function:
+        void DRV_WM8904_StereoMicSelect(DRV_HANDLE handle)
+
+  Summary:
+    Selects the active microphone input to the ADC of the codec
+
+  Description:
+    This function select the analog input.  Assuming single-ended stereo.
+
+  Remarks:
+    Differential inputs (stereo or mono) is not implemented in this driver API.
+ */
+#define WM8904_NUMBER_MICSELECT_COMMANDS 2
+uint8_t DRV_WM8904_StereoMicSelect(DRV_HANDLE handle, DRV_WM8904_MIC mic)
+{
+    DRV_WM8904_OBJ *drvObj;
+    DRV_WM8904_CLIENT_OBJ *clientObj;    
+
+    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+    drvObj = (DRV_WM8904_OBJ *)clientObj->hDriver;
+
+    WM8904_I2C_COMMAND_BUFFER WM8904_I2C_Commands[WM8904_NUMBER_MICSELECT_COMMANDS];
+    uint8_t loopSize;
+
+    WM8904_I2C_Commands[0].reg_addr = WM8904_ANALOGUE_LEFT_INPUT_1;  // R46
+    WM8904_I2C_Commands[1].reg_addr = WM8904_ANALOGUE_RIGHT_INPUT_1; // R47
+
+    switch(mic)
+    {
+        //BIT 7 6 5 4 3 2 1 0
+        //    0 0 m m 0 0 0 0  -->MIC1-00, MIC2-10, MIC3-20
+        case MIC1:
+            WM8904_I2C_Commands[0].value = 0x0000; 
+            WM8904_I2C_Commands[1].value = 0x0000;
+        case MIC2:
+            WM8904_I2C_Commands[0].value = 0x0010; 
+            WM8904_I2C_Commands[1].value = 0x0010;
+        case MIC3:
+            WM8904_I2C_Commands[0].value = 0x0020; 
+            WM8904_I2C_Commands[1].value = 0x0020;
+        case MIC_NONE:
+        default:
+            return 0;
+    }
+
+    loopSize = 2;      
+
+    uint8_t i;                                      
+    for (i=0; i < loopSize; i++)
+    {
+        WM8904_I2C_Commands[i].delay = (i==loopSize-1) ? 5 : 2;             
+        add_I2C_Command(drvObj, 
+                        WM8904_I2C_Commands[i], (i==loopSize-1));   
+    }
+
+    start_I2C_Commands(drvObj);   
+
+    return mic;
+} //End DRV_WM8904_StereoMicSelect()
+
+
 #define WM8904_NUMBER_MICGAIN_COMMANDS   2
 
 static void _micGainSet(DRV_WM8904_OBJ *drvObj, uint8_t gain, bool standalone)
@@ -2289,11 +2411,16 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands3[] =
 {             
 	{ WM8904_POWER_MANAGEMENT_6, WM8904_DACL_ENA | WM8904_DACR_ENA /*| WM8904_ADCL_ENA | WM8904_ADCR_ENA*/, 5 },        
 	{ WM8904_ANALOGUE_HP_0, WM8904_HPL_ENA | WM8904_HPR_ENA, 2 },
-	{ WM8904_ANALOGUE_HP_0, WM8904_HPL_ENA_DLY | WM8904_HPL_ENA | WM8904_HPR_ENA_DLY | WM8904_HPR_ENA, 2 },
-	{ WM8904_DC_SERVO_0, WM8904_DCS_ENA_CHAN_3 | WM8904_DCS_ENA_CHAN_2 | WM8904_DCS_ENA_CHAN_1 | WM8904_DCS_ENA_CHAN_0, 2 },
-	{ WM8904_DC_SERVO_1, WM8904_DCS_TRIG_STARTUP_3 | WM8904_DCS_TRIG_STARTUP_2 |WM8904_DCS_TRIG_STARTUP_1 | WM8904_DCS_TRIG_STARTUP_0, 100 },
-	{ WM8904_ANALOGUE_HP_0, WM8904_HPL_ENA_OUTP | WM8904_HPL_ENA_DLY | WM8904_HPL_ENA | WM8904_HPR_ENA_OUTP | WM8904_HPR_ENA_DLY | WM8904_HPR_ENA, 2 },
-	{ WM8904_ANALOGUE_HP_0, WM8904_HPL_RMV_SHORT | WM8904_HPL_ENA_OUTP | WM8904_HPL_ENA_DLY | WM8904_HPL_ENA |
+    { WM8904_ANALOGUE_HP_0, WM8904_HPL_ENA_DLY | 
+      WM8904_HPL_ENA | WM8904_HPR_ENA_DLY | WM8904_HPR_ENA, 2 },
+    { WM8904_DC_SERVO_0, WM8904_DCS_ENA_CHAN_3 | WM8904_DCS_ENA_CHAN_2 | 
+      WM8904_DCS_ENA_CHAN_1 | WM8904_DCS_ENA_CHAN_0, 2 },
+    { WM8904_DC_SERVO_1, WM8904_DCS_TRIG_STARTUP_3 | WM8904_DCS_TRIG_STARTUP_2 |
+      WM8904_DCS_TRIG_STARTUP_1 | WM8904_DCS_TRIG_STARTUP_0, 100 },
+    { WM8904_ANALOGUE_HP_0, WM8904_HPL_ENA_OUTP | WM8904_HPL_ENA_DLY | 
+      WM8904_HPL_ENA | WM8904_HPR_ENA_OUTP | WM8904_HPR_ENA_DLY | WM8904_HPR_ENA, 2 },
+    { WM8904_ANALOGUE_HP_0, WM8904_HPL_RMV_SHORT | WM8904_HPL_ENA_OUTP | 
+      WM8904_HPL_ENA_DLY | WM8904_HPL_ENA |
 		WM8904_HPR_RMV_SHORT | WM8904_HPR_ENA_OUTP | WM8904_HPR_ENA_DLY | WM8904_HPR_ENA, 2 }
 };
    
@@ -2307,11 +2434,14 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands5[] =
 
 static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands6[] =
 {
-	{ WM8904_POWER_MANAGEMENT_6, WM8904_DACL_ENA | WM8904_DACR_ENA | WM8904_ADCL_ENA | WM8904_ADCR_ENA, 2 }, 
-	{ WM8904_ANALOGUE_LEFT_INPUT_0, WM8904_LINMUTE, 2 },     // mic will be unmuted and gain set by _micGainSet
+    { WM8904_POWER_MANAGEMENT_6, WM8904_DACL_ENA | WM8904_DACR_ENA | 
+      WM8904_ADCL_ENA | WM8904_ADCR_ENA, 2 }, 
+    // mic will be unmuted and gain set by _micGainSet
+    { WM8904_ANALOGUE_LEFT_INPUT_0, WM8904_LINMUTE, 2 },     
 	{ WM8904_ANALOGUE_RIGHT_INPUT_0, WM8904_RINMUTE, 2 },    
     { WM8904_POWER_MANAGEMENT_0, WM8904_INL_ENA | WM8904_INR_ENA, 2 },
-    { WM8904_AUDIO_INTERFACE_0, /*WM8904_LOOPBACK |*/ WM8904_AIFADCR_SRC | WM8904_AIFDACR_SRC, 100 },    
+    { WM8904_AUDIO_INTERFACE_0, /*WM8904_LOOPBACK |*/ 
+      WM8904_AIFADCR_SRC | WM8904_AIFDACR_SRC, 100 },    
 };    
 
 static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands7[] =
@@ -2437,18 +2567,23 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
         {                  
             uint8_t i, loopSize;                     
             // get # of entries in table                     
-            loopSize = sizeof(WM8904_I2C_InitializationCommands1) / sizeof(WM8904_I2C_InitializationCommands1[0]);
+            loopSize = sizeof(WM8904_I2C_InitializationCommands1) / 
+                       sizeof(WM8904_I2C_InitializationCommands1[0]);
             if (drvObj->enableMicBias)
             {  
-                loopSize += sizeof(WM8904_I2C_InitializationCommands1a) / sizeof(WM8904_I2C_InitializationCommands1a[0]);
+                loopSize += sizeof(WM8904_I2C_InitializationCommands1a) / 
+                            sizeof(WM8904_I2C_InitializationCommands1a[0]);
             }
             loopSize += WM8904_NUMBER_AUDIOFORMAT_COMMANDS;        
-            loopSize += sizeof(WM8904_I2C_InitializationCommands3) / sizeof(WM8904_I2C_InitializationCommands3[0]);
+            loopSize += sizeof(WM8904_I2C_InitializationCommands3) / 
+                        sizeof(WM8904_I2C_InitializationCommands3[0]);
             loopSize += WM8904_NUMBER_VOLUME_COMMANDS;
-            loopSize += sizeof(WM8904_I2C_InitializationCommands5) / sizeof(WM8904_I2C_InitializationCommands5[0]);
+            loopSize += sizeof(WM8904_I2C_InitializationCommands5) / 
+                        sizeof(WM8904_I2C_InitializationCommands5[0]);
             if (drvObj->enableMicInput)
             {
-                loopSize += sizeof(WM8904_I2C_InitializationCommands6) / sizeof(WM8904_I2C_InitializationCommands6[0]);    
+                loopSize += sizeof(WM8904_I2C_InitializationCommands6) / 
+                            sizeof(WM8904_I2C_InitializationCommands6[0]);    
             }
             if (drvObj->masterMode)
             {
@@ -2456,48 +2591,65 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
             }
             else
             {
-                loopSize += sizeof(WM8904_I2C_InitializationCommands7) / sizeof(WM8904_I2C_InitializationCommands7[0]);                
+                loopSize += sizeof(WM8904_I2C_InitializationCommands7) / 
+                            sizeof(WM8904_I2C_InitializationCommands7[0]);                
             }
 
             if (loopSize <= WM8904_MAX_I2C_COMMANDS)
             {
-                loopSize = sizeof(WM8904_I2C_InitializationCommands1) / sizeof(WM8904_I2C_InitializationCommands1[0]);                        
+                loopSize = sizeof(WM8904_I2C_InitializationCommands1) / 
+                           sizeof(WM8904_I2C_InitializationCommands1[0]);                        
                 for (i=0; i < loopSize; i++)
                 {
-                    add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands1[i], false);   // add commands to buffer
+                    add_I2C_Command(drvObj, 
+                                    WM8904_I2C_InitializationCommands1[i], 
+                                    false);   // add commands to buffer
                 }
 
                 if (drvObj->enableMicBias)
                 {
-                    loopSize = sizeof(WM8904_I2C_InitializationCommands1a) / sizeof(WM8904_I2C_InitializationCommands1a[0]);                        
+                    loopSize = sizeof(WM8904_I2C_InitializationCommands1a) / 
+                               sizeof(WM8904_I2C_InitializationCommands1a[0]);                        
                     for (i=0; i < loopSize; i++)
                     {
-                        add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands1a[i], false);   // add commands to buffer
+                        add_I2C_Command(drvObj, 
+                                        WM8904_I2C_InitializationCommands1a[i], 
+                                        false);   // add commands to buffer
                     }
                 }
 
                 _setAudioCommunicationFormat(drvObj, drvObj->audioDataFormat, false);                       
 
-                loopSize = sizeof(WM8904_I2C_InitializationCommands3) / sizeof(WM8904_I2C_InitializationCommands3[0]);                        
+                loopSize = sizeof(WM8904_I2C_InitializationCommands3) / 
+                           sizeof(WM8904_I2C_InitializationCommands3[0]);                        
                 for (i=0; i < loopSize; i++)
                 {
-                    add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands3[i], false);   // add commands to buffer
+                    add_I2C_Command(drvObj, 
+                                    WM8904_I2C_InitializationCommands3[i], 
+                                    false);   // add commands to buffer
                 }
 
-                _volumeSet(drvObj, DRV_WM8904_CHANNEL_LEFT_RIGHT, drvObj->volume[DRV_WM8904_CHANNEL_LEFT_RIGHT], false);
+                _volumeSet(drvObj, DRV_WM8904_CHANNEL_LEFT_RIGHT, 
+                           drvObj->volume[DRV_WM8904_CHANNEL_LEFT_RIGHT], false);
 
-                loopSize = sizeof(WM8904_I2C_InitializationCommands5) / sizeof(WM8904_I2C_InitializationCommands5[0]);                        
+                loopSize = sizeof(WM8904_I2C_InitializationCommands5) / 
+                           sizeof(WM8904_I2C_InitializationCommands5[0]);                        
                 for (i=0; i < loopSize; i++)
                 {
-                    add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands5[i], false);   // add commands to buffer
+                    add_I2C_Command(drvObj, 
+                                    WM8904_I2C_InitializationCommands5[i], 
+                                    false);   // add commands to buffer
                 } 
 
                 if (drvObj->enableMicInput)
                 {
-                    loopSize = sizeof(WM8904_I2C_InitializationCommands6) / sizeof(WM8904_I2C_InitializationCommands6[0]);                        
+                    loopSize = sizeof(WM8904_I2C_InitializationCommands6) / 
+                               sizeof(WM8904_I2C_InitializationCommands6[0]);                        
                     for (i=0; i < loopSize; i++)
                     {
-                        add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands6[i], false);   // add commands to buffer
+                        add_I2C_Command(drvObj, 
+                                        WM8904_I2C_InitializationCommands6[i], 
+                                        false);   // add commands to buffer
                     }
                     _micGainSet(drvObj, drvObj->micGain, false);
                 }
@@ -2508,10 +2660,13 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
                 }
                 else
                 {
-                    loopSize = sizeof(WM8904_I2C_InitializationCommands7) / sizeof(WM8904_I2C_InitializationCommands7[0]);                        
+                    loopSize = sizeof(WM8904_I2C_InitializationCommands7) / 
+                               sizeof(WM8904_I2C_InitializationCommands7[0]);                        
                     for (i=0; i < loopSize; i++)
                     {
-                        add_I2C_Command(drvObj, WM8904_I2C_InitializationCommands7[i], false);   // add commands to buffer
+                        add_I2C_Command(drvObj, 
+                                        WM8904_I2C_InitializationCommands7[i], 
+                                        false);   // add commands to buffer
                     }                    
                 }
 
@@ -2602,7 +2757,8 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
                     {
                         if (drvObj->I2C_Commands[drvObj->I2C_lastCommand-1].end)
                         {                    
-                            if (drvObj->commandCompleteCallback != (DRV_WM8904_COMMAND_EVENT_HANDLER) 0)
+                            if (drvObj->commandCompleteCallback != 
+                                (DRV_WM8904_COMMAND_EVENT_HANDLER) 0)
                             {
                                 drvObj->commandCompleteCallback(drvObj->commandContextData);
                             }
@@ -2642,7 +2798,9 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
     return;
 }
 
-static bool add_I2C_Command(DRV_WM8904_OBJ *drvObj, WM8904_I2C_COMMAND_BUFFER I2C_CommandPtr, bool end)
+static bool add_I2C_Command(DRV_WM8904_OBJ *drvObj, 
+                            WM8904_I2C_COMMAND_BUFFER I2C_CommandPtr, 
+                            bool end)
 {
     if (drvObj->I2C_endLoop < WM8904_MAX_I2C_COMMANDS)
     {
