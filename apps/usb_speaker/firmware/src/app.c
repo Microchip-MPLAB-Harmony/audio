@@ -106,14 +106,16 @@ uint16_t volumeLevels[VOLUME_STEPS] =
 //      flush causes coherency issues in  other structures.
 //USB Tx Buffer (Ping-Pong)
 //DRV_I2S_DATA16   __attribute__((aligned(32))) __attribute__((tcm))
-DRV_I2S_DATA16   __attribute__((aligned(32))) 
-    txBuffer[2][APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME];  //48 = 16lines*3
+
+#ifdef DEBUG_TONE_CODEC
+//DRV_I2S_DATA16   __attribute__((aligned(32))) 
+//    txBuffer[2][APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME];  //48 = 16lines*3
 
 //USB TX (Write) ping-pong buffer
 //DRV_I2S_DATA16    __attribute__((aligned(32)))
 //DRV_I2S_DATA16    __attribute__((aligned(32))) __attribute__((tcm))
-DRV_I2S_DATA16    __attribute__((aligned(32))) 
-    mTxBuffer[2][APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME]; //Stereo
+//DRV_I2S_DATA16    __attribute__((aligned(32))) 
+//    mTxBuffer[2][APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME]; //Stereo
 //uint16_t mTxBuffer[2][APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME];  //Mono
 
 //DEBUG_TONE_CODEC
@@ -125,14 +127,15 @@ static const DRV_I2S_DATA16
 #include "sin_1Khz_p5_48Ksps.dat"
 };
 
-//Button Timer
-DRV_HANDLE tmrHandle;
-
 //DEBUG_TONE Queue Buffers
 static DRV_I2S_DATA16 
     //__attribute__((aligned(32))) __attribute__((tcm)) 
     __attribute__((aligned(32))) 
-        cpBuffer16[APP_QUEUING_DEPTH][48];  
+        cpBuffer16[APP_QUEUING_DEPTH][48];
+#endif //DEBUG_TONE_CODEC_TX
+
+//Button Timer
+DRV_HANDLE tmrHandle;
 
 //uint32_t timerStart, timerEnd;
 //uint32_t cycles = 0;
@@ -190,7 +193,7 @@ APP_DATA appData =
     
     .sampleFreq = 0xBB80,    //48000 Hz
     
-    .USBReadBufSize = 192,   //APP_MAX_NO_BYTES_IN_USB_BUFFER,   
+    .usbReadBufSize = 192,   //APP_MAX_NO_BYTES_IN_USB_BUFFER,   
                              //48000Hz  1ms = 48*4 bytes
     
     //CODEC Driver Write only Client
@@ -533,8 +536,6 @@ void APP_USBDeviceAudioEventHandler(USB_DEVICE_AUDIO_INDEX iAudio,
 //******************************************************************************
 void APP_Initialize()
 {
-    int i,j;
-
     #if defined( ENABLE_SYS_PRINT )    
 //    SYS_PRINT_Init();
 //    SYS_PRINT("----------------------------------------");
@@ -554,6 +555,8 @@ void APP_Initialize()
 
     appData.lrSync = true;
 
+#ifdef DEBUG_TONE_CODEC_TX
+    int i,j;
     for (i=0; i<APP_QUEUING_DEPTH; i++ )
     {
         for (j=0; j<48; j++)
@@ -562,6 +565,7 @@ void APP_Initialize()
             cpBuffer16[i][j].rightData = audioSamples[j].rightData;
         }
     }
+#endif //DEBUG_TONE_CODEC_TX
 
 #if defined(USE_DISPLAY)
     display_init(&DISPLAY_STATS);
@@ -793,7 +797,7 @@ void APP_Tasks()
                                         USB_DEVICE_INDEX_0, 
                                         &usbReadBuffer->usbReadHandle, 
                                         1, usbReadBuffer->buffer, 
-                                        appData.USBReadBufSize); //48 Samples
+                                        appData.usbReadBufSize); //48 Samples
 
                         if(audioErr1 != USB_DEVICE_AUDIO_RESULT_OK)
                         {
@@ -813,9 +817,6 @@ void APP_Tasks()
                             //Next Codec Write Index (HEAD Index)
                             appPlaybackBuffer.usbReadIdx = _APP_GetNextIdx(appPlaybackBuffer.usbReadIdx);
                         }
-
-                        //Increment the Playback Queue HEAD
-                        
                     }
                 } //End USB Audio Read Queue loop
 
@@ -824,13 +825,14 @@ void APP_Tasks()
 //                         appPlaybackBuffer.usbReadQueueCnt);
                 appData.state = APP_STATE_INITIAL_CODEC_WRITE_REQUEST;
 
-            } //End Check for USB Playback 
+            } //activeInterfaceAlternatedSetting 
             else
             {
                 appData.ledState = CONNECTED_BLINK;
                 DRV_CODEC_MuteOn(appData.codecClientWrite.handle);
-            }
-        }
+            }//No activeInterfaceAlternateSetting
+
+        } //End APP_SUBMIT_INITIAL_USB_READ_REQUEST:
         break;
 
 
@@ -873,11 +875,6 @@ void APP_Tasks()
                             &appPlaybackBuffer.playbackBuffer[codecWriteIdx];
 
 
-                    //DEBUG
-                    testVal1 =  appPlaybackBuffer.
-                                    playbackBuffer[codecWriteIdx].
-                                        usbReadCompleted;
-
                     //CODEC Playback 
                     if (current->usbReadCompleted == true && 
                         current->usbInUse   == false &&
@@ -886,14 +883,6 @@ void APP_Tasks()
                         //Initial CODEC Write
                         current->codecInUse = true;
                         
-                        //DEBUG
-                        testVal2 =  appPlaybackBuffer.
-                                        playbackBuffer[codecWriteIdx].usbReadCompleted;
-                        if (testVal1 != testVal2)
-                        {
-                            asm("NOP");
-                        }
-
                         //L/R I2S Channel Sync 
                         if(appData.lrSync)
                         {
@@ -950,7 +939,7 @@ void APP_Tasks()
                 appData.state = APP_PROCESS_DATA;
                 usbReadCompleteFlag = false;
             } //Wait for initial USB Reads
-        }
+        } //End case APP_STATE_INITIAL_CODEC_WRITE_REQUEST
         break;
 
         //---------------------------------------------------------------------
@@ -996,7 +985,7 @@ void APP_Tasks()
                     audioErr1 = USB_DEVICE_AUDIO_Read(USB_DEVICE_INDEX_0, 
                                           &usbReadBuffer->usbReadHandle, 
                                           1, usbReadBuffer->buffer,  
-                                          appData.USBReadBufSize);//48*4 samples
+                                          appData.usbReadBufSize);//48*4 samples
 
                     if(audioErr1 == USB_DEVICE_AUDIO_RESULT_OK)
                     {

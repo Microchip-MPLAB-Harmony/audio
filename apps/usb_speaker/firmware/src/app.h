@@ -257,7 +257,7 @@ typedef struct
 
     bool codecConfigured;
 
-    uint32_t USBReadBufSize;
+    uint32_t usbReadBufSize;
 
     /* Holds active value of USB Audio Streaming Interface Alternate setting.
      * Every USB Audio Streaming should have 1 or more Alternate settings.
