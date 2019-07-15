@@ -1,0 +1,20 @@
+----------------------------------------- Starting:-----------------------------
+-----------
+[HardFault]
+- Stack frame:
+ R0  = 0x20417B7C
+ R1  = 0x20417AF4
+ R2  = 0xE000ED00
+ R3  = 0xA0100000
+ R12 = 0x20417B18
+ LR  = 0x00409C83
+ PC  = 0x004035E4
+ PSR = 0x210F0032
+- FSR/FAR:
+ CFSR = 0x00000400
+ HFSR = 0x40000000
+ DFSR = 0x0000000B
+ AFSR = 0x00000000
+- Misc
+ LR/EXC_RETURN = 0xFFFFFFF1, Bit 2: 0
+
