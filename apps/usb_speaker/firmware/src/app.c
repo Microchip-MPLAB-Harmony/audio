@@ -80,17 +80,6 @@ int usbNextCompleteIdx = 0;
 int codecNextCompleteIdx = 0;
 int usbReadCompleteQLvl = 0;
 
-//TODO:  This should be part of the I2S API
-typedef struct 
-{
-    /* Left channel data */
-    int16_t leftData;
-
-    /* Right channel data */
-    int16_t rightData;      // removed Pad from end of name to be same as others
-
-} DRV_I2S_DATA16;
-
 uint16_t volumeLevels[VOLUME_STEPS] =
 {
     0 /* off */, 64, 128, 255

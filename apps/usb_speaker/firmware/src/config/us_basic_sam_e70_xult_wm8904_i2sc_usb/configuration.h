@@ -112,8 +112,8 @@ extern "C" {
 #define DRV_I2S_QUEUE_SIZE_IDX0               64
 #define DRV_I2S_DATA_LENGTH_IDX0              16
 #define DRV_I2S_INT_SRC_IDX0                  I2SC1_IRQn
-#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
-#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
+#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_3
+#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_2
 
 
 /*** Codec Driver Configuration ***/
@@ -133,6 +133,7 @@ extern "C" {
 #define DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0             DRV_I2C_INDEX_0
 /* CODEC Driver Abstraction definition */
 
+//Codec Driver Instance
 #define DRV_CODEC_INDEX_0                                   DRV_WM8904_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvwm8904Codec0
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_WM8904_BUFFER_HANDLE
@@ -144,7 +145,7 @@ extern "C" {
 #define DRV_CODEC_BUFFER_EVENT_ABORT                        DRV_WM8904_BUFFER_EVENT_ABORT
 #define DRV_CODEC_COMMAND_EVENT_HANDLER                     DRV_WM8904_COMMAND_EVENT_HANDLER
 
-//Driver API Configuration Parameters
+//Codec Driver API Configuration Parameters
 #define DRV_CODEC_CHANNEL_LEFT                              DRV_WM8904_CHANNEL_LEFT
 #define DRV_CODEC_CHANNEL_RIGHT                             DRV_WM8904_CHANNEL_RIGHT
 #define DRV_CODEC_CHANNEL_LEFT_RIGHT                        DRV_WM8904_CHANNEL_LEFT_RIGHT
@@ -155,7 +156,7 @@ extern "C" {
 #define DRV_CODEC_ENABLE_MIC_BIAS                           DRV_WM8904_ENABLE_MIC_BIAS
 #define DRV_CODEC_MIC_GAIN                                  DRV_WM8904_MIC_GAIN
 
-//Driver API Functions
+//Codec Driver API Functions
 #define DRV_CODEC_Initialize                                DRV_WM8904_Initialize
 #define DRV_CODEC_Deinitialize                              DRV_WM8904_Deinitialize
 #define DRV_CODEC_Status                                    DRV_WM8904_Status

@@ -192,6 +192,7 @@ typedef enum
     DATA_LENGTH_32,
 }DATA_LENGTH; // in bits
 
+
 // *****************************************************************************
 /* WM8904 Driver Buffer Event Handler Function
   Summary:
@@ -360,6 +361,7 @@ typedef enum {
 
   Summary:
     Identifies Left/Right Audio channel
+
   Description:
     This enumeration identifies Left/Right Audio channel
 
@@ -376,6 +378,30 @@ typedef enum {
     DRV_WM8904_NUMBER_OF_CHANNELS
 
 } DRV_WM8904_CHANNEL;
+
+/* WM8904 Audio Input
+
+  Summary:
+    Identifies the Mic/Audio Input
+
+  Description:
+    This enumeration identifies the Microphone/Audio Input of the WM8904
+
+  Remarks:
+    The WM8904 has 3 defined audio inputs, which for the standard WM8904 
+    Daughterboard are:
+       MIC1 - External Microphone
+       MIC2 - Line Input
+       MIC3 - Unused
+ */
+typedef enum
+{
+    MIC_NONE =  0,
+    MIC1     =  1,
+    MIC2     =  2,
+    MIC3     =  3,
+    NUMBER_OF_MIC
+} DRV_WM8904_MIC;
 
 // *****************************************************************************
 /* WM8904 Driver Initialization Data
@@ -475,16 +501,21 @@ typedef struct {
     init->inUse                           = true;
     init->status                          = SYS_STATUS_BUSY;
     init->numClients                      = 0;
+    init->isInInterruptContext            = false;
+
     init->i2sDriverModuleIndex            = wm8904Init->i2sDriverModuleIndex;
     init->i2cDriverModuleIndex            = wm8904Init->i2cDriverModuleIndex;
-    init->samplingRate                    = DRV_WM8904_AUDIO_SAMPLING_RATE;
-    init->audioDataFormat                 = DRV_WM8904_AUDIO_DATA_FORMAT_MACRO;
-    
-    init->isInInterruptContext            = false;
+    init->masterMode                      = wm8904Init->masterMode;
+    init->volume                          = wm8904Init->volume;
+    init->samplingRate                    = wm8904Init->samplingRate;
+    init->audioDataFormat                 = wm8904Init->audioDataFormat
+    init->enableMicInput                  = wm8904Init->enableMicInput;
+    init->enableMicBias                   = wm8904Init->enableMicBias;
+    init->MicGain                         = wm8904Init->MicGain;
+    init->mclk_multiplier = DRV_WM8904_MCLK_SAMPLE_FREQ_MULTPLIER;
 
     init->commandCompleteCallback = (DRV_WM8904_COMMAND_EVENT_HANDLER)0;
     init->commandContextData = 0;
-    init->mclk_multiplier = DRV_WM8904_MCLK_SAMPLE_FREQ_MULTPLIER;
 
 
     objectHandle = DRV_WM8904_Initialize(DRV_WM8904_0, (SYS_MODULE_INIT*)init);
@@ -1835,6 +1866,48 @@ void DRV_WM8904_MicMuteOn(DRV_HANDLE handle);
     None.
  */
 void DRV_WM8904_MicMuteOff(DRV_HANDLE handle);
+
+// *****************************************************************************
+/* WM8904 Audio Input Selection
+ *
+  Summary:
+     Selects the active input to the input amplifier/ADC of the Codec.
+
+  Description:
+     Selects the active input to the input amplifier/ADC of the Codec,
+     assuming it is single ended stereo.
+
+    The parameters and return values are described here and a partial example
+    implementation is provided.
+
+  Precondition:
+    The DRV_WM8904_Initialize routine must have been called for the specified
+    WM8904 driver instance.
+
+    DRV_WM8904_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle       - A valid open-instance handle, returned from the driver's
+                   open routine
+    mic          - Mic/audio input being selected
+
+
+  Returns:
+    0 - Error, Unsucessfull execution of function.
+    nonzero value - the selected MIC input value 
+
+  Example:
+    <code>
+        // myWM8904Handle is the handle returned
+        // by the DRV_WM8904_Open function.
+
+        DRV_WM8904_StereoMicSelect(myWM8904Handle, MIC1);
+    </code>
+
+  Remarks:
+
+ */
+uint8_t DRV_WM8904_StereoMicSelect(DRV_HANDLE handle, DRV_WM8904_MIC mic);
 
 
 // *****************************************************************************
