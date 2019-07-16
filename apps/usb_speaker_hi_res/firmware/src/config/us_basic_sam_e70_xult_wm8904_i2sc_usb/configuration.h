@@ -124,7 +124,7 @@ extern "C" {
 #define DRV_WM8904_MASTER_MODE                              false
 #define DRV_WM8904_AUDIO_SAMPLING_RATE                      96000
 #define DRV_WM8904_VOLUME	                      	        200
-#define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    DATA_32_BIT_LEFT_JUSTIFIED
+#define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    DATA_32_BIT_I2S
 #define DRV_WM8904_ENABLE_MIC_INPUT                         false
 #define DRV_WM8904_ENABLE_MIC_BIAS                          false
 #define DRV_WM8904_MIC_GAIN	                      	        28
