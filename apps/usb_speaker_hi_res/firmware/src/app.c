@@ -960,9 +960,8 @@ void APP_Tasks()
                     } //Buffer Ready
                 } //Queue Loop
                 appData.state = APP_PROCESS_DATA;
-                usbInitialReadsComplete = false;
             } //Wait for initial USB Reads
-        }
+        } //End case APP_STATE_INITIAL_CODEC_WRITE_REQUEST
         break;
 
         //---------------------------------------------------------------------

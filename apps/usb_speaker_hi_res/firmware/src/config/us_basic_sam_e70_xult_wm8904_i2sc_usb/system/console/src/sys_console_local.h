@@ -1,20 +1,20 @@
 /*******************************************************************************
-  XDMAC PLIB
+  Console System Service Local Data Structures
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_xdmac.h
+    sys_console_local.h
 
   Summary:
-    XDMAC PLIB Header File
+    Console System Service local declarations and definitions.
 
   Description:
-    None
-
+    This file contains the Console System Service local declarations and definitions.
 *******************************************************************************/
 
+//DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -37,58 +37,47 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
+//DOM-IGNORE-END
 
-#ifndef PLIB_XDMAC_H
-#define PLIB_XDMAC_H
 
-#include <stddef.h>
+#ifndef SYS_CONSOLE_LOCAL_H
+#define SYS_CONSOLE_LOCAL_H
+
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: File includes
+// *****************************************************************************
+// *****************************************************************************
+
+#include <stdint.h>
 #include <stdbool.h>
-#include "plib_xdmac_common.h"
+#include <stddef.h>
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 
-    extern "C" {
+extern "C" {
 
 #endif
 // DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Interface
+// Section: Data Type Definitions
 // *****************************************************************************
 // *****************************************************************************
 
-/****************************** XDMAC Data Types ******************************/
-/* XDMAC Channels */
-typedef enum {
-    XDMAC_CHANNEL_3,
-} XDMAC_CHANNEL;
+typedef uintptr_t CONSOLE_DEVICE_INDEX;
 
-
-/****************************** XDMAC API *********************************/
-
-void XDMAC_Initialize( void );
-
-void XDMAC_ChannelCallbackRegister( XDMAC_CHANNEL channel, const XDMAC_CHANNEL_CALLBACK eventHandler, const uintptr_t contextHandle );
-
-bool XDMAC_ChannelTransfer( XDMAC_CHANNEL channel, const void *srcAddr, const void *destAddr, size_t blockSize );
-
-bool XDMAC_ChannelIsBusy (XDMAC_CHANNEL channel);
-
-void XDMAC_ChannelDisable (XDMAC_CHANNEL channel);
-
-XDMAC_CHANNEL_CONFIG XDMAC_ChannelSettingsGet (XDMAC_CHANNEL channel);
-
-bool XDMAC_ChannelSettingsSet (XDMAC_CHANNEL channel, XDMAC_CHANNEL_CONFIG setting);
-
-void XDMAC_ChannelBlockLengthSet (XDMAC_CHANNEL channel, uint16_t length);
-
-// DOM-IGNORE-BEGIN
-#ifdef __cplusplus  // Provide C++ Compatibility
-
-    }
-
+//DOM-IGNORE-BEGIN
+#ifdef __cplusplus
+}
 #endif
-// DOM-IGNORE-END
-#endif // PLIB_XDMAC_H
+//DOM-IGNORE-END
+
+#endif //#ifndef SYS_CONSOLE_LOCAL_H
+
+/*******************************************************************************
+ End of File
+*/

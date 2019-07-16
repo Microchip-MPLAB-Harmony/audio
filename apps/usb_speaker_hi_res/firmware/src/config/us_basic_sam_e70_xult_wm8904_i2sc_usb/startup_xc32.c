@@ -202,8 +202,6 @@ void __attribute__((optimize("-O1"), section(".text.Reset_Handler"), long_call))
     __libc_init_array();
 
 
-    /* Enable Instruction Cache */
-    ICache_Enable();
 
 
     /* Call the optional application-provided _on_bootstrap() function. */

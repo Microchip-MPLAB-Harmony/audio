@@ -1,20 +1,20 @@
 /*******************************************************************************
-  XDMAC PLIB
+  Debug System Service Local Data Structures
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_xdmac.h
+    sys_debug_local.h
 
   Summary:
-    XDMAC PLIB Header File
+    Debug System Service local declarations and definitions.
 
   Description:
-    None
-
+    This file contains the Debug System Service local declarations and definitions.
 *******************************************************************************/
 
+//DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -37,13 +37,20 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
+//DOM-IGNORE-END
 
-#ifndef PLIB_XDMAC_H
-#define PLIB_XDMAC_H
+#ifndef SYS_DEBUG_LOCAL_H
+#define SYS_DEBUG_LOCAL_H
 
-#include <stddef.h>
-#include <stdbool.h>
-#include "plib_xdmac_common.h"
+// *****************************************************************************
+// *****************************************************************************
+// Section: File includes
+// *****************************************************************************
+// *****************************************************************************
+
+#include "configuration.h"
+#include "driver/driver.h"
+#include "system/debug/sys_debug.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -55,40 +62,58 @@
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Interface
+// Section: Data Type Definitions
 // *****************************************************************************
 // *****************************************************************************
 
-/****************************** XDMAC Data Types ******************************/
-/* XDMAC Channels */
-typedef enum {
-    XDMAC_CHANNEL_3,
-} XDMAC_CHANNEL;
+// *****************************************************************************
+/* SYS Debug State Machine States
+
+   Summary
+    Defines the various states that can be achieved by the driver operation.
+
+   Description
+    This enumeration defines the various states that can be achieved by the
+    driver operation.
+
+   Remarks:
+    None.
+*/
+
+typedef enum
+{
+    SYS_DEBUG_STATE_IDLE
+
+} SYS_DEBUG_STATES;
 
 
-/****************************** XDMAC API *********************************/
+// *****************************************************************************
+/* SYS DEBUG OBJECT INSTANCE structure
 
-void XDMAC_Initialize( void );
+  Summary:
+    System Debug object instance structure.
 
-void XDMAC_ChannelCallbackRegister( XDMAC_CHANNEL channel, const XDMAC_CHANNEL_CALLBACK eventHandler, const uintptr_t contextHandle );
+  Description:
+    This data type defines the System Debug object instance.
 
-bool XDMAC_ChannelTransfer( XDMAC_CHANNEL channel, const void *srcAddr, const void *destAddr, size_t blockSize );
+  Remarks:
+    None.
+*/
 
-bool XDMAC_ChannelIsBusy (XDMAC_CHANNEL channel);
+typedef struct
+{
+    SYS_STATUS                        status;
+    SYS_DEBUG_STATES                  state;
+    SYS_MODULE_INDEX                  debugConsole;
+    int                               prtBufPtr;
+} SYS_DEBUG_INSTANCE;
 
-void XDMAC_ChannelDisable (XDMAC_CHANNEL channel);
-
-XDMAC_CHANNEL_CONFIG XDMAC_ChannelSettingsGet (XDMAC_CHANNEL channel);
-
-bool XDMAC_ChannelSettingsSet (XDMAC_CHANNEL channel, XDMAC_CHANNEL_CONFIG setting);
-
-void XDMAC_ChannelBlockLengthSet (XDMAC_CHANNEL channel, uint16_t length);
-
-// DOM-IGNORE-BEGIN
-#ifdef __cplusplus  // Provide C++ Compatibility
+//DOM-IGNORE-BEGIN
+#ifdef __cplusplus
 
     }
 
 #endif
-// DOM-IGNORE-END
-#endif // PLIB_XDMAC_H
+//DOM-IGNORE-END
+
+#endif //#ifndef SYS_DEBUG_LOCAL_H

@@ -112,8 +112,8 @@ extern "C" {
 #define DRV_I2S_QUEUE_SIZE_IDX0               32
 #define DRV_I2S_DATA_LENGTH_IDX0              32
 #define DRV_I2S_INT_SRC_IDX0                  I2SC1_IRQn
-#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
-#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
+#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_3
+#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_2
 
 
 /*** Codec Driver Configuration ***/
@@ -231,8 +231,7 @@ extern "C" {
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-//KEEP THIS- Not generated correctly
-//64+64
+//KEEP THIS - Not generated correctly on subsequent generations
 #define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 64 
 
 

@@ -53,7 +53,6 @@
 {
 	.queueSizeRead = 32,
 	.queueSizeWrite = 32
-
 };
 
 
