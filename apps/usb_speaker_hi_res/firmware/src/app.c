@@ -787,23 +787,30 @@ void APP_Tasks()
 #endif //DEBUG_BSUBFRAMESIZE_3
                                         appData.usbReadBufSize); //96 Samples
 
-                        if(audioErr1 != USB_DEVICE_AUDIO_RESULT_OK)
+                        if(audioErr1 == USB_DEVICE_AUDIO_RESULT_OK)
                         {
-                            //USB Read Queue Full and does not match the APP 
-                            //read queue size--ERROR.
-                            usbReadBuffer->usbInUse = false;
                             appPlaybackBuffer.usbReadQueueCnt++;
+                            //SYS_PRINT("***INIT USB READ: RQCnt %d", 
+                            //    appPlaybackBuffer.usbReadQueueCnt);
+                            //Next Codec Write Index (HEAD Index)
                             appPlaybackBuffer.usbReadIdx = _APP_GetNextIdx(appPlaybackBuffer.usbReadIdx);
+                            usbReadScheduleCnt++;                        
+                            
                         }
                         else
                         {
+                            //ERROR - USB Read Queue Full and does not match the APP 
+                            //read queue size--ERROR.
+                            usbReadBuffer->usbInUse = false;
                             appData.state = APP_STATE_ERROR;
+                            break;
                         }
 
                     }
                 } //End USB Audio Read Queue loop
 
-
+                printf("***INIT USB READ Finished: RQCnt %d", 
+                         appPlaybackBuffer.usbReadQueueCnt);
                 appData.state = APP_STATE_INITIAL_CODEC_WRITE_REQUEST;
 
             } //activeInterfaceAlternatedSetting 
@@ -927,10 +934,6 @@ void APP_Tasks()
                         current->codecInUse = true;
                         #endif //DEBUG_BSUBFRAMESIZE_3
 
-
-
-
-
                         //Write stereo tone to output instead of USB data.
                         DRV_CODEC_BufferAddWrite(
                                     appData.codecClientWrite.handle, 
@@ -945,8 +948,6 @@ void APP_Tasks()
                             appPlaybackBuffer.codecWriteQueueCnt++;
                             appPlaybackBuffer.codecWriteIdx = 
                                     _APP_GetNextIdx(codecWriteIdx);
-
-                            //DEBUG
                             codecWriteScheduleCnt++;
                         }
                         else
@@ -954,7 +955,7 @@ void APP_Tasks()
                             current->codecInUse = false;
                             // CODEC doesn't have enough write buffers
                             // should never happen
-                            asm("NOP");
+                            appData.state = APP_STATE_ERROR;
                         }
                     } //Buffer Ready
                 } //Queue Loop
@@ -988,11 +989,11 @@ void APP_Tasks()
                 if (appPlaybackBuffer.usbReadCompleteBufferLevel == 
                     APP_QUEUING_DEPTH)
                 {
-                    queueFull = true;
-//                    printf("****QUEUE Full****: RBLevel %d Ridx %d - Widx %d",
-//                                appPlaybackBuffer.usbReadCompleteBufferLevel,
-//                                appPlaybackBuffer.usbReadIdx,
-//                                appPlaybackBuffer.codecWriteIdx);
+                      queueFull = true;
+//                      printf("****QUEUE Full****: RBLevel %d Ridx %d - Widx %d\r\n",
+//                                  appPlaybackBuffer.usbReadCompleteBufferLevel,
+//                                  appPlaybackBuffer.usbReadIdx,
+//                                  appPlaybackBuffer.codecWriteIdx);
 //                    printf("*** QUEUE FULL****: Qlevel %d RQ %d WQ %d WC %d",
 //                                appPlaybackBuffer.usbReadCompleteBufferLevel,
 //                                appPlaybackBuffer.usbReadQueueCnt,
