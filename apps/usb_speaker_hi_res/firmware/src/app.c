@@ -114,6 +114,7 @@ typedef struct  _BITS24
     int8_t bytes[3]; 
 } BITS24;
 int32_t _Convert24to32bit(BITS24 val);
+void _Unpack24to32bitBuffer(uint8_t *src, uint8_t*dst, int numUsb24BitSamples);
 
 
 #if 0
@@ -149,8 +150,9 @@ volatile bool usbInitialReadsComplete = false;
 // allocated with the COHERENT and aligned(16) attributes so that it is 
 // placed at the correct page boundary.
 //static __attribute__((aligned(32))) __attribute__((tcm))
-static __attribute__((aligned(32)))
-    APP_PLAYBACK_BUFFER_QUEUE appPlaybackBuffer;
+static APP_PLAYBACK_BUFFER_QUEUE 
+    __attribute__((aligned(32)))  __attribute__((tcm))
+    appPlaybackBuffer;
 
 //==============================================================================
 // Application Playback Buffer Queue
@@ -170,7 +172,7 @@ static bool volatile hpInterfaceChanged = false;
 static USB_DEVICE_AUDIO_RESULT volatile audioErr1;
 
 //Application Class Data
-APP_DATA appData =
+APP_DATA __attribute__((tcm)) appData =
 {
     /* Device Layer Handle  */
     .usbDevHandle = -1,
@@ -911,6 +913,7 @@ void APP_Tasks()
 
                         uint32_t *src = (uint32_t *) current->buffer;
                         uint32_t *dst = (uint32_t *) current->buffer32; 
+                        //_Unpack24to32bitBuffer(*src, *dst,  numUsb24BitSamples);
 
                         for (i=0, j=0; j<numUsb24BitSamples; i+=3, j+=4) 
                         {
@@ -1069,7 +1072,7 @@ void APP_Tasks()
                         uint32_t *src = (uint32_t *) current->buffer;
                         uint32_t *dst = (uint32_t *) current->buffer32; 
 
-
+                        //_Unpack24to32bitBuffer(*src, *dst,  numUsb24BitSamples);
                         for (i=0, j=0; j<numUsb24BitSamples; i+=3, j+=4) 
                         {
                             //Every 3 32 bit words converted to 4 32 bit samples
@@ -1431,8 +1434,9 @@ static int _APP_ClearCodecReturnBuffer(DRV_CODEC_BUFFER_HANDLE handle)
 //******************************************************************************
 int32_t _Convert24to32bit(BITS24 val)
 {
-        if ( val.bytes[2] & 0x80 ) // Is this a negative?  Then we need to siingn extend.
+        if ( val.bytes[2] & 0x80 ) 
         {
+            //negative -->  24 to 32 bit sign extend.
             return ( 0xff << 24)         | 
                     (val.bytes[2] << 16) | 
                     (val.bytes[1] << 8)  | 
@@ -1445,6 +1449,32 @@ int32_t _Convert24to32bit(BITS24 val)
                     (val.bytes[0] << 0);
         }
 }
+
+
+void _Unpack24to32bitBuffer(uint8_t *src, uint8_t*dst, int numUsb24BitSamples)
+{
+    int i,j;
+    uint32_t saa,sbb,scc;
+
+    for (i=0, j=0; j<numUsb24BitSamples; i+=3, j+=4) 
+    {
+        //Every 3 32 bit words converted to 4 32 bit samples
+        saa = src[i+0]; //LS
+        sbb = src[i+1];
+        scc = src[i+2]; //MS
+
+        //Little ENDIAN - MS bytes first
+        //dst[j+0] = saa & 0xFFFFFF00;
+        dst[j+0] = saa<<8; 
+        //dst[j+1] = ((saa<<24) | (sbb>>8)) & 0xFFFFFF00;
+        dst[j+1] = ((sbb<<16) | (saa>>16)) & 0xFFFFFF00;
+        //dst[j+2] = ((sbb<<16) | (scc>>16)) & 0xFFFFFF00;
+        dst[j+2] = ((sbb>>8) | (scc<<24)) & 0xFFFFFF00;
+        //dst[j+3] = scc<<8;
+        dst[j+3] = scc & 0xFFFFFF00;
+    }
+}
+
 
 // ****************************************************************************
 // APP_TimerCallback()

@@ -5,7 +5,7 @@
       <Symbols dnOrder="0">
         <KeyValueSet dnOrder="0" id="DRV_WM8904_AUDIO_DATA_FORMAT">
           <Values dnOrder="0">
-            <User dnOrder="0" value="2"/>
+            <User dnOrder="0" value="3"/>
           </Values>
         </KeyValueSet>
         <Integer dnOrder="1" id="DRV_WM8904_BAUD_RATE">
@@ -126,7 +126,7 @@
         <KeyValueSet dnOrder="13" id="DEVICE_TCM_SIZE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="core" value="0"/>
-            <User dnOrder="1" value="1"/>
+            <User dnOrder="1" value="2"/>
           </Values>
         </KeyValueSet>
         <Integer dnOrder="14" id="DMA_CH_FOR_I2SC1_Receive_Left">
@@ -151,7 +151,7 @@
         </Integer>
         <Boolean dnOrder="18" id="DMA_CH_NEEDED_FOR_I2SC1_Receive_Left">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="drv_i2s_0" value="false"/>
+            <Dynamic dnOrder="0" id="drv_i2s_0" value="true"/>
           </Values>
         </Boolean>
         <Boolean dnOrder="19" id="DMA_CH_NEEDED_FOR_I2SC1_Transmit_Left">
@@ -208,7 +208,7 @@
         </Integer>
         <Boolean dnOrder="29" id="INSTRUCTION_CACHE_ENABLE">
           <Values dnOrder="0">
-            <User dnOrder="0" value="false"/>
+            <User dnOrder="0" value="true"/>
           </Values>
         </Boolean>
         <Integer dnOrder="30" id="ISI_CLOCK_FREQUENCY">
@@ -2766,7 +2766,7 @@
         </Boolean>
         <String dnOrder="534" id="TCM_SIZE">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="32 KB"/>
+            <Dynamic dnOrder="0" id="core" value="64 KB"/>
           </Values>
         </String>
         <Integer dnOrder="535" id="TRNG_CLOCK_FREQUENCY">
@@ -2942,26 +2942,26 @@
         <Setting dnOrder="569" id="XC32_DTCM_SIZE">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="value">
-              <Value dnOrder="0">0x8000</Value>
+              <Value dnOrder="0">0x10000</Value>
             </String>
           </Attributes>
         </Setting>
         <Setting dnOrder="570" id="XC32_HEAP">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="value">
-              <Value dnOrder="0">256000</Value>
+              <Value dnOrder="0">128000</Value>
             </String>
           </Attributes>
         </Setting>
         <Integer dnOrder="571" id="XC32_HEAP_SIZE">
           <Values dnOrder="0">
-            <User dnOrder="0" value="256000"/>
+            <User dnOrder="0" value="128000"/>
           </Values>
         </Integer>
         <Setting dnOrder="572" id="XC32_ITCM_SIZE">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="value">
-              <Value dnOrder="0">0x8000</Value>
+              <Value dnOrder="0">0x10000</Value>
             </String>
           </Attributes>
         </Setting>
@@ -4254,7 +4254,6 @@
         <Boolean dnOrder="829" id="XDMAC_CH3_ENABLE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="core" value="true"/>
-            <User dnOrder="1" value="true"/>
           </Values>
         </Boolean>
         <Boolean dnOrder="830" id="XDMAC_CLOCK_ENABLE">
@@ -4394,16 +4393,11 @@
             <Boolean dnOrder="2" id="DRV_I2S_RX_DMA">
               <Values dnOrder="0">
                 <Dynamic dnOrder="0" id="drv_i2s_0" value="true"/>
-                <User dnOrder="1" value="false"/>
+                <User dnOrder="1" value="true"/>
               </Values>
             </Boolean>
             <Integer dnOrder="3" id="DRV_I2S_RX_DMA_CHANNEL">
-              <Attributes dnOrder="0">
-                <Boolean dnOrder="0" id="visible">
-                  <Value dnOrder="0">true</Value>
-                </Boolean>
-              </Attributes>
-              <Values dnOrder="1">
+              <Values dnOrder="0">
                 <Dynamic dnOrder="0" id="drv_i2s_0" value="0"/>
                 <User dnOrder="1" value="2"/>
               </Values>
@@ -4415,12 +4409,7 @@
               </Values>
             </Boolean>
             <Integer dnOrder="5" id="DRV_I2S_TX_DMA_CHANNEL">
-              <Attributes dnOrder="0">
-                <Boolean dnOrder="0" id="visible">
-                  <Value dnOrder="0">true</Value>
-                </Boolean>
-              </Attributes>
-              <Values dnOrder="1">
+              <Values dnOrder="0">
                 <Dynamic dnOrder="0" id="drv_i2s_0" value="0"/>
                 <User dnOrder="1" value="3"/>
               </Values>
@@ -4533,173 +4522,187 @@
             </Boolean>
           </Attributes>
         </File>
-        <Boolean dnOrder="7" id="ENABLE_APP_FILE">
+        <File dnOrder="7" id="DRIVER_COMMON">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <File dnOrder="8" id="DRIVER_ROOT">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <Boolean dnOrder="9" id="ENABLE_APP_FILE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="HarmonyCore" value="true"/>
           </Values>
         </Boolean>
-        <Boolean dnOrder="8" id="ENABLE_DRV_COMMON">
+        <Boolean dnOrder="10" id="ENABLE_DRV_COMMON">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="audio_codec_wm8904" value="true"/>
           </Values>
         </Boolean>
-        <Boolean dnOrder="9" id="ENABLE_OSAL">
+        <Boolean dnOrder="11" id="ENABLE_OSAL">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="HarmonyCore" value="true"/>
           </Values>
         </Boolean>
-        <Boolean dnOrder="10" id="ENABLE_SYS_CACHE">
-          <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="HarmonyCore" value="false"/>
-          </Values>
-        </Boolean>
-        <Boolean dnOrder="11" id="ENABLE_SYS_COMMON">
+        <Boolean dnOrder="12" id="ENABLE_SYS_CACHE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="HarmonyCore" value="true"/>
           </Values>
         </Boolean>
-        <Boolean dnOrder="12" id="ENABLE_SYS_DMA">
+        <Boolean dnOrder="13" id="ENABLE_SYS_COMMON">
+          <Values dnOrder="0">
+            <Dynamic dnOrder="0" id="HarmonyCore" value="true"/>
+          </Values>
+        </Boolean>
+        <Boolean dnOrder="14" id="ENABLE_SYS_DMA">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="audio_codec_wm8904" value="true"/>
           </Values>
         </Boolean>
-        <Boolean dnOrder="13" id="ENABLE_SYS_INT">
+        <Boolean dnOrder="15" id="ENABLE_SYS_INT">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="HarmonyCore" value="true"/>
           </Values>
         </Boolean>
-        <Boolean dnOrder="14" id="ENABLE_SYS_PORTS">
+        <Boolean dnOrder="16" id="ENABLE_SYS_PORTS">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="audio_codec_wm8904" value="true"/>
           </Values>
         </Boolean>
-        <File dnOrder="15" id="INT_DEF">
+        <File dnOrder="17" id="INT_DEF">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="16" id="INT_HEADER">
+        <File dnOrder="18" id="INT_HEADER">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="17" id="INT_MAPPING">
+        <File dnOrder="19" id="INT_MAPPING">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="18" id="INT_SOURCE">
+        <File dnOrder="20" id="INT_SOURCE">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="19" id="OSAL_DEFINITIONS_H">
+        <File dnOrder="21" id="OSAL_DEFINITIONS_H">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="20" id="OSAL_H">
+        <File dnOrder="22" id="OSAL_H">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="21" id="OSAL_IMPL_BASIC_H">
+        <File dnOrder="23" id="OSAL_IMPL_BASIC_H">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="22" id="OSAL_SYSDEF_H">
+        <File dnOrder="24" id="OSAL_SYSDEF_H">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="23" id="PORTS_DEF">
+        <File dnOrder="25" id="PORTS_DEF">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="24" id="PORTS_HEADER">
+        <File dnOrder="26" id="PORTS_HEADER">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="25" id="PORTS_MAPPING">
+        <File dnOrder="27" id="PORTS_MAPPING">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="26" id="SYSTEM_COMMON">
+        <File dnOrder="28" id="SYSTEM_COMMON">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="27" id="SYSTEM_MODULE">
+        <File dnOrder="29" id="SYSTEM_MODULE">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="28" id="SYSTEM_ROOT">
+        <File dnOrder="30" id="SYSTEM_ROOT">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="29" id="SYS_CACHE_DEF">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="enabled">
-              <Value dnOrder="0">false</Value>
-            </Boolean>
-          </Attributes>
-        </File>
-        <File dnOrder="30" id="SYS_CACHE_HEADER">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="enabled">
-              <Value dnOrder="0">false</Value>
-            </Boolean>
-          </Attributes>
-        </File>
-        <File dnOrder="31" id="SYS_CACHE_SOURCE">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="enabled">
-              <Value dnOrder="0">false</Value>
-            </Boolean>
-          </Attributes>
-        </File>
-        <File dnOrder="32" id="TASKS_C">
+        <File dnOrder="31" id="SYS_CACHE_DEF">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
         </File>
-        <File dnOrder="33" id="USER_H">
+        <File dnOrder="32" id="SYS_CACHE_HEADER">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <File dnOrder="33" id="SYS_CACHE_SOURCE">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <File dnOrder="34" id="TASKS_C">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <File dnOrder="35" id="USER_H">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="enabled">
               <Value dnOrder="0">true</Value>
@@ -4715,14 +4718,9 @@
             <User dnOrder="0" value="1"/>
           </Values>
         </KeyValueSet>
-        <Integer dnOrder="1" id="I2SC_MR_IMCKDIV">
+        <KeyValueSet dnOrder="1" id="I2SC_MR_TXDMA">
           <Values dnOrder="0">
-            <User dnOrder="0" value="4"/>
-          </Values>
-        </Integer>
-        <KeyValueSet dnOrder="2" id="I2SC_MR_TXDMA">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="1"/>
+            <User dnOrder="0" value="0"/>
           </Values>
         </KeyValueSet>
       </Symbols>
@@ -4760,80 +4758,7 @@
         </DirectDependency>
       </Attachments>
     </UniqueComponent>
-    <GeneratorComponent dnOrder="12" id="sys_console">
-      <Symbols dnOrder="0">
-        <Integer dnOrder="0" id="SYS_CONSOLE_UART_CONNECTION_COUNTER">
-          <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="sys_console" value="1"/>
-          </Values>
-        </Integer>
-      </Symbols>
-      <Instances dnOrder="1">
-        <InstanceComponent dnOrder="0" id="sys_console" instance="0">
-          <Symbols dnOrder="0">
-            <String dnOrder="0" id="SYS_CONSOLE_DEVICE">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="sys_console_0" value="USART1"/>
-              </Values>
-            </String>
-            <String dnOrder="1" id="SYS_CONSOLE_DEVICE_SET">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="sys_console_0" value="UART"/>
-              </Values>
-            </String>
-            <Integer dnOrder="2" id="SYS_CONSOLE_DEVICE_UART_INDEX">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="sys_console" value="0"/>
-              </Values>
-            </Integer>
-            <Integer dnOrder="3" id="SYS_CONSOLE_TX_QUEUE_SIZE">
-              <Values dnOrder="0">
-                <User dnOrder="0" value="128"/>
-              </Values>
-            </Integer>
-          </Symbols>
-          <Attachments dnOrder="1">
-            <DirectDependency dnOrder="0" id="sys_console_UART_dependency">
-              <Attributes dnOrder="0">
-                <String dnOrder="0" id="targetComponentID">
-                  <Value dnOrder="0">usart1</Value>
-                </String>
-                <String dnOrder="1" id="targetAttachmentID">
-                  <Value dnOrder="0">USART1_UART</Value>
-                </String>
-              </Attributes>
-            </DirectDependency>
-          </Attachments>
-        </InstanceComponent>
-      </Instances>
-    </GeneratorComponent>
-    <UniqueComponent dnOrder="13" id="sys_debug">
-      <Symbols dnOrder="0">
-        <String dnOrder="0" id="SYS_CONSOLE_DEVICE">
-          <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="sys_debug" value="SYS_CONSOLE_0"/>
-          </Values>
-        </String>
-        <String dnOrder="1" id="SYS_CONSOLE_INDEX">
-          <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="sys_debug" value="0"/>
-          </Values>
-        </String>
-      </Symbols>
-      <Attachments dnOrder="1">
-        <DirectDependency dnOrder="0" id="sys_debug_SYS_CONSOLE_dependency">
-          <Attributes dnOrder="0">
-            <String dnOrder="0" id="targetComponentID">
-              <Value dnOrder="0">sys_console_0</Value>
-            </String>
-            <String dnOrder="1" id="targetAttachmentID">
-              <Value dnOrder="0">sys_console</Value>
-            </String>
-          </Attributes>
-        </DirectDependency>
-      </Attachments>
-    </UniqueComponent>
-    <UniqueComponent dnOrder="14" id="sys_time">
+    <UniqueComponent dnOrder="12" id="sys_time">
       <Symbols dnOrder="0">
         <String dnOrder="0" id="SYS_TIME_PLIB">
           <Values dnOrder="0">
@@ -4854,7 +4779,7 @@
         </DirectDependency>
       </Attachments>
     </UniqueComponent>
-    <UniqueComponent dnOrder="15" id="tc0">
+    <UniqueComponent dnOrder="13" id="tc0">
       <Symbols dnOrder="0">
         <String dnOrder="0" id="CALLBACK_API_NAME">
           <Values dnOrder="0">
@@ -5054,7 +4979,7 @@
         </DirectCapability>
       </Attachments>
     </UniqueComponent>
-    <UniqueComponent dnOrder="16" id="twihs0">
+    <UniqueComponent dnOrder="14" id="twihs0">
       <Symbols dnOrder="0">
         <Comment dnOrder="0" id="TWIHS_CLK_EN_COMMENT">
           <Attributes dnOrder="0">
@@ -5097,7 +5022,7 @@
         </DirectCapability>
       </Attachments>
     </UniqueComponent>
-    <UniqueComponent dnOrder="17" id="usart1">
+    <UniqueComponent dnOrder="15" id="usart1">
       <Symbols dnOrder="0">
         <Integer dnOrder="0" id="BAUD_RATE">
           <Values dnOrder="0">
@@ -5124,16 +5049,16 @@
         <DirectCapability dnOrder="0" id="USART1_UART">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="targetComponentID">
-              <Value dnOrder="0">sys_console_0</Value>
+              <Value dnOrder="0">stdio</Value>
             </String>
             <String dnOrder="1" id="targetAttachmentID">
-              <Value dnOrder="0">sys_console_UART_dependency</Value>
+              <Value dnOrder="0">UART</Value>
             </String>
           </Attributes>
         </DirectCapability>
       </Attachments>
     </UniqueComponent>
-    <UniqueComponent dnOrder="18" id="usb_device">
+    <UniqueComponent dnOrder="16" id="usb_device">
       <Symbols dnOrder="0">
         <Integer dnOrder="0" id="CONFIG_USB_DEVICE_CONFIG_DESCRPTR_SIZE">
           <Values dnOrder="0">
@@ -5183,7 +5108,7 @@
         </String>
       </Symbols>
     </UniqueComponent>
-    <GeneratorComponent dnOrder="19" id="usb_device_audio">
+    <GeneratorComponent dnOrder="17" id="usb_device_audio">
       <Symbols dnOrder="0">
         <Integer dnOrder="0" id="CONFIG_USB_DEVICE_AUDIO_INSTANCES">
           <Values dnOrder="0">
@@ -5192,7 +5117,7 @@
         </Integer>
         <Integer dnOrder="1" id="CONFIG_USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="usb_device_audio_0" value="1018"/>
+            <Dynamic dnOrder="0" id="usb_device_audio_0" value="1142"/>
           </Values>
         </Integer>
         <Integer dnOrder="2" id="CONFIG_USB_DEVICE_FUNCTION_AUDIO_MAX_ALTERNATE_SETTING_COMBINED">
@@ -5238,7 +5163,7 @@
         </InstanceComponent>
       </Instances>
     </GeneratorComponent>
-    <UniqueComponent dnOrder="20" id="wm8904_codec"/>
+    <UniqueComponent dnOrder="18" id="wm8904_codec"/>
   </Components>
   <UserData>
     <ComponentGraph dnOrder="0" id="__ROOTVIEW">
@@ -5247,23 +5172,21 @@
         <ElementPosition dnOrder="1" id="HarmonyCore" x="10" y="80"/>
         <ElementPosition dnOrder="2" id="audio_codec_wm8904" x="454" y="276"/>
         <ElementPosition dnOrder="3" id="cmsis" x="120" y="20"/>
-        <ElementPosition dnOrder="4" id="core" x="20" y="20"/>
+        <ElementPosition dnOrder="4" id="core" x="21" y="20"/>
         <ElementPosition dnOrder="5" id="dfp" x="260" y="20"/>
         <ElementPosition dnOrder="6" id="drv_i2c" x="213" y="196"/>
         <ElementPosition dnOrder="7" id="drv_i2s" x="214" y="360"/>
         <ElementPosition dnOrder="8" id="drv_usbhs_v1" x="414" y="546"/>
         <ElementPosition dnOrder="9" id="efc" x="620" y="20"/>
-        <ElementPosition dnOrder="10" id="i2sc1" x="61" y="422"/>
-        <ElementPosition dnOrder="11" id="stdio" x="744" y="152"/>
-        <ElementPosition dnOrder="12" id="sys_console" x="865" y="169"/>
-        <ElementPosition dnOrder="13" id="sys_debug" x="1040" y="229"/>
-        <ElementPosition dnOrder="14" id="sys_time" x="446" y="82"/>
-        <ElementPosition dnOrder="15" id="tc0" x="215" y="116"/>
-        <ElementPosition dnOrder="16" id="twihs0" x="64" y="260"/>
-        <ElementPosition dnOrder="17" id="usart1" x="608" y="234"/>
-        <ElementPosition dnOrder="18" id="usb_device" x="421" y="456"/>
-        <ElementPosition dnOrder="19" id="usb_device_audio" x="594" y="461"/>
-        <ElementPosition dnOrder="20" id="wm8904_codec" x="457" y="19"/>
+        <ElementPosition dnOrder="10" id="i2sc1" x="63" y="422"/>
+        <ElementPosition dnOrder="11" id="stdio" x="754" y="248"/>
+        <ElementPosition dnOrder="12" id="sys_time" x="446" y="82"/>
+        <ElementPosition dnOrder="13" id="tc0" x="215" y="116"/>
+        <ElementPosition dnOrder="14" id="twihs0" x="64" y="260"/>
+        <ElementPosition dnOrder="15" id="usart1" x="608" y="234"/>
+        <ElementPosition dnOrder="16" id="usb_device" x="421" y="456"/>
+        <ElementPosition dnOrder="17" id="usb_device_audio" x="594" y="461"/>
+        <ElementPosition dnOrder="18" id="wm8904_codec" x="457" y="19"/>
       </ElementPositions>
     </ComponentGraph>
     <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="1"/>

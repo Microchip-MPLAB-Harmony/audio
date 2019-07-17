@@ -181,7 +181,7 @@ void __attribute__((optimize("-O1"), section(".text.Reset_Handler"), long_call))
     FPU_Enable();
 #endif
 
-	TCM_Configure(1);
+	TCM_Configure(2);
     /* Enable TCM   */
     TCM_Enable();
 
@@ -202,6 +202,8 @@ void __attribute__((optimize("-O1"), section(".text.Reset_Handler"), long_call))
     __libc_init_array();
 
 
+    /* Enable Instruction Cache */
+    ICache_Enable();
 
 
     /* Call the optional application-provided _on_bootstrap() function. */

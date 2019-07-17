@@ -75,7 +75,10 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f4" displayName="system" projectFiles="true">
-            <logicalFolder name="f4" displayName="dma" projectFiles="true">
+            <logicalFolder name="f4" displayName="cache" projectFiles="true">
+              <itemPath>../src/config/us_basic_sam_e70_xult_wm8904_i2sc_usb/system/cache/sys_cache.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f5" displayName="dma" projectFiles="true">
               <itemPath>../src/config/us_basic_sam_e70_xult_wm8904_i2sc_usb/system/dma/sys_dma.h</itemPath>
               <itemPath>../src/config/us_basic_sam_e70_xult_wm8904_i2sc_usb/system/dma/sys_dma_mapping.h</itemPath>
             </logicalFolder>
@@ -270,7 +273,10 @@
             <itemPath>../src/config/us_basic_sam_e70_xult_wm8904_i2sc_usb/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
           <logicalFolder name="f5" displayName="system" projectFiles="true">
-            <logicalFolder name="f3" displayName="dma" projectFiles="true">
+            <logicalFolder name="f3" displayName="cache" projectFiles="true">
+              <itemPath>../src/config/us_basic_sam_e70_xult_wm8904_i2sc_usb/system/cache/sys_cache.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f4" displayName="dma" projectFiles="true">
               <itemPath>../src/config/us_basic_sam_e70_xult_wm8904_i2sc_usb/system/dma/sys_dma.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="int" projectFiles="true">
@@ -445,7 +451,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="256000"/>
+        <property key="heap-size" value="128000"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
@@ -498,8 +504,8 @@
         <property key="common-include-directories" value=""/>
         <property key="gp-relative-option" value=""/>
         <property key="legacy-libc" value="false"/>
-        <property key="mdtcm" value="0x8000"/>
-        <property key="mitcm" value="0x8000"/>
+        <property key="mdtcm" value="0x10000"/>
+        <property key="mitcm" value="0x10000"/>
         <property key="mstacktcm" value="true"/>
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
