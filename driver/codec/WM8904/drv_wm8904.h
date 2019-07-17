@@ -495,8 +495,8 @@ typedef struct {
 
   Example:
     <code>
-    DRV_WM8904_INIT              	init;
-    SYS_MODULE_OBJ              	objectHandle;
+    DRV_WM8904_INIT                  init;
+    SYS_MODULE_OBJ                  objectHandle;
 
     init->inUse                           = true;
     init->status                          = SYS_STATUS_BUSY;
@@ -924,7 +924,7 @@ void DRV_WM8904_BufferAddWrite
 
 // *****************************************************************************
 /* Function:
-	void DRV_WM8904_BufferAddWriteRead
+    void DRV_WM8904_BufferAddWriteRead
         (
                 const DRV_HANDLE handle,
                 DRV_WM8904_BUFFER_HANDLE *bufferHandle,
@@ -935,7 +935,7 @@ void DRV_WM8904_BufferAddWrite
 
   Summary:
     Schedule a non-blocking driver write-read operation.
-	<p><b>Implementation:</b> Dynamic</p>
+    <p><b>Implementation:</b> Dynamic</p>
 
   Description:
     This function schedules a non-blocking write-read operation. The function
@@ -1040,14 +1040,14 @@ void DRV_WM8904_BufferAddWrite
 void DRV_WM8904_BufferAddWriteRead
 (
     const DRV_HANDLE handle,
-    DRV_WM8904_BUFFER_HANDLE	*bufferHandle,
+    DRV_WM8904_BUFFER_HANDLE    *bufferHandle,
     void *transmitBuffer, void *receiveBuffer,
     size_t size
 );
 
 // *****************************************************************************
 /* Function:
-	void DRV_WM8904_BufferAddWriteRead
+    void DRV_WM8904_BufferAddWriteRead
         (
                 const DRV_HANDLE handle,
                 DRV_WM8904_BUFFER_HANDLE *bufferHandle,
@@ -1058,7 +1058,7 @@ void DRV_WM8904_BufferAddWriteRead
 
   Summary:
     Schedule a non-blocking driver write-read operation.
-	<p><b>Implementation:</b> Dynamic</p>
+    <p><b>Implementation:</b> Dynamic</p>
 
   Description:
     This function schedules a non-blocking write-read operation. The function
@@ -1163,19 +1163,19 @@ void DRV_WM8904_BufferAddWriteRead
 void DRV_WM8904_BufferAddWriteRead
 (
     const DRV_HANDLE handle,
-    DRV_WM8904_BUFFER_HANDLE	*bufferHandle,
+    DRV_WM8904_BUFFER_HANDLE    *bufferHandle,
     void *transmitBuffer, void *receiveBuffer,
     size_t size
 );
 // *****************************************************************************
 /*
 Function:
-	void DRV_WM8904_BufferAddRead
-	(
-		const DRV_HANDLE handle,
-		DRV_WM8904_BUFFER_HANDLE *bufferHandle,
-		void *buffer, size_t size
-	)
+    void DRV_WM8904_BufferAddRead
+    (
+        const DRV_HANDLE handle,
+        DRV_WM8904_BUFFER_HANDLE *bufferHandle,
+        void *buffer, size_t size
+    )
 
   Summary:
     Schedule a non-blocking driver read operation.
@@ -1226,9 +1226,9 @@ Function:
 */
 void DRV_WM8904_BufferAddRead
 (
-	const DRV_HANDLE handle,
-	DRV_WM8904_BUFFER_HANDLE *bufferHandle,
-	void *buffer, size_t size
+    const DRV_HANDLE handle,
+    DRV_WM8904_BUFFER_HANDLE *bufferHandle,
+    void *buffer, size_t size
 );
 
 // *****************************************************************************
@@ -1469,7 +1469,7 @@ void DRV_WM8904_BufferEventHandlerSet
     // myWM8904Handle is the handle returned
     // by the DRV_WM8904_Open function.
 
-    DRV_WM8904_SamplingRateSet(myWM8904Handle, 48000);	//Sets 48000 media sampling rate
+    DRV_WM8904_SamplingRateSet(myWM8904Handle, 48000);    //Sets 48000 media sampling rate
 
     </code>
 
@@ -1485,7 +1485,7 @@ void DRV_WM8904_SamplingRateSet(DRV_HANDLE handle, uint32_t samplingRate);
 
   Summary:
     This function gets the sampling rate set on the WM8904.
-	<p><b>Implementation:</b> Dynamic</p>
+    <p><b>Implementation:</b> Dynamic</p>
 
   Description:
     This function gets the sampling rate set on the DAC WM8904.
@@ -1556,7 +1556,7 @@ uint32_t DRV_WM8904_SamplingRateGet(DRV_HANDLE handle);
     // myWM8904Handle is the handle returned
     // by the DRV_WM8904_Open function.
 
-        DRV_WM8904_VolumeSet(myWM8904Handle,DRV_WM8904_CHANNEL_LEFT, 120);	
+        DRV_WM8904_VolumeSet(myWM8904Handle,DRV_WM8904_CHANNEL_LEFT, 120);    
 
     </code>
 
@@ -1643,7 +1643,7 @@ uint8_t DRV_WM8904_VolumeGet(DRV_HANDLE handle, DRV_WM8904_CHANNEL channel);
     // myWM8904Handle is the handle returned
     // by the DRV_WM8904_Open function.
 
-    DRV_WM8904_MuteOn(myWM8904Handle);	//WM8904 output soft muted
+    DRV_WM8904_MuteOn(myWM8904Handle);    //WM8904 output soft muted
 
     </code>
 
@@ -1688,7 +1688,7 @@ void DRV_WM8904_MuteOn(DRV_HANDLE handle);
     // myWM8904Handle is the handle returned
     // by the DRV_WM8904_Open function.
 
-        DRV_WM8904_MuteOff(myWM8904Handle);	//WM8904 output soft mute disabled
+        DRV_WM8904_MuteOff(myWM8904Handle);    //WM8904 output soft mute disabled
 
     </code>
 
@@ -1732,7 +1732,7 @@ void DRV_WM8904_MuteOff(DRV_HANDLE handle);
     // myWM8904Handle is the handle returned
     // by the DRV_WM8904_Open function.
 
-        DRV_WM8904_MicGainSet(myWM8904Handle, 15);	//WM8904 mic gain set to 15
+        DRV_WM8904_MicGainSet(myWM8904Handle, 15);    //WM8904 mic gain set to 15
 
     </code>
 
@@ -1816,7 +1816,7 @@ uint8_t DRV_WM8904_MicGainGet(DRV_HANDLE handle);
     // myWM8904Handle is the handle returned
     // by the DRV_WM8904_Open function.
 
-    DRV_WM8904_MicMuteOn(myWM8904Handle);	//WM8904 microphone muted
+    DRV_WM8904_MicMuteOn(myWM8904Handle);    //WM8904 microphone muted
 
     </code>
 
@@ -1858,7 +1858,7 @@ void DRV_WM8904_MicMuteOn(DRV_HANDLE handle);
     // myWM8904Handle is the handle returned
     // by the DRV_WM8904_Open function.
 
-        DRV_WM8904_MicMuteOff(myWM8904Handle);	//WM8904 microphone unmuted
+        DRV_WM8904_MicMuteOff(myWM8904Handle);    //WM8904 microphone unmuted
 
     </code>
 
@@ -2089,8 +2089,8 @@ void DRV_WM8904_CommandEventHandlerSet
         is a production version (I.e. Not an alpha or beta).
 
         The String does not contain any spaces. For example, 
-		"0.03a"
-		"1.00"
+        "0.03a"
+        "1.00"
     
   Precondition:
     None.

@@ -1455,8 +1455,8 @@ typedef struct _DRV_WM8904_CLIENT_OBJ_STRUCT
 
 typedef enum
 {
-	/* Application's state machine's initial state. */
-	DRV_WM8904_STATE_INIT=0,
+    /* Application's state machine's initial state. */
+    DRV_WM8904_STATE_INIT=0,
 
     DRV_WM8904_STATE_OPEN,            
             
@@ -1470,7 +1470,7 @@ typedef enum
             
     DRV_WM8904_STATE_DATA_SETUP,
 
-	DRV_WM8904_STATE_DATA_TRANSMIT,           
+    DRV_WM8904_STATE_DATA_TRANSMIT,           
             
     DRV_WM8904_STATE_UPDATE,
 
@@ -1481,8 +1481,8 @@ typedef enum
 } DRV_WM8904_STATE;
 
 typedef struct {
-	uint8_t reg_addr;    
-	uint16_t value;
+    uint8_t reg_addr;    
+    uint16_t value;
     uint16_t delay;
     bool end;    
 } WM8904_I2C_COMMAND_BUFFER;

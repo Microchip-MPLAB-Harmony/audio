@@ -71,7 +71,7 @@ static void _micGainSet(
 
 static const uint8_t testWriteData[APP_WRITE_DATA_LENGTH] = 
 {
-	APP_CODEC_WM8904_ADDR, 0xff, 0xff
+    APP_CODEC_WM8904_ADDR, 0xff, 0xff
 };
 
 // *****************************************************************************
@@ -220,11 +220,11 @@ static void WM8904_TimerCallback( uintptr_t context )
 // *****************************************************************************
 
 /*   Function:
-	SYS_MODULE_OBJ  DRV_WM8904_Initialize
-	(
-		const SYS_MODULE_INDEX drvIndex,
+    SYS_MODULE_OBJ  DRV_WM8904_Initialize
+    (
+        const SYS_MODULE_INDEX drvIndex,
         const SYS_MODULE_INIT *const init
-	);
+    );
 
   Summary:
     Initializes hardware and data for the instance of the WM8904 Codec module
@@ -249,8 +249,8 @@ static void WM8904_TimerCallback( uintptr_t context )
  */
 SYS_MODULE_OBJ  DRV_WM8904_Initialize
 (
-	const SYS_MODULE_INDEX drvIndex,
-	const SYS_MODULE_INIT *const init
+    const SYS_MODULE_INDEX drvIndex,
+    const SYS_MODULE_INIT *const init
 )
 {
     DRV_WM8904_OBJ *drvObj;
@@ -398,7 +398,7 @@ void DRV_WM8904_Deinitialize( SYS_MODULE_OBJ object)
     }
 
 
-	drvObj = (DRV_WM8904_OBJ *) object;
+    drvObj = (DRV_WM8904_OBJ *) object;
 
     if (false == drvObj->inUse)
     {
@@ -534,9 +534,9 @@ void DRV_WM8904_Tasks(SYS_MODULE_OBJ object)
 /* Function:
     DRV_HANDLE DRV_WM8904_Open
     (
-		const SYS_MODULE_INDEX drvIndex,
-		const DRV_IO_INTENT    ioIntent
-	)
+        const SYS_MODULE_INDEX drvIndex,
+        const DRV_IO_INTENT    ioIntent
+    )
 
   Summary:
     Opens the specified WM8904 driver instance and returns a handle to it
@@ -589,8 +589,8 @@ void DRV_WM8904_Tasks(SYS_MODULE_OBJ object)
 */
 DRV_HANDLE DRV_WM8904_Open
 (
-	const SYS_MODULE_INDEX iDriver,
-	const DRV_IO_INTENT ioIntent
+    const SYS_MODULE_INDEX iDriver,
+    const DRV_IO_INTENT ioIntent
 )
 {
     DRV_WM8904_CLIENT_OBJ *hClient;
@@ -782,12 +782,12 @@ void DRV_WM8904_Close( const DRV_HANDLE handle)
 // *****************************************************************************
 /*
 Function:
-	void DRV_WM8904_BufferAddWrite
-	(
-		const DRV_HANDLE handle,
-		DRV_WM8904_BUFFER_HANDLE *bufferHandle,
-		void *buffer, size_t size
-	)
+    void DRV_WM8904_BufferAddWrite
+    (
+        const DRV_HANDLE handle,
+        DRV_WM8904_BUFFER_HANDLE *bufferHandle,
+        void *buffer, size_t size
+    )
 
   Summary:
     Schedule a non-blocking driver write operation.
@@ -838,9 +838,9 @@ Function:
 */
 void DRV_WM8904_BufferAddWrite
 (
-	const DRV_HANDLE handle,
-	DRV_WM8904_BUFFER_HANDLE *bufferHandle,
-	void *buffer, size_t size
+    const DRV_HANDLE handle,
+    DRV_WM8904_BUFFER_HANDLE *bufferHandle,
+    void *buffer, size_t size
 )
 {
     DRV_WM8904_CLIENT_OBJ *clientObj;
@@ -902,7 +902,7 @@ void DRV_WM8904_BufferAddWrite
 
 // *****************************************************************************
 /* Function:
-	void DRV_WM8904_BufferAddWriteRead
+    void DRV_WM8904_BufferAddWriteRead
         (
                 const DRV_HANDLE handle,
                 DRV_WM8904_BUFFER_HANDLE *bufferHandle,
@@ -1012,12 +1012,12 @@ void DRV_WM8904_BufferAddWriteRead
 // *****************************************************************************
 /*
 Function:
-	void DRV_WM8904_BufferAddRead
-	(
-		const DRV_HANDLE handle,
-		DRV_WM8904_BUFFER_HANDLE *bufferHandle,
-		void *buffer, size_t size
-	)
+    void DRV_WM8904_BufferAddRead
+    (
+        const DRV_HANDLE handle,
+        DRV_WM8904_BUFFER_HANDLE *bufferHandle,
+        void *buffer, size_t size
+    )
 
   Summary:
     Schedule a non-blocking driver write operation.
@@ -1068,9 +1068,9 @@ Function:
 */
 void DRV_WM8904_BufferAddRead
 (
-	const DRV_HANDLE handle,
-	DRV_WM8904_BUFFER_HANDLE *bufferHandle,
-	void *buffer, size_t size
+    const DRV_HANDLE handle,
+    DRV_WM8904_BUFFER_HANDLE *bufferHandle,
+    void *buffer, size_t size
 )
 {
     DRV_WM8904_CLIENT_OBJ *clientObj;
@@ -1194,12 +1194,12 @@ bool DRV_WM8904_ReadQueuePurge(const DRV_HANDLE handle)
 // *****************************************************************************
 /*
   Function:
-	void DRV_WM8904_BufferEventHandlerSet
-	(
-		DRV_HANDLE handle,
-		const DRV_WM8904_BUFFER_EVENT_HANDLER eventHandler,
-		const uintptr_t contextHandle
-	)
+    void DRV_WM8904_BufferEventHandlerSet
+    (
+        DRV_HANDLE handle,
+        const DRV_WM8904_BUFFER_EVENT_HANDLER eventHandler,
+        const uintptr_t contextHandle
+    )
 
   Summary:
     This function allows a client to identify a buffer event handling function
@@ -1243,9 +1243,9 @@ bool DRV_WM8904_ReadQueuePurge(const DRV_HANDLE handle)
 */
 void DRV_WM8904_BufferEventHandlerSet
 (
-	DRV_HANDLE handle,
-	const DRV_WM8904_BUFFER_EVENT_HANDLER eventHandler,
-	const uintptr_t contextHandle
+    DRV_HANDLE handle,
+    const DRV_WM8904_BUFFER_EVENT_HANDLER eventHandler,
+    const uintptr_t contextHandle
 )
 {
     DRV_WM8904_CLIENT_OBJ *clientObj;
@@ -1296,7 +1296,7 @@ void DRV_WM8904_BufferEventHandlerSet
 
 void DRV_WM8904_I2SBufferHandlerSet
 (
-	DRV_HANDLE handle,
+    DRV_HANDLE handle,
         DRV_I2S_BUFFER_EVENT_HANDLER I2SBufferEventHandler
 )
 {
@@ -1441,12 +1441,12 @@ static void _setAudioCommunicationFormat(
 // *****************************************************************************
 /*
   Function:
-	void DRV_WM8904_CommandEventHandlerSet
-	(
-		DRV_HANDLE handle,
-		const DRV_WM8904_COMMAND_EVENT_HANDLER eventHandler,
-		const uintptr_t contextHandle
-	)
+    void DRV_WM8904_CommandEventHandlerSet
+    (
+        DRV_HANDLE handle,
+        const DRV_WM8904_COMMAND_EVENT_HANDLER eventHandler,
+        const uintptr_t contextHandle
+    )
 
   Summary:
     This function allows a client to identify a command event handling function
@@ -1491,9 +1491,9 @@ static void _setAudioCommunicationFormat(
 */
 void DRV_WM8904_CommandEventHandlerSet
 (
-	DRV_HANDLE handle,
-	const DRV_WM8904_COMMAND_EVENT_HANDLER eventHandler,
-	const uintptr_t contextHandle
+    DRV_HANDLE handle,
+    const DRV_WM8904_COMMAND_EVENT_HANDLER eventHandler,
+    const uintptr_t contextHandle
 )
 {
     DRV_WM8904_CLIENT_OBJ *clientObj;
@@ -1659,16 +1659,16 @@ void _samplingRateSet(DRV_WM8904_OBJ *drvObj, uint32_t sampleRate, bool standalo
     uint32_t bitClk = sampleRate * drvObj->bit_depth * 2;     // 2 for stereo
     uint16_t bitClk_ratio;
     uint32_t mclk, mclk_max;
-    if (drvObj->enableMicInput)	// want highest mclk when ADC is enabled
-	{
-	    bitClk_ratio = 32;     // will always divide by 2 at least once, max value is 16
-	    mclk = mclk_max = MCLK_MAX26;
-	}
-	else
-	{
-	    bitClk_ratio = 16;     // will always divide by 2 at least once, max value is 8
-	    mclk = mclk_max = MCLK_MAX13;
-	}
+    if (drvObj->enableMicInput)    // want highest mclk when ADC is enabled
+    {
+        bitClk_ratio = 32;     // will always divide by 2 at least once, max value is 16
+        mclk = mclk_max = MCLK_MAX26;
+    }
+    else
+    {
+        bitClk_ratio = 16;     // will always divide by 2 at least once, max value is 8
+        mclk = mclk_max = MCLK_MAX13;
+    }
     while ((bitClk_ratio > 1) && (mclk >= mclk_max))
     {
         bitClk_ratio = bitClk_ratio / 2;        // final value will be between 1, 2, 4, 8 or 16
@@ -1835,7 +1835,7 @@ const uint8_t volumeSteps[256]=
 {  // 64 is -48 dB, 96 is -36 dB, 104 is -33 dB
   0,  64,  96, 104, 112, 113, 114, 115,     // 112 is -30 dB
 116, 117, 118, 119, 120, 120, 121, 123, 
-123, 124, 125, 126, 127, 128, 128, 129, 	// 128 is -24 dB
+123, 124, 125, 126, 127, 128, 128, 129,     // 128 is -24 dB
 130, 130, 131, 132, 133, 134, 134, 135,
 135, 136, 137, 138, 138, 139, 140, 140,
 141, 142, 143, 144, 144, 144, 145, 145,     // 144 is -18 dB
@@ -1848,7 +1848,7 @@ const uint8_t volumeSteps[256]=
 164, 164, 165, 165, 165, 166, 166, 166,
 167, 167, 167, 168, 168, 169, 169, 170,     // 168 is -9.0 dB
 170, 170, 171, 171, 171, 172, 172, 172, 
-172, 172, 173, 173, 173, 173, 173, 173, 	// 172 is -7.5 dB
+172, 172, 173, 173, 173, 173, 173, 173,     // 172 is -7.5 dB
 174, 174, 174, 174, 174, 175, 175, 175,
 175, 175, 175, 176, 176, 176, 176, 176,     // 176 is -6.0 dB
 177, 177, 177, 177, 177, 178, 178, 178,
@@ -1856,15 +1856,15 @@ const uint8_t volumeSteps[256]=
 180, 180, 180, 180, 180, 180, 181, 181,     // 180 is -4.5 dB
 181, 181, 181, 181, 181, 182, 182, 182, 
 182, 182, 182, 182, 182, 183, 183, 183,
-183, 183, 183, 183, 183, 184, 184, 184, 	// 184 is -3.0 dB
+183, 183, 183, 183, 183, 184, 184, 184,     // 184 is -3.0 dB
 184, 184, 184, 184, 184, 185, 185, 185,
 185, 185, 185, 185, 185, 186, 186, 186,
 186, 186, 186, 187, 187, 187, 187, 187,
-187, 187, 187, 188, 188, 188, 188, 188, 	// 188 is -1.5 dB
+187, 187, 187, 188, 188, 188, 188, 188,     // 188 is -1.5 dB
 188, 188, 188, 189, 189, 189, 189, 189,
 189, 189, 189, 189, 190, 190, 190, 190,
 190, 190, 190, 190, 191, 191, 191, 191,
-191, 191, 191, 191, 192, 192, 192, 192, 	// 192 is 0 dB
+191, 191, 191, 191, 192, 192, 192, 192,     // 192 is 0 dB
 };
 
 static void _volumeSet(DRV_WM8904_OBJ *drvObj, 
@@ -1883,7 +1883,7 @@ static void _volumeSet(DRV_WM8904_OBJ *drvObj,
     {
         if (standalone)        
         {
-            drvObj->volume[DRV_WM8904_CHANNEL_LEFT] = volume;	// remembered value is original input in range 0-255 
+            drvObj->volume[DRV_WM8904_CHANNEL_LEFT] = volume;    // remembered value is original input in range 0-255 
         }                 
         WM8904_I2C_Commands[0].reg_addr = WM8904_DAC_DIGITAL_VOLUME_LEFT; // R30
         WM8904_I2C_Commands[0].value = WM8904_DAC_VU|WM8904_DACL_VOL(indexedVolume);       
@@ -1893,7 +1893,7 @@ static void _volumeSet(DRV_WM8904_OBJ *drvObj,
     {
         if (standalone)
         {
-            drvObj->volume[DRV_WM8904_CHANNEL_RIGHT] = volume;	// remembered value is original input in range 0-255 
+            drvObj->volume[DRV_WM8904_CHANNEL_RIGHT] = volume;    // remembered value is original input in range 0-255 
         }               
         WM8904_I2C_Commands[0].reg_addr = WM8904_DAC_DIGITAL_VOLUME_RIGHT; // R31
         WM8904_I2C_Commands[0].value = WM8904_DAC_VU|WM8904_DACR_VOL(indexedVolume);         
@@ -1903,7 +1903,7 @@ static void _volumeSet(DRV_WM8904_OBJ *drvObj,
     {
         if (standalone)
         {
-            drvObj->volume[DRV_WM8904_CHANNEL_LEFT] = volume;	// remembered value is original input in range 0-255
+            drvObj->volume[DRV_WM8904_CHANNEL_LEFT] = volume;    // remembered value is original input in range 0-255
         drvObj->volume[DRV_WM8904_CHANNEL_RIGHT] = volume;
         drvObj->volume[DRV_WM8904_CHANNEL_LEFT_RIGHT] = volume;
         }            
@@ -1997,7 +1997,7 @@ void DRV_WM8904_MuteOn(DRV_HANDLE handle)
     drvObj = (DRV_WM8904_OBJ *)clientObj->hDriver;
     
     WM8904_I2C_Command.reg_addr = WM8904_DAC_DIGITAL_1; // R33
-    WM8904_I2C_Command.value = 	WM8904_DAC_MUTE|
+    WM8904_I2C_Command.value =     WM8904_DAC_MUTE|
             WM8904_DAC_MUTERATE|WM8904_DAC_UNMUTE_RAMP|WM8904_DEEMPH(0);    // mute      
     WM8904_I2C_Command.delay = 5;             
 
@@ -2391,15 +2391,15 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands1[] =
 {
     { WM8904_SW_RESET_AND_ID, 0, 100 },
     { WM8904_BIAS_CONTROL_0, WM8904_ISEL_HP_BIAS, 2 },    
-	{ WM8904_VMID_CONTROL_0, WM8904_VMID_BUF_ENA |WM8904_VMID_RES_FAST | WM8904_VMID_ENA, 5 },
-	{ WM8904_VMID_CONTROL_0, WM8904_VMID_BUF_ENA | WM8904_VMID_RES_NORMAL | WM8904_VMID_ENA, 2 },
-	{ WM8904_BIAS_CONTROL_0, WM8904_ISEL_HP_BIAS | WM8904_BIAS_ENA, 2 },   
-	{ WM8904_POWER_MANAGEMENT_2, WM8904_HPL_PGA_ENA | WM8904_HPR_PGA_ENA, 2 },
-	{ WM8904_DAC_DIGITAL_1, WM8904_DEEMPH(0), 2 },
-	{ WM8904_ANALOGUE_OUT12_ZC, 0x0000, 2 },
-	{ WM8904_CHARGE_PUMP_0, WM8904_CP_ENA, 2 },
-	{ WM8904_CLASS_W_0, WM8904_CP_DYN_PWR, 2 },
-	{ WM8904_DIGITAL_PULLS, WM8904_LRCLK_PU | WM8904_BCLK_PU, 2},
+    { WM8904_VMID_CONTROL_0, WM8904_VMID_BUF_ENA |WM8904_VMID_RES_FAST | WM8904_VMID_ENA, 5 },
+    { WM8904_VMID_CONTROL_0, WM8904_VMID_BUF_ENA | WM8904_VMID_RES_NORMAL | WM8904_VMID_ENA, 2 },
+    { WM8904_BIAS_CONTROL_0, WM8904_ISEL_HP_BIAS | WM8904_BIAS_ENA, 2 },   
+    { WM8904_POWER_MANAGEMENT_2, WM8904_HPL_PGA_ENA | WM8904_HPR_PGA_ENA, 2 },
+    { WM8904_DAC_DIGITAL_1, WM8904_DEEMPH(0), 2 },
+    { WM8904_ANALOGUE_OUT12_ZC, 0x0000, 2 },
+    { WM8904_CHARGE_PUMP_0, WM8904_CP_ENA, 2 },
+    { WM8904_CLASS_W_0, WM8904_CP_DYN_PWR, 2 },
+    { WM8904_DIGITAL_PULLS, WM8904_LRCLK_PU | WM8904_BCLK_PU, 2},
 };
 
 static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands1a[] =
@@ -2409,8 +2409,8 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands1a[] =
     
 static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands3[] =
 {             
-	{ WM8904_POWER_MANAGEMENT_6, WM8904_DACL_ENA | WM8904_DACR_ENA /*| WM8904_ADCL_ENA | WM8904_ADCR_ENA*/, 5 },        
-	{ WM8904_ANALOGUE_HP_0, WM8904_HPL_ENA | WM8904_HPR_ENA, 2 },
+    { WM8904_POWER_MANAGEMENT_6, WM8904_DACL_ENA | WM8904_DACR_ENA /*| WM8904_ADCL_ENA | WM8904_ADCR_ENA*/, 5 },        
+    { WM8904_ANALOGUE_HP_0, WM8904_HPL_ENA | WM8904_HPR_ENA, 2 },
     { WM8904_ANALOGUE_HP_0, WM8904_HPL_ENA_DLY | 
       WM8904_HPL_ENA | WM8904_HPR_ENA_DLY | WM8904_HPR_ENA, 2 },
     { WM8904_DC_SERVO_0, WM8904_DCS_ENA_CHAN_3 | WM8904_DCS_ENA_CHAN_2 | 
@@ -2421,15 +2421,15 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands3[] =
       WM8904_HPL_ENA | WM8904_HPR_ENA_OUTP | WM8904_HPR_ENA_DLY | WM8904_HPR_ENA, 2 },
     { WM8904_ANALOGUE_HP_0, WM8904_HPL_RMV_SHORT | WM8904_HPL_ENA_OUTP | 
       WM8904_HPL_ENA_DLY | WM8904_HPL_ENA |
-		WM8904_HPR_RMV_SHORT | WM8904_HPR_ENA_OUTP | WM8904_HPR_ENA_DLY | WM8904_HPR_ENA, 2 }
+        WM8904_HPR_RMV_SHORT | WM8904_HPR_ENA_OUTP | WM8904_HPR_ENA_DLY | WM8904_HPR_ENA, 2 }
 };
    
 static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands5[] =
 {     
-	{ WM8904_ANALOGUE_OUT1_LEFT, WM8904_HPOUTL_VOL(0x39), 2 },
-	{ WM8904_ANALOGUE_OUT1_RIGHT, WM8904_HPOUTR_VOL(0x39), 2 }, 
-	{ WM8904_ANALOGUE_OUT1_LEFT, WM8904_HPOUT_VU | WM8904_HPOUTL_VOL(0x39), 2 },
-	{ WM8904_ANALOGUE_OUT1_RIGHT, WM8904_HPOUT_VU | WM8904_HPOUTR_VOL(0x39), 100 }     
+    { WM8904_ANALOGUE_OUT1_LEFT, WM8904_HPOUTL_VOL(0x39), 2 },
+    { WM8904_ANALOGUE_OUT1_RIGHT, WM8904_HPOUTR_VOL(0x39), 2 }, 
+    { WM8904_ANALOGUE_OUT1_LEFT, WM8904_HPOUT_VU | WM8904_HPOUTL_VOL(0x39), 2 },
+    { WM8904_ANALOGUE_OUT1_RIGHT, WM8904_HPOUT_VU | WM8904_HPOUTR_VOL(0x39), 100 }     
 };
 
 static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands6[] =
@@ -2438,7 +2438,7 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands6[] =
       WM8904_ADCL_ENA | WM8904_ADCR_ENA, 2 }, 
     // mic will be unmuted and gain set by _micGainSet
     { WM8904_ANALOGUE_LEFT_INPUT_0, WM8904_LINMUTE, 2 },     
-	{ WM8904_ANALOGUE_RIGHT_INPUT_0, WM8904_RINMUTE, 2 },    
+    { WM8904_ANALOGUE_RIGHT_INPUT_0, WM8904_RINMUTE, 2 },    
     { WM8904_POWER_MANAGEMENT_0, WM8904_INL_ENA | WM8904_INR_ENA, 2 },
     { WM8904_AUDIO_INTERFACE_0, /*WM8904_LOOPBACK |*/ 
       WM8904_AIFADCR_SRC | WM8904_AIFDACR_SRC, 100 },    
