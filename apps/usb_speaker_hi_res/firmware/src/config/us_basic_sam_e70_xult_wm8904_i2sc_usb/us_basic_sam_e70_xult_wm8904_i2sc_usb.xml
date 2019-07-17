@@ -198,7 +198,7 @@
         </String>
         <String dnOrder="27" id="I2S1_CLOCK_FREQUENCY">
           <Values dnOrder="0">
-            <User dnOrder="0" value="24571428"/>
+            <User dnOrder="0" value="24600000"/>
           </Values>
         </String>
         <Integer dnOrder="28" id="ICM_CLOCK_FREQUENCY">
@@ -2468,12 +2468,12 @@
         </Boolean>
         <Integer dnOrder="478" id="PMC_CKGR_PLLAR_DIVA">
           <Values dnOrder="0">
-            <User dnOrder="0" value="3"/>
+            <User dnOrder="0" value="2"/>
           </Values>
         </Integer>
         <Integer dnOrder="479" id="PMC_CKGR_PLLAR_MULA">
           <Values dnOrder="0">
-            <User dnOrder="0" value="43"/>
+            <User dnOrder="0" value="41"/>
           </Values>
         </Integer>
         <Boolean dnOrder="480" id="PMC_CKGR_UCKR_UPLLEN">
@@ -2544,7 +2544,7 @@
             </Boolean>
           </Attributes>
           <Values dnOrder="1">
-            <User dnOrder="0" value="7"/>
+            <User dnOrder="0" value="10"/>
           </Values>
         </Integer>
         <Boolean dnOrder="491" id="PMC_PCR_GCLK1EN">
