@@ -24,10 +24,8 @@ DRV_I2S_INIT drvI2S${INDEX?string}InitData =
 <#if DRV_I2S_TX_RX_DMA == true>
     .dmaChannelTransmit = DRV_I2S_XMIT_DMA_CH_IDX${INDEX?string},
     .dmaChannelReceive  = DRV_I2S_RCV_DMA_CH_IDX${INDEX?string},
-    .i2sTransmitAddress = 0, //should be: (void *)&(SSC_REGS->SSC_THR),
-    .i2sReceiveAddress = 0,  //should be: (void *)&(SSC_REGS->SSC_RHR),
-    //.i2sTransmitAddress = (void *)//{.vars["//{DRV_I2S_PLIB?lower_case}"].TRANSMIT_DATA_REGISTER},
-    //.i2sReceiveAddress = (void *)//{.vars["//{DRV_I2S_PLIB?lower_case}"].RECEIVE_DATA_REGISTER},
+    .i2sTransmitAddress = (void *)${.vars["a_${DRV_I2S_PLIB?lower_case}"].TRANSMIT_DATA_REGISTER},
+    .i2sReceiveAddress = (void *)${.vars["a_${DRV_I2S_PLIB?lower_case}"].RECEIVE_DATA_REGISTER},
 <#else>
     .dmaChannelTransmit = SYS_DMA_CHANNEL_NONE,
     .dmaChannelReceive = SYS_DMA_CHANNEL_NONE,
