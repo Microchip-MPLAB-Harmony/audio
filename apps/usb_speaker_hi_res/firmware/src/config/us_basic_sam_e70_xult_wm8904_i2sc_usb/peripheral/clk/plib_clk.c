@@ -58,8 +58,8 @@ static void CLK_PLLAInitialize(void)
 {
     /* Configure and Enable PLLA */
     PMC_REGS->CKGR_PLLAR = CKGR_PLLAR_ONE_Msk | CKGR_PLLAR_PLLACOUNT(0x3f) |
-                              CKGR_PLLAR_MULA(41 - 1) |
-                              CKGR_PLLAR_DIVA(2);
+                              CKGR_PLLAR_MULA(43 - 1) |
+                              CKGR_PLLAR_DIVA(3);
 
     while ( (PMC_REGS->PMC_SR & PMC_SR_LOCKA_Msk) != PMC_SR_LOCKA_Msk);
 
@@ -135,7 +135,12 @@ static void CLK_GenericClockInitialize(void)
 
 
     /* Setup Generic/Peripheral Clock for I2S1 */
-    PMC_REGS->PMC_PCR =  PMC_PCR_PID(70) | PMC_PCR_CMD_Msk   | PMC_PCR_GCLKEN_Msk |  PMC_PCR_EN_Msk | PMC_PCR_GCLKCSS_PLLA_CLK | PMC_PCR_GCLKDIV(9);
+    PMC_REGS->PMC_PCR =  PMC_PCR_PID(70) | 
+            PMC_PCR_CMD_Msk   | 
+            PMC_PCR_GCLKEN_Msk |  
+            PMC_PCR_EN_Msk | 
+            PMC_PCR_GCLKCSS_PLLA_CLK | 
+            PMC_PCR_GCLKDIV(6);
 
     MATRIX_REGS->CCFG_PCCR |=  CCFG_PCCR_I2SC1CC_Msk ;
 
@@ -153,7 +158,7 @@ static void CLK_ProgrammableClockInitialize(void)
     PMC_REGS->PMC_SCDR = PMC_SCDR_PCK2_Msk;
 
     /* Configure selected programmable clock    */
-    PMC_REGS->PMC_PCK[2]= PMC_PCK_CSS_PLLA_CLK | PMC_PCK_PRES(9);
+    PMC_REGS->PMC_PCK[2]= PMC_PCK_CSS_PLLA_CLK | PMC_PCK_PRES(6);
 
     /* Enable selected programmable clock   */
     PMC_REGS->PMC_SCER =    PMC_SCER_PCK2_Msk;

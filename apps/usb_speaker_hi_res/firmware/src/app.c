@@ -59,12 +59,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 //DEBUG 
 #undef DEBUG_TONE_CODEC_TX
-//static volatile bool __attribute__((tcm,unused)) 
-static volatile bool 
-    testVal1 = false;
-//static volatile bool __attribute__((tcm,unused)) 
-static volatile bool 
-    testVal2 = false;
 
 bool queueFull;
 bool queueEmpty;
@@ -117,27 +111,6 @@ int32_t _Convert24to32bit(BITS24 val);
 void _Unpack24to32bitBuffer(uint8_t *src, uint8_t*dst, int numUsb24BitSamples);
 
 
-#if 0
-DRV_I2S_DATA16   __attribute__((aligned(32))) 
-    txBuffer[2][APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME];  //48 = 16lines*3
-
-//USB TX (Write) ping-pong buffer
-//DRV_I2S_DATA16    __attribute__((aligned(32)))
-//DRV_I2S_DATA16    __attribute__((aligned(32))) __attribute__((tcm))
-DRV_I2S_DATA16    __attribute__((aligned(32))) 
-    mTxBuffer[2][APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME]; //Stereo
-//uint16_t mTxBuffer[2][APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME];  //Mono
-
-//DEBUG_TONE_CODEC
-/* PCM16 samples for 1Khz Sine Wave at 48Khz Sample Rate */
-static const DRV_I2S_DATA16 
-    //__attribute__((aligned(32))) __attribute__((tcm)) audioSamples[48] =  {
-    __attribute__((aligned(32))) audioSamples[48] =  {
-//Sin Tone 1Khz @ 48Khz Sampling Rate - .5 Amplitude - 1 Cycle
-#include "sin_1Khz_p5_48Ksps.dat"
-};
-#endif //0
-
 //Button Timer
 DRV_HANDLE tmrHandle;
 
@@ -150,9 +123,8 @@ volatile bool usbInitialReadsComplete = false;
 // allocated with the COHERENT and aligned(16) attributes so that it is 
 // placed at the correct page boundary.
 //static __attribute__((aligned(32))) __attribute__((tcm))
-static APP_PLAYBACK_BUFFER_QUEUE 
-    __attribute__((aligned(32)))  __attribute__((tcm))
-    appPlaybackBuffer;
+static APP_PLAYBACK_BUFFER_QUEUE __attribute__((aligned(32)))
+           appPlaybackBuffer;
 
 //==============================================================================
 // Application Playback Buffer Queue
@@ -490,8 +462,6 @@ void APP_USBDeviceAudioEventHandler(USB_DEVICE_AUDIO_INDEX iAudio,
                 //NOTE:  Maximum buffer size is 48 samples (192 bytes)
                 if (appData.currentAudioControl == APP_USB_AUDIO_SAMPLING_FREQ_CONTROL_HP)
                 {
-                    //DRV_CODEC_SamplingRateSet(appData.codecClientWrite.handle, 
-                    //                          appData.sampleFreq);
                     if (appData.sampleFreq == SAMPLING_RATE_48000)
                     {
                         appData.codecClientWrite.bufferSize = 192;
@@ -640,8 +610,15 @@ void APP_Tasks()
                         appData.codecClientWrite.context);
 
             //Default Value -- Never changes for usb_speaker.
-            DRV_CODEC_SamplingRateSet(appData.codecClientWrite.handle, 
-                                      appData.sampleFreq);
+            if (DRV_CODEC_I2S_MASTER_MODE == true)
+            {
+                DRV_CODEC_SamplingRateSet(appData.codecClientWrite.handle, 
+                                          appData.sampleFreq);
+            }
+            else
+            {
+                //TODO:  Change I2SC1 slave sample rate
+            }
 
             appData.codecConfigured = true;
             appData.state = APP_STATE_USB_DEVICE_OPEN;
@@ -1165,8 +1142,16 @@ void APP_Tasks()
         case APP_SAMPLING_FREQUENCY_CHANGE:
         {
             //Changes sampling rate for Record and Playback (both stereo)
-            DRV_CODEC_SamplingRateSet(appData.codecClientWrite.handle, 
-                                              appData.sampleFreq);
+            if(DRV_CODEC_I2S_MASTER_MODE == true)
+            {
+                DRV_CODEC_SamplingRateSet(appData.codecClientWrite.handle, 
+                                          appData.sampleFreq);
+            }
+            else
+            {
+                //Slave Mode Codec I2S
+                //--LRCK set by MCU
+            }
             appData.state = APP_USB_INTERFACE_ALTERNATE_SETTING_RCVD;
         }
         //break;

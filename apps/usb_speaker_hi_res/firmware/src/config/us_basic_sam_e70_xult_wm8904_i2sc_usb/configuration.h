@@ -108,8 +108,8 @@ extern "C" {
 /* I2S Driver Instance 0 Configuration Options */
 #define DRV_I2S_INDEX_0                       0
 #define DRV_I2S_CLIENTS_NUMBER_IDX0           1
-#define DRV_I2S_QUEUE_DEPTH_COMBINED          32
-#define DRV_I2S_QUEUE_SIZE_IDX0               32
+#define DRV_I2S_QUEUE_DEPTH_COMBINED          64
+#define DRV_I2S_QUEUE_SIZE_IDX0               64
 #define DRV_I2S_DATA_LENGTH_IDX0              32
 #define DRV_I2S_INT_SRC_IDX0                  I2SC1_IRQn
 #define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_3
@@ -121,7 +121,7 @@ extern "C" {
 #define DRV_WM8904_CLIENTS_NUMBER                           1
 #define DRV_WM8904_INSTANCES_NUMBER                         1
 
-#define DRV_WM8904_MASTER_MODE                              false
+#define DRV_WM8904_MASTER_MODE                              false 
 #define DRV_WM8904_AUDIO_SAMPLING_RATE                      96000
 #define DRV_WM8904_VOLUME	                      	        200
 #define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    DATA_32_BIT_I2S
@@ -135,6 +135,8 @@ extern "C" {
 
 //Codec Driver Instance
 #define DRV_CODEC_INDEX_0                                   DRV_WM8904_INDEX_0
+//KEEP THIS - need this to know how to change frequency - clock tuning
+#define DRV_CODEC_I2S_MASTER_MODE                           DRV_WM8904_MASTER_MODE
 #define sysObjdrvCodec0                                     sysObj.drvwm8904Codec0
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_WM8904_BUFFER_HANDLE
 #define DRV_CODEC_BUFFER_HANDLE_INVALID                     DRV_WM8904_BUFFER_HANDLE_INVALID
@@ -232,7 +234,8 @@ extern "C" {
    write. Applicable to all instances of the
    function driver */
 //KEEP THIS - Not generated correctly on subsequent generations
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 64 
+//64 + 2
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66 
 
 
 /* No of Audio streaming interfaces */

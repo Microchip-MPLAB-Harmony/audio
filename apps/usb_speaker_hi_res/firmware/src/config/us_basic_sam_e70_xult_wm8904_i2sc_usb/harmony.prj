@@ -44,7 +44,7 @@
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/driver/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2s/src/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">39750697AD7D4948D7544FE0320EE387</GeneratedChecksum>
-          <UserChecksum dnOrder="5">39750697AD7D4948D7544FE0320EE387</UserChecksum>
+          <UserChecksum dnOrder="5">B095526165F0F3B314B3ED93FA6F5633</UserChecksum>
         </File>
         <File dnOrder="5">
           <Type dnOrder="0">SOURCE</Type>
@@ -108,7 +108,7 @@
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">02F966EB8D66274D16DAF390AEDBCFB1</GeneratedChecksum>
-          <UserChecksum dnOrder="5">02F966EB8D66274D16DAF390AEDBCFB1</UserChecksum>
+          <UserChecksum dnOrder="5">D1BE682A5A318C8A42BEAED30F1963D9</UserChecksum>
         </File>
         <File dnOrder="13">
           <Type dnOrder="0">SOURCE</Type>
@@ -139,8 +139,8 @@
           <Name dnOrder="1">plib_clk.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B7484BB1C39194E63D79A66D6BE3950F</GeneratedChecksum>
-          <UserChecksum dnOrder="5">B7484BB1C39194E63D79A66D6BE3950F</UserChecksum>
+          <GeneratedChecksum dnOrder="4">39A0BDB888A8C3577EEE96ADAB5C65B7</GeneratedChecksum>
+          <UserChecksum dnOrder="5">39A0BDB888A8C3577EEE96ADAB5C65B7</UserChecksum>
         </File>
         <File dnOrder="17">
           <Type dnOrder="0">SOURCE</Type>
@@ -156,7 +156,7 @@
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/peripheral/i2sc/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/i2sc/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">67986EF081F46B32064AC596D5458FE1</GeneratedChecksum>
-          <UserChecksum dnOrder="5">67986EF081F46B32064AC596D5458FE1</UserChecksum>
+          <UserChecksum dnOrder="5">ECA2D018B00419EF8F8A31BB314DFCD5</UserChecksum>
         </File>
         <File dnOrder="19">
           <Type dnOrder="0">SOURCE</Type>
@@ -283,8 +283,8 @@
           <Name dnOrder="1">usb_device_init_data.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">312A86E819A1AFDF6B21624A4E658065</GeneratedChecksum>
-          <UserChecksum dnOrder="5">61B2B0DDA7C5974169611B217F59F0ED</UserChecksum>
+          <GeneratedChecksum dnOrder="4">875EC8D3DA0FE0D613A7245C293A75D9</GeneratedChecksum>
+          <UserChecksum dnOrder="5">6AA694720F30F30368B315EDCC9C50E3</UserChecksum>
         </File>
         <File dnOrder="35">
           <Type dnOrder="0">SOURCE</Type>
@@ -411,8 +411,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">6B316368785E2C80FA77075EA9633706</GeneratedChecksum>
-          <UserChecksum dnOrder="5">7FD6B0A0C3087882A9A14413C4F550FD</UserChecksum>
+          <GeneratedChecksum dnOrder="4">97351013D0B922907AA833280D02152A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">2A3F7210646D03BCCC56D0F0465B5622</UserChecksum>
         </File>
         <File dnOrder="51">
           <Type dnOrder="0">HEADER</Type>
@@ -492,7 +492,7 @@
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/driver/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2s/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">54CDA3FF4F38C1A78A09C3B458F74B42</GeneratedChecksum>
-          <UserChecksum dnOrder="5">54CDA3FF4F38C1A78A09C3B458F74B42</UserChecksum>
+          <UserChecksum dnOrder="5">AC2BFBD64F635440B53E003C492ED619</UserChecksum>
         </File>
         <File dnOrder="61">
           <Type dnOrder="0">HEADER</Type>
@@ -500,7 +500,7 @@
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/driver/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2s/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">6F8E4E040A9881C87C0A38379D9F55DE</GeneratedChecksum>
-          <UserChecksum dnOrder="5">6F8E4E040A9881C87C0A38379D9F55DE</UserChecksum>
+          <UserChecksum dnOrder="5">0B4FE99CCFE8A3A4A7A76389D23EDD13</UserChecksum>
         </File>
         <File dnOrder="62">
           <Type dnOrder="0">HEADER</Type>
@@ -684,7 +684,7 @@
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/peripheral/i2sc/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/i2sc/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">AEE17AF908ECD76442A38AE1382B7EB5</GeneratedChecksum>
-          <UserChecksum dnOrder="5">AEE17AF908ECD76442A38AE1382B7EB5</UserChecksum>
+          <UserChecksum dnOrder="5">380257763B1D73127DC2F069261D0158</UserChecksum>
         </File>
         <File dnOrder="85">
           <Type dnOrder="0">HEADER</Type>

@@ -83,3 +83,87 @@ uint32_t I2SC1_LRCLK_Get(void)
  End of File
 */
 
+//KEEP THIS - Clock Tuning
+/*********************************************************************************
+Initialize PLLA (PLLACK)
+*********************************************************************************/
+bool I2SC1_PLLAClockSet(uint8_t div, uint8_t mul)
+{
+    if ( (div > 0) && (div < 257) &&
+         (mul > 0) && (mul < 64) )
+    {
+        /* Configure and Enable PLLA */
+        PMC_REGS->CKGR_PLLAR = CKGR_PLLAR_ONE_Msk | 
+                               CKGR_PLLAR_PLLACOUNT(0x3f) |
+                               CKGR_PLLAR_MULA(mul - 1) |
+                               CKGR_PLLAR_DIVA(div);
+
+        while ( (PMC_REGS->PMC_SR & PMC_SR_LOCKA_Msk) != PMC_SR_LOCKA_Msk);
+        return true;
+    }
+    else
+    {
+        //Do Nothing
+        return false;
+    }
+
+}
+
+/*********************************************************************************
+Set the Generic clock
+*********************************************************************************/
+bool I2SC1_GenericClockSet(uint8_t div2)
+{
+    //Range check
+    if ( (div2 > 0) && (div2 < 257))
+    {
+        /* Setup Generic/Peripheral Clock for I2S1 */
+        PMC_REGS->PMC_PCR =  PMC_PCR_PID(70) |    //See plib_clk.c 
+                             PMC_PCR_CMD_Msk   | 
+                             PMC_PCR_GCLKEN_Msk |  
+                             PMC_PCR_EN_Msk | 
+                             PMC_PCR_GCLKCSS_PLLA_CLK | 
+                             PMC_PCR_GCLKDIV(div2-1);
+
+        MATRIX_REGS->CCFG_PCCR |=  CCFG_PCCR_I2SC1CC_Msk ;
+        return true; 
+    }
+    else
+    {
+        return false; 
+    }
+}
+
+/*********************************************************************************
+Set the Programmable Clock Divider for PCKx
+*********************************************************************************/
+bool I2SC1_ProgrammableClockSet(uint8_t pClkNum, uint8_t div2)
+{
+
+    if ((pClkNum > 0) && (pClkNum < 8))
+    {
+        uint32_t bitPosDis     = _U_(8) + pClkNum;
+        uint32_t bitMaskPckDis = (_U_(0x1) << bitPosDis);                    
+        uint32_t bitPosEn      = _U_(8) + pClkNum;           
+        uint32_t bitMaskPckEn  = (_U_(0x1) << bitPosEn); 
+        uint32_t bitPosRdy     = _U_(8) + pClkNum;           
+        uint32_t bitMaskPckRdy = (_U_(0x1) << bitPosRdy); 
+
+        /* Disable selected programmable clock  */
+        PMC_REGS->PMC_SCDR = bitMaskPckDis;
+
+        /* Configure selected programmable clock    */
+        PMC_REGS->PMC_PCK[pClkNum]= PMC_PCK_CSS_PLLA_CLK | PMC_PCK_PRES(div2-1);
+
+        /* Enable selected programmable clock   */
+        PMC_REGS->PMC_SCER =    bitMaskPckEn;
+
+        /* Wait for clock to be ready   */
+        while( (PMC_REGS->PMC_SR & (bitMaskPckRdy) ) != (bitMaskPckRdy) );
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

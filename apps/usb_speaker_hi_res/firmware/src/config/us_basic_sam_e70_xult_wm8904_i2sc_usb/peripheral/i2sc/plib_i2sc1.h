@@ -42,6 +42,10 @@
 #ifndef PLIB_I2SC1_H
 #define PLIB_I2SC1_H
 
+//KEEP THIS - Clock Tuning Functions
+#include <stdint.h>
+#include <stdbool.h>
+
 #include "device.h"
 
 /* Provide C++ Compatibility */
@@ -56,6 +60,10 @@
 void I2SC1_Initialize ( void );
 
 uint32_t I2SC1_LRCLK_Get(void);
+//KEEP THIS - Clock Tuning Functions
+bool     I2SC1_GenericClockSet(uint8_t div2);
+bool     I2SC1_ProgrammableClockSet(uint8_t pClkNum, uint8_t div2);
+bool     I2SC1_PLLAClockSet(uint8_t div, uint8_t mul);
 
 /* Provide C++ Compatibility */
 #ifdef __cplusplus
