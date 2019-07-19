@@ -104,63 +104,63 @@ def instantiateComponent(genericcodecComponent):
     configName = Variables.get("__CONFIGURATION_NAME")  # e.g. "default"
     
     genericcodecSymHeaderFile = genericcodecComponent.createFileSymbol("DRV_GENERICCODEC_HEADER", None)
-    genericcodecSymHeaderFile.setSourcePath("drv_genericcodec.h")
+    genericcodecSymHeaderFile.setSourcePath("codec/Generic/drv_genericcodec.h")
     genericcodecSymHeaderFile.setOutputName("drv_genericcodec.h")
-    genericcodecSymHeaderFile.setDestPath("audio/driver/genericcodec/")
-    genericcodecSymHeaderFile.setProjectPath("config/" + configName + "/audio/driver/genericcodec/")
+    genericcodecSymHeaderFile.setDestPath("audio/driver/codec/genericcodec/")
+    genericcodecSymHeaderFile.setProjectPath("config/" + configName + "/audio/driver/codec/genericcodec/")
     genericcodecSymHeaderFile.setType("HEADER")
     genericcodecSymHeaderFile.setOverwrite(True)
     
     genericcodecSymSourceFile = genericcodecComponent.createFileSymbol("DRV_GENERICCODEC_SOURCE", None)
-    genericcodecSymSourceFile.setSourcePath("src/drv_genericcodec.c")
+    genericcodecSymSourceFile.setSourcePath("codec/Generic/src/drv_genericcodec.c")
     genericcodecSymSourceFile.setOutputName("drv_genericcodec.c")
-    genericcodecSymSourceFile.setDestPath("audio/driver/genericcodec/")
-    genericcodecSymSourceFile.setProjectPath("config/" + configName + "/audio/driver/genericcodec/")
+    genericcodecSymSourceFile.setDestPath("audio/driver/codec/genericcodec/")
+    genericcodecSymSourceFile.setProjectPath("config/" + configName + "/audio/driver/codec/genericcodec/")
     genericcodecSymSourceFile.setType("SOURCE")
     genericcodecSymSourceFile.setOverwrite(True)
 
     genericcodecSymHeaderLocalFile = genericcodecComponent.createFileSymbol("DRV_GENERICCODEC_HEADER_LOCAL", None)
-    genericcodecSymHeaderLocalFile.setSourcePath("src/drv_genericcodec_local.h")
+    genericcodecSymHeaderLocalFile.setSourcePath("codec/Generic/src/drv_genericcodec_local.h")
     genericcodecSymHeaderLocalFile.setOutputName("drv_genericcodec_local.h")
-    genericcodecSymHeaderLocalFile.setDestPath("audio/driver/genericcodec/")
-    genericcodecSymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/genericcodec/")
+    genericcodecSymHeaderLocalFile.setDestPath("audio/driver/codec/genericcodec/")
+    genericcodecSymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/codec/genericcodec/")
     genericcodecSymHeaderLocalFile.setType("SOURCE")
     genericcodecSymHeaderLocalFile.setOverwrite(True)
     
     genericcodecSymSystemDefIncFile = genericcodecComponent.createFileSymbol("DRV_GENERICCODEC_SYSTEM_DEF", None)
     genericcodecSymSystemDefIncFile.setType("STRING")
     genericcodecSymSystemDefIncFile.setOutputName("core.LIST_SYSTEM_DEFINITIONS_H_INCLUDES")
-    genericcodecSymSystemDefIncFile.setSourcePath("templates/system/system_definitions.h.ftl")
+    genericcodecSymSystemDefIncFile.setSourcePath("codec/Generic/templates/system/system_definitions.h.ftl")
     genericcodecSymSystemDefIncFile.setMarkup(True)
     
     genericcodecSymSystemDefObjFile = genericcodecComponent.createFileSymbol("DRV_GENERICCODEC_SYSTEM_DEF_OBJECT", None)
     genericcodecSymSystemDefObjFile.setType("STRING")
     genericcodecSymSystemDefObjFile.setOutputName("core.LIST_SYSTEM_DEFINITIONS_H_OBJECTS")
-    genericcodecSymSystemDefObjFile.setSourcePath("templates/system/system_definitions_objects.h.ftl")
+    genericcodecSymSystemDefObjFile.setSourcePath("codec/Generic/templates/system/system_definitions_objects.h.ftl")
     genericcodecSymSystemDefObjFile.setMarkup(True)
 
     genericcodecSymSystemConfigFile = genericcodecComponent.createFileSymbol("DRV_GENERICCODEC_SYSTEM_CONFIG", None)
     genericcodecSymSystemConfigFile.setType("STRING")
     genericcodecSymSystemConfigFile.setOutputName("core.LIST_SYSTEM_CONFIG_H_DRIVER_CONFIGURATION")
-    genericcodecSymSystemConfigFile.setSourcePath("templates/system/system_config.h.ftl")
+    genericcodecSymSystemConfigFile.setSourcePath("codec/Generic/templates/system/system_config.h.ftl")
     genericcodecSymSystemConfigFile.setMarkup(True)
 
     genericcodecSymSystemInitDataFile = genericcodecComponent.createFileSymbol("DRV_GENERICCODEC_INIT_DATA", None)
     genericcodecSymSystemInitDataFile.setType("STRING")
     genericcodecSymSystemInitDataFile.setOutputName("core.LIST_SYSTEM_INIT_C_DRIVER_INITIALIZATION_DATA")
-    genericcodecSymSystemInitDataFile.setSourcePath("templates/system/system_initialize_data.c.ftl")
+    genericcodecSymSystemInitDataFile.setSourcePath("codec/Generic/templates/system/system_initialize_data.c.ftl")
     genericcodecSymSystemInitDataFile.setMarkup(True)
 
     genericcodecSymSystemInitFile = genericcodecComponent.createFileSymbol("DRV_GENERICCODEC_SYS_INIT", None)
     genericcodecSymSystemInitFile.setType("STRING")
     genericcodecSymSystemInitFile.setOutputName("core.LIST_SYSTEM_INIT_C_SYS_INITIALIZE_DRIVERS")  
-    genericcodecSymSystemInitFile.setSourcePath("templates/system/system_initialize.c.ftl")
+    genericcodecSymSystemInitFile.setSourcePath("codec/Generic/templates/system/system_initialize.c.ftl")
     genericcodecSymSystemInitFile.setMarkup(True)
 
     genericcodecSystemTaskFile = genericcodecComponent.createFileSymbol("DRV_GENERICCODEC_SYSTEM_TASKS_C", None)
     genericcodecSystemTaskFile.setType("STRING")
     genericcodecSystemTaskFile.setOutputName("core.LIST_SYSTEM_TASKS_C_CALL_DRIVER_TASKS")
-    genericcodecSystemTaskFile.setSourcePath("templates/system/system_tasks.c.ftl")
+    genericcodecSystemTaskFile.setSourcePath("codec/Generic/templates/system/system_tasks.c.ftl")
     genericcodecSystemTaskFile.setMarkup(True)
 
 # this callback occurs when user connects I2C or I2S driver to GENERICCODEC driver block in Project Graph    
@@ -168,7 +168,9 @@ def onDependencyConnected(info):
     global i2sPlibId
     if info["dependencyID"] == "DRV_I2S":
         plibUsed = info["localComponent"].getSymbolByID("DRV_GENERICCODEC_I2S")
+        i2sOri2cId = info["remoteComponent"].getID().upper()
+        i2sOri2cId = i2sOri2cId.replace("A_","")    # I2S driver in audio repo have an "a_" prefix
     elif info["dependencyID"] == "DRV_I2C":
         plibUsed = info["localComponent"].getSymbolByID("DRV_GENERICCODEC_I2C")
-    i2sOri2cId = info["remoteComponent"].getID().upper()
+        i2sOri2cId = info["remoteComponent"].getID().upper()
     plibUsed.setValue(i2sOri2cId, 1)

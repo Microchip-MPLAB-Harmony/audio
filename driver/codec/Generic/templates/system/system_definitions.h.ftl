@@ -1,1 +1,1 @@
-#include "audio/driver/genericcodec/drv_genericcodec.h"
+#include "audio/driver/codec/genericcodec/drv_genericcodec.h"

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Module name="peripheral" id="F8F2C76F-3C20-D4ED-5956-28085B847140" version="1.0.0">			       
+    <ConfigRoot path="config/module.py"/>
+</Module>

@@ -150,63 +150,63 @@ def instantiateComponent(wm8904Component):
     configName = Variables.get("__CONFIGURATION_NAME")  # e.g. "default"
     
     wm8904SymHeaderFile = wm8904Component.createFileSymbol("DRV_WM8904_HEADER", None)
-    wm8904SymHeaderFile.setSourcePath("drv_wm8904.h")
+    wm8904SymHeaderFile.setSourcePath("codec/WM8904/drv_wm8904.h")
     wm8904SymHeaderFile.setOutputName("drv_wm8904.h")
-    wm8904SymHeaderFile.setDestPath("audio/driver/wm8904/")
-    wm8904SymHeaderFile.setProjectPath("config/" + configName + "/audio/driver/wm8904/")
+    wm8904SymHeaderFile.setDestPath("audio/driver/codec/wm8904/")
+    wm8904SymHeaderFile.setProjectPath("config/" + configName + "/audio/driver/codec/wm8904/")
     wm8904SymHeaderFile.setType("HEADER")
     wm8904SymHeaderFile.setOverwrite(True)
     
     wm8904SymSourceFile = wm8904Component.createFileSymbol("DRV_WM8904_SOURCE", None)
-    wm8904SymSourceFile.setSourcePath("src/drv_wm8904.c")
+    wm8904SymSourceFile.setSourcePath("codec/WM8904/src/drv_wm8904.c")
     wm8904SymSourceFile.setOutputName("drv_wm8904.c")
-    wm8904SymSourceFile.setDestPath("audio/driver/wm8904/")
-    wm8904SymSourceFile.setProjectPath("config/" + configName + "/audio/driver/wm8904/")
+    wm8904SymSourceFile.setDestPath("audio/driver/codec/wm8904/")
+    wm8904SymSourceFile.setProjectPath("config/" + configName + "/audio/driver/codec/wm8904/")
     wm8904SymSourceFile.setType("SOURCE")
     wm8904SymSourceFile.setOverwrite(True)
 
     wm8904SymHeaderLocalFile = wm8904Component.createFileSymbol("DRV_WM8904_HEADER_LOCAL", None)
-    wm8904SymHeaderLocalFile.setSourcePath("src/drv_wm8904_local.h")
+    wm8904SymHeaderLocalFile.setSourcePath("codec/WM8904/src/drv_wm8904_local.h")
     wm8904SymHeaderLocalFile.setOutputName("drv_wm8904_local.h")
-    wm8904SymHeaderLocalFile.setDestPath("audio/driver/wm8904/")
-    wm8904SymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/wm8904/")
+    wm8904SymHeaderLocalFile.setDestPath("audio/driver/codec/wm8904/")
+    wm8904SymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/codec/wm8904/")
     wm8904SymHeaderLocalFile.setType("SOURCE")
     wm8904SymHeaderLocalFile.setOverwrite(True)
     
     wm8904SymSystemDefIncFile = wm8904Component.createFileSymbol("DRV_WM8904_SYSTEM_DEF", None)
     wm8904SymSystemDefIncFile.setType("STRING")
     wm8904SymSystemDefIncFile.setOutputName("core.LIST_SYSTEM_DEFINITIONS_H_INCLUDES")
-    wm8904SymSystemDefIncFile.setSourcePath("templates/system/system_definitions.h.ftl")
+    wm8904SymSystemDefIncFile.setSourcePath("codec/WM8904/templates/system/system_definitions.h.ftl")
     wm8904SymSystemDefIncFile.setMarkup(True)
     
     wm8904SymSystemDefObjFile = wm8904Component.createFileSymbol("DRV_WM8904_SYSTEM_DEF_OBJECT", None)
     wm8904SymSystemDefObjFile.setType("STRING")
     wm8904SymSystemDefObjFile.setOutputName("core.LIST_SYSTEM_DEFINITIONS_H_OBJECTS")
-    wm8904SymSystemDefObjFile.setSourcePath("templates/system/system_definitions_objects.h.ftl")
+    wm8904SymSystemDefObjFile.setSourcePath("codec/WM8904/templates/system/system_definitions_objects.h.ftl")
     wm8904SymSystemDefObjFile.setMarkup(True)
 
     wm8904SymSystemConfigFile = wm8904Component.createFileSymbol("DRV_WM8904_SYSTEM_CONFIG", None)
     wm8904SymSystemConfigFile.setType("STRING")
     wm8904SymSystemConfigFile.setOutputName("core.LIST_SYSTEM_CONFIG_H_DRIVER_CONFIGURATION")
-    wm8904SymSystemConfigFile.setSourcePath("templates/system/system_config.h.ftl")
+    wm8904SymSystemConfigFile.setSourcePath("codec/WM8904/templates/system/system_config.h.ftl")
     wm8904SymSystemConfigFile.setMarkup(True)
 
     wm8904SymSystemInitDataFile = wm8904Component.createFileSymbol("DRV_WM8904_INIT_DATA", None)
     wm8904SymSystemInitDataFile.setType("STRING")
     wm8904SymSystemInitDataFile.setOutputName("core.LIST_SYSTEM_INIT_C_DRIVER_INITIALIZATION_DATA")
-    wm8904SymSystemInitDataFile.setSourcePath("templates/system/system_initialize_data.c.ftl")
+    wm8904SymSystemInitDataFile.setSourcePath("codec/WM8904/templates/system/system_initialize_data.c.ftl")
     wm8904SymSystemInitDataFile.setMarkup(True)
 
     wm8904SymSystemInitFile = wm8904Component.createFileSymbol("DRV_WM8904_SYS_INIT", None)
     wm8904SymSystemInitFile.setType("STRING")
     wm8904SymSystemInitFile.setOutputName("core.LIST_SYSTEM_INIT_C_SYS_INITIALIZE_DRIVERS")  
-    wm8904SymSystemInitFile.setSourcePath("templates/system/system_initialize.c.ftl")
+    wm8904SymSystemInitFile.setSourcePath("codec/WM8904/templates/system/system_initialize.c.ftl")
     wm8904SymSystemInitFile.setMarkup(True)
 
     wm8904SystemTaskFile = wm8904Component.createFileSymbol("DRV_WM8904_SYSTEM_TASKS_C", None)
     wm8904SystemTaskFile.setType("STRING")
     wm8904SystemTaskFile.setOutputName("core.LIST_SYSTEM_TASKS_C_CALL_DRIVER_TASKS")
-    wm8904SystemTaskFile.setSourcePath("templates/system/system_tasks.c.ftl")
+    wm8904SystemTaskFile.setSourcePath("codec/WM8904/templates/system/system_tasks.c.ftl")
     wm8904SystemTaskFile.setMarkup(True)
 
 # this callback occurs when user connects I2C or I2S driver to WM8904 driver block in Project Graph    
@@ -214,7 +214,9 @@ def onDependencyConnected(info):
     global i2sPlibId
     if info["dependencyID"] == "DRV_I2S":
         plibUsed = info["localComponent"].getSymbolByID("DRV_WM8904_I2S")
+        i2sOri2cId = info["remoteComponent"].getID().upper()
+        i2sOri2cId = i2sOri2cId.replace("A_","")    # I2S driver in audio repo have an "a_" prefix
     elif info["dependencyID"] == "DRV_I2C":
         plibUsed = info["localComponent"].getSymbolByID("DRV_WM8904_I2C")
-    i2sOri2cId = info["remoteComponent"].getID().upper()
+        i2sOri2cId = info["remoteComponent"].getID().upper()
     plibUsed.setValue(i2sOri2cId, 1)

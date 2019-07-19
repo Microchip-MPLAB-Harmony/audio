@@ -171,63 +171,63 @@ def instantiateComponent(ak4954Component):
     configName = Variables.get("__CONFIGURATION_NAME")  # e.g. "default"
     
     ak4954SymHeaderFile = ak4954Component.createFileSymbol("DRV_AK4954_HEADER", None)
-    ak4954SymHeaderFile.setSourcePath("drv_ak4954.h")
+    ak4954SymHeaderFile.setSourcePath("codec/AK4954/drv_ak4954.h")
     ak4954SymHeaderFile.setOutputName("drv_ak4954.h")
-    ak4954SymHeaderFile.setDestPath("audio/driver/ak4954/")
-    ak4954SymHeaderFile.setProjectPath("config/" + configName + "/audio/driver/ak4954/")
+    ak4954SymHeaderFile.setDestPath("audio/driver/codec/ak4954/")
+    ak4954SymHeaderFile.setProjectPath("config/" + configName + "/audio/driver/codec/ak4954/")
     ak4954SymHeaderFile.setType("HEADER")
     ak4954SymHeaderFile.setOverwrite(True)
     
     ak4954SymSourceFile = ak4954Component.createFileSymbol("DRV_AK4954_SOURCE", None)
-    ak4954SymSourceFile.setSourcePath("src/drv_ak4954.c")
+    ak4954SymSourceFile.setSourcePath("codec/AK4954/src/drv_ak4954.c")
     ak4954SymSourceFile.setOutputName("drv_ak4954.c")
-    ak4954SymSourceFile.setDestPath("audio/driver/ak4954/")
-    ak4954SymSourceFile.setProjectPath("config/" + configName + "/audio/driver/ak4954/")
+    ak4954SymSourceFile.setDestPath("audio/driver/codec/ak4954/")
+    ak4954SymSourceFile.setProjectPath("config/" + configName + "/audio/driver/codec/ak4954/")
     ak4954SymSourceFile.setType("SOURCE")
     ak4954SymSourceFile.setOverwrite(True)
 
     ak4954SymHeaderLocalFile = ak4954Component.createFileSymbol("DRV_AK4954_HEADER_LOCAL", None)
-    ak4954SymHeaderLocalFile.setSourcePath("src/drv_ak4954_local.h")
+    ak4954SymHeaderLocalFile.setSourcePath("codec/AK4954/src/drv_ak4954_local.h")
     ak4954SymHeaderLocalFile.setOutputName("drv_ak4954_local.h")
-    ak4954SymHeaderLocalFile.setDestPath("audio/driver/ak4954/")
-    ak4954SymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/ak4954/")
+    ak4954SymHeaderLocalFile.setDestPath("audio/driver/codec/ak4954/")
+    ak4954SymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/codec/ak4954/")
     ak4954SymHeaderLocalFile.setType("SOURCE")
     ak4954SymHeaderLocalFile.setOverwrite(True)
     
     ak4954SymSystemDefIncFile = ak4954Component.createFileSymbol("DRV_AK4954_SYSTEM_DEF", None)
     ak4954SymSystemDefIncFile.setType("STRING")
     ak4954SymSystemDefIncFile.setOutputName("core.LIST_SYSTEM_DEFINITIONS_H_INCLUDES")
-    ak4954SymSystemDefIncFile.setSourcePath("templates/system/system_definitions.h.ftl")
+    ak4954SymSystemDefIncFile.setSourcePath("codec/AK4954/templates/system/system_definitions.h.ftl")
     ak4954SymSystemDefIncFile.setMarkup(True)
     
     ak4954SymSystemDefObjFile = ak4954Component.createFileSymbol("DRV_AK4954_SYSTEM_DEF_OBJECT", None)
     ak4954SymSystemDefObjFile.setType("STRING")
     ak4954SymSystemDefObjFile.setOutputName("core.LIST_SYSTEM_DEFINITIONS_H_OBJECTS")
-    ak4954SymSystemDefObjFile.setSourcePath("templates/system/system_definitions_objects.h.ftl")
+    ak4954SymSystemDefObjFile.setSourcePath("codec/AK4954/templates/system/system_definitions_objects.h.ftl")
     ak4954SymSystemDefObjFile.setMarkup(True)
 
     ak4954SymSystemConfigFile = ak4954Component.createFileSymbol("DRV_AK4954_SYSTEM_CONFIG", None)
     ak4954SymSystemConfigFile.setType("STRING")
     ak4954SymSystemConfigFile.setOutputName("core.LIST_SYSTEM_CONFIG_H_DRIVER_CONFIGURATION")
-    ak4954SymSystemConfigFile.setSourcePath("templates/system/system_config.h.ftl")
+    ak4954SymSystemConfigFile.setSourcePath("codec/AK4954/templates/system/system_config.h.ftl")
     ak4954SymSystemConfigFile.setMarkup(True)
 
     ak4954SymSystemInitDataFile = ak4954Component.createFileSymbol("DRV_AK4954_INIT_DATA", None)
     ak4954SymSystemInitDataFile.setType("STRING")
     ak4954SymSystemInitDataFile.setOutputName("core.LIST_SYSTEM_INIT_C_DRIVER_INITIALIZATION_DATA")
-    ak4954SymSystemInitDataFile.setSourcePath("templates/system/system_initialize_data.c.ftl")
+    ak4954SymSystemInitDataFile.setSourcePath("codec/AK4954/templates/system/system_initialize_data.c.ftl")
     ak4954SymSystemInitDataFile.setMarkup(True)
 
     ak4954SymSystemInitFile = ak4954Component.createFileSymbol("DRV_AK4954_SYS_INIT", None)
     ak4954SymSystemInitFile.setType("STRING")
     ak4954SymSystemInitFile.setOutputName("core.LIST_SYSTEM_INIT_C_SYS_INITIALIZE_DRIVERS")  
-    ak4954SymSystemInitFile.setSourcePath("templates/system/system_initialize.c.ftl")
+    ak4954SymSystemInitFile.setSourcePath("codec/AK4954/templates/system/system_initialize.c.ftl")
     ak4954SymSystemInitFile.setMarkup(True)
 
     ak4954SystemTaskFile = ak4954Component.createFileSymbol("DRV_AK4954_SYSTEM_TASKS_C", None)
     ak4954SystemTaskFile.setType("STRING")
     ak4954SystemTaskFile.setOutputName("core.LIST_SYSTEM_TASKS_C_CALL_DRIVER_TASKS")
-    ak4954SystemTaskFile.setSourcePath("templates/system/system_tasks.c.ftl")
+    ak4954SystemTaskFile.setSourcePath("codec/AK4954/templates/system/system_tasks.c.ftl")
     ak4954SystemTaskFile.setMarkup(True)
 
 # this callback occurs when user connects I2C or I2S driver to AK4954 driver block in Project Graph    
@@ -235,7 +235,9 @@ def onDependencyConnected(info):
     global i2sPlibId
     if info["dependencyID"] == "DRV_I2S":
         plibUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2S")
+        i2sOri2cId = info["remoteComponent"].getID().upper()
+        i2sOri2cId = i2sOri2cId.replace("A_","")    # I2S driver in audio repo have an "a_" prefix
     elif info["dependencyID"] == "DRV_I2C":
         plibUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2C")
-    i2sOri2cId = info["remoteComponent"].getID().upper()
+        i2sOri2cId = info["remoteComponent"].getID().upper()   
     plibUsed.setValue(i2sOri2cId, 1)
