@@ -1373,8 +1373,6 @@ void DRV_I2S_ReadNextLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW
     uint16_t currDescrip, uint16_t nextDescrip, uint16_t nextNextDescrip, uint8_t* buffer, uint32_t bufferSize);
 </#if>
 
-#include "driver/i2s/src/drv_i2s_local.h"
-
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
 }
