@@ -48,8 +48,8 @@
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-#include "driver/i2s/drv_i2s_definitions.h"
-#include "driver/i2s/drv_i2s.h"
+#include "audio/driver/i2s/drv_i2s_definitions.h"
+#include "audio/driver/i2s/drv_i2s.h"
 #include "osal/osal.h"
 
 // *****************************************************************************

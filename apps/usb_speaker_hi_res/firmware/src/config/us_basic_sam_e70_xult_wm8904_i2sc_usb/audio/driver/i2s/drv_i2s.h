@@ -1358,8 +1358,6 @@ bool DRV_I2S_ReadBuffer( const DRV_HANDLE handle, void * buffer, const size_t si
 bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate);
 
 
-#include "audio/driver/i2s/src/drv_i2s_local.h"
-
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
 }

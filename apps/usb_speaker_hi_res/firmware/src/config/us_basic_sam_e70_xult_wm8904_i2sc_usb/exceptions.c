@@ -120,6 +120,12 @@ void HardFault_Handler_C(uint32_t * hardfault_args, unsigned int lr_value)
    __builtin_software_breakpoint();
   #endif
 
+   //KEEP THIS - insignificant hardfaults occur as USB Stream starts up
+   static int hardFaultCnt = 0;
+   hardFaultCnt++;
+   printf("Hardware Fault - %d",hardFaultCnt);
+   return;
+
    while (1)
    {
        // Do Nothing

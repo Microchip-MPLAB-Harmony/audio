@@ -155,10 +155,8 @@ DRV_I2S_INIT drvI2S0InitData =
 
     .dmaChannelTransmit = DRV_I2S_XMIT_DMA_CH_IDX0,
     .dmaChannelReceive  = DRV_I2S_RCV_DMA_CH_IDX0,
-    //KEEP THIS
     .i2sTransmitAddress = (void *)&(I2SC1_REGS->I2SC_THR),
     .i2sReceiveAddress = (void *)&(I2SC1_REGS->I2SC_RHR),
-
     .interruptDMA = XDMAC_IRQn,
 
     .dmaDataLength = DRV_I2S_DATA_LENGTH_IDX0,
@@ -225,7 +223,7 @@ const DRV_USBHSV1_INIT drvUSBInit =
     /* Identifies peripheral (PLIB-level) ID */
     .usbID = USBHS_REGS,
 	
-    /* Function to check for VBus */
+    /* Function to check for VBUS */
     .vbusComparator = DRV_USBHSV1_VBUS_Comparator
 };
 
@@ -257,6 +255,61 @@ const SYS_TIME_INIT sysTimeInitData =
 
 // </editor-fold>
 
+const SYS_DEBUG_INIT debugInit =
+{
+    .moduleInit = {0},
+    .errorLevel = SYS_DEBUG_GLOBAL_ERROR_LEVEL,
+    .consoleIndex = 0,
+};
+
+
+// <editor-fold defaultstate="collapsed" desc="SYS_CONSOLE Instance 0 Initialization Data">
+
+static QElement sysConsole0UARTRdQueueElements[SYS_CONSOLE_UART_RD_QUEUE_DEPTH_IDX0];
+static QElement sysConsole0UARTWrQueueElements[SYS_CONSOLE_UART_WR_QUEUE_DEPTH_IDX0];
+
+/* Declared in console device implementation (sys_console_uart.c) */
+extern const SYS_CONSOLE_DEV_DESC sysConsoleUARTDevDesc;
+
+const SYS_CONSOLE_UART_PLIB_INTERFACE sysConsole0UARTPlibAPI =
+{
+    .read = (SYS_CONSOLE_UART_PLIB_READ)USART1_Read,
+    .write = (SYS_CONSOLE_UART_PLIB_WRITE)USART1_Write,
+    .readCallbackRegister = (SYS_CONSOLE_UART_PLIB_REGISTER_CALLBACK_READ)USART1_ReadCallbackRegister,
+    .writeCallbackRegister = (SYS_CONSOLE_UART_PLIB_REGISTER_CALLBACK_WRITE)USART1_WriteCallbackRegister,
+    .errorGet = (SYS_CONSOLE_UART_PLIB_ERROR_GET)USART1_ErrorGet,
+};
+
+
+const SYS_CONSOLE_UART_INTERRUPT_SOURCES sysConsole0UARTInterruptSources =
+{
+    /* Peripheral has single interrupt vector */
+    .isSingleIntSrc                        = true,
+
+    /* Peripheral interrupt line */
+    .intSources.usartInterrupt             = USART1_IRQn,
+};
+
+const SYS_CONSOLE_UART_INIT_DATA sysConsole0UARTInitData =
+{
+    .uartPLIB = &sysConsole0UARTPlibAPI,
+    .readQueueElementsArr = sysConsole0UARTRdQueueElements,
+    .writeQueueElementsArr = sysConsole0UARTWrQueueElements,
+    .readQueueDepth = SYS_CONSOLE_UART_RD_QUEUE_DEPTH_IDX0,
+    .writeQueueDepth = SYS_CONSOLE_UART_WR_QUEUE_DEPTH_IDX0,
+    .interruptSources = &sysConsole0UARTInterruptSources,
+};
+
+const SYS_CONSOLE_INIT sysConsole0Init =
+{
+    .deviceInitData = (const void*)&sysConsole0UARTInitData,
+    .consDevDesc = &sysConsoleUARTDevDesc,
+    .deviceIndex = 0,
+};
+
+// </editor-fold>
+
+
 
 
 /*******************************************************************************
@@ -283,6 +336,8 @@ void SYS_Initialize ( void* data )
 
 	WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk; 		// Disable WDT 
 
+  
+
  
     TC0_CH0_TimerInitialize(); 
      
@@ -303,6 +358,11 @@ void SYS_Initialize ( void* data )
 
 
     sysObj.sysTime = SYS_TIME_Initialize(SYS_TIME_INDEX_0, (SYS_MODULE_INIT *)&sysTimeInitData);
+    sysObj.sysDebug = SYS_DEBUG_Initialize(SYS_DEBUG_INDEX_0, (SYS_MODULE_INIT*)&debugInit);
+
+
+    sysObj.sysConsole0 = SYS_CONSOLE_Initialize(SYS_CONSOLE_INDEX_0, (SYS_MODULE_INIT *)&sysConsole0Init);
+
 
 
 	 /* Initialize the USB device layer */

@@ -89,6 +89,26 @@ extern "C" {
 #define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
 
 
+#define SYS_DEBUG_ENABLE
+#define SYS_DEBUG_GLOBAL_ERROR_LEVEL       SYS_ERROR_DEBUG
+#define SYS_DEBUG_PRINT_BUFFER_SIZE        4096
+#define SYS_DEBUG_BUFFER_DMA_READY
+#define SYS_DEBUG_USE_CONSOLE
+
+
+/* Console System Service Configuration Options */
+#define SYS_CONSOLE_DEVICE_MAX_INSTANCES   1
+#define SYS_CONSOLE_UART_MAX_INSTANCES     1
+
+
+/* RX queue size has one additional element for the empty spot needed in circular queue */
+#define SYS_CONSOLE_UART_RD_QUEUE_DEPTH_IDX0    129
+
+/* TX queue size has one additional element for the empty spot needed in circular queue */
+#define SYS_CONSOLE_UART_WR_QUEUE_DEPTH_IDX0    129
+#define SYS_CONSOLE_BUFFER_DMA_READY
+
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -108,13 +128,16 @@ extern "C" {
 #define DRV_I2S_QUEUE_SIZE_IDX0               64
 #define DRV_I2S_DATA_LENGTH_IDX0              32
 #define DRV_I2S_INT_SRC_IDX0                  I2SC1_IRQn
-#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_0
-#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_3
+#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_3
+#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
 
 
 /* I2C Driver Common Configuration Options */
 #define DRV_I2C_INSTANCES_NUMBER              1
 
+
+/* I2S Driver Common Configuration Options */
+#define DRV_I2S_INSTANCES_NUMBER              1
 
 /*** Codec Driver Configuration ***/
 
@@ -186,9 +209,6 @@ extern "C" {
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 
 
-/* I2S Driver Common Configuration Options */
-#define DRV_I2S_INSTANCES_NUMBER              1
-
 
 
 // *****************************************************************************
@@ -226,6 +246,9 @@ extern "C" {
 	
 /* Disable Host Support */
 #define DRV_USBHSV1_HOST_SUPPORT                            false
+
+/* Alignment for buffers that are submitted to USB Driver*/ 
+#define USB_ALIGN  CACHE_ALIGN
 
 /* Maximum instances of Audio function driver */
 #define USB_DEVICE_AUDIO_INSTANCES_NUMBER    1 
