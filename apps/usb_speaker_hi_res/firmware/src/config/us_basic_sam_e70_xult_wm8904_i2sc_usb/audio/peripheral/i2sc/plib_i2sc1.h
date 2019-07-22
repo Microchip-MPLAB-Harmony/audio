@@ -1,20 +1,21 @@
 /*******************************************************************************
-  Console System Service Local Data Structures
+  I2SC PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    sys_console_local.h
+    plib_i2sc1.h
 
   Summary:
-    Console System Service local declarations and definitions.
+    I2SC1 PLIB Header File
 
   Description:
-    This file contains the Console System Service local declarations and definitions.
+    This file has the prototypes of all the interfaces provided for one
+    particular instance of the Inter-IC Sound Controller (I2SC) peripheral.
+
 *******************************************************************************/
 
-//DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -37,46 +38,33 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
-//DOM-IGNORE-END
 
+#ifndef PLIB_I2SC1_H
+#define PLIB_I2SC1_H
 
-#ifndef SYS_CONSOLE_LOCAL_H
-#define SYS_CONSOLE_LOCAL_H
+#include "device.h"
 
+/* Provide C++ Compatibility */
+#ifdef __cplusplus  
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: File includes
-// *****************************************************************************
-// *****************************************************************************
-
-#include <stdint.h>
-#include <stdbool.h>
-#include <stddef.h>
-
-// DOM-IGNORE-BEGIN
-#ifdef __cplusplus  // Provide C++ Compatibility
-
-extern "C" {
+    extern "C" {
 
 #endif
-// DOM-IGNORE-END
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: Data Type Definitions
-// *****************************************************************************
-// *****************************************************************************
+/****************************** I2SC1 Interface *********************************/
 
-typedef uintptr_t CONSOLE_DEVICE_INDEX;
+void I2SC1_Initialize ( void );
 
-//DOM-IGNORE-BEGIN
+uint32_t I2SC1_LRCLK_Get(void);
+
+/* Provide C++ Compatibility */
 #ifdef __cplusplus
-}
-#endif
-//DOM-IGNORE-END
 
-#endif //#ifndef SYS_CONSOLE_LOCAL_H
+    }
+    
+#endif
+
+#endif // PLIB_I2SC1_H
 
 /*******************************************************************************
  End of File

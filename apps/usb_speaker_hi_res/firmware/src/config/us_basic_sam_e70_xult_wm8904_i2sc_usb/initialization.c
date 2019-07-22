@@ -135,11 +135,7 @@ const DRV_I2C_INIT drvI2C0InitData =
 /* I2S PLIB Interface Initialization */
 DRV_I2S_PLIB_INTERFACE drvI2S0PlibAPI =
 {
-    //KEEP THIS - Clock Tuning Functions
-    .I2S_LRCLK_Get      = (DRV_I2S_LRCLK_GET)I2SC1_LRCLK_Get,
-    .I2S_GCLK_SET       = (DRV_I2S_GCLK_SET)I2SC1_GenericClockSet,
-    .I2S_PCLK_SET       = (DRV_I2S_PCLK_SET)I2SC1_ProgrammableClockSet,
-    .I2S_PLLA_CLOCK_SET = (DRV_I2S_PLLA_CLOCK_SET)I2SC1_PLLAClockSet,
+    .I2S_LRCLK_Get = (DRV_I2S_LRCLK_GET)I2SC1_LRCLK_Get,  
 };
 
 /* I2S Driver Initialization Data */
@@ -159,6 +155,7 @@ DRV_I2S_INIT drvI2S0InitData =
 
     .dmaChannelTransmit = DRV_I2S_XMIT_DMA_CH_IDX0,
     .dmaChannelReceive  = DRV_I2S_RCV_DMA_CH_IDX0,
+    //KEEP THIS
     .i2sTransmitAddress = (void *)&(I2SC1_REGS->I2SC_THR),
     .i2sReceiveAddress = (void *)&(I2SC1_REGS->I2SC_RHR),
 
@@ -280,7 +277,6 @@ void SYS_Initialize ( void* data )
     CLK_Initialize();
 	PIO_Initialize();
 
-    I2SC1_Initialize();
     XDMAC_Initialize();
 
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
@@ -294,6 +290,7 @@ void SYS_Initialize ( void* data )
 	BSP_Initialize();
 	TWIHS0_Initialize();
 
+    I2SC1_Initialize();
 	USART1_Initialize();
 
 

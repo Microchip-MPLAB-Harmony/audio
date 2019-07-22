@@ -1,20 +1,21 @@
 /*******************************************************************************
-  Board Support Package Implementation
+  I2SC PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    bsp.c
+    plib_i2sc1.c
 
   Summary:
-    Board Support Package implementation.
+    I2SC1 Source File
 
   Description:
-    This file contains routines that implement the board support package
+    This file has the implementation of all the interfaces provided for one
+    particular instance of the Inter-IC Sound Controller (I2SC) peripheral.
+
 *******************************************************************************/
 
-// DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -37,49 +38,48 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
-// DOM-IGNORE-END
+
+#include "plib_i2sc1.h"
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Included Files
+// Section: I2SC1 Implementation
 // *****************************************************************************
 // *****************************************************************************
 
-#include "bsp.h"
-
-// *****************************************************************************
-// *****************************************************************************
-// *****************************************************************************
-// Section: Interface Routines
-// *****************************************************************************
-// *****************************************************************************
-
-// *****************************************************************************
-/* Function:
-    void BSP_Initialize(void)
-
-  Summary:
-    Performs the necessary actions to initialize a board
-
-  Description:
-    This function initializes the LED, Switch and other ports on the board.
-    This function must be called by the user before using any APIs present in
-    this BSP.
-
-  Remarks:
-    Refer to bsp.h for usage information.
-*/
-
-void BSP_Initialize(void )
+void I2SC1_Initialize ( void )
 {
+    // Disable and reset the I2SC
+    I2SC1_REGS->I2SC_CR = I2SC_CR_TXDIS_Msk | I2SC_CR_RXDIS_Msk | I2SC_CR_CKDIS_Msk;
+    I2SC1_REGS->I2SC_CR = I2SC_CR_SWRST_Msk;
+       
+    I2SC1_REGS->I2SC_MR = I2SC_MR_MODE(1) |		// Master/Slave Mode		
+                            I2SC_MR_DATALENGTH(0x1) |	// Data Word Length
+                            I2SC_MR_RXMONO(0) |		// Receiver Mono/Stereo
+                            I2SC_MR_RXDMA(0) |		// # of DMA Channels for Receiver
+                            I2SC_MR_RXLOOP(0) | 	// Loopback Test Mode
+                            I2SC_MR_TXMONO(0) |		// Transmitter Mono/Stereo
+                            I2SC_MR_TXDMA(0) |		// # of DMA Channels for Transmitter
+                            I2SC_MR_TXSAME(0) |		// Transmit Data When Underrun
+                            I2SC_MR_IMCKDIV(1) |	// Selected Clock to IMCK Ratio
+                            I2SC_MR_IMCKFS(0x7) |		// Master Clock to Sample Rate Ratio
+                            I2SC_MR_IMCKMODE(1) |	// Master Clock Mode
+                            I2SC_MR_IWS(0);		// Slot Width
+    
+    // Enable the I2SC
+    I2SC1_REGS->I2SC_CR = I2SC_CR_TXEN_Msk | I2SC_CR_RXEN_Msk | I2SC_CR_CKEN_Msk;
+    
+    while(!(I2SC1_REGS->I2SC_SR & I2SC_SR_TXEN_Msk));
+}
 
-
-    /* Switch off LEDs */
-		LED1_Off(); 
-
-
+uint32_t I2SC1_LRCLK_Get(void)
+{
+    // for I2S format, will sync on low to high transition
+    volatile uint32_t ret = ((PIOE_REGS->PIO_PDSR >> 0) & 0x1);
+    return ret;    
 }
 
 /*******************************************************************************
  End of File
 */
+

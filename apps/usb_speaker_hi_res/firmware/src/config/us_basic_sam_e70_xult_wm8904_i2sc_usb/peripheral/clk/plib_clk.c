@@ -135,12 +135,7 @@ static void CLK_GenericClockInitialize(void)
 
 
     /* Setup Generic/Peripheral Clock for I2S1 */
-    PMC_REGS->PMC_PCR =  PMC_PCR_PID(70) | 
-            PMC_PCR_CMD_Msk   | 
-            PMC_PCR_GCLKEN_Msk |  
-            PMC_PCR_EN_Msk | 
-            PMC_PCR_GCLKCSS_PLLA_CLK | 
-            PMC_PCR_GCLKDIV(6);
+    PMC_REGS->PMC_PCR =  PMC_PCR_PID(70) | PMC_PCR_CMD_Msk   | PMC_PCR_GCLKEN_Msk |  PMC_PCR_EN_Msk | PMC_PCR_GCLKCSS_PLLA_CLK | PMC_PCR_GCLKDIV(6);
 
     MATRIX_REGS->CCFG_PCCR |=  CCFG_PCCR_I2SC1CC_Msk ;
 

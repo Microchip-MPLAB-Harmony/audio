@@ -17,7 +17,7 @@
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2018-2019 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -103,88 +103,7 @@ typedef enum
 
 typedef    void (* DRV_BAUDSET)(const uint32_t);
 
-//KEEP THIS - Clock Tuning Functions 
-//PLIB Interface Member Functions 
 typedef    uint32_t (* DRV_I2S_LRCLK_GET)();
-typedef    uint32_t (* DRV_I2S_PLLA_CLOCK_SET)();
-typedef    uint32_t (* DRV_I2S_GCLK_SET)();
-typedef    uint32_t (* DRV_I2S_PCLK_SET)();
-
-// *****************************************************************************
-/* I2S Driver Audio Data 16
-
-  Summary:
-    Defines the left and right channel data for 16-bit audio data
-
-  Description:
-    Defines the left and right channel data for 16-bit audio data
-
-  Remarks:
-    None.
-*/
-
-typedef struct
-{
-    /* Left channel data */
-    int16_t leftData;
-
-    /* Right channel data */
-    int16_t rightData;
-
-} DRV_I2S_DATA16;
-
-
-// *****************************************************************************
-/* I2S Driver Audio Data 24
-
-  Summary:
-    Defines the left and right channel data for 24-bit audio data
-
-  Description:
-    Defines the left and right channel data for 24-bit audio data
-
-  Remarks:
-    None.
-*/
-
-typedef struct
-{
-    /* Left channel data */
-    int32_t leftData 		:24;
-
-    /* Left channel data pad */
-    int32_t leftDataPad 	:8;
-
-    /* Right channel data */
-    int32_t rightData 		:24;
-
-    /* Right channel data pad */
-    int32_t rightDataPad 	:8;
-
-} DRV_I2S_DATA24;
-
-// *****************************************************************************
-/* I2S Driver Audio Data 32
-
-  Summary:
-    Defines the left and right channel data for 32-bit audio data
-
-  Description:
-    Defines the left and right channel data for 32-bit audio data
-
-  Remarks:
-    None.
-*/
-
-typedef struct
-{
-    /* Left channel data */
-    int32_t leftData;
-
-    /* Right channel data */
-    int32_t rightDataPad;
-
-} DRV_I2S_DATA32;
 
 // *****************************************************************************
 /* I2S Driver PLIB Interface Data
@@ -203,12 +122,9 @@ typedef struct
 typedef struct
 {
 	/* I2S PLIB baud rate set function */
-    //KEEP THIS - Clock Tuning Functions 
-	DRV_BAUDSET	           setBaud;
-    DRV_I2S_LRCLK_GET      I2S_LRCLK_Get;
-    DRV_I2S_PLLA_CLOCK_SET I2S_PLLA_CLOCK_SET;
-    DRV_I2S_GCLK_SET       I2S_GCLK_SET;
-    DRV_I2S_PCLK_SET       I2S_PCLK_SET;
+	DRV_BAUDSET	setBaud;
+    DRV_I2S_LRCLK_GET   I2S_LRCLK_Get;
+
 } DRV_I2S_PLIB_INTERFACE;
 
 // *****************************************************************************

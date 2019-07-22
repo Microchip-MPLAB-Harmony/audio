@@ -357,6 +357,7 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object, DRV_I2S_DIRECTION dire
                     /************ end of E70 specific code ********************/
 
                     //DEBUG - Queued Buffer Write
+
                     SYS_DMA_ChannelTransfer(dObj->txDMAChannel, 
                                             (const void *)newObj->txbuffer,
                                             (const void *)dObj->txAddress, 
@@ -416,8 +417,7 @@ static void _DRV_I2S_RX_DMA_CallbackHandler(SYS_DMA_TRANSFER_EVENT event, uintpt
 // *****************************************************************************
 
 // *****************************************************************************
-SYS_MODULE_OBJ DRV_I2S_Initialize(const SYS_MODULE_INDEX drvIndex, 
-                                  const SYS_MODULE_INIT * const init)
+SYS_MODULE_OBJ DRV_I2S_Initialize( const SYS_MODULE_INDEX drvIndex, const SYS_MODULE_INIT * const init )
 {
     DRV_I2S_OBJ *dObj = NULL;
     DRV_I2S_INIT *i2sInit = (DRV_I2S_INIT *)init ;
@@ -689,6 +689,7 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
             /************ end of E70 specific code ********************/
 #endif
             //--Immediate DMA Write
+
             SYS_DMA_ChannelTransfer(dObj->txDMAChannel, 
                                     (const void *)bufferObj->txbuffer,
                                     (const void *)dObj->txAddress, 
@@ -832,6 +833,7 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
             {
                 bufferSizeDmaWords /= 4;
             }
+
             SYS_DMA_ChannelTransfer(dObj->rxDMAChannel, (const void *)dObj->rxAddress,
                 (const void *)bufferObj->rxbuffer, bufferSizeDmaWords);
 
@@ -848,6 +850,7 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
             }
             /************ end of E70 specific code ********************/
 #endif
+
             SYS_DMA_ChannelTransfer(dObj->txDMAChannel, (const void *)bufferObj->txbuffer,
                 (const void *)dObj->txAddress, bufferSizeDmaWords);
         }
@@ -1137,61 +1140,5 @@ bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate)
         }
     }
     return true;
-
-} //End DRV_I2S_LRCLK_Sync()
-
-//KEEP THIS - Clock Tuning Functions 
-/*******************************************************************************
- * Set the PLLACK and I2SC1 GCLK
- * NOTE:  PCK# is set separately (as required for SAM_E70 xULT Board 
- *        implementation)
- ******************************************************************************/
-bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, 
-                                  uint8_t pClkNum, uint8_t div2)
-{
-    DRV_I2S_OBJ * dObj = NULL;
-
-    /* Validate the Request */
-    if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
-    {
-        return false;
-    }
-
-    dObj = &gDrvI2SObj[handle];
-
-    if ((*dObj->i2sPlib->I2S_PCLK_SET)(pClkNum, div2)==true)
-    {
-        return false;
-    }
-    return true;
 }
 
-/*******************************************************************************
- * Set the PLLACK and I2SC1 GCLK
- * NOTE:  PCK# is set separately (as required for SAM_E70 xULT Board 
- *        implementation)
- ******************************************************************************/
-bool DRV_I2S_ClockGenerationSet(DRV_HANDLE handle, 
-                                uint8_t div, uint8_t mul, uint8_t div2)
-{
-    DRV_I2S_OBJ * dObj = NULL;
-
-    /* Validate the Request */
-    if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
-    {
-        return false;
-    }
-
-    DRV_I2S_PLIB_INTERFACE * i2s = dObj->i2sPlib;
-
-    if ((i2s->I2S_PLLA_CLOCK_SET)(div, mul) == false) return false;
-
-    if ((i2s->I2S_GCLK_SET)(div2) == false) 
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
-}

@@ -1297,7 +1297,7 @@ void DRV_WM8904_BufferEventHandlerSet
 void DRV_WM8904_I2SBufferHandlerSet
 (
     DRV_HANDLE handle,
-        DRV_I2S_BUFFER_EVENT_HANDLER I2SBufferEventHandler
+    DRV_I2S_BUFFER_EVENT_HANDLER I2SBufferEventHandler
 )
 {
     DRV_WM8904_CLIENT_OBJ *clientObj;

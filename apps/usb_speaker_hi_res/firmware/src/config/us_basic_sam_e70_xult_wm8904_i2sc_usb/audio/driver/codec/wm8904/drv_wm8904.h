@@ -935,7 +935,6 @@ void DRV_WM8904_BufferAddWrite
 
   Summary:
     Schedule a non-blocking driver write-read operation.
-    <p><b>Implementation:</b> Dynamic</p>
 
   Description:
     This function schedules a non-blocking write-read operation. The function
@@ -1058,7 +1057,6 @@ void DRV_WM8904_BufferAddWriteRead
 
   Summary:
     Schedule a non-blocking driver write-read operation.
-    <p><b>Implementation:</b> Dynamic</p>
 
   Description:
     This function schedules a non-blocking write-read operation. The function
@@ -1485,7 +1483,6 @@ void DRV_WM8904_SamplingRateSet(DRV_HANDLE handle, uint32_t samplingRate);
 
   Summary:
     This function gets the sampling rate set on the WM8904.
-    <p><b>Implementation:</b> Dynamic</p>
 
   Description:
     This function gets the sampling rate set on the DAC WM8904.

@@ -62,6 +62,7 @@
 /****************************** XDMAC Data Types ******************************/
 /* XDMAC Channels */
 typedef enum {
+    XDMAC_CHANNEL_0,
     XDMAC_CHANNEL_3,
 } XDMAC_CHANNEL;
 
