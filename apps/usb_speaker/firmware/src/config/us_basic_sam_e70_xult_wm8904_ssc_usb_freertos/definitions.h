@@ -55,15 +55,15 @@
 #include "usb/usb_chapter_9.h"
 #include "usb/usb_device.h"
 #include "peripheral/efc/plib_efc.h"
+#include "audio/driver/i2s/drv_i2s.h"
 #include "peripheral/tc/plib_tc0.h"
 #include "usb/usb_device_audio_v1_0.h"
 #include "usb/usb_audio_v1_0.h"
-#include "peripheral/ssc/plib_ssc.h"
+#include "audio/peripheral/ssc/plib_ssc.h"
 #include "driver/i2c/drv_i2c.h"
 #include "system/time/sys_time.h"
 #include "driver/usb/usbhsv1/drv_usbhsv1.h"
 #include "bsp/bsp.h"
-#include "driver/i2s/drv_i2s.h"
 #include "peripheral/twihs/plib_twihs0.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -200,11 +200,11 @@ typedef struct
 
 	SYS_MODULE_OBJ  usbDevObject0;
 
-    SYS_MODULE_OBJ  sysTime;
-	SYS_MODULE_OBJ  drvUSBHSV1Object;
-
     /* I2S0 Driver Object */
     SYS_MODULE_OBJ drvI2S0;
+
+    SYS_MODULE_OBJ  sysTime;
+	SYS_MODULE_OBJ  drvUSBHSV1Object;
 
     SYS_MODULE_OBJ drvwm8904Codec0;
 

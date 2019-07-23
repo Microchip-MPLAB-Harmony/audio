@@ -101,10 +101,6 @@ extern "C" {
 #define DRV_I2C_QUEUE_SIZE_IDX0               2
 #define DRV_I2C_CLOCK_SPEED_IDX0              400000
 
-/* I2C Driver Common Configuration Options */
-#define DRV_I2C_INSTANCES_NUMBER              1
-
-
 /* I2S Driver Instance 0 Configuration Options */
 #define DRV_I2S_INDEX_0                       0
 #define DRV_I2S_CLIENTS_NUMBER_IDX0           1
@@ -112,8 +108,12 @@ extern "C" {
 #define DRV_I2S_QUEUE_SIZE_IDX0               64
 #define DRV_I2S_DATA_LENGTH_IDX0              16
 #define DRV_I2S_INT_SRC_IDX0                  SSC_IRQn
-#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
-#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
+#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_0
+#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_1
+
+
+/* I2C Driver Common Configuration Options */
+#define DRV_I2C_INSTANCES_NUMBER              1
 
 
 /*** Codec Driver Configuration ***/
@@ -176,6 +176,7 @@ extern "C" {
 #define DRV_CODEC_VolumeGet                                 DRV_WM8904_VolumeGet
 #define DRV_CODEC_MuteOn                                    DRV_WM8904_MuteOn
 #define DRV_CODEC_MuteOff                                   DRV_WM8904_MuteOff
+#define DRV_CODEC_StereoMicSelect                           DRV_WM8904_StereoMicSelect
 #define DRV_CODEC_MicGainSet                                DRV_WM8904_MicGainSet
 #define DRV_CODEC_MicGainGet                                DRV_WM8904_MicGainGet
 #define DRV_CODEC_MicMuteOn                                 DRV_WM8904_MicMuteOn

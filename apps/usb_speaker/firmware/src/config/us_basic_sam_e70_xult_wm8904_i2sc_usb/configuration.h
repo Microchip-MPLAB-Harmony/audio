@@ -101,10 +101,6 @@ extern "C" {
 #define DRV_I2C_QUEUE_SIZE_IDX0               8
 #define DRV_I2C_CLOCK_SPEED_IDX0              400000
 
-/* I2C Driver Common Configuration Options */
-#define DRV_I2C_INSTANCES_NUMBER              1
-
-
 /* I2S Driver Instance 0 Configuration Options */
 #define DRV_I2S_INDEX_0                       0
 #define DRV_I2S_CLIENTS_NUMBER_IDX0           1
@@ -112,8 +108,12 @@ extern "C" {
 #define DRV_I2S_QUEUE_SIZE_IDX0               64
 #define DRV_I2S_DATA_LENGTH_IDX0              16
 #define DRV_I2S_INT_SRC_IDX0                  I2SC1_IRQn
-#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_3
-#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_2
+#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_2
+#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
+
+
+/* I2C Driver Common Configuration Options */
+#define DRV_I2C_INSTANCES_NUMBER              1
 
 
 /*** Codec Driver Configuration ***/

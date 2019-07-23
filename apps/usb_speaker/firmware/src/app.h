@@ -70,13 +70,12 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
 #include "osal/osal.h"
-#include "driver/i2s/drv_i2s.h"
 #include "driver/i2c/drv_i2c.h"
 #include "peripheral/twihs/plib_twihs0.h"
 #include "system/time/sys_time.h"
 
-#include "audio/driver/wm8904/drv_wm8904_local.h"
-#include "audio/driver/wm8904/drv_wm8904.h"
+#include "audio/driver/codec/wm8904/drv_wm8904_local.h"
+#include "audio/driver/codec/wm8904/drv_wm8904.h"
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

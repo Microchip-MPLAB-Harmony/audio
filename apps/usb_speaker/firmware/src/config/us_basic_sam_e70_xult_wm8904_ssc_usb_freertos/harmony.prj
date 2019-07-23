@@ -57,18 +57,18 @@
         <File dnOrder="6">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">drv_i2s.c</Name>
-          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/driver/i2s/</LogicalPath>
-          <PhysicalPath dnOrder="3">/driver/i2s/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">39750697AD7D4948D7544FE0320EE387</GeneratedChecksum>
-          <UserChecksum dnOrder="5">39750697AD7D4948D7544FE0320EE387</UserChecksum>
+          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/driver/i2s/</LogicalPath>
+          <PhysicalPath dnOrder="3">/audio/driver/i2s/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="4">C4E43A8AD3AB8C80064FFA1FD870BA75</GeneratedChecksum>
+          <UserChecksum dnOrder="5">C4E43A8AD3AB8C80064FFA1FD870BA75</UserChecksum>
         </File>
         <File dnOrder="7">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">drv_i2s_local.h</Name>
-          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/driver/i2s/</LogicalPath>
-          <PhysicalPath dnOrder="3">/driver/i2s/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">292E3971535A995DDF66CF3DBE75A03A</GeneratedChecksum>
-          <UserChecksum dnOrder="5">292E3971535A995DDF66CF3DBE75A03A</UserChecksum>
+          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/driver/i2s/</LogicalPath>
+          <PhysicalPath dnOrder="3">/audio/driver/i2s/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="4">08F4D5AEB0865BF6C9CC7F6D5E425CEF</GeneratedChecksum>
+          <UserChecksum dnOrder="5">08F4D5AEB0865BF6C9CC7F6D5E425CEF</UserChecksum>
         </File>
         <File dnOrder="8">
           <Type dnOrder="0">SOURCE</Type>
@@ -217,8 +217,8 @@
         <File dnOrder="26">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">plib_ssc.c</Name>
-          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/peripheral/ssc/</LogicalPath>
-          <PhysicalPath dnOrder="3">/peripheral/ssc/</PhysicalPath>
+          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/peripheral/ssc/</LogicalPath>
+          <PhysicalPath dnOrder="3">/audio/peripheral/ssc/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">DF6EAD4BE7389F1A0F7C3D49D9C89D7C</GeneratedChecksum>
           <UserChecksum dnOrder="5">DF6EAD4BE7389F1A0F7C3D49D9C89D7C</UserChecksum>
         </File>
@@ -499,8 +499,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">DFC6330EC3DB63FE563E74D4DB18F6D3</GeneratedChecksum>
-          <UserChecksum dnOrder="5">A65AF509D2054E7C7EEDCA4814522369</UserChecksum>
+          <GeneratedChecksum dnOrder="4">042D16FF3F4F68586F602479F0FE3AFF</GeneratedChecksum>
+          <UserChecksum dnOrder="5">5072683123A218424599FBB986C91858</UserChecksum>
         </File>
         <File dnOrder="62">
           <Type dnOrder="0">HEADER</Type>
@@ -531,8 +531,8 @@
           <Name dnOrder="1">definitions.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">36E8B29289C4BD7E19916FE9C74CD5C0</GeneratedChecksum>
-          <UserChecksum dnOrder="5">36E8B29289C4BD7E19916FE9C74CD5C0</UserChecksum>
+          <GeneratedChecksum dnOrder="4">3118C9DF3E5E34AD2B9CB5B7A5F97A26</GeneratedChecksum>
+          <UserChecksum dnOrder="5">3118C9DF3E5E34AD2B9CB5B7A5F97A26</UserChecksum>
         </File>
         <File dnOrder="66">
           <Type dnOrder="0">HEADER</Type>
@@ -593,18 +593,18 @@
         <File dnOrder="73">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">drv_i2s.h</Name>
-          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/driver/i2s/</LogicalPath>
-          <PhysicalPath dnOrder="3">/driver/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">54CDA3FF4F38C1A78A09C3B458F74B42</GeneratedChecksum>
-          <UserChecksum dnOrder="5">54CDA3FF4F38C1A78A09C3B458F74B42</UserChecksum>
+          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/driver/i2s/</LogicalPath>
+          <PhysicalPath dnOrder="3">/audio/driver/i2s/</PhysicalPath>
+          <GeneratedChecksum dnOrder="4">5410E259C85345516377ADC34430070B</GeneratedChecksum>
+          <UserChecksum dnOrder="5">5410E259C85345516377ADC34430070B</UserChecksum>
         </File>
         <File dnOrder="74">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">drv_i2s_definitions.h</Name>
-          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/driver/i2s/</LogicalPath>
-          <PhysicalPath dnOrder="3">/driver/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">DA5685EA833A626E8F27A28D447255B1</GeneratedChecksum>
-          <UserChecksum dnOrder="5">DA5685EA833A626E8F27A28D447255B1</UserChecksum>
+          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/driver/i2s/</LogicalPath>
+          <PhysicalPath dnOrder="3">/audio/driver/i2s/</PhysicalPath>
+          <GeneratedChecksum dnOrder="4">6F8E4E040A9881C87C0A38379D9F55DE</GeneratedChecksum>
+          <UserChecksum dnOrder="5">6F8E4E040A9881C87C0A38379D9F55DE</UserChecksum>
         </File>
         <File dnOrder="75">
           <Type dnOrder="0">HEADER</Type>
@@ -841,8 +841,8 @@
         <File dnOrder="104">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">plib_ssc.h</Name>
-          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/peripheral/ssc/</LogicalPath>
-          <PhysicalPath dnOrder="3">/peripheral/ssc/</PhysicalPath>
+          <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_ssc_usb_freertos/audio/peripheral/ssc/</LogicalPath>
+          <PhysicalPath dnOrder="3">/audio/peripheral/ssc/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">85D95C8B16C8AB12744255AE9BF6B177</GeneratedChecksum>
           <UserChecksum dnOrder="5">85D95C8B16C8AB12744255AE9BF6B177</UserChecksum>
         </File>
