@@ -145,7 +145,7 @@ extern "C" {
 //and USB reads generated and completed and Codec AddWrites before
 //transitioning to APP_PROCESS_DATA timing. 
 #define QUEUE_USB_INIT_PART  2  
-#define APP_FIRST_USB_READS_NUMBER (APP_QUEUING_DEPTH/QUEUE_USB_INIT_PART) 
+#define APP_INIT_QUEUE_LEVEL  (APP_QUEUING_DEPTH/QUEUE_USB_INIT_PART) 
 
 //Buttons
 #define BUTTON_DEBOUNCE 50
@@ -154,7 +154,7 @@ extern "C" {
 
 // *****************************************************************************
 /* Application States
-
+States
   Summary:
     Application states enumeration
 
@@ -310,6 +310,8 @@ typedef struct
     int       blinkDelay;
 
     bool lrSync;
+    bool clockStableDelayFlag;
+    int32_t clockStableDelayMs;
 
 } APP_DATA;
 
@@ -342,8 +344,9 @@ typedef struct
     uint8_t  codecWriteIdx;               //Next Buffer for Codec TX
     uint8_t  usbReadIdx;                  //Next Buffer for USB RX 
     uint8_t  usbReadCompleteBufferLevel;  //#of read buffers ready to write
+    uint8_t  previousBufferLevel;         //for Change in buffer level
     uint32_t usbReadCompleteCnt;          //
-    uint8_t usbReadQueueCnt;             //#of usb Reads queued
+    uint8_t  usbReadQueueCnt;             //#of usb Reads queued
     uint32_t codecWriteQueueCnt;          //Total #of codec writes queued
     uint32_t codecWriteCompleteCnt;       //Total #of codec writes completed
     uint8_t  padding[16];                 //Aligned 32:  32 - 16

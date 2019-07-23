@@ -57,9 +57,12 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 //#include "display.h"
 
-#ifdef SYS_PRINT_MESSAGE
-#define SYS_PRINT(...) SYS_PRINT_MESSAGE(...)
-#endif //SYS_PRINT_MESSAGE
+#define CLOCK_MISMATCH_COMPENSATION
+#ifdef CLOCK_MISMATCH_COMPENSATION
+#define CKUPDATERED 2 
+static int ckUpdateCnt = CKUPDATERED; 
+static const int CLOCK_STABLE_DELAY_MS = 2000;
+#endif 
 
 //DEBUG 
 #undef DEBUG_TONE_CODEC_TX
@@ -128,7 +131,7 @@ volatile bool usbInitialReadsComplete = false;
 // placed at the correct page boundary.
 //static __attribute__((aligned(32))) __attribute__((tcm))
 static APP_PLAYBACK_BUFFER_QUEUE __attribute__((aligned(32)))
-           appPlaybackBuffer;
+           appBufferQueue;
 
 //==============================================================================
 // Application Playback Buffer Queue
@@ -189,7 +192,13 @@ APP_DATA __attribute__((aligned(32))) appData =
     .volume = 255,
 
     .lrSync = true,
-};
+
+#ifdef CLOCK_MISMATCH_COMPENSATION
+    .clockStableDelayFlag = true,
+#else
+    .clockStableDelayFlag = false,
+#endif
+}; //End appData initialization
 
 
 // *****************************************************************************
@@ -330,9 +339,9 @@ void APP_USBDeviceAudioEventHandler(USB_DEVICE_AUDIO_INDEX iAudio,
                 int __attribute__((unused)) usbBufferIdx = 
                     _APP_SetUSBReadBufferReady(readEventData->handle);
 
-                appPlaybackBuffer.usbReadCompleteBufferLevel++;
-                appPlaybackBuffer.usbReadCompleteCnt++;
-                appPlaybackBuffer.usbReadQueueCnt--;  //Not completed level
+                appBufferQueue.usbReadCompleteBufferLevel++;
+                appBufferQueue.usbReadCompleteCnt++;
+                appBufferQueue.usbReadQueueCnt--;  //Not completed level
 
                 queueEmpty = false;
 
@@ -343,15 +352,17 @@ void APP_USBDeviceAudioEventHandler(USB_DEVICE_AUDIO_INDEX iAudio,
                     if(_APP_USBReadAllBufferReady())
                     {
                         usbInitialReadsComplete = true;
+                        appBufferQueue.previousBufferLevel = 
+                                appBufferQueue.usbReadCompleteBufferLevel;
                         SYS_DEBUG_Print(
                             "USB: INIT READS:  Qlevel %d - Ridx %d - Widx %d\r\n",
-                            appPlaybackBuffer.usbReadCompleteBufferLevel,
-                            appPlaybackBuffer.usbReadIdx,
-                            appPlaybackBuffer.codecWriteIdx);
+                            appBufferQueue.usbReadCompleteBufferLevel,
+                            appBufferQueue.usbReadIdx,
+                            appBufferQueue.codecWriteIdx);
 //                        SYS_DEBUG_Print("USB INIT READ COMPLETEs: Qlevel %d RQCnt %d WQCnt %d\r\n",
-//                            appPlaybackBuffer.usbReadCompleteBufferLevel,
-//                            appPlaybackBuffer.usbReadQueueCnt,
-//                            appPlaybackBuffer.codecWriteQueueCnt);
+//                            appBufferQueue.usbReadCompleteBufferLevel,
+//                            appBufferQueue.usbReadQueueCnt,
+//                            appBufferQueue.codecWriteQueueCnt);
                     }
                 }
             }
@@ -600,7 +611,7 @@ void APP_Tasks()
                                         DRV_CODEC_CHANNEL_LEFT_RIGHT, 
                                         appData.volume);
                     appData.state = APP_STATE_CODEC_SET_BUFFER_HANDLER;
-                    SYS_DEBUG_Print("APP: CODEC Open - volume %d",
+                    SYS_DEBUG_Print("APP: CODEC Open - volume %d\r\n",
                             appData.volume);
                 }
                 else
@@ -746,6 +757,19 @@ void APP_Tasks()
             else if (appData.activeInterfaceAlternateSetting == 
                      APP_USB_SPEAKER_PLAYBACK_STEREO)
             {
+
+#ifdef CLOCK_MISMATCH_COMPENSATION
+            appData.clockStableDelayFlag = true;
+            appData.clockStableDelayMs = CLOCK_STABLE_DELAY_MS;
+            //Start with decreased clock rate
+            //--and let clock stabilize
+            ckUpdateCnt = 0;  
+            appData.clockStableDelayFlag = true;   //Delay for clock to stabilize
+            appData.clockStableDelayMs= CLOCK_STABLE_DELAY_MS;
+#else  //CLOCK_MISMATCH_COMPENSATION
+            appData.clockStableDelayFlag = false;  //No Delay
+#endif //CLOCK_MISMATCH_COMPENSATION
+
                 //Initialize/Purge playback queue
                 _APP_Init_PlaybackBufferQueue();
                 queueFull = false;
@@ -767,7 +791,7 @@ void APP_Tasks()
                 {
                     //USB Read to Head of Codec Playback Buffer
                     APP_PLAYBACK_BUFFER* usbReadBuffer = 
-                            &appPlaybackBuffer.playbackBuffer[i];
+                            &appBufferQueue.playbackBuffer[i];
 
                     if (usbReadBuffer != NULL && 
                         !usbReadBuffer->codecInUse && 
@@ -790,11 +814,11 @@ void APP_Tasks()
 
                         if(audioErr1 == USB_DEVICE_AUDIO_RESULT_OK)
                         {
-                            appPlaybackBuffer.usbReadQueueCnt++;
+                            appBufferQueue.usbReadQueueCnt++;
                             //SYS_PRINT("***INIT USB READ: RQCnt %d", 
-                            //    appPlaybackBuffer.usbReadQueueCnt);
+                            //    appBufferQueue.usbReadQueueCnt);
                             //Next Codec Write Index (HEAD Index)
-                            appPlaybackBuffer.usbReadIdx = _APP_GetNextIdx(appPlaybackBuffer.usbReadIdx);
+                            appBufferQueue.usbReadIdx = _APP_GetNextIdx(appBufferQueue.usbReadIdx);
                             usbReadScheduleCnt++;                        
                             
                         }
@@ -811,7 +835,7 @@ void APP_Tasks()
                 } //End USB Audio Read Queue loop
 
                 SYS_DEBUG_Print("***INIT USB READ Finished: RQCnt %d\r\n", 
-                         appPlaybackBuffer.usbReadQueueCnt);
+                         appBufferQueue.usbReadQueueCnt);
                 appData.state = APP_STATE_INITIAL_CODEC_WRITE_REQUEST;
 
             } //activeInterfaceAlternatedSetting 
@@ -854,17 +878,16 @@ void APP_Tasks()
             {
                 //appData.ledState = LED_ON;
                 //Set the volume
-                LED1_On();  //Volume mode
                 DRV_CODEC_LRCLK_Sync(appData.codecClientWrite.handle);
 
                 //Initialize the Codec Write Queue
                 for (i = 0;
-                     i < APP_QUEUING_DEPTH/QUEUE_USB_INIT_PART; i++)
+                     i < APP_INIT_QUEUE_LEVEL; i++)
                 {
 
-                    int8_t codecWriteIdx = appPlaybackBuffer.codecWriteIdx;
+                    int8_t codecWriteIdx = appBufferQueue.codecWriteIdx;
                         APP_PLAYBACK_BUFFER* current = 
-                            &appPlaybackBuffer.playbackBuffer[codecWriteIdx];
+                            &appBufferQueue.playbackBuffer[codecWriteIdx];
 
 
                     //CODEC Playback 
@@ -947,8 +970,8 @@ void APP_Tasks()
 
                         if(current->codecWriteHandle != DRV_CODEC_BUFFER_HANDLE_INVALID)
                         {
-                            appPlaybackBuffer.codecWriteQueueCnt++;
-                            appPlaybackBuffer.codecWriteIdx = 
+                            appBufferQueue.codecWriteQueueCnt++;
+                            appBufferQueue.codecWriteIdx = 
                                     _APP_GetNextIdx(codecWriteIdx);
                             codecWriteScheduleCnt++;
                         }
@@ -976,6 +999,47 @@ void APP_Tasks()
         //---------------------------------------------------------------------
         case APP_PROCESS_DATA:
         {
+
+#ifdef CLOCK_MISMATCH_COMPENSATION
+            //TODO:  This should be part of the I2S API
+            //       --For now it is in the APP
+            //USB-CODEC Datarate Compensation
+            //bufferLevel = abs(usbNextBufferRead - i2sNextBuffer);
+            if (appBufferQueue.usbReadCompleteBufferLevel != 
+                appBufferQueue.previousBufferLevel)
+            {
+                if (appBufferQueue.usbReadCompleteBufferLevel < APP_INIT_QUEUE_LEVEL+1)
+                {    
+                    //Let the clock stabilize to a converged value by counting
+                    //down the updates
+                    //Each packet is 1 ms of data
+                    if (ckUpdateCnt-- == 0)
+                    {
+                        //USB is running slow. Decrease I2S clock.  
+                        //- Prevent underflow (queueEmpty)
+                        //Increase Clock Rate
+                    }
+                }
+                else 
+                {
+                    if (appBufferQueue.usbReadCompleteBufferLevel == APP_INIT_QUEUE_LEVEL+1)
+                    {
+                        // USB is at same rate as CODEC 
+                        //Keep Current Clock Rate
+                    }
+                    else
+                    {
+                        // USB is running faster. 
+                        //Decrease Clock Rate
+                        //-prevent Codec data overflow
+                    }
+                }
+                appBufferQueue.previousBufferLevel = 
+                     appBufferQueue.usbReadCompleteBufferLevel; 
+            } //End Clock Compensation
+
+#endif //CLOCK_MISMATCH_COMPENSATION
+           
             if (appData.activeInterfaceAlternateSetting == 
                 APP_USB_SPEAKER_PLAYBACK_STEREO)
             {
@@ -984,22 +1048,22 @@ void APP_Tasks()
                 //--Read to usbReadIdx (Next Queue HEAD index)
                 //--Returns NULL pointer if FULL
                 APP_PLAYBACK_BUFFER * usbReadBuffer = 
-                     &appPlaybackBuffer.
-                        playbackBuffer[appPlaybackBuffer.usbReadIdx];
+                     &appBufferQueue.
+                        playbackBuffer[appBufferQueue.usbReadIdx];
 
-                if (appPlaybackBuffer.usbReadCompleteBufferLevel == 
+                if (appBufferQueue.usbReadCompleteBufferLevel == 
                     APP_QUEUING_DEPTH)
                 {
                       queueFull = true;
 //                      SYS_DEBUG_Print("****QUEUE Full****: RBLevel %d Ridx %d - Widx %d\r\n",
-//                                  appPlaybackBuffer.usbReadCompleteBufferLevel,
-//                                  appPlaybackBuffer.usbReadIdx,
-//                                  appPlaybackBuffer.codecWriteIdx);
+//                                  appBufferQueue.usbReadCompleteBufferLevel,
+//                                  appBufferQueue.usbReadIdx,
+//                                  appBufferQueue.codecWriteIdx);
 //                    SYS_DEBUG_Print("*** QUEUE FULL****: Qlevel %d RQ %d WQ %d WC %d\r\n",
-//                                appPlaybackBuffer.usbReadCompleteBufferLevel,
-//                                appPlaybackBuffer.usbReadQueueCnt,
-//                                appPlaybackBuffer.codecWriteQueueCnt,
-//                                appPlaybackBuffer.codecWriteCompleteCnt);
+//                                appBufferQueue.usbReadCompleteBufferLevel,
+//                                appBufferQueue.usbReadQueueCnt,
+//                                appBufferQueue.codecWriteQueueCnt,
+//                                appBufferQueue.codecWriteCompleteCnt);
                 }
 
                 if ( usbReadBuffer != NULL && 
@@ -1022,9 +1086,9 @@ void APP_Tasks()
                         //USB Buffer Read OK
                         usbReadBuffer->usbInUse = true;
 
-                        appPlaybackBuffer.usbReadQueueCnt++;
-                        appPlaybackBuffer.usbReadIdx = 
-                                _APP_GetNextIdx(appPlaybackBuffer.usbReadIdx);
+                        appBufferQueue.usbReadQueueCnt++;
+                        appBufferQueue.usbReadIdx = 
+                                _APP_GetNextIdx(appBufferQueue.usbReadIdx);
                         
                         //DEBUG
                         usbReadScheduleCnt++;
@@ -1044,9 +1108,9 @@ void APP_Tasks()
                     //Playback Codec is Ready (not in use)
 
                     //CODEC Write to codecWriteIdx (Next Queue TAILIndex)
-                    int8_t codecWriteIdx = appPlaybackBuffer.codecWriteIdx;
+                    int8_t codecWriteIdx = appBufferQueue.codecWriteIdx;
                     APP_PLAYBACK_BUFFER* current = 
-                            &appPlaybackBuffer.playbackBuffer[codecWriteIdx];
+                            &appBufferQueue.playbackBuffer[codecWriteIdx];
 
                     if (current->usbReadCompleted==true && 
                         current->codecInUse==false)
@@ -1103,11 +1167,11 @@ void APP_Tasks()
                         {
                             current->codecInUse = true;
                             
-                            appPlaybackBuffer.codecWriteQueueCnt++;
-                            appPlaybackBuffer.codecWriteIdx = _APP_GetNextIdx(codecWriteIdx);
+                            appBufferQueue.codecWriteQueueCnt++;
+                            appBufferQueue.codecWriteIdx = _APP_GetNextIdx(codecWriteIdx);
 
                             //Check for QUEUE Empty 
-                            if (appPlaybackBuffer.codecWriteIdx == appPlaybackBuffer.usbReadIdx)
+                            if (appBufferQueue.codecWriteIdx == appBufferQueue.usbReadIdx)
                             {
                                //QUEUE is empty do not execute USB Read command;
                                queueEmpty = true;
@@ -1272,9 +1336,9 @@ APP_CODECBufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
 
             //DEBUG
             codecWriteCompleteCnt++;
-            appPlaybackBuffer.codecWriteCompleteCnt++;
+            appBufferQueue.codecWriteCompleteCnt++;
 
-            if (appPlaybackBuffer.codecWriteIdx != appPlaybackBuffer.usbReadIdx)
+            if (appBufferQueue.codecWriteIdx != appBufferQueue.usbReadIdx)
             {
                 //QUEUE is not full or empty
                 asm("NOP");
@@ -1289,22 +1353,22 @@ APP_CODECBufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
             }
 
             //Remove 1 buffer from USB complete read queue
-            appPlaybackBuffer.codecWriteQueueCnt--;
-            appPlaybackBuffer.usbReadCompleteBufferLevel--;
+            appBufferQueue.codecWriteQueueCnt--;
+            appBufferQueue.usbReadCompleteBufferLevel--;
 
-            if (appPlaybackBuffer.usbReadCompleteBufferLevel == 0)
+            if (appBufferQueue.usbReadCompleteBufferLevel == 0)
             {
                 //USB Read needs to complete before next Codec Write.
                 queueEmpty = true;
 //                SYS_DEBUG_Print("*** UNDERFLOW ***: QLevel %d - Ridx %d - Widx %d\r\n",
-//                        appPlaybackBuffer.usbReadCompleteBufferLevel,
-//                        appPlaybackBuffer.usbReadIdx,
-//                        appPlaybackBuffer.codecWriteIdx);
+//                        appBufferQueue.usbReadCompleteBufferLevel,
+//                        appBufferQueue.usbReadIdx,
+//                        appBufferQueue.codecWriteIdx);
 //                SYS_DEBUG_Print("*** underFLOW ***: Qlevel %d RQ %d WQ %d WC %d\r\n",
-//                        appPlaybackBuffer.usbReadCompleteBufferLevel,
-//                        appPlaybackBuffer.usbReadQueueCnt,
-//                        appPlaybackBuffer.codecWriteQueueCnt,
-//                        appPlaybackBuffer.codecWriteCompleteCnt);
+//                        appBufferQueue.usbReadCompleteBufferLevel,
+//                        appBufferQueue.usbReadQueueCnt,
+//                        appBufferQueue.codecWriteQueueCnt,
+//                        appBufferQueue.codecWriteCompleteCnt);
             }
         }
         break;
@@ -1330,10 +1394,10 @@ static int _APP_SetUSBReadBufferReady(USB_DEVICE_AUDIO_TRANSFER_HANDLE handle)
     int i=0;
     for (i=0; i<APP_QUEUING_DEPTH; i++)
     {
-        if (appPlaybackBuffer.playbackBuffer[i].usbReadHandle == handle)
+        if (appBufferQueue.playbackBuffer[i].usbReadHandle == handle)
         {
-            appPlaybackBuffer.playbackBuffer[i].usbReadCompleted = true;
-            //appPlaybackBuffer.playbackBuffer[i].usbInUse = false;
+            appBufferQueue.playbackBuffer[i].usbReadCompleted = true;
+            //appBufferQueue.playbackBuffer[i].usbInUse = false;
             return i;
         }
     }
@@ -1352,7 +1416,7 @@ static bool _APP_USBReadAllBufferReady()
     //for (i=0; i<APP_QUEUING_DEPTH; i++)
     for (i=0; i<APP_QUEUING_DEPTH/QUEUE_USB_INIT_PART; i++)
     {
-        if(appPlaybackBuffer.playbackBuffer[i].usbReadCompleted != true)
+        if(appBufferQueue.playbackBuffer[i].usbReadCompleted != true)
         {
             return false;
         }
@@ -1367,20 +1431,20 @@ static bool _APP_USBReadAllBufferReady()
 static void _APP_Init_PlaybackBufferQueue()
 {
     int i=0;
-    appPlaybackBuffer.codecWriteIdx = 0;
-    appPlaybackBuffer.usbReadIdx = 0;
+    appBufferQueue.codecWriteIdx = 0;
+    appBufferQueue.usbReadIdx = 0;
 
     for(i=0;i<APP_QUEUING_DEPTH;i++)
     {
-        appPlaybackBuffer.playbackBuffer[i].codecInUse = false;
-        appPlaybackBuffer.playbackBuffer[i].usbInUse = false;
-        appPlaybackBuffer.playbackBuffer[i].usbReadCompleted = false;
+        appBufferQueue.playbackBuffer[i].codecInUse = false;
+        appBufferQueue.playbackBuffer[i].usbInUse = false;
+        appBufferQueue.playbackBuffer[i].usbReadCompleted = false;
     }
-    appPlaybackBuffer.usbReadCompleteBufferLevel = 0;
-    appPlaybackBuffer.codecWriteCompleteCnt      = 0;
-    appPlaybackBuffer.usbReadCompleteCnt         = 0;
-    appPlaybackBuffer.usbReadQueueCnt            = 0;
-    appPlaybackBuffer.codecWriteQueueCnt         = 0;
+    appBufferQueue.usbReadCompleteBufferLevel = 0;
+    appBufferQueue.codecWriteCompleteCnt      = 0;
+    appBufferQueue.usbReadCompleteCnt         = 0;
+    appBufferQueue.usbReadQueueCnt            = 0;
+    appBufferQueue.codecWriteQueueCnt         = 0;
 
     DRV_CODEC_WriteQueuePurge(appData.codecClientWrite.handle);
 
@@ -1421,14 +1485,14 @@ static int _APP_ClearCodecReturnBuffer(DRV_CODEC_BUFFER_HANDLE handle)
     int i = 0;
     for(i=0;i<APP_QUEUING_DEPTH;i++)
     {
-        if(appPlaybackBuffer.playbackBuffer[i].codecWriteHandle == handle)
+        if(appBufferQueue.playbackBuffer[i].codecWriteHandle == handle)
         {
-            appPlaybackBuffer.playbackBuffer[i].codecWriteHandle = 
+            appBufferQueue.playbackBuffer[i].codecWriteHandle = 
                     DRV_CODEC_BUFFER_HANDLE_INVALID;
-            appPlaybackBuffer.playbackBuffer[i].codecInUse = false;
-            appPlaybackBuffer.playbackBuffer[i].usbInUse = false;
-            appPlaybackBuffer.playbackBuffer[i].usbReadCompleted = false;
-            appPlaybackBuffer.playbackBuffer[i].usbReadHandle = 
+            appBufferQueue.playbackBuffer[i].codecInUse = false;
+            appBufferQueue.playbackBuffer[i].usbInUse = false;
+            appBufferQueue.playbackBuffer[i].usbReadCompleted = false;
+            appBufferQueue.playbackBuffer[i].usbReadHandle = 
                     USB_DEVICE_AUDIO_TRANSFER_HANDLE_INVALID;
 
             return i;
@@ -1572,7 +1636,7 @@ void _APP_Button_Tasks()
             else if ((appData.buttonDelay==0)&&
                      (SWITCH_Get()==SWITCH_STATE_PRESSED))  
             {
-                // Long Pres - SW0 still pressed after 1 sec
+                // Long Press - SW0 still pressed after 1 sec
                 // --> Toggle Button Mode - Volume/Mute
                 //appData.volMuteMode = !appData.volMuteMode;
                 //if (appData.volMuteMode)
