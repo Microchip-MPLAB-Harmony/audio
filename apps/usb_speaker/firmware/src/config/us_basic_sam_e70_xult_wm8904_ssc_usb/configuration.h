@@ -133,6 +133,7 @@ extern "C" {
 #define DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0             DRV_I2C_INDEX_0
 /* CODEC Driver Abstraction definition */
 
+//Codec Driver Instance
 #define DRV_CODEC_INDEX_0                                   DRV_WM8904_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvwm8904Codec0
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_WM8904_BUFFER_HANDLE
@@ -144,10 +145,18 @@ extern "C" {
 #define DRV_CODEC_BUFFER_EVENT_ABORT                        DRV_WM8904_BUFFER_EVENT_ABORT
 #define DRV_CODEC_COMMAND_EVENT_HANDLER                     DRV_WM8904_COMMAND_EVENT_HANDLER
 
+//Codec Driver API Configuration Parameters
 #define DRV_CODEC_CHANNEL_LEFT                              DRV_WM8904_CHANNEL_LEFT
 #define DRV_CODEC_CHANNEL_RIGHT                             DRV_WM8904_CHANNEL_RIGHT
 #define DRV_CODEC_CHANNEL_LEFT_RIGHT                        DRV_WM8904_CHANNEL_LEFT_RIGHT
+#define DRV_CODEC_AUDIO_SAMPLING_RATE                       DRV_WM8904_AUDIO_SAMPLING_RATE
+#define DRV_CODEC_VOLUME	                        	    DRV_WM8904_VOLUME
+#define DRV_CODEC_AUDIO_DATA_FORMAT_MACRO                 	DRV_WM8904_AUDIO_DATA_FORMAT_MACRO
+#define DRV_CODEC_ENABLE_MIC_INPUT                          DRV_WM8904_ENABLE_MIC_INPUT
+#define DRV_CODEC_ENABLE_MIC_BIAS                           DRV_WM8904_ENABLE_MIC_BIAS
+#define DRV_CODEC_MIC_GAIN                                  DRV_WM8904_MIC_GAIN
 
+//Codec Driver API Functions
 #define DRV_CODEC_Initialize                                DRV_WM8904_Initialize
 #define DRV_CODEC_Deinitialize                              DRV_WM8904_Deinitialize
 #define DRV_CODEC_Status                                    DRV_WM8904_Status
@@ -214,6 +223,9 @@ extern "C" {
 	
 /* Disable Host Support */
 #define DRV_USBHSV1_HOST_SUPPORT                            false
+
+/* Alignment for buffers that are submitted to USB Driver*/ 
+#define USB_ALIGN  CACHE_ALIGN
 
 /* Maximum instances of Audio function driver */
 #define USB_DEVICE_AUDIO_INSTANCES_NUMBER    1 
