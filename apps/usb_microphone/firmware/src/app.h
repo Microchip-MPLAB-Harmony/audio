@@ -67,17 +67,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #endif
 
-//TODO:  This should be part of the I2S API
-typedef struct 
-{
-    /* Left channel data */
-    int16_t leftData;
-
-    /* Right channel data */
-    int16_t rightData;      // removed Pad from end of name to be same as others
-
-} DRV_I2S_DATA16;
-
 //Buttons
 #define BUTTON_DEBOUNCE 50
 #define LONG_BUTTON_PRESS 1000
