@@ -226,6 +226,9 @@ extern "C" {
 /* Disable Host Support */
 #define DRV_USBHSV1_HOST_SUPPORT                            false
 
+/* Alignment for buffers that are submitted to USB Driver*/ 
+#define USB_ALIGN  CACHE_ALIGN
+
 /* Maximum instances of Audio function driver */
 #define USB_DEVICE_AUDIO_INSTANCES_NUMBER    1 
 
