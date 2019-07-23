@@ -1355,8 +1355,15 @@ bool DRV_I2S_ReadBuffer( const DRV_HANDLE handle, void * buffer, const size_t si
   Remarks:
     None.                                            
 */
-bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate);
+bool DRV_I2S_LRCLK_Sync(const DRV_HANDLE handle, 
+                                const uint32_t sample_rate);
+bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, 
+                                uint8_t pClkNum, uint8_t div2);
+bool DRV_I2S_ClockGenerationSet(DRV_HANDLE handle, 
+                                uint8_t div, uint8_t mul, uint8_t div2);
 
+
+#include "audio/driver/i2s/src/drv_i2s_local.h"
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

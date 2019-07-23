@@ -103,7 +103,12 @@ typedef enum
 
 typedef    void (* DRV_BAUDSET)(const uint32_t);
 
+//KEEP THIS - Clock Tuning Functions 
+//PLIB Interface Member Functions 
 typedef    uint32_t (* DRV_I2S_LRCLK_GET)();
+typedef    uint32_t (* DRV_I2S_PLLA_CLOCK_SET)();
+typedef    uint32_t (* DRV_I2S_GCLK_SET)();
+typedef    uint32_t (* DRV_I2S_PCLK_SET)();
 
 // *****************************************************************************
 /* I2S Driver Audio Data 16
@@ -198,9 +203,12 @@ typedef struct
 typedef struct
 {
 	/* I2S PLIB baud rate set function */
+    //KEEP THIS - Clock Tuning Functions 
 	DRV_BAUDSET	setBaud;
     DRV_I2S_LRCLK_GET   I2S_LRCLK_Get;
-
+    DRV_I2S_PLLA_CLOCK_SET I2S_PLLA_CLOCK_SET;
+    DRV_I2S_GCLK_SET       I2S_GCLK_SET;
+    DRV_I2S_PCLK_SET       I2S_PCLK_SET;
 } DRV_I2S_PLIB_INTERFACE;
 
 // *****************************************************************************
