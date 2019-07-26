@@ -127,17 +127,6 @@ extern "C" {
 #define DRV_I2C_QUEUE_SIZE_IDX0               10
 #define DRV_I2C_CLOCK_SPEED_IDX0              400000
 
-/* I2C Driver Common Configuration Options */
-#define DRV_I2C_INSTANCES_NUMBER              1
-
-
-
-/*** MXT336T Driver Configuration ***/
-#define DRV_MAXTOUCH_I2C_MODULE_INDEX   0
-
-/* I2S Driver Common Configuration Options */
-#define DRV_I2S_INSTANCES_NUMBER              1
-
 /* I2S Driver Instance 0 Configuration Options */
 #define DRV_I2S_INDEX_0                       0
 #define DRV_I2S_CLIENTS_NUMBER_IDX0           1
@@ -145,9 +134,17 @@ extern "C" {
 #define DRV_I2S_QUEUE_SIZE_IDX0               8
 #define DRV_I2S_DATA_LENGTH_IDX0              16
 #define DRV_I2S_INT_SRC_IDX0                  SSC_IRQn
-#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_2
-#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_1
+#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
+#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_2
 
+
+/* I2C Driver Common Configuration Options */
+#define DRV_I2C_INSTANCES_NUMBER              1
+
+
+
+/*** MXT336T Driver Configuration ***/
+#define DRV_MAXTOUCH_I2C_MODULE_INDEX   0
 
 /*** Codec Driver Configuration ***/
 
@@ -166,6 +163,7 @@ extern "C" {
 #define DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0             DRV_I2C_INDEX_0
 /* CODEC Driver Abstraction definition */
 
+//Codec Driver Instance
 #define DRV_CODEC_INDEX_0                                   DRV_WM8904_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvwm8904Codec0
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_WM8904_BUFFER_HANDLE
@@ -177,10 +175,18 @@ extern "C" {
 #define DRV_CODEC_BUFFER_EVENT_ABORT                        DRV_WM8904_BUFFER_EVENT_ABORT
 #define DRV_CODEC_COMMAND_EVENT_HANDLER                     DRV_WM8904_COMMAND_EVENT_HANDLER
 
+//Codec Driver API Configuration Parameters
 #define DRV_CODEC_CHANNEL_LEFT                              DRV_WM8904_CHANNEL_LEFT
 #define DRV_CODEC_CHANNEL_RIGHT                             DRV_WM8904_CHANNEL_RIGHT
 #define DRV_CODEC_CHANNEL_LEFT_RIGHT                        DRV_WM8904_CHANNEL_LEFT_RIGHT
+#define DRV_CODEC_AUDIO_SAMPLING_RATE                       DRV_WM8904_AUDIO_SAMPLING_RATE
+#define DRV_CODEC_VOLUME	                        	    DRV_WM8904_VOLUME
+#define DRV_CODEC_AUDIO_DATA_FORMAT_MACRO                 	DRV_WM8904_AUDIO_DATA_FORMAT_MACRO
+#define DRV_CODEC_ENABLE_MIC_INPUT                          DRV_WM8904_ENABLE_MIC_INPUT
+#define DRV_CODEC_ENABLE_MIC_BIAS                           DRV_WM8904_ENABLE_MIC_BIAS
+#define DRV_CODEC_MIC_GAIN                                  DRV_WM8904_MIC_GAIN
 
+//Codec Driver API Functions
 #define DRV_CODEC_Initialize                                DRV_WM8904_Initialize
 #define DRV_CODEC_Deinitialize                              DRV_WM8904_Deinitialize
 #define DRV_CODEC_Status                                    DRV_WM8904_Status
@@ -200,12 +206,16 @@ extern "C" {
 #define DRV_CODEC_VolumeGet                                 DRV_WM8904_VolumeGet
 #define DRV_CODEC_MuteOn                                    DRV_WM8904_MuteOn
 #define DRV_CODEC_MuteOff                                   DRV_WM8904_MuteOff
+#define DRV_CODEC_StereoMicSelect                           DRV_WM8904_StereoMicSelect
 #define DRV_CODEC_MicGainSet                                DRV_WM8904_MicGainSet
 #define DRV_CODEC_MicGainGet                                DRV_WM8904_MicGainGet
 #define DRV_CODEC_MicMuteOn                                 DRV_WM8904_MicMuteOn
 #define DRV_CODEC_MicMuteOff                                DRV_WM8904_MicMuteOff
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 
+
+/* I2S Driver Common Configuration Options */
+#define DRV_I2S_INSTANCES_NUMBER              1
 
 
 
@@ -223,7 +233,6 @@ extern "C" {
 /* Number of Endpoints used */
 #define DRV_USBHSV1_ENDPOINTS_NUMBER                        1
 
-/* Total number of devices to be supported */
 #define USB_HOST_DEVICES_NUMBER                             1
 
 /* Size of Endpoint 0 buffer */
@@ -278,6 +287,9 @@ extern "C" {
 
 /* Reset duration in milli Seconds */ 
 #define DRV_USBHSV1_HOST_RESET_DURATION                     100
+
+/* Alignment for buffers that are submitted to USB Driver*/ 
+#define USB_ALIGN  CACHE_ALIGN
 
 
 

@@ -48,7 +48,6 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "peripheral/i2sc/plib_i2sc1.h"
 #include "usb/usb_msd.h"
 #include "usb/usb_host_msd.h"
 #include "usb/usb_host_scsi.h"
@@ -57,6 +56,7 @@
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/xdmac/plib_xdmac.h"
 #include "peripheral/efc/plib_efc.h"
+#include "audio/driver/i2s/drv_i2s.h"
 #include "peripheral/tc/plib_tc0.h"
 #include "driver/i2c/drv_i2c.h"
 #include "system/time/sys_time.h"
@@ -64,16 +64,16 @@
 #include "usb/usb_chapter_9.h"
 #include "usb/usb_host.h"
 #include "bsp/bsp.h"
-#include "driver/i2s/drv_i2s.h"
 #include "system/fs/sys_fs.h"
 #include "system/fs/sys_fs_media_manager.h"
 #include "system/fs/fat_fs/src/file_system/ff.h"
 #include "system/fs/fat_fs/src/file_system/ffconf.h"
 #include "system/fs/fat_fs/src/hardware_access/diskio.h"
 #include "peripheral/twihs/plib_twihs0.h"
+#include "audio/peripheral/i2sc/plib_i2sc1.h"
 #include "FreeRTOS.h"
 #include "task.h"
-#include "audio/driver/wm8904/drv_wm8904.h"
+#include "audio/driver/codec/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
 #include "system/cache/sys_cache.h"
@@ -204,13 +204,13 @@ typedef struct
     /* I2C0 Driver Object */
     SYS_MODULE_OBJ drvI2C0;
 
+    /* I2S0 Driver Object */
+    SYS_MODULE_OBJ drvI2S0;
+
     SYS_MODULE_OBJ  sysTime;
 	SYS_MODULE_OBJ  drvUSBHSV1Object;
 
 	SYS_MODULE_OBJ  usbHostObject0;
-
-    /* I2S0 Driver Object */
-    SYS_MODULE_OBJ drvI2S0;
 
     SYS_MODULE_OBJ drvwm8904Codec0;
 

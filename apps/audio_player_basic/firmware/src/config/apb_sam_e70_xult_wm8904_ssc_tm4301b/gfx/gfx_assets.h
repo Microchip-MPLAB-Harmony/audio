@@ -273,7 +273,7 @@ extern GFXU_ImageAsset rwdBtn30x30;
 /*********************************
  * GFX Font Asset
  * Name:         LiberationSans_Bold
- * Height:       15
+ * Height:       14
  * Style:        Plain
  * Glyph Count:  15
  * Range Count:  11
@@ -294,7 +294,7 @@ extern GFXU_FontAsset LiberationSans_Bold;
 /*********************************
  * GFX Font Asset
  * Name:         LiberationSans_BoldItalic
- * Height:       15
+ * Height:       14
  * Style:        Plain
  * Glyph Count:  0
  * Range Count:  0
@@ -304,7 +304,7 @@ extern GFXU_FontAsset LiberationSans_BoldItalic;
 /*********************************
  * GFX Font Asset
  * Name:         LiberationSans_Italic
- * Height:       15
+ * Height:       14
  * Style:        Plain
  * Glyph Count:  0
  * Range Count:  0
@@ -314,7 +314,7 @@ extern GFXU_FontAsset LiberationSans_Italic;
 /*********************************
  * GFX Font Asset
  * Name:         LiberationSans_Regular
- * Height:       15
+ * Height:       14
  * Style:        Plain
  * Glyph Count:  92
  * Range Count:  4

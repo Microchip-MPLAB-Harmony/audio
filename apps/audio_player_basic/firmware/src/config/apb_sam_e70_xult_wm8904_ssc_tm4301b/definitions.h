@@ -50,7 +50,9 @@
 #include <stdbool.h>
 #include "gfx/hal/gfx.h"
 #include "peripheral/efc/plib_efc.h"
+#include "audio/driver/i2s/drv_i2s.h"
 #include "peripheral/tc/plib_tc0.h"
+#include "audio/peripheral/ssc/plib_ssc.h"
 #include "driver/i2c/drv_i2c.h"
 #include "system/time/sys_time.h"
 #include "usb/usb_chapter_9.h"
@@ -70,8 +72,6 @@
 #include "peripheral/pio/plib_pio.h"
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/xdmac/plib_xdmac.h"
-#include "peripheral/ssc/plib_ssc.h"
-#include "driver/i2s/drv_i2s.h"
 #include "driver/usb/usbhsv1/drv_usbhsv1.h"
 #include "system/input/sys_input.h"
 #include "peripheral/smc/plib_smc.h"
@@ -81,7 +81,7 @@
 #include "system/fs/fat_fs/src/file_system/ffconf.h"
 #include "system/fs/fat_fs/src/hardware_access/diskio.h"
 #include "gfx/libaria/libaria_harmony.h"
-#include "audio/driver/wm8904/drv_wm8904.h"
+#include "audio/driver/codec/wm8904/drv_wm8904.h"
 #include "app.h"
 
 
@@ -207,13 +207,13 @@ typedef struct
     /* I2C0 Driver Object */
     SYS_MODULE_OBJ drvI2C0;
 
+    /* I2S0 Driver Object */
+    SYS_MODULE_OBJ drvI2S0;
+
     SYS_MODULE_OBJ  sysTime;
 	SYS_MODULE_OBJ  usbHostObject0;
 
     SYS_MODULE_OBJ  drvMAXTOUCH;
-
-    /* I2S0 Driver Object */
-    SYS_MODULE_OBJ drvI2S0;
 
 	SYS_MODULE_OBJ  drvUSBHSV1Object;
 

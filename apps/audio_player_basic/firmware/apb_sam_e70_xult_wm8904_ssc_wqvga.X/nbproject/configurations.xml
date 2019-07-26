@@ -18,8 +18,19 @@
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/decoder/gfx_decoders.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="driver" projectFiles="true">
-              <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/wm8904/drv_wm8904.h</itemPath>
+              <logicalFolder name="f2" displayName="codec" projectFiles="true">
+                <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/codec/wm8904/drv_wm8904.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/i2s/drv_i2s.h</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/i2s/drv_i2s_definitions.h</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f3" displayName="peripheral" projectFiles="true">
+              <logicalFolder name="f1" displayName="ssc" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/peripheral/ssc/plib_ssc.h</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -31,14 +42,10 @@
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/i2c/drv_i2c.h</itemPath>
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/i2c/drv_i2c_definitions.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f3" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/i2s/drv_i2s.h</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/i2s/drv_i2s_definitions.h</itemPath>
-            </logicalFolder>
             <logicalFolder name="f2" displayName="input" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/input/drv_maxtouch.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f4" displayName="usb" projectFiles="true">
+            <logicalFolder name="f3" displayName="usb" projectFiles="true">
               <logicalFolder name="f1" displayName="usbhsv1" projectFiles="true">
                 <logicalFolder name="f1" displayName="src" projectFiles="true">
                   <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/usb/usbhsv1/src/drv_usbhsv1_variant_mapping.h</itemPath>
@@ -176,11 +183,8 @@
             <logicalFolder name="f5" displayName="pio" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/peripheral/pio/plib_pio.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f9" displayName="smc" projectFiles="true">
+            <logicalFolder name="f8" displayName="smc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/peripheral/smc/plib_smc.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f8" displayName="ssc" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/peripheral/ssc/plib_ssc.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="tc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/peripheral/tc/plib_tc0.h</itemPath>
@@ -370,9 +374,20 @@
               </logicalFolder>
             </logicalFolder>
             <logicalFolder name="f2" displayName="driver" projectFiles="true">
-              <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/wm8904/drv_wm8904.c</itemPath>
-                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/wm8904/drv_wm8904_local.h</itemPath>
+              <logicalFolder name="f2" displayName="codec" projectFiles="true">
+                <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/codec/wm8904/drv_wm8904.c</itemPath>
+                  <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/codec/wm8904/drv_wm8904_local.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/i2s/src/drv_i2s.c</itemPath>
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/driver/i2s/src/drv_i2s_local.h</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f3" displayName="peripheral" projectFiles="true">
+              <logicalFolder name="f1" displayName="ssc" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/peripheral/ssc/plib_ssc.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -384,14 +399,10 @@
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/i2c/src/drv_i2c.c</itemPath>
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/i2c/src/drv_i2c_local.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f3" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/i2s/src/drv_i2s.c</itemPath>
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/i2s/src/drv_i2s_local.h</itemPath>
-            </logicalFolder>
             <logicalFolder name="f2" displayName="input" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/input/drv_maxtouch.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f4" displayName="usb" projectFiles="true">
+            <logicalFolder name="f3" displayName="usb" projectFiles="true">
               <logicalFolder name="f1" displayName="usbhsv1" projectFiles="true">
                 <logicalFolder name="f1" displayName="src" projectFiles="true">
                   <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/driver/usb/usbhsv1/src/drv_usbhsv1.c</itemPath>
@@ -564,11 +575,8 @@
             <logicalFolder name="f5" displayName="pio" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/peripheral/pio/plib_pio.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f9" displayName="smc" projectFiles="true">
+            <logicalFolder name="f8" displayName="smc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/peripheral/smc/plib_smc.c</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f8" displayName="ssc" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/peripheral/ssc/plib_ssc.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="tc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/peripheral/tc/plib_tc0.c</itemPath>
@@ -715,7 +723,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/decoder;../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/decoder/audio_decoders"/>
+                  value="../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/decoder;../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b/audio/decoder/audio_decoders;../src;../src/config/apb_sam_e70_xult_wm8904_ssc_tm4301b;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>

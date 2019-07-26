@@ -72,6 +72,9 @@
 #define SWITCH_Get() ((PIOA_REGS->PIO_PDSR >> 11) & 0x1)
 #define SWITCH_STATE_PRESSED 0
 #define SWITCH_STATE_RELEASED 1
+/*** VBUS Macros for VBUS_AH ***/
+#define VBUS_AH_PowerEnable() (PIOA_REGS->PIO_SODR = (1<<8))
+#define VBUS_AH_PowerDisable() (PIOA_REGS->PIO_CODR = (1<<8))
 
 
 

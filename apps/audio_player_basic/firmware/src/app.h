@@ -75,16 +75,6 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 
-typedef struct 
-{
-    /* Left channel data */
-    int16_t leftData;
-
-    /* Right channel data */
-    int16_t rightData;
-
-} DRV_I2S_DATA16;
-
 #ifdef DATA32_ENABLED
 typedef struct 
 {

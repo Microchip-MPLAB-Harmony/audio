@@ -72,16 +72,6 @@ typedef struct
     size_t bufferSize;
 } AUDIO_CODEC_DATA;
 
-typedef struct 
-{
-    /* Left channel data */
-    int16_t leftData;
-
-    /* Right channel data */
-    int16_t rightData;
-
-} DRV_I2S_DATA16;
-
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Input_Buffer[2][NUM_SAMPLES];
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer[2][NUM_SAMPLES];
 
