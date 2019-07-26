@@ -22,9 +22,9 @@
 # THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 ##############################################################################
 
-i2sComponentIDList = ["drv_i2s", "drv_i2c", "sercom6", "i2s", "sys_time", "tc0"]		
-i2sAutoConnectList = [["audio_codec_wm8904", "DRV_I2S", "drv_i2s_0", "drv_i2s"],
-                      ["drv_i2s_0", "drv_i2s_I2S_dependency", "i2s", "I2S_I2S"],
+i2sComponentIDList = ["a_drv_i2s", "drv_i2c", "sercom6", "a_i2s", "sys_time", "tc0"]		
+i2sAutoConnectList = [["audio_codec_wm8904", "DRV_I2S", "a_drv_i2s_0", "drv_i2s"],
+                      ["a_drv_i2s_0", "drv_i2s_I2S_dependency", "a_i2s", "I2S_I2S"],
                       ["audio_codec_wm8904", "DRV_I2C", "drv_i2c_0", "drv_i2c"],
                       ["drv_i2c_0", "drv_i2c_I2C_dependency", "sercom6", "SERCOM6_I2C"],
                       ["sys_time", "sys_time_TMR_dependency", "tc0", "TC0_TMR"]]

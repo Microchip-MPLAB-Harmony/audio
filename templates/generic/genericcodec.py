@@ -31,20 +31,44 @@ execfile(Module.getPath() + "../common/bsp_utils.py")
 #Add BSP support
 execfile(Module.getPath() + "Support_BSP_SAM_E54_Curiosity_Ultra.py")
 execfile(Module.getPath() + "Support_BSP_SAM_E70_Xplained_Ultra.py")
+execfile(Module.getPath() + "Support_BSP_PIC32MX_Bluetooth_Audio Dev_Kit.py")
+execfile(Module.getPath() + "Support_BSP_PIC32MZ_EF_Bluetooth_Audio Dev_Kit.py")
+execfile(Module.getPath() + "Support_BSP_PIC32MZ_EF_Curiosity_2_0.py")
 
 def enableSSCPins(bspID, enable):
-    SSCPinConfigs = getBSPSupportNode(bspID, "SSC").getPinConfig()
-    if SSCPinConfigs:
-        resetPins(SSCPinConfigs)
+    pinConfigs = getBSPSupportNode(bspID, "SSC").getPinConfig()
+    if pinConfigs :
+        resetPins(pinConfigs)
         if (enable == True):
-            configurePins(SSCPinConfigs)
+            configurePins(pinConfigs )
 
 def enableI2SPins(bspID, enable):
-    I2SPinConfigs = getBSPSupportNode(bspID, "I2S").getPinConfig()
-    if I2SPinConfigs:
-        resetPins(I2SPinConfigs)
+    pinConfigs = getBSPSupportNode(bspID, "I2S").getPinConfig()
+    if pinConfigs:
+        resetPins(pinConfigs)
         if (enable == True):
-            configurePins(I2SPinConfigs)
+            configurePins(pinConfigs)    
+
+def enablePIC32MX_BTADK_I2SPins(bspID, enable):
+    pinConfigs= getBSPSupportNode(bspID, "PIC32MX_BTADK_I2S").getPinConfig()
+    if pinConfigs:
+        resetPinsPIC32M(pinConfigs)
+        if (enable == True):
+            configurePinsPIC32M(pinConfigs)
+
+def enablePIC32MZ_BTADK_I2SPins(bspID, enable):
+    pinConfigs= getBSPSupportNode(bspID, "PIC32MZ_BTADK_I2S").getPinConfig()
+    if pinConfigs:
+        resetPinsPIC32M(pinConfigs)
+        if (enable == True):
+            configurePinsPIC32M(pinConfigs)
+
+def enablePIC32MZ_Curiosity20_I2SPins(bspID, enable):
+    pinConfigs= getBSPSupportNode(bspID, "PIC32MZ_CURIOSITY20_I2S").getPinConfig()
+    if pinConfigs:
+        resetPinsPIC32M(pinConfigs)
+        if (enable == True):
+            configurePinsPIC32M(pinConfigs)
 
 def enableSSCInterface(bspID, enable):
     if getBSPSupportNode(bspID, "SSC"):
@@ -68,6 +92,38 @@ def enableI2SInterface(bspID, enable):
             res = Database.deactivateComponents(componentIDTable)
         enableI2SPins(bspID, enable)
 
+def enablePIC32MX_BTADK_I2SInterface(bspID, enable):
+    if getBSPSupportNode(bspID, "PIC32MX_BTADK_I2S"):
+        componentIDTable = getBSPSupportNode(bspID, "PIC32MX_BTADK_I2S").getComponentActivateList()
+        autoConnectTable = getBSPSupportNode(bspID, "PIC32MX_BTADK_I2S").getComponentAutoConnectList()
+        if (enable == True):
+            res = Database.activateComponents(componentIDTable)
+            res = Database.connectDependencies(autoConnectTable)
+        elif (enable == False):
+            res = Database.deactivateComponents(componentIDTable)
+        enablePIC32MX_BTADK_I2SPins(bspID, enable)
+
+def enablePIC32MZ_BTADK_I2SInterface(bspID, enable):
+    if getBSPSupportNode(bspID, "PIC32MZ_BTADK_I2S"):
+        componentIDTable = getBSPSupportNode(bspID, "PIC32MZ_BTADK_I2S").getComponentActivateList()
+        autoConnectTable = getBSPSupportNode(bspID, "PIC32MZ_BTADK_I2S").getComponentAutoConnectList()
+        if (enable == True):
+            res = Database.activateComponents(componentIDTable)
+            res = Database.connectDependencies(autoConnectTable)
+        elif (enable == False):
+            res = Database.deactivateComponents(componentIDTable)
+        enablePIC32MZ_BTADK_I2SPins(bspID, enable)
+
+def enablePIC32MZ_Curiosity20_I2SInterface(bspID, enable):
+    if getBSPSupportNode(bspID, "PIC32MZ_CURIOSITY20_I2S"):
+        componentIDTable = getBSPSupportNode(bspID, "PIC32MZ_CURIOSITY20_I2S").getComponentActivateList()
+        autoConnectTable = getBSPSupportNode(bspID, "PIC32MZ_CURIOSITY20_I2S").getComponentAutoConnectList()
+        if (enable == True):
+            res = Database.activateComponents(componentIDTable)
+            res = Database.connectDependencies(autoConnectTable)
+        elif (enable == False):
+            res = Database.deactivateComponents(componentIDTable)
+        enablePIC32MZ_Curiosity20_I2SPins(bspID, enable)
 def configureGenericCodecInterface(bspID, interface):
     print("Configuring for " + str(interface) + " Interface.")
     if bspID == None:
@@ -79,6 +135,12 @@ def configureGenericCodecInterface(bspID, interface):
         elif (str(interface) == "I2S"):
             enableSSCInterface(bspID, False)
             enableI2SInterface(bspID, True)
+        elif (str(interface) == "PIC32MX_BTADK_I2S"):
+            enablePIC32MX_BTADK_I2SInterface(bspID, True)
+        elif (str(interface) == "PIC32MZ_BTADK_I2S"):
+            enablePIC32MZ_BTADK_I2SInterface(bspID, True)
+        elif (str(interface) == "PIC32MZ_CURIOSITY20_I2S"):
+            enablePIC32MZ_Curiosity20_I2SInterface(bspID, True)
 
 def instantiateComponent(bspComponent):
     global componentsIDTable
@@ -98,4 +160,10 @@ def instantiateComponent(bspComponent):
         configureGenericCodecInterface(bspID, "SSC")	
     elif getBSPSupportNode(bspID, "I2S"):
         configureGenericCodecInterface(bspID, "I2S")
+    elif getBSPSupportNode(bspID, "PIC32MX_BTADK_I2S"):
+        configureGenericCodecInterface(bspID, "PIC32MX_BTADK_I2S")
+    elif getBSPSupportNode(bspID, "PIC32MZ_BTADK_I2S"):
+        configureGenericCodecInterface(bspID, "PIC32MZ_BTADK_I2S")
+    elif getBSPSupportNode(bspID, "PIC32MZ_CURIOSITY20_I2S"):
+        configureGenericCodecInterface(bspID, "PIC32MZ_CURIOSITY20_I2S")
 

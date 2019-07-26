@@ -22,9 +22,9 @@
 # THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 ##############################################################################
 
-sscComponentIDList = ["drv_i2s", "drv_i2c", "twihs0", "ssc", "sys_time", "tc0"]		
-sscAutoConnectList = [["audio_codec_ak4954", "DRV_I2S", "drv_i2s_0", "drv_i2s"],
-                      ["drv_i2s_0", "drv_i2s_I2S_dependency", "ssc", "SSC_I2S"],
+sscComponentIDList = ["a_drv_i2s", "drv_i2c", "twihs0", "a_ssc", "sys_time", "tc0"]		
+sscAutoConnectList = [["audio_codec_ak4954", "DRV_I2S", "a_drv_i2s_0", "drv_i2s"],
+                      ["a_drv_i2s_0", "drv_i2s_I2S_dependency", "a_ssc", "SSC_I2S"],
                       ["audio_codec_ak4954", "DRV_I2C", "drv_i2c_0", "drv_i2c"],
                       ["drv_i2c_0", "drv_i2c_I2C_dependency", "twihs0", "TWIHS0_I2C"],
                       ["sys_time", "sys_time_TMR_dependency", "tc0", "TC0_TMR"]]

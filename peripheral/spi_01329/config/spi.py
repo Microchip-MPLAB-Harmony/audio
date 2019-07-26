@@ -229,8 +229,10 @@ def instantiateComponent(i2sComponent):
     InterruptHandlerLock = []
     InterruptVectorUpdate = []
 
+    i2sID = i2sComponent.getID().replace("a_i2s","i2s")    # PLIBs in audio repo have an "a_" prefix
+
     # for MX/MZ processors, I2S masquerades as SPI
-    i2sComponentName = i2sComponent.getID().replace("i2s","spi")
+    i2sComponentName = i2sID.replace("i2s","spi")
 
     spiInstanceName = i2sComponent.createStringSymbol("SPI_INSTANCE_NAME", None)    # used for SPI registers
     spiInstanceName.setVisible(False)
@@ -238,7 +240,7 @@ def instantiateComponent(i2sComponent):
 
     i2sInstanceName = i2sComponent.createStringSymbol("I2S_INSTANCE_NAME", None)
     i2sInstanceName.setVisible(False)
-    i2sInstanceName.setDefaultValue(i2sComponent.getID().upper())
+    i2sInstanceName.setDefaultValue(i2sID.upper())
     Log.writeInfoMessage("Running " + i2sInstanceName.getValue())   # prints "Running I2S1"
 
     i2sInstanceNum = i2sComponent.createStringSymbol("I2S_INSTANCE_NUM", None)
@@ -450,7 +452,7 @@ def instantiateComponent(i2sComponent):
     i2sSymMaxBRG.setDefaultValue(i2sMaxBRG)
     i2sSymMaxBRG.setVisible(False)
 
-    ## Baud Rate generation
+    # Baud Rate generation
     i2sDefaultMasterFreq = int(Database.getSymbolValue("core", spiInstanceName.getValue() + "_CLOCK_FREQUENCY"))
     defaultSPIBR = i2sCalculateBRGValue(i2sDefaultMasterFreq, i2sSym_Baud_Rate.getValue())
 
