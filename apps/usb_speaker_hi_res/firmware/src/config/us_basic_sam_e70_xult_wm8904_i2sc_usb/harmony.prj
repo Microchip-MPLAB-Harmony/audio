@@ -467,8 +467,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">0D254A4B9A2BC08E992E54C0B619F452</GeneratedChecksum>
-          <UserChecksum dnOrder="5">0D254A4B9A2BC08E992E54C0B619F452</UserChecksum>
+          <GeneratedChecksum dnOrder="4">87A00093DB6132F4DB9446BA44BF247A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">19A355B71E01FE4C0BECAF236CBD6E4B</UserChecksum>
         </File>
         <File dnOrder="58">
           <Type dnOrder="0">HEADER</Type>
@@ -1271,7 +1271,7 @@
       <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
       <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
       <Setting dnOrder="4" key="MERGE_STRATEGY" value="ALL"/>
-      <Setting dnOrder="5" key="PackageFilter" value="audio;audio;bsp;core;csp;usb;"/>
+      <Setting dnOrder="5" key="PackageFilter" value="audio;bsp;core;csp;usb;"/>
     </Settings>
   </Configurator>
 </Configuration>

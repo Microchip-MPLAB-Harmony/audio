@@ -1169,7 +1169,7 @@ bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle,
     if ((*dObj->i2sPlib->I2S_PCLK_SET)(pClkNum, div2)==true)
     {
         return false;
-}
+    }
     return true;
 }
 

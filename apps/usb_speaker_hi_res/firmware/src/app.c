@@ -68,6 +68,8 @@ static const int CLOCK_STABLE_DELAY_MS = 100;
 //d, m, and d2 values for E70 96Khz/64 bit stereo frame
 static uint32_t d,m,d2;
 static uint32_t __attribute__((unused)) dpl, mpl, dg, dp;
+#define CLOCKUP_IND   0   
+#define CLOCKDWN_IND  0
 
 #ifdef FS48KHZ
 static uint32_t _clockAdjUp[9][3] = 
@@ -96,18 +98,14 @@ static uint32_t _clockAdjDwn[8][3] =
 };
 #endif
 
-#define CLOCKUP_IND   0   
-#define CLOCKDWN_IND  0
-
-//96Khz Clock Parameter Values (d,m,d2)
-static uint32_t __attribute__((unused)) _clockAdjUp[3][3] = 
+static uint32_t _clockAdjUp[3][3] = 
 {
 {2,41,10}, //246000000,24600000,96093,0.097%,
 {1,39,19}, //468000000,24631578,96217,0.226%,
 {2,37,9},  //222000000,24666666,96354,0.369%,
 };
 
-static uint32_t __attribute__((unused)) _clockAdjDwn[3][3] = 
+static uint32_t _clockAdjDwn[3][3] = 
 {
 {3,43,7},  //172000000,24571428,95982,-0.019%,
 {2,45,11}, //270000000,24545454,95880,-0.125%,
@@ -670,7 +668,7 @@ void APP_Tasks()
                     drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
 
                     //Clock Initialize
-                    const int d  = _clockAdjDwn[CLOCKDWN_IND][0];
+                    const int d  = _clockAdjUp[CLOCKDWN_IND][0];
                     const int m  = _clockAdjDwn[CLOCKDWN_IND][1];
                     const int d2 = _clockAdjDwn[CLOCKDWN_IND][2];
 
@@ -1123,12 +1121,12 @@ void APP_Tasks()
                             //USB is running slow. Decrease I2S clock.  
                             //- Prevent underflow (queueEmpty)
                             //Increase Clock Rate
-                            //d  = _clockAdjUp[CLOCKUP_IND][0];
-                            //m  = _clockAdjUp[CLOCKUP_IND][1];
-                            //d2 = _clockAdjUp[CLOCKUP_IND][2];
-                            d  = _clockAdjDwn[CLOCKDWN_IND][0];
-                            m  = _clockAdjDwn[CLOCKDWN_IND][1];
-                            d2 = _clockAdjDwn[CLOCKDWN_IND][2];
+                            d  = _clockAdjUp[CLOCKUP_IND][0];
+                            m  = _clockAdjUp[CLOCKUP_IND][1];
+                            d2 = _clockAdjUp[CLOCKUP_IND][2];
+                            //d  = _clockAdjDwn[CLOCKDWN_IND][0];
+                            //m  = _clockAdjDwn[CLOCKDWN_IND][1];
+                            //d2 = _clockAdjDwn[CLOCKDWN_IND][2];
                         }
                     }
                     else 
@@ -1156,7 +1154,7 @@ void APP_Tasks()
                     clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
                     drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
                     //Set the PLLA/GCLK/PCK2
-                    //DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
+                    DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
                     DRV_I2S_ClockGenerationSet(drvObj->i2sDriverHandle, d, m, d2);
 
                     appBufferQueue.previousBufferLevel = 
