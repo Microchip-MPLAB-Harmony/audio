@@ -4,9 +4,15 @@
 DRV_I2S_PLIB_INTERFACE drvI2S${INDEX?string}PlibAPI =
 {
     .I2S_LRCLK_Get = (DRV_I2S_LRCLK_GET)${DRV_I2S_PLIB}_LRCLK_Get,  
+
+<#if __PROCESSOR?matches("ATSAME70.*") == true>
+/************************ Start of code specific to SAME70 ********************/
     .I2S_PLLA_CLOCK_SET = (DRV_I2S_PLLA_CLOCK_SET) ${DRV_I2S_PLIB}_PLLAClockSet,
     .I2S_GCLK_SET       = (DRV_I2S_GCLK_SET) ${DRV_I2S_PLIB}_GenericClockSet,
     .I2S_PCLK_SET       = (DRV_I2S_PCLK_SET) ${DRV_I2S_PLIB}_ProgrammableClockSet,
+/**************** End of SAM E70/V71         specific code ********************/
+</#if>
+
 };
 
 /* I2S Driver Initialization Data */

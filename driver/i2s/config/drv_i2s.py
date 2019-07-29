@@ -143,7 +143,7 @@ def instantiateComponent(i2sComponent, index):
 
     i2sDataLengthComment = i2sComponent.createCommentSymbol("I2S_DATA_LENGTH_COMMENT", None)
     i2sDataLengthComment.setVisible(True)
-    i2sDataLengthComment.setLabel("Must match Data Length field in I2SC/SSC PLIB")") 
+    i2sDataLengthComment.setLabel("Must match Data Length field in I2SC/SSC PLIB")")
 
     i2sTXRXDMA = i2sComponent.createBooleanSymbol("DRV_I2S_TX_RX_DMA", None)
     i2sTXRXDMA.setVisible(True)
@@ -224,7 +224,8 @@ def instantiateComponent(i2sComponent, index):
     i2sSymSourceFile.setOverwrite(True)
 
     i2sSymHeaderDefFile = i2sComponent.createFileSymbol("DRV_I2S_DEF", None)
-    i2sSymHeaderDefFile.setSourcePath("i2s/drv_i2s_definitions.h")
+    i2sSymHeaderDefFile.setMarkup(True) 
+    i2sSymHeaderDefFile.setSourcePath("i2s/templates/drv_i2s_definitions.h.ftl")
     i2sSymHeaderDefFile.setOutputName("drv_i2s_definitions.h")
     i2sSymHeaderDefFile.setDestPath("audio/driver/i2s/")
     i2sSymHeaderDefFile.setProjectPath("config/" + configName + "/audio/driver/i2s/")
