@@ -1143,12 +1143,13 @@ bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate)
 } //End DRV_I2S_LRCLK_Sync()
 
 
+/************************ Start of code specific to SAME70 ********************/
 /*******************************************************************************
  * DRV_I2S_ProgrammableClockSet()
  * 
  * NOTE:  Programmable Clock (PCK#) is set for the X32 I2SC1 CODEC slave
  *        although Generic Clock (GCLK for the I2SC1) is used by the E70
- *        peripheral.  The both should use the same PLLA clock source and 
+ *        peripheral.  They both should use the same PLLA clock source and 
  *        divider (div2).  (as required for SAM_E70 xULT Board implementation)
  ******************************************************************************/
 bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, 
@@ -1169,7 +1170,7 @@ bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle,
     if ((*dObj->i2sPlib->I2S_PCLK_SET)(pClkNum, div2)==true)
     {
         return false;
-    }
+}
     return true;
 }
 
@@ -1182,7 +1183,7 @@ bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle,
  *        needed for the X32 I2SC1 CODEC slave although Generic Clock 
  *        (GCLK for the I2SC1) is used by the E70 peripheral.  
  *        They both should use the same PLLA clock source and 
- *        divider (div2).  
+ *        divider value (div2).  
  * 
  ******************************************************************************/
 bool DRV_I2S_ClockGenerationSet(const DRV_HANDLE handle, 
@@ -1214,3 +1215,7 @@ bool DRV_I2S_ClockGenerationSet(const DRV_HANDLE handle,
         return true;
     }
 }
+/**************** End of SAM E70/V71         specific code ********************/
+
+
+
