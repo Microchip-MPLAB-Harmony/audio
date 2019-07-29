@@ -1245,8 +1245,80 @@ bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate)
         }
     }
     return true;
+} //End DRV_I2S_LRCLK_Sync()
+
+
+/*******************************************************************************
+ * DRV_I2S_ProgrammableClockSet()
+ * 
+ * NOTE:  Programmable Clock (PCK#) is set for the X32 I2SC1 CODEC slave
+ *        although Generic Clock (GCLK for the I2SC1) is used by the E70
+ *        peripheral.  The both should use the same PLLA clock source and 
+ *        divider (div2).  (as required for SAM_E70 xULT Board implementation)
+ ******************************************************************************/
+bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, 
+                                  uint8_t pClkNum, uint8_t div2)
+{
+    DRV_I2S_OBJ * dObj = NULL;
+
+    /* Validate the Request */
+    if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
+    {
+        return false;
+    }
+
+    dObj = &gDrvI2SObj[handle];
+
+    //Programmable Clock # set (PCK2 for E70 xult board)
+    //---
+    if ((*dObj->i2sPlib->I2S_PCLK_SET)(pClkNum, div2)==true)
+    {
+        return false;
+}
+    return true;
 }
 
+/*******************************************************************************
+ * DRV_I2S_ClockGenerationSet()
+ * 
+ * Set the PLLA and GCLK for the I2SC1 peripheral
+ * 
+ * NOTE:  For the SAM E70 xUlt board the programmable Clock (PCK#) is also 
+ *        needed for the X32 I2SC1 CODEC slave although Generic Clock 
+ *        (GCLK for the I2SC1) is used by the E70 peripheral.  
+ *        They both should use the same PLLA clock source and 
+ *        divider (div2).  
+ * 
+ ******************************************************************************/
+bool DRV_I2S_ClockGenerationSet(const DRV_HANDLE handle, 
+                                const uint8_t div, 
+                                const uint8_t mul, 
+                                const uint8_t div2)
+{
+    DRV_I2S_OBJ * dObj = NULL;
+    DRV_I2S_PLIB_INTERFACE * i2s;
+
+    /* Validate the Request */
+    if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
+    {
+        return false;
+    }
+
+    dObj = &gDrvI2SObj[handle];
+    i2s  = dObj->i2sPlib;
+
+    //Set the PLLA Clock Source
+    if ((i2s->I2S_PLLA_CLOCK_SET)(div, mul) == false) return false;
+
+    if ((i2s->I2S_GCLK_SET)(div2) == false) 
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 <#if DRV_I2S_DMA_LL_ENABLE == true>
 __attribute__((__aligned__(32))) static XDMAC_DESCRIPTOR_CONTROL _firstDescriptorControl =
 {
