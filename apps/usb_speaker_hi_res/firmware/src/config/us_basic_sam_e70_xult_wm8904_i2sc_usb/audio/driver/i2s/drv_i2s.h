@@ -18,7 +18,7 @@
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2018-2019 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -49,6 +49,9 @@
 // Section: File includes
 // *****************************************************************************
 // *****************************************************************************
+
+#include <stdint.h>
+#include <stdbool.h>
 
 #include "drv_i2s_definitions.h"
 
@@ -1355,15 +1358,74 @@ bool DRV_I2S_ReadBuffer( const DRV_HANDLE handle, void * buffer, const size_t si
   Remarks:
     None.                                            
 */
-bool DRV_I2S_LRCLK_Sync(const DRV_HANDLE handle, 
-                                const uint32_t sample_rate);
+bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, 
+                         const uint32_t sample_rate);
+/* Function:
+    bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, uint8_t pClkNum, uint8_t div2);
+    
+  Summary:
+    Set the Programmable Clock
+    
+  Description:
+    Set the Programmable Clock ignoring glitch control
+  
+  Precondition:
+    None.
+  
+  Parameters:
+    None.
+  
+  Returns:
+    true if the function was successful, false if a timeout occurred (no transitions seen)
+    
+  Example:
+    <code>
+        // myI2SHandle is the handle returned
+        // by the DRV_I2S_Open function.
+        DRV_I2S_ProgrammableClockSet(myI2SHandle, 2, 7);
+    </code>
+    
+  Remarks:
+    None.                                            
+*/
 bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, 
-                                uint8_t pClkNum, uint8_t div2);
+                                  uint8_t pClkNum, 
+                                  uint8_t div2);
+
+
+/* Function:
+    bool DRV_I2S_ClockGenerationSet(DRV_HANDLE handle, uint8_t div, uint8_t mul, uint8_t div2);
+    
+  Summary:
+    Set the clock(PLLA and I2SC GCLK clock) generation values
+    
+  Description:
+    Set the clock(PLLA and I2SC GCLK clock) generation values
+  
+  Precondition:
+    None.
+  
+  Parameters:
+    None.
+  
+  Returns:
+    true if the function was successful, false if a timeout occurred (no transitions seen)
+    
+  Example:
+    <code>
+        // myI2SHandle is the handle returned
+        // by the DRV_I2S_Open function.
+        DRV_I2S_ClockGenerationSet(myI2SHandle, 2, 40, 5);
+    </code>
+    
+  Remarks:
+    None.                                            
+*/
 bool DRV_I2S_ClockGenerationSet(DRV_HANDLE handle, 
-                                uint8_t div, uint8_t mul, uint8_t div2);
+                                uint8_t div, 
+                                uint8_t mul, 
+                                uint8_t div2);
 
-
-#include "audio/driver/i2s/src/drv_i2s_local.h"
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

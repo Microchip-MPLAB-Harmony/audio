@@ -282,7 +282,7 @@
         </String>
         <String dnOrder="25" id="I2S1_CLOCK_FREQUENCY">
           <Values dnOrder="0">
-            <User dnOrder="0" value="24571428"/>
+            <User dnOrder="0" value="24600000"/>
           </Values>
         </String>
         <Integer dnOrder="26" id="ICM_CLOCK_FREQUENCY">
@@ -508,7 +508,7 @@
         </String>
         <String dnOrder="70" id="PCK2_CLOCK_FREQUENCY">
           <Values dnOrder="0">
-            <User dnOrder="0" value="24571428"/>
+            <User dnOrder="0" value="24600000"/>
           </Values>
         </String>
         <String dnOrder="71" id="PCK3_CLOCK_FREQUENCY">
@@ -2557,12 +2557,12 @@
         </Boolean>
         <Integer dnOrder="477" id="PMC_CKGR_PLLAR_DIVA">
           <Values dnOrder="0">
-            <User dnOrder="0" value="3"/>
+            <User dnOrder="0" value="1"/>
           </Values>
         </Integer>
         <Integer dnOrder="478" id="PMC_CKGR_PLLAR_MULA">
           <Values dnOrder="0">
-            <User dnOrder="0" value="43"/>
+            <User dnOrder="0" value="41"/>
           </Values>
         </Integer>
         <Boolean dnOrder="479" id="PMC_CKGR_UCKR_UPLLEN">
@@ -2602,7 +2602,7 @@
         </Combo>
         <Integer dnOrder="485" id="PMC_PCK2_PRES">
           <Values dnOrder="0">
-            <User dnOrder="0" value="7"/>
+            <User dnOrder="0" value="20"/>
           </Values>
         </Integer>
         <Combo dnOrder="486" id="PMC_PCK3_CSS">
@@ -2648,7 +2648,7 @@
             </Boolean>
           </Attributes>
           <Values dnOrder="1">
-            <User dnOrder="0" value="7"/>
+            <User dnOrder="0" value="20"/>
           </Values>
         </Integer>
         <Boolean dnOrder="493" id="PMC_PCR_GCLK1EN">
@@ -3058,13 +3058,13 @@
         <Setting dnOrder="573" id="XC32_HEAP">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="value">
-              <Value dnOrder="0">128000</Value>
+              <Value dnOrder="0">16000</Value>
             </String>
           </Attributes>
         </Setting>
         <Integer dnOrder="574" id="XC32_HEAP_SIZE">
           <Values dnOrder="0">
-            <User dnOrder="0" value="128000"/>
+            <User dnOrder="0" value="16000"/>
           </Values>
         </Integer>
         <Setting dnOrder="575" id="XC32_ITCM_SIZE">
@@ -5102,18 +5102,18 @@
             <Dynamic dnOrder="0" id="usart1" value="65"/>
           </Values>
         </Integer>
-        <Integer dnOrder="2" id="USART_CLOCK_FREQ">
+        <Comment dnOrder="2" id="USART_CLK_ENABLE_COMMENT">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="visible">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </Comment>
+        <Integer dnOrder="3" id="USART_CLOCK_FREQ">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="usart1" value="120000000"/>
           </Values>
         </Integer>
-        <Comment dnOrder="3" id="USART_NVIC_ENABLE_COMMENT">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="visible">
-              <Value dnOrder="0">false</Value>
-            </Boolean>
-          </Attributes>
-        </Comment>
       </Symbols>
       <Attachments dnOrder="1">
         <DirectCapability dnOrder="0" id="USART1_UART">
@@ -5187,7 +5187,7 @@
         </Integer>
         <Integer dnOrder="1" id="CONFIG_USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="usb_device_audio_0" value="1398"/>
+            <Dynamic dnOrder="0" id="usb_device_audio_0" value="1590"/>
           </Values>
         </Integer>
         <Integer dnOrder="2" id="CONFIG_USB_DEVICE_FUNCTION_AUDIO_MAX_ALTERNATE_SETTING_COMBINED">
@@ -5221,7 +5221,7 @@
             </Integer>
             <Integer dnOrder="3" id="CONFIG_USB_DEVICE_FUNCTION_READ_Q_SIZE">
               <Values dnOrder="0">
-                <User dnOrder="0" value="64"/>
+                <User dnOrder="0" value="128"/>
               </Values>
             </Integer>
             <Integer dnOrder="4" id="CONFIG_USB_DEVICE_FUNCTION_WRITE_Q_SIZE">
@@ -5236,8 +5236,7 @@
     <UniqueComponent dnOrder="19" id="wm8904_codec"/>
   </Components>
   <UserData>
-    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="0"/>
-    <ComponentGraph dnOrder="1" id="__ROOTVIEW">
+    <ComponentGraph dnOrder="0" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="BSP_SAM_E70_Xplained_Ultra" x="189" y="61"/>
         <ElementPosition dnOrder="1" id="HarmonyCore" x="10" y="80"/>
@@ -5261,5 +5260,6 @@
         <ElementPosition dnOrder="19" id="wm8904_codec" x="457" y="19"/>
       </ElementPositions>
     </ComponentGraph>
+    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="1"/>
   </UserData>
 </Configuration>

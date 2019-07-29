@@ -54,15 +54,68 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 //*****************************************************************************
 
 #include "app.h"
+#include "atsame70q21b.h"
+#include "component/pmc.h"
 
 //#include "display.h"
 
 #define CLOCK_MISMATCH_COMPENSATION
 #ifdef CLOCK_MISMATCH_COMPENSATION
-#define CKUPDATERED 2 
+#define CKUPDATERED 2   //Clock Update Delay 
 static int ckUpdateCnt = CKUPDATERED; 
-static const int CLOCK_STABLE_DELAY_MS = 2000;
-#endif 
+static const int CLOCK_STABLE_DELAY_MS = 100;
+
+//d, m, and d2 values for E70 96Khz/64 bit stereo frame
+static uint32_t d,m,d2;
+static uint32_t __attribute__((unused)) dpl, mpl, dg, dp;
+
+#ifdef FS48KHZ
+static uint32_t _clockAdjUp[9][3] = 
+{
+    {1, 41, 40}, //492000000, 12300000,  48046,  0.096%, 
+    {2, 41, 20}, //246000000, 12300000,  48046,  0.096%, 
+    {3, 40, 13}, //160000000, 12307692,  48076,  0.158%, 
+    {1, 40, 39}, //480000000, 12307692,  48076,  0.158%, 
+    {1, 39, 38}, //468000000, 12315789,  48108,  0.225%, 
+    {2, 39, 19}, //234000000, 12315789,  48108,  0.225%, 
+    {1, 38, 37}, //456000000, 12324324,  48141,  0.294%, 
+    {1, 37, 36}, //444000000, 12333333,  48177,  0.369%, 
+    {2, 37, 18}, //222000000, 12333333,  48177,  0.369%, 
+};
+
+static uint32_t _clockAdjDwn[8][3] = 
+{
+    {3, 43, 14}, //172000000, 12285714,  47991, -0.019%, 
+    {2, 43, 21}, //258000000, 12285714,  47991, -0.019%, 
+    {2, 45, 22}, //270000000, 12272727,  47940, -0.125%, 
+    {3, 46, 15}, //184000000, 12266666,  47916, -0.175%, 
+    {2, 47, 23}, //282000000, 12260869,  47894, -0.221%, 
+    {2, 49, 24}, //294000000, 12250000,  47851, -0.310%, 
+    {3, 49, 16}, //196000000, 12250000,  47851, -0.310%, 
+    {2, 51, 25}, //306000000, 12240000,  47812, -0.392%, 
+};
+#endif
+
+#define CLOCKUP_IND   0   
+#define CLOCKDWN_IND  0
+
+//96Khz Clock Parameter Values (d,m,d2)
+static uint32_t __attribute__((unused)) _clockAdjUp[3][3] = 
+{
+{2,41,10}, //246000000,24600000,96093,0.097%,
+{1,39,19}, //468000000,24631578,96217,0.226%,
+{2,37,9},  //222000000,24666666,96354,0.369%,
+};
+
+static uint32_t __attribute__((unused)) _clockAdjDwn[3][3] = 
+{
+{3,43,7},  //172000000,24571428,95982,-0.019%,
+{2,45,11}, //270000000,24545454,95880,-0.125%,
+{2,49,12}, //294000000,24500000,95703,-0.309%,
+};
+
+
+#endif //CLOCK_MISMATCH_COMPENSATION 
 
 //DEBUG 
 #undef DEBUG_TONE_CODEC_TX
@@ -108,7 +161,8 @@ uint16_t volumeLevels[VOLUME_STEPS] =
 DRV_I2S_DATA32 __attribute__((aligned(32)))
         testBuffer2[96] =
 {
-#include "tone_1000Hz_32bit_96Khz_p125.txt" 
+#include "tone_1000Hz_32bit_96Khz_p125.txt"
+#include "packs/ATSAME70Q21B_DFP/atsame70q21b.h" 
 };
 typedef struct  _BITS24
 {
@@ -607,6 +661,54 @@ void APP_Tasks()
                        
                 if (appData.codecClientWrite.handle != DRV_HANDLE_INVALID) 
                 {
+                    static DRV_WM8904_CLIENT_OBJ *clientObj;
+                    static DRV_WM8904_OBJ *drvObj;
+                    static DRV_HANDLE * handle;
+
+                    handle = (DRV_HANDLE *) appData.codecClientWrite.handle;
+                    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+                    drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
+
+                    //Clock Initialize
+                    const int d  = _clockAdjDwn[CLOCKDWN_IND][0];
+                    const int m  = _clockAdjDwn[CLOCKDWN_IND][1];
+                    const int d2 = _clockAdjDwn[CLOCKDWN_IND][2];
+
+                    //Set the PLLA/GCLK/PCK2
+                    static uint32_t plla, gclk, pck2;
+                    plla = PMC_REGS->CKGR_PLLAR;
+                    PMC_REGS->PMC_PCR =  PMC_PCR_PID(70);
+                    gclk = PMC_REGS->PMC_PCR;
+                    pck2  = PMC_REGS->PMC_PCK[2];
+
+                    //Register Values
+                    dpl = (plla & 0xff); 
+                    mpl = (plla>>16 & 0x3ff) + 1; 
+                    dg  = (gclk>>20 & 0xff) + 1; 
+                    dp  = (pck2>>4 & 0xff) + 1; 
+                    SYS_PRINT("PLLA %08x\r\n",plla);
+                    SYS_PRINT("GCLK %08x\r\n",gclk);
+                    SYS_PRINT("PCK  %08x\r\n",pck2);
+                    SYS_PRINT("d= %x m= %x d2 = %x(%x)\r\n",dpl,mpl,dg,dp);
+
+                    DRV_I2S_ClockGenerationSet(drvObj->i2sDriverHandle, d, m, d2);
+                    DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
+
+                    plla = PMC_REGS->CKGR_PLLAR;
+                    PMC_REGS->PMC_PCR =  PMC_PCR_PID(70);
+                    gclk = PMC_REGS->PMC_PCR;
+                    pck2  = PMC_REGS->PMC_PCK[2];
+                    dpl = (plla & 0xff); 
+                    mpl = (plla>>16 & 0x3ff) + 1; 
+                    dg  = (gclk>>20 & 0xff) + 1; 
+                    dp  = (pck2>>4 & 0xff) + 1; 
+                    SYS_PRINT("PLLA %08x\r\n",plla);
+                    SYS_PRINT("GCLK %08x\r\n",gclk);
+                    SYS_PRINT("PCK  %08x\r\n",pck2);
+                    SYS_PRINT("d= %x m= %x d2 = %x(%x)\r\n",dpl,mpl,dg,dp);
+                   
+
+                    //Initial Volume
                     DRV_CODEC_VolumeSet(appData.codecClientWrite.handle, 
                                         DRV_CODEC_CHANNEL_LEFT_RIGHT, 
                                         appData.volume);
@@ -759,15 +861,13 @@ void APP_Tasks()
             {
 
 #ifdef CLOCK_MISMATCH_COMPENSATION
-            appData.clockStableDelayFlag = true;
-            appData.clockStableDelayMs = CLOCK_STABLE_DELAY_MS;
             //Start with decreased clock rate
             //--and let clock stabilize
             ckUpdateCnt = 0;  
-            appData.clockStableDelayFlag = true;   //Delay for clock to stabilize
+            appData.clockStableDelayFlag = false;  //Clock Stable Delay not complete
             appData.clockStableDelayMs= CLOCK_STABLE_DELAY_MS;
 #else  //CLOCK_MISMATCH_COMPENSATION
-            appData.clockStableDelayFlag = false;  //No Delay
+            appData.clockStableDelayFlag = true;  //No Delay
 #endif //CLOCK_MISMATCH_COMPENSATION
 
                 //Initialize/Purge playback queue
@@ -886,17 +986,17 @@ void APP_Tasks()
                 {
 
                     int8_t codecWriteIdx = appBufferQueue.codecWriteIdx;
-                        APP_PLAYBACK_BUFFER* current = 
+                        APP_PLAYBACK_BUFFER* currentPlayBuffer = 
                             &appBufferQueue.playbackBuffer[codecWriteIdx];
 
 
                     //CODEC Playback 
-                    if (current->usbReadCompleted == true && 
-                        current->usbInUse   == false &&
-                        current->codecInUse == false)
+                    if (currentPlayBuffer->usbReadCompleted == true && 
+                        currentPlayBuffer->usbInUse   == false &&
+                        currentPlayBuffer->codecInUse == false)
                     {
                         //Initial CODEC Write
-                        current->codecInUse = true;
+                        currentPlayBuffer->codecInUse = true;
                         
                         //L/R I2S Channel Sync 
                         if(appData.lrSync)
@@ -918,7 +1018,7 @@ void APP_Tasks()
 
                         //Write stereo tone to output instead of USB data.
                         DRV_CODEC_BufferAddWrite(appData.codecClientWrite.handle, 
-                                                 &current->codecWriteHandle,
+                                                 &currentPlayBuffer->codecWriteHandle,
                                                  testBuffer2, sizeof(testBuffer2));
                         #else
                         //USB Data
@@ -929,12 +1029,12 @@ void APP_Tasks()
                         int i;
                         int j;
                         int numUsb24BitSamples = appData.usbReadBufSize/3;
-                        //BITS24 *         in24Ptr  = (BITS24*) (current->buffer);
+                        //BITS24 *         in24Ptr  = (BITS24*) (currentPlayBuffer->buffer);
                         //DRV_I2S_DATA32 * out32Ptr = 
-                        //                  (DRV_I2S_DATA32 *) (current->buffer32);
+                        //                  (DRV_I2S_DATA32 *) (currentPlayBuffer->buffer32);
 
-                        uint32_t *src = (uint32_t *) current->buffer;
-                        uint32_t *dst = (uint32_t *) current->buffer32; 
+                        uint32_t *src = (uint32_t *) currentPlayBuffer->buffer;
+                        uint32_t *dst = (uint32_t *) currentPlayBuffer->buffer32; 
                         //_Unpack24to32bitBuffer(*src, *dst,  numUsb24BitSamples);
 
                         for (i=0, j=0; j<numUsb24BitSamples; i+=3, j+=4) 
@@ -956,19 +1056,20 @@ void APP_Tasks()
                         }
 
                         //Initial CODEC Write
-                        current->codecInUse = true;
+                        currentPlayBuffer->codecInUse = true;
                         #endif //DEBUG_BSUBFRAMESIZE_3
 
                         //Write stereo tone to output instead of USB data.
                         DRV_CODEC_BufferAddWrite(
                                     appData.codecClientWrite.handle, 
-                                    &current->codecWriteHandle,
-                                    current->buffer32,
-                                    sizeof(current->buffer32)); 
+                                    &currentPlayBuffer->codecWriteHandle,
+                                    currentPlayBuffer->buffer32,
+                                    sizeof(currentPlayBuffer->buffer32)); 
 
                         #endif //DEBUG_TONE_CODEC_TX
 
-                        if(current->codecWriteHandle != DRV_CODEC_BUFFER_HANDLE_INVALID)
+                        if (currentPlayBuffer->codecWriteHandle != 
+                            DRV_CODEC_BUFFER_HANDLE_INVALID)
                         {
                             appBufferQueue.codecWriteQueueCnt++;
                             appBufferQueue.codecWriteIdx = 
@@ -977,7 +1078,7 @@ void APP_Tasks()
                         }
                         else
                         {
-                            current->codecInUse = false;
+                            currentPlayBuffer->codecInUse = false;
                             // CODEC doesn't have enough write buffers
                             // should never happen
                             appData.state = APP_STATE_ERROR;
@@ -1000,49 +1101,69 @@ void APP_Tasks()
         case APP_PROCESS_DATA:
         {
 
-#ifdef CLOCK_MISMATCH_COMPENSATION
-            //TODO:  This should be part of the I2S API
-            //       --For now it is in the APP
-            //USB-CODEC Datarate Compensation
-            //bufferLevel = abs(usbNextBufferRead - i2sNextBuffer);
-            if (appBufferQueue.usbReadCompleteBufferLevel != 
-                appBufferQueue.previousBufferLevel)
-            {
-                if (appBufferQueue.usbReadCompleteBufferLevel < APP_INIT_QUEUE_LEVEL+1)
-                {    
-                    //Let the clock stabilize to a converged value by counting
-                    //down the updates
-                    //Each packet is 1 ms of data
-                    if (ckUpdateCnt-- == 0)
-                    {
-                        //USB is running slow. Decrease I2S clock.  
-                        //- Prevent underflow (queueEmpty)
-                        //Increase Clock Rate
-                    }
-                }
-                else 
-                {
-                    if (appBufferQueue.usbReadCompleteBufferLevel == APP_INIT_QUEUE_LEVEL+1)
-                    {
-                        // USB is at same rate as CODEC 
-                        //Keep Current Clock Rate
-                    }
-                    else
-                    {
-                        // USB is running faster. 
-                        //Decrease Clock Rate
-                        //-prevent Codec data overflow
-                    }
-                }
-                appBufferQueue.previousBufferLevel = 
-                     appBufferQueue.usbReadCompleteBufferLevel; 
-            } //End Clock Compensation
-
-#endif //CLOCK_MISMATCH_COMPENSATION
-           
             if (appData.activeInterfaceAlternateSetting == 
                 APP_USB_SPEAKER_PLAYBACK_STEREO)
             {
+
+#ifdef CLOCK_MISMATCH_COMPENSATION
+                //TODO:  This should be part of the I2S API
+                //       --For now it is in the APP
+                //USB-CODEC Datarate Compensation
+                //bufferLevel = abs(usbNextBufferRead - i2sNextBuffer);
+                if (appBufferQueue.usbReadCompleteBufferLevel != 
+                    appBufferQueue.previousBufferLevel)
+                {
+                    if (appBufferQueue.usbReadCompleteBufferLevel < APP_INIT_QUEUE_LEVEL+1)
+                    {    
+                        //Let the clock stabilize to a converged value by counting
+                        //down the updates
+                        //Each packet is 1 ms of data
+                        if (ckUpdateCnt-- == 0)
+                        {
+                            //USB is running slow. Decrease I2S clock.  
+                            //- Prevent underflow (queueEmpty)
+                            //Increase Clock Rate
+                            //d  = _clockAdjUp[CLOCKUP_IND][0];
+                            //m  = _clockAdjUp[CLOCKUP_IND][1];
+                            //d2 = _clockAdjUp[CLOCKUP_IND][2];
+                            d  = _clockAdjDwn[CLOCKDWN_IND][0];
+                            m  = _clockAdjDwn[CLOCKDWN_IND][1];
+                            d2 = _clockAdjDwn[CLOCKDWN_IND][2];
+                        }
+                    }
+                    else 
+                    {
+                        if (appBufferQueue.usbReadCompleteBufferLevel == APP_INIT_QUEUE_LEVEL+1)
+                        {
+                            // USB is at same rate as CODEC 
+                            //Keep Current Clock Rate
+                        }
+                        else
+                        {
+                            // USB is running faster. 
+                            //Decrease Clock Rate
+                            //-prevent Codec data overflow
+                            d  = _clockAdjDwn[CLOCKDWN_IND][0];
+                            m  = _clockAdjDwn[CLOCKDWN_IND][1];
+                            d2 = _clockAdjDwn[CLOCKDWN_IND][2];
+                        }
+                    }
+                    static DRV_WM8904_CLIENT_OBJ *clientObj;
+                    static DRV_WM8904_OBJ *drvObj;
+                    static DRV_HANDLE * handle;
+
+                    handle = (DRV_HANDLE *) appData.codecClientWrite.handle;
+                    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+                    drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
+                    //Set the PLLA/GCLK/PCK2
+                    //DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
+                    DRV_I2S_ClockGenerationSet(drvObj->i2sDriverHandle, d, m, d2);
+
+                    appBufferQueue.previousBufferLevel = 
+                         appBufferQueue.usbReadCompleteBufferLevel; 
+                } //End Clock Compensation
+#endif //CLOCK_MISMATCH_COMPENSATION
+
                 //----------------------------
                 //USB read
                 //--Read to usbReadIdx (Next Queue HEAD index)
@@ -1109,16 +1230,16 @@ void APP_Tasks()
 
                     //CODEC Write to codecWriteIdx (Next Queue TAILIndex)
                     int8_t codecWriteIdx = appBufferQueue.codecWriteIdx;
-                    APP_PLAYBACK_BUFFER* current = 
+                    APP_PLAYBACK_BUFFER* currentPlayBuffer = 
                             &appBufferQueue.playbackBuffer[codecWriteIdx];
 
-                    if (current->usbReadCompleted==true && 
-                        current->codecInUse==false)
+                    if (currentPlayBuffer->usbReadCompleted==true && 
+                        currentPlayBuffer->codecInUse==false)
                     {
                         #ifdef DEBUG_TONE_CODEC_TX
                         //Write stereo tone to output instead of USB data.
                         DRV_CODEC_BufferAddWrite(appData.codecClientWrite.handle, 
-                                                 &current->codecWriteHandle,
+                                                 &currentPlayBuffer->codecWriteHandle,
                                                  testBuffer2, sizeof(testBuffer2));
                         #else //DEBUG_TONE_CODEC_TX
                         //USB Data
@@ -1128,12 +1249,12 @@ void APP_Tasks()
                         int i;
                         int j;
                         int numUsb24BitSamples = appData.usbReadBufSize/3;
-                        //BITS24 *         in24Ptr  = (BITS24*) (current->buffer);
+                        //BITS24 *         in24Ptr  = (BITS24*) (currentPlayBuffer->buffer);
                         //DRV_I2S_DATA32 * out32Ptr = 
-                        //                  (DRV_I2S_DATA32 *) (current->buffer32);
+                        //                  (DRV_I2S_DATA32 *) (currentPlayBuffer->buffer32);
 
-                        uint32_t *src = (uint32_t *) current->buffer;
-                        uint32_t *dst = (uint32_t *) current->buffer32; 
+                        uint32_t *src = (uint32_t *) currentPlayBuffer->buffer;
+                        uint32_t *dst = (uint32_t *) currentPlayBuffer->buffer32; 
 
                         //_Unpack24to32bitBuffer(*src, *dst,  numUsb24BitSamples);
                         for (i=0, j=0; j<numUsb24BitSamples; i+=3, j+=4) 
@@ -1157,15 +1278,15 @@ void APP_Tasks()
 
                         DRV_CODEC_BufferAddWrite(
                                     appData.codecClientWrite.handle, 
-                                    &current->codecWriteHandle,
-                                    current->buffer32, 
+                                    &currentPlayBuffer->codecWriteHandle,
+                                    currentPlayBuffer->buffer32, 
                                     appData.codecClientWrite.bufferSize); //96*8=768
 
                         #endif //DEBUG_TONE_CODEC_TX
 
-                        if (current->codecWriteHandle != DRV_CODEC_BUFFER_HANDLE_INVALID)
+                        if (currentPlayBuffer->codecWriteHandle != DRV_CODEC_BUFFER_HANDLE_INVALID)
                         {
-                            current->codecInUse = true;
+                            currentPlayBuffer->codecInUse = true;
                             
                             appBufferQueue.codecWriteQueueCnt++;
                             appBufferQueue.codecWriteIdx = _APP_GetNextIdx(codecWriteIdx);
@@ -1188,7 +1309,7 @@ void APP_Tasks()
                         {
                             // CODEC doesn't have enough write buffers
                             // --Wait till one becomes available
-                            current->codecInUse = false;
+                            currentPlayBuffer->codecInUse = false;
                         }
                     } //USB Read Buffer Playback
                     else
@@ -1571,7 +1692,7 @@ static void _APP_TimerCallback( uintptr_t context)
 void _APP_Button_Tasks()
 {
    //BUTTON PROCESSING
-    /* Check the buttons' current state. */      
+    /* Check the buttons' currentPlayBuffer state. */      
     switch ( appData.buttonState )
     {
         case BUTTON_STATE_IDLE:

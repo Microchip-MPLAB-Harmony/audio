@@ -79,6 +79,14 @@ extern "C" {
 // Section: System Service Configuration
 // *****************************************************************************
 // *****************************************************************************
+
+#define SYS_DEBUG_ENABLE
+#define SYS_DEBUG_GLOBAL_ERROR_LEVEL       SYS_ERROR_DEBUG
+#define SYS_DEBUG_PRINT_BUFFER_SIZE        4096
+#define SYS_DEBUG_BUFFER_DMA_READY
+#define SYS_DEBUG_USE_CONSOLE
+
+
 /* TIME System Service Configuration Options */
 #define SYS_TIME_INDEX_0                     0
 #define SYS_TIME_MAX_TIMERS                  5
@@ -87,14 +95,6 @@ extern "C" {
 #define SYS_TIME_HW_COUNTER_HALF_PERIOD		 (SYS_TIME_HW_COUNTER_PERIOD>>1)
 #define SYS_TIME_CPU_CLOCK_FREQUENCY         240000000
 #define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
-
-
-#define SYS_DEBUG_ENABLE
-#define SYS_DEBUG_GLOBAL_ERROR_LEVEL       SYS_ERROR_DEBUG
-#define SYS_DEBUG_PRINT_BUFFER_SIZE        4096
-#define SYS_DEBUG_BUFFER_DMA_READY
-#define SYS_DEBUG_USE_CONSOLE
-
 
 /* Console System Service Configuration Options */
 #define SYS_CONSOLE_DEVICE_MAX_INSTANCES   1
@@ -144,7 +144,7 @@ extern "C" {
 #define DRV_WM8904_CLIENTS_NUMBER                           1
 #define DRV_WM8904_INSTANCES_NUMBER                         1
 
-#define DRV_WM8904_MASTER_MODE                              false 
+#define DRV_WM8904_MASTER_MODE                              false
 #define DRV_WM8904_AUDIO_SAMPLING_RATE                      96000
 #define DRV_WM8904_VOLUME	                      	        200
 #define DRV_WM8904_AUDIO_DATA_FORMAT_MACRO             	    DATA_32_BIT_I2S
@@ -158,9 +158,8 @@ extern "C" {
 
 //Codec Driver Instance
 #define DRV_CODEC_INDEX_0                                   DRV_WM8904_INDEX_0
-//KEEP THIS - need this to know how to change frequency - clock tuning
-#define DRV_CODEC_I2S_MASTER_MODE                           DRV_WM8904_MASTER_MODE
 #define sysObjdrvCodec0                                     sysObj.drvwm8904Codec0
+#define DRV_CODEC_I2S_MASTER_MODE                               DRV_WM8904_MASTER_MODE
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_WM8904_BUFFER_HANDLE
 #define DRV_CODEC_BUFFER_HANDLE_INVALID                     DRV_WM8904_BUFFER_HANDLE_INVALID
 #define DRV_CODEC_BUFFER_EVENT_HANDLER                      DRV_WM8904_BUFFER_EVENT_HANDLER
@@ -256,9 +255,7 @@ extern "C" {
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-//KEEP THIS - Not generated correctly on subsequent generations
-//64 + 2
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66 
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 1590
 
 
 /* No of Audio streaming interfaces */

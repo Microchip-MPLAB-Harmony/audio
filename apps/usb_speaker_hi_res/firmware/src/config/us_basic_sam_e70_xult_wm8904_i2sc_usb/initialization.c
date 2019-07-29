@@ -136,6 +136,9 @@ const DRV_I2C_INIT drvI2C0InitData =
 DRV_I2S_PLIB_INTERFACE drvI2S0PlibAPI =
 {
     .I2S_LRCLK_Get = (DRV_I2S_LRCLK_GET)I2SC1_LRCLK_Get,  
+    .I2S_PLLA_CLOCK_SET = (DRV_I2S_PLLA_CLOCK_SET) I2SC1_PLLAClockSet,
+    .I2S_GCLK_SET       = (DRV_I2S_GCLK_SET) I2SC1_GenericClockSet,
+    .I2S_PCLK_SET       = (DRV_I2S_PCLK_SET) I2SC1_ProgrammableClockSet,
 };
 
 /* I2S Driver Initialization Data */
@@ -235,6 +238,15 @@ const DRV_USBHSV1_INIT drvUSBInit =
 // Section: System Initialization
 // *****************************************************************************
 // *****************************************************************************
+
+const SYS_DEBUG_INIT debugInit =
+{
+    .moduleInit = {0},
+    .errorLevel = SYS_DEBUG_GLOBAL_ERROR_LEVEL,
+    .consoleIndex = 0,
+};
+
+
 // <editor-fold defaultstate="collapsed" desc="SYS_TIME Initialization Data">
 
 const SYS_TIME_PLIB_INTERFACE sysTimePlibAPI = {
@@ -254,15 +266,6 @@ const SYS_TIME_INIT sysTimeInitData =
 };
 
 // </editor-fold>
-
-const SYS_DEBUG_INIT debugInit =
-{
-    .moduleInit = {0},
-    .errorLevel = SYS_DEBUG_GLOBAL_ERROR_LEVEL,
-    .consoleIndex = 0,
-};
-
-
 // <editor-fold defaultstate="collapsed" desc="SYS_CONSOLE Instance 0 Initialization Data">
 
 static QElement sysConsole0UARTRdQueueElements[SYS_CONSOLE_UART_RD_QUEUE_DEPTH_IDX0];
@@ -357,10 +360,10 @@ void SYS_Initialize ( void* data )
     sysObj.drvwm8904Codec0 = DRV_WM8904_Initialize(DRV_WM8904_INDEX_0, (SYS_MODULE_INIT *)&drvwm8904Codec0InitData);
 
 
-    sysObj.sysTime = SYS_TIME_Initialize(SYS_TIME_INDEX_0, (SYS_MODULE_INIT *)&sysTimeInitData);
     sysObj.sysDebug = SYS_DEBUG_Initialize(SYS_DEBUG_INDEX_0, (SYS_MODULE_INIT*)&debugInit);
 
 
+    sysObj.sysTime = SYS_TIME_Initialize(SYS_TIME_INDEX_0, (SYS_MODULE_INIT *)&sysTimeInitData);
     sysObj.sysConsole0 = SYS_CONSOLE_Initialize(SYS_CONSOLE_INDEX_0, (SYS_MODULE_INIT *)&sysConsole0Init);
 
 
