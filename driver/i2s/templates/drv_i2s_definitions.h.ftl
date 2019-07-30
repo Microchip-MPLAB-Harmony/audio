@@ -105,15 +105,14 @@ typedef    void (* DRV_BAUDSET)(const uint32_t);
 
 //PLIB Interface Member Functions 
 typedef    uint32_t (* DRV_I2S_LRCLK_GET)();
+<#if __PROCESSOR?matches("ATSAME70.*") == true && DRV_I2S_PLIB?matches("I2SC.*") >
 
-<#if __PROCESSOR?matches("ATSAME70.*") == true>
 /************************ Start of code specific to SAME70 ********************/
 typedef    uint32_t (* DRV_I2S_PLLA_CLOCK_SET)(const uint8_t, const uint8_t);
 typedef    uint32_t (* DRV_I2S_GCLK_SET)(const uint8_t);
 typedef    uint32_t (* DRV_I2S_PCLK_SET)(const uint8_t, uint8_t);
-/**************** End of SAM E70/V71         specific code ********************/
+/************************ End of SAM E70 specific code ************************/
 </#if>
-
 
 // *****************************************************************************
 /* I2S Driver Audio Data 16
@@ -210,12 +209,12 @@ typedef struct
 	/* I2S PLIB baud rate set function */
 	DRV_BAUDSET	setBaud;  //TODO: Someday
     DRV_I2S_LRCLK_GET   I2S_LRCLK_Get;
-<#if __PROCESSOR?matches("ATSAME70.*") == true>
+<#if __PROCESSOR?matches("ATSAME70.*") == true && DRV_I2S_PLIB?matches("I2SC.*") >
 /************************ Start of code specific to SAME70 ********************/
     DRV_I2S_PLLA_CLOCK_SET I2S_PLLA_CLOCK_SET;
     DRV_I2S_GCLK_SET       I2S_GCLK_SET;
     DRV_I2S_PCLK_SET       I2S_PCLK_SET;
-/**************** End of SAM E70/V71         specific code ********************/
+/************************ End of SAM E70 specific code ************************/
 </#if>
 } DRV_I2S_PLIB_INTERFACE;
 

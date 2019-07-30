@@ -84,10 +84,10 @@ typedef struct
     /* Right channel data */
     int32_t rightData;
 
-} DRV_I2S_DATA32;
+} DRV_I2S_DATA32m;
 
-extern DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
-extern DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
+extern DRV_I2S_DATA32m __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
+extern DRV_I2S_DATA32m __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
 #else
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
 extern DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];

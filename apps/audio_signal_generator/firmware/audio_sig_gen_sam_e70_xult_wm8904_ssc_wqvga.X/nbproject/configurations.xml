@@ -8,26 +8,33 @@
         <logicalFolder name="f1"
                        displayName="sam_e70_xult_wm8904_ssc_wqvga"
                        projectFiles="true">
-          <logicalFolder name="f6" displayName="audio" projectFiles="true">
+          <logicalFolder name="f3" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
-              <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/wm8904/drv_wm8904.h</itemPath>
+              <logicalFolder name="f2" displayName="codec" projectFiles="true">
+                <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
+                  <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/codec/wm8904/drv_wm8904.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/i2s/drv_i2s.h</itemPath>
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/i2s/drv_i2s_definitions.h</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
+              <logicalFolder name="f1" displayName="ssc" projectFiles="true">
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/peripheral/ssc/plib_ssc.h</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f5" displayName="bsp" projectFiles="true">
+          <logicalFolder name="f6" displayName="bsp" projectFiles="true">
             <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/bsp/bsp.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f3" displayName="driver" projectFiles="true">
+          <logicalFolder name="f4" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="i2c" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2c/drv_i2c.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2c/drv_i2c_definitions.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f2" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2s/drv_i2s.h</itemPath>
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2s/drv_i2s_definitions.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="input" projectFiles="true">
+            <logicalFolder name="f2" displayName="input" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/input/drv_maxtouch.h</itemPath>
             </logicalFolder>
             <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/driver.h</itemPath>
@@ -157,17 +164,14 @@
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/pio/plib_pio.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f8" displayName="smc" projectFiles="true">
+            <logicalFolder name="f7" displayName="smc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/smc/plib_smc.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f7" displayName="ssc" projectFiles="true">
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/ssc/plib_ssc.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f6" displayName="tc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/tc/plib_tc0.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/tc/plib_tc_common.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f9" displayName="twihs" projectFiles="true">
+            <logicalFolder name="f8" displayName="twihs" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/twihs/plib_twihs_master.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/twihs/plib_twihs0.h</itemPath>
             </logicalFolder>
@@ -176,7 +180,7 @@
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/xdmac/plib_xdmac.h</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f4" displayName="system" projectFiles="true">
+          <logicalFolder name="f5" displayName="system" projectFiles="true">
             <logicalFolder name="f5" displayName="cache" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/system/cache/sys_cache.h</itemPath>
             </logicalFolder>
@@ -304,27 +308,34 @@
         <logicalFolder name="f1"
                        displayName="sam_e70_xult_wm8904_ssc_wqvga"
                        projectFiles="true">
-          <logicalFolder name="f7" displayName="audio" projectFiles="true">
+          <logicalFolder name="f4" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
-              <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/wm8904/drv_wm8904.c</itemPath>
-                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/wm8904/drv_wm8904_local.h</itemPath>
+              <logicalFolder name="f2" displayName="codec" projectFiles="true">
+                <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
+                  <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/codec/wm8904/drv_wm8904.c</itemPath>
+                  <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/codec/wm8904/drv_wm8904_local.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/i2s/src/drv_i2s.c</itemPath>
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/driver/i2s/src/drv_i2s_local.h</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
+              <logicalFolder name="f1" displayName="ssc" projectFiles="true">
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/audio/peripheral/ssc/plib_ssc.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f6" displayName="bsp" projectFiles="true">
+          <logicalFolder name="f7" displayName="bsp" projectFiles="true">
             <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/bsp/bsp.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="f4" displayName="driver" projectFiles="true">
+          <logicalFolder name="f5" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="i2c" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2c/src/drv_i2c.c</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2c/src/drv_i2c_local.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f2" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2s/src/drv_i2s.c</itemPath>
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/i2s/src/drv_i2s_local.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="input" projectFiles="true">
+            <logicalFolder name="f2" displayName="input" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/driver/input/drv_maxtouch.c</itemPath>
             </logicalFolder>
           </logicalFolder>
@@ -492,16 +503,13 @@
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/pio/plib_pio.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f8" displayName="smc" projectFiles="true">
+            <logicalFolder name="f7" displayName="smc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/smc/plib_smc.c</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f7" displayName="ssc" projectFiles="true">
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/ssc/plib_ssc.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f6" displayName="tc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/tc/plib_tc0.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f9" displayName="twihs" projectFiles="true">
+            <logicalFolder name="f8" displayName="twihs" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/peripheral/twihs/plib_twihs0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="xdmac" projectFiles="true">
@@ -511,7 +519,7 @@
           <logicalFolder name="f2" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="f5" displayName="system" projectFiles="true">
+          <logicalFolder name="f6" displayName="system" projectFiles="true">
             <logicalFolder name="f4" displayName="cache" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_wqvga/system/cache/sys_cache.c</itemPath>
             </logicalFolder>
@@ -564,8 +572,8 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
+        <pack name="SAME70_DFP" vendor="Microchip" version="4.0.29"/>
         <pack name="CMSIS" vendor="ARM" version="5.0.1"/>
-        <pack name="SAME70_DFP" vendor="Microchip" version="4.0.26"/>
       </packs>
       <compileType>
         <linkerTool>

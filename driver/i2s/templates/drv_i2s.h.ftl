@@ -1360,8 +1360,8 @@ bool DRV_I2S_ReadBuffer( const DRV_HANDLE handle, void * buffer, const size_t si
 */
 bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, 
                          const uint32_t sample_rate);
+<#if __PROCESSOR?matches("ATSAME70.*") == true && DRV_I2S_PLIB?matches("I2SC.*") >
 
-<#if __PROCESSOR?matches("ATSAME70.*") == true>
 /************************ Start of code specific to SAME70 ********************/
 /* Function:
     bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, uint8_t pClkNum, uint8_t div2);
@@ -1428,9 +1428,8 @@ bool DRV_I2S_ClockGenerationSet(DRV_HANDLE handle,
                                 uint8_t div, 
                                 uint8_t mul, 
                                 uint8_t div2);
-/**************** End of SAM E70/V71         specific code ********************/
+/**************** End of SAM E70 specific code ********************/
 </#if>
-
 
 <#if DRV_I2S_DMA_LL_ENABLE == true>
 typedef void (*DRV_I2S_LL_CALLBACK)();

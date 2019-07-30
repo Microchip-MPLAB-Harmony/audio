@@ -1140,5 +1140,5 @@ bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate)
         }
     }
     return true;
-}
+} //End DRV_I2S_LRCLK_Sync()
 

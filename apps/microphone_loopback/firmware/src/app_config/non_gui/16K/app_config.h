@@ -63,9 +63,9 @@ typedef struct
     /* Right channel data */
     int32_t rightData;
 
-} DRV_I2S_DATA32;
+} DRV_I2S_DATA32m;
 
-#define DRV_I2S_DATA DRV_I2S_DATA32
+#define DRV_I2S_DATA DRV_I2S_DATA32m
 
 // *****************************************************************************
 /* Application states

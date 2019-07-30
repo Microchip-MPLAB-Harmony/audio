@@ -168,6 +168,7 @@ extern "C" {
 //Codec Driver Instance
 #define DRV_CODEC_INDEX_0                                   DRV_WM8904_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvwm8904Codec0
+#define DRV_CODEC_I2S_MASTER_MODE                               DRV_WM8904_MASTER_MODE
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_WM8904_BUFFER_HANDLE
 #define DRV_CODEC_BUFFER_HANDLE_INVALID                     DRV_WM8904_BUFFER_HANDLE_INVALID
 #define DRV_CODEC_BUFFER_EVENT_HANDLER                      DRV_WM8904_BUFFER_EVENT_HANDLER

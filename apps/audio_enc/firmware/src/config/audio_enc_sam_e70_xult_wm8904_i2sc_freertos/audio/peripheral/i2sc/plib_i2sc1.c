@@ -17,7 +17,7 @@
 *******************************************************************************/
 
 /*******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2018-2019 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -79,6 +79,93 @@ uint32_t I2SC1_LRCLK_Get(void)
     return ret;    
 }
 
+/*********************************************************************************
+ * I2SC1_PLLAClockSet() - Master Mode PLLA Clock set for the I2SC
+*********************************************************************************/
+uint32_t I2SC1_PLLAClockSet(const uint8_t div, const uint8_t mul)
+{
+    if ( (div > 0) && (div < 257) &&
+         (mul > 0) && (mul < 64) )
+    {
+        /* Configure and Enable PLLA */
+        PMC_REGS->CKGR_PLLAR = CKGR_PLLAR_ONE_Msk | 
+                               CKGR_PLLAR_PLLACOUNT(0x3f) |
+                               CKGR_PLLAR_MULA(mul - 1) |
+                               CKGR_PLLAR_DIVA(div);
+
+        while ( (PMC_REGS->PMC_SR & PMC_SR_LOCKA_Msk) != PMC_SR_LOCKA_Msk);
+        return mul;
+    }
+    else
+    {
+        //Do Nothing
+        return 0;
+    }
+
+}
+
+/*********************************************************************************
+ * I2SC1_GenericClockSet() - Master mode set GCLK for the I2SC 
+*********************************************************************************/
+uint32_t I2SC1_GenericClockSet(const uint8_t div2)
+{
+    //Range check
+    if ( (div2 > 0) && (div2 < 257))
+    {
+        /* Setup Generic/Peripheral Clock for I2S1 */
+        PMC_REGS->PMC_PCR =  PMC_PCR_PID(70) |    //See plib_clk.c 
+                             PMC_PCR_CMD_Msk   | 
+                             PMC_PCR_GCLKEN_Msk |  
+                             PMC_PCR_EN_Msk | 
+                             PMC_PCR_GCLKCSS_PLLA_CLK | 
+                             PMC_PCR_GCLKDIV(div2-1);
+
+        MATRIX_REGS->CCFG_PCCR |=  CCFG_PCCR_I2SC1CC_Msk ;
+
+        return div2; 
+    }
+    else
+    {
+        return 0; 
+    }
+}
+
+/*********************************************************************************
+ * I2SC1_ProgrammableClockSet() - Set the Programmable Clock Divider for PCKx
+ * 
+ * NOTE:  This is only used for E70 xult board implementation of I2SC1 interfacejj
+*********************************************************************************/
+uint32_t I2SC1_ProgrammableClockSet(const uint8_t pClkNum, const uint8_t div2)
+{
+
+    if ((pClkNum > 0) && (pClkNum < 8))
+    {
+        //uint32_t bitPosDis     = _U_(8) + pClkNum;
+        //uint32_t bitMaskPckDis = (_U_(0x1) << bitPosDis);                    
+        //uint32_t bitPosEn      = _U_(8) + pClkNum;           
+        //uint32_t bitMaskPckEn  = (_U_(0x1) << bitPosEn); 
+        //uint32_t bitPosRdy     = _U_(8) + pClkNum;           
+        //uint32_t bitMaskPckRdy = (_U_(0x1) << bitPosRdy); 
+
+        //TODO: For now allow the glitch on the clock change.
+        /* Disable selected programmable clock  */
+        //PMC_REGS->PMC_SCDR = bitMaskPckDis;
+
+        /* Configure selected programmable clock    */
+        PMC_REGS->PMC_PCK[pClkNum]= PMC_PCK_CSS_PLLA_CLK | PMC_PCK_PRES(div2-1);
+
+        /* Enable selected programmable clock   */
+        //PMC_REGS->PMC_SCER =    bitMaskPckEn;
+
+        /* Wait for clock to be ready   */
+        //while( (PMC_REGS->PMC_SR & (bitMaskPckRdy) ) != (bitMaskPckRdy) );
+        return div2;
+    }
+    else
+    {
+        return 0;
+    }
+}
 /*******************************************************************************
  End of File
 */

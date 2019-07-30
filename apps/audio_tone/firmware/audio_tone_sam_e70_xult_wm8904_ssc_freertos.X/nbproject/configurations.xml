@@ -13,24 +13,31 @@
         <logicalFolder name="f1"
                        displayName="sam_e70_xult_wm8904_ssc_freertos"
                        projectFiles="true">
-          <logicalFolder name="f5" displayName="audio" projectFiles="true">
+          <logicalFolder name="f2" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
-              <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904.h</itemPath>
+              <logicalFolder name="f2" displayName="codec" projectFiles="true">
+                <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
+                  <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/codec/wm8904/drv_wm8904.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/i2s/drv_i2s.h</itemPath>
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/i2s/drv_i2s_definitions.h</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
+              <logicalFolder name="f1" displayName="ssc" projectFiles="true">
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/peripheral/ssc/plib_ssc.h</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f4" displayName="bsp" projectFiles="true">
+          <logicalFolder name="f5" displayName="bsp" projectFiles="true">
             <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/bsp/bsp.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f2" displayName="driver" projectFiles="true">
+          <logicalFolder name="f3" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="i2c" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/i2c/drv_i2c.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/i2c/drv_i2c_definitions.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f2" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/i2s/drv_i2s.h</itemPath>
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/i2s/drv_i2s_definitions.h</itemPath>
             </logicalFolder>
             <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/driver.h</itemPath>
             <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/driver_common.h</itemPath>
@@ -48,14 +55,11 @@
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/pio/plib_pio.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="ssc" projectFiles="true">
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/ssc/plib_ssc.h</itemPath>
-            </logicalFolder>
             <logicalFolder name="f6" displayName="tc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/tc/plib_tc0.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/tc/plib_tc_common.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f8" displayName="twihs" projectFiles="true">
+            <logicalFolder name="f7" displayName="twihs" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/twihs/plib_twihs_master.h</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/twihs/plib_twihs0.h</itemPath>
             </logicalFolder>
@@ -64,7 +68,7 @@
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/xdmac/plib_xdmac.h</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f3" displayName="system" projectFiles="true">
+          <logicalFolder name="f4" displayName="system" projectFiles="true">
             <logicalFolder name="f4" displayName="cache" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/system/cache/sys_cache.h</itemPath>
             </logicalFolder>
@@ -216,25 +220,32 @@
         <logicalFolder name="f1"
                        displayName="sam_e70_xult_wm8904_ssc_freertos"
                        projectFiles="true">
-          <logicalFolder name="f6" displayName="audio" projectFiles="true">
+          <logicalFolder name="f3" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
-              <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904.c</itemPath>
-                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/wm8904/drv_wm8904_local.h</itemPath>
+              <logicalFolder name="f2" displayName="codec" projectFiles="true">
+                <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
+                  <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/codec/wm8904/drv_wm8904.c</itemPath>
+                  <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/codec/wm8904/drv_wm8904_local.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/i2s/src/drv_i2s.c</itemPath>
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/driver/i2s/src/drv_i2s_local.h</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
+              <logicalFolder name="f1" displayName="ssc" projectFiles="true">
+                <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/audio/peripheral/ssc/plib_ssc.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f5" displayName="bsp" projectFiles="true">
+          <logicalFolder name="f6" displayName="bsp" projectFiles="true">
             <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/bsp/bsp.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="f3" displayName="driver" projectFiles="true">
+          <logicalFolder name="f4" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="i2c" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/i2c/src/drv_i2c.c</itemPath>
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/i2c/src/drv_i2c_local.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f2" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/i2s/src/drv_i2s.c</itemPath>
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/driver/i2s/src/drv_i2s_local.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
@@ -250,13 +261,10 @@
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/pio/plib_pio.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="ssc" projectFiles="true">
-              <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/ssc/plib_ssc.c</itemPath>
-            </logicalFolder>
             <logicalFolder name="f6" displayName="tc" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/tc/plib_tc0.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f8" displayName="twihs" projectFiles="true">
+            <logicalFolder name="f7" displayName="twihs" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/peripheral/twihs/plib_twihs0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="xdmac" projectFiles="true">
@@ -266,7 +274,7 @@
           <logicalFolder name="f1" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="f4" displayName="system" projectFiles="true">
+          <logicalFolder name="f5" displayName="system" projectFiles="true">
             <logicalFolder name="f3" displayName="cache" projectFiles="true">
               <itemPath>../src/config/sam_e70_xult_wm8904_ssc_freertos/system/cache/sys_cache.c</itemPath>
             </logicalFolder>
@@ -342,7 +350,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="SAME70_DFP" vendor="Microchip" version="4.0.26"/>
+        <pack name="SAME70_DFP" vendor="Microchip" version="4.0.29"/>
         <pack name="CMSIS" vendor="ARM" version="5.0.1"/>
       </packs>
       <compileType>
@@ -402,7 +410,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/sam_e70_xult_wm8904_ssc_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/Include;../src/arm;../src/app_config/16_bit"/>
+                  value="../src/third_party/rtos/FreeRTOS/Source/Include;../src/app_config/16_bit;../src;../src/config/sam_e70_xult_wm8904_ssc_freertos;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/include"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -463,7 +471,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="0"/>
+        <property key="heap-size" value="512"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>

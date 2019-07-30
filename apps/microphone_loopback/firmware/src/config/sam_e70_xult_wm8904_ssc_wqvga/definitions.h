@@ -54,17 +54,17 @@
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/xdmac/plib_xdmac.h"
 #include "peripheral/efc/plib_efc.h"
+#include "audio/driver/i2s/drv_i2s.h"
 #include "peripheral/tc/plib_tc0.h"
-#include "peripheral/ssc/plib_ssc.h"
+#include "audio/peripheral/ssc/plib_ssc.h"
 #include "driver/i2c/drv_i2c.h"
 #include "system/time/sys_time.h"
 #include "bsp/bsp.h"
-#include "driver/i2s/drv_i2s.h"
 #include "system/input/sys_input.h"
 #include "peripheral/smc/plib_smc.h"
 #include "peripheral/twihs/plib_twihs0.h"
 #include "gfx/libaria/libaria_harmony.h"
-#include "audio/driver/wm8904/drv_wm8904.h"
+#include "audio/driver/codec/wm8904/drv_wm8904.h"
 #include "driver/input/drv_maxtouch.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
@@ -196,10 +196,10 @@ typedef struct
     /* I2C0 Driver Object */
     SYS_MODULE_OBJ drvI2C0;
 
-    SYS_MODULE_OBJ  sysTime;
     /* I2S0 Driver Object */
     SYS_MODULE_OBJ drvI2S0;
 
+    SYS_MODULE_OBJ  sysTime;
     SYS_MODULE_OBJ drvwm8904Codec0;
     SYS_MODULE_OBJ  drvMAXTOUCH;
 

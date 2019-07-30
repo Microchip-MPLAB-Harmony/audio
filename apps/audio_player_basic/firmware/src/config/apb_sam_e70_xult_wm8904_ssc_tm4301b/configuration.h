@@ -146,6 +146,9 @@ extern "C" {
 /*** MXT336T Driver Configuration ***/
 #define DRV_MAXTOUCH_I2C_MODULE_INDEX   0
 
+/* I2S Driver Common Configuration Options */
+#define DRV_I2S_INSTANCES_NUMBER              1
+
 /*** Codec Driver Configuration ***/
 
 #define DRV_WM8904_CLIENTS_NUMBER                           1
@@ -166,6 +169,7 @@ extern "C" {
 //Codec Driver Instance
 #define DRV_CODEC_INDEX_0                                   DRV_WM8904_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvwm8904Codec0
+#define DRV_CODEC_I2S_MASTER_MODE                               DRV_WM8904_MASTER_MODE
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_WM8904_BUFFER_HANDLE
 #define DRV_CODEC_BUFFER_HANDLE_INVALID                     DRV_WM8904_BUFFER_HANDLE_INVALID
 #define DRV_CODEC_BUFFER_EVENT_HANDLER                      DRV_WM8904_BUFFER_EVENT_HANDLER
@@ -213,9 +217,6 @@ extern "C" {
 #define DRV_CODEC_MicMuteOff                                DRV_WM8904_MicMuteOff
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 
-
-/* I2S Driver Common Configuration Options */
-#define DRV_I2S_INSTANCES_NUMBER              1
 
 
 

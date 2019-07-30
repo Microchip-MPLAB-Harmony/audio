@@ -1,7 +1,125 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Configuration>
   <Components>
-    <UniqueComponent dnOrder="0" id="audio_codec_wm8904">
+    <GeneratorComponent dnOrder="0" id="a_drv_i2s">
+      <Instances dnOrder="0">
+        <InstanceComponent dnOrder="0" id="a_drv_i2s" instance="0">
+          <Symbols dnOrder="0">
+            <String dnOrder="0" id="DMA_INSTANCE_NAME">
+              <Values dnOrder="0">
+                <Dynamic dnOrder="0" id="a_drv_i2s_0" value="DMAC_0"/>
+              </Values>
+            </String>
+            <String dnOrder="1" id="DRV_I2S_PLIB">
+              <Values dnOrder="0">
+                <Dynamic dnOrder="0" id="a_drv_i2s_0" value="I2S"/>
+              </Values>
+            </String>
+            <Integer dnOrder="2" id="DRV_I2S_QUEUE_SIZE">
+              <Values dnOrder="0">
+                <User dnOrder="0" value="16"/>
+              </Values>
+            </Integer>
+            <Boolean dnOrder="3" id="DRV_I2S_RX_DMA">
+              <Values dnOrder="0">
+                <Dynamic dnOrder="0" id="a_drv_i2s_0" value="true"/>
+              </Values>
+            </Boolean>
+            <Integer dnOrder="4" id="DRV_I2S_RX_DMA_CHANNEL">
+              <Values dnOrder="0">
+                <Dynamic dnOrder="0" id="a_drv_i2s_0" value="0"/>
+                <User dnOrder="1" value="1"/>
+              </Values>
+            </Integer>
+            <Boolean dnOrder="5" id="DRV_I2S_TX_DMA">
+              <Values dnOrder="0">
+                <Dynamic dnOrder="0" id="a_drv_i2s_0" value="true"/>
+              </Values>
+            </Boolean>
+            <Integer dnOrder="6" id="DRV_I2S_TX_DMA_CHANNEL">
+              <Values dnOrder="0">
+                <Dynamic dnOrder="0" id="a_drv_i2s_0" value="-1"/>
+                <User dnOrder="1" value="0"/>
+              </Values>
+            </Integer>
+            <Boolean dnOrder="7" id="DRV_I2S_TX_RX_DMA">
+              <Values dnOrder="0">
+                <Dynamic dnOrder="0" id="a_drv_i2s_0" value="true"/>
+              </Values>
+            </Boolean>
+            <Integer dnOrder="8" id="I2S_DATA_LENGTH">
+              <Values dnOrder="0">
+                <User dnOrder="0" value="0"/>
+              </Values>
+            </Integer>
+          </Symbols>
+          <Attachments dnOrder="1">
+            <DirectCapability dnOrder="0" id="drv_i2s">
+              <Attributes dnOrder="0">
+                <String dnOrder="0" id="targetComponentID">
+                  <Value dnOrder="0">audio_codec_wm8904</Value>
+                </String>
+                <String dnOrder="1" id="targetAttachmentID">
+                  <Value dnOrder="0">DRV_I2S</Value>
+                </String>
+              </Attributes>
+            </DirectCapability>
+            <DirectDependency dnOrder="1" id="drv_i2s_I2S_dependency">
+              <Attributes dnOrder="0">
+                <String dnOrder="0" id="targetComponentID">
+                  <Value dnOrder="0">a_i2s</Value>
+                </String>
+                <String dnOrder="1" id="targetAttachmentID">
+                  <Value dnOrder="0">I2S_I2S</Value>
+                </String>
+              </Attributes>
+            </DirectDependency>
+          </Attachments>
+        </InstanceComponent>
+      </Instances>
+    </GeneratorComponent>
+    <UniqueComponent dnOrder="1" id="a_i2s">
+      <Symbols dnOrder="0">
+        <KeyValueSet dnOrder="0" id="I2S_CLKCTRL_0_CLKMODE">
+          <Values dnOrder="0">
+            <User dnOrder="0" value="1"/>
+          </Values>
+        </KeyValueSet>
+        <Integer dnOrder="1" id="I2S_CLKCTRL_0_MCKDIV">
+          <Values dnOrder="0">
+            <User dnOrder="0" value="0"/>
+          </Values>
+        </Integer>
+        <Integer dnOrder="2" id="I2S_CLKCTRL_0_MCKOUTDIV">
+          <Values dnOrder="0">
+            <User dnOrder="0" value="0"/>
+          </Values>
+        </Integer>
+        <KeyValueSet dnOrder="3" id="I2S_CLKCTRL_0_SLOTSIZE">
+          <Values dnOrder="0">
+            <User dnOrder="0" value="3"/>
+          </Values>
+        </KeyValueSet>
+        <KeyValueSet dnOrder="4" id="I2S_TXCTRL_DATASIZE">
+          <Values dnOrder="0">
+            <User dnOrder="0" value="0"/>
+          </Values>
+        </KeyValueSet>
+      </Symbols>
+      <Attachments dnOrder="1">
+        <DirectCapability dnOrder="0" id="I2S_I2S">
+          <Attributes dnOrder="0">
+            <String dnOrder="0" id="targetComponentID">
+              <Value dnOrder="0">a_drv_i2s_0</Value>
+            </String>
+            <String dnOrder="1" id="targetAttachmentID">
+              <Value dnOrder="0">drv_i2s_I2S_dependency</Value>
+            </String>
+          </Attributes>
+        </DirectCapability>
+      </Attachments>
+    </UniqueComponent>
+    <UniqueComponent dnOrder="2" id="audio_codec_wm8904">
       <Symbols dnOrder="0">
         <KeyValueSet dnOrder="0" id="DRV_WM8904_AUDIO_DATA_FORMAT">
           <Values dnOrder="0">
@@ -33,7 +151,7 @@
         <DirectDependency dnOrder="1" id="DRV_I2S">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="targetComponentID">
-              <Value dnOrder="0">drv_i2s_0</Value>
+              <Value dnOrder="0">a_drv_i2s_0</Value>
             </String>
             <String dnOrder="1" id="targetAttachmentID">
               <Value dnOrder="0">drv_i2s</Value>
@@ -42,7 +160,7 @@
         </DirectDependency>
       </Attachments>
     </UniqueComponent>
-    <UniqueComponent dnOrder="1" id="audio_decoders">
+    <UniqueComponent dnOrder="3" id="audio_decoders">
       <Symbols dnOrder="0">
         <Boolean dnOrder="0" id="CONFIG_USE_ADPCM_STREAMING">
           <Values dnOrder="0">
@@ -65,9 +183,9 @@
         </File>
       </Symbols>
     </UniqueComponent>
-    <UniqueComponent bsp="true" dnOrder="2" id="BSP_SAM_E54_Curiosity_Ultra"/>
-    <UniqueComponent dnOrder="3" id="cmsis"/>
-    <UniqueComponent dnOrder="4" id="core">
+    <UniqueComponent bsp="true" dnOrder="4" id="BSP_SAM_E54_Curiosity_Ultra"/>
+    <UniqueComponent dnOrder="5" id="cmsis"/>
+    <UniqueComponent dnOrder="6" id="core">
       <Symbols dnOrder="0">
         <KeyValueSet dnOrder="0" id="COMPILER_CHOICE">
           <Values dnOrder="0">
@@ -102,7 +220,7 @@
         </Integer>
         <Float dnOrder="6" id="CONFIG_CLOCK_DPLL0_MULTIPLIER_VALUE">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="49.125"/>
+            <Dynamic dnOrder="0" id="core" value="49.0625"/>
           </Values>
         </Float>
         <KeyValueSet dnOrder="7" id="CONFIG_CLOCK_DPLL0_REF_CLOCK">
@@ -308,7 +426,7 @@
         </KeyValueSet>
         <Combo dnOrder="46" id="DMAC_CHCTRLA_TRIGSRC_CH_0">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="I2S_Transmit_0"/>
+            <Dynamic dnOrder="0" id="core" value="I2S_Receive_0"/>
             <User dnOrder="1" value="I2S_Transmit_0"/>
           </Values>
         </Combo>
@@ -324,13 +442,13 @@
         </Integer>
         <Combo dnOrder="49" id="DMAC_CHCTRLA_TRIGSRC_CH_1">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="I2S_Receive_0"/>
+            <Dynamic dnOrder="0" id="core" value="Software Trigger"/>
             <User dnOrder="1" value="I2S_Receive_0"/>
           </Values>
         </Combo>
         <Boolean dnOrder="50" id="DMAC_CHCTRLA_TRIGSRC_CH_1_PERID_LOCK">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="true"/>
+            <Dynamic dnOrder="0" id="core" value="false"/>
           </Values>
         </Boolean>
         <Integer dnOrder="51" id="DMAC_CHCTRLA_TRIGSRC_CH_1_PERID_VAL">
@@ -375,7 +493,8 @@
         </Boolean>
         <Boolean dnOrder="59" id="DMAC_ENABLE_CH_1">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="true"/>
+            <Dynamic dnOrder="0" id="core" value="false"/>
+            <User dnOrder="1" value="true"/>
           </Values>
         </Boolean>
         <Boolean dnOrder="60" id="DMAC_ENABLE_CH_2">
@@ -443,22 +562,22 @@
         </File>
         <Integer dnOrder="71" id="DMA_CH_FOR_I2S_Receive_0">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="1"/>
+            <Dynamic dnOrder="0" id="core" value="0"/>
           </Values>
         </Integer>
         <Integer dnOrder="72" id="DMA_CH_FOR_I2S_Transmit_0">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="0"/>
+            <Dynamic dnOrder="0" id="core" value="-1"/>
           </Values>
         </Integer>
         <Boolean dnOrder="73" id="DMA_CH_NEEDED_FOR_I2S_Receive_0">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="drv_i2s_0" value="true"/>
+            <Dynamic dnOrder="0" id="a_drv_i2s_0" value="true"/>
           </Values>
         </Boolean>
         <Boolean dnOrder="74" id="DMA_CH_NEEDED_FOR_I2S_Transmit_0">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="drv_i2s_0" value="true"/>
+            <Dynamic dnOrder="0" id="a_drv_i2s_0" value="true"/>
           </Values>
         </Boolean>
         <Boolean dnOrder="75" id="DMA_ENABLE">
@@ -468,7 +587,7 @@
         </Boolean>
         <Integer dnOrder="76" id="DPLL0_CLOCK_FREQ">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="98250000"/>
+            <Dynamic dnOrder="0" id="core" value="98125000"/>
           </Values>
         </Integer>
         <Integer dnOrder="77" id="GCLK_0_FREQ">
@@ -2011,8 +2130,8 @@
         </Integer>
       </Symbols>
     </UniqueComponent>
-    <UniqueComponent dnOrder="5" id="dfp"/>
-    <GeneratorComponent dnOrder="6" id="drv_i2c">
+    <UniqueComponent dnOrder="7" id="dfp"/>
+    <GeneratorComponent dnOrder="8" id="drv_i2c">
       <Symbols dnOrder="0">
         <File dnOrder="0" id="DRV_I2C_ASYNC_HEADER">
           <Attributes dnOrder="0">
@@ -2090,79 +2209,7 @@
         </InstanceComponent>
       </Instances>
     </GeneratorComponent>
-    <GeneratorComponent dnOrder="7" id="drv_i2s">
-      <Instances dnOrder="0">
-        <InstanceComponent dnOrder="0" id="drv_i2s" instance="0">
-          <Symbols dnOrder="0">
-            <String dnOrder="0" id="DMA_INSTANCE_NAME">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="drv_i2s_0" value="DMAC_0"/>
-              </Values>
-            </String>
-            <String dnOrder="1" id="DRV_I2S_PLIB">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="drv_i2s_0" value="I2S"/>
-              </Values>
-            </String>
-            <Integer dnOrder="2" id="DRV_I2S_QUEUE_SIZE">
-              <Values dnOrder="0">
-                <User dnOrder="0" value="16"/>
-              </Values>
-            </Integer>
-            <Boolean dnOrder="3" id="DRV_I2S_RX_DMA">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="drv_i2s_0" value="true"/>
-              </Values>
-            </Boolean>
-            <Integer dnOrder="4" id="DRV_I2S_RX_DMA_CHANNEL">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="drv_i2s_0" value="1"/>
-                <User dnOrder="1" value="1"/>
-              </Values>
-            </Integer>
-            <Boolean dnOrder="5" id="DRV_I2S_TX_DMA">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="drv_i2s_0" value="true"/>
-              </Values>
-            </Boolean>
-            <Integer dnOrder="6" id="DRV_I2S_TX_DMA_CHANNEL">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="drv_i2s_0" value="0"/>
-                <User dnOrder="1" value="0"/>
-              </Values>
-            </Integer>
-            <Boolean dnOrder="7" id="DRV_I2S_TX_RX_DMA">
-              <Values dnOrder="0">
-                <Dynamic dnOrder="0" id="drv_i2s_0" value="true"/>
-              </Values>
-            </Boolean>
-          </Symbols>
-          <Attachments dnOrder="1">
-            <DirectCapability dnOrder="0" id="drv_i2s">
-              <Attributes dnOrder="0">
-                <String dnOrder="0" id="targetComponentID">
-                  <Value dnOrder="0">audio_codec_wm8904</Value>
-                </String>
-                <String dnOrder="1" id="targetAttachmentID">
-                  <Value dnOrder="0">DRV_I2S</Value>
-                </String>
-              </Attributes>
-            </DirectCapability>
-            <DirectDependency dnOrder="1" id="drv_i2s_I2S_dependency">
-              <Attributes dnOrder="0">
-                <String dnOrder="0" id="targetComponentID">
-                  <Value dnOrder="0">i2s</Value>
-                </String>
-                <String dnOrder="1" id="targetAttachmentID">
-                  <Value dnOrder="0">I2S_I2S</Value>
-                </String>
-              </Attributes>
-            </DirectDependency>
-          </Attachments>
-        </InstanceComponent>
-      </Instances>
-    </GeneratorComponent>
-    <GeneratorComponent dnOrder="8" id="drv_sdmmc">
+    <GeneratorComponent dnOrder="9" id="drv_sdmmc">
       <Symbols dnOrder="0">
         <Boolean dnOrder="0" id="DRV_SDMMC_COMMON_FS_ENABLE">
           <Values dnOrder="0">
@@ -2239,7 +2286,7 @@
         </InstanceComponent>
       </Instances>
     </GeneratorComponent>
-    <UniqueComponent dnOrder="9" id="evsys">
+    <UniqueComponent dnOrder="10" id="evsys">
       <Symbols dnOrder="0">
         <Boolean dnOrder="0" id="EVSYS_CHANNEL_0_USER_READY">
           <Values dnOrder="0">
@@ -2403,7 +2450,7 @@
         </Boolean>
       </Symbols>
     </UniqueComponent>
-    <UniqueComponent dnOrder="10" id="FreeRTOS">
+    <UniqueComponent dnOrder="11" id="FreeRTOS">
       <Symbols dnOrder="0">
         <Integer dnOrder="0" id="FREERTOS_CPU_CLOCK_HZ">
           <Values dnOrder="0">
@@ -2412,7 +2459,7 @@
         </Integer>
       </Symbols>
     </UniqueComponent>
-    <UniqueComponent dnOrder="11" id="HarmonyCore">
+    <UniqueComponent dnOrder="12" id="HarmonyCore">
       <Symbols dnOrder="0">
         <File dnOrder="0" id="APP0_C">
           <Attributes dnOrder="0">
@@ -2557,62 +2604,12 @@
         </File>
       </Symbols>
     </UniqueComponent>
-    <UniqueComponent dnOrder="12" id="i2s">
-      <Symbols dnOrder="0">
-        <KeyValueSet dnOrder="0" id="I2S_CLKCTRL_0_CLKMODE">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="1"/>
-          </Values>
-        </KeyValueSet>
-        <Integer dnOrder="1" id="I2S_CLKCTRL_0_MCKDIV">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="0"/>
-          </Values>
-        </Integer>
-        <Integer dnOrder="2" id="I2S_CLKCTRL_0_MCKOUTDIV">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="0"/>
-          </Values>
-        </Integer>
-        <KeyValueSet dnOrder="3" id="I2S_CLKCTRL_0_SLOTSIZE">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="3"/>
-          </Values>
-        </KeyValueSet>
-        <KeyValueSet dnOrder="4" id="I2S_RXCTRL_DATASIZE">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="0"/>
-          </Values>
-        </KeyValueSet>
-        <Boolean dnOrder="5" id="I2S_RX_SERIALIZER_ENABLE">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="false"/>
-          </Values>
-        </Boolean>
-        <KeyValueSet dnOrder="6" id="I2S_TXCTRL_DATASIZE">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="0"/>
-          </Values>
-        </KeyValueSet>
-      </Symbols>
-      <Attachments dnOrder="1">
-        <DirectCapability dnOrder="0" id="I2S_I2S">
-          <Attributes dnOrder="0">
-            <String dnOrder="0" id="targetComponentID">
-              <Value dnOrder="0">drv_i2s_0</Value>
-            </String>
-            <String dnOrder="1" id="targetAttachmentID">
-              <Value dnOrder="0">drv_i2s_I2S_dependency</Value>
-            </String>
-          </Attributes>
-        </DirectCapability>
-      </Attachments>
-    </UniqueComponent>
     <UniqueComponent dnOrder="13" id="nvmctrl">
       <Symbols dnOrder="0">
         <Integer dnOrder="0" id="NVM_RWS">
           <Values dnOrder="0">
-            <User dnOrder="0" value="0"/>
+            <Dynamic dnOrder="0" id="nvmctrl" value="1"/>
+            <User dnOrder="1" value="0"/>
           </Values>
         </Integer>
       </Symbols>
@@ -2889,7 +2886,7 @@
         <Comment dnOrder="0" id="TC_COMPARE_PERIOD_COMMENT">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="text">
-              <Value dnOrder="0">****&amp;#160;Timer&amp;#160;Period&amp;#160;is&amp;#160;8.0&amp;#160;us&amp;#160;****</Value>
+              <Value dnOrder="0">****&amp;#160;Compare&amp;#160;Period&amp;#160;is&amp;#160;8.0&amp;#160;us&amp;#160;****</Value>
             </String>
           </Attributes>
         </Comment>
@@ -2953,16 +2950,16 @@
         <ElementPosition dnOrder="0" id="BSP_SAM_E54_Curiosity_Ultra" x="622" y="19"/>
         <ElementPosition dnOrder="1" id="FreeRTOS" x="695" y="54"/>
         <ElementPosition dnOrder="2" id="HarmonyCore" x="0" y="15"/>
-        <ElementPosition dnOrder="3" id="audio_codec_wm8904" x="704" y="133"/>
-        <ElementPosition dnOrder="4" id="audio_decoders" x="349" y="228"/>
-        <ElementPosition dnOrder="5" id="cmsis" x="500" y="20"/>
-        <ElementPosition dnOrder="6" id="core" x="400" y="19"/>
-        <ElementPosition dnOrder="7" id="dfp" x="180" y="20"/>
-        <ElementPosition dnOrder="8" id="drv_i2c" x="548" y="49"/>
-        <ElementPosition dnOrder="9" id="drv_i2s" x="259" y="73"/>
-        <ElementPosition dnOrder="10" id="drv_sdmmc" x="546" y="210"/>
-        <ElementPosition dnOrder="11" id="evsys" x="405" y="60"/>
-        <ElementPosition dnOrder="12" id="i2s" x="120" y="136"/>
+        <ElementPosition dnOrder="3" id="a_drv_i2s" x="217" y="73"/>
+        <ElementPosition dnOrder="4" id="a_i2s" x="9" y="128"/>
+        <ElementPosition dnOrder="5" id="audio_codec_wm8904" x="704" y="133"/>
+        <ElementPosition dnOrder="6" id="audio_decoders" x="349" y="228"/>
+        <ElementPosition dnOrder="7" id="cmsis" x="500" y="20"/>
+        <ElementPosition dnOrder="8" id="core" x="401" y="21"/>
+        <ElementPosition dnOrder="9" id="dfp" x="180" y="20"/>
+        <ElementPosition dnOrder="10" id="drv_i2c" x="548" y="49"/>
+        <ElementPosition dnOrder="11" id="drv_sdmmc" x="546" y="210"/>
+        <ElementPosition dnOrder="12" id="evsys" x="405" y="60"/>
         <ElementPosition dnOrder="13" id="nvmctrl" x="381" y="371"/>
         <ElementPosition dnOrder="14" id="sdhc1" x="392" y="296"/>
         <ElementPosition dnOrder="15" id="sercom1" x="10" y="214"/>

@@ -136,6 +136,12 @@ const DRV_I2C_INIT drvI2C0InitData =
 DRV_I2S_PLIB_INTERFACE drvI2S0PlibAPI =
 {
     .I2S_LRCLK_Get = (DRV_I2S_LRCLK_GET)I2SC1_LRCLK_Get,  
+
+/************************ Start of code specific to SAME70 ********************/
+    .I2S_PLLA_CLOCK_SET = (DRV_I2S_PLLA_CLOCK_SET) I2SC1_PLLAClockSet,
+    .I2S_GCLK_SET       = (DRV_I2S_GCLK_SET) I2SC1_GenericClockSet,
+    .I2S_PCLK_SET       = (DRV_I2S_PCLK_SET) I2SC1_ProgrammableClockSet,
+/************************ End of SAM E70 specific code ***********************/
 };
 
 /* I2S Driver Initialization Data */
@@ -157,7 +163,6 @@ DRV_I2S_INIT drvI2S0InitData =
     .dmaChannelReceive  = DRV_I2S_RCV_DMA_CH_IDX0,
     .i2sTransmitAddress = (void *)&(I2SC1_REGS->I2SC_THR),
     .i2sReceiveAddress = (void *)&(I2SC1_REGS->I2SC_RHR),
-
     .interruptDMA = XDMAC_IRQn,
 
     .dmaDataLength = DRV_I2S_DATA_LENGTH_IDX0,
@@ -239,12 +244,13 @@ void SYS_Initialize ( void* data )
     CLK_Initialize();
 	PIO_Initialize();
 
-    I2SC1_Initialize();
     XDMAC_Initialize();
 
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
 
 	WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk; 		// Disable WDT 
+
+  
 
  
     TC0_CH0_TimerInitialize(); 
@@ -253,6 +259,7 @@ void SYS_Initialize ( void* data )
 	BSP_Initialize();
 	TWIHS0_Initialize();
 
+    I2SC1_Initialize();
 
     /* Initialize I2C0 Driver Instance */
     sysObj.drvI2C0 = DRV_I2C_Initialize(DRV_I2C_INDEX_0, (SYS_MODULE_INIT *)&drvI2C0InitData);

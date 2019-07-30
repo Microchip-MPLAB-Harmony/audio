@@ -172,7 +172,6 @@ DRV_I2S_INIT drvI2S0InitData =
     .dmaChannelReceive  = DRV_I2S_RCV_DMA_CH_IDX0,
     .i2sTransmitAddress = (void *)&(I2S_REGS->I2S_TXDATA),
     .i2sReceiveAddress = (void *)&(I2S_REGS->I2S_RXDATA),
-
     .interruptDMA = DMAC_0_IRQn,
 
     .dmaDataLength = DRV_I2S_DATA_LENGTH_IDX0,

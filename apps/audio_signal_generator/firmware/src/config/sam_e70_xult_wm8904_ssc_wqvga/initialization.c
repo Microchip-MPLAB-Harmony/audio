@@ -157,7 +157,6 @@ DRV_I2S_INIT drvI2S0InitData =
     .dmaChannelReceive  = DRV_I2S_RCV_DMA_CH_IDX0,
     .i2sTransmitAddress = (void *)&(SSC_REGS->SSC_THR),
     .i2sReceiveAddress = (void *)&(SSC_REGS->SSC_RHR),
-
     .interruptDMA = XDMAC_IRQn,
 
     .dmaDataLength = DRV_I2S_DATA_LENGTH_IDX0,
@@ -256,6 +255,8 @@ void SYS_Initialize ( void* data )
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
 
 	WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk; 		// Disable WDT 
+
+  
 
  
     TC0_CH0_TimerInitialize(); 

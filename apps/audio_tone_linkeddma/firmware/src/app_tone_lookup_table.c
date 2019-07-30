@@ -64,16 +64,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 typedef struct 
 {
     /* Left channel data */
-    int16_t leftData;
-
-    /* Right channel data */
-    int16_t rightData;      // removed Pad from end of name to be same as others
-
-} DRV_I2S_DATA16;
-
-typedef struct 
-{
-    /* Left channel data */
     int32_t leftData;
 
     /* Right channel data */

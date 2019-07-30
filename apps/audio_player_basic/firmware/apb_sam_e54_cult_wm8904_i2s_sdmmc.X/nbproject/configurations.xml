@@ -18,8 +18,19 @@
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/decoder/gfx_decoders.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="driver" projectFiles="true">
-              <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/wm8904/drv_wm8904.h</itemPath>
+              <logicalFolder name="f2" displayName="codec" projectFiles="true">
+                <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
+                  <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/codec/wm8904/drv_wm8904.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/i2s/drv_i2s.h</itemPath>
+                <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/i2s/drv_i2s_definitions.h</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f3" displayName="peripheral" projectFiles="true">
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/peripheral/i2s/plib_i2s.h</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -30,10 +41,6 @@
             <logicalFolder name="f2" displayName="i2c" projectFiles="true">
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/i2c/drv_i2c.h</itemPath>
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/i2c/drv_i2c_definitions.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/i2s/drv_i2s.h</itemPath>
-              <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/i2s/drv_i2s_definitions.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="sdmmc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/sdmmc/drv_sdmmc.h</itemPath>
@@ -55,9 +62,6 @@
             </logicalFolder>
             <logicalFolder name="f3" displayName="evsys" projectFiles="true">
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/peripheral/evsys/plib_evsys.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f11" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/peripheral/i2s/plib_i2s.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f6" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/peripheral/nvic/plib_nvic.h</itemPath>
@@ -238,9 +242,20 @@
               </logicalFolder>
             </logicalFolder>
             <logicalFolder name="f2" displayName="driver" projectFiles="true">
-              <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
-                <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/wm8904/drv_wm8904.c</itemPath>
-                <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/wm8904/drv_wm8904_local.h</itemPath>
+              <logicalFolder name="f2" displayName="codec" projectFiles="true">
+                <logicalFolder name="f1" displayName="wm8904" projectFiles="true">
+                  <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/codec/wm8904/drv_wm8904.c</itemPath>
+                  <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/codec/wm8904/drv_wm8904_local.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/i2s/src/drv_i2s.c</itemPath>
+                <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/driver/i2s/src/drv_i2s_local.h</itemPath>
+              </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="f3" displayName="peripheral" projectFiles="true">
+              <logicalFolder name="f1" displayName="i2s" projectFiles="true">
+                <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/peripheral/i2s/plib_i2s.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -251,10 +266,6 @@
             <logicalFolder name="f2" displayName="i2c" projectFiles="true">
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/i2c/src/drv_i2c.c</itemPath>
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/i2c/src/drv_i2c_local.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/i2s/src/drv_i2s.c</itemPath>
-              <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/i2s/src/drv_i2s_local.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="sdmmc" projectFiles="true">
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/driver/sdmmc/src/drv_sdmmc_file_system.c</itemPath>
@@ -273,9 +284,6 @@
             </logicalFolder>
             <logicalFolder name="f3" displayName="evsys" projectFiles="true">
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/peripheral/evsys/plib_evsys.c</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f11" displayName="i2s" projectFiles="true">
-              <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/peripheral/i2s/plib_i2s.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f6" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/peripheral/nvic/plib_nvic.c</itemPath>
@@ -424,7 +432,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc;../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/decoder;../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/decoder/audio_decoders;../src/packs/ATSAME54P20A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm"/>
+                  value="../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/decoder;../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc/audio/decoder/audio_decoders;../src;../src/config/apb_sam_e54_ult_wm8904_ssc_sdmmc;../src/packs/ATSAME54P20A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -485,7 +493,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="0"/>
+        <property key="heap-size" value="512"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
