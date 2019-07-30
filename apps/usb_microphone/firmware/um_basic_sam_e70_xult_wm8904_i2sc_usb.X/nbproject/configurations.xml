@@ -330,14 +330,14 @@
         <targetDevice>ATSAME70Q21B</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>EdbgTool</platformTool>
+        <platformTool>ICD4Tool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>2.20</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="SAME70_DFP" vendor="Microchip" version="4.0.40"/>
-        <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
+        <pack name="SAME70_DFP" vendor="Microchip" version="4.0.29"/>
+        <pack name="CMSIS" vendor="ARM" version="5.0.1"/>
       </packs>
       <compileType>
         <linkerTool>
@@ -437,9 +437,6 @@
         <property key="preprocessor-macros" value=""/>
         <property key="warning-level" value=""/>
       </C32-AS>
-      <C32-CO>
-        <property key="coverage-enable" value="false"/>
-      </C32-CO>
       <C32-LD>
         <property key="additional-options-use-response-files" value="false"/>
         <property key="additional-options-write-sla" value="false"/>
