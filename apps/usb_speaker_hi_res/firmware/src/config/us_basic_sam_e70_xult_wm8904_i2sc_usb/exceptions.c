@@ -93,32 +93,31 @@ void HardFault_Handler_C(uint32_t * hardfault_args, unsigned int lr_value)
    stacked_pc  = hardfault_args[6];  // Program Counter
    stacked_psr = hardfault_args[7];  // Program Status Register
 
-//KEEP THIS- SYS_PRINT for Debug
-   SYS_PRINT("\r\n");
-   SYS_PRINT("[HardFault]\r\n");
-   SYS_PRINT("- Stack frame:\r\n");
-   SYS_PRINT(" R0  = 0x%08lX\r\n", stacked_r0);
-   SYS_PRINT(" R1  = 0x%08lX\r\n", stacked_r1);
-   SYS_PRINT(" R2  = 0x%08lX\r\n", stacked_r2);
-   SYS_PRINT(" R3  = 0x%08lX\r\n", stacked_r3);
-   SYS_PRINT(" R12 = 0x%08lX\r\n", stacked_r12);
-   SYS_PRINT(" LR  = 0x%08lX\r\n", stacked_lr);
-   SYS_PRINT(" PC  = 0x%08lX\r\n", stacked_pc);
-   SYS_PRINT(" PSR = 0x%08lX\r\n", stacked_psr);
+   printf("\r\n");
+   printf("[HardFault]\r\n");
+   printf("- Stack frame:\r\n");
+   printf(" R0  = 0x%08lX\r\n", stacked_r0);
+   printf(" R1  = 0x%08lX\r\n", stacked_r1);
+   printf(" R2  = 0x%08lX\r\n", stacked_r2);
+   printf(" R3  = 0x%08lX\r\n", stacked_r3);
+   printf(" R12 = 0x%08lX\r\n", stacked_r12);
+   printf(" LR  = 0x%08lX\r\n", stacked_lr);
+   printf(" PC  = 0x%08lX\r\n", stacked_pc);
+   printf(" PSR = 0x%08lX\r\n", stacked_psr);
 
-   SYS_PRINT("- FSR/FAR:\r\n");
-   SYS_PRINT(" CFSR = 0x%08lX\r\n", cfsr);
-   SYS_PRINT(" HFSR = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
-   SYS_PRINT(" DFSR = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
-   SYS_PRINT(" AFSR = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
-   if (cfsr & 0x0080) SYS_PRINT(" MMFAR = 0x%08lX\r\n", memmanage_fault_address);
-   if (cfsr & 0x8000) SYS_PRINT(" BFAR = 0x%08lX\r\n", bus_fault_address);
+   printf("- FSR/FAR:\r\n");
+   printf(" CFSR = 0x%08lX\r\n", cfsr);
+   printf(" HFSR = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
+   printf(" DFSR = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
+   printf(" AFSR = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
+   if (cfsr & 0x0080) printf(" MMFAR = 0x%08lX\r\n", memmanage_fault_address);
+   if (cfsr & 0x8000) printf(" BFAR = 0x%08lX\r\n", bus_fault_address);
 
-   SYS_PRINT("- Misc\r\n");
-   SYS_PRINT(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
+   printf("- Misc\r\n");
+   printf(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
 
   #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
-  __builtin_software_breakpoint();
+   __builtin_software_breakpoint();
   #endif
 
    while (1)
@@ -150,26 +149,26 @@ void DebugMonitor_Handler_C(uint32_t * hardfault_args, unsigned int lr_value)
    stacked_pc  = hardfault_args[6];  // Program Counter
    stacked_psr = hardfault_args[7];  // Program Status Register
 
-   SYS_PRINT("\r\n");
-   SYS_PRINT("[DebugFault]\r\n");
-   SYS_PRINT("- Stack frame:\r\n");
-   SYS_PRINT(" R0  = 0x%08lX\r\n", stacked_r0);
-   SYS_PRINT(" R1  = 0x%08lX\r\n", stacked_r1);
-   SYS_PRINT(" R2  = 0x%08lX\r\n", stacked_r2);
-   SYS_PRINT(" R3  = 0x%08lX\r\n", stacked_r3);
-   SYS_PRINT(" R12 = 0x%08lX\r\n", stacked_r12);
-   SYS_PRINT(" LR  = 0x%08lX\r\n", stacked_lr);
-   SYS_PRINT(" PC  = 0x%08lX\r\n", stacked_pc);
-   SYS_PRINT(" PSR = 0x%08lX\r\n", stacked_psr);
+   printf("\r\n");
+   printf("[DebugFault]\r\n");
+   printf("- Stack frame:\r\n");
+   printf(" R0  = 0x%08lX\r\n", stacked_r0);
+   printf(" R1  = 0x%08lX\r\n", stacked_r1);
+   printf(" R2  = 0x%08lX\r\n", stacked_r2);
+   printf(" R3  = 0x%08lX\r\n", stacked_r3);
+   printf(" R12 = 0x%08lX\r\n", stacked_r12);
+   printf(" LR  = 0x%08lX\r\n", stacked_lr);
+   printf(" PC  = 0x%08lX\r\n", stacked_pc);
+   printf(" PSR = 0x%08lX\r\n", stacked_psr);
 
-   SYS_PRINT("- FSR/FAR:\r\n");
-   SYS_PRINT(" CFSR = 0x%08lX\r\n", cfsr);
-   SYS_PRINT(" HFSR = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
-   SYS_PRINT(" DFSR = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
-   SYS_PRINT(" AFSR = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
+   printf("- FSR/FAR:\r\n");
+   printf(" CFSR = 0x%08lX\r\n", cfsr);
+   printf(" HFSR = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
+   printf(" DFSR = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
+   printf(" AFSR = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
 
-   SYS_PRINT("- Misc\r\n");
-   SYS_PRINT(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
+   printf("- Misc\r\n");
+   printf(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
 
   #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
    __builtin_software_breakpoint();
@@ -207,28 +206,28 @@ void MemoryManagement_Handler_C(uint32_t * hardfault_args, unsigned int lr_value
    stacked_pc  = hardfault_args[6];  // Program Counter
    stacked_psr = hardfault_args[7];  // Program Status Register
 
-   SYS_PRINT("\r\n");
-   SYS_PRINT("[MemoryManagement]\r\n");
-   SYS_PRINT("- Stack frame:\r\n");
-   SYS_PRINT(" R0  = 0x%08lX\r\n", stacked_r0);
-   SYS_PRINT(" R1  = 0x%08lX\r\n", stacked_r1);
-   SYS_PRINT(" R2  = 0x%08lX\r\n", stacked_r2);
-   SYS_PRINT(" R3  = 0x%08lX\r\n", stacked_r3);
-   SYS_PRINT(" R12 = 0x%08lX\r\n", stacked_r12);
-   SYS_PRINT(" LR  = 0x%08lX\r\n", stacked_lr);
-   SYS_PRINT(" PC  = 0x%08lX\r\n", stacked_pc);
-   SYS_PRINT(" PSR = 0x%08lX\r\n", stacked_psr);
+   printf("\r\n");
+   printf("[MemoryManagement]\r\n");
+   printf("- Stack frame:\r\n");
+   printf(" R0  = 0x%08lX\r\n", stacked_r0);
+   printf(" R1  = 0x%08lX\r\n", stacked_r1);
+   printf(" R2  = 0x%08lX\r\n", stacked_r2);
+   printf(" R3  = 0x%08lX\r\n", stacked_r3);
+   printf(" R12 = 0x%08lX\r\n", stacked_r12);
+   printf(" LR  = 0x%08lX\r\n", stacked_lr);
+   printf(" PC  = 0x%08lX\r\n", stacked_pc);
+   printf(" PSR = 0x%08lX\r\n", stacked_psr);
 
-   SYS_PRINT("- FSR/FAR:\r\n");
-   SYS_PRINT(" CFSR  = 0x%08lX\r\n", cfsr);
-   SYS_PRINT(" MMFSR = 0x%02X\r\n", mmfsr);
-   SYS_PRINT(" HFSR  = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
-   SYS_PRINT(" DFSR  = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
-   SYS_PRINT(" AFSR  = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
-   if (cfsr & 0x0080) SYS_PRINT(" MMFAR = 0x%08lX\r\n", memmanage_fault_address);
+   printf("- FSR/FAR:\r\n");
+   printf(" CFSR  = 0x%08lX\r\n", cfsr);
+   printf(" MMFSR = 0x%02X\r\n", mmfsr);
+   printf(" HFSR  = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
+   printf(" DFSR  = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
+   printf(" AFSR  = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
+   if (cfsr & 0x0080) printf(" MMFAR = 0x%08lX\r\n", memmanage_fault_address);
 
-   SYS_PRINT("- Misc\r\n");
-   SYS_PRINT(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
+   printf("- Misc\r\n");
+   printf(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
 
   #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
    __builtin_software_breakpoint();
@@ -266,29 +265,29 @@ void BusFault_Handler_C(uint32_t * hardfault_args, unsigned int lr_value)
    stacked_pc  = hardfault_args[6];  // Program Counter
    stacked_psr = hardfault_args[7];  // Program Status Register
 
-   SYS_PRINT("\r\n");
-   SYS_PRINT("[BusFault]\r\n");
-   SYS_PRINT("- Stack frame:\r\n");
-   SYS_PRINT(" R0  = 0x%08lX\r\n", stacked_r0);
-   SYS_PRINT(" R1  = 0x%08lX\r\n", stacked_r1);
-   SYS_PRINT(" R2  = 0x%08lX\r\n", stacked_r2);
-   SYS_PRINT(" R3  = 0x%08lX\r\n", stacked_r3);
-   SYS_PRINT(" R12 = 0x%08lX\r\n", stacked_r12);
-   SYS_PRINT(" LR  = 0x%08lX\r\n", stacked_lr);
-   SYS_PRINT(" PC  = 0x%08lX\r\n", stacked_pc);
-   SYS_PRINT(" PSR = 0x%08lX\r\n", stacked_psr);
+   printf("\r\n");
+   printf("[BusFault]\r\n");
+   printf("- Stack frame:\r\n");
+   printf(" R0  = 0x%08lX\r\n", stacked_r0);
+   printf(" R1  = 0x%08lX\r\n", stacked_r1);
+   printf(" R2  = 0x%08lX\r\n", stacked_r2);
+   printf(" R3  = 0x%08lX\r\n", stacked_r3);
+   printf(" R12 = 0x%08lX\r\n", stacked_r12);
+   printf(" LR  = 0x%08lX\r\n", stacked_lr);
+   printf(" PC  = 0x%08lX\r\n", stacked_pc);
+   printf(" PSR = 0x%08lX\r\n", stacked_psr);
 
-   SYS_PRINT("- FSR/FAR:\r\n");
-   SYS_PRINT(" CFSR  = 0x%08lX\r\n", cfsr);
-   SYS_PRINT(" BFSR  = 0x%02X\r\n",  bfsr);
-   SYS_PRINT(" HFSR  = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
-   SYS_PRINT(" DFSR  = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
-   SYS_PRINT(" AFSR  = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
-   if (bfsr & 0x04) SYS_PRINT(" ABFSR = 0x%08lX\r\n", SCB->ABFSR);
-   if (bfsr & 0x80) SYS_PRINT(" BFAR = 0x%08lX\r\n", bus_fault_address);
+   printf("- FSR/FAR:\r\n");
+   printf(" CFSR  = 0x%08lX\r\n", cfsr);
+   printf(" BFSR  = 0x%02X\r\n",  bfsr);
+   printf(" HFSR  = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
+   printf(" DFSR  = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
+   printf(" AFSR  = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
+   if (bfsr & 0x04) printf(" ABFSR = 0x%08lX\r\n", SCB->ABFSR);
+   if (bfsr & 0x80) printf(" BFAR = 0x%08lX\r\n", bus_fault_address);
 
-   SYS_PRINT("- Misc\r\n");
-   SYS_PRINT(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
+   printf("- Misc\r\n");
+   printf(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
 
   #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
    __builtin_software_breakpoint();
@@ -324,27 +323,27 @@ void UsageFault_Handler_C(uint32_t * hardfault_args, unsigned int lr_value)
    stacked_pc  = hardfault_args[6];  // Program Counter
    stacked_psr = hardfault_args[7];  // Program Status Register
 
-   SYS_PRINT("\r\n");
-   SYS_PRINT("[UsageFault]\r\n");
-   SYS_PRINT("- Stack frame:\r\n");
-   SYS_PRINT(" R0  = 0x%08lX\r\n", stacked_r0);
-   SYS_PRINT(" R1  = 0x%08lX\r\n", stacked_r1);
-   SYS_PRINT(" R2  = 0x%08lX\r\n", stacked_r2);
-   SYS_PRINT(" R3  = 0x%08lX\r\n", stacked_r3);
-   SYS_PRINT(" R12 = 0x%08lX\r\n", stacked_r12);
-   SYS_PRINT(" LR  = 0x%08lX\r\n", stacked_lr);
-   SYS_PRINT(" PC  = 0x%08lX\r\n", stacked_pc);
-   SYS_PRINT(" PSR = 0x%08lX\r\n", stacked_psr);
+   printf("\r\n");
+   printf("[UsageFault]\r\n");
+   printf("- Stack frame:\r\n");
+   printf(" R0  = 0x%08lX\r\n", stacked_r0);
+   printf(" R1  = 0x%08lX\r\n", stacked_r1);
+   printf(" R2  = 0x%08lX\r\n", stacked_r2);
+   printf(" R3  = 0x%08lX\r\n", stacked_r3);
+   printf(" R12 = 0x%08lX\r\n", stacked_r12);
+   printf(" LR  = 0x%08lX\r\n", stacked_lr);
+   printf(" PC  = 0x%08lX\r\n", stacked_pc);
+   printf(" PSR = 0x%08lX\r\n", stacked_psr);
 
-   SYS_PRINT("- FSR/FAR:\r\n");
-   SYS_PRINT(" CFSR = 0x%08lX\r\n", cfsr);
-   SYS_PRINT(" UFSR = 0x%04X\r\n",  ufsr);
-   SYS_PRINT(" HFSR = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
-   SYS_PRINT(" DFSR = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
-   SYS_PRINT(" AFSR = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
+   printf("- FSR/FAR:\r\n");
+   printf(" CFSR = 0x%08lX\r\n", cfsr);
+   printf(" UFSR = 0x%04X\r\n",  ufsr);
+   printf(" HFSR = 0x%08lX\r\n", SCB->HFSR); // HardFault Status
+   printf(" DFSR = 0x%08lX\r\n", SCB->DFSR); // Debug Fault Status
+   printf(" AFSR = 0x%08lX\r\n", SCB->AFSR); // Auxiliary Fault Status
 
-   SYS_PRINT("- Misc\r\n");
-   SYS_PRINT(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
+   printf("- Misc\r\n");
+   printf(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
 
   #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
    __builtin_software_breakpoint();

@@ -141,8 +141,7 @@ DRV_I2S_PLIB_INTERFACE drvI2S0PlibAPI =
     .I2S_PLLA_CLOCK_SET = (DRV_I2S_PLLA_CLOCK_SET) I2SC1_PLLAClockSet,
     .I2S_GCLK_SET       = (DRV_I2S_GCLK_SET) I2SC1_GenericClockSet,
     .I2S_PCLK_SET       = (DRV_I2S_PCLK_SET) I2SC1_ProgrammableClockSet,
-/**************** End of SAM E70/V71         specific code ********************/
-
+/************************ End of SAM E70 specific code ***********************/
 };
 
 /* I2S Driver Initialization Data */

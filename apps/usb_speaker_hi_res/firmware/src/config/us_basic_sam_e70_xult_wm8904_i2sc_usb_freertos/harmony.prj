@@ -59,8 +59,8 @@
           <Name dnOrder="1">drv_i2s.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/audio/driver/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/i2s/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">376A75914065B3EF392D7891014CB4C3</GeneratedChecksum>
-          <UserChecksum dnOrder="5">376A75914065B3EF392D7891014CB4C3</UserChecksum>
+          <GeneratedChecksum dnOrder="4">09B89266A039410E2BA68C7C59DE325A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">09B89266A039410E2BA68C7C59DE325A</UserChecksum>
         </File>
         <File dnOrder="7">
           <Type dnOrder="0">SOURCE</Type>
@@ -147,8 +147,8 @@
           <Name dnOrder="1">initialization.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B7ED634667C81AD763DD6DAFB3CF0C53</GeneratedChecksum>
-          <UserChecksum dnOrder="5">B7ED634667C81AD763DD6DAFB3CF0C53</UserChecksum>
+          <GeneratedChecksum dnOrder="4">C42EA8528C12A7E84D39474F7356B9C1</GeneratedChecksum>
+          <UserChecksum dnOrder="5">C42EA8528C12A7E84D39474F7356B9C1</UserChecksum>
         </File>
         <File dnOrder="18">
           <Type dnOrder="0">SOURCE</Type>
@@ -387,7 +387,7 @@
           <Name dnOrder="1">tasks.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F41003B79CF39001F9DA08888B47504E</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">26C635EFA6E0BB93138F4C71100F375B</GeneratedChecksum>
           <UserChecksum dnOrder="5">30049C782496AC0AAA47896C60553609</UserChecksum>
         </File>
         <File dnOrder="48">
@@ -571,7 +571,7 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">9FC64043CCE9DF563384D79738C35800</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">4F41ECB75CDAF42727CDE2424BDD4594</GeneratedChecksum>
           <UserChecksum dnOrder="5">8600518A54D93889A10C446E4706C627</UserChecksum>
         </File>
         <File dnOrder="71">
@@ -667,16 +667,16 @@
           <Name dnOrder="1">drv_i2s.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/audio/driver/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">EBB5A78AA7ACA1840823B94C643DA919</GeneratedChecksum>
-          <UserChecksum dnOrder="5">EBB5A78AA7ACA1840823B94C643DA919</UserChecksum>
+          <GeneratedChecksum dnOrder="4">9DA3EA300796C42556F33D21B40CBA2F</GeneratedChecksum>
+          <UserChecksum dnOrder="5">9DA3EA300796C42556F33D21B40CBA2F</UserChecksum>
         </File>
         <File dnOrder="83">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">drv_i2s_definitions.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/audio/driver/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">43C95D8318ADECCEDECA18CA859C4CAE</GeneratedChecksum>
-          <UserChecksum dnOrder="5">43C95D8318ADECCEDECA18CA859C4CAE</UserChecksum>
+          <GeneratedChecksum dnOrder="4">866229A9834C798F962FD26A7602AD2F</GeneratedChecksum>
+          <UserChecksum dnOrder="5">866229A9834C798F962FD26A7602AD2F</UserChecksum>
         </File>
         <File dnOrder="84">
           <Type dnOrder="0">HEADER</Type>
