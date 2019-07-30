@@ -48,7 +48,6 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/pio/plib_pio.h"
 #include "peripheral/nvic/plib_nvic.h"
@@ -68,7 +67,6 @@
 #include "audio/peripheral/i2sc/plib_i2sc1.h"
 #include "FreeRTOS.h"
 #include "task.h"
-#include "peripheral/usart/plib_usart1.h"
 #include "audio/driver/codec/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
