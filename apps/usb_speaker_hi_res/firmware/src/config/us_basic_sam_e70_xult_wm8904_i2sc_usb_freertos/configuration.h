@@ -89,26 +89,6 @@ extern "C" {
 #define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
 
 
-/* RX queue size has one additional element for the empty spot needed in circular queue */
-#define SYS_CONSOLE_UART_RD_QUEUE_DEPTH_IDX0    129
-
-/* TX queue size has one additional element for the empty spot needed in circular queue */
-#define SYS_CONSOLE_UART_WR_QUEUE_DEPTH_IDX0    129
-#define SYS_CONSOLE_BUFFER_DMA_READY
-
-
-#define SYS_DEBUG_ENABLE
-#define SYS_DEBUG_GLOBAL_ERROR_LEVEL       SYS_ERROR_DEBUG
-#define SYS_DEBUG_PRINT_BUFFER_SIZE        4096
-#define SYS_DEBUG_BUFFER_DMA_READY
-#define SYS_DEBUG_USE_CONSOLE
-
-
-/* Console System Service Configuration Options */
-#define SYS_CONSOLE_DEVICE_MAX_INSTANCES   1
-#define SYS_CONSOLE_UART_MAX_INSTANCES     1
-
-
 
 // *****************************************************************************
 // *****************************************************************************
@@ -232,23 +212,6 @@ extern "C" {
 
 
 
-/* Maximum instances of Audio function driver */
-#define USB_DEVICE_AUDIO_INSTANCES_NUMBER    1 
-
-/* Audio Transfer Queue Size for both read and
-   write. Applicable to all instances of the
-   function driver */
-//KEEP THIS-Not generated correctly
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66 
-
-
-/* No of Audio streaming interfaces */
-#define USB_DEVICE_AUDIO_MAX_STREAMING_INTERFACES   1
-
-/* No of alternate settings */
-#define USB_DEVICE_AUDIO_MAX_ALTERNATE_SETTING      2
-
-
 /*** USB Driver Configuration ***/
 
 /* Maximum USB driver instances */
@@ -265,6 +228,23 @@ extern "C" {
 
 /* Alignment for buffers that are submitted to USB Driver*/ 
 #define USB_ALIGN  CACHE_ALIGN
+
+/* Maximum instances of Audio function driver */
+#define USB_DEVICE_AUDIO_INSTANCES_NUMBER    1 
+
+/* Audio Transfer Queue Size for both read and
+   write. Applicable to all instances of the
+   function driver */
+//KEEP THIS - Not generated correctly
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66
+
+
+/* No of Audio streaming interfaces */
+#define USB_DEVICE_AUDIO_MAX_STREAMING_INTERFACES   1
+
+/* No of alternate settings */
+#define USB_DEVICE_AUDIO_MAX_ALTERNATE_SETTING      2
+
 
 
 

@@ -44,6 +44,7 @@ extern "C" {
 #define SYS_DEBUG_PRINT(level, format, ...) 
 #define SYS_DEBUG_MESSAGE(a,b, ...)
 #define SYS_DEBUG(a,b)
+#define SYS_PRINT(...)
 #endif
 
 #endif // USER_H

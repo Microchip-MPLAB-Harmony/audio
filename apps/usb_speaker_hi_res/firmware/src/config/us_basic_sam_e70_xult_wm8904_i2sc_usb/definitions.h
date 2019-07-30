@@ -60,15 +60,11 @@
 #include "usb/usb_device_audio_v1_0.h"
 #include "usb/usb_audio_v1_0.h"
 #include "driver/i2c/drv_i2c.h"
-#include "system/debug/sys_debug.h"
 #include "system/time/sys_time.h"
 #include "driver/usb/usbhsv1/drv_usbhsv1.h"
 #include "bsp/bsp.h"
 #include "peripheral/twihs/plib_twihs0.h"
-#include "system/console/sys_console.h"
-#include "system/console/src/sys_console_uart_definitions.h"
 #include "audio/peripheral/i2sc/plib_i2sc1.h"
-#include "peripheral/usart/plib_usart1.h"
 #include "audio/driver/codec/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
@@ -205,12 +201,8 @@ typedef struct
     /* I2S0 Driver Object */
     SYS_MODULE_OBJ drvI2S0;
 
-    SYS_MODULE_OBJ  sysDebug;
-
     SYS_MODULE_OBJ  sysTime;
 	SYS_MODULE_OBJ  drvUSBHSV1Object;
-
-    SYS_MODULE_OBJ  sysConsole0;
 
     SYS_MODULE_OBJ drvwm8904Codec0;
 

@@ -89,9 +89,10 @@ void _USB_DEVICE_Tasks(  void *pvParameters  )
     {
 				 /* USB HS Driver Task Routine */
         USB_DEVICE_Tasks(sysObj.drvUSBHSV1Object);
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(10/ portTICK_PERIOD_MS);
     }
 }
+
 
 
 // *****************************************************************************

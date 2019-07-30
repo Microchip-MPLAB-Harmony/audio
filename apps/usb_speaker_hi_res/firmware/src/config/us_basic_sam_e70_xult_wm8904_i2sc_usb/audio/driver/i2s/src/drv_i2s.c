@@ -1214,7 +1214,5 @@ bool DRV_I2S_ClockGenerationSet(const DRV_HANDLE handle,
         return true;
     }
 }
-/**************** End of SAM E70/V71         specific code ********************/
-
-
+/**************** End of SAM E70 specific code ********************/
 
