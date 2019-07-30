@@ -46,8 +46,8 @@
 // *****************************************************************************
 // *****************************************************************************
 #include "configuration.h"
-#include "audio/driver/i2s/drv_i2s.h"
-#include "audio/driver/i2s/src/drv_i2s_local.h"
+#include "driver/i2s/drv_i2s.h"
+#include "drv_i2s_local.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -357,7 +357,6 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object, DRV_I2S_DIRECTION dire
                     /************ end of E70 specific code ********************/
 
                     //DEBUG - Queued Buffer Write
-
                     SYS_DMA_ChannelTransfer(dObj->txDMAChannel, 
                                             (const void *)newObj->txbuffer,
                                             (const void *)dObj->txAddress, 
@@ -689,7 +688,6 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
             /************ end of E70 specific code ********************/
 #endif
             //--Immediate DMA Write
-
             SYS_DMA_ChannelTransfer(dObj->txDMAChannel, 
                                     (const void *)bufferObj->txbuffer,
                                     (const void *)dObj->txAddress, 
@@ -833,7 +831,6 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
             {
                 bufferSizeDmaWords /= 4;
             }
-
             SYS_DMA_ChannelTransfer(dObj->rxDMAChannel, (const void *)dObj->rxAddress,
                 (const void *)bufferObj->rxbuffer, bufferSizeDmaWords);
 
@@ -850,7 +847,6 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
             }
             /************ end of E70 specific code ********************/
 #endif
-
             SYS_DMA_ChannelTransfer(dObj->txDMAChannel, (const void *)bufferObj->txbuffer,
                 (const void *)dObj->txAddress, bufferSizeDmaWords);
         }
@@ -1140,82 +1136,5 @@ bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate)
         }
     }
     return true;
-} //End DRV_I2S_LRCLK_Sync()
-
-
-/************************ Start of code specific to SAME70 ********************/
-/*******************************************************************************
- * DRV_I2S_ProgrammableClockSet()
- * 
- * NOTE:  Programmable Clock (PCK#) is set for the X32 I2SC1 CODEC slave
- *        although Generic Clock (GCLK for the I2SC1) is used by the E70
- *        peripheral.  They both should use the same PLLA clock source and 
- *        divider (div2).  (as required for SAM_E70 xULT Board implementation)
- ******************************************************************************/
-bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, 
-                                  uint8_t pClkNum, uint8_t div2)
-{
-    DRV_I2S_OBJ * dObj = NULL;
-
-    /* Validate the Request */
-    if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
-    {
-        return false;
-    }
-
-    dObj = &gDrvI2SObj[handle];
-
-    //Programmable Clock # set (PCK2 for E70 xult board)
-    //---
-    if ((*dObj->i2sPlib->I2S_PCLK_SET)(pClkNum, div2)==true)
-    {
-        return false;
 }
-    return true;
-}
-
-/*******************************************************************************
- * DRV_I2S_ClockGenerationSet()
- * 
- * Set the PLLA and GCLK for the I2SC1 peripheral
- * 
- * NOTE:  For the SAM E70 xUlt board the programmable Clock (PCK#) is also 
- *        needed for the X32 I2SC1 CODEC slave although Generic Clock 
- *        (GCLK for the I2SC1) is used by the E70 peripheral.  
- *        They both should use the same PLLA clock source and 
- *        divider value (div2).  
- * 
- ******************************************************************************/
-bool DRV_I2S_ClockGenerationSet(const DRV_HANDLE handle, 
-                                const uint8_t div, 
-                                const uint8_t mul, 
-                                const uint8_t div2)
-{
-    DRV_I2S_OBJ * dObj = NULL;
-    DRV_I2S_PLIB_INTERFACE * i2s;
-
-    /* Validate the Request */
-    if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
-    {
-        return false;
-    }
-
-    dObj = &gDrvI2SObj[handle];
-    i2s  = dObj->i2sPlib;
-
-    //Set the PLLA Clock Source
-    if ((i2s->I2S_PLLA_CLOCK_SET)(div, mul) == false) return false;
-
-    if ((i2s->I2S_GCLK_SET)(div2) == false) 
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
-}
-/**************** End of SAM E70/V71         specific code ********************/
-
-
 

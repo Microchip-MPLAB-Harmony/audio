@@ -104,8 +104,8 @@ extern "C" {
 /* I2S Driver Instance 0 Configuration Options */
 #define DRV_I2S_INDEX_0                       0
 #define DRV_I2S_CLIENTS_NUMBER_IDX0           1
-#define DRV_I2S_QUEUE_DEPTH_COMBINED          64
-#define DRV_I2S_QUEUE_SIZE_IDX0               64
+#define DRV_I2S_QUEUE_DEPTH_COMBINED          128
+#define DRV_I2S_QUEUE_SIZE_IDX0               128
 #define DRV_I2S_DATA_LENGTH_IDX0              16
 #define DRV_I2S_INT_SRC_IDX0                  SSC_IRQn
 #define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
@@ -115,6 +115,9 @@ extern "C" {
 /* I2C Driver Common Configuration Options */
 #define DRV_I2C_INSTANCES_NUMBER              1
 
+
+/* I2S Driver Common Configuration Options */
+#define DRV_I2S_INSTANCES_NUMBER              1
 
 /*** Codec Driver Configuration ***/
 
@@ -136,6 +139,7 @@ extern "C" {
 //Codec Driver Instance
 #define DRV_CODEC_INDEX_0                                   DRV_WM8904_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvwm8904Codec0
+#define DRV_CODEC_I2S_MASTER_MODE                               DRV_WM8904_MASTER_MODE
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_WM8904_BUFFER_HANDLE
 #define DRV_CODEC_BUFFER_HANDLE_INVALID                     DRV_WM8904_BUFFER_HANDLE_INVALID
 #define DRV_CODEC_BUFFER_EVENT_HANDLER                      DRV_WM8904_BUFFER_EVENT_HANDLER
@@ -183,9 +187,6 @@ extern "C" {
 #define DRV_CODEC_MicMuteOff                                DRV_WM8904_MicMuteOff
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 
-
-/* I2S Driver Common Configuration Options */
-#define DRV_I2S_INSTANCES_NUMBER              1
 
 
 
@@ -235,7 +236,7 @@ extern "C" {
    write. Applicable to all instances of the
    function driver */
 //KEEP THIS - USB MHC does not generated correctly after 1st time
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 66 
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 130 
 
 
 /* No of Audio streaming interfaces */

@@ -42,6 +42,9 @@
 #ifndef PLIB_I2SC1_H
 #define PLIB_I2SC1_H
 
+#include <stdint.h>
+#include <stdbool.h>
+
 #include "device.h"
 
 /* Provide C++ Compatibility */
@@ -56,6 +59,9 @@
 void I2SC1_Initialize ( void );
 
 uint32_t I2SC1_LRCLK_Get(void);
+uint32_t I2SC1_GenericClockSet(const uint8_t div2);
+uint32_t I2SC1_ProgrammableClockSet(const uint8_t pClkNum, const uint8_t div2);
+uint32_t I2SC1_PLLAClockSet(const uint8_t div, const uint8_t mul);
 
 /* Provide C++ Compatibility */
 #ifdef __cplusplus

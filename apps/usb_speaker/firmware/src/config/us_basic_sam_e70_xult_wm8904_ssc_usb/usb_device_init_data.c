@@ -51,7 +51,7 @@
  **************************************************/
 	const USB_DEVICE_AUDIO_INIT audioInit0 =
 {
-	.queueSizeRead = 64,
+	.queueSizeRead = 128,
 	.queueSizeWrite = 2
 };
 

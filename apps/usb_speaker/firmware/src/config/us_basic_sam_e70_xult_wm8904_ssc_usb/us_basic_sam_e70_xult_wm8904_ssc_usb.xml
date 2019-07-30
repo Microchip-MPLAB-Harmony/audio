@@ -2348,7 +2348,7 @@
         </Integer>
         <Hex dnOrder="459" id="PIO_CCFG_SYSIO_VALUE">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="core" value="16"/>
+            <Dynamic dnOrder="0" id="core" value="3088"/>
           </Values>
         </Hex>
         <Boolean dnOrder="460" id="PMC_CKGR_MOR_MOSCRCEN">
@@ -4156,7 +4156,7 @@
             </String>
             <Integer dnOrder="1" id="DRV_I2S_QUEUE_SIZE">
               <Values dnOrder="0">
-                <User dnOrder="0" value="64"/>
+                <User dnOrder="0" value="128"/>
               </Values>
             </Integer>
             <Boolean dnOrder="2" id="DRV_I2S_RX_DMA">
@@ -4704,7 +4704,7 @@
         </Integer>
         <Integer dnOrder="1" id="CONFIG_USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="usb_device_audio_0" value="386"/>
+            <Dynamic dnOrder="0" id="usb_device_audio_0" value="578"/>
           </Values>
         </Integer>
         <Integer dnOrder="2" id="CONFIG_USB_DEVICE_FUNCTION_AUDIO_MAX_ALTERNATE_SETTING_COMBINED">
@@ -4738,7 +4738,7 @@
             </Integer>
             <Integer dnOrder="3" id="CONFIG_USB_DEVICE_FUNCTION_READ_Q_SIZE">
               <Values dnOrder="0">
-                <User dnOrder="0" value="64"/>
+                <User dnOrder="0" value="128"/>
               </Values>
             </Integer>
             <Integer dnOrder="4" id="CONFIG_USB_DEVICE_FUNCTION_WRITE_Q_SIZE">
