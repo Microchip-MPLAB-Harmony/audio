@@ -1427,8 +1427,7 @@ bool DRV_I2S_ClockGenerationSet(DRV_HANDLE handle,
                                 uint8_t div, 
                                 uint8_t mul, 
                                 uint8_t div2);
-/**************** End of SAM E70/V71         specific code ********************/
-
+/**************** End of SAM E70 specific code ********************/
 
 
 //DOM-IGNORE-BEGIN

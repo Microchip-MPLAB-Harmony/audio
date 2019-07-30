@@ -1142,7 +1142,6 @@ bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate)
     return true;
 } //End DRV_I2S_LRCLK_Sync()
 
-
 /************************ Start of code specific to SAME70 ********************/
 /*******************************************************************************
  * DRV_I2S_ProgrammableClockSet()
@@ -1215,7 +1214,5 @@ bool DRV_I2S_ClockGenerationSet(const DRV_HANDLE handle,
         return true;
     }
 }
-/**************** End of SAM E70/V71         specific code ********************/
-
-
+/**************** End of SAM E70 specific code ********************/
 
