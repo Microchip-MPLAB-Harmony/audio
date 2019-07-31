@@ -138,39 +138,12 @@ def getVectorIndex(string):
 
     return vector_index
 
-def ClockModeInfo(symbol, event):
-
-    CKEINDEX = Database.getSymbolValue(spiInstanceName.getValue().lower(), "I2S_SPICON_CLK_PH")
-    CPOLINDEX = Database.getSymbolValue(spiInstanceName.getValue().lower(), "I2S_SPICON_CLK_POL")
-
-    if event["id"] == "I2S_SPICON_CLK_PH":
-        CKE = int(event["symbol"].getKeyValue(event["value"]))
-        CPOL = 1 if CPOLINDEX == 0 else 0
-    elif event["id"] == "I2S_SPICON_CLK_POL":
-        CPOL = int(event["symbol"].getKeyValue(event["value"]))
-        CKE = 1 if CKEINDEX == 0 else 0
-
-    if (CPOL == 0) and (CKE == 1):
-        symbol.setLabel("***SPI Mode 0 is Selected***")
-    elif (CPOL == 0) and (CKE == 0):
-        symbol.setLabel("***SPI Mode 1 is Selected***")
-    elif (CPOL == 1) and (CKE == 1):
-        symbol.setLabel("***SPI Mode 2 is Selected***")
-    else:
-        symbol.setLabel("***SPI Mode 3 is Selected***")
-
-def showMasterDependencies(symbol, event):
-
-    if event["symbol"].getKey(event["value"]) == "Master mode":
-        symbol.setVisible(True)
-    else:
-        symbol.setVisible(False)
-
 global i2sCalculateBRGValue
-def i2sCalculateBRGValue(clkfreq, baudRate):
+def i2sCalculateBRGValue(ratio, baudRate):
 
     global i2sSym_BaudError_Comment
     t_brg = 0
+    clkfreq = baudRate * ratio   
 
     if clkfreq != 0 and baudRate != 0:
         t_brg = ((int(clkfreq/baudRate) / 2) - 1)
@@ -195,22 +168,13 @@ def i2sCalculateBRGValue(clkfreq, baudRate):
     return int(t_brg)
 
 def i2sSPIBRG_ValueUpdate(symbol, event):
-    clkFreq = int(Database.getSymbolValue("core", spiInstanceName.getValue() + "_CLOCK_FREQUENCY"))
-    baudRateStr = Database.getSymbolValue(spiInstanceName.getValue().lower(), "I2S_BAUD_RATE")
-    if baudRateStr == None: baudRateStr = "48000"
-    BaudRate = int(baudRateStr)
+    ratio = i2sSym_MCLK_BCLK_Ratio.getValue()
+    baudRate = i2sSym_Baud_Rate.getValue()
 
-    if event["id"] == "I2S_BAUD_RATE":
-        BaudRate = int(event["value"])
-    elif "_CLOCK_FREQUENCY" in event["id"]:
-        clkFreq = int(event["value"])
-
-    t_brg = i2sCalculateBRGValue(clkFreq, BaudRate)
-    t_brg = 1       #//!!!!!
-    symbol.setValue(t_brg, 1)
+    t_brg = i2sCalculateBRGValue(ratio, baudRate)
+    i2sSym_SPIBRG_VALUE.setValue(t_brg)
    
 def updateI2sClockWarningStatus(symbol, event):
-
     symbol.setVisible(not event["value"])
 	
 ################################################################################
@@ -221,7 +185,7 @@ def instantiateComponent(i2sComponent):
 
     global i2sSym_BaudError_Comment
     global i2sSym_Baud_Rate
-    global i2sSymClockModeComment
+    global i2sSym_MCLK_BCLK_Ratio
     global spiInstanceName
 
     InterruptVector = []
@@ -365,7 +329,7 @@ def instantiateComponent(i2sComponent):
     ## MSTEN Selection Bit
     msten_names = []
     _get_bitfield_names(i2sValGrp_SPI1CON_MSTEN, msten_names)
-    i2sSym_SPICON_MSTEN = i2sComponent.createKeyValueSetSymbol( "I2S_MSTR_MODE_EN",None)
+    i2sSym_SPICON_MSTEN = i2sComponent.createKeyValueSetSymbol("I2S_MSTR_MODE_EN",None)
     i2sSym_SPICON_MSTEN.setLabel(i2sBitField_SPI1CON_MSTEN.getAttribute("caption"))
     i2sSym_SPICON_MSTEN.setDefaultValue(0)
     i2sSym_SPICON_MSTEN.setReadOnly(True)
@@ -435,7 +399,14 @@ def instantiateComponent(i2sComponent):
     i2sSym_Baud_Rate.setDefaultValue(48000)
     i2sSym_Baud_Rate.setMin(1)
     i2sSym_Baud_Rate.setMax(192000)
-    i2sSym_Baud_Rate.setDependencies(showMasterDependencies, ["I2S_MSTR_MODE_EN"])
+    i2sSym_Baud_Rate.setDependencies(i2sSPIBRG_ValueUpdate, ["I2S_BAUD_RATE"])
+
+    i2sSym_MCLK_BCLK_Ratio = i2sComponent.createIntegerSymbol("I2S_MCLK_BCLK_RATIO", None)
+    i2sSym_MCLK_BCLK_Ratio.setLabel("Master Clock/Bit Clock Ratio")
+    i2sSym_MCLK_BCLK_Ratio.setDefaultValue(4)
+    i2sSym_MCLK_BCLK_Ratio.setMin(1)
+    i2sSym_MCLK_BCLK_Ratio.setMax(1024)
+    i2sSym_MCLK_BCLK_Ratio.setDependencies(i2sSPIBRG_ValueUpdate, ["I2S_MCLK_BCLK_RATIO"])
 
     #SPI Baud Rate not supported comment
     global i2sSym_BaudError_Comment
@@ -453,30 +424,12 @@ def instantiateComponent(i2sComponent):
     i2sSymMaxBRG.setVisible(False)
 
     # Baud Rate generation
-    i2sDefaultMasterFreq = int(Database.getSymbolValue("core", spiInstanceName.getValue() + "_CLOCK_FREQUENCY"))
-    defaultSPIBR = i2sCalculateBRGValue(i2sDefaultMasterFreq, i2sSym_Baud_Rate.getValue())
-
+    defaultSPIBR = i2sCalculateBRGValue(i2sSym_MCLK_BCLK_Ratio.getValue(), i2sSym_Baud_Rate.getValue())
+    
+    global i2sSym_SPIBRG_VALUE
     i2sSym_SPIBRG_VALUE = i2sComponent.createIntegerSymbol("I2S_BRG_VALUE", None)
-    i2sSym_SPIBRG_VALUE.setDependencies(i2sSPIBRG_ValueUpdate, ["I2S_BAUD_RATE", "core." + spiInstanceName.getValue() + "_CLOCK_FREQUENCY"])
     i2sSym_SPIBRG_VALUE.setVisible(False)
-
-    #Use setValue instead of setDefaultValue to store symbol value in default.xml
     i2sSym_SPIBRG_VALUE.setValue(defaultSPIBR, 1)
-
-    i2sSymClockModeComment = i2sComponent.createCommentSymbol("I2S_CLOCK_MODE_COMMENT", None)
-    i2sSymClockModeComment.setLabel("***SPI Mode 0 Selected***")
-    i2sSymClockModeComment.setDependencies(ClockModeInfo, ["I2S_SPICON_CLK_POL", "I2S_SPICON_CLK_PH"])
-    i2sSymClockModeComment.setVisible(False)
-
-    ############################################################################
-    #### Dependency ####
-    ############################################################################
-
-    # Clock Warning status
-    i2sSym_ClkEnComment = i2sComponent.createCommentSymbol("I2S_CLOCK_ENABLE_COMMENT", None)
-    i2sSym_ClkEnComment.setLabel("Warning!!! " + spiInstanceName.getValue() + " Peripheral Clock is Disabled in Clock Manager")
-    i2sSym_ClkEnComment.setDependencies(updateI2sClockWarningStatus, ["core." + spiInstanceName.getValue() + "_CLOCK_ENABLE"])
-    i2sSym_ClkEnComment.setVisible(False)
 
     ###################################################################################################
     ####################################### Driver Symbols ############################################
@@ -538,7 +491,6 @@ def instantiateComponent(i2sComponent):
     i2sSym_SPI_SPICON2_MODE = i2sComponent.createKeyValueSetSymbol("I2S_SPICON2_MODE",None)
     i2sSym_SPI_SPICON2_MODE.setLabel(i2sBitField_SPI1CON2_AUDMOD.getAttribute("caption"))
     i2sSym_SPI_SPICON2_MODE.setDefaultValue(3)
-    i2sSym_SPI_SPICON2_MODE.setVisible(False)
     i2sSym_SPI_SPICON2_MODE.setOutputMode("Value")
     i2sSym_SPI_SPICON2_MODE.setDisplayMode("Description")
     for ii in audmod_names:
@@ -556,7 +508,7 @@ def instantiateComponent(i2sComponent):
 
     i2sLRCPin = i2sComponent.createKeyValueSetSymbol("I2S_LRCLK_PIN_DEFINE", None)     # used for I2Sx_LRCLK_Get() macro
     i2sLRCPin.setLabel("Frame Select Pin")
-    for i2sLRCPort in ["A","B","D","E","F","G","H"]:
+    for i2sLRCPort in ["A","B","C","D","E","F","G","H"]:
         for i2sLRCPinNum in range(0,32):
             i2sLRCPinDesc = i2sLRCPort + str(i2sLRCPinNum)
             i2sLRCPinDefine = "((PORT" + str(i2sLRCPort) + " >> " + str(i2sLRCPinNum) + ") & 0x1)"

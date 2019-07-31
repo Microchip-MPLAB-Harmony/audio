@@ -163,7 +163,17 @@ bool ADPCM_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *out
 		{
 			pChar = *srcBuff++;
 			*output++=ADPCMDecodeSample(pChar&0x0f, &adpcmState);
+            if( ADPCM_HdrGetNumOfChan() == 1 )
+            {
+                *output = *(output-1);
+                output++;
+            }
 			*output++=ADPCMDecodeSample((pChar>>4)&0x0f, &adpcmState);
+            if( ADPCM_HdrGetNumOfChan() == 1 )
+            {
+                *output = *(output-1);
+                output++;
+            }
 		}
 	}
 	else
@@ -172,11 +182,25 @@ bool ADPCM_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *out
 		{
 			pChar = *srcBuff++;
 			*output++ = ADPCMDecodeSample((pChar >> 4) & 0x0f, &adpcmState);
+            if( ADPCM_HdrGetNumOfChan() == 1 )
+            {
+                *output = *(output-1);
+                output++;
+            }
 			*output++ = ADPCMDecodeSample(pChar & 0x0f, &adpcmState);
+            if( ADPCM_HdrGetNumOfChan() == 1 )
+            {
+                *output = *(output-1);
+                output++;
+            }
 		}
 	}
     // adpcm compression ratio 1:4
     *written = 4*inSize;
+    if( ADPCM_HdrGetNumOfChan() == 1 )
+    {
+        *written *= 2;
+    }
     *read = inSize;
     return true;
 }

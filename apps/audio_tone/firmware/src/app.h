@@ -250,6 +250,18 @@ void APP_Button_Tasks( void );
 #define SWITCH_STATE_PRESSED   SWITCH1_STATE_PRESSED
 #endif
 
+// make E70 board SWITCH compatible with MZ EF SK board BSP_SWITCH_1
+#ifdef BSP_SWITCH_1_STATE_PRESSED
+#define SWITCH_Get             BSP_SWITCH_1_Get
+#define SWITCH_STATE_PRESSED   BSP_SWITCH_1_STATE_PRESSED
+#endif
+
+// make E70 board LED1 compatible with MZ EF SK board BSP_LED_1
+#ifdef BSP_LED_1_On
+#define LED1_On   BSP_LED_1_On 
+#define LED1_Off  BSP_LED_1_Off
+#endif
+
 #ifdef LED1_On
 #define LED_On                 LED1_On
 #define LED_Off                LED1_Off
