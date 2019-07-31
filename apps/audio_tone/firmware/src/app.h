@@ -262,12 +262,6 @@ void APP_Button_Tasks( void );
 #define LED1_Off  BSP_LED_1_Off
 #endif
 
-#ifdef LED1_On
-#define LED_On                 LED1_On
-#define LED_Off                LED1_Off
-#define LED_Toggle             LED1_Toggle
-#endif
-
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
 }

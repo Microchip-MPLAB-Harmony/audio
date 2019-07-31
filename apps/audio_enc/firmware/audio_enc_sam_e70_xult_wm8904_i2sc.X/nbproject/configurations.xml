@@ -390,8 +390,8 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="CMSIS" vendor="ARM" version="5.0.1"/>
         <pack name="SAME70_DFP" vendor="Microchip" version="3.0.10"/>
+        <pack name="CMSIS" vendor="ARM" version="5.0.1"/>
       </packs>
       <compileType>
         <linkerTool>
@@ -402,7 +402,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>false</parseOnProdLoad>
+          <parseOnProdLoad>true</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>
@@ -450,7 +450,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src/third_party/rtos/FreeRTOS/Source/portable/GCC/SAM/CM7;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc/audio/decoder;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc/audio/decoder/audio_decoders;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc/audio/encoder/audio_encoders;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc/audio/encoder/audio_containers;../src;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm"/>
+                  value="../src/config/audio_enc_sam_e70_xult_wm8904_i2sc/audio/decoder;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc/audio/decoder/audio_decoders;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc/audio/encoder/audio_encoders;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc/audio/encoder/audio_containers;../src;../src/config/audio_enc_sam_e70_xult_wm8904_i2sc;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
