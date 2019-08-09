@@ -81,7 +81,7 @@ static StreamInfo streamInfo;
 static uint32_t encoded_data_size;
 static EncoderType encType;
 
-uint16_t inSize, read, written;
+uint16_t inSize, numRead, numWritten;
 
 
 // *****************************************************************************
@@ -319,9 +319,9 @@ void APP_Decode( void )
 {
     inSize = BUFFER_SIZE;
     
-    WAV_Decoder( (void *)App_Audio_Input_Buffer[appData.rxBufIdx], inSize, &read,
-                (void *)App_Audio_Output_Buffer[appData.txBufIdx], &written);
-    appData.codecData.bufferSize = written;
+    WAV_Decoder( (void *)App_Audio_Input_Buffer[appData.rxBufIdx], inSize, &numRead,
+                (void *)App_Audio_Output_Buffer[appData.txBufIdx], &numWritten);
+    appData.codecData.bufferSize = numWritten;
     appData.codecData.txbufferObject = (uint8_t *)App_Audio_Output_Buffer[appData.txBufIdx];
     appData.codecData.rxbufferObject = (uint8_t *)App_Audio_Input_Buffer[appData.rxBufIdx];
 }
