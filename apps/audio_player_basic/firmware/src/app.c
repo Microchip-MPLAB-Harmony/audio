@@ -48,8 +48,8 @@ uint16_t volumeLevels[VOL_LVL_MAX] =
 
 
 #ifdef DATA32_ENABLED
-DRV_I2S_DATA32m __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
-DRV_I2S_DATA32m __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
+DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
+DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_TempBuf[NUM_SAMPLES];
 #else
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
@@ -57,8 +57,14 @@ DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPL
 #endif
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Input_Buffer[NUM_SAMPLES];
 
-static WAV_FILE_HEADER wavHdr;
+#ifdef WAV_STREAMING_ENABLED
+static dWAVHEADER wavHdr;
 extern WAV_DEC wavDecoder;
+#endif
+
+#ifdef ADPCM_STREAMING_ENABLED
+static ADPCMHEADER adpcmHdr;
+#endif
 
 #ifdef GFX_ENABLED
 extern laCircularSliderWidget * VolumeWidget;
@@ -169,7 +175,7 @@ APP_DATA * APP_GetAppDataInstance()
 }
 
 
-APP_DECODER_TYPE APP_GetCurrentFileType ( char *ext )
+/*APP_DECODER_TYPE APP_GetCurrentFileType ( char *ext )
 {
     char lowercase[4];
     if(ext[0] == '\0' || ext[1] =='\0'
@@ -192,7 +198,7 @@ APP_DECODER_TYPE APP_GetCurrentFileType ( char *ext )
 #endif
     
     return APP_DECODER_UNKNOWN;
-}
+}*/
 
 void APP_PlayerInitialize ( void )
 {
@@ -305,8 +311,22 @@ void APP_Set_GUI_TrackPositionStr( void )
     static char currTimeStr[10];
     if( appData.sampleRate && appData.numOfChnls )
     {
-        time = (appData.fileSize - sizeof( WAV_FILE_HEADER))/(appData.sampleRate*2*appData.numOfChnls);
-
+        switch( appData.currentStreamType )
+        {
+#ifdef WAV_STREAMING_ENABLED
+            case APP_STREAM_WAV:
+                time = (appData.fileSize - sizeof( WAV_FILE_HEADER ))/(appData.sampleRate*2*appData.numOfChnls);
+                break;
+#endif
+#ifdef ADPCM_STREAMING_ENABLED
+            case APP_STREAM_ADPCM:
+                time = 4*(appData.fileSize - sizeof( ADPCMHEADER ))/(appData.sampleRate*2*appData.numOfChnls);
+                break;
+#endif
+            default:
+                time = 0;
+                break;
+        }
         mins = time / 60;
         secs = time % 60;
         sprintf( totalTimeStr, "%02d:%02d", (int)mins, (int)secs);
@@ -315,7 +335,22 @@ void APP_Set_GUI_TrackPositionStr( void )
         laLabelWidget_SetText( lblEndPosition, laTmpStr );
         laString_Destroy( &laTmpStr );
 
-        time = (appData.currPos - sizeof( WAV_FILE_HEADER))/(appData.sampleRate*2*appData.numOfChnls);
+        switch( appData.currentStreamType )
+        {
+#ifdef WAV_STREAMING_ENABLED
+            case APP_STREAM_WAV:
+                time = (appData.currPos - sizeof( WAV_FILE_HEADER))/(appData.sampleRate*2*appData.numOfChnls);
+                break;
+#endif
+#ifdef ADPCM_STREAMING_ENABLED
+            case APP_STREAM_ADPCM:
+                time = 4*(appData.currPos - sizeof( ADPCMHEADER ))/(appData.sampleRate*2*appData.numOfChnls);
+                break;
+#endif
+            default:
+                time = 0;
+                break;
+        }
         mins = time / 60;
         secs = time % 60;
         sprintf( currTimeStr, "%02d:%02d", (int)mins, (int)secs);
@@ -324,7 +359,21 @@ void APP_Set_GUI_TrackPositionStr( void )
         laLabelWidget_SetText( lblCurrentPosition, laTmpStr );
         laString_Destroy( &laTmpStr );
         
-        laProgressBarWidget_SetValue( ProgressBarWidget, (appData.currPos - sizeof( WAV_FILE_HEADER))*100/(appData.fileSize- sizeof( WAV_FILE_HEADER)) );
+        switch( appData.currentStreamType )
+        {
+#ifdef WAV_STREAMING_ENABLED
+            case APP_STREAM_WAV:
+                laProgressBarWidget_SetValue( ProgressBarWidget, (appData.currPos - sizeof( WAV_FILE_HEADER))*100/(appData.fileSize- sizeof( WAV_FILE_HEADER)) );
+                break;
+#endif
+#ifdef ADPCM_STREAMING_ENABLED
+            case APP_STREAM_ADPCM:
+                laProgressBarWidget_SetValue( ProgressBarWidget, (appData.currPos - sizeof( ADPCMHEADER))*100/(appData.fileSize- sizeof( ADPCMHEADER)) );
+                break;
+#endif
+            default:
+                break;
+        }
     }
 }
 
@@ -459,10 +508,98 @@ bool APP_IsSupportedAudioFile(char *name)
     if( strcmp( lowercase, "wav" ) == 0 )
     {
         strcpy( appData.ext, "wav" );
+        appData.currentStreamType = APP_STREAM_WAV;
         return true;
     }
 #endif
+#ifdef ADPCM_STREAMING_ENABLED
+    if( strcmp( lowercase, "pcm" ) == 0 )
+    {
+        strcpy( appData.ext, "pcm" );
+        appData.currentStreamType = APP_STREAM_ADPCM;
+        return true;
+    }
+#endif
+    strcpy( appData.ext, "n/a" );
+    appData.currentStreamType = APP_STREAM_UNKNOWN;
     return false;
+}
+
+void APP_ValidateFile( void )
+{
+    switch( appData.currentStreamType )
+    {
+#ifdef WAV_STREAMING_ENABLED
+        case APP_STREAM_WAV:
+            // Read the header data
+            SYS_FS_FileRead( appData.fileHandle, &wavHdr, sizeof(wavHdr));
+            WAV_Initialize_N( (uint8_t *)&wavHdr, appData.fileHandle );
+            
+            // Go to next track if it's not a WAVE header or the data is not in PCM format or 8000 > samplerate > 96000
+            appData.numOfChnls = WAV_GetChannels();
+            appData.bytesRemaining = WAV_HdrGetDataLen();
+            appData.sampleRate = WAV_GetSampleRate();
+            appData.playbackDuration = WAV_GetDuration();
+            appData.bit_depth = wavHdr.bitsPerSample;
+            appData.codecData.bufferSize1 = BUFFER_SIZE;
+            appData.codecData.bufferSize2 = BUFFER_SIZE;
+            
+            if((wavHdr.format == 0x46464952 ) && ( wavHdr.filetype == 0x45564157 ) && 
+                ( wavHdr.frmtchunk_marker == 0x20746d66 ) & (wavHdr.type_frmt == 1) && 
+                (appData.sampleRate >= 8000) && (appData.sampleRate <= 96000) &&
+                (appData.numOfChnls == 2))
+            {
+                appData.validFile = true;
+            }
+            break;
+#endif
+#ifdef ADPCM_STREAMING_ENABLED
+        case APP_STREAM_ADPCM:
+            SYS_FS_FileRead( appData.fileHandle, &adpcmHdr, sizeof(adpcmHdr));
+            ADPCM_Initialize((uint8_t *)&adpcmHdr);
+            appData.numOfChnls = ADPCM_GetChannels();
+            appData.bytesRemaining = ADPCM_HdrGetDataLen();
+            appData.sampleRate = ADPCM_HdrGetSamplesPerSec();
+            appData.playbackDuration = adpcmHdr.extralen/adpcmHdr.bytesPerSec;
+            appData.bit_depth = adpcmHdr.bitsPerSample;
+            appData.codecData.bufferSize1 = BUFFER_SIZE/8;
+            appData.codecData.bufferSize2 = BUFFER_SIZE/8;
+            
+            if((adpcmHdr.format == 0x46464952 ) && ( adpcmHdr.filetype == 0x45564157 ) && 
+                ( adpcmHdr.frmtchunk_marker == 0x20746d66 ) && (adpcmHdr.type_frmt == 17) && 
+                (appData.sampleRate >= 8000) && (appData.sampleRate <= 96000))
+            {
+                appData.validFile = true;
+            }
+            break;
+#endif
+        default:
+            appData.codecData.bufferSize1 = 0;
+            appData.codecData.bufferSize2 = 0;
+            appData.validFile = false;
+            break;
+    }
+}
+
+bool APP_Decoder(uint8_t * inBuf, uint16_t inSize, uint16_t * bytesRd, int16_t * outBuf, uint16_t * outSize )
+{
+    bool ret = false;
+    switch( appData.currentStreamType )
+    {
+#ifdef WAV_STREAMING_ENABLED
+        case APP_STREAM_WAV:
+            ret = WAV_Decoder( inBuf, inSize, bytesRd, outBuf, outSize );
+            break;
+#endif
+#ifdef ADPCM_STREAMING_ENABLED
+        case APP_STREAM_ADPCM:
+            ret = ADPCM_Decoder( inBuf, inSize, bytesRd, outBuf, outSize );
+            break;
+#endif
+        default:
+            break;
+    }
+    return ret;
 }
 
 /******************************************************************************
@@ -517,8 +654,8 @@ void APP_Tasks ( void )
                         //srand(appData.playbackDelay);
                     }            
                 }
-            }
             break;
+        }
         
         
         // set a handler for the audio buffer completion event
@@ -548,10 +685,12 @@ void APP_Tasks ( void )
         
         case APP_STATE_READY_TO_SCAN:
             // Wait until the disk has been scanned for all requested file types
+            __NOP();
             break;
         
         case APP_STATE_SCANNING:
             // Wait until the next file has been chosen to open and play
+            __NOP();
             break;
         
         case APP_STATE_OPEN_FILE:
@@ -562,47 +701,43 @@ void APP_Tasks ( void )
             }
             appData.pause = false;
             LED_Set_Mode( 2, LED_STATE_ON, _50ms );
-            // try opening the file for reading
-            appData.fileHandle = SYS_FS_FileOpen(appData.fileName, (SYS_FS_FILE_OPEN_READ));
-            if(appData.fileHandle == SYS_FS_HANDLE_INVALID)
+            if( APP_IsSupportedAudioFile( appData.fileName ))
             {
-                // could not open the file -- 
-                appData.state = APP_STATE_SCANNING;
-            }
-            else
-            {
-                appData.fileSize = SYS_FS_FileSize( appData.fileHandle );
-                if( appData.fileSize == -1 )
+                // try opening the file for reading
+                appData.fileHandle = SYS_FS_FileOpen(appData.fileName, (SYS_FS_FILE_OPEN_READ));
+                if(appData.fileHandle == SYS_FS_HANDLE_INVALID)
                 {
-                    appData.state = APP_STATE_SCANNING;
+                    // could not open the file -- 
+                    appData.state = APP_STATE_CLOSE_FILE;
                 }
                 else
                 {
-                    // file opened successfully -- read from file
-                    appData.state = APP_STATE_READ_FILE;
-                    // Read the header data
-                    retval = SYS_FS_FileRead( appData.fileHandle, &wavHdr, sizeof(wavHdr));
-                    WAV_Initialize_N( (uint8_t *)&wavHdr, appData.fileHandle );
+                    appData.fileSize = SYS_FS_FileSize( appData.fileHandle );
+                    if( appData.fileSize == -1 )
+                    {
+                        appData.state = APP_STATE_CLOSE_FILE;
+                    }
+                    else
+                    {
+                        // file opened successfully -- read from file
+                        appData.state = APP_STATE_READ_FILE;
+                        // Read the header data
+                        appData.validFile = false;
+                    }
                 }
             }
-            break;
-
-        case APP_STATE_READ_FILE:
-            
-            // Go to next track if it's not a WAVE header or the data is not in PCM format or 8000 > samplerate > 96000
-            appData.numOfChnls = WAV_GetChannels();
-            appData.bytesRemaining = WAV_HdrGetDataLen();
-            appData.sampleRate = WAV_GetSampleRate();
-            appData.playbackDuration = WAV_GetDuration();
-            appData.bit_depth = wavHdr.bitsPerSample;
-            appData.codecData.bufferSize1 = BUFFER_SIZE;
-            appData.codecData.bufferSize2 = BUFFER_SIZE;
-            
-            if((strncmp(wavHdr.chunkID, "RIFF", 4) != 0) || (strncmp(wavHdr.format, "WAVE", 4) != 0) || 
-                    (strncmp(wavHdr.subChunk1Id, "fmt ", 4) != 0 ) || (strncmp(wavHdr.subChunk2Id, "data", 4) != 0 ) ||
-                    (wavHdr.audioFormat != 1) || (appData.sampleRate < 8000) || (appData.sampleRate > 96000))
+            else 
             {
                 appData.state = APP_STATE_SCANNING;
+            }
+            break;
+        case APP_STATE_READ_FILE:
+            
+            APP_ValidateFile();
+            if( !appData.validFile )
+            {
+                // Look for next file
+                appData.state = APP_STATE_CLOSE_FILE;
                 break;
             }
             
@@ -613,15 +748,15 @@ void APP_Tasks ( void )
             if ( (retval == -1) || (retval == 0) )
             {
                 // read was not successful or no data read -- assume end of file
-                appData.state = APP_STATE_SCANNING;
+                appData.state = APP_STATE_CLOSE_FILE;
             }
             else
             {
 #ifndef DATA32_ENABLED
-                WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
                         (int16_t *) App_Audio_Output_Buffer1, &wrtn);
 #else
-                WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
                         (int16_t *) App_Audio_Output_TempBuf, &wrtn);
                 for( int i = 0; i < NUM_SAMPLES; i++ )
                 {
@@ -674,15 +809,15 @@ void APP_Tasks ( void )
                     if ( (retval == -1) || (retval == 0) )
                     {
                         // read was not successful or no data read -- assume end of file
-                        appData.state = APP_STATE_SCANNING;
+                        appData.state = APP_STATE_CLOSE_FILE;
                     }
                     else
                     {
 #ifndef DATA32_ENABLED
-                        WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                        APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
                                 (int16_t *) App_Audio_Output_Buffer2, &wrtn);
 #else
-                        WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                        APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
                                 (int16_t *) App_Audio_Output_TempBuf, &wrtn);
                         for( int i = 0; i < NUM_SAMPLES; i++ )
                         {
@@ -700,7 +835,7 @@ void APP_Tasks ( void )
                 {
                     //appData.state = APP_STATE_ERROR;
                     // this one needs to be modified
-                    appData.state = APP_STATE_SCANNING;
+                    appData.state = APP_STATE_CLOSE_FILE;
                 }
             }
             else
@@ -721,15 +856,15 @@ void APP_Tasks ( void )
                     {
                         // read was not successful or no data read -- assume end of file
                         // this one needs to be modified
-                        appData.state = APP_STATE_SCANNING;
+                        appData.state = APP_STATE_CLOSE_FILE;
                     }
                     else
                     {
 #ifndef DATA32_ENABLED
-                        WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                        APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
                                 (int16_t *) App_Audio_Output_Buffer1, &wrtn);
 #else
-                        WAV_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
+                        APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
                                 (int16_t *) App_Audio_Output_TempBuf, &wrtn);
                         // The library only deals with 16 bit data.  32 data needs to be manipulated..
                         for( int i = 0; i < NUM_SAMPLES; i++ )
@@ -744,7 +879,7 @@ void APP_Tasks ( void )
                 }               
                 else
                 {
-                    appData.state = APP_STATE_SCANNING;
+                    appData.state = APP_STATE_CLOSE_FILE;
                 }
             }
 #ifdef GFX_ENABLED
@@ -761,6 +896,7 @@ void APP_Tasks ( void )
 
         // audio data Transmission under process
         case APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE:
+            __NOP();
             break;
             
         case APP_STATE_CLOSE_FILE:
@@ -772,6 +908,7 @@ void APP_Tasks ( void )
             appData.state = APP_STATE_SCANNING;
             appData.pause = true;
 		default:
+            __NOP();
             break;
     }
 }

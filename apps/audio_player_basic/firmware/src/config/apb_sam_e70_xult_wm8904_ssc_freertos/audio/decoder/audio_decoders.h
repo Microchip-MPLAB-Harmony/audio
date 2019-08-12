@@ -49,4 +49,5 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 #include "wav/wav_dec.h"
+#include "adpcm/adpcm_dec.h"
 

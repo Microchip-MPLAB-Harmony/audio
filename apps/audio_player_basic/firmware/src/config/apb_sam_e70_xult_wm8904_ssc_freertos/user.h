@@ -26,7 +26,9 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
-
+#include "audio/decoder/audio_decoders_config.h"
+#include "audio_decoders.h"
+    
 // *****************************************************************************
 // *****************************************************************************
 // Section: User Configuration macros

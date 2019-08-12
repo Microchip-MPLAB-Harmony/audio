@@ -48,7 +48,8 @@ extern "C" {
 #endif
 // DOM-IGNORE-END
 
-#define WAV_STREAMING_ENABLED
+//#define WAV_STREAMING_ENABLED
+//#define ADPCM_STREAMING_ENABLED
     
 
 #define _10ms       10
@@ -263,6 +264,7 @@ typedef enum{
     APP_STREAM_ADPCM,
     APP_STREAM_OPUS,
     APP_STREAM_FLAC,
+    APP_STREAM_UNKNOWN,
 }PLAYER_STREAM_TYPE;
 
 typedef enum{
@@ -301,6 +303,7 @@ typedef enum{
     MAX_MODES,
 }PLAYER_MODE;
 
+#ifdef WAV_STREAMING_ENABLED
 typedef struct{
     char chunkID[4];        // "RIFF"
     uint32_t chunkSize;
@@ -316,6 +319,8 @@ typedef struct{
     char subChunk2Id[4];    // "data"
     uint32_t subChunk2Size;
 }WAV_FILE_HEADER;
+#endif
+
 typedef struct{
     bool bStereoMode;
 }APP_RUNDCPT; // application layer descriptor 
@@ -381,7 +386,7 @@ typedef struct {
     /* repeat timer handle */
     DRV_HANDLE repeatTmrHandle;
     AUDIO_QUEUEBUFFER  audioBuffer[AUDIO_QUEUEBUFFER_NUMBER];
-    bool trackPlayed[DISK_MAX_FILES];
+    bool trackPlayed[DISK_MAX_FILES], validFile;
     char fileName[64];
     char ext[5];
 }APP_DATA ;
@@ -499,8 +504,9 @@ void                APP_SetReadBytesReadFlag( int32_t val, bool b );
 bool                APP_IsSupportedAudioFile( char *name );
 bool                APP_PlayerEventHandler ( PLAYER_EVENT event, uint32_t data );
 void                APP_Initialize( void );
-bool                APP_PlayerDecode( uint8_t *ptr, int16_t* out );
-APP_DECODER_TYPE    APP_GetCurrentFileType ( char *ext );
+//bool                APP_PlayerDecode( uint8_t *ptr, int16_t* out );
+bool                APP_Decoder( uint8_t *in, uint16_t sz, uint16_t * bytesRd, int16_t* out, uint16_t * wrtn );
+//APP_DECODER_TYPE    APP_GetCurrentFileType ( char *ext );
 #ifdef GFX_ENABLED
 void                APP_Update_GUI_Tasks( void );
 #endif
