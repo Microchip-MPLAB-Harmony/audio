@@ -403,8 +403,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">32C1792200EE2D401211656DD8754FBC</GeneratedChecksum>
-          <UserChecksum dnOrder="5">961E25667CA7FB5533CD23FC6D133233</UserChecksum>
+          <GeneratedChecksum dnOrder="4">FCE5352AD41FCFAACB2D58CC3A3991AC</GeneratedChecksum>
+          <UserChecksum dnOrder="5">FCE5352AD41FCFAACB2D58CC3A3991AC</UserChecksum>
         </File>
         <File dnOrder="50">
           <Type dnOrder="0">HEADER</Type>

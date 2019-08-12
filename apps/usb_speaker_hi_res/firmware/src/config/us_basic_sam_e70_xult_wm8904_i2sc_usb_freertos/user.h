@@ -40,12 +40,14 @@ extern "C" {
 #endif
 //DOM-IGNORE-END
 
-#ifndef SYS_DEBUG_MESSAGE
+#ifndef SYS_PRINT 
 #define SYS_DEBUG_PRINT(level, format, ...) 
 #define SYS_DEBUG_MESSAGE(a,b, ...)
 #define SYS_DEBUG(a,b)
 #define SYS_PRINT(...) 
 #endif
+
+#undef APP_CODEC_MASTER
 
 #endif // USER_H
 /*******************************************************************************

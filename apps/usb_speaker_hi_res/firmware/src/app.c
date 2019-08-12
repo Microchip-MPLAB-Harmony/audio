@@ -59,18 +59,24 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 //#include "display.h"
 
+//DEBUG 
+#undef DEBUG_TONE_CODEC_TX
+
+//=============================================================================
+//CLOCK CONTROL and TUNING
+//=============================================================================
+static uint32_t __attribute__((unused)) dpl, mpl, dg, dp;
+
 #define CLOCK_MISMATCH_COMPENSATION
 #ifdef CLOCK_MISMATCH_COMPENSATION
 #define CKUPDATERED 2   //Clock Update Delay 
 static int ckUpdateCnt = CKUPDATERED; 
 static const int CLOCK_STABLE_DELAY_MS = 100;
 
-//d, m, and d2 values for E70 96Khz/64 bit stereo frame
-static uint32_t d,m,d2;
-static uint32_t __attribute__((unused)) dpl, mpl, dg, dp;
-#define CLOCKUP_IND   0   
-#define CLOCKDWN_IND  0
-
+#ifdef APP_CODEC_MASTER
+static const int APP_CLKDEL = 200;
+#else  //APP_CODEC_MASTER
+#undef FS48KHZ
 #ifdef FS48KHZ
 static uint32_t _clockAdjUp[9][3] = 
 {
@@ -96,8 +102,24 @@ static uint32_t _clockAdjDwn[8][3] =
     {3, 49, 16}, //196000000, 12250000,  47851, -0.310%, 
     {2, 51, 25}, //306000000, 12240000,  47812, -0.392%, 
 };
-#endif
+#endif //FS48KHZ
 
+#ifdef APP_DEBUG_CLOCK
+static uint32_t _clockAdj[6][6] = 
+{
+{2, 41, 10, 246000000, 24600000, 96093},  //0.097
+{1, 39, 19, 468000000, 24631578, 96217},  //0.226
+{2, 37,  9, 222000000, 24666666, 96354},  //0.369
+{3, 43,  7, 172000000, 24571428, 95982},  //-0.019
+{2, 45, 11, 270000000, 24545454, 95880},  //-0.125
+{2, 49, 12, 294000000, 24500000, 95703},  //-0.309
+};
+#endif //APP_DEBUG_CLOCK
+
+//d, m, and d2 values for E70 96Khz/64 bit stereo frame
+static uint32_t d,m,d2;
+#define CLOCKUP_IND   0   
+#define CLOCKDWN_IND  0
 static uint32_t _clockAdjUp[3][3] = 
 {
 {2,41,10}, //246000000,24600000,96093,0.097%,
@@ -111,12 +133,8 @@ static uint32_t _clockAdjDwn[3][3] =
 {2,45,11}, //270000000,24545454,95880,-0.125%,
 {2,49,12}, //294000000,24500000,95703,-0.309%,
 };
-
-
+#endif //APP_CODEC_MASTER
 #endif //CLOCK_MISMATCH_COMPENSATION 
-
-//DEBUG 
-#undef DEBUG_TONE_CODEC_TX
 
 bool queueFull;
 bool queueEmpty;
@@ -125,17 +143,6 @@ bool queueEmpty;
 uint32_t sa;
 uint32_t sb;
 uint32_t sc;
-
-
-int usbReadScheduleCnt = 0; 
-int usbReadFailureCnt = 0;
-int usbReadCompleteCnt = 0; 
-int codecWriteScheduleCnt = 0; 
-int codecWriteFailureCnt = 0;
-int codecWriteCompleteCnt = 0; 
-int usbNextCompleteIdx = 0;
-int codecNextCompleteIdx = 0;
-int usbReadCompleteQLvl = 0;
 
 uint16_t volumeLevels[VOLUME_STEPS] =
 {
@@ -182,8 +189,14 @@ volatile bool usbInitialReadsComplete = false;
 // allocated with the COHERENT and aligned(16) attributes so that it is 
 // placed at the correct page boundary.
 //static __attribute__((aligned(32))) __attribute__((tcm))
+#ifdef APP_ALLOCATE_TCM
+static APP_PLAYBACK_BUFFER_QUEUE 
+       __attribute__((aligned(32))) __attribute__((tcm))
+           appBufferQueue;
+#else
 static APP_PLAYBACK_BUFFER_QUEUE __attribute__((aligned(32)))
            appBufferQueue;
+#endif
 
 //==============================================================================
 // Application Playback Buffer Queue
@@ -204,7 +217,11 @@ static USB_DEVICE_AUDIO_RESULT volatile audioErr1;
 
 //Application Class Data
 //APP_DATA __attribute__((tcm)) appData =
+#ifdef APP_ALLOCATE_TCM
 APP_DATA __attribute__((aligned(32))) appData =
+#else
+APP_DATA __attribute__((aligned(32))) __attribute__((tcm)) appData =
+#endif //APP_ALLOCATE_TCM
 {
     /* Device Layer Handle  */
     .usbDevHandle = -1,
@@ -379,9 +396,6 @@ void APP_USBDeviceAudioEventHandler(USB_DEVICE_AUDIO_INDEX iAudio,
 
             case USB_DEVICE_AUDIO_EVENT_READ_COMPLETE:
             {
-                //DEBUG
-                usbReadCompleteCnt++;
-
                 //We have received an audio frame from the Host.
                 //Now send this audio frame to Audio Codec for Playback.
                 readEventData = 
@@ -587,7 +601,6 @@ void APP_USBDeviceAudioEventHandler(USB_DEVICE_AUDIO_INDEX iAudio,
 //******************************************************************************
 void APP_Initialize()
 {
-      //SYS_PRINT_Init();
       SYS_PRINT("----------------------------------------\r\n");
       SYS_PRINT("- Starting:\r\n");
       SYS_PRINT("----------------------------------------\r\n");
@@ -659,52 +672,6 @@ void APP_Tasks()
                        
                 if (appData.codecClientWrite.handle != DRV_HANDLE_INVALID) 
                 {
-                    static DRV_WM8904_CLIENT_OBJ *clientObj;
-                    static DRV_WM8904_OBJ *drvObj;
-                    static DRV_HANDLE * handle;
-
-                    handle = (DRV_HANDLE *) appData.codecClientWrite.handle;
-                    clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
-                    drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
-
-                    //Clock Initialize
-                    const int d  = _clockAdjUp[CLOCKDWN_IND][0];
-                    const int m  = _clockAdjDwn[CLOCKDWN_IND][1];
-                    const int d2 = _clockAdjDwn[CLOCKDWN_IND][2];
-
-                    //Set the PLLA/GCLK/PCK2
-                    static uint32_t plla, gclk, pck2;
-                    plla = PMC_REGS->CKGR_PLLAR;
-                    PMC_REGS->PMC_PCR =  PMC_PCR_PID(70);
-                    gclk = PMC_REGS->PMC_PCR;
-                    pck2  = PMC_REGS->PMC_PCK[2];
-
-                    //Register Values
-                    dpl = (plla & 0xff); 
-                    mpl = (plla>>16 & 0x3ff) + 1; 
-                    dg  = (gclk>>20 & 0xff) + 1; 
-                    dp  = (pck2>>4 & 0xff) + 1; 
-                    SYS_PRINT("PLLA %08x\r\n",plla);
-                    SYS_PRINT("GCLK %08x\r\n",gclk);
-                    SYS_PRINT("PCK  %08x\r\n",pck2);
-                    SYS_PRINT("d= %x m= %x d2 = %x(%x)\r\n",dpl,mpl,dg,dp);
-
-                    DRV_I2S_ClockGenerationSet(drvObj->i2sDriverHandle, d, m, d2);
-                    DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
-
-                    plla = PMC_REGS->CKGR_PLLAR;
-                    PMC_REGS->PMC_PCR =  PMC_PCR_PID(70);
-                    gclk = PMC_REGS->PMC_PCR;
-                    pck2  = PMC_REGS->PMC_PCK[2];
-                    dpl = (plla & 0xff); 
-                    mpl = (plla>>16 & 0x3ff) + 1; 
-                    dg  = (gclk>>20 & 0xff) + 1; 
-                    dp  = (pck2>>4 & 0xff) + 1; 
-                    SYS_PRINT("PLLA %08x\r\n",plla);
-                    SYS_PRINT("GCLK %08x\r\n",gclk);
-                    SYS_PRINT("PCK  %08x\r\n",pck2);
-                    SYS_PRINT("d= %x m= %x d2 = %x(%x)\r\n",dpl,mpl,dg,dp);
-                   
 
                     //Initial Volume
                     DRV_CODEC_VolumeSet(appData.codecClientWrite.handle, 
@@ -742,10 +709,65 @@ void APP_Tasks()
             //Default Value -- Never changes for usb_speaker.
             if (DRV_CODEC_I2S_MASTER_MODE == true)
             {
+#if defined(APP_CODEC_MASTER)
+                //CODEC is Master
                 DRV_CODEC_SamplingRateSet(appData.codecClientWrite.handle, 
                                           appData.sampleFreq);
-                SYS_PRINT("APP: Codec Master Buffer Handler Fs = %d Hz",
+                SYS_PRINT("APP: CODEC Master Buffer Handler Fs = %d Hz",
                         appData.sampleFreq);
+#else
+#ifdef CLOCK_MISMATCH_COMPENSATION
+                //CODEC is Slave
+                static DRV_WM8904_CLIENT_OBJ *clientObj;
+                static DRV_WM8904_OBJ *drvObj;
+                static DRV_HANDLE * handle;
+
+                handle = (DRV_HANDLE *) appData.codecClientWrite.handle;
+                clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+                drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
+                //Set the PLLA/GCLK/PCK2
+                static uint32_t plla, gclk, pck2;
+                plla = PMC_REGS->CKGR_PLLAR;
+                PMC_REGS->PMC_PCR =  PMC_PCR_PID(70);
+                gclk = PMC_REGS->PMC_PCR;
+                pck2  = PMC_REGS->PMC_PCK[2];
+
+                //Register Values
+                dpl = (plla & 0xff); 
+                mpl = (plla>>16 & 0x3ff) + 1; 
+                dg  = (gclk>>20 & 0xff) + 1; 
+                dp  = (pck2>>4 & 0xff) + 1; 
+                SYS_PRINT("I: PLLA %08x\r\n",plla);
+                SYS_PRINT("I: GCLK %08x\r\n",gclk);
+                SYS_PRINT("I: PCK  %08x\r\n",pck2);
+                SYS_PRINT("I: d= %x m= %x d2 = %x(%x)\r\n",dpl,mpl,dg,dp);
+
+                //Clock Initialize
+                const int d  = _clockAdjUp[CLOCKUP_IND][0];
+                const int m  = _clockAdjUp[CLOCKUP_IND][1];
+                const int d2 = _clockAdjUp[CLOCKUP_IND][2];
+                DRV_I2S_ClockGenerationSet(drvObj->i2sDriverHandle, d, m, d2);
+                DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
+
+                TEST1_Clear();
+                TEST2_Clear();
+
+                plla = PMC_REGS->CKGR_PLLAR;
+                PMC_REGS->PMC_PCR =  PMC_PCR_PID(70);
+                gclk = PMC_REGS->PMC_PCR;
+                pck2  = PMC_REGS->PMC_PCK[2];
+                dpl = (plla & 0xff); 
+                mpl = (plla>>16 & 0x3ff) + 1; 
+                dg  = (gclk>>20 & 0xff) + 1; 
+                dp  = (pck2>>4 & 0xff) + 1; 
+                SYS_PRINT("PLLA %08x\r\n",plla);
+                SYS_PRINT("GCLK %08x\r\n",gclk);
+                SYS_PRINT("PCK  %08x\r\n",pck2);
+                SYS_PRINT("d= %x m= %x d2 = %x(%x)\r\n",dpl,mpl,dg,dp);
+                SYS_PRINT("APP: Codec Slave Buffer Handler Fs = %d Hz",
+                          appData.sampleFreq);
+#endif //CLOCK_MISMATCH_COMPENSATION
+#endif //APP_CODEC_MASTER
             }
             else
             {
@@ -818,13 +840,6 @@ void APP_Tasks()
                 APP_USB_SPEAKER_PLAYBACK_STEREO)
             {
                 //Clear the frame counts
-                usbReadScheduleCnt = 0;
-                usbReadFailureCnt = 0;
-                usbReadCompleteCnt = 0;
-                usbReadCompleteQLvl = 0;  
-
-                usbNextCompleteIdx = 0;
-
                 appData.ledState = CONNECTED_BLINK;
                 appData.state = APP_STATE_INITIAL_USB_READ_REQUEST; 
             }
@@ -903,21 +918,20 @@ void APP_Tasks()
                         audioErr1 = USB_DEVICE_AUDIO_Read(
                                         USB_DEVICE_INDEX_0, 
                                         &usbReadBuffer->usbReadHandle, 
-#ifdef DEBUG_BSUBFRAMESIZE_3
+#ifdef APP_BSUBFRAMESIZE_3
                                         1, usbReadBuffer->buffer,  //24 bit buffer 
 #else
                                         1, usbReadBuffer->buffer32, 
-#endif //DEBUG_BSUBFRAMESIZE_3
+#endif //APP_BSUBFRAMESIZE_3
                                         appData.usbReadBufSize); //96 Samples
 
                         if(audioErr1 == USB_DEVICE_AUDIO_RESULT_OK)
                         {
-                            appBufferQueue.usbReadQueueCnt++;
                             //SYS_PRINT("***INIT USB READ: RQCnt %d", 
                             //    appBufferQueue.usbReadQueueCnt);
                             //Next Codec Write Index (HEAD Index)
                             appBufferQueue.usbReadIdx = _APP_GetNextIdx(appBufferQueue.usbReadIdx);
-                            usbReadScheduleCnt++;                        
+                            appBufferQueue.usbReadQueueCnt++;
                             
                         }
                         else
@@ -1021,7 +1035,7 @@ void APP_Tasks()
                         #else
                         //USB Data
 
-                        #ifdef DEBUG_BSUBFRAMESIZE_3
+                        #ifdef APP_BSUBFRAMESIZE_3
                         //Unpack the 24 bit buffer to the 32 bit buffer
                         // 4bytes x 4words = 12 bytes -> 4x24 bit samples
                         int i;
@@ -1055,7 +1069,7 @@ void APP_Tasks()
 
                         //Initial CODEC Write
                         currentPlayBuffer->codecInUse = true;
-                        #endif //DEBUG_BSUBFRAMESIZE_3
+                        #endif //APP_BSUBFRAMESIZE_3
 
                         //Write stereo tone to output instead of USB data.
                         DRV_CODEC_BufferAddWrite(
@@ -1072,7 +1086,6 @@ void APP_Tasks()
                             appBufferQueue.codecWriteQueueCnt++;
                             appBufferQueue.codecWriteIdx = 
                                     _APP_GetNextIdx(codecWriteIdx);
-                            codecWriteScheduleCnt++;
                         }
                         else
                         {
@@ -1111,13 +1124,18 @@ void APP_Tasks()
                 if (appBufferQueue.usbReadCompleteBufferLevel != 
                     appBufferQueue.previousBufferLevel)
                 {
-                    if (appBufferQueue.usbReadCompleteBufferLevel < APP_INIT_QUEUE_LEVEL+1)
+                    if (appBufferQueue.usbReadCompleteBufferLevel < APP_INIT_QUEUE_LEVEL+2)
                     {    
                         //Let the clock stabilize to a converged value by counting
                         //down the updates
                         //Each packet is 1 ms of data
                         if (ckUpdateCnt-- == 0)
                         {
+#ifdef APP_CODEC_MASTER
+                            DRV_CODEC_SamplingRateSet(
+                                    appData.codecClientWrite.handle, 
+                                    appData.sampleFreq+APP_CLKDEL);
+#else
                             //USB is running slow. Decrease I2S clock.  
                             //- Prevent underflow (queueEmpty)
                             //Increase Clock Rate
@@ -1127,25 +1145,37 @@ void APP_Tasks()
                             //d  = _clockAdjDwn[CLOCKDWN_IND][0];
                             //m  = _clockAdjDwn[CLOCKDWN_IND][1];
                             //d2 = _clockAdjDwn[CLOCKDWN_IND][2];
+                            TEST1_Set();
+                            TEST2_Clear();
+#endif //APP_CODEC_MASTER
                         }
                     }
                     else 
                     {
-                        if (appBufferQueue.usbReadCompleteBufferLevel == APP_INIT_QUEUE_LEVEL+1)
+                        if (appBufferQueue.usbReadCompleteBufferLevel == APP_INIT_QUEUE_LEVEL+2)
                         {
                             // USB is at same rate as CODEC 
                             //Keep Current Clock Rate
                         }
                         else
                         {
+#ifdef  APP_CODEC_MASTER
+                            DRV_CODEC_SamplingRateSet(
+                                    appData.codecClientWrite.handle, 
+                                    appData.sampleFreq-APP_CLKDEL);
+#else
                             // USB is running faster. 
                             //Decrease Clock Rate
                             //-prevent Codec data overflow
                             d  = _clockAdjDwn[CLOCKDWN_IND][0];
                             m  = _clockAdjDwn[CLOCKDWN_IND][1];
                             d2 = _clockAdjDwn[CLOCKDWN_IND][2];
+                            TEST1_Clear();
+                            TEST2_Set();
+#endif //APP_CODEC_MASTER
                         }
                     }
+#ifdef APP_CODEC_MASTER
                     static DRV_WM8904_CLIENT_OBJ *clientObj;
                     static DRV_WM8904_OBJ *drvObj;
                     static DRV_HANDLE * handle;
@@ -1156,6 +1186,7 @@ void APP_Tasks()
                     //Set the PLLA/GCLK/PCK2
                     DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
                     DRV_I2S_ClockGenerationSet(drvObj->i2sDriverHandle, d, m, d2);
+#endif //APP_CODEC_MASTER
 
                     appBufferQueue.previousBufferLevel = 
                          appBufferQueue.usbReadCompleteBufferLevel; 
@@ -1182,7 +1213,6 @@ void APP_Tasks()
 //                                appBufferQueue.usbReadCompleteBufferLevel,
 //                                appBufferQueue.usbReadQueueCnt,
 //                                appBufferQueue.codecWriteQueueCnt,
-//                                appBufferQueue.codecWriteCompleteCnt);
                 }
 
                 if ( usbReadBuffer != NULL && 
@@ -1193,11 +1223,11 @@ void APP_Tasks()
 
                     audioErr1 = USB_DEVICE_AUDIO_Read(USB_DEVICE_INDEX_0, 
                                           &usbReadBuffer->usbReadHandle, 
-#ifdef DEBUG_BSUBFRAMESIZE_3
+#ifdef APP_BSUBFRAMESIZE_3
                                           1, usbReadBuffer->buffer,  
 #else
                                           1, usbReadBuffer->buffer32,  
-#endif //DEBUG_BSUBFRAMESIZE_3
+#endif //APP_BSUBFRAMESIZE_3
                                           appData.usbReadBufSize);//96*3 bytes
 
                     if(audioErr1 == USB_DEVICE_AUDIO_RESULT_OK)
@@ -1208,9 +1238,6 @@ void APP_Tasks()
                         appBufferQueue.usbReadQueueCnt++;
                         appBufferQueue.usbReadIdx = 
                                 _APP_GetNextIdx(appBufferQueue.usbReadIdx);
-                        
-                        //DEBUG
-                        usbReadScheduleCnt++;
                     }
                     else
                     {
@@ -1242,7 +1269,7 @@ void APP_Tasks()
                         #else //DEBUG_TONE_CODEC_TX
                         //USB Data
 
-                        #ifdef DEBUG_BSUBFRAMESIZE_3
+                        #ifdef APP_BSUBFRAMESIZE_3
                         //Unpack the 24 bit buffer to the 32 bit buffer
                         int i;
                         int j;
@@ -1272,7 +1299,7 @@ void APP_Tasks()
                             //dst[j+3] = sc<<8;
                             dst[j+3] = sc & 0xFFFFFF00;
                         }
-                        #endif //DEBUG_BSUBFRAMESIZE_3
+                        #endif //APP_BSUBFRAMESIZE_3
 
                         DRV_CODEC_BufferAddWrite(
                                     appData.codecClientWrite.handle, 
@@ -1299,9 +1326,6 @@ void APP_Tasks()
                             {
                                queueEmpty = false;
                             }
-                           
-                            //DEBUG
-                            codecWriteScheduleCnt++; 
                         }
                         else
                         {
@@ -1454,7 +1478,6 @@ APP_CODECBufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
         {
 
             //DEBUG
-            codecWriteCompleteCnt++;
             appBufferQueue.codecWriteCompleteCnt++;
 
             if (appBufferQueue.codecWriteIdx != appBufferQueue.usbReadIdx)
@@ -1516,7 +1539,7 @@ static int _APP_SetUSBReadBufferReady(USB_DEVICE_AUDIO_TRANSFER_HANDLE handle)
         if (appBufferQueue.playbackBuffer[i].usbReadHandle == handle)
         {
             appBufferQueue.playbackBuffer[i].usbReadCompleted = true;
-            //appBufferQueue.playbackBuffer[i].usbInUse = false;
+            appBufferQueue.playbackBuffer[i].usbInUse = false;
             return i;
         }
     }
@@ -1566,17 +1589,6 @@ static void _APP_Init_PlaybackBufferQueue()
     appBufferQueue.codecWriteQueueCnt         = 0;
 
     DRV_CODEC_WriteQueuePurge(appData.codecClientWrite.handle);
-
-    //DEBUG
-    usbNextCompleteIdx = 0;
-    usbReadScheduleCnt = 0; 
-    usbReadFailureCnt = 0;
-    usbReadCompleteCnt = 0; 
-    codecWriteScheduleCnt = 0; 
-    codecWriteFailureCnt = 0;
-    codecWriteCompleteCnt = 0; 
-    usbNextCompleteIdx = 0;
-    codecNextCompleteIdx = 0;
 
     //Synchronize playback to the I2S L/R channel slots.
     appData.lrSync = true;
@@ -1755,18 +1767,29 @@ void _APP_Button_Tasks()
             else if ((appData.buttonDelay==0)&&
                      (SWITCH_Get()==SWITCH_STATE_PRESSED))  
             {
-                // Long Press - SW0 still pressed after 1 sec
-                // --> Toggle Button Mode - Volume/Mute
-                //appData.volMuteMode = !appData.volMuteMode;
-                //if (appData.volMuteMode)
-                //{
-                //    LED1_On();
-                //}
-                //else
-                //{
-                //    LED1_Off();
-                //}               
+                //Long Press - Switch
+#ifdef APP_DEBUG_CLOCK   //Use Sw1 to cycle the clock rates
+                static uint32_t clockRate;
+                static uint32_t clockIndex = 0;
+                static uint32_t d,m,d2;
+                static DRV_WM8904_CLIENT_OBJ *clientObj;
+                static DRV_WM8904_OBJ *drvObj;
+                static DRV_HANDLE * handle;
+
+                clockRate = _clockAdj[clockIndex][5];
+                d         = _clockAdj[clockIndex][0];
+                m         = _clockAdj[clockIndex][1];
+                d2        = _clockAdj[clockIndex][2];
+                handle = (DRV_HANDLE *) appData.codecClientWrite.handle;
+                clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
+                drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
+                DRV_I2S_ClockGenerationSet(drvObj->i2sDriverHandle, d, m, d2);
+                DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
+                SYS_PRINT("#%d d=%d m=%d d2=%d r=%d\r\n",
+                           clockIndex, d,m,d2,clockRate);
+                clockIndex++;
                 appData.buttonState=BUTTON_STATE_WAIT_FOR_RELEASE;                
+#endif //APP_DEBUG_CLOCK
             }                          
         } 
         break;

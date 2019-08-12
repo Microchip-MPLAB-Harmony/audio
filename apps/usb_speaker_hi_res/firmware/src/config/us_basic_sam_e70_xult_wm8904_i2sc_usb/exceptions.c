@@ -116,9 +116,9 @@ void HardFault_Handler_C(uint32_t * hardfault_args, unsigned int lr_value)
    printf("- Misc\r\n");
    printf(" LR/EXC_RETURN = 0x%X, Bit 2: %d\r\n", lr_value, (lr_value & 0x4)>>2 );
 
-  #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
+   #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
    __builtin_software_breakpoint();
-  #endif
+   #endif
 
    while (1)
    {

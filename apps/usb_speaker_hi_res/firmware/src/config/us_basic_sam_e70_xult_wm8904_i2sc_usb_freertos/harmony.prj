@@ -324,7 +324,7 @@
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">20C6D95D5A731CDA2CEC3322B96D3BB6</GeneratedChecksum>
-          <UserChecksum dnOrder="5">30049C782496AC0AAA47896C60553609</UserChecksum>
+          <UserChecksum dnOrder="5">314B380F8073B4002EC8B49424A4A163</UserChecksum>
         </File>
         <File dnOrder="40">
           <Type dnOrder="0">SOURCE</Type>
@@ -507,7 +507,7 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B4321102E93E5C500308E0A13467DA08</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">B95F7DCFEEF362448F6389EE44C2507C</GeneratedChecksum>
           <UserChecksum dnOrder="5">61E936C2366A55A9BD39399710B6D3F2</UserChecksum>
         </File>
         <File dnOrder="63">

@@ -100,15 +100,15 @@ extern "C" {
 //      4x48=192 bytes in frame buffer
 //==============================================================================
 
-#define DEBUG_BSUBFRAMESIZE_3     //4bytes per 24 bit sample
+#define APP_BSUBFRAMESIZE_3     //4bytes per 24 bit sample
 
 #define APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME 96
 
-#ifdef DEBUG_BSUBFRAMESIZE_3 
+#ifdef APP_BSUBFRAMESIZE_3 
 #define APP_USB_SAMPLE_SIZE_BYTES  6
 #else
 #define APP_USB_SAMPLE_SIZE_BYTES  8
-#endif //DEBUG_BSUBFRAMESIZE_3
+#endif //APP_BSUBFRAMESIZE_3
 
 #define APP_CODEC_SAMPLE_SIZE_BYTES 8
 #define APP_MAX_NO_BYTES_IN_USB_BUFFER (APP_MAX_NO_OF_SAMPLES_IN_A_USB_FRAME*APP_USB_SAMPLE_SIZE_BYTES)
@@ -319,10 +319,10 @@ typedef struct
 // Application Codec Playback Buffer Queue
 typedef struct
 {
-#ifdef DEBUG_BSUBFRAMESIZE_3
+#ifdef APP_BSUBFRAMESIZE_3
     // 96*3*2 = 32*18
     uint8_t buffer[APP_MAX_NO_BYTES_IN_USB_BUFFER]; //24bit packed sample buffer
-#endif //DEBUG_BSUBFRAMESIZE_3
+#endif //APP_BSUBFRAMESIZE_3
     uint8_t buffer32[APP_MAX_NO_BYTES_IN_CODEC_BUFFER]; //32 bit sample buffer
     DRV_CODEC_BUFFER_HANDLE codecWriteHandle;        //4 bytes (ptr)
     USB_DEVICE_AUDIO_TRANSFER_HANDLE usbReadHandle;  //4 bytes (ptr)
@@ -346,10 +346,10 @@ typedef struct
     uint8_t  usbReadCompleteBufferLevel;  //#of read buffers ready to write
     uint8_t  previousBufferLevel;         //for Change in buffer level
     uint32_t usbReadCompleteCnt;          //
-    uint8_t  usbReadQueueCnt;             //#of usb Reads queued
+    uint32_t  usbReadQueueCnt;             //#of usb Reads queued
     uint32_t codecWriteQueueCnt;          //Total #of codec writes queued
     uint32_t codecWriteCompleteCnt;       //Total #of codec writes completed
-    uint8_t  padding[16];                 //Aligned 32:  32 - 16
+    //uint8_t  padding[16];                 //Aligned 32:  32 - 16
 } APP_PLAYBACK_BUFFER_QUEUE;
 
 // *****************************************************************************
