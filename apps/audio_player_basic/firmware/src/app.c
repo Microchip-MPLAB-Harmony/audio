@@ -48,8 +48,8 @@ uint16_t volumeLevels[VOL_LVL_MAX] =
 
 
 #ifdef DATA32_ENABLED
-DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
-DRV_I2S_DATA32 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
+DRV_I2S_DATA32m __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
+DRV_I2S_DATA32m __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_TempBuf[NUM_SAMPLES];
 #else
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
