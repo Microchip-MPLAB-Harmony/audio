@@ -155,8 +155,8 @@
           <Name dnOrder="1">plib_i2s1.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/audio/peripheral/i2s</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/peripheral/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">FE1FEB7459D91643AE2A3E8C22BE027F</GeneratedChecksum>
-          <UserChecksum dnOrder="5">FE1FEB7459D91643AE2A3E8C22BE027F</UserChecksum>
+          <GeneratedChecksum dnOrder="4">9CB6D40C0C9521C104E6341674118D97</GeneratedChecksum>
+          <UserChecksum dnOrder="5">9CB6D40C0C9521C104E6341674118D97</UserChecksum>
         </File>
         <File dnOrder="19">
           <Type dnOrder="0">SOURCE</Type>

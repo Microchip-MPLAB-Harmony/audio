@@ -343,7 +343,7 @@ def instantiateComponent(i2sComponent):
     _get_bitfield_names(i2sValGrp_SPI1CON_CKP, clkpol_names)
     i2sSym_SPICON_CLKPOL = i2sComponent.createKeyValueSetSymbol( "I2S_SPICON_CLK_POL",None)
     i2sSym_SPICON_CLKPOL.setLabel(i2sBitField_SPI1CON_CKP.getAttribute("caption"))
-    i2sSym_SPICON_CLKPOL.setDefaultValue(1)
+    i2sSym_SPICON_CLKPOL.setDefaultValue(0)
     i2sSym_SPICON_CLKPOL.setOutputMode( "Value" )
     i2sSym_SPICON_CLKPOL.setDisplayMode( "Description" )
     for ii in clkpol_names:
@@ -367,6 +367,8 @@ def instantiateComponent(i2sComponent):
     i2sSym_SPICON_MSSEN.setLabel(i2sBitField_SPI1CON_MSSEN.getAttribute("caption"))
     i2sSym_SPICON_MSSEN.setDefaultValue(0)
     i2sSym_SPICON_MSSEN.setOutputMode( "Value" )
+    i2sSym_SPICON_MSSEN.setVisible(False)
+    i2sSym_SPICON_MSSEN.setReadOnly(True)           # value forced to 1 in ftl
     i2sSym_SPICON_MSSEN.setDisplayMode( "Description" )
     for ii in ssen_names:
         i2sSym_SPICON_MSSEN.addKey( ii['key'],ii['value'], ii['desc'] )
@@ -376,7 +378,7 @@ def instantiateComponent(i2sComponent):
     _get_bitfield_names(i2sValGrp_SPI1CON_MODE, mode_names)
     i2sSym_SPICON_MODE = i2sComponent.createKeyValueSetSymbol( "I2S_SPICON_MODE",None)
     i2sSym_SPICON_MODE.setLabel(i2sBitField_SPI1CON_MODE.getAttribute("caption"))
-    i2sSym_SPICON_MODE.setDefaultValue(3)
+    i2sSym_SPICON_MODE.setDefaultValue(2)
     i2sSym_SPICON_MODE.setOutputMode( "Value" )
     i2sSym_SPICON_MODE.setDisplayMode( "Description" )
     for ii in mode_names:
@@ -387,9 +389,9 @@ def instantiateComponent(i2sComponent):
     _get_bitfield_names(i2sValGrp_SPI1CON_MCLKSEL, msclk_names)
     i2sSym_SPI1CON_MCLKSEL = i2sComponent.createKeyValueSetSymbol( "I2S_MASTER_CLOCK",None)
     i2sSym_SPI1CON_MCLKSEL.setLabel(i2sBitField_SPI1CON_MCLKSEL.getAttribute("caption"))
-    i2sSym_SPI1CON_MCLKSEL.setDefaultValue(1)
+    i2sSym_SPI1CON_MCLKSEL.setDefaultValue(0)
     i2sSym_SPI1CON_MCLKSEL.setOutputMode( "Value" )
-    i2sSym_SPI1CON_MCLKSEL.setReadOnly(False)
+    i2sSym_SPI1CON_MCLKSEL.setReadOnly(True)           # value forced to 1 in ftl
     i2sSym_SPI1CON_MCLKSEL.setDisplayMode( "Description" )
     for ii in msclk_names:
         i2sSym_SPI1CON_MCLKSEL.addKey( ii['key'],ii['value'], ii['desc'] )

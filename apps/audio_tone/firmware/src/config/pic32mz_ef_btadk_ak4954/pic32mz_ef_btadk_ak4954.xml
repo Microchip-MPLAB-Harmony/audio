@@ -63,16 +63,6 @@
             <User dnOrder="0" value="105"/>
           </Values>
         </KeyValueSet>
-        <KeyValueSet dnOrder="2" id="I2S_MASTER_CLOCK">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="0"/>
-          </Values>
-        </KeyValueSet>
-        <KeyValueSet dnOrder="3" id="I2S_SPICON_MODE">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="0"/>
-          </Values>
-        </KeyValueSet>
       </Symbols>
       <Attachments dnOrder="1">
         <DirectCapability dnOrder="0" id="SPI1_I2S">
@@ -2687,13 +2677,12 @@
     </UniqueComponent>
   </Components>
   <UserData>
-    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="0"/>
-    <ComponentGraph dnOrder="1" id="__ROOTVIEW">
+    <ComponentGraph dnOrder="0" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="BSP_PIC32MZ_EF_Bluetooth_Audio_Development_Kit" x="340" y="20"/>
         <ElementPosition dnOrder="1" id="HarmonyCore" x="707" y="37"/>
         <ElementPosition dnOrder="2" id="a_drv_i2s" x="400" y="278"/>
-        <ElementPosition dnOrder="3" id="a_i2s1" x="218" y="341"/>
+        <ElementPosition dnOrder="3" id="a_i2s1" x="216" y="342"/>
         <ElementPosition dnOrder="4" id="audio_codec_ak4954" x="612" y="202"/>
         <ElementPosition dnOrder="5" id="core" x="242" y="21"/>
         <ElementPosition dnOrder="6" id="core_timer" x="579" y="375"/>
@@ -2704,5 +2693,6 @@
         <ElementPosition dnOrder="11" id="tmr2" x="28" y="125"/>
       </ElementPositions>
     </ComponentGraph>
+    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="1"/>
   </UserData>
 </Configuration>

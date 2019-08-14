@@ -19,8 +19,8 @@
           <Name dnOrder="1">bsp.c</Name>
           <LogicalPath dnOrder="2">config/pic32mx_btadk_ak4954/bsp/</LogicalPath>
           <PhysicalPath dnOrder="3">/bsp/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">AA2CDF6A06C812AFA76FDFC6C353724F</GeneratedChecksum>
-          <UserChecksum dnOrder="5">AA2CDF6A06C812AFA76FDFC6C353724F</UserChecksum>
+          <GeneratedChecksum dnOrder="4">3DCD88B56C0508E53DA374F651ECAB50</GeneratedChecksum>
+          <UserChecksum dnOrder="5">3DCD88B56C0508E53DA374F651ECAB50</UserChecksum>
         </File>
         <File dnOrder="2">
           <Type dnOrder="0">SOURCE</Type>
@@ -155,8 +155,8 @@
           <Name dnOrder="1">plib_i2s1.c</Name>
           <LogicalPath dnOrder="2">config/pic32mx_btadk_ak4954/audio/peripheral/i2s</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/peripheral/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">99F043BC078D5ADFEFF0F1C9709D8E84</GeneratedChecksum>
-          <UserChecksum dnOrder="5">99F043BC078D5ADFEFF0F1C9709D8E84</UserChecksum>
+          <GeneratedChecksum dnOrder="4">88C37D53E69DE04A01FE8B9CE6239C8A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">88C37D53E69DE04A01FE8B9CE6239C8A</UserChecksum>
         </File>
         <File dnOrder="19">
           <Type dnOrder="0">SOURCE</Type>
@@ -211,8 +211,8 @@
           <Name dnOrder="1">bsp.h</Name>
           <LogicalPath dnOrder="2">config/pic32mx_btadk_ak4954/bsp/</LogicalPath>
           <PhysicalPath dnOrder="3">/bsp/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">655F03C5620B0C4D51E9323DC468B3E6</GeneratedChecksum>
-          <UserChecksum dnOrder="5">655F03C5620B0C4D51E9323DC468B3E6</UserChecksum>
+          <GeneratedChecksum dnOrder="4">E69830763E71604FAE65E18D652042EF</GeneratedChecksum>
+          <UserChecksum dnOrder="5">E69830763E71604FAE65E18D652042EF</UserChecksum>
         </File>
         <File dnOrder="26">
           <Type dnOrder="0">HEADER</Type>

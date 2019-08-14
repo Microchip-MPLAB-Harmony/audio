@@ -75,8 +75,8 @@ void BSP_Initialize(void )
 
 
     /* Switch off LEDs */
-		LED5_Off();
 		LED1_Off();
+		LED5_Off();
 		LED2_Off();
 		LED3_Off();
 		LED4_Off();

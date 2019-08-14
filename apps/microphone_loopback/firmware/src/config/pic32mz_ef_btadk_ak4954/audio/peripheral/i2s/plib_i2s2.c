@@ -5,10 +5,10 @@
     Microchip Technology Inc.
 
   File Name:
-    plib_spi2_i2s.c
+    plib_i2s2.c
 
   Summary:
-    SPI2-I2S Source File
+    I2S2 Source File
 
   Description:
     This file has implementation of all the interfaces provided for particular
@@ -39,11 +39,11 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#include "plib_spi2_i2s.h"
+#include "plib_i2s2.h"
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: SPI2 Implementation
+// Section: I2S2 Implementation
 // *****************************************************************************
 // *****************************************************************************
 
@@ -58,16 +58,16 @@
 #define SPI2_CON_ENHBUF                     (0 << _SPI2CON_ENHBUF_POSITION)     // always 0 for I2S
 #define SPI2_CON_MODE_32_MODE_16            (1 << _SPI2CON_MODE16_POSITION)
 #define SPI2_CON_CKE                        (1 << _SPI2CON_CKE_POSITION)
-#define SPI2_CON_CKP                        (0 << _SPI2CON_CKP_POSITION)
+#define SPI2_CON_CKP                        (1 << _SPI2CON_CKP_POSITION)
 #define SPI2_CON_MSTEN                      (1 << _SPI2CON_MSTEN_POSITION)
 
 #define SPI2_CON2_IGNROV                    (1 << _SPI2CON2_IGNROV_POSITION)
 #define SPI2_CON2_IGNTUR                    (1 << _SPI2CON2_IGNTUR_POSITION)
 #define SPI2_CON2_AUDEN                     (1 << _SPI2CON2_AUDEN_POSITION)     // 1 for I2S mode
 #define SPI2_CON2_AUDMONO                   (0 << _SPI2CON2_AUDMONO_POSITION)
-#define SPI2_CON2_AUDMOD                    (0 << _SPI2CON2_AUDMOD_POSITION)
+#define SPI2_CON2_AUDMOD                    (1 << _SPI2CON2_AUDMOD_POSITION)
 
-void SPI2_Initialize ( void )
+void I2S2_Initialize ( void )
 {
     uint32_t rdata;
 
@@ -103,9 +103,9 @@ void SPI2_Initialize ( void )
     SPI2CONSET = _SPI2CON_ON_MASK;
 }
 
-uint32_t SPI2_LRCLK_Get(void)
+uint32_t I2S2_LRCLK_Get(void)
 {
     // for I2S format, will sync on low to high transition
-    volatile uint32_t ret = ((PORTA >> 0) & 0x1);
+    volatile uint32_t ret = ((PORTC >> 2) & 0x1);
     return ret;
 }

@@ -60,16 +60,16 @@
 // Section: BSP Macros
 // *****************************************************************************
 // *****************************************************************************
-/*** LED Macros for LED5 ***/
-#define LED5_Toggle() (LATAINV = (1<<9))
-#define LED5_Get() ((PORTA >> 9) & 0x1)
-#define LED5_On() (LATACLR = (1<<9))
-#define LED5_Off() (LATASET = (1<<9))
 /*** LED Macros for LED1 ***/
-#define LED1_Toggle() (LATAINV = (1<<4))
-#define LED1_Get() ((PORTA >> 4) & 0x1)
-#define LED1_On() (LATACLR = (1<<4))
-#define LED1_Off() (LATASET = (1<<4))
+#define LED1_Toggle() (LATAINV = (1<<9))
+#define LED1_Get() ((PORTA >> 9) & 0x1)
+#define LED1_On() (LATACLR = (1<<9))
+#define LED1_Off() (LATASET = (1<<9))
+/*** LED Macros for LED5 ***/
+#define LED5_Toggle() (LATAINV = (1<<4))
+#define LED5_Get() ((PORTA >> 4) & 0x1)
+#define LED5_On() (LATACLR = (1<<4))
+#define LED5_Off() (LATASET = (1<<4))
 /*** LED Macros for LED2 ***/
 #define LED2_Toggle() (LATAINV = (1<<5))
 #define LED2_Get() ((PORTA >> 5) & 0x1)

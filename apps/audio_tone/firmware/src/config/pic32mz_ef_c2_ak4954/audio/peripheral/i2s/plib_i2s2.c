@@ -56,9 +56,9 @@
 #define SPI2_CON_MCLKSEL                    (1 << _SPI2CON_MCLKSEL_POSITION)    // always 1 for I2S
 #define SPI2_CON_SPIFE                      (0 << _SPI2CON_SPIFE_POSITION)
 #define SPI2_CON_ENHBUF                     (0 << _SPI2CON_ENHBUF_POSITION)     // always 0 for I2S
-#define SPI2_CON_MODE_32_MODE_16            (3 << _SPI2CON_MODE16_POSITION)
+#define SPI2_CON_MODE_32_MODE_16            (1 << _SPI2CON_MODE16_POSITION)
 #define SPI2_CON_CKE                        (1 << _SPI2CON_CKE_POSITION)
-#define SPI2_CON_CKP                        (0 << _SPI2CON_CKP_POSITION)
+#define SPI2_CON_CKP                        (1 << _SPI2CON_CKP_POSITION)
 #define SPI2_CON_MSTEN                      (1 << _SPI2CON_MSTEN_POSITION)
 
 #define SPI2_CON2_IGNROV                    (1 << _SPI2CON2_IGNROV_POSITION)
