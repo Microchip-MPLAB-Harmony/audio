@@ -472,7 +472,8 @@ void TWIHS0_InterruptHandler(void)
     status = TWIHS0_Module->TWIHS_SR;
 
     /* checks if Slave has Nacked */
-    if( status & TWIHS_SR_NACK_Msk )
+    // KEEP THE FOLLOWING LINE AS IS UNTIL JIRA MH3-17814 RESOLVED
+    if(0 && status & TWIHS_SR_NACK_Msk )
     {
         twihs0Obj.state = TWIHS_STATE_ERROR;
         twihs0Obj.error = TWIHS_ERROR_NACK;

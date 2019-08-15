@@ -164,7 +164,7 @@
           <LogicalPath dnOrder="2">config/sam_e70_xult_ak4954_ssc/peripheral/twihs/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/twihs/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">964F45D5F1719EB73A3664F586DF1858</GeneratedChecksum>
-          <UserChecksum dnOrder="5">964F45D5F1719EB73A3664F586DF1858</UserChecksum>
+          <UserChecksum dnOrder="5">7B9B7340EEFCFA4A8F5FDF7477615F5E</UserChecksum>
         </File>
         <File dnOrder="20">
           <Type dnOrder="0">SOURCE</Type>
