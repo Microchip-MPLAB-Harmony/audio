@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00080.html" target="topic">Running the Demonstration</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00080.html" target="topic">Running the Demonstration</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,7 +26,7 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
 <a href="00075.html" target="topic">Previous</a> | <a href="00073.html" target="topic">Up</a> | <a href="00076.html" target="topic">Next</a></div>
@@ -62,31 +62,60 @@ Prior to using this demonstration, it is recommended to review the MPLAB Harmony
 <p class="Element10">
 All configurations:&nbsp;</p>
 <p class="Element10">
-Continuous sine tones of four frequencies can be generated. <strong>Table 1</strong> provides a summary of the button actions that can used to control the volume and frequency.&nbsp;</p>
+Continuous sine tones of four frequencies can be generated. <strong>Tables 1-3</strong> provides a summary of the button actions that can used to control the volume and frequency.&nbsp;</p>
 <p class="Element10">
-Compile the program using MPLAB X, and program the target device using the EDBG interface. While compiling, select the appropriate MPLAB X IDE project. Refer to <a href="00074.html" target="topic">Building the Application</a> for details.</p>
+Compile the program using MPLAB X, and program the target device using the EDBG interface (ICD4 for projects using the Bluetooth Audio Development Kit). While compiling, select the appropriate MPLAB X IDE project. Refer to <a href="00074.html" target="topic">Building the Application</a> for details.</p>
 <ol class="Element630">
-<li value="1" class="Element600">Connect headphones to the HP OUT jack of the AK4954 or WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>), or the HEADPHONE jack of the SAM V71 Xplained Ultra board.</li>
+<li value="1" class="Element600">Connect headphones to the HP OUT jack of the AK4954 or WM8904 Audio Codec Daughter Board (see <strong>Figures 1-3</strong>), or the HEADPHONE jack of the SAM V71 Xplained Ultra board.</li>
 <li value="2" class="Element600">The tone can be quite loud, especially when using a pair of headphones.</li>
-<li value="3" class="Element600">Initially the program will be in volume-setting mode (LED1 off) at a medium volume setting. Pressing SW1 with LED1 off will cycle through four volume settings (including mute).</li>
-<li value="4" class="Element600">Pressing SW1 longer than one second will change to frequency-setting mode (LED1 on). Pressing SW1 with LED1 on will cycle through four frequency settings -- 250 Hz, 500 Hz, 1 kHz, and 2 kHz.</li>
-<li value="5" class="Element600">Pressing SW1 longer than one second again will switch back to volume-setting mode again (LED1 off).</li>
-</ol><p class="Element10">
+<li value="3" class="Element600">The lowest-numbered pushbutton (SW0 or SW1) and LED are used as the user interface to control the program, as shown in Tables 1-3 below, depending on the board used. Initially the program will be in volume-setting mode (LED off) at a medium volume setting. Pressing the pushbutton with the LED off will cycle through four volume settings (including mute).</li>
+<li value="4" class="Element600">Pressing the pushbutton longer than one second will change to frequency-setting mode (LED on). Pressing the pushbutton with the LED on will cycle through four frequency settings -- 250 Hz, 500 Hz, 1 kHz, and 2 kHz.</li>
+<li value="5" class="Element600">Pressing the pushbutton longer than one second again will switch back to volume-setting mode again (LED off).</li>
+</ol><p class="Element10" style="text-align: center;">
+<img src="BTADK+PIM.jpg" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<strong>Figure 1: AK4954 Audio Codec Daughter Board on Bluetooth Audio Development Kit with PIC32MZ EF Audio PIM</strong>&nbsp;</p>
+<p class="Element10" style="text-align: center;">
 &nbsp;</p>
 <p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone_e70_xult_new.png" border="0" alt="" title=""></p><p class="Element10">
+<img src="PIC32MZEFC2.jpg" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<strong>Figure 2: AK4954 Audio Codec Daughter Board on PIC32 MZ EF Curiosity 2.0 Board</strong>&nbsp;</p>
+<p class="Element10" style="text-align: center;">
 &nbsp;</p>
-<div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table0">
-<tr>
-<td class="Element77" valign="top" width="100%" style="border:none;">
-<div class="Element78">
-<strong>Figure 1: WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board</strong>&nbsp;</div></td></tr></table></div></div>
+<p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_tone_e70_xult_new.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<strong>Figure 3: WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board</strong></p><p class="Element10">
+&nbsp;</p>
 <div class="Element15">
 Control Descriptions</div>
 <p class="Element10">
-<strong>Table 1: Button Controls for SAM E54 Curiosity Ultra board, SAM E70 Xplained Ultra board</strong> <strong>and</strong> <strong>SAM V71 Xplained Ultra board</strong> </p><div class="Element63">
+<strong>Table 1: Button Controls for Bluetooth Audio Development Kit</strong> </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="22%">
+<div class="Element66">
+Control&nbsp;</div></td><td class="Element65" valign="top" width="78%">
+<div class="Element66">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="22%">
+<div class="Element68">
+SW1 short press&nbsp;</div></td><td class="Element67" valign="top" width="78%">
+<div class="Element68">
+If LED D5 is off, SW1 cycles through four volume levels (one muted). If LED D5 is on, SW1 cycles through four frequencies of sine tone.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="22%">
+<div class="Element68">
+SW1 long press<br>(&gt; 1 second)&nbsp;</div></td><td class="Element67" valign="top" width="78%">
+<div class="Element68">
+Alternates between modes (LED D5 on or off).&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong>Table 2: Button Controls for PIC32 MZ EF Curiosity 2.0 board, SAM E54 Curiosity Ultra board, and SAM E70 Xplained Ultra board</strong>&nbsp;</p>
+<p class="Element10">
+(On some E70 boards, SW0/LED0 are the lowest numbered pushbutton and LED, so use Table 3 instead.) </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
@@ -99,12 +128,34 @@ Description&nbsp;</div></td></tr><tr>
 <div class="Element68">
 SW1 short press&nbsp;</div></td><td class="Element67" valign="top" width="77%">
 <div class="Element68">
-If LED1 if off, SW1 cycles through four volume levels (one muted). If LED1 is on, SW1 cycles through four frequencies of sine tone.&nbsp;</div></td></tr><tr>
+If LED1 is off, SW1 cycles through four volume levels (one muted). If LED1 is on, SW1 cycles through four frequencies of sine tone.&nbsp;</div></td></tr><tr>
 <td class="Element67" valign="top" width="23%">
 <div class="Element68">
 SW1 long press<br>(&gt; 1 second)&nbsp;</div></td><td class="Element67" valign="top" width="77%">
 <div class="Element68">
 Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong>Table 3: Button Controls for SAM V71 Xplained Ultra board</strong> </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="23%">
+<div class="Element66">
+Control&nbsp;</div></td><td class="Element65" valign="top" width="77%">
+<div class="Element66">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="23%">
+<div class="Element68">
+SW0 short press&nbsp;</div></td><td class="Element67" valign="top" width="77%">
+<div class="Element68">
+If LED0 is off, SW0 cycles through four volume levels (one muted). If LED0 is on, SW0 cycles through four frequencies of sine tone.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="23%">
+<div class="Element68">
+SW0 long press<br>(&gt; 1 second)&nbsp;</div></td><td class="Element67" valign="top" width="77%">
+<div class="Element68">
+Alternates between modes (LED0 on or off).&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -112,7 +163,7 @@ Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00080.html" target="topic">Running the Demonstration</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00080.html" target="topic">Running the Demonstration</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -120,7 +171,7 @@ Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
 <a href="00075.html" target="topic">Previous</a> | <a href="00073.html" target="topic">Up</a> | <a href="00076.html" target="topic">Next</a></div>

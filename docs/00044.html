@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00056.html" target="topic">Using the Library</a> &gt; <a href="00047.html" target="topic">How the Library Works</a> &gt; <a href="00044.html" target="topic">Client Operations</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00056.html" target="topic">Using the Library</a> &gt; <a href="00047.html" target="topic">How the Library Works</a> &gt; <a href="00044.html" target="topic">Client Operations</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,7 +26,7 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
 <a href="00043.html" target="topic">Previous</a> | <a href="00047.html" target="topic">Up</a> | <a href="00040.html" target="topic">Next</a></div>
@@ -55,16 +55,16 @@ Client operations provide the API interface for control command and audio data t
 <p class="Element10">
 The following AK4954 Codec specific control command functions are provided:</p>
 <ul class="Element630">
-<li class="Element600"><a href="00153.html" target="topic">DRV_AK4954_SamplingRateSet</a></li>
-<li class="Element600"><a href="00152.html" target="topic">DRV_AK4954_SamplingRateGet</a></li>
-<li class="Element600"><a href="00160.html" target="topic">DRV_AK4954_VolumeSet</a></li>
-<li class="Element600"><a href="00159.html" target="topic">DRV_AK4954_VolumeGet</a></li>
-<li class="Element600"><a href="00149.html" target="topic">DRV_AK4954_MuteOn</a></li>
-<li class="Element600"><a href="00148.html" target="topic">DRV_AK4954_MuteOff</a></li>
+<li class="Element600"><a href="00181.html" target="topic">DRV_AK4954_SamplingRateSet</a></li>
+<li class="Element600"><a href="00180.html" target="topic">DRV_AK4954_SamplingRateGet</a></li>
+<li class="Element600"><a href="00188.html" target="topic">DRV_AK4954_VolumeSet</a></li>
+<li class="Element600"><a href="00187.html" target="topic">DRV_AK4954_VolumeGet</a></li>
+<li class="Element600"><a href="00177.html" target="topic">DRV_AK4954_MuteOn</a></li>
+<li class="Element600"><a href="00176.html" target="topic">DRV_AK4954_MuteOff</a></li>
 </ul><p class="Element10">
 These functions schedule a non-blocking control command transfer operation. These functions submit the control command request to the AK4954 Codec. These functions submit the control command request to I2C Driver transmit queue, the request is processed immediately if it is the first request, or processed when the previous request is complete.&nbsp;</p>
 <p class="Element10">
-<a href="00108.html" target="topic">DRV_AK4954_BufferAddWrite</a>, <a href="00107.html" target="topic">DRV_AK4954_BufferAddRead</a>, and <a href="00109.html" target="topic">DRV_AK4954_BufferAddWriteRead</a> are buffered data operation functions. These functions schedule non-blocking audio data transfer operations. These functions add the request to I2S Driver transmit or receive buffer queue depends on the request type, and are executed immediately if it is the first buffer, or executed later when the previous buffer is complete. The driver notifies the client with DRV_AK4954_BUFFER_EVENT_COMPLETE, DRV_AK4954_BUFFER_EVENT_ERROR, or DRV_AK4954_BUFFER_EVENT_ABORT events. &nbsp;</p><div class="Element63">
+<a href="00136.html" target="topic">DRV_AK4954_BufferAddWrite</a>, <a href="00135.html" target="topic">DRV_AK4954_BufferAddRead</a>, and <a href="00137.html" target="topic">DRV_AK4954_BufferAddWriteRead</a> are buffered data operation functions. These functions schedule non-blocking audio data transfer operations. These functions add the request to I2S Driver transmit or receive buffer queue depends on the request type, and are executed immediately if it is the first buffer, or executed later when the previous buffer is complete. The driver notifies the client with DRV_AK4954_BUFFER_EVENT_COMPLETE, DRV_AK4954_BUFFER_EVENT_ERROR, or DRV_AK4954_BUFFER_EVENT_ABORT events. &nbsp;</p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table0">
 <tr>
@@ -82,7 +82,7 @@ It is not necessary to close and reopen the client between multiple transfers.&n
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00056.html" target="topic">Using the Library</a> &gt; <a href="00047.html" target="topic">How the Library Works</a> &gt; <a href="00044.html" target="topic">Client Operations</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00056.html" target="topic">Using the Library</a> &gt; <a href="00047.html" target="topic">How the Library Works</a> &gt; <a href="00044.html" target="topic">Client Operations</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -90,7 +90,7 @@ It is not necessary to close and reopen the client between multiple transfers.&n
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
 <a href="00043.html" target="topic">Previous</a> | <a href="00047.html" target="topic">Up</a> | <a href="00040.html" target="topic">Next</a></div>

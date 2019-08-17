@@ -24,8 +24,10 @@ reference information.
 
  - Multiple external audio codec drivers
  - USB host and device audio solutions
+ - Encoder and decoder libraries
  - Basic audio device interation, I2S, microphone and speaker support
- - Multiple audio codec libraries, solutions for playback compressed audio
+ - I2S driver
+ - I2S peripheral libraries (PLIBs) for supported processors
  - MISRA C (manadatory) compliant
  
 # Contents Summary
@@ -33,8 +35,12 @@ reference information.
 | Folder | Description |
 | --- | --- |
 | apps | Example applications |
+| decoder | Wave and ADPCM decoders |
 | doc | Help documentation |
-| driver | Codec drivers |
-| templates | Audio template (codec + I2S + SSC/I2SC components) |
+| docs | Help documentation (HTML) |
+| driver | I2S and Codec drivers |
+| encoder | Wave and ADPCM encoders |
+| peripheral | I2S peripheral libraries |
+| templates | Audio template (codec + I2S + I2S/I2SC/SSC peripheral) |
 
 

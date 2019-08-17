@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00075.html" target="topic">Configuring the Hardware</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00075.html" target="topic">Configuring the Hardware</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,7 +26,7 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
 <a href="00074.html" target="topic">Previous</a> | <a href="00073.html" target="topic">Up</a> | <a href="00080.html" target="topic">Next</a></div>
@@ -49,7 +49,49 @@ Configuring the Hardware</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-<u>Using the SAM E54 Curiosity Ultra board and the WM8904 Audio Codec Daughter Board, and the SSC PLIB</u>. All jumpers on the WM8904 should be toward the <strong>front:</strong> </p><p class="Element10" style="text-align: center;">
+<u>Using the Bluetooth Audio Development Kit and the AK4954 Audio Codec Daughter Board, and I2S PLIB.</u> The AK4954 daughter board is plugged into the rear set of X32 connectors (J9/J10). Switch S1 on the PIC32 Bluetooth Audio Development Board (between the audio codec daughter board and the microcontroller PIM) should be set to PIC32_MCLR. </p><p class="Element10" style="text-align: center;">
+<img src="BTADK S1 PIC32.jpg" border="0" alt="" title=""></p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="6%" style="border:none;">
+<div class="Element68">
+<strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="89%" style="border:none;">
+<div class="Element68">
+The Bluetooth Audio Development Kit does not include the AK4954 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC324954.<br>&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>Using the Bluetooth Audio Development Kit and the PIC32MZ EF Audio PIM with the AK4954 Audio Codec Daughter Board and I2S PLIB.</u> Plug the PIM onto the center square connector P1. Double-check to make sure the pins are aligned correctly. The AK4954 daughter board is plugged into the rear set of X32 connectors (J9/J10). Switch S1 on the PIC32 Bluetooth Audio Development Board (between the audio codec daughter board and the microcontroller PIM) should be set to PIM_MCLR. </p><p class="Element10" style="text-align: center;">
+<img src="BTADK S1 PIM.jpg" border="0" alt="" title=""></p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
+<div class="Element68">
+The Bluetooth Audio Development Kit does not include the either the PIC32MZ EF Audio PIM or the AK4954 Audio Codec daughterboard, which are sold separately on microchipDIRECT as part numbers MA320018 and AC324954 respectively.<br>&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>Using the PIC32 MZ EF Curiosity 2.0 board and the AK4954 Audio Codec Daughter Board, and I2S PLIB.</u> The AK4954 daughter board is plugged into the set of X32 connectors on the right side of the board (X32 HEADER 2). </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="7%" style="border:none;">
+<div class="Element68">
+<strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="88%" style="border:none;">
+<div class="Element68">
+The PIC32 MZ EF Curiosity 2.0 does not include the AK4954 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC324954.<br>&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+<u>Using the SAM E54 Curiosity Ultra board and the WM8904 Audio Codec Daughter Board, and I2S PLIB</u>. All jumpers on the WM8904 should be toward the <strong>front:</strong> </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO wm8904-ssc.png" border="0" alt="" title=""></p><p class="Element10">
 In addition, make sure the J401 jumper (CLK SELECT) is set for the PA17 pin: </p><p class="Element10" style="text-align: center;">
 <img src="E54-J401-PA17.png" border="0" alt="" title=""></p><div class="Element63">
@@ -66,7 +108,7 @@ The SAM E54 Curiosity Ultra board does not include the WM8904 Audio Codec daught
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<u>Using the SAM E70 Xplained Ultra board and the AK4954 Audio Codec Daughter Board, and the SSC PLIB.</u> No special configuration needed. </p><div class="Element63">
+<u>Using the SAM E70 Xplained Ultra board and the AK4954 Audio Codec Daughter Board, and SSC PLIB.</u> No special configuration needed. </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table0">
 <tr>
@@ -80,7 +122,7 @@ The SAM E70 Xplained Ultra board does not include the AK4954 Audio Codec daughte
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<u>Using the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board, and the SSC PLIB</u>. All jumpers on the WM8904 should be toward the <strong>front:</strong> </p><p class="Element10" style="text-align: center;">
+<u>Using the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board, and SSC PLIB</u>. All jumpers on the WM8904 should be toward the <strong>front:</strong> </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO wm8904-ssc.png" border="0" alt="" title=""></p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table0">
@@ -95,7 +137,7 @@ The SAM E70 Xplained Ultra board does not include the WM8904 Audio Codec daughte
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<u>Using the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board, and the I2SC PLIB</u>. All jumpers on the WM8904 should be toward the <strong>back:</strong> </p><p class="Element10" style="text-align: center;">
+<u>Using the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board, and I2SC PLIB</u>. All jumpers on the WM8904 should be toward the <strong>back:</strong> </p><p class="Element10" style="text-align: center;">
 <img src="APPS AUDIO wm8904-i2sc.png" border="0" alt="" title=""></p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table0">
@@ -110,14 +152,14 @@ The SAM E70 Xplained Ultra board does not include the WM8904 Audio Codec daughte
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<u>Using the SAM V71 Xplained Ultra board with on-board WM8904, with the SSC PLIB.</u> No special configuration needed.</p></div>
+<u>Using the SAM V71 Xplained Ultra board with on-board WM8904, with SSC PLIB.</u> No special configuration needed.</p></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00075.html" target="topic">Configuring the Hardware</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00075.html" target="topic">Configuring the Hardware</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -125,7 +167,7 @@ The SAM E70 Xplained Ultra board does not include the WM8904 Audio Codec daughte
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
 <a href="00074.html" target="topic">Previous</a> | <a href="00073.html" target="topic">Up</a> | <a href="00080.html" target="topic">Next</a></div>

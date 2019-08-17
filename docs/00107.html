@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_AK4954_BufferAddRead Function</title>
+<title>Abstraction Model</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00107.html" target="topic">DRV_AK4954_BufferAddRead Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00118.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00125.html" target="topic">Using the Library</a> &gt; <a href="00107.html" target="topic">Abstraction Model</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00115.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00108.html" target="topic">Next</a></div>
+<a href="00125.html" target="topic">Previous</a> | <a href="00125.html" target="topic">Up</a> | <a href="00120.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BufferAddRead@DRV_HANDLE@DRV_AK4954_BUFFER_HANDLE *@void *@size_t Topic Title: DRV_AK4954_BufferAddRead Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S Abstraction Model Topic Title: Abstraction Model)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_AK4954_BufferAddRead Function</div>
+Abstraction Model</div>
 </div>
 </div>
 
@@ -46,120 +46,23 @@ DRV_AK4954_BufferAddRead Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46756E6374696F6E"></a><div class="Element11">
+<a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-    void DRV_AK4954_BufferAddRead&nbsp;</p>
+Different types of I2S capable PLIBs are available on various Microchip microcontrollers. Some have an internal buffer mechanism and some do not. The buffer depth varies across part families. The <span style="color: #000000">I2S</span> Driver Library abstracts out these differences and provides a unified model for audio data transfer across different types of I2S modules.&nbsp;</p>
 <p class="Element10">
-    (&nbsp;</p>
-<p class="Element10">
-        const DRV_HANDLE handle,&nbsp;</p>
-<p class="Element10">
-        <a href="00105.html" target="topic">DRV_AK4954_BUFFER_HANDLE</a> *bufferHandle,&nbsp;</p>
-<p class="Element10">
-        void *buffer, size_t size&nbsp;</p>
-<p class="Element10">
-    )&nbsp;</p>
-<p class="Element10">
-&nbsp;</p></div>
+Both the transmitter and receiver provide a buffer in the driver, which transmits and receives data to/from the hardware. The <span style="color: #000000">I2S</span> Driver Library provides a set of interfaces to perform the read and the write. The following diagrams illustrate the abstraction model used by the <span style="color: #000000">I2S</span> Driver Library. The I2SC Peripheral is used as an example of an I2S-capable PLIB. </p><p class="Element10" style="text-align: center;">
+<strong>I2S Driver Abstraction Model</strong>&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<img src="I2S abstration model.png" border="0" alt="" title="">&nbsp;</p><p class="Element10">
+The PLIBs currently provided, such as SSC and I2SC, only support an interrupt/DMA mode of operation. Polled mode of operation is not supported.</p></div>
 </div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-Schedule a non-blocking driver read operation.</p></div>
-</div>
-</div>
-<a name="4465736372697074696F6E"></a><div class="Element14">
-Description</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function schedules a non-blocking read operation. The function returns with a valid buffer handle in the bufferHandle argument if the read request was scheduled successfully. The function adds the request to the hardware instance receive queue and returns immediately. While the request is in the queue, the application buffer is owned by the driver and should not be modified. The function returns <a href="00106.html" target="topic">DRV_AK4954_BUFFER_HANDLE_INVALID</a></p>
-<ul class="Element630">
-<li class="Element600">if a buffer could not be allocated to the request</li>
-<li class="Element600">if the input buffer pointer is NULL</li>
-<li class="Element600">if the buffer size is 0.</li>
-<li class="Element600">if the queue is full or the queue depth is insufficient</li>
-</ul><p class="Element10">
-If the requesting client registered an event callback with the driver, the driver will issue a DRV_AK4954_BUFFER_EVENT_COMPLETE event if the buffer was processed successfully of DRV_AK4954_BUFFER_EVENT_ERROR event if the buffer was not processed successfully.</p></div>
-</div>
-<a name="507265636F6E646974696F6E73"></a><div class="Element14">
-Preconditions</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-The <a href="00132.html" target="topic">DRV_AK4954_Initialize</a> routine must have been called for the specified AK4954 device instance and the <a href="00154.html" target="topic">DRV_AK4954_Status</a> must have returned SYS_STATUS_READY.&nbsp;</p>
-<p class="Element10">
-<a href="00150.html" target="topic">DRV_AK4954_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p>
-<p class="Element10">
-DRV_IO_INTENT_READ must have been specified in the <a href="00150.html" target="topic">DRV_AK4954_Open</a> call.</p></div>
-</div>
-<a name="506172616D6574657273"></a><div class="Element14">
-Parameters</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element312">
-<div class="TableDiv">
-<table cellspacing="0" class="Table3">
-<tr>
-<td class="Element300" valign="top" width="35%">
-<div class="Element301">
-Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
-<div class="Element305">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Handle of the AK4954 instance as return by the <a href="00150.html" target="topic">DRV_AK4954_Open</a> function.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-buffer&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Data to be transmitted.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-size&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Buffer size in bytes.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-bufferHandle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Pointer to an argument that will contain the return buffer handle.&nbsp;</div></td></tr></table></div></div>
-</div>
-</div>
-<a name="52657475726E73"></a><div class="Element14">
-Returns</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-The bufferHandle parameter will contain the return buffer handle. This will be <a href="00106.html" target="topic">DRV_AK4954_BUFFER_HANDLE_INVALID</a> if the function was not successful.</p></div>
-</div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function is thread safe in a RTOS application. It can be called from within the AK4954 Driver Buffer Event Handler that is registered by this client. It should not be called in the event handler associated with another AK4954 driver instance. It should not otherwise be called directly in an ISR.</p></div>
-</div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_AK4954_BufferAddRead</span></strong>(
-    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <a href="00105.html" target="topic">DRV_AK4954_BUFFER_HANDLE</a> * <strong><span style="color: #000000">bufferHandle</span></strong>, 
-    <strong><span style="color: #000080">void</span></strong> * <strong><span style="color: #000000">buffer</span></strong>, 
-    size_t <strong><span style="color: #000000">size</span></strong>
-);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00107.html" target="topic">DRV_AK4954_BufferAddRead Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00118.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00125.html" target="topic">Using the Library</a> &gt; <a href="00107.html" target="topic">Abstraction Model</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -167,13 +70,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00115.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00108.html" target="topic">Next</a></div>
+<a href="00125.html" target="topic">Previous</a> | <a href="00125.html" target="topic">Up</a> | <a href="00120.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BufferAddRead@DRV_HANDLE@DRV_AK4954_BUFFER_HANDLE *@void *@size_t Topic Title: DRV_AK4954_BufferAddRead Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S Abstraction Model Topic Title: Abstraction Model)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

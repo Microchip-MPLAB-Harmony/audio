@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00076.html" target="topic">audio_tone_linkeddma</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00076.html" target="topic">audio_tone_linkeddma</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,7 +26,7 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
 <a href="00080.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00077.html" target="topic">Next</a></div>
@@ -53,7 +53,9 @@ In this demonstration application the Codec Driver sets up the WM8904 Codec. The
 <p class="Element10">
 The sine tone is one of four frequencies: 250 Hz, 500 Hz, 1 kHz, and 2 kHz, sent by default at 48,000 samples/second, which is modifiable in the the MHC as described below.&nbsp;</p>
 <p class="Element10">
-To know more about the MPLAB Harmony Codec Drivers, configuring the Codec Drivers, and the APIs provided by the Codec Drivers, refer to Codec Driver Libraries.</p><div class="Element15">
+To know more about the MPLAB Harmony Codec Drivers, configuring the Codec Drivers, and the APIs provided by the Codec Drivers, refer to Codec Driver Libraries.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><div class="Element15">
 Architecture</div>
 <p class="Element10">
 The two projects run on the SAM E70 Xplained Ultra Board, which contains a ATSAME70Q21B microcontroller with 2 MB of Flash memory and 384 KB of RAM running at 300 MHz using the following features:</p>
@@ -136,7 +138,7 @@ Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Con
 <p class="Element10">
 It is also possible to change the audio format from 16 to 32-bits, and from I2S to Left Justified (SSC only). These changes need to be done in the MHC in both the WM8904, and SSC/I2SC Peripherals. In the current application code (app.h), a #define is also set to the current width.&nbsp;</p>
 <p class="Element10">
-If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00278.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).&nbsp;</p>
+If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00328.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
@@ -348,7 +350,7 @@ Error&nbsp;</div></td></tr><tr>
 <p class="Element10">
 It is also possible to change the audio format from 16 to 32-bits. This changes need to be done in the MHC in both the WM8904 Driver and SSC Peripheral. In the current application code (app.h), a #define is also set to the current width.&nbsp;</p>
 <p class="Element10">
-If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00278.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).</p></div>
+If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00328.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).</p></div>
 </div>
 <a name="546F70696373"></a><div class="Element14">
 Topics</div>
@@ -385,7 +387,7 @@ This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></t
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00076.html" target="topic">audio_tone_linkeddma</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00076.html" target="topic">audio_tone_linkeddma</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -393,7 +395,7 @@ This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></t
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
 <a href="00080.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00077.html" target="topic">Next</a></div>

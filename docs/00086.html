@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00083.html" target="topic">usb_speaker</a> &gt; <a href="00086.html" target="topic">Running the Demonstration</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00083.html" target="topic">usb_microphone</a> &gt; <a href="00086.html" target="topic">Running the Demonstration</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,13 +26,13 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00085.html" target="topic">Previous</a> | <a href="00083.html" target="topic">Up</a> | <a href="00089.html" target="topic">Next</a></div>
+<a href="00085.html" target="topic">Previous</a> | <a href="00083.html" target="topic">Up</a> | <a href="00087.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_microphone_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
 Running the Demonstration</div>
 </div>
@@ -58,90 +58,100 @@ Running the Demonstration</div>
 <div class="Element68">
 Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project. Refer to Building the Application for details.&nbsp;</p>
-<p class="Element10">
+Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project. Refer to Building the Application for details. </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO usb_microphone Figure 1.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i>Figure 1. WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board. Headphone Out Jack is green. Microphone In Jack is pink.</i>&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i>Note: the brown wire is a jumper wire which is not relevant for this app.</i></p><p class="Element10">
 Do the following to run the demonstration:</p>
 <ol class="Element630">
-<li value="1" class="Element600">Attach the WM8904 Daughter Board to the X32 connector. Connect headphones to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see Figure 1).</li>
+<li value="1" class="Element600"> Attach the WM8904 Daughter Board to the X32 connector. Connect headphones (monitor headphones) to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see Figure 1) and a microphone to the pink MIC IN jack (Refer to Figure 1.</li>
+<li value="2" class="Element600">Connect power to the board and connect the USB cable (EDBG) used for programming the device (Refer to Figure 1). Compile the application and program the target device using the EDBG. Run the device. The system then will be in a waiting for USB to be connected (amber LED1 off).</li>
+<li value="3" class="Element600">Connect to the USB Host via the micro-mini connector (Refer to Figure 1) located above the push-button switches on the right side of the board using a standard USB cable. The LED1 should turn to a solid amber color as the host enumerates and then initiates the audio stream.</li>
+<li value="4" class="Element600">After the Host computer acknowledges the connection, it will install drivers (if needed), No special software is necessary on the Host side.</li>
 </ol><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker Fig 1.png" border="0" alt="" title="">&nbsp;</p>
+<img src="APPS AUDIO usb_microphone Sound Dialog.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10" style="text-align: center;">
-<i>Figure 1. WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board. Headphone Out Jack is green.</i></p>
+<i> Figure 2. Windows 7 Sound Dialog showing USB Microphone with Sound Level Meter</i></p>
 <ol class="Element630">
-<li value="2" class="Element600">Connect power to the board, compiles the application and program the target device. Run the device. The system will be in a waiting for USB to be connected (amber LED off).</li>
-<li value="3" class="Element600">Connect to the USB Host via the micro-mini connector located above the push-button switches on the right side of the board using a standard USB cable.</li>
-<li value="4" class="Element600">Allow the Host computer to acknowledge, install drivers (if needed), and enumerate the device. No special software is necessary on the Host side.</li>
+<li value="5" class="Element600">If needed, configure the Host computer to use the usb_microphone as the selected audio recording device. For Windows, this is done in the &quot;Recording&quot; tab in the &quot;Sound&quot; dialog (as shown in Figure 2) accessed by right clicking the loudspeaker icon on the taskbar.</li>
+</ol><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="10%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title=""> <strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
+<div class="Element68">
+The device &quot;Harmony USB Microphone Example&quot; should be available along with a sound level meter indication audio when playing. If no sound level is registering, uninstall the driver and reboot the host computer, since it may have incorrect configuration set by a similar connection to one of the other MPLAB-X Harmony Audio Demos.&nbsp;</div></td></tr></table></div></div>
+
+<ol class="Element630">
+<li value="6" class="Element600">The Microphone audio should be heard through the monitor headphones</li>
+<li value="7" class="Element600">Open a recording application (such as Audacity) and initiate a recording sessiont through the USB Microphone.</li>
 </ol><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker Sound Dialog.png" border="0" alt="" title="">&nbsp;</p>
+<img src="APPS AUDIO usb_microphone audacity.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10" style="text-align: center;">
-<i> Figure 2. Windows 7 Sound Dialog showing USB Speaker with Sound Level Meter</i></p>
+<i>Figure 3. Audacity Recording Session using USB Microphone</i></p>
 <ol class="Element630">
-<li value="5" class="Element600">If needed, configure the Host computer to use the usb_speaker outputs as the selected audio device. This may be done in the system configuration or &quot;Control Panel&quot; depending on the operating system. For Windows, this is done in the Playback Devices dialog, which is accessed by right clicking the loudspeaker icon in the taskbar.</li>
-<li value="6" class="Element600">Open a playback application (such as Window Media Player) and initiate playback through the USB Speaker.</li>
-<li value="7" class="Element600">Playback of the should demonstrate that the audio is being heard in the USB Speaker headphones.</li>
+<li value="7" class="Element600">Playback of recording session audio is being heard in the USB Microphone headphones.</li>
 </ol><p class="Element10">
 &nbsp;</p>
 <div class="Element15">
 Control Description</div>
 <p class="Element10">
-Button control uses the push button function sequence given in the table below: </p><div class="Element63">
+Button control uses SW1 in a push button function sequence given in the table below: </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="59%">
+<td class="Element65" valign="top" width="21%">
 <div class="Element66">
-Function&nbsp;</div></td><td class="Element65" valign="top" width="41%">
+Function #&nbsp;</div></td><td class="Element65" valign="top" width="44%">
 <div class="Element66">
-Button Press&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="59%">
+Function&nbsp;</div></td><td class="Element65" valign="top" width="35%">
+<div class="Element66">
+Press&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="21%">
 <div class="Element68">
-Volume Control Level 1&nbsp;</div></td><td class="Element67" valign="top" width="41%">
+1&nbsp;</div></td><td class="Element67" valign="top" width="44%">
 <div class="Element68">
-Low (-66 dB)&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="59%">
+Gain Cont&nbsp;</div></td><td class="Element67" valign="top" width="35%">
 <div class="Element68">
-Volume Control Level 2&nbsp;</div></td><td class="Element67" valign="top" width="41%">
+Low Gain&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="21%">
 <div class="Element68">
-Medium (-48 dB)&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="59%">
+2&nbsp;</div></td><td class="Element67" valign="top" width="44%">
 <div class="Element68">
-Volume Control Level 3&nbsp;</div></td><td class="Element67" valign="top" width="41%">
+Gain Cont&nbsp;</div></td><td class="Element67" valign="top" width="35%">
 <div class="Element68">
-High (0 dB)&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="59%">
-<div class="Element68">
-Mute&nbsp;</div></td><td class="Element67" valign="top" width="41%">
-<div class="Element68">
-Mute&nbsp;</div></td></tr></table></div></div>
+High Gain&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-Mute will transition to Volume Control Level 1 on the next button push.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
+<strong>Note:</strong> Function 2 will transition back to Function 1 on the next button push&nbsp;</p>
 <p class="Element10">
 USB operational status is given by LED, as shown below: </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="33%">
+<td class="Element65" valign="top" width="26%">
 <div class="Element66">
-LED Indication&nbsp;</div></td><td class="Element65" valign="top" width="67%">
+LED Status&nbsp;</div></td><td class="Element65" valign="top" width="74%">
 <div class="Element66">
 Status&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="33%">
+<td class="Element67" valign="top" width="26%">
 <div class="Element68">
-OFF&nbsp;</div></td><td class="Element67" valign="top" width="67%">
+OFF&nbsp;</div></td><td class="Element67" valign="top" width="74%">
 <div class="Element68">
 USB cable detached&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="33%">
+<td class="Element67" valign="top" width="26%">
 <div class="Element68">
-ON&nbsp;</div></td><td class="Element67" valign="top" width="67%">
+ON&nbsp;</div></td><td class="Element67" valign="top" width="74%">
 <div class="Element68">
 USB cable attached&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="33%">
+<td class="Element67" valign="top" width="26%">
 <div class="Element68">
-Blinking&nbsp;</div></td><td class="Element67" valign="top" width="67%">
+Blinking&nbsp;</div></td><td class="Element67" valign="top" width="74%">
 <div class="Element68">
-Playback muted&nbsp;</div></td></tr></table></div></div>
+Attached/not Streaming&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -149,7 +159,7 @@ Playback muted&nbsp;</div></td></tr></table></div></div>
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00088.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00083.html" target="topic">usb_speaker</a> &gt; <a href="00086.html" target="topic">Running the Demonstration</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00083.html" target="topic">usb_microphone</a> &gt; <a href="00086.html" target="topic">Running the Demonstration</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -157,13 +167,13 @@ Playback muted&nbsp;</div></td></tr></table></div></div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00085.html" target="topic">Previous</a> | <a href="00083.html" target="topic">Up</a> | <a href="00089.html" target="topic">Next</a></div>
+<a href="00085.html" target="topic">Previous</a> | <a href="00083.html" target="topic">Up</a> | <a href="00087.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_microphone_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

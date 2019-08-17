@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_AK4954_Initialize Function</title>
+<title>DRV_AK4954_BUFFER_EVENT_HANDLER Type</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00132.html" target="topic">DRV_AK4954_Initialize Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00132.html" target="topic">DRV_AK4954_BUFFER_EVENT_HANDLER Type</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00050.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00121.html" target="topic">Next</a></div>
+<a href="00131.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00133.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_Initialize@SYS_MODULE_INDEX@SYS_MODULE_INIT * const Topic Title: DRV_AK4954_Initialize Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BUFFER_EVENT_HANDLER Topic Title: DRV_AK4954_BUFFER_EVENT_HANDLER Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_AK4954_Initialize Function</div>
+DRV_AK4954_BUFFER_EVENT_HANDLER Type</div>
 </div>
 </div>
 
@@ -46,43 +46,21 @@ DRV_AK4954_Initialize Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46756E6374696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-        SYS_MODULE_OBJ  DRV_AK4954_Initialize&nbsp;</p>
-<p class="Element10">
-        (&nbsp;</p>
-<p class="Element10">
-                const SYS_MODULE_INDEX drvIndex,&nbsp;</p>
-<p class="Element10">
-                const SYS_MODULE_INIT *const init&nbsp;</p>
-<p class="Element10">
-        );&nbsp;</p>
-<p class="Element10">
-&nbsp;</p></div>
-</div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-Initializes hardware and data for the instance of the AK4954 Codec module.</p></div>
-</div>
+Pointer to a AK4954 Driver Buffer Event handler function</p></div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
 Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This routine initializes the AK4954 driver instance for the specified driver index, making it ready for clients to open and use it. The initialization data is specified by the init parameter. The initialization may fail if the number of driver objects allocated are insufficient or if the specified driver instance is already initialized.</p></div>
-</div>
-<a name="507265636F6E646974696F6E73"></a><div class="Element14">
-Preconditions</div>
-<div class="Element11">
-<div class="Element10">
+AK4954 Driver Buffer Event Handler Function&nbsp;</p>
 <p class="Element10">
-DRV_I2S_Initialize must be called before calling this function to initialize the data interface of this Codec driver. DRV_I2C_Initialize must be called if SPI driver is used for handling the control interface of this Codec driver.</p></div>
+This data type defines the required function signature for the AK4954 driver buffer event handling callback function. A client must register a pointer to a buffer event handling function who's function signature (parameter and return value types) match the types specified by this function pointer in order to receive buffer related event calls back from the driver.&nbsp;</p>
+<p class="Element10">
+The parameters and return values are described here and a partial example implementation is provided.</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -99,14 +77,19 @@ Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
 Description&nbsp;</div></td></tr><tr>
 <td class="Element302" valign="top" width="35%">
 <div class="Element303">
-drvIndex&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+event&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-Identifier for the driver instance to be initialized&nbsp;</div></td></tr><tr>
+Identifies the type of event<br>&nbsp;</div></td></tr><tr>
 <td class="Element302" valign="top" width="35%">
 <div class="Element303">
-init&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+bufferHandle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-Pointer to the data structure containing any data necessary to initialize the hardware. This pointer may be null if no data is required and default initialization is to be used.&nbsp;</div></td></tr></table></div></div>
+Handle identifying the buffer to which the event relates<br>&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+context&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+Value identifying the context of the application that registered the event handling function.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -114,38 +97,29 @@ Returns</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-If successful, returns a valid handle to a driver instance object. Otherwise, it returns SYS_MODULE_OBJ_INVALID.</p></div>
+None.</p></div>
 </div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12"><a href="00131.html" target="topic">DRV_AK4954_INIT</a>                 init;
-SYS_MODULE_OBJ                  objectHandle;
-
-init-&gt;inUse                           = <strong><span style="color: #000080">true</span></strong>;
-init-&gt;status                          = SYS_STATUS_BUSY;
-init-&gt;numClients                      = 0;
-init-&gt;i2sDriverModuleIndex            = ak4954Init-&gt;i2sDriverModuleIndex;
-init-&gt;i2cDriverModuleIndex            = ak4954Init-&gt;i2cDriverModuleIndex;
-init-&gt;samplingRate                    = <a href="00102.html" target="topic">DRV_AK4954_AUDIO_SAMPLING_RATE</a>;
-init-&gt;audioDataFormat                 = <a href="00101.html" target="topic">DRV_AK4954_AUDIO_DATA_FORMAT_MACRO</a>;
-<strong><span style="color: #000080">for</span></strong>(index=0; index &lt; DRV_AK4954_NUMBER_OF_CHANNELS; index++)
+<div class="Element13"><div class="Element12"><pre class="Element12"><strong><span style="color: #000080">void</span></strong> APP_MyBufferEventHandler( <a href="00131.html" target="topic">DRV_AK4954_BUFFER_EVENT</a> event,
+                               <a href="00133.html" target="topic">DRV_AK4954_BUFFER_HANDLE</a> bufferHandle,
+                               uintptr_t context )
 {
-    init-&gt;volume[index] = ak4954Init-&gt;volume;
-}
-init-&gt;isInInterruptContext            = <strong><span style="color: #000080">false</span></strong>;
+    MY_APP_DATA_STRUCT pAppData = (MY_APP_DATA_STRUCT) context;
 
-init-&gt;commandCompleteCallback = (<a href="00114.html" target="topic">DRV_AK4954_COMMAND_EVENT_HANDLER</a>)0;
-init-&gt;commandContextData = 0;
+    <strong><span style="color: #000080">switch</span></strong>(event)
+    {
+        <strong><span style="color: #000080">case</span></strong> DRV_AK4954_BUFFER_EVENT_COMPLETE:
+            <i><span style="color: #008000">// Handle the completed buffer.</span></i>
+        <strong><span style="color: #000080">break</span></strong>;
 
-init-&gt;mclk_multiplier = DRV_AK4954_MCLK_SAMPLE_FREQ_MULTPLIER;
-
-
-objectHandle = DRV_AK4954_Initialize(DRV_AK4954_0, (SYS_MODULE_INIT*)init);
-<strong><span style="color: #000080">if</span></strong> (SYS_MODULE_OBJ_INVALID == objectHandle)
-{
-    <i><span style="color: #008000">// Handle error</span></i>
+        <strong><span style="color: #000080">case</span></strong> DRV_AK4954_BUFFER_EVENT_ERROR:
+        <strong><span style="color: #000080">default</span></strong>:
+            <i><span style="color: #008000">// Handle error.</span></i>
+        <strong><span style="color: #000080">break</span></strong>;
+    }
 }</pre></div></div>
 </div>
 </div>
@@ -154,22 +128,29 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This routine must be called before any other AK4954 routine is called.&nbsp;</p>
+If the event is DRV_AK4954_BUFFER_EVENT_COMPLETE, this means that the data was transferred successfully.&nbsp;</p>
 <p class="Element10">
-This routine should only be called once during system initialization unless <a href="00118.html" target="topic">DRV_AK4954_Deinitialize</a> is called to deinitialize the driver instance. This routine will NEVER block for hardware access.</p></div>
+If the event is DRV_AK4954_BUFFER_EVENT_ERROR, this means that the data was not transferred successfully. The bufferHandle parameter contains the buffer handle of the buffer that failed. The DRV_AK4954_BufferProcessedSizeGet() function can be called to find out how many bytes were processed.&nbsp;</p>
+<p class="Element10">
+The bufferHandle parameter contains the buffer handle of the buffer that associated with the event.&nbsp;</p>
+<p class="Element10">
+The context parameter contains a handle to the client context, provided at the time the event handling function was registered using the <a href="00138.html" target="topic">DRV_AK4954_BufferEventHandlerSet</a> function. This context handle value is passed back to the client as the &quot;context&quot; parameter. It can be any value necessary to identify the client context or instance (such as a pointer to the client's data) instance of the client that made the buffer add request.&nbsp;</p>
+<p class="Element10">
+The buffer handle in bufferHandle expires after this event handler exits. In that the buffer object that was allocated is deallocated by the driver after the event handler exits.&nbsp;</p>
+<p class="Element10">
+The event handler function executes in the data driver(i2S) peripheral's interrupt context when the driver is configured for interrupt mode operation. It is recommended of the application to not perform process intensive or blocking operations with in this function.&nbsp;</p>
+<p class="Element10">
+<a href="00136.html" target="topic">DRV_AK4954_BufferAddWrite</a> function can be called in the event handler to add a buffer to the driver queue.&nbsp;</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100">SYS_MODULE_OBJ <strong><span style="color: #000000">DRV_AK4954_Initialize</span></strong>(
-    <strong><span style="color: #000080">const</span></strong> SYS_MODULE_INDEX <strong><span style="color: #000000">drvIndex</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> SYS_MODULE_INIT * <strong><span style="color: #000080">const</span></strong> <strong><span style="color: #000000">init</span></strong>
-);</pre></div></div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">void</span></strong> (* <strong><span style="color: #000000">DRV_AK4954_BUFFER_EVENT_HANDLER</span></strong>)(<a href="00131.html" target="topic">DRV_AK4954_BUFFER_EVENT</a> event, <a href="00133.html" target="topic">DRV_AK4954_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00132.html" target="topic">DRV_AK4954_Initialize Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00132.html" target="topic">DRV_AK4954_BUFFER_EVENT_HANDLER Type</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -177,13 +158,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00050.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00121.html" target="topic">Next</a></div>
+<a href="00131.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00133.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_Initialize@SYS_MODULE_INDEX@SYS_MODULE_INIT * const Topic Title: DRV_AK4954_Initialize Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BUFFER_EVENT_HANDLER Topic Title: DRV_AK4954_BUFFER_EVENT_HANDLER Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

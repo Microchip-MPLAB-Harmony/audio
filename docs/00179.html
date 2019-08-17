@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_GENERICCODEC_CommandEventHandlerSet Function</title>
+<title>DRV_AK4954_ReadQueuePurge Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00299.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00179.html" target="topic">DRV_GENERICCODEC_CommandEventHandlerSet Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00179.html" target="topic">DRV_AK4954_ReadQueuePurge Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00174.html" target="topic">Previous</a> | <a href="00299.html" target="topic">Up</a> | <a href="00171.html" target="topic">Next</a></div>
+<a href="00137.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00190.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_CommandEventHandlerSet@DRV_HANDLE@DRV_GENERICCODEC_COMMAND_EVENT_HANDLER@uintptr_t Topic Title: DRV_GENERICCODEC_CommandEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_ReadQueuePurge@DRV_HANDLE Topic Title: DRV_AK4954_ReadQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_GENERICCODEC_CommandEventHandlerSet Function</div>
+DRV_AK4954_ReadQueuePurge Function</div>
 </div>
 </div>
 
@@ -49,17 +49,7 @@ DRV_GENERICCODEC_CommandEventHandlerSet Function</div>
 <a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-      void DRV_GENERICCODEC_CommandEventHandlerSet&nbsp;</p>
-<p class="Element10">
-      (&nbsp;</p>
-<p class="Element10">
-          DRV_HANDLE handle,&nbsp;</p>
-<p class="Element10">
-          const <a href="00178.html" target="topic">DRV_GENERICCODEC_COMMAND_EVENT_HANDLER</a> eventHandler,&nbsp;</p>
-<p class="Element10">
-          const uintptr_t contextHandle&nbsp;</p>
-<p class="Element10">
-      )&nbsp;</p>
+   bool DRV_AK4954_ReadQueuePurge( const DRV_HANDLE handle )&nbsp;</p>
 <p class="Element10">
 &nbsp;</p></div>
 </div>
@@ -69,7 +59,7 @@ DRV_GENERICCODEC_CommandEventHandlerSet Function</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This function allows a client to identify a command event handling function for the driver to call back when the last submitted command have finished.</p></div>
+Removes all buffer requests from the read queue.</p></div>
 </div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
@@ -77,18 +67,14 @@ Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This function allows a client to identify a command event handling function for the driver to call back when the last submitted command have finished.&nbsp;</p>
-<p class="Element10">
-The event handler should be set before the client performs any &quot;Generic Codec Specific Client Routines&quot; operations that could generate events. The event handler once set, persists until the client closes the driver or sets another event handler (which could be a &quot;NULL&quot; pointer to indicate no callback).</p></div>
+This function removes all the buffer requests from the read queue. The client can use this function to purge the queue on timeout or to remove unwanted stalled buffer requests or in any other use case.</p></div>
 </div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-The <a href="00193.html" target="topic">DRV_GENERICCODEC_Initialize</a> routine must have been called for the specified Generic Codec driver instance.&nbsp;</p>
-<p class="Element10">
-<a href="00202.html" target="topic">DRV_GENERICCODEC_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p></div>
+<a href="00260.html" target="topic">DRV_I2S_Open</a> must have been called to obtain a valid opened device handle.</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -107,17 +93,7 @@ Description&nbsp;</div></td></tr><tr>
 <div class="Element303">
 handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-A valid open-instance handle, returned from the driver's open routine&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-eventHandler&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Pointer to the event handler function.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-context&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-The value of parameter will be passed back to the client unchanged, when the eventHandler function is called. It can be used to identify any client specific data object that identifies the instance of the client module (for example, it may be a pointer to the client module's state structure).&nbsp;</div></td></tr></table></div></div>
+Handle of the communication channel as returned by the <a href="00178.html" target="topic">DRV_AK4954_Open</a> function.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -125,37 +101,25 @@ Returns</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-None.</p></div>
+True - Read queue purge is successful. False - Read queue purge has failed.</p></div>
 </div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12">MY_APP_OBJ myAppObj;
-uint8_t mybuffer[MY_BUFFER_SIZE];
-<a href="00169.html" target="topic">DRV_GENERICCODEC_BUFFER_HANDLE</a> bufferHandle;
+<div class="Element13"><div class="Element12"><pre class="Element12"><i><span style="color: #008000">// myCodecHandle is the handle returned by the DRV_AK4954_Open function.</span></i>
+<i><span style="color: #008000">// Use DRV_AK4954_BufferAddRead to queue read requests</span></i>
 
-<i><span style="color: #008000">// myGENERICCODECHandle is the handle returned</span></i>
-<i><span style="color: #008000">// by the DRV_GENERICCODEC_Open function.</span></i>
-
-<i><span style="color: #008000">// Client registers an event handler with driver</span></i>
-
-DRV_GENERICCODEC_CommandEventHandlerSet(myGENERICCODECHandle,
-                DRV_GENERICCODECCommandEventHandler, (uintptr_t)&amp;myAppObj);
-
-DRV_GENERICCODEC_DeEmphasisFilterSet(myGENERICCODECHandle, DRV_GENERICCODEC_DEEMPHASIS_FILTER_44_1KHZ)
-
-<i><span style="color: #008000">// Event is received when</span></i>
-<i><span style="color: #008000">// the buffer is processed.</span></i>
-
-<strong><span style="color: #000080">void</span></strong> DRV_GENERICCODECCommandEventHandler(uintptr_t contextHandle)
+<i><span style="color: #008000">// Application timeout function, where remove queued buffers.</span></i>
+<strong><span style="color: #000080">void</span></strong> APP_TimeOut(<strong><span style="color: #000080">void</span></strong>)
 {
-    <i><span style="color: #008000">// contextHandle points to myAppObj.</span></i>
-
-    <strong><span style="color: #000080">switch</span></strong>(event)
+    <strong><span style="color: #000080">if</span></strong>(<strong><span style="color: #000080">false</span></strong> == DRV_AK4954_ReadQueuePurge(myCodecHandle))
     {
-            <i><span style="color: #008000">// Last Submitted command is completed.</span></i>
-            <i><span style="color: #008000">// Perform further processing here</span></i>
+        <i><span style="color: #008000">//Couldn't purge the read queue, try again.</span></i>
+    }
+    <strong><span style="color: #000080">else</span></strong>
+    {
+        <i><span style="color: #008000">//Queue purge successful.</span></i>
     }
 }</pre></div></div>
 </div>
@@ -165,21 +129,19 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-If the client does not want to be notified when the command has completed, it does not need to register a callback.</p></div>
+This function is thread safe when used in an RTOS environment. Avoid this function call from within the callback.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_GENERICCODEC_CommandEventHandlerSet</span></strong>(
-    DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> <a href="00178.html" target="topic">DRV_GENERICCODEC_COMMAND_EVENT_HANDLER</a> <strong><span style="color: #000000">eventHandler</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> uintptr_t <strong><span style="color: #000000">contextHandle</span></strong>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">DRV_AK4954_ReadQueuePurge</span></strong>(
+    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>
 );</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00299.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00179.html" target="topic">DRV_GENERICCODEC_CommandEventHandlerSet Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00179.html" target="topic">DRV_AK4954_ReadQueuePurge Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -187,13 +149,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00174.html" target="topic">Previous</a> | <a href="00299.html" target="topic">Up</a> | <a href="00171.html" target="topic">Next</a></div>
+<a href="00137.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00190.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_CommandEventHandlerSet@DRV_HANDLE@DRV_GENERICCODEC_COMMAND_EVENT_HANDLER@uintptr_t Topic Title: DRV_GENERICCODEC_CommandEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_ReadQueuePurge@DRV_HANDLE Topic Title: DRV_AK4954_ReadQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

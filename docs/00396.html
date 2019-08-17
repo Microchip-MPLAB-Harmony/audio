@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<title>Configuring the Library</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoadEx('frames.html', 'topic', '00396.html');" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00390.html" target="topic">Peripheral Libraries Help</a> &gt; <a href="00400.html" target="topic">SPI-I2S Peripheral Library Help</a> &gt; <a href="00396.html" target="topic">Configuring the Library</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element1">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element2">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element90">
+<a href="00399.html" target="topic">Previous</a> | <a href="00400.html" target="topic">Up</a> | <a href="00403.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element96">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: SPI 01329 Configuring the Library Topic Title: Configuring the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table><div class="Element5">
+Configuring the Library</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<a name="PageContent"></a><div class="Element58">
+<a name="4465736372697074696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The library is configured for the supported processor when the processor is chosen in MPLAB X IDE, using the Microchip Harmony Configurator (MHC).&nbsp;</p>
+<p class="Element10">
+Choose the I2S peripheral by clicking on the appropriate instance under <i>Peripherals-&gt;I2S</i> in the Available Components section of MHC. (The I2S component may also be added automatically as a result of using a BSP Template, such as one for a codec or Bluetooth module).&nbsp;</p>
+<p class="Element10">
+When the I2S peripheral is clicked on in the Project Graph, the following menu is displayed in the Configurations Options: </p><p class="Element10" style="text-align: center;">
+<img src="I2S MHC.png" border="0" alt="" title=""></p><p class="Element10">
+Note: DMA and Interrupt Mode are always enabled.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong>Master Mode Enable Bit -- </strong>only Master Mode is currently supported.&nbsp;</p>
+<p class="Element10">
+<strong>Clock Polarity Select Bit </strong>-- determines whether idle state of clock is high (default) or vice versa.&nbsp;</p>
+<p class="Element10">
+<strong>SPI Clock Edge Select Bit</strong> -- selects whether output chamges on transistion from active to idle (default) or vice versa.&nbsp;</p>
+<p class="Element10">
+<strong>32/16 Bit Communication Select Bits </strong>-- selects the data, FIFO, channel, and frame sizes.&nbsp;</p>
+<p class="Element10">
+<strong>Master CLock Enable Bit</strong> -- always selects REFCLK to be used by the baud rate generator.&nbsp;</p>
+<p class="Element10">
+<strong>Audio Protocol Mode</strong> -- I2S, left or right justified, or PCM.&nbsp;</p>
+<p class="Element10">
+<strong>Transmit Audio Data Format </strong>-- stereo or mono.&nbsp;</p>
+<p class="Element10">
+<strong>Frame Select Pin</strong> -- specifies which pin is used for the frame select (aka L/R clock or word select)&nbsp;</p>
+<p class="Element10">
+<strong> Invert</strong> -- indicates whether the output of the LRCLK_Get function is inverted or not&nbsp;</p></div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00390.html" target="topic">Peripheral Libraries Help</a> &gt; <a href="00400.html" target="topic">SPI-I2S Peripheral Library Help</a> &gt; <a href="00396.html" target="topic">Configuring the Library</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element3">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element4">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element91">
+<a href="00399.html" target="topic">Previous</a> | <a href="00400.html" target="topic">Up</a> | <a href="00403.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: SPI 01329 Configuring the Library Topic Title: Configuring the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

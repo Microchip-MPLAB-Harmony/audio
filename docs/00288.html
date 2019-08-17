@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Client Access</title>
+<title>DRV_WM8904_BufferEventHandlerSet Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00306.html" target="topic">Using the Library</a> &gt; <a href="00296.html" target="topic">How the Library Works</a> &gt; <a href="00288.html" target="topic">Client Access</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00288.html" target="topic">DRV_WM8904_BufferEventHandlerSet Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00303.html" target="topic">Previous</a> | <a href="00296.html" target="topic">Up</a> | <a href="00289.html" target="topic">Next</a></div>
+<a href="00295.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00297.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: GENERIC AUDIO DRIVER CODEC Client Access Topic Title: Client Access)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BufferEventHandlerSet@DRV_HANDLE@DRV_WM8904_BUFFER_EVENT_HANDLER@uintptr_t Topic Title: DRV_WM8904_BufferEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Client Access</div>
+DRV_WM8904_BufferEventHandlerSet Function</div>
 </div>
 </div>
 
@@ -46,73 +46,157 @@ Client Access</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-For the application to start using an instance of the module, it must call the DRV_Generic_Open function. The DRV_Generic_Open function provides a driver handle to the Generic Codec Driver instance for operations. If the driver is deinitialized using the function DRV_Generic_Deinitialize, the application must call the DRV_Generic_Open function again to set up the instance of the driver.&nbsp;</p>
+      void DRV_WM8904_BufferEventHandlerSet&nbsp;</p>
 <p class="Element10">
-For the various options available for IO_INTENT, please refer to Data Types and Constants in the Library Interface section. </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table0">
-<tr>
-<td class="Element67" valign="top" width="5%" style="border:none;">
-<div class="Element68">
-<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="6%" style="border:none;">
-<div class="Element68">
-<strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="89%" style="border:none;">
-<div class="Element68">
-It is necessary to check the status of driver initialization before opening a driver instance. The status of the Generic Codec Driver can be known by calling DRV_ Generic_Status.&nbsp;</div></td></tr></table></div></div>
-<div class="Element15">
-Example:</div>
+      (&nbsp;</p>
 <p class="Element10">
-<span class="Element146">DRV_HANDLE handle;</span>&nbsp;</p>
+          DRV_HANDLE handle,&nbsp;</p>
 <p class="Element10">
-<span class="Element146">SYS_STATUS genericStatus;</span>&nbsp;</p>
+          const <a href="00282.html" target="topic">DRV_WM8904_BUFFER_EVENT_HANDLER</a> eventHandler,&nbsp;</p>
 <p class="Element10">
-<span class="Element146">genericStatus Status = DRV_Generic_Status(sysObjects.genericStatus DevObject);</span>&nbsp;</p>
+          const uintptr_t contextHandle&nbsp;</p>
 <p class="Element10">
-<span class="Element146">if (SYS_STATUS_READY == genericStatus)</span>&nbsp;</p>
+      )&nbsp;</p>
 <p class="Element10">
-<span class="Element146">{</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> // The driver can now be opened.</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> appData.genericClient.handle = DRV_Generic_Open</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> (DRV_Generic_INDEX_0, DRV_IO_INTENT_WRITE | DRV_IO_INTENT_EXCLUSIVE);</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> if(appData.genericClient.handle != DRV_HANDLE_INVALID)</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> {</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> appData.state = APP_STATE_Generic_SET_BUFFER_HANDLER;</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> }</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> else</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> {</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> SYS_DEBUG(0, &quot;Find out what's wrong \r\n&quot;);</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> }</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146">}</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146">else</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146">{</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146"> /* Generic Driver Is not ready */</span>&nbsp;</p>
-<p class="Element10">
-<span class="Element146">}</span>&nbsp;</p></div>
+&nbsp;</p></div>
 </div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This function allows a client to identify a buffer event handling function for the driver to call back when queued buffer transfers have finished.</p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+When a client calls <a href="00286.html" target="topic">DRV_WM8904_BufferAddWrite</a> function, it is provided with a handle identifying the buffer that was added to the driver's buffer queue. The driver will pass this handle back to the client by calling &quot;eventHandler&quot; function when the buffer transfer has completed.&nbsp;</p>
+<p class="Element10">
+The event handler should be set before the client performs any &quot;buffer add&quot; operations that could generate events. The event handler once set, persists until the client closes the driver or sets another event handler (which could be a &quot;NULL&quot; pointer to indicate no callback).</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The <a href="00317.html" target="topic">DRV_WM8904_Initialize</a> routine must have been called for the specified WM8904 driver instance.&nbsp;</p>
+<p class="Element10">
+<a href="00323.html" target="topic">DRV_WM8904_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+A valid open-instance handle, returned from the driver's open routine&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+eventHandler&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+Pointer to the event handler function.&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+context&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+The value of parameter will be passed back to the client unchanged, when the eventHandler function is called. It can be used to identify any client specific data object that identifies the instance of the client module (for example, it may be a pointer to the client module's state structure).&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+None.</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">MY_APP_OBJ myAppObj;
+uint8_t mybuffer[MY_BUFFER_SIZE];
+<a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle;
+
+<i><span style="color: #008000">// myWM8904Handle is the handle returned</span></i>
+<i><span style="color: #008000">// by the DRV_WM8904_Open function.</span></i>
+
+<i><span style="color: #008000">// Client registers an event handler with driver</span></i>
+
+DRV_WM8904_BufferEventHandlerSet(myWM8904Handle,
+                APP_WM8904BufferEventHandler, (uintptr_t)&amp;myAppObj);
+
+<a href="00286.html" target="topic">DRV_WM8904_BufferAddWrite</a>(myWM8904handle, &amp;bufferHandle
+                                    myBuffer, MY_BUFFER_SIZE);
+
+<strong><span style="color: #000080">if</span></strong>(<a href="00284.html" target="topic">DRV_WM8904_BUFFER_HANDLE_INVALID</a> == bufferHandle)
+{
+    <i><span style="color: #008000">// Error handling here</span></i>
+}
+
+<i><span style="color: #008000">// Event is received when</span></i>
+<i><span style="color: #008000">// the buffer is processed.</span></i>
+
+<strong><span style="color: #000080">void</span></strong> APP_WM8904BufferEventHandler(<a href="00278.html" target="topic">DRV_WM8904_BUFFER_EVENT</a> event,
+        <a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle)
+{
+    <i><span style="color: #008000">// contextHandle points to myAppObj.</span></i>
+
+    <strong><span style="color: #000080">switch</span></strong>(event)
+    {
+        <strong><span style="color: #000080">case</span></strong> DRV_WM8904_BUFFER_EVENT_COMPLETE:
+
+            <i><span style="color: #008000">// This means the data was transferred.</span></i>
+            <strong><span style="color: #000080">break</span></strong>;
+
+        <strong><span style="color: #000080">case</span></strong> DRV_WM8904_BUFFER_EVENT_ERROR:
+
+            <i><span style="color: #008000">// Error handling here.</span></i>
+            <strong><span style="color: #000080">break</span></strong>;
+
+        <strong><span style="color: #000080">default</span></strong>:
+            <strong><span style="color: #000080">break</span></strong>;
+    }
+}</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+If the client does not want to be notified when the queued buffer transfer has completed, it does not need to register a callback.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_BufferEventHandlerSet</span></strong>(
+    DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
+    <strong><span style="color: #000080">const</span></strong> <a href="00282.html" target="topic">DRV_WM8904_BUFFER_EVENT_HANDLER</a> <strong><span style="color: #000000">eventHandler</span></strong>, 
+    <strong><span style="color: #000080">const</span></strong> uintptr_t <strong><span style="color: #000000">contextHandle</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00306.html" target="topic">Using the Library</a> &gt; <a href="00296.html" target="topic">How the Library Works</a> &gt; <a href="00288.html" target="topic">Client Access</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00288.html" target="topic">DRV_WM8904_BufferEventHandlerSet Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -120,13 +204,13 @@ Example:</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00303.html" target="topic">Previous</a> | <a href="00296.html" target="topic">Up</a> | <a href="00289.html" target="topic">Next</a></div>
+<a href="00295.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00297.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: GENERIC AUDIO DRIVER CODEC Client Access Topic Title: Client Access)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BufferEventHandlerSet@DRV_HANDLE@DRV_WM8904_BUFFER_EVENT_HANDLER@uintptr_t Topic Title: DRV_WM8904_BufferEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

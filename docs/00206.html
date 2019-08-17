@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_GENERICCODEC_Status Function</title>
+<title>DRV_GENERICCODEC_COMMAND_EVENT_HANDLER Type</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00299.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00206.html" target="topic">DRV_GENERICCODEC_Status Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00348.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00349.html" target="topic">Library Interface</a> &gt; Dara Types and Constants &gt; <a href="00206.html" target="topic">DRV_GENERICCODEC_COMMAND_EVENT_HANDLER Type</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00182.html" target="topic">Previous</a> | <a href="00299.html" target="topic">Up</a> | <a href="00207.html" target="topic">Next</a></div>
+<a href="00203.html" target="topic">Previous</a> | <a href="00349.html" target="topic">Up</a> | <a href="00220.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_Status@SYS_MODULE_OBJ Topic Title: DRV_GENERICCODEC_Status Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_COMMAND_EVENT_HANDLER Topic Title: DRV_GENERICCODEC_COMMAND_EVENT_HANDLER Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_GENERICCODEC_Status Function</div>
+DRV_GENERICCODEC_COMMAND_EVENT_HANDLER Type</div>
 </div>
 </div>
 
@@ -46,35 +46,25 @@ DRV_GENERICCODEC_Status Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46756E6374696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-   SYS_STATUS DRV_GENERICCODEC_Status( SYS_MODULE_OBJ object)&nbsp;</p>
-<p class="Element10">
-&nbsp;</p></div>
-</div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-Gets the current status of the Generic Codec driver module.</p></div>
-</div>
+Pointer to a Generic Codec Driver Command Event Handler Function</p></div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
 Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This routine provides the current status of the Generic Codec driver module.</p></div>
-</div>
-<a name="507265636F6E646974696F6E73"></a><div class="Element14">
-Preconditions</div>
-<div class="Element11">
-<div class="Element10">
+Generic Codec Driver Command Event Handler Function&nbsp;</p>
 <p class="Element10">
-Function <a href="00193.html" target="topic">DRV_GENERICCODEC_Initialize</a> should have been called before calling this function.</p></div>
+This data type defines the required function signature for the Generic Codec driver command event handling callback function.&nbsp;</p>
+<p class="Element10">
+A command is a control instruction to the Generic Codec. Example Mute ON/OFF, Zero Detect Enable/Disable etc.&nbsp;</p>
+<p class="Element10">
+A client must register a pointer to a command event handling function who's function signature (parameter and return value types) match the types specified by this function pointer in order to receive command related event calls back from the driver.&nbsp;</p>
+<p class="Element10">
+The parameters and return values are described here and a partial example implementation is provided.</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -91,9 +81,9 @@ Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
 Description&nbsp;</div></td></tr><tr>
 <td class="Element302" valign="top" width="35%">
 <div class="Element303">
-object&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+context&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-Driver object handle, returned from the <a href="00193.html" target="topic">DRV_GENERICCODEC_Initialize</a> routine&nbsp;</div></td></tr></table></div></div>
+Value identifying the context of the application that registered the event handling function.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -101,26 +91,18 @@ Returns</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-SYS_STATUS_DEINITIALIZED - Indicates that the driver has been deinitialized&nbsp;</p>
-<p class="Element10">
-SYS_STATUS_READY - Indicates that any previous module operation for the specified module has completed&nbsp;</p>
-<p class="Element10">
-SYS_STATUS_BUSY - Indicates that a previous module operation for the specified module has not yet completed&nbsp;</p>
-<p class="Element10">
-SYS_STATUS_ERROR - Indicates that the specified module is in an error state</p></div>
+None.</p></div>
 </div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12">SYS_MODULE_OBJ      object;     <i><span style="color: #008000">// Returned from DRV_GENERICCODEC_Initialize</span></i>
-SYS_STATUS          GENERICCODECStatus;
-
-GENERICCODECStatus = DRV_GENERICCODEC_Status(object);
-<strong><span style="color: #000080">if</span></strong> (SYS_STATUS_READY == GENERICCODECStatus)
+<div class="Element13"><div class="Element12"><pre class="Element12"><strong><span style="color: #000080">void</span></strong> DRV_GENERICCODECCommandEventHandler( uintptr_t context )
 {
-    <i><span style="color: #008000">// This means the driver can be opened using the</span></i>
-    <i><span style="color: #008000">// DRV_GENERICCODEC_Open() function.</span></i>
+    MY_APP_DATA_STRUCT pAppData = (MY_APP_DATA_STRUCT) context;
+
+    <i><span style="color: #008000">// Last Submitted command is completed.</span></i>
+    <i><span style="color: #008000">// Perform further processing here</span></i>
 }</pre></div></div>
 </div>
 </div>
@@ -129,19 +111,21 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-A driver can opened only when its status is SYS_STATUS_READY.</p></div>
+The occurrence of this call back means that the last control command was transferred successfully.&nbsp;</p>
+<p class="Element10">
+The context parameter contains a handle to the client context, provided at the time the event handling function was registered using the <a href="00207.html" target="topic">DRV_GENERICCODEC_CommandEventHandlerSet</a> function. This context handle value is passed back to the client as the &quot;context&quot; parameter. It can be any value necessary to identify the client context or instance (such as a pointer to the client's data) instance of the client that made the buffer add request.&nbsp;</p>
+<p class="Element10">
+The event handler function executes in the control data driver interrupt context. It is recommended of the application to not perform process intensive or blocking operations with in this function.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100">SYS_STATUS <strong><span style="color: #000000">DRV_GENERICCODEC_Status</span></strong>(
-    SYS_MODULE_OBJ <strong><span style="color: #000000">object</span></strong>
-);</pre></div></div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">void</span></strong> (* <strong><span style="color: #000000">DRV_GENERICCODEC_COMMAND_EVENT_HANDLER</span></strong>)(uintptr_t contextHandle);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00298.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00299.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00206.html" target="topic">DRV_GENERICCODEC_Status Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00348.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00349.html" target="topic">Library Interface</a> &gt; Dara Types and Constants &gt; <a href="00206.html" target="topic">DRV_GENERICCODEC_COMMAND_EVENT_HANDLER Type</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -149,13 +133,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00182.html" target="topic">Previous</a> | <a href="00299.html" target="topic">Up</a> | <a href="00207.html" target="topic">Next</a></div>
+<a href="00203.html" target="topic">Previous</a> | <a href="00349.html" target="topic">Up</a> | <a href="00220.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_Status@SYS_MODULE_OBJ Topic Title: DRV_GENERICCODEC_Status Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_COMMAND_EVENT_HANDLER Topic Title: DRV_GENERICCODEC_COMMAND_EVENT_HANDLER Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

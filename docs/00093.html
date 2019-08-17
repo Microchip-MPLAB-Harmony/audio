@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Digital Audio Basics</title>
+<title>Running the Application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00094.html" target="topic">Audio Overview</a> &gt; <a href="00093.html" target="topic">Digital Audio Basics</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00090.html" target="topic">usb_speaker_hi_res</a> &gt; <a href="00093.html" target="topic">Running the Application</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00094.html" target="topic">Previous</a> | <a href="00094.html" target="topic">Up</a> | <a href="00095.html" target="topic">Next</a></div>
+<a href="00092.html" target="topic">Previous</a> | <a href="00090.html" target="topic">Up</a> | <a href="00106.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Audio Basics Topic Title: Digital Audio Basics)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker_hi_res_run Topic Title: Running the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Digital Audio Basics</div>
+Running the Application</div>
 </div>
 </div>
 
@@ -48,133 +48,114 @@ Digital Audio Basics</div>
 <a name="PageContent"></a><div class="Element58">
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
+<div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="15%" style="border:none;">
+<div class="Element68">
+<img src="Important icon.png" border="0" alt="" title=""><strong> Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="85%" style="border:none;">
+<div class="Element68">
+Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-<strong>If you are new to digital audio, this section provides definitions of basic concepts found in most discussions of digital audio.</strong>&nbsp;</p>
+Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project. Refer to Building the Application for details.&nbsp;</p>
 <p class="Element10">
-Digital audio is sound that has been converted into digital form, by taking samples at a repeated rate (called the <strong>sample rate</strong> or <strong>sampling rate</strong>), at a particular resolution expressed as the number of bits per sample (called the<strong> bit-depth</strong>). </p><p class="Element10" style="text-align: center;">
-<img src="Signal_Sampling.png" border="0" alt="" title=""></p><p class="Element10">
-For example, audio stored on a compact disk (CD) is sampled at 44,100 samples/second, or 44.1 kHz, and saved as 16-bit signed samples. Other common sample rates are 8 kHz or 16 kHz for telephony-quality voice, 48 kHz for DVD audio, and 96 kHz for high-definition audio. The sample rate must be at least twice as fast as the highest frequency that is to be converted; therefore CD's have an upper frequency limit of 22.05 kHz. High-definition audio may also use 20, 24, or even 32-bits per sample. Low-quality voice may be sampled at only 8 bits per sample. Higher bit depths reduce the SNR (signal to noise ratio).&nbsp;</p>
+Do the following to run the demonstration:&nbsp;</p>
 <p class="Element10">
-Changing from a lower sample rate to a higher one is called upsampling; changing from a higher sample rate to a lower one is called downsampling.&nbsp;</p>
+1. Attach the WM8904 Daughter Board to the X32 connector. Connect headphones to the HP OUT (green) jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>).&nbsp;</p>
 <p class="Element10">
-Sound is converted into digital using a analog to digital converter (ADC), connected to a microphone or other analog audio input, and converted from digital back to analog using a digital to analog converter (DAC) connected to an amplifier and then a speaker or pair of headphones.&nbsp;</p>
+<strong>Important:</strong> The I2SC/SSC jumpers must be in the correct position for the configuration being run. &nbsp;</p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO usb_microphone Figure 1.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i>Figure 1. WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board. Headphone Out Jack is green.</i>&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i> Note: the brown wire is a jumper which is not relevant for this app.</i>&nbsp;</p>
+<ol class="Element630">
+<li value="2" class="Element600">Connect power to the board, compiles the application and program the target device. Run the device. The system will be in a waiting for USB to be connected (amber LED1 off).</li>
+<li value="3" class="Element600">Connect to the USB Host via the micro-mini connector located above the push-button switches on the right side of the board using a standard USB cable.</li>
+<li value="4" class="Element600">Allow the Host computer to acknowledge, install drivers (if needed), and enumerate the device. No special software is necessary on the Host side.</li>
+</ol><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO usb_speaker Sound Dialog2.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i> Figure 2. Windows 7 Sound Dialog showing USB Microphone with Sound Level Meter</i></p>
+<ol class="Element630">
+<li value="5" class="Element600">If needed, configure the Host computer to use the usb_speaker as the selected audio playback device. For Windows, this is done in the &quot;Playback&quot; tab in the &quot;Sound&quot; dialog (as shown in Figure 2) accessed by right clicking the loudspeaker icon in the taskbar.</li>
+</ol><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="10%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title=""> <strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
+<div class="Element68">
+The device &quot;Harmony USB Hi Res Speaker Example&quot; should be available along with a sound level meter indication audio when playing. If no sound level is registering, uninstall the driver, since it may have incorrect configuration set by a similar connection to one of the other MPLAB-X Harmony Audio Demos. Disconnect and reconnect the usb cable to the PC. The reconfigured driver will then be installed for the correct USB device.&nbsp;</div></td></tr></table></div></div>
+
+<ol class="Element630">
+<li value="6" class="Element600">Open a playback application (such as Window Media Player) and initiate playback through the USB Speaker</li>
+<li value="7" class="Element600">Playback will demonstrate that the audio is being heard in the USB Speaker headphones. Use the pushbutton switch to mute and change volume levels to the headphone.</li>
+</ol><p class="Element10">
+&nbsp;</p>
+<div class="Element15">
+Control Description</div>
 <p class="Element10">
-After being sampled, digital sound may be stored in several formats. Some formats compress the audio to save space. Compression can be either lossless, meaning the audio when uncompressed, will be exactly the same as the input; other formats may be lossy, meaning some of the original audio may be lost, but it will usually be sounds that are hard to hear. Lossy compression typically achieves much higher compression rates than lossless (lossy compressing down to 5% to 20% of the original size, compared to 50%-60% for lossless). Compression and decompression is done by software codecs. </p><p class="Element10" style="text-align: center;">
-<strong>Common Audio Formats</strong></p><div class="Element63">
+Button control uses the push button function sequence given in the table below: </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="25%">
+<td class="Element65" valign="top" width="62%">
 <div class="Element66">
-Format&nbsp;</div></td><td class="Element65" valign="top" width="10%">
+Function&nbsp;</div></td><td class="Element65" valign="top" width="38%">
 <div class="Element66">
-Lossy?&nbsp;</div></td><td class="Element65" valign="top" width="15%">
+Press&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Volume Control Level 1&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+Low (-66 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Volume Control Level 2&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+Medium (-48 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Volume Control Level 3&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+High (-0 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Mute&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+Mute&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+<strong>Note:</strong> Mute will transition to Volume Control Level 1 on the next button push.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+USB operational status is given by LED, as shown below: </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="29%">
 <div class="Element66">
-Proprietary?&nbsp;</div></td><td class="Element65" valign="top" width="50%">
+LED Status&nbsp;</div></td><td class="Element65" valign="top" width="71%">
 <div class="Element66">
-Comments&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="25%">
+Status&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="29%">
 <div class="Element68">
-AAC (Advanced Audio Coding)&nbsp;</div></td><td class="Element67" valign="top" width="10%">
+OFF&nbsp;</div></td><td class="Element67" valign="top" width="71%">
 <div class="Element68">
-Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
+USB cable detached&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="29%">
 <div class="Element68">
-No&nbsp;</div></td><td class="Element67" valign="top" width="50%">
+ON&nbsp;</div></td><td class="Element67" valign="top" width="71%">
 <div class="Element68">
-Designed as successor to MP3. Audio codecs must be licensed.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="25%">
+USB cable attached&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="29%">
 <div class="Element68">
-FLAC (Free Lossless Audio Codec)&nbsp;</div></td><td class="Element67" valign="top" width="10%">
+Blinking&nbsp;</div></td><td class="Element67" valign="top" width="71%">
 <div class="Element68">
-Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-No, open-source&nbsp;</div></td><td class="Element67" valign="top" width="50%">
-<div class="Element68">
-&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="25%">
-<div class="Element68">
-MP3&nbsp;</div></td><td class="Element67" valign="top" width="10%">
-<div class="Element68">
-Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-No&nbsp;</div></td><td class="Element67" valign="top" width="50%">
-<div class="Element68">
-Was patented but patent has expired&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="25%">
-<div class="Element68">
-Ogg Vorbis&nbsp;</div></td><td class="Element67" valign="top" width="10%">
-<div class="Element68">
-Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-No, open-source&nbsp;</div></td><td class="Element67" valign="top" width="50%">
-<div class="Element68">
-&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="25%">
-<div class="Element68">
-Opus&nbsp;</div></td><td class="Element67" valign="top" width="10%">
-<div class="Element68">
-Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-No, open-source&nbsp;</div></td><td class="Element67" valign="top" width="50%">
-<div class="Element68">
-Low latency&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="25%">
-<div class="Element68">
-PCM/WAV&nbsp;</div></td><td class="Element67" valign="top" width="10%">
-<div class="Element68">
-No&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-No&nbsp;</div></td><td class="Element67" valign="top" width="50%">
-<div class="Element68">
-Uncompressed linear PCM audio format used with CD's&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="25%">
-<div class="Element68">
-WMA (Windows Media Audio)&nbsp;</div></td><td class="Element67" valign="top" width="10%">
-<div class="Element68">
-No&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-Yes&nbsp;</div></td><td class="Element67" valign="top" width="50%">
-<div class="Element68">
-&nbsp;</div></td></tr></table></div></div>
-<div class="Element15">
-I2S Audio</div>
-<p class="Element10">
-There are various digital audio interfaces, designed to connect components together, either on the same board or via cables between boards. The one that is most relevant for us is I<sup>2</sup>S (Inter-IC sound) protocol which specifies a specific interface commonly used to connect hardware codecs, DACs, Bluetooth modules, and MCUs on the same board. It is not intended to be used over cables.&nbsp;</p>
-<p class="Element10">
-An I<sup>2</sup>S interface consists of the the following signals:</p>
-<ul class="Element630">
-<li class="Element600">Word clock line, which runs at the sampling rate and also indicates left/right channel, often abbreviated as LRCLK</li>
-<li class="Element600">Bit clock line, often abbreviated as BCLK. The bit clock pulses once for each discrete bit of data on the data lines.</li>
-</ul><p class="Element10">
-The bit clock rate = sample rate * # of channels * # of bits / channel&nbsp;</p>
-<p class="Element10">
-e.g. for CD audio, 44.1 kHz * 2 channels (stereo) * 16 bits/channel = 1.4112 MHz</p>
-<ul class="Element630">
-<li class="Element600">One or two serial data lines for input and output (ADCDAT and DACDAT)</li>
-</ul><p class="Element10">
-Although not part of the standard, there is often a master clock (MCLK) typically running at 256 times the sample rate used for synchronization.&nbsp;</p>
-<p class="Element10">
-A typical codec may support both I<sup>2</sup>S format, and one or two variations (left-justified and/or right justified): </p><p class="Element10" style="text-align: center;">
-<img src="AUDIO I2S.png" border="0" alt="" title=""></p><p class="Element10">
-In I<sup>2</sup>S format, as shown in the top half of the figure above, LRCLK is low for the left channel and high for the right channel. The most-significant bit (MSb) of the left channel data starts one bit clock (BCLK) late, such that the least significant bit (LSb) is actually in the right channel side.&nbsp;</p>
-<p class="Element10">
-In Left-Justified format, as shown in bottom half of the figure above, LRCLK is high for the left channel, and low for the right channel, and the most-significant bit (MSb) is lined up with the LRCLK and does not spill over into the opposite channel.&nbsp;</p>
-<p class="Element10">
-Below is a oscilloscope photo showing the LRCLK in yellow, and data in blue. Only the left channel has audio. The overlap in the I<sup>2</sup>S format is clearly visible, as well as the 16 individual data bits. </p><p class="Element10" style="text-align: center;">
-<img src="AUDIO I2S2.png" border="0" alt="" title=""></p><p class="Element10">
-A codec or Bluetooth module can act as a Master, in which it generates the I<sup>2</sup>S clocks BCLK and LRCLK and sends them to the MCU (with the MCU providing a Master Clock): </p><p class="Element10" style="text-align: center;">
-<img src="DRV AUDIO WM8904 interface-Master.png" border="0" alt="" title=""></p><p class="Element10">
-If the MCU generates the I<sup>2</sup>S clocks BCLK and LRCLK, the codec or Bluetooth module is the Slave:: </p><p class="Element10" style="text-align: center;">
-<img src="DRV AUDIO WM8904 interface-Slave.png" border="0" alt="" title=""></p><p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-&nbsp;</p>
+Playback muted&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -182,7 +163,7 @@ If the MCU generates the I<sup>2</sup>S clocks BCLK and LRCLK, the codec or Blue
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00094.html" target="topic">Audio Overview</a> &gt; <a href="00093.html" target="topic">Digital Audio Basics</a></div>
+<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00090.html" target="topic">usb_speaker_hi_res</a> &gt; <a href="00093.html" target="topic">Running the Application</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -190,13 +171,13 @@ If the MCU generates the I<sup>2</sup>S clocks BCLK and LRCLK, the codec or Blue
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00094.html" target="topic">Previous</a> | <a href="00094.html" target="topic">Up</a> | <a href="00095.html" target="topic">Next</a></div>
+<a href="00092.html" target="topic">Previous</a> | <a href="00090.html" target="topic">Up</a> | <a href="00106.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Audio Basics Topic Title: Digital Audio Basics)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker_hi_res_run Topic Title: Running the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

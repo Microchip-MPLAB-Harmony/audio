@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00056.html" target="topic">Using the Library</a> &gt; <a href="00047.html" target="topic">How the Library Works</a> &gt; <a href="00043.html" target="topic">Client Access</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00056.html" target="topic">Using the Library</a> &gt; <a href="00047.html" target="topic">How the Library Works</a> &gt; <a href="00043.html" target="topic">Client Access</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,7 +26,7 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
 <a href="00045.html" target="topic">Previous</a> | <a href="00047.html" target="topic">Up</a> | <a href="00044.html" target="topic">Next</a></div>
@@ -49,7 +49,7 @@ Client Access</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-For the application to start using an instance of the module, it must call the <a href="00150.html" target="topic">DRV_AK4954_Open</a> function. The <a href="00150.html" target="topic">DRV_AK4954_Open</a> function provides a driver handle to the AK4954 Codec Driver instance for operations. If the driver is deinitialized using the function <a href="00118.html" target="topic">DRV_AK4954_Deinitialize</a>, the application must call the <a href="00150.html" target="topic">DRV_AK4954_Open</a> function again to set up the instance of the driver.&nbsp;</p>
+For the application to start using an instance of the module, it must call the <a href="00178.html" target="topic">DRV_AK4954_Open</a> function. The <a href="00178.html" target="topic">DRV_AK4954_Open</a> function provides a driver handle to the AK4954 Codec Driver instance for operations. If the driver is deinitialized using the function <a href="00146.html" target="topic">DRV_AK4954_Deinitialize</a>, the application must call the <a href="00178.html" target="topic">DRV_AK4954_Open</a> function again to set up the instance of the driver.&nbsp;</p>
 <p class="Element10">
 For the various options available for IO_INTENT, please refer to Data Types and Constants in the Library Interface section. </p><div class="Element63">
 <div class="TableDiv">
@@ -69,7 +69,7 @@ Example:</div>
 <p class="Element10">
 <span class="Element146">SYS_STATUS ak4954Status;</span>&nbsp;</p>
 <p class="Element10">
-<span class="Element146">ak4954Status Status = <a href="00154.html" target="topic">DRV_AK4954_Status</a>(sysObjects.ak4954Status DevObject);</span>&nbsp;</p>
+<span class="Element146">ak4954Status Status = <a href="00182.html" target="topic">DRV_AK4954_Status</a>(sysObjects.ak4954Status DevObject);</span>&nbsp;</p>
 <p class="Element10">
 <span class="Element146">if (SYS_STATUS_READY == ak4954Status)</span>&nbsp;</p>
 <p class="Element10">
@@ -77,9 +77,9 @@ Example:</div>
 <p class="Element10">
 <span class="Element146"> // The driver can now be opened.</span>&nbsp;</p>
 <p class="Element10">
-<span class="Element146"> appData.ak4954Client.handle = <a href="00150.html" target="topic">DRV_AK4954_Open</a></span>&nbsp;</p>
+<span class="Element146"> appData.ak4954Client.handle = <a href="00178.html" target="topic">DRV_AK4954_Open</a></span>&nbsp;</p>
 <p class="Element10">
-<span class="Element146"> (<a href="00125.html" target="topic">DRV_AK4954_INDEX_0</a>, DRV_IO_INTENT_WRITE | DRV_IO_INTENT_EXCLUSIVE);</span>&nbsp;</p>
+<span class="Element146"> (<a href="00153.html" target="topic">DRV_AK4954_INDEX_0</a>, DRV_IO_INTENT_WRITE | DRV_IO_INTENT_EXCLUSIVE);</span>&nbsp;</p>
 <p class="Element10">
 <span class="Element146"> if(appData.ak4954Client.handle != DRV_HANDLE_INVALID)</span>&nbsp;</p>
 <p class="Element10">
@@ -112,7 +112,7 @@ Example:</div>
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00056.html" target="topic">Using the Library</a> &gt; <a href="00047.html" target="topic">How the Library Works</a> &gt; <a href="00043.html" target="topic">Client Access</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00056.html" target="topic">Using the Library</a> &gt; <a href="00047.html" target="topic">How the Library Works</a> &gt; <a href="00043.html" target="topic">Client Access</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -120,7 +120,7 @@ Example:</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
 <a href="00045.html" target="topic">Previous</a> | <a href="00047.html" target="topic">Up</a> | <a href="00044.html" target="topic">Next</a></div>

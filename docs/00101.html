@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</title>
+<title>Digital Audio Basics</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00040.html" target="topic">Configuring the Library</a> &gt; <a href="00054.html" target="topic">System Configuration</a> &gt; <a href="00101.html" target="topic">DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</a></div>
+<a href="00102.html" target="topic">Audio Overview</a> &gt; <a href="00101.html" target="topic">Digital Audio Basics</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00054.html" target="topic">Previous</a> | <a href="00054.html" target="topic">Up</a> | <a href="00102.html" target="topic">Next</a></div>
+<a href="00102.html" target="topic">Previous</a> | <a href="00102.html" target="topic">Up</a> | <a href="00103.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Topic Title: DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Audio Basics Topic Title: Digital Audio Basics)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</div>
+Digital Audio Basics</div>
 </div>
 </div>
 
@@ -46,38 +46,143 @@ DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="53756D6D617279"></a><div class="Element11">
+<a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Specifies the audio data format for the codec.</p></div>
+<strong>If you are new to digital audio, this section provides definitions of basic concepts found in most discussions of digital audio.</strong>&nbsp;</p>
+<p class="Element10">
+Digital audio is sound that has been converted into digital form, by taking samples at a repeated rate (called the <strong>sample rate</strong> or <strong>sampling rate</strong>), at a particular resolution expressed as the number of bits per sample (called the<strong> bit-depth</strong>). </p><p class="Element10" style="text-align: center;">
+<img src="Signal_Sampling.png" border="0" alt="" title=""></p><p class="Element10">
+For example, audio stored on a compact disk (CD) is sampled at 44,100 samples/second, or 44.1 kHz, and saved as 16-bit signed samples. Other common sample rates are 8 kHz or 16 kHz for telephony-quality voice, 48 kHz for DVD audio, and 96 kHz for high-definition audio. The sample rate must be at least twice as fast as the highest frequency that is to be converted; therefore CD's have an upper frequency limit of 22.05 kHz. High-definition audio may also use 20, 24, or even 32-bits per sample. Low-quality voice may be sampled at only 8 bits per sample. Higher bit depths reduce the SNR (signal to noise ratio).&nbsp;</p>
+<p class="Element10">
+Changing from a lower sample rate to a higher one is called upsampling; changing from a higher sample rate to a lower one is called downsampling.&nbsp;</p>
+<p class="Element10">
+Sound is converted into digital using a analog to digital converter (ADC), connected to a microphone or other analog audio input, and converted from digital back to analog using a digital to analog converter (DAC) connected to an amplifier and then a speaker or pair of headphones.&nbsp;</p>
+<p class="Element10">
+After being sampled, digital sound may be stored in several formats. Some formats compress the audio to save space. Compression can be either lossless, meaning the audio when uncompressed, will be exactly the same as the input; other formats may be lossy, meaning some of the original audio may be lost, but it will usually be sounds that are hard to hear. Lossy compression typically achieves much higher compression rates than lossless (lossy compressing down to 5% to 20% of the original size, compared to 50%-60% for lossless). Compression and decompression is done by software codecs. </p><p class="Element10" style="text-align: center;">
+<strong>Common Audio Formats</strong></p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="25%">
+<div class="Element66">
+Format&nbsp;</div></td><td class="Element65" valign="top" width="10%">
+<div class="Element66">
+Lossy?&nbsp;</div></td><td class="Element65" valign="top" width="15%">
+<div class="Element66">
+Proprietary?&nbsp;</div></td><td class="Element65" valign="top" width="50%">
+<div class="Element66">
+Comments&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+AAC (Advanced Audio Coding)&nbsp;</div></td><td class="Element67" valign="top" width="10%">
+<div class="Element68">
+Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
+<div class="Element68">
+No&nbsp;</div></td><td class="Element67" valign="top" width="50%">
+<div class="Element68">
+Designed as successor to MP3. Audio codecs must be licensed.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+FLAC (Free Lossless Audio Codec)&nbsp;</div></td><td class="Element67" valign="top" width="10%">
+<div class="Element68">
+Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
+<div class="Element68">
+No, open-source&nbsp;</div></td><td class="Element67" valign="top" width="50%">
+<div class="Element68">
+&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+MP3&nbsp;</div></td><td class="Element67" valign="top" width="10%">
+<div class="Element68">
+Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
+<div class="Element68">
+No&nbsp;</div></td><td class="Element67" valign="top" width="50%">
+<div class="Element68">
+Was patented but patent has expired&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+Ogg Vorbis&nbsp;</div></td><td class="Element67" valign="top" width="10%">
+<div class="Element68">
+Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
+<div class="Element68">
+No, open-source&nbsp;</div></td><td class="Element67" valign="top" width="50%">
+<div class="Element68">
+&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+Opus&nbsp;</div></td><td class="Element67" valign="top" width="10%">
+<div class="Element68">
+Yes&nbsp;</div></td><td class="Element67" valign="top" width="15%">
+<div class="Element68">
+No, open-source&nbsp;</div></td><td class="Element67" valign="top" width="50%">
+<div class="Element68">
+Low latency&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+PCM/WAV&nbsp;</div></td><td class="Element67" valign="top" width="10%">
+<div class="Element68">
+No&nbsp;</div></td><td class="Element67" valign="top" width="15%">
+<div class="Element68">
+No&nbsp;</div></td><td class="Element67" valign="top" width="50%">
+<div class="Element68">
+Uncompressed linear PCM audio format used with CD's&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+WMA (Windows Media Audio)&nbsp;</div></td><td class="Element67" valign="top" width="10%">
+<div class="Element68">
+No&nbsp;</div></td><td class="Element67" valign="top" width="15%">
+<div class="Element68">
+Yes&nbsp;</div></td><td class="Element67" valign="top" width="50%">
+<div class="Element68">
+&nbsp;</div></td></tr></table></div></div>
+<div class="Element15">
+I2S Audio</div>
+<p class="Element10">
+There are various digital audio interfaces, designed to connect components together, either on the same board or via cables between boards. The one that is most relevant for us is I<sup>2</sup>S (Inter-IC sound) protocol which specifies a specific interface commonly used to connect hardware codecs, DACs, Bluetooth modules, and MCUs on the same board. It is not intended to be used over cables.&nbsp;</p>
+<p class="Element10">
+An I<sup>2</sup>S interface consists of the the following signals:</p>
+<ul class="Element630">
+<li class="Element600">Word clock line, which runs at the sampling rate and also indicates left/right channel, often abbreviated as LRCLK</li>
+<li class="Element600">Bit clock line, often abbreviated as BCLK. The bit clock pulses once for each discrete bit of data on the data lines.</li>
+</ul><p class="Element10">
+The bit clock rate = sample rate * # of channels * # of bits / channel&nbsp;</p>
+<p class="Element10">
+e.g. for CD audio, 44.1 kHz * 2 channels (stereo) * 16 bits/channel = 1.4112 MHz</p>
+<ul class="Element630">
+<li class="Element600">One or two serial data lines for input and output (ADCDAT and DACDAT)</li>
+</ul><p class="Element10">
+Although not part of the standard, there is often a master clock (MCLK) typically running at 256 times the sample rate used for synchronization.&nbsp;</p>
+<p class="Element10">
+A typical codec may support both I<sup>2</sup>S format, and one or two variations (left-justified and/or right justified): </p><p class="Element10" style="text-align: center;">
+<img src="AUDIO I2S.png" border="0" alt="" title=""></p><p class="Element10">
+In I<sup>2</sup>S format, as shown in the top half of the figure above, LRCLK is low for the left channel and high for the right channel. The most-significant bit (MSb) of the left channel data starts one bit clock (BCLK) late, such that the least significant bit (LSb) is actually in the right channel side.&nbsp;</p>
+<p class="Element10">
+In Left-Justified format, as shown in bottom half of the figure above, LRCLK is high for the left channel, and low for the right channel, and the most-significant bit (MSb) is lined up with the LRCLK and does not spill over into the opposite channel.&nbsp;</p>
+<p class="Element10">
+Below is a oscilloscope photo showing the LRCLK in yellow, and data in blue. Only the left channel has audio. The overlap in the I<sup>2</sup>S format is clearly visible, as well as the 16 individual data bits. </p><p class="Element10" style="text-align: center;">
+<img src="AUDIO I2S2.png" border="0" alt="" title=""></p><p class="Element10">
+A codec or Bluetooth module can act as a Master, in which it generates the I<sup>2</sup>S clocks BCLK and LRCLK and sends them to the MCU (with the MCU providing a Master Clock): </p><p class="Element10" style="text-align: center;">
+<img src="DRV AUDIO WM8904 interface-Master.png" border="0" alt="" title=""></p><p class="Element10">
+If the MCU generates the I<sup>2</sup>S clocks BCLK and LRCLK, the codec or Bluetooth module is the Slave:: </p><p class="Element10" style="text-align: center;">
+<img src="DRV AUDIO WM8904 interface-Slave.png" border="0" alt="" title=""></p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p>
 </div>
-<a name="4465736372697074696F6E"></a><div class="Element14">
-Description</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-AK4954 Audio Data Format&nbsp;</p>
-<p class="Element10">
-Sets up the length of each sample plus the format (I2S or left-justified) for the audio.&nbsp;</p>
-<p class="Element10">
-Valid choices are: &quot;DRV_AK4954_AUDIO_DATA_FORMAT_24BIT_MSB_SDTO_24BIT_LSB_SDTI&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_24BIT_MSB_SDTO_16BIT_LSB_SDTI&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_24BIT_MSB_SDTO_24BIT_MSB_SDTI&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_I2S_16BIT_24BIT&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_32BIT_MSB_SDTO_32BIT_MSB_SDTI&quot; &quot;DRV_AK4954_AUDIO_DATA_FORMAT_I2S_32BIT&quot; where SDTO is input line (ADC) and STDI is output line (DAC)</p></div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-If 24-bit audio is needed, it should be sent, left-justified, in a 32-bit format.</p></div>
-</div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">#define</span></strong> <strong><span style="color: #000000">DRV_AK4954_AUDIO_DATA_FORMAT_MACRO</span></strong> </pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00040.html" target="topic">Configuring the Library</a> &gt; <a href="00054.html" target="topic">System Configuration</a> &gt; <a href="00101.html" target="topic">DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro</a></div>
+<a href="00102.html" target="topic">Audio Overview</a> &gt; <a href="00101.html" target="topic">Digital Audio Basics</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -85,13 +190,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00054.html" target="topic">Previous</a> | <a href="00054.html" target="topic">Up</a> | <a href="00102.html" target="topic">Next</a></div>
+<a href="00102.html" target="topic">Previous</a> | <a href="00102.html" target="topic">Up</a> | <a href="00103.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Topic Title: DRV_AK4954_AUDIO_DATA_FORMAT_MACRO Macro)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AUDIO_OVR Audio Basics Topic Title: Digital Audio Basics)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

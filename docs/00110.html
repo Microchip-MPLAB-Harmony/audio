@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_AK4954_BufferEventHandlerSet Function</title>
+<title>Client Operations - Buffered</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00110.html" target="topic">DRV_AK4954_BufferEventHandlerSet Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00118.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00125.html" target="topic">Using the Library</a> &gt; <a href="00116.html" target="topic">How the Library Works</a> &gt; <a href="00110.html" target="topic">Client Operations - Buffered</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00113.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00115.html" target="topic">Next</a></div>
+<a href="00109.html" target="topic">Previous</a> | <a href="00116.html" target="topic">Up</a> | <a href="00112.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BufferEventHandlerSet@DRV_HANDLE@DRV_AK4954_BUFFER_EVENT_HANDLER@uintptr_t Topic Title: DRV_AK4954_BufferEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S Client Operations - Buffered Topic Title: Client Operations - Buffered)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_AK4954_BufferEventHandlerSet Function</div>
+Client Operations - Buffered</div>
 </div>
 </div>
 
@@ -46,157 +46,173 @@ DRV_AK4954_BufferEventHandlerSet Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46756E6374696F6E"></a><div class="Element11">
+<a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-      void DRV_AK4954_BufferEventHandlerSet&nbsp;</p>
+<strong>Client Operations - Buffered</strong>&nbsp;</p>
 <p class="Element10">
-      (&nbsp;</p>
+Client buffered operations provide a the typical audio interface. The functions DRV_I2S_BufferAddRead, DRV_I2S_BufferAddWrite, and DRV_I2S_BufferAddWriteRead are the buffered data operation functions. The buffered functions schedules non-blocking operations. The function adds the request to the hardware instance queues and returns a buffer handle. The requesting client also registers a callback event with the driver. The driver notifies the client with DRV_I2S_BUFFER_EVENT_COMPLETE, DRV_I2S_BUFFER_EVENT_ERROR or DRV_I2S_BUFFER_EVENT_ABORT events.&nbsp;</p>
 <p class="Element10">
-          DRV_HANDLE handle,&nbsp;</p>
+The buffer add requests are processed from the I2S channel ISR in interrupt mode.&nbsp;</p>
 <p class="Element10">
-          const <a href="00104.html" target="topic">DRV_AK4954_BUFFER_EVENT_HANDLER</a> eventHandler,&nbsp;</p>
-<p class="Element10">
-          const uintptr_t contextHandle&nbsp;</p>
-<p class="Element10">
-      )&nbsp;</p>
-<p class="Element10">
-&nbsp;</p></div>
-</div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function allows a client to identify a buffer event handling function for the driver to call back when queued buffer transfers have finished.</p></div>
-</div>
-</div>
-<a name="4465736372697074696F6E"></a><div class="Element14">
-Description</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function allows a client to identify a buffer event handling function for the driver to call back when queued buffer transfers have finished. When a client calls <a href="00107.html" target="topic">DRV_AK4954_BufferAddRead</a> function, it is provided with a handle identifying the buffer that was added to the driver's buffer queue. The driver will pass this handle back to the client by calling &quot;eventHandler&quot; function when the buffer transfer has completed.&nbsp;</p>
-<p class="Element10">
-The event handler should be set before the client performs any &quot;buffer add&quot; operations that could generate events. The event handler once set, persists until the client closes the driver or sets another event handler (which could be a &quot;NULL&quot; pointer to indicate no callback).</p></div>
-</div>
-<a name="507265636F6E646974696F6E73"></a><div class="Element14">
-Preconditions</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-The <a href="00132.html" target="topic">DRV_AK4954_Initialize</a> routine must have been called for the specified AK4954 driver instance.&nbsp;</p>
-<p class="Element10">
-<a href="00150.html" target="topic">DRV_AK4954_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p></div>
-</div>
-<a name="506172616D6574657273"></a><div class="Element14">
-Parameters</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element312">
+The following diagram illustrates the buffered data operations </p><p class="Element10" style="text-align: center;">
+<img src="bufferedmodelintonly.png" border="0" alt="" title=""></p><div class="Element63">
 <div class="TableDiv">
-<table cellspacing="0" class="Table3">
+<table cellspacing="0" class="Table0">
 <tr>
-<td class="Element300" valign="top" width="35%">
-<div class="Element301">
-Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
-<div class="Element305">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-A valid open-instance handle, returned from the driver's open routine&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-eventHandler&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Pointer to the event handler function.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-context&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-The value of parameter will be passed back to the client unchanged, when the eventHandler function is called. It can be used to identify any client specific data object that identifies the instance of the client module (for example, it may be a pointer to the client module's state structure).&nbsp;</div></td></tr></table></div></div>
-</div>
-</div>
-<a name="52657475726E73"></a><div class="Element14">
-Returns</div>
-<div class="Element11">
-<div class="Element10">
+<td class="Element67" valign="top" width="10%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title=""> <strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
+<div class="Element68">
+It is not necessary to close and reopen the client between multiple transfers.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-None.</p></div>
-</div>
-<a name="4578616D706C65"></a><div class="Element14">
-Example</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12">MY_APP_OBJ myAppObj;
-uint8_t mybuffer[MY_BUFFER_SIZE];
-<a href="00105.html" target="topic">DRV_AK4954_BUFFER_HANDLE</a> bufferHandle;
+An application using the buffered functionality needs to perform the following steps:</p>
+<ol class="Element630">
+<li value="1" class="Element600">The system should have completed necessary setup and initializations.</li>
+<li value="2" class="Element600">If DMA mode is desired, the DMA should be initialized by calling SYS_DMA_Initialize.</li>
+<li value="3" class="Element600">The necessary ports setup and remapping must be done for I2S lines: ADCDAT, DACDAT, BCLK, LRCK and MCLK (if required).</li>
+<li value="4" class="Element600">The driver object should have been initialized by calling <a href="00258.html" target="topic">DRV_I2S_Initialize</a>. If DMA mode is desired, related attributes in the init structure must be set.</li>
+<li value="5" class="Element600">Open the driver using <a href="00260.html" target="topic">DRV_I2S_Open</a> with the necessary ioIntent to get a client handle.</li>
+<li value="6" class="Element600">The necessary BCLK, LRCK, and MCLK should be set up so as to generate the required media bit rate.</li>
+<li value="7" class="Element600">The necessary Baud rate value should be set up by calling DRV_I2S_BaudrateSet.</li>
+<li value="8" class="Element600">The Register and event handler for the client handle should be set up by calling <a href="00252.html" target="topic">DRV_I2S_BufferEventHandlerSet</a>.</li>
+<li value="9" class="Element600">Add a buffer to initiate the data transfer by calling DRV_I2S_BufferAddWrite/DRV_I2S_BufferAddRead/DRV_I2S_BufferAddWriteRead.</li>
+<li value="10" class="Element600">When the DMA Channel has finished, the callback function registered in step 8 will be called.</li>
+<li value="11" class="Element600">Repeat step 9 through step 10 to handle multiple buffer transmission and reception.</li>
+<li value="12" class="Element600">When the client is done it can use <a href="00255.html" target="topic">DRV_I2S_Close</a> to close the client handle.</li>
+</ol><div class="Element15">
+Example:</div>
+<div class="Element13"><div class="Element12"><pre class="Element12"><i><span style="color: #008000">// The following is an example for interrupt mode buffered transmit</span></i>
 
-<i><span style="color: #008000">// myAK4954Handle is the handle returned</span></i>
-<i><span style="color: #008000">// by the DRV_AK4954_Open function.</span></i>
+<strong><span style="color: #000080">#define</span></strong> SYS_I2S_DRIVER_INDEX DRV_I2S_1 <i><span style="color: #008000">// I2S Uses SPI Hardware</span></i>
+<strong><span style="color: #000080">#define</span></strong> BUFFER_SIZE 1000
+<i><span style="color: #008000">// I2S initialization structure.</span></i>
+<i><span style="color: #008000">// This should be populated with necessary settings.</span></i>
+<i><span style="color: #008000">// attributes dmaChannelTransmit/dmaChannelReceive</span></i>
+<i><span style="color: #008000">// and dmaInterruptTransmitSource/dmaInterruptReceiveSource</span></i>
+<i><span style="color: #008000">// must be set if DMA mode of operation is desired.</span></i>
+DRV_I2S_INIT i2sInit;
+SYS_MODULE_OBJ sysObj; <i><span style="color: #008000">//I2S module object</span></i>
+DRV_HANDLE handle;  <i><span style="color: #008000">//Client handle</span></i>
+uint32_t i2sClock;   <i><span style="color: #008000">//BCLK frequency</span></i>
+uint32_t baudrate;   <i><span style="color: #008000">//baudrate</span></i>
+uint16_t myAudioBuffer[BUFFER_SIZE]; <i><span style="color: #008000">//Audio buffer to be transmitted</span></i>
+DRV_I2S_BUFFER_HANDLE bufferHandle;
+APP_DATA_S state; <i><span style="color: #008000">//Application specific state</span></i>
+uintptr_t contextHandle;
 
-<i><span style="color: #008000">// Client registers an event handler with driver</span></i>
-
-DRV_AK4954_BufferEventHandlerSet(myAK4954Handle,
-                APP_AK4954BufferEventHandler, (uintptr_t)&amp;myAppObj);
-
-<a href="00107.html" target="topic">DRV_AK4954_BufferAddRead</a>(myAK4954handle, &amp;bufferHandle
-                                    myBuffer, MY_BUFFER_SIZE);
-
-<strong><span style="color: #000080">if</span></strong>(<a href="00106.html" target="topic">DRV_AK4954_BUFFER_HANDLE_INVALID</a> == bufferHandle)
+<strong><span style="color: #000080">void</span></strong> SYS_Initialize ( <strong><span style="color: #000080">void</span></strong>* data )
 {
-    <i><span style="color: #008000">// Error handling here</span></i>
+    <i><span style="color: #008000">// The system should have completed necessary setup and initializations.</span></i>
+    <i><span style="color: #008000">// Necessary ports setup and remapping must be done for I2S lines ADCDAT,</span></i>
+    <i><span style="color: #008000">// DACDAT, BCLK, LRCK and MCLK</span></i>
+
+    sysObj = DRV_I2S_Initialize(SYS_I2S_DRIVER_INDEX, (SYS_MODULE_INIT*)&amp;i2sInit);
+    <strong><span style="color: #000080">if</span></strong> (SYS_MODULE_OBJ_INVALID == sysObj)
+    {
+        <i><span style="color: #008000">// Handle error</span></i>
+    }
 }
 
-<i><span style="color: #008000">// Event is received when</span></i>
-<i><span style="color: #008000">// the buffer is processed.</span></i>
 
-<strong><span style="color: #000080">void</span></strong> APP_AK4954BufferEventHandler(<a href="00103.html" target="topic">DRV_AK4954_BUFFER_EVENT</a> event,
-        <a href="00105.html" target="topic">DRV_AK4954_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle)
+<strong><span style="color: #000080">void</span></strong> App_Task(<strong><span style="color: #000080">void</span></strong>)
 {
-    <i><span style="color: #008000">// contextHandle points to myAppObj.</span></i>
+        <strong><span style="color: #000080">switch</span></strong>(state)
+        {
+            <strong><span style="color: #000080">case</span></strong> APP_STATE_INIT:
+            {
+                handle = DRV_I2S_Open(SYS_I2S_DRIVER_INDEX, (DRV_IO_INTENT_WRITE | DRV_IO_INTENT_NONBLOCKING));
+                <strong><span style="color: #000080">if</span></strong>(handle != DRV_HANDLE_INVALID )
+                {
+                    <i><span style="color: #008000">/* Update the state */</span></i>
+                    state = APP_STATE_WAIT_FOR_READY;
+                }
+            }
+            <strong><span style="color: #000080">break</span></strong>;
 
-    <strong><span style="color: #000080">switch</span></strong>(event)
+            <strong><span style="color: #000080">case</span></strong>  APP_STATE_WAIT_FOR_READY:
+            {
+                <i><span style="color: #008000">// Necessary clock settings must be done to generate</span></i>
+                <i><span style="color: #008000">// required MCLK, BCLK and LRCK</span></i>
+                DRV_I2S_BaudrateSet(handle, i2sClock, baudrate);
+
+                <i><span style="color: #008000">/* Set the Event handler */</span></i>
+                DRV_I2S_BufferEventHandlerSet(handle,App_BufferEventHandler,
+                contextHandle);
+
+                <i><span style="color: #008000">/* Add a buffer to write*/</span></i>
+                DRV_I2S_WriteBufferAdd(handle, myAudioBuffer, BUFFER_SIZE,
+                    &amp;bufferHandle);
+                <strong><span style="color: #000080">if</span></strong>(DRV_I2S_BUFFER_HANDLE_INVALID == bufferHandle)
+                {
+                    <i><span style="color: #008000">// Error handling here</span></i>
+                }
+                state = APP_STATE_IDLE;
+            }
+            <strong><span style="color: #000080">break</span></strong>;
+
+            <strong><span style="color: #000080">case</span></strong> APP_STATE_WAIT_FOR_DONE:
+
+                state = APP_STATE_DONE;
+            <strong><span style="color: #000080">break</span></strong>;
+
+
+            <strong><span style="color: #000080">case</span></strong>  APP_STATE_DONE:
+            {
+                <i><span style="color: #008000">// Close done</span></i>
+                DRV_I2S_Close(handle);
+            }
+            <strong><span style="color: #000080">break</span></strong>;
+
+            <strong><span style="color: #000080">case</span></strong>  APP_STATE_IDLE:
+                <i><span style="color: #008000">// Do nothing</span></i>
+            <strong><span style="color: #000080">break</span></strong>;
+
+            <strong><span style="color: #000080">default</span></strong>:
+            <strong><span style="color: #000080">break</span></strong>;
+        }
+}
+
+
+<strong><span style="color: #000080">void</span></strong> App_BufferEventHandler(DRV_I2S_BUFFER_EVENT event,
+        DRV_I2S_BUFFER_HANDLE bufferHandle, uintptr_t contextHandle)
+{
+    uint8_t temp;
+
+    <strong><span style="color: #000080">if</span></strong>(DRV_I2S_BUFFER_EVENT_COMPLETE == event)
     {
-        <strong><span style="color: #000080">case</span></strong> DRV_AK4954_BUFFER_EVENT_COMPLETE:
-
-            <i><span style="color: #008000">// This means the data was transferred.</span></i>
-            <strong><span style="color: #000080">break</span></strong>;
-
-        <strong><span style="color: #000080">case</span></strong> DRV_AK4954_BUFFER_EVENT_ERROR:
-
-            <i><span style="color: #008000">// Error handling here.</span></i>
-            <strong><span style="color: #000080">break</span></strong>;
-
-        <strong><span style="color: #000080">default</span></strong>:
-            <strong><span style="color: #000080">break</span></strong>;
+        <i><span style="color: #008000">// Can set state = APP_STATE_WAIT_FOR_DONE;</span></i>
+        <i><span style="color: #008000">// Take Action as needed</span></i>
     }
-}</pre></div></div>
+    <strong><span style="color: #000080">else</span></strong> <strong><span style="color: #000080">if</span></strong>(DRV_I2S_BUFFER_EVENT_ERROR == event)
+    {
+        <i><span style="color: #008000">// Take Action as needed</span></i>
+    }
+    <strong><span style="color: #000080">else</span></strong> <strong><span style="color: #000080">if</span></strong>(DRV_I2S_BUFFER_EVENT_ABORT == event)
+    {
+        <i><span style="color: #008000">// Take Action as needed</span></i>
+    }
+    <strong><span style="color: #000080">else</span></strong>
+    {
+        <i><span style="color: #008000">// Do nothing</span></i>
+    }
+}
+
+
+<strong><span style="color: #000080">void</span></strong> SYS_Tasks ( <strong><span style="color: #000080">void</span></strong> )
+{
+    <i><span style="color: #008000">/* Call the application's tasks routine */</span></i>
+    APP_Tasks ( );
+}
+</pre></div></div>
 </div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-If the client does not want to be notified when the queued buffer transfer has completed, it does not need to register a callback.</p></div>
-</div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_AK4954_BufferEventHandlerSet</span></strong>(
-    DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> <a href="00104.html" target="topic">DRV_AK4954_BUFFER_EVENT_HANDLER</a> <strong><span style="color: #000000">eventHandler</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> uintptr_t <strong><span style="color: #000000">contextHandle</span></strong>
-);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00110.html" target="topic">DRV_AK4954_BufferEventHandlerSet Function</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00118.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00125.html" target="topic">Using the Library</a> &gt; <a href="00116.html" target="topic">How the Library Works</a> &gt; <a href="00110.html" target="topic">Client Operations - Buffered</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -204,13 +220,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00113.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00115.html" target="topic">Next</a></div>
+<a href="00109.html" target="topic">Previous</a> | <a href="00116.html" target="topic">Up</a> | <a href="00112.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BufferEventHandlerSet@DRV_HANDLE@DRV_AK4954_BUFFER_EVENT_HANDLER@uintptr_t Topic Title: DRV_AK4954_BufferEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S Client Operations - Buffered Topic Title: Client Operations - Buffered)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

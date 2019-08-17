@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>How the Library Works</title>
+<title>Using the Library</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00364.html" target="topic">Using the Library</a> &gt; <a href="00356.html" target="topic">How the Library Works</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00348.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00356.html" target="topic">Using the Library</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00360.html" target="topic">Previous</a> | <a href="00364.html" target="topic">Up</a> | <a href="00352.html" target="topic">Next</a></div>
+<a href="00347.html" target="topic">Previous</a> | <a href="00348.html" target="topic">Up</a> | <a href="00336.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC How the Library Works (Drivers) Topic Title: How the Library Works)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: GENERIC AUDIO DRIVER CODEC Using the Library Topic Title: Using the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-How the Library Works</div>
+Using the Library</div>
 </div>
 </div>
 
@@ -46,6 +46,24 @@ How the Library Works</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
+<a name="4465736372697074696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+<strong>Interface Header File</strong>: <span class="Element146">drv_Generic.h</span>&nbsp;</p>
+<p class="Element10">
+The interface to the Generic Codec Driver library is defined in the <span class="Element146">audio/driver/codec/Generic/drv_Generic.h</span> header file. Any C language source (.c) file that uses the Generic Codec Driver library should include this header.</p><div class="Element15">
+Library Source Files:</div>
+<p class="Element10">
+The Generic Codec Driver library source files are provided in the <span class="Element146">audio/driver/codec/Generic/src</span> directory. This folder may contain optional files and alternate implementations. Please refer to <strong>Configuring the Library</strong> for instructions on how to select optional features and to <strong>Building the Library</strong> for instructions on how to build the library.&nbsp;</p>
+<p class="Element10">
+<strong>Example Applications:</strong>&nbsp;</p>
+<p class="Element10">
+This codec is not used directly by any demonstration applications. However the following applications could be looked at, to see how a codec such as the WM8904 or AK4954 is used:</p>
+<ul class="Element630">
+<li class="Element600"><span class="Element146">audio/apps/audio_tone</span></li>
+<li class="Element600"><span class="Element146">audio/apps/microphone_loopback</span></li>
+</ul></div>
+</div>
 <a name="546F70696373"></a><div class="Element14">
 Topics</div>
 <div class="Element11">
@@ -61,19 +79,24 @@ Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
 Description&nbsp;</div></td></tr><tr>
 <td class="Element202" valign="top" width="35%">
 <div class="Element203">
-<a href="00352.html" target="topic">Setup (Initialization)</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<a href="00336.html" target="topic">Abstraction Model</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
 <div class="Element207">
-This topic describes system initialization, implementations, and includes a system access code example.&nbsp;</div></td></tr><tr>
+This library provides a low-level abstraction of the Generic Codec Driver Library on the Microchip family microcontrollers with a convenient C language interface. This topic describes how that abstraction is modeled in software and introduces the library's interface.&nbsp;</div></td></tr><tr>
 <td class="Element202" valign="top" width="35%">
 <div class="Element203">
-<a href="00351.html" target="topic">Client Access</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<a href="00350.html" target="topic">Library Overview</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
 <div class="Element207">
-This topic describes driver initialization and provides a code example.&nbsp;</div></td></tr><tr>
+<span style="color: #000000">Refer to the Driver Library Overview section for information on how the driver operates in a system.</span><br><span style="color: #000000">The Generic Codec Driver Library provides an API interface to transfer control commands and digital audio data to the serially interfaced Generic Codec module. The library interface routines are divided into various sub-sections, which address one of the blocks or the overall operation of the Generic Codec Driver Library.</span> &nbsp;</div></td></tr><tr>
 <td class="Element202" valign="top" width="35%">
 <div class="Element203">
-<a href="00353.html" target="topic">Client Operations</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<a href="00346.html" target="topic">How the Library Works</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
 <div class="Element207">
-This topic provides information on client operations.&nbsp;</div></td></tr></table></div></div>
+How the Library Works<br>The library provides interfaces to support:</p>
+<ul class="Element630">
+<li class="Element600">System Functionality</li>
+<li class="Element600">Client Functionality</li>
+</ul><p class="Element207">
+&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -81,7 +104,7 @@ This topic provides information on client operations.&nbsp;</div></td></tr></tab
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00089.html" target="topic">Audio Driver Libraries Help</a> &gt; <a href="00358.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00364.html" target="topic">Using the Library</a> &gt; <a href="00356.html" target="topic">How the Library Works</a></div>
+<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00348.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00356.html" target="topic">Using the Library</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -89,13 +112,13 @@ This topic provides information on client operations.&nbsp;</div></td></tr></tab
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00094.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00360.html" target="topic">Previous</a> | <a href="00364.html" target="topic">Up</a> | <a href="00352.html" target="topic">Next</a></div>
+<a href="00347.html" target="topic">Previous</a> | <a href="00348.html" target="topic">Up</a> | <a href="00336.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC How the Library Works (Drivers) Topic Title: How the Library Works)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: GENERIC AUDIO DRIVER CODEC Using the Library Topic Title: Using the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->
