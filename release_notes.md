@@ -150,6 +150,7 @@ playback times.
     - In both E54/WM8904 projects, only 32-bit audio has been tested.
 * usb_speaker_hi_res demonstration:
     - Sometimes the PC audio volume level must to be lowered to prevent clipping of the codec data.  The playback sounds like a loud hiss or that the audio is popping when this happens.
+    - This application generates a linker error when building using XC32 v2.30 under Linux. The Windows version is okay.
 
 ### RELEASE CONTENTS
 
