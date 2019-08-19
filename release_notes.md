@@ -6,30 +6,41 @@
 
 The following table provides the list of new applications/projects:
 
-| Application | Description | BTADK | BTADK/MZ | C2/MZ | E54 | E70 |
-| --- | --- | --- | --- | --- | --- | --- |
-| audio_player_basic | added ADPCM decoder | | | | x | x |
-| audio_tone | added BTADK and C2 variations using AK4954 | x | x | x | | |
-| microphone_loopback | added BTADK variation using AK4954 | | x | | | |
-| usb_microphone | new app, bare-metal and FreeRTOS versions | | | | | x |
-| usb_speaker | added I2SC variation | | | | | x |
-| usb_speaker_hi_res | new application | | | | | x |
+| Application | Description | BTADK | BTADK/MZ | C2/MZ | E70 |
+| --- | --- | --- | --- | --- | --- |
+| audio_tone | Added BTADK and C2 variations using AK4954 | x | x | x | |
+| microphone_loopback | Added BTADK variation using AK4954 | | x | | |
+| usb_microphone | New application, bare-metal and FreeRTOS versions | | | | x |
+| usb_speaker | Added I2SC variation | | | | x |
+| usb_speaker_hi_res | New application; plays 96K audio from a USB host such as a PC | | | | x |
+
+where:
+
+| |  Development Kit |
+| --- | --- | 
+|**BTADK**| [PIC32 Bluetooth Audio Development Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DV320032) |
+|**BTADK/MZ**| [BTADK with PIC32MZ EF Audio 144-pin PIM](https://www.microchip.com/developmenttools/ProductDetails/PartNO/MA320018)
+|**C2/MZ**| [Curiosity PIC32MZEF Dev Board 2.0](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320209) |
+|**E54**| [SAM E54 Curiosity Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320210) |
+|**E70**| [SAM E70 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
+|**V71**| [SAM V71 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/ATSAMV71-XULT) |
 
 - **Updated Applications/Projects**
 
 The following table provides the list of updated applications/projects:
 
-| Application | Description | E70 |
-| --- | --- | --- |
-| usb_speaker | Fixed buffer overflow/underrun problem | x |
+| Application | Description | E54 | E70 |
+| --- | --- | --- |--- |
+| audio_player_basic | Added ADPCM decoder | x | x |
+| usb_speaker | Fixed buffer overflow/underrun problem || x |
 
 - **New Drivers**
 
-The following table provides the list of new audio drivers (moved from core repo):
+The following table provides the list of new audio drivers:
 
-| Driver | Description | BTADK | BTADK/MZ | C2/MZ | E54 | E70 |
-| --- | --- | --- | --- | --- | --- | --- |
-| I2S | I2S Driver | x | x | x | x | x |
+| Driver | Description | BTADK | BTADK/MZ | C2/MZ | E54 | E70 | V71 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| I2S | I2S Driver | x | x | x | x | x | x |
 
 
 **NOTE:** The I2S driver listed above was previously in the core repo, and is now located in the audio repo instead.  All of the audio projects have been updated to use the new location.  Howevever if someone has copied an application from a previous version (e.g. 3.3) of the audio repo, it will need to be updated to reflect this change. After noting any special settings in the MHC dialog for the driver, the I2S driver should be removed from the project graph, and the same one selected again from the audio repo instead, and the appropriate connections restored.
@@ -38,37 +49,37 @@ Although the codec drivers were already in the audio repo, their location was ch
 
 - **Updated Drivers**
 
-The following table provides the list of new audio drivers (moved from core repo):
+The following table provides the list of updated audio drivers:
 
-| Driver | Description | BTADK | BTADK/MZ | C2/MZ | E54 | E70 |
-| --- | --- | --- | --- | --- | --- | --- |
-| I2S | Added audio data definitions | x | x | x | x | x |
-| WM8904 | Added MIC port selection to WM8904 codec driver | | | | x | x |
+| Driver | Description | BTADK | BTADK/MZ | C2/MZ | E54 | E70 | V71 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| I2S | Added audio data definitions | x | x | x | x | x | x |
+| WM8904 | Added MIC port selection to WM8904 codec driver | | | | x | x | x |
 
 - **New Peripheral Libraries (PLIBs)**
 
 The following table provides the list of new audio peripheral libraries:
 
-| Driver | Description | BTADK | BTADK/MZ | C2/MZ | E54 | E70 |
-| --- | --- | --- | --- | --- | --- | --- |
-| i2s_u2224 | I2S Peripheral Library | | | | x | |
-| i2sc_11241 | I2SC Peripheral Library | | | | | x |
-| spi_01329 | I2S Peripheral Library | x | x | x | | |
-| ssc_6078 |  SSC Peripheral Library | | | | | x |
+| Driver | Description | BTADK | BTADK/MZ | C2/MZ | E54 | E70 | V71 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| i2s_u2224 | I2S Peripheral Library | | | | x | | |
+| i2sc_11241 | I2SC Peripheral Library | | | | | x | x |
+| spi_01329 | I2S Peripheral Library | x | x | x | | | |
+| ssc_6078 |  SSC Peripheral Library | | | | | x | x |
 
 **NOTE:** The audio I2S-related peripheral libraries listed above were previously in the csp repo, and are now located in the audio repo instead.  All of the audio projects have been updated to use the new location.  Howevever if someone has copied an application from a previous version (e.g. 3.3) of the audio repo, it will need to be updated to reflect this change. After noting any special settings in the MHC dialog for the peripheral, any I2S-related PLIB should be removed from the project graph, and the same one selected again from the audio repo instead, and the appropriate connections restored..
 
 - **New Audio Application Templates**
 
-The following table provides the list new templates:
+The following table provides the list new audio templates:
 
 | Template | Description | BTADK | BTADK/MZ | C2/MZ |
 | --- | --- | --- | --- | --- | 
 | ak4954 | AK4954 Codec with BTADK (MX) | x | | |
-| ak4954 | AK4954 Codec with BTADK (MZ {PIM) | | x | |
+| ak4954 | AK4954 Codec with BTADK (MZ/PIM) | | x | |
 | ak4954 | AK4954 Codec with Curiosity MZ 2.0  | | | x |
 | generic | Generic Codec with BTADK (MX) | x | | |
-| generic | Generic Codec with BTADK (MZ {PIM)| | x | |
+| generic | Generic Codec with BTADK (MZ/PIM)| | x | |
 | generic | Generic Codec with Curiosity MZ 2.0  | | | x |
 
 ### TESTED WITH:
@@ -83,17 +94,17 @@ Before using MPLAB Harmony Audio, ensure that the following are installed:
 
 In order to regenerate source code for any of the applications, you will also need the following to be installed:
 
-| Tool | Version |
-| --- | --- |
-| [MPLAB® Harmony Configurator (MHC)](https://github.com/Microchip-MPLAB-Harmony/mhc) | v3.3.0 |
-| MPLAB® Harmony Configurator (MHC) plug-in   | v3.3.0.1 |
-| [Harmony 3 BSP](https://github.com/Microchip-MPLAB-Harmony/bsp)   | v3.4.0 |
-| [Harmony 3 CSP](https://github.com/Microchip-MPLAB-Harmony/csp)  | v3.4.0 |
-| [Harmony 3 Core](https://github.com/Microchip-MPLAB-Harmony/core)  | v3.4.0 |
-| [Harmony 3 Graphics ](https://github.com/Microchip-MPLAB-Harmony/gfx)   | v3.4.0 |
-| [Harmony 3 Dev_Packs](https://github.com/Microchip-MPLAB-Harmony/dev_packs)   | v3.4.0 |
-| [Harmony 3 USB](https://github.com/Microchip-MPLAB-Harmony/usb)   | v3.3.0 |
-| [Harmony 3 CMSIS-FreeRTOS](https://github.com/ARM-software/CMSIS-FreeRTOS)   | v10.2.0 |
+| Tool | Version | Notes |
+| --- | --- | --- |
+| [MPLAB® Harmony Configurator (MHC)](https://github.com/Microchip-MPLAB-Harmony/mhc)| v3.3.0 |
+| MPLAB® Harmony Configurator (MHC) plug-in | v3.3.0.1 | |
+| [Harmony 3 BSP](https://github.com/Microchip-MPLAB-Harmony/bsp)| v3.4.0 | |
+| [Harmony 3 CSP](https://github.com/Microchip-MPLAB-Harmony/csp)| v3.4.0 | |
+| [Harmony 3 Core](https://github.com/Microchip-MPLAB-Harmony/core)| v3.4.0 | |
+| [Harmony 3 Graphics ](https://github.com/Microchip-MPLAB-Harmony/gfx)| v3.4.0 | only if using graphics |
+| [Harmony 3 Dev_Packs](https://github.com/Microchip-MPLAB-Harmony/dev_packs)| v3.4.0 | |
+| [Harmony 3 USB](https://github.com/Microchip-MPLAB-Harmony/usb)| v3.3.0 |only if using USB|
+| [Harmony 3 CMSIS-FreeRTOS](https://github.com/ARM-software/CMSIS-FreeRTOS)| v10.2.0 | only if using FreeRTOS |
 
 #### Development Kit Support
 
@@ -151,22 +162,22 @@ This table lists the contents of this release, including a brief description, an
 
 | Folder | Description | Release Type |
 | --- | --- | --- |
-| audio\apps\audio_enc | audio encoder application | Beta |
+| audio\apps\audio_enc | audio encoder application | Production |
 | audio\apps\audio_player_basic | audio_player_basic application | Production |
-| audio\apps\audio_signal_generator | audio signal generator application | Beta |
+| audio\apps\audio_signal_generator | audio signal generator application | Production |
 | audio\apps\audio_tone  | audio tone application | Production |
 | audio\apps\audio_tone_linkeddma | audio tone using linked dma application | Production |
 | audio\apps\microphone_loopback | microphone loopback application | Production |
 | audio\apps\usb_speaker | USB speaker application | Production |
 | audio\apps\usb_speaker_hi_res | USB speaker application (hi-res) | Beta |
-| audio\driver\i2s | I2S Driver | Beta |
+| audio\driver\i2s | I2S Driver | Production |
 | audio\driver\codec\AK4954 | AK4954 Codec Driver | Beta |
 | audio\driver\codec\Generic | Generic Codec Driver | Beta |
 | audio\driver\codec\WM8904 | WM8904 Codec Driver | Production |
-| audio\peripheral\i2s_u2224 | I2S Peripheral Library (E54) | Beta |
-| audio\peripheral\i2sc_11241 | I2SC Peripheral Library (E70) | Beta |
+| audio\peripheral\i2s_u2224 | I2S Peripheral Library (E54) | Production |
+| audio\peripheral\i2sc_11241 | I2SC Peripheral Library (E70) | Production |
 | audio\peripheral\spi_01329 | I2S Peripheral Library (MX/MZ)| Beta |
-| audio\peripheral\ssc_6078 | SSC Peripheral Library (E70/V71) | Beta |
+| audio\peripheral\ssc_6078 | SSC Peripheral Library (E70/V71) | Production |
 | audio\templates\ak4954 | Audio application template | Beta |
 | audio\templates\generic | Audio application template | Beta |
 | audio\templates\wm8904 | Audio application template | Production |
@@ -184,12 +195,12 @@ The following table provides the list of new applications/projects:
 
 | Application | Description | E54 | E70 |
 | --- | --- | --- | --- |
-| audio_player_basic | added project using WM8904 and SD card instead of USB, including FreeRTOS version | x | |
-| audio_player_basic | added graphics and FreeRTOS projects using WM8904| | x |
-| audio_tone | added bare metal and FreeRTOS projects using WM8904 | x | |
-| audio_tone | added project using AK4954 | | x |
-| microphone_loopback | added bare metal and FreeRTOS projects using WM8904 | x | |
-| usb_speaker | added FreeRTOS project | | x |
+| audio_player_basic | Added project using WM8904 and SD card instead of USB, including FreeRTOS version | x | |
+| audio_player_basic | Added graphics and FreeRTOS projects using WM8904| | x |
+| audio_tone | Added bare metal and FreeRTOS projects using WM8904 | x | |
+| audio_tone | Added project using AK4954 | | x |
+| microphone_loopback | Added bare metal and FreeRTOS projects using WM8904 | x | |
+| usb_speaker | Added FreeRTOS project | | x |
 
 - **Updated Applications/Projects**
 
@@ -197,7 +208,7 @@ The following table provides the list of updated applications/projects:
 
 | Application | Description | E54 | E70 |
 | --- | --- | --- | --- |
-| audio_player_basic | all projects now use WAV library instead of inline decoding; fixed issue in WAV decoder where inSize argument was ignored and substituted with a fixed length | | x |
+| audio_player_basic | All projects now use WAV library instead of inline decoding; fixed issue in WAV decoder where inSize argument was ignored and substituted with a fixed length | | x |
 
 - **New Drivers**
 
@@ -230,9 +241,9 @@ The following table provides the list of new applications/projects for the SAM E
 
 | Application | Description |
 | --- | --- |
-| audio_enc |  records and encodes PCM audio with optional playback, including a FreeRTOS project |
-| audio_signal_generator | generates audio sine, square, sawtooth and triangle waves using SSC with graphics display |
-| usb_speaker | plays audio from a USB host such as a PC |
+| audio_enc |  Records and encodes PCM audio with optional playback, including a FreeRTOS project |
+| audio_signal_generator | Generates audio sine, square, sawtooth and triangle waves using SSC with graphics display |
+| usb_speaker | Plays audio from a USB host such as a PC |
 
 - **Updated Drivers**
 
@@ -248,8 +259,8 @@ The following table provides the list of updated applications for the SAM E70:
 
 | Application | Description |
 | --- | --- |
-| audio_player_basic | fixed a bug that caused slow playback of 96K sample rate WAVE files |
-| microphone_loopback | added graphics and FreeRTOS projects |
+| audio_player_basic | Fixed a bug that caused slow playback of 96K sample rate WAVE files |
+| microphone_loopback | Added graphics and FreeRTOS projects |
 
 ## Audio Release v3.1.0 (January, 2019)
 ### ADDITIONS FOR 3.1.0:
@@ -276,17 +287,17 @@ The following table provides the list of new applications for the SAM E70:
 
 | Application | Description |
 | --- | --- |
-| audio_player_basic | plays PCM wave files from USB dongle using SSC|
-| audio_tone |  sine wave audio tone generator using I2SC or SSC, including a FreeRTOS project|
-| audio_tone_linkeddma | sine wave audio tone generator using linked DMA and I2SC or SSC |
-| microphone_loopback | outputs audio from microphone after optional delay using I2SC |
+| audio_player_basic | Plays PCM wave files from USB dongle using SSC|
+| audio_tone |  Sine wave audio tone generator using I2SC or SSC, including a FreeRTOS project|
+| audio_tone_linkeddma | Sine wave audio tone generator using linked DMA and I2SC or SSC |
+| microphone_loopback | Outputs audio from microphone after optional delay using I2SC |
 
 The following table provides the list of new applications for the SAM V71:
 
 | Application | Description |
 | --- | --- |
-| audio_tone |  sine wave audio tone generator using SSC |
-| microphone_loopback | outputs audio from microphone after optional delay using SSC |
+| audio_tone |  Sine wave audio tone generator using SSC |
+| microphone_loopback | Outputs audio from microphone after optional delay using SSC |
 
 
 
