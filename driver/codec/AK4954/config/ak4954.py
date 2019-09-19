@@ -76,6 +76,16 @@ def instantiateComponent(ak4954Component):
     ak4954I2SDriver.setReadOnly(True)
     ak4954I2SDriver.setDefaultValue("I2S")
 
+    ak4954I2SDriverIndex = ak4954Component.createStringSymbol("DRV_AK4954_I2S_INDEX", None)
+    ak4954I2SDriverIndex.setVisible(False)
+    ak4954I2SDriverIndex.setReadOnly(True)
+    ak4954I2SDriverIndex.setDefaultValue("DRV_I2S_INDEX")
+
+    ak4954I2CDriverIndex = ak4954Component.createStringSymbol("DRV_AK4954_I2C_INDEX", None)
+    ak4954I2CDriverIndex.setVisible(False)
+    ak4954I2CDriverIndex.setReadOnly(True)
+    ak4954I2CDriverIndex.setDefaultValue("DRV_I2C_INDEX")
+
     ak4954Mode = ak4954Component.createKeyValueSetSymbol("DRV_AK4954_MASTER_MODE", None)
     ak4954Mode.setVisible(True)
     ak4954Mode.setLabel("Usage Mode")
@@ -179,7 +189,8 @@ def instantiateComponent(ak4954Component):
     ak4954SymHeaderFile.setOverwrite(True)
     
     ak4954SymSourceFile = ak4954Component.createFileSymbol("DRV_AK4954_SOURCE", None)
-    ak4954SymSourceFile.setSourcePath("codec/AK4954/src/drv_ak4954.c")
+    ak4954SymSourceFile.setMarkup(True) 
+    ak4954SymSourceFile.setSourcePath("codec/AK4954/templates/drv_ak4954.c.ftl")
     ak4954SymSourceFile.setOutputName("drv_ak4954.c")
     ak4954SymSourceFile.setDestPath("audio/driver/codec/ak4954/")
     ak4954SymSourceFile.setProjectPath("config/" + configName + "/audio/driver/codec/ak4954/")
@@ -232,12 +243,16 @@ def instantiateComponent(ak4954Component):
 
 # this callback occurs when user connects I2C or I2S driver to AK4954 driver block in Project Graph    
 def onDependencyConnected(info):
-    global i2sPlibId
     if info["dependencyID"] == "DRV_I2S":
-        plibUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2S")
+        drvUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2S")
         i2sOri2cId = info["remoteComponent"].getID().upper()
         i2sOri2cId = i2sOri2cId.replace("A_","")    # I2S driver in audio repo have an "a_" prefix
+        drvIndexUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2S_INDEX")
+        i2sOri2cIndex = i2sOri2cId.replace("I2S_","I2S_INDEX_")    # DRV_I2S_1 => DRV_I2S_INDEX_1
     elif info["dependencyID"] == "DRV_I2C":
-        plibUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2C")
-        i2sOri2cId = info["remoteComponent"].getID().upper()   
-    plibUsed.setValue(i2sOri2cId, 1)
+        drvUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2C")
+        i2sOri2cId = info["remoteComponent"].getID().upper()
+        drvIndexUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2C_INDEX")
+        i2sOri2cIndex = i2sOri2cId.replace("I2C_","I2C_INDEX_")    # DRV_I2C_0 => DRV_I2C_INDEX_0   
+    drvUsed.setValue(i2sOri2cId, 1)
+    drvIndexUsed.setValue(i2sOri2cIndex, 1)

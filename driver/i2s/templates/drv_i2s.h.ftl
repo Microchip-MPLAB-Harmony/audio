@@ -1430,8 +1430,13 @@ bool DRV_I2S_ClockGenerationSet(DRV_HANDLE handle,
                                 uint8_t div2);
 /**************** End of SAM E70 specific code ********************/
 </#if>
+<#if __PROCESSOR?matches("PIC32M.*") == true>
 
+uint32_t DRV_I2S_RefClockSet(DRV_HANDLE handle, uint32_t sysclk, uint32_t samplingRate, uint32_t mclk_sampleRate_multiplier);
+uint32_t DRV_I2S_BaudRateSet(DRV_HANDLE handle, uint32_t bitClk, uint32_t baudRate);
+</#if>
 <#if DRV_I2S_DMA_LL_ENABLE == true>
+
 typedef void (*DRV_I2S_LL_CALLBACK)();
 void DRV_I2S_InitWriteLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,
     uint16_t currDescrip, uint16_t nextDescrip, uint8_t* buffer, uint32_t bufferSize);

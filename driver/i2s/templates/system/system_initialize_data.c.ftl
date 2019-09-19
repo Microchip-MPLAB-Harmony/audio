@@ -12,6 +12,10 @@ DRV_I2S_PLIB_INTERFACE drvI2S${INDEX?string}PlibAPI =
     .I2S_PCLK_SET       = (DRV_I2S_PCLK_SET) ${DRV_I2S_PLIB}_ProgrammableClockSet,
 /************************ End of SAM E70 specific code ***********************/
 </#if>
+<#if __PROCESSOR?matches("PIC32M.*") == true>
+    .I2S_RefClockSet = (DRV_I2S_REFCLOCKSET) ${DRV_I2S_PLIB}_RefClockSet,
+    .I2S_BaudRateSet = (DRV_I2S_BAUDRATESET) ${DRV_I2S_PLIB}_BaudRateSet,
+</#if>
 };
 
 /* I2S Driver Initialization Data */

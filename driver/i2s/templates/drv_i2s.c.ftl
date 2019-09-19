@@ -1322,8 +1322,44 @@ bool DRV_I2S_ClockGenerationSet(const DRV_HANDLE handle,
 }
 /**************** End of SAM E70 specific code ********************/
 </#if>
+<#if __PROCESSOR?matches("PIC32M.*") == true>
 
+uint32_t DRV_I2S_RefClockSet(DRV_HANDLE handle,uint32_t sysclk, uint32_t samplingRate, uint32_t mclk_sampleRate_multiplier)
+{
+    DRV_I2S_OBJ * dObj = NULL;
+    DRV_I2S_PLIB_INTERFACE * i2s;
+
+    /* Validate the Request */
+    if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
+    {
+        return false;
+    }
+
+    dObj = &gDrvI2SObj[handle];
+    i2s  = dObj->i2sPlib;
+
+    return (i2s->I2S_RefClockSet)(sysclk, samplingRate, mclk_sampleRate_multiplier);
+}
+
+uint32_t DRV_I2S_BaudRateSet(DRV_HANDLE handle, uint32_t bitClk, uint32_t baudRate)
+{
+    DRV_I2S_OBJ * dObj = NULL;
+    DRV_I2S_PLIB_INTERFACE * i2s;
+
+    /* Validate the Request */
+    if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
+    {
+        return false;
+    }
+
+    dObj = &gDrvI2SObj[handle];
+    i2s  = dObj->i2sPlib;
+
+    return (i2s->I2S_BaudRateSet)(bitClk, baudRate);
+}
+</#if>
 <#if DRV_I2S_DMA_LL_ENABLE == true>
+
 __attribute__((__aligned__(32))) static XDMAC_DESCRIPTOR_CONTROL _firstDescriptorControl =
 {
     .fetchEnable = 1,

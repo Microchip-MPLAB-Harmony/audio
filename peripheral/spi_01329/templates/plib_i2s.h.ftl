@@ -58,6 +58,9 @@ void ${I2S_INSTANCE_NAME}_Initialize ( void );
 
 uint32_t ${I2S_INSTANCE_NAME}_LRCLK_Get(void);
 
+uint32_t ${I2S_INSTANCE_NAME}_RefClockSet(uint32_t sysclk, uint32_t samplingRate, uint32_t mclk_sampleRate_multiplier);
+uint32_t ${I2S_INSTANCE_NAME}_BaudRateSet(uint32_t bitClk, uint32_t baudRate);
+
 /* Provide C++ Compatibility */
 #ifdef __cplusplus
 
