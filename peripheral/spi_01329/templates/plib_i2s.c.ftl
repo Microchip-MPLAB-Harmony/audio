@@ -230,7 +230,7 @@ uint32_t ${I2S_INSTANCE_NAME}_RefClockSet(uint32_t sysclk, uint32_t samplingRate
 <#if __PROCESSOR?matches("PIC32MZ.*") == true>
     printf("                  %08x %08x\r\n",REFO1CON,REFO1TRIM);   
 <#elseif __PROCESSOR?matches("PIC32MX.*") == true>
-    printf("                  %08x %08x\r\n",REFOCON,REFOTRIM)
+    printf("                  %08x %08x\r\n",REFOCON,REFOTRIM);
 </#if>       
     return calcSamplingrate;
 }
