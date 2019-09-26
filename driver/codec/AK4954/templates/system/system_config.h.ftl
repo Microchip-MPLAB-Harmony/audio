@@ -24,6 +24,7 @@
 #define DRV_AK4954_MIC_GAIN	                      	        ${DRV_AK4954_MIC_GAIN}
 #define DRV_AK4954_MCLK_SAMPLE_FREQ_MULTPLIER               256
 #define DRV_AK4954_BCLK_BIT_CLK_DIVISOR                     4
+#define DRV_AK4954_DELAY_INITIALIZATION                     ${DRV_AK4954_DELAY_INITIALIZATION?c}
 
 <#-- Instance 0 -->
 <#if DRV_CODEC_AK4954_INST_IDX0 == true>
@@ -71,4 +72,6 @@
 #define DRV_CODEC_MicMuteOn                                 DRV_AK4954_MicMuteOn
 #define DRV_CODEC_MicMuteOff                                DRV_AK4954_MicMuteOff
 #define DRV_CODEC_GetI2SDriver                              DRV_AK4954_GetI2SDriver
-#define DRV_CODEC_LRCLK_Sync                                DRV_AK4954_LRCLK_Sync 
+#define DRV_CODEC_LRCLK_Sync                                DRV_AK4954_LRCLK_Sync
+#define DRV_CODEC_EnableInitialization                      DRV_AK4954_EnableInitialization    
+#define DRV_CODEC_IsInitializationDelayed                   DRV_AK4954_IsInitializationDelayed         

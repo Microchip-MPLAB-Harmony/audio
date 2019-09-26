@@ -116,6 +116,11 @@ def instantiateComponent(ak4954Component):
     ak4954Volume.setLabel("Volume for the Codec in range 0(Min) to 255(Max)")
     ak4954Volume.setDefaultValue(200)
 
+    ak4954DelayInit = ak4954Component.createBooleanSymbol("DRV_AK4954_DELAY_INITIALIZATION", None)
+    ak4954DelayInit.setVisible(True)
+    ak4954DelayInit.setDefaultValue(False)
+    ak4954DelayInit.setLabel("Delay driver initialization (due to shared RESET pin)")
+
     ak4954Format = ak4954Component.createKeyValueSetSymbol("DRV_AK4954_AUDIO_DATA_FORMAT", None)
     ak4954Format.setVisible(True)
     ak4954Format.setLabel("Audio Data Format")

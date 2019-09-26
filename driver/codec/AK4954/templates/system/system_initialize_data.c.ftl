@@ -8,12 +8,10 @@ const DRV_AK4954_INIT drvak4954Codec0InitData =
     .masterMode = DRV_AK4954_MASTER_MODE,
     .samplingRate = DRV_AK4954_AUDIO_SAMPLING_RATE,
     .volume = DRV_AK4954_VOLUME,
-<#if DRV_AK4954_DELAY_INITIALIZATION?has_content>
-    .delayDriverInitialization = DRV_AK4954_DELAY_INITIALIZATION,
-</#if>
     .audioDataFormat = DRV_AK4954_AUDIO_DATA_FORMAT_MACRO,
     .whichMicInput = DRV_AK4954_WHICH_MIC_INPUT,
     .enableMicBias = DRV_AK4954_ENABLE_MIC_BIAS,
-    .micGain = DRV_AK4954_MIC_GAIN
+    .micGain = DRV_AK4954_MIC_GAIN,
+    .delayDriverInitialization = DRV_AK4954_DELAY_INITIALIZATION,
 };
 </#if>
