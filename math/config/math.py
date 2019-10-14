@@ -317,6 +317,17 @@ def enableDspNFOS(symbol, event):
 ############################################################################
 ################################################################################
 def instantiateComponent(mathComponent):
+
+    #NOTE:  1) The component consists of symbols whose configuration values are 
+    #       set using the MHC GUI.  
+    #       2) Each symbol has a default value and
+    #       a visibility.
+    #       3) The configuration symbol are placed in a tree hierarchy under
+    #          menu symbols, as rendered for the display
+    #       4) Global symbols can be used for the FreeMarker template code
+    #          generation.
+
+    # Global Configuration Symbols
     global CONFIG_USE_LIBQ_C_LIBRARY
     global CONFIG_USE_LIBQ_LIBRARY
     global CONFIG_USE_LIBQ_NFO3_LIBRARY
@@ -332,56 +343,59 @@ def instantiateComponent(mathComponent):
     CONFIG_USE_LIBQ_C_LIBRARY.setDefaultValue(True)
     CONFIG_USE_LIBQ_C_LIBRARY.setDependencies(enableLibqC, ["CONFIG_USE_LIBQ_C_LIBRARY"])
 
-    #LIBQ Library 
-    CONFIG_LIBQ_ENABLE= mathComponent.createMenuSymbol("LIBQ_SELECT", None)
-    CONFIG_LIBQ_ENABLE.setLabel("LIBQ Library")	
-    CONFIG_LIBQ_ENABLE.setVisible(True)
+    #LIBQ Library - menu Symbol 
+    CONFIG_USE_LIBQ_LIBRARY = mathComponent.createMenuSymbol("LIBQ_SELECT", None)
+    CONFIG_USE_LIBQ_LIBRARY.setLabel("LIBQ Library")	
+    CONFIG_USE_LIBQ_LIBRARY.setVisible(True)
 
 
     #Enable LIBQ nfO3 Version - based on checkbox symbol CONFIG_USE_LIBQ_NFO3_LIBRARY and PIC32MZ
     #--under CONFIG_LIBQ_ENABLE Symbol
-    CONFIG_USE_LIBQ_NFO3_LIBRARY = mathComponent.createBooleanSymbol("CONFIG_USE_LIBQ_NFO3_LIBRARY", CONFIG_LIBQ_ENABLE)
+    CONFIG_USE_LIBQ_NFO3_LIBRARY = mathComponent.createBooleanSymbol("CONFIG_USE_LIBQ_NFO3_LIBRARY", CONFIG_USE_LIBQ_LIBRARY)
     CONFIG_USE_LIBQ_NFO3_LIBRARY.setVisible(True)
     CONFIG_USE_LIBQ_NFO3_LIBRARY.setLabel("Enable LIBQ Speed Optimized (O3) - No FPU Library")
     CONFIG_USE_LIBQ_NFO3_LIBRARY.setDefaultValue(True)
     CONFIG_USE_LIBQ_NFO3_LIBRARY.setDependencies(enableLibqNFO3, ["CONFIG_USE_LIBQ_NFO3_LIBRARY"])
 
     #Enable LIBQ nfOs Version - based on checkbox symbol CONFIG_USE_LIBQ_NFOS_LIBRARY and PIC32MZ
-    #--under CONFIG_LIBQ_ENABLE Symbol
-    CONFIG_USE_LIBQ_NFOS_LIBRARY = mathComponent.createBooleanSymbol("CONFIG_USE_LIBQ_NFOS_LIBRARY",
-        CONFIG_LIBQ_ENABLE)
+    #--under CONFIG_USE_LIBQ_LIBRARY Symbol
+    CONFIG_USE_LIBQ_NFOS_LIBRARY = mathComponent.createBooleanSymbol("CONFIG_USE_LIBQ_NFOS_LIBRARY", CONFIG_USE_LIBQ_LIBRARY)
     CONFIG_USE_LIBQ_NFOS_LIBRARY.setVisible(True)
     CONFIG_USE_LIBQ_NFOS_LIBRARY.setLabel("Enable LIBQ Optimize for Space(Os) - No FPU Library")
     CONFIG_USE_LIBQ_NFOS_LIBRARY.setDefaultValue(False)
     CONFIG_USE_LIBQ_NFOS_LIBRARY.setDependencies(enableLibqNFOS, ["CONFIG_USE_LIBQ_NFOS_LIBRARY"])
 
     #DSP Library 
-    CONFIG_DSP_ENABLE= mathComponent.createMenuSymbol("DSP_SELECT", None)
-    CONFIG_DSP_ENABLE.setLabel("DSP Library")
-    CONFIG_DSP_ENABLE.setVisible(True)
+    CONFIG_USE_DSP_LIBRARY = mathComponent.createMenuSymbol("DSP_SELECT", None)
+    CONFIG_USE_DSP_LIBRARY .setLabel("DSP Library")
+    CONFIG_USE_DSP_LIBRARY .setVisible(True)
 
     #Enable DSP nfO3 Version - based on checkbox symbol CONFIG_USE_LIBQ_NFO3_LIBRARY and PIC32MZ
-    #--under CONFIG_DSP_ENABLE Symbol
-    CONFIG_USE_DSP_NFO3_LIBRARY = mathComponent.createBooleanSymbol("CONFIG_USE_DSP_NFO3_LIBRARY", CONFIG_DSP_ENABLE)
+    #--under CONFIG_USE_DSP_LIBRARY Symbol
+    CONFIG_USE_DSP_NFO3_LIBRARY = mathComponent.createBooleanSymbol("CONFIG_USE_DSP_NFO3_LIBRARY", CONFIG_USE_DSP_LIBRARY) 
     CONFIG_USE_DSP_NFO3_LIBRARY.setVisible(True)
     CONFIG_USE_DSP_NFO3_LIBRARY.setLabel("Enable DSP Speed Optimized (O3) - No FPU Library")
     CONFIG_USE_DSP_NFO3_LIBRARY.setDefaultValue(True)
     CONFIG_USE_DSP_NFO3_LIBRARY.setDependencies(enableDspNFO3, ["CONFIG_USE_DSP_NFO3_LIBRARY"])
 
     #Enable DSP nfOs Version - based on checkbox symbol CONFIG_USE_DSP_NFOS_LIBRARY and PIC32MZ
-    #--under CONFIG_DSP_ENABLE Symbol
-    CONFIG_USE_DSP_NFOS_LIBRARY = mathComponent.createBooleanSymbol("CONFIG_USE_DSP_NFOS_LIBRARY",
-        CONFIG_DSP_ENABLE)
+    #--under CONFIG_USE_DSP_LIBRARY Symbol
+    CONFIG_USE_DSP_NFOS_LIBRARY = mathComponent.createBooleanSymbol("CONFIG_USE_DSP_NFOS_LIBRARY", CONFIG_USE_DSP_LIBRARY)
     CONFIG_USE_DSP_NFOS_LIBRARY.setVisible(True)
     CONFIG_USE_DSP_NFOS_LIBRARY.setLabel("Enable DSP Optimize for Space(Os) - No FPU Library")
     CONFIG_USE_DSP_NFOS_LIBRARY.setDefaultValue(False)
     CONFIG_USE_DSP_NFOS_LIBRARY.setDependencies(enableDspNFOS, ["CONFIG_USE_DSP_NFOS_LIBRARY"])
 
-
-    #====================================================
+    #============================================================================
     # Start of Code Generation - Audio Math Component    
-    #====================================================
-
+    #
+    # NOTES: 1) Unique File Symbols are created
+    #        2) The File Symbols are enabled based on the MHC configutation
+    #           symbol values.  The file will be generated if the file symbol
+    #           is enabled.
+    #        3) The type of file determines where in the project it will be
+    #           generated.
+    #============================================================================
     configName = Variables.get("__CONFIGURATION_NAME")  # e.g. "default"
     processor = Variables.get("__PROCESSOR")
 
@@ -418,6 +432,44 @@ def instantiateComponent(mathComponent):
             exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/math/libq_c\")")
         exec(symbol + ".setType(\"" + type + "\")")
         exec(symbol + ".setEnabled(CONFIG_USE_LIBQ_C_LIBRARY.getValue() == True)")
+
+    #LIBQ Header file generation
+    if ("PIC32MZ" in Variables.get("__PROCESSOR")):
+        Log.writeInfoMessage("LIBQ Header Code Generation")
+        for fileSymbol, srcPath, filename, destPath in libq_Table:
+            Log.writeInfoMessage("    filename:  " + filename)
+            Log.writeInfoMessage("    srcPath:  " + srcPath)
+            Log.writeInfoMessage("    destPath:  " + destPath)
+            Log.writeInfoMessage("    fileSymbol:  " + fileSymbol)
+
+            # Set type
+            baseFileName = os.path.splitext(filename)[0]
+            ext = os.path.splitext(filename)[-1].lower()
+            if ext in src_ext:
+                type = "SOURCE"
+            elif ext in hdr_ext:
+                type = "HEADER"
+            elif ext in mips_ext:
+                type = "SOURCE"
+            elif ext in mipslib_ext:
+                type = "SOURCE"
+            else:
+                type = "IMPORTANT"
+
+            # Create unique filename symbol
+            symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+            Log.writeInfoMessage("    code SYMBOL: " + symbol + "\n")
+
+            exec(symbol + " = mathComponent.createFileSymbol(\"" + symbol + "\", None)")
+            exec(symbol + ".setSourcePath(\"" + srcPath + filename + "\")")
+            exec(symbol + ".setOutputName(\"" + filename +           "\")")
+            exec(symbol + ".setDestPath(  \"" + destPath +       "\")")
+            if (type == "HEADER"):
+                exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/math/libq\")")
+            else:
+                exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/math/libq\")")
+            exec(symbol + ".setType(\"" + type + "\")")
+            exec(symbol + ".setEnabled(CONFIG_USE_LIBQ_NFO3_LIBRARY.getValue() == True or CONFIG_USE_LIBQ_NFOS_LIBRARY.getValue() == True)")
 
     #LIBQ NFO3 Code Generation
     if ("PIC32MZ" in Variables.get("__PROCESSOR")):
@@ -497,7 +549,44 @@ def instantiateComponent(mathComponent):
 #????
             exec(symbol + ".setEnabled(CONFIG_USE_LIBQ_NFOS_LIBRARY.getValue() == True)")
 
+    #DSP Header file generation
+    if ("PIC32MZ" in Variables.get("__PROCESSOR")):
+        Log.writeInfoMessage("DSP Header Code Generation")
+        for fileSymbol, srcPath, filename, destPath in dsp_Table:
+            Log.writeInfoMessage("    filename:  " + filename)
+            Log.writeInfoMessage("    srcPath:  " + srcPath)
+            Log.writeInfoMessage("    destPath:  " + destPath)
+            Log.writeInfoMessage("    fileSymbol:  " + fileSymbol)
 
+            # Set type
+            baseFileName = os.path.splitext(filename)[0]
+            ext = os.path.splitext(filename)[-1].lower()
+            if ext in src_ext:
+                type = "SOURCE"
+            elif ext in hdr_ext:
+                type = "HEADER"
+            elif ext in mips_ext:
+                type = "SOURCE"
+            elif ext in mipslib_ext:
+                type = "SOURCE"
+            else:
+                type = "IMPORTANT"
+
+            # Create unique filename symbol
+            symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+            Log.writeInfoMessage("    code SYMBOL: " + symbol + "\n")
+
+            exec(symbol + " = mathComponent.createFileSymbol(\"" + symbol + "\", None)")
+            exec(symbol + ".setSourcePath(\"" + srcPath + filename + "\")")
+            exec(symbol + ".setOutputName(\"" + filename +           "\")")
+            exec(symbol + ".setDestPath(  \"" + destPath +       "\")")
+            if (type == "HEADER"):
+                exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/math/dsp\")")
+            else:
+                exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/math/dsp\")")
+            exec(symbol + ".setType(\"" + type + "\")")
+#????
+            exec(symbol + ".setEnabled(CONFIG_USE_DSP_NFO3_LIBRARY.getValue() == True or CONFIG_USE_DSP_NFOS_LIBRARY.getValue() == True)")
 
     #DSP NFO3 Code Generation
     if ("PIC32MZ" in Variables.get("__PROCESSOR")):

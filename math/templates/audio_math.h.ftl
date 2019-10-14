@@ -52,12 +52,12 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "math/libq_c.h"
 </#if>
 
-<#if CONFIG_USE_LIBQ_LIBRARY == true>
+<#if CONFIG_USE_LIBQ_NFO3_LIBRARY == true || CONFIG_USE_LIBQ_NFOS_LIBRARY == true >
 #include "math/libq/libq.h"
 </#if>
 
-<#if CONFIG_USE_LIBDSP_LIBRARY == true>
-#include "math/libdsp/libdsp.h"
+<#if CONFIG_USE_DSP_NFO3_LIBRARY == true || CONFIG_USE_DSP_NFOS_LIBRARY>
+#include "math/dsp/dsp.h"
 </#if>
 
 <#--
