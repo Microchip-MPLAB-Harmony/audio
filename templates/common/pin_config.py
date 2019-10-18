@@ -59,6 +59,7 @@ def resetPinsPIC32M(pinConfigs):
 		Database.setSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_FUNCTION_TYPE", "Available", 1)
 		Database.clearSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_DIR")
 		Database.clearSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_LAT")
+		Database.clearSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_OD")
 		Database.clearSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_PERIPHERAL_FUNCTION")
 
 def configurePinsPIC32M(pinConfigs):
@@ -67,6 +68,7 @@ def configurePinsPIC32M(pinConfigs):
 		Database.clearSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_FUNCTION_NAME")
 		Database.clearSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_FUNCTION_TYPE")
 		Database.clearSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_DIR")
+		Database.clearSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_OD")
 		### Comment out clear of Pin Latch, it looks like if latch symbol is cleared it couldn't
 		### be changed from low
 		#Database.clearSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_LAT")
@@ -77,5 +79,6 @@ def configurePinsPIC32M(pinConfigs):
 			Database.setSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_FUNCTION_NAME", pinConfig["name"], 1)
 			Database.setSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_DIR", pinConfig["direction"], 1)
 			Database.setSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_LAT", pinConfig["latch"], 1)
+			Database.setSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_OD", pinConfig["opendrain"], 1)
 		else:
 			Database.setSymbolValue("core", "BSP_PIN_" + str(pinConfig["pin"]) + "_PERIPHERAL_FUNCTION", pinConfig["abcd"], 1)
