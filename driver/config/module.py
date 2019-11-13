@@ -40,6 +40,12 @@ def loadModule():
     # Add Generic Dependency on Core Service
     Component.addDependency("drv_" + Name + "_HarmonyCoreDependency", "Core Service", "Core Service", True, True)
 
+    component = Module.CreateComponent("audio_codec_ak4953", "AK4953", "/Audio/Drivers/Codec/", "codec/AK4953/config/ak4953.py")
+    component.setDisplayType("Driver")
+    component.addDependency("DRV_I2C", "DRV_I2C", False)
+    component.addDependency("DRV_I2S", "DRV_I2S", False)
+    component.addCapability("audio_codec", "Audio Codec", False)
+
     component = Module.CreateComponent("audio_codec_ak4954", "AK4954", "/Audio/Drivers/Codec/", "codec/AK4954/config/ak4954.py")
     component.setDisplayType("Driver")
     component.addDependency("DRV_I2C", "DRV_I2C", False)
