@@ -102,6 +102,7 @@ def instantiateComponent(i2sComponent, index):
     dmaChannelRequests = []
 
     series = ATDF.getNode("/avr-tools-device-file/devices/device").getAttribute("series")
+    processor = Variables.get( "__PROCESSOR" )
         
     # Enable "Generate Harmony Driver Common Files" option in MHC
     if (Database.getSymbolValue("HarmonyCore", "ENABLE_DRV_COMMON") == False):
@@ -189,15 +190,20 @@ def instantiateComponent(i2sComponent, index):
     i2sDMAInt = i2sComponent.createStringSymbol("DMA_INSTANCE_NAME", None)  # used only for E54
     i2sDMAInt.setVisible(False)
 
-    i2sDMALinkedList = i2sComponent.createBooleanSymbol("DRV_I2S_DMA_LL_ENABLE", None)
-    i2sDMALinkedList.setLabel("Include Linked List DMA Functions?")
-    i2sDMALinkedList.setDefaultValue(False)
-    i2sDMALinkedList.setDependencies(customUpdate, ["DRV_I2S_DMA_LL_ENABLE"])
-    
-    # create comment to be shown first time user clicks on Linked List option
-    i2sLinkedListComment = i2sComponent.createCommentSymbol("DRV_I2S_DMA_LL_COMMENT", None)
-    i2sLinkedListComment.setVisible(customVisible)
-    i2sLinkedListComment.setLabel('"Use Linked List Mode" must also be checked under System -> DMA (XDMAC)')
+    if "SAME70" in processor:
+        i2sDMALinkedList = i2sComponent.createBooleanSymbol("DRV_I2S_DMA_LL_ENABLE", None)
+        i2sDMALinkedList.setLabel("Include Linked List DMA Functions?")
+        i2sDMALinkedList.setDefaultValue(False)
+        i2sDMALinkedList.setDependencies(customUpdate, ["DRV_I2S_DMA_LL_ENABLE"])
+        
+        # create comment to be shown first time user clicks on Linked List option
+        i2sLinkedListComment = i2sComponent.createCommentSymbol("DRV_I2S_DMA_LL_COMMENT", None)
+        i2sLinkedListComment.setVisible(customVisible)
+        i2sLinkedListComment.setLabel('"Use Linked List Mode" must also be checked under System -> DMA (XDMAC)')
+    else:
+        i2sDMALinkedList = i2sComponent.createBooleanSymbol("DRV_I2S_DMA_LL_ENABLE", None)
+        i2sDMALinkedList.setVisible(False)
+        i2sDMALinkedList.setDefaultValue(False)
 
     ############################################################################
     #### Code Generation ####
