@@ -76,6 +76,16 @@ def instantiateComponent(ak4953Component):
     ak4953I2SDriver.setReadOnly(True)
     ak4953I2SDriver.setDefaultValue("I2S")
 
+    ak4953I2SDriverIndex = ak4953Component.createStringSymbol("DRV_AK4953_I2S_INDEX", None)
+    ak4953I2SDriverIndex.setVisible(False)
+    ak4953I2SDriverIndex.setReadOnly(True)
+    ak4953I2SDriverIndex.setDefaultValue("DRV_I2S_INDEX")
+
+    ak4953I2CDriverIndex = ak4953Component.createStringSymbol("DRV_AK4953_I2C_INDEX", None)
+    ak4953I2CDriverIndex.setVisible(False)
+    ak4953I2CDriverIndex.setReadOnly(True)
+    ak4953I2CDriverIndex.setDefaultValue("DRV_I2C_INDEX")
+
     ak4953Mode = ak4953Component.createKeyValueSetSymbol("DRV_AK4953_MASTER_MODE", None)
     ak4953Mode.setVisible(True)
     ak4953Mode.setLabel("Usage Mode")
@@ -105,6 +115,11 @@ def instantiateComponent(ak4953Component):
     ak4953Volume.setVisible(True)
     ak4953Volume.setLabel("Volume for the Codec in range 0(Min) to 255(Max)")
     ak4953Volume.setDefaultValue(200)
+
+    ak4953DelayInit = ak4953Component.createBooleanSymbol("DRV_AK4953_DELAY_INITIALIZATION", None)
+    ak4953DelayInit.setVisible(False)
+    ak4953DelayInit.setDefaultValue(False)
+    ak4953DelayInit.setLabel("Delay driver initialization (due to shared RESET pin)")
 
     ak4953Format = ak4953Component.createKeyValueSetSymbol("DRV_AK4953_AUDIO_DATA_FORMAT", None)
     ak4953Format.setVisible(True)
@@ -179,7 +194,8 @@ def instantiateComponent(ak4953Component):
     ak4953SymHeaderFile.setOverwrite(True)
     
     ak4953SymSourceFile = ak4953Component.createFileSymbol("DRV_AK4953_SOURCE", None)
-    ak4953SymSourceFile.setSourcePath("codec/AK4953/src/drv_ak4953.c")
+    ak4953SymSourceFile.setMarkup(True) 
+    ak4953SymSourceFile.setSourcePath("codec/AK4953/templates/drv_ak4953.c.ftl")
     ak4953SymSourceFile.setOutputName("drv_ak4953.c")
     ak4953SymSourceFile.setDestPath("audio/driver/codec/ak4953/")
     ak4953SymSourceFile.setProjectPath("config/" + configName + "/audio/driver/codec/ak4953/")
@@ -232,12 +248,16 @@ def instantiateComponent(ak4953Component):
 
 # this callback occurs when user connects I2C or I2S driver to AK4953 driver block in Project Graph    
 def onDependencyConnected(info):
-    global i2sPlibId
     if info["dependencyID"] == "DRV_I2S":
-        plibUsed = info["localComponent"].getSymbolByID("DRV_AK4953_I2S")
+        drvUsed = info["localComponent"].getSymbolByID("DRV_AK4953_I2S")
         i2sOri2cId = info["remoteComponent"].getID().upper()
         i2sOri2cId = i2sOri2cId.replace("A_","")    # I2S driver in audio repo have an "a_" prefix
+        drvIndexUsed = info["localComponent"].getSymbolByID("DRV_AK4953_I2S_INDEX")
+        i2sOri2cIndex = i2sOri2cId.replace("I2S_","I2S_INDEX_")    # DRV_I2S_1 => DRV_I2S_INDEX_1
     elif info["dependencyID"] == "DRV_I2C":
-        plibUsed = info["localComponent"].getSymbolByID("DRV_AK4953_I2C")
-        i2sOri2cId = info["remoteComponent"].getID().upper()   
-    plibUsed.setValue(i2sOri2cId, 1)
+        drvUsed = info["localComponent"].getSymbolByID("DRV_AK4953_I2C")
+        i2sOri2cId = info["remoteComponent"].getID().upper()
+        drvIndexUsed = info["localComponent"].getSymbolByID("DRV_AK4953_I2C_INDEX")
+        i2sOri2cIndex = i2sOri2cId.replace("I2C_","I2C_INDEX_")    # DRV_I2C_0 => DRV_I2C_INDEX_0   
+    drvUsed.setValue(i2sOri2cId, 1)
+    drvIndexUsed.setValue(i2sOri2cIndex, 1)

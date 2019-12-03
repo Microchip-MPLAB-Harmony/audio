@@ -22,11 +22,14 @@
 #define DRV_AK4953_WHICH_MIC_INPUT                          ${DRV_AK4953_WHICH_MIC_INPUT}
 #define DRV_AK4953_ENABLE_MIC_BIAS                          ${DRV_AK4953_ENABLE_MIC_BIAS?c}
 #define DRV_AK4953_MIC_GAIN	                      	        ${DRV_AK4953_MIC_GAIN}
+#define DRV_AK4953_MCLK_SAMPLE_FREQ_MULTPLIER               256
+#define DRV_AK4953_BCLK_BIT_CLK_DIVISOR                     4
+#define DRV_AK4953_DELAY_INITIALIZATION                     ${DRV_AK4953_DELAY_INITIALIZATION?c}
 
 <#-- Instance 0 -->
 <#if DRV_CODEC_AK4953_INST_IDX0 == true>
-#define DRV_AK4953_I2S_DRIVER_MODULE_INDEX_IDX0             DRV_I2S_INDEX_0
-#define DRV_AK4953_I2C_DRIVER_MODULE_INDEX_IDX0             DRV_I2C_INDEX_0
+#define DRV_AK4953_I2S_DRIVER_MODULE_INDEX_IDX0             ${DRV_AK4953_I2S_INDEX}
+#define DRV_AK4953_I2C_DRIVER_MODULE_INDEX_IDX0             ${DRV_AK4953_I2C_INDEX}
 </#if> 
 /* CODEC Driver Abstraction definition */
 

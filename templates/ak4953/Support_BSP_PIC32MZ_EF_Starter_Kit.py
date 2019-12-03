@@ -22,21 +22,22 @@
 # THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 ##############################################################################
 
-pic32mzBtadkI2sComponentIDList = ["a_drv_i2s", "drv_i2c", "i2c1", "a_i2s1", "sys_time", "core_timer"]		
-pic32mzBtadkI2sAutoConnectList = [["audio_codec_ak4953", "DRV_I2S", "a_drv_i2s_0", "drv_i2s"],
+pic32mzefSkI2sComponentIDList = ["a_drv_i2s", "drv_i2c", "i2c_bb", "a_i2s1", "tmr2", "sys_time", "core_timer"]		
+pic32mzefSkI2sAutoConnectList = [["audio_codec_ak4953", "DRV_I2S", "a_drv_i2s_0", "drv_i2s"],
                       ["a_drv_i2s_0", "drv_i2s_I2S_dependency", "a_i2s1", "SPI1_I2S"],
                       ["audio_codec_ak4953", "DRV_I2C", "drv_i2c_0", "drv_i2c"],
-                      ["drv_i2c_0", "drv_i2c_I2C_dependency", "i2c1", "I2C1_I2C"],
+                      ["drv_i2c_0", "drv_i2c_I2C_dependency", "i2c_bb", "I2C"],
+                      ["i2c_bb", "TMR", "tmr2", "TMR2_TMR"],
                       ["sys_time", "sys_time_TMR_dependency", "core_timer", "CORE_TIMER_TMR"]]
-pic32mzBtadkI2sPinConfigs = [{"pin": 96, "name": "SDA1", "type": "SDA1", "direction": "", "latch": "", "abcd": ""},   # RA15
-                    {"pin": 95,  "name": "SCL1", "type": "SCL1", "direction": "", "latch": "", "abcd": ""},           # RA14
-                    {"pin": 106, "name": "SDI1", "type": "SDI1", "direction": "", "latch": "", "abcd": ""},           # RC14
+pic32mzefSkI2sPinConfigs = [{"pin": 86, "name": "SDA2", "type": "GPIO", "direction": "in", "latch": "", "opendrain": "True", "abcd": ""},# RA15
+                    {"pin": 85, "name": "SCL2", "type": "GPIO", "direction": "in", "latch": "", "opendrain": "True", "abcd": ""},      # RA14
+                    {"pin": 69, "name": "SDI1", "type": "SDI1", "direction": "", "latch": "", "abcd": ""},           # RD14
                     {"pin": 70,  "name": "REFCLKO1", "type": "REFCLKO", "direction": "", "latch": "", "abcd": ""},    # RD15
-                    {"pin": 97,  "name": "SS1 (out)", "type": "SS1 (out)", "direction": "", "latch": "", "abcd": ""}, # RD9
+                    {"pin": 58,  "name": "SS1 (out)", "type": "SS1 (out)", "direction": "", "latch": "", "abcd": ""}, # RF12
                     {"pin": 109, "name": "SCK1", "type": "SCK1", "direction": "", "latch": "", "abcd": ""},           # RD1
-                    {"pin": 91,  "name": "SDO1", "type": "SDO1", "direction": "", "latch": "", "abcd": ""},           # RF5
-                    {"pin": 1,   "name": "STBYRST", "type": "GPIO", "direction": "Out", "latch": "High", "abcd": ""}] # RG15
+                    {"pin": 49,  "name": "SDO1", "type": "SDO1", "direction": "", "latch": "", "abcd": ""},           # RB10
+                    {"pin": 46,  "name": "STBYRST", "type": "GPIO", "direction": "Out", "latch": "High", "abcd": ""}] # RH3
 					
-pic32mz_ef_bluetooth_audio_dev_kit_I2S = bspSupportObj(pic32mzBtadkI2sPinConfigs, pic32mzBtadkI2sComponentIDList, None, pic32mzBtadkI2sAutoConnectList, None)
+pic32mz_ef_starter_kit_I2S = bspSupportObj(pic32mzefSkI2sPinConfigs, pic32mzefSkI2sComponentIDList, None, pic32mzefSkI2sAutoConnectList, None)
 
-addBSPSupport("BSP_PIC32MZ_EF_Bluetooth_Audio_Development_Kit", "PIC32MZ_BTADK_I2S", pic32mz_ef_bluetooth_audio_dev_kit_I2S)
+addBSPSupport("BSP_PIC32MZ_EF_Starter_Kit", "PIC32MZ_EF_SK_I2S", pic32mz_ef_starter_kit_I2S)

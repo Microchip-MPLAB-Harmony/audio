@@ -225,6 +225,8 @@ SYS_MODULE_OBJ  DRV_AK4953_Initialize
     drvObj->whichMicInput                   = ak4953Init->whichMicInput;
     drvObj->enableMicBias                   = ak4953Init->enableMicBias;
     drvObj->micGain                         = ak4953Init->micGain;
+    drvObj->mclk_multiplier                 = DRV_AK4953_MCLK_SAMPLE_FREQ_MULTPLIER;
+    drvObj->bclk_divider                    = DRV_AK4953_BCLK_BIT_CLK_DIVISOR;
     
     drvObj->readComplete = false;
     drvObj->writeComplete = false;    
@@ -689,6 +691,11 @@ DRV_HANDLE DRV_AK4953_Open
                 }
 
                 hClient->ioIntent |= DRV_IO_INTENT_NONBLOCKING;
+<#if __PROCESSOR?matches("PIC32M.*") == true>
+
+                DRV_I2S_BaudRateSet(drvObj->i2sDriverHandle, drvObj->samplingRate*drvObj->bclk_divider,
+                        drvObj->samplingRate);
+</#if>
 
                 /* Remember which AK4953 driver instance owns me */
                 hClient->inUse  = true;
@@ -1395,8 +1402,16 @@ void DRV_AK4953_SamplingRateSet(DRV_HANDLE handle, uint32_t samplingRate)
         return;
     }
     drvObj = (DRV_AK4953_OBJ *)clientObj->hDriver;
-
     drvObj->samplingRate = samplingRate;
+<#if __PROCESSOR?matches("PIC32M.*") == true>
+
+    DRV_I2S_RefClockSet(drvObj->i2sDriverHandle, SYS_TIME_CPU_CLOCK_FREQUENCY,
+            drvObj->samplingRate, drvObj->mclk_multiplier);
+
+    DRV_I2S_BaudRateSet(drvObj->i2sDriverHandle, drvObj->samplingRate*drvObj->bclk_divider,
+            drvObj->samplingRate);
+</#if>
+
     drvObj->command = DRV_AK4953_COMMAND_SEND;
 
     AK4953_COMMAND *sampleRateSetCmd;
@@ -2537,6 +2552,12 @@ static void _DRV_AK4953_ControlTasks(DRV_AK4953_OBJ *drvObj)
 
         case DRV_AK4953_COMMAND_INIT_CLK_PDN_SET:
         {
+<#if __PROCESSOR?matches("PIC32M.*") == true>
+			/* Generate master clock from REFCLOCK for the given sampling rate */
+            DRV_I2S_RefClockSet(drvObj->i2sDriverHandle, SYS_TIME_CPU_CLOCK_FREQUENCY,
+                    drvObj->samplingRate, drvObj->mclk_multiplier);
+
+</#if>
             /* If the delayDriverInitialization option is enabled, we will skip
                toggling the chip's reset pin, since we assume it is tied to a
                common reset line shared with other peripherals such as a
@@ -2590,7 +2611,7 @@ static void _DRV_AK4953_ControlTasks(DRV_AK4953_OBJ *drvObj)
                             MODECTRL2_FS1_UP
                             );
                 command_array[2] = (uint8_t)(regValue & 0xFF);
-                
+               
                 // write to 0x05 and 0x06 control address in one operation
                 drvObj->drvI2CBuffHandle = _DRV_AK4953_ConrolRegisterSet(drvObj, command_array, 3);
                 
