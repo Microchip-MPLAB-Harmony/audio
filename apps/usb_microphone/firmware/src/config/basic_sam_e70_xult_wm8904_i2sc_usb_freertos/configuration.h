@@ -209,7 +209,8 @@ extern "C" {
 
 
 
-	
+
+
 
 
 /*** USB Driver Configuration ***/
@@ -222,7 +223,7 @@ extern "C" {
 
 /* Enables Device Support */
 #define DRV_USBHSV1_DEVICE_SUPPORT                          true
-
+	
 /* Disable Host Support */
 #define DRV_USBHSV1_HOST_SUPPORT                            false
 
@@ -232,13 +233,11 @@ extern "C" {
 /* Maximum instances of Audio function driver */
 #define USB_DEVICE_AUDIO_INSTANCES_NUMBER    1 
 
+
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-//KEEP THIS- not generated correctly after the first time.
-// 8+8
 #define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 16
-
 
 /* No of Audio streaming interfaces */
 #define USB_DEVICE_AUDIO_MAX_STREAMING_INTERFACES   1

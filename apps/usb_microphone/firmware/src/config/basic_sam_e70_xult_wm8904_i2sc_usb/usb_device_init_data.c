@@ -119,17 +119,16 @@ const uint8_t fullSpeedConfigurationDescriptor[]=
     0x02,                           // Number of interfaces in this cfg
     0x01,                                                   // Index value of this configuration
     0x00,                                                   // Configuration string index
-    USB_ATTRIBUTE_DEFAULT | USB_ATTRIBUTE_SELF_POWERED,
-                                    // Attributes, see usb_device.h
-    0x50,                           // Max power consumption (2X mA)
+    USB_ATTRIBUTE_DEFAULT | USB_ATTRIBUTE_SELF_POWERED,     // Attributes
+    50,
 	
-	/* USB Speaker Standard Audio Control Interface Descriptor    */
+   /* USB Microphone Standard Audio Control Interface Descriptor    */
    0x09,                            // Size of this descriptor in bytes (bLength)
    USB_DESCRIPTOR_INTERFACE,        // INTERFACE descriptor type (bDescriptorType)
    USB_DEVICE_AUDIO_CONTROL_INTERFACE_ID,
    //0,                               //USB_DEVICE_AUDIO_CONTROL_INTERFACE_ID,
                                     // Interface Number  (bInterfaceNumber)
-	0x00,                            // Alternate Setting Number (bAlternateSetting)
+   0,                            // Alternate Setting Number (bAlternateSetting)
    0x00,                            // Number of endpoints in this intf (bNumEndpoints)
    USB_AUDIO_CLASS_CODE,
                                     // Class code  (bInterfaceClass)
