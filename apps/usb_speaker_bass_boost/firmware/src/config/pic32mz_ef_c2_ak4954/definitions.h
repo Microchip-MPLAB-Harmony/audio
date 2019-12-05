@@ -59,8 +59,8 @@
 #include "usb/usb_device_audio_v1_0.h"
 #include "usb/usb_audio_v1_0.h"
 #include "driver/i2c/drv_i2c.h"
-#include "system/time/sys_time.h"
 #include "system/debug/sys_debug.h"
+#include "system/time/sys_time.h"
 #include "peripheral/coretimer/plib_coretimer.h"
 #include "driver/usb/usbhs/drv_usbhs.h"
 #include "peripheral/uart/plib_uart1.h"
@@ -207,9 +207,9 @@ typedef struct
     /* I2S0 Driver Object */
     SYS_MODULE_OBJ drvI2S0;
 
-    SYS_MODULE_OBJ  sysTime;
     SYS_MODULE_OBJ  sysDebug;
 
+    SYS_MODULE_OBJ  sysTime;
 	SYS_MODULE_OBJ  drvUSBHSObject;
 
     SYS_MODULE_OBJ drvak4954Codec0;

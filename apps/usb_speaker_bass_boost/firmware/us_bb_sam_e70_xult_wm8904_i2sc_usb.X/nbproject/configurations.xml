@@ -457,7 +457,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/us_bb_sam_e70_xult_wm8904_i2sc_usb;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/audio_codec;../src;../src/config/us_bb_sam_e70_xult_wm8904_i2sc_usb;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/packs/CMSIS/CMSIS/DSP/Include/;../src/packs/CMSIS/CMSIS/NN/Include/"/>
+                  value="../src/audio_codec;../src;../src/config/us_bb_sam_e70_xult_wm8904_i2sc_usb;../src/packs/ATSAME70Q21B_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/packs/CMSIS/CMSIS/DSP/Include/;../src/packs/CMSIS/CMSIS/NN/Include/"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>

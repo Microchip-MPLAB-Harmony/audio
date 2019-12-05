@@ -47,8 +47,8 @@
 #include "usb/usb_device_audio_v1_0.h"
 #include "usb/src/usb_device_audio_local.h"
 
+//KEEP THIS - since it includes the debug default definitions
 #include "system/debug/sys_debug.h"
-
 
 // *****************************************************************************
 // *****************************************************************************

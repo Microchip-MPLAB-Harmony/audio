@@ -665,8 +665,8 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
 
         if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel))
         {
-        uint32_t bufferSizeDmaWords = bufferObj->size;
-        // NOTE:  dmaDataLength of 8 not supported. 
+            uint32_t bufferSizeDmaWords = bufferObj->size;
+            // NOTE:  dmaDataLength of 8 not supported. 
             // if this is half word transfer, need to divide size by 2
             if (dObj->dmaDataLength == 16)
             {

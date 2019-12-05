@@ -131,8 +131,8 @@
           <Name dnOrder="1">initialization.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B88A9C656D99AEB1F1DC8041F2900C37</GeneratedChecksum>
-          <UserChecksum dnOrder="5">B88A9C656D99AEB1F1DC8041F2900C37</UserChecksum>
+          <GeneratedChecksum dnOrder="4">BFFF5C28D95FAD2290E0E600C6B4A6E2</GeneratedChecksum>
+          <UserChecksum dnOrder="5">BFFF5C28D95FAD2290E0E600C6B4A6E2</UserChecksum>
         </File>
         <File dnOrder="16">
           <Type dnOrder="0">SOURCE</Type>
@@ -532,7 +532,7 @@
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/usb/src</LogicalPath>
           <PhysicalPath dnOrder="3">/usb/src/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">BCCEF5B801FFD0CF22D0B454D2F25F1F</GeneratedChecksum>
-          <UserChecksum dnOrder="5">BCCEF5B801FFD0CF22D0B454D2F25F1F</UserChecksum>
+          <UserChecksum dnOrder="5">5BD3647B1FF52B763113AB4C8848A947</UserChecksum>
         </File>
         <File dnOrder="66">
           <Type dnOrder="0">SOURCE</Type>
@@ -540,7 +540,7 @@
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/usb/src</LogicalPath>
           <PhysicalPath dnOrder="3">/usb/src/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">543857D8B80023CD3A12A25063A49BE2</GeneratedChecksum>
-          <UserChecksum dnOrder="5">543857D8B80023CD3A12A25063A49BE2</UserChecksum>
+          <UserChecksum dnOrder="5">E6BF567DFA736BEBB741046D47268046</UserChecksum>
         </File>
         <File dnOrder="67">
           <Type dnOrder="0">SOURCE</Type>
@@ -548,7 +548,7 @@
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/usb/src</LogicalPath>
           <PhysicalPath dnOrder="3">/usb/src/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">38679CD762E487C856EBC5BCFC55F690</GeneratedChecksum>
-          <UserChecksum dnOrder="5">38679CD762E487C856EBC5BCFC55F690</UserChecksum>
+          <UserChecksum dnOrder="5">0B2A96BBD893BB5FD451BB6DEE8609FA</UserChecksum>
         </File>
         <File dnOrder="68">
           <Type dnOrder="0">SOURCE</Type>
@@ -627,16 +627,16 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">3C62B7AF9FFD4E28CE4BBEDAEB0FAAEF</GeneratedChecksum>
-          <UserChecksum dnOrder="5">3C62B7AF9FFD4E28CE4BBEDAEB0FAAEF</UserChecksum>
+          <GeneratedChecksum dnOrder="4">72E97AC4644556249CD64B2465864506</GeneratedChecksum>
+          <UserChecksum dnOrder="5">72E97AC4644556249CD64B2465864506</UserChecksum>
         </File>
         <File dnOrder="78">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">definitions.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">8631851315EDD1EF563DEDC8545E4E24</GeneratedChecksum>
-          <UserChecksum dnOrder="5">8631851315EDD1EF563DEDC8545E4E24</UserChecksum>
+          <GeneratedChecksum dnOrder="4">F2592330A20BDAF266CC4BF86B648AE8</GeneratedChecksum>
+          <UserChecksum dnOrder="5">F2592330A20BDAF266CC4BF86B648AE8</UserChecksum>
         </File>
         <File dnOrder="79">
           <Type dnOrder="0">HEADER</Type>
@@ -747,8 +747,8 @@
           <Name dnOrder="1">dsp.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/audio/math/dsp</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/math/dsp/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">9734B2C51382FD0C7E186AD2FD11E3AD</GeneratedChecksum>
-          <UserChecksum dnOrder="5">9734B2C51382FD0C7E186AD2FD11E3AD</UserChecksum>
+          <GeneratedChecksum dnOrder="4">89C43DECEDFBBDBD9C48EEAB9673BA75</GeneratedChecksum>
+          <UserChecksum dnOrder="5">89C43DECEDFBBDBD9C48EEAB9673BA75</UserChecksum>
         </File>
         <File dnOrder="93">
           <Type dnOrder="0">HEADER</Type>
@@ -1372,7 +1372,7 @@
       <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
       <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
       <Setting dnOrder="4" key="MERGE_STRATEGY" value="ALL"/>
-      <Setting dnOrder="5" key="PackageFilter" value="audio;bsp;bt;core;crypto;csp;gfx;usb;"/>
+      <Setting dnOrder="5" key="PackageFilter" value="audio;audio;bsp;bt;core;csp;gfx;usb;"/>
     </Settings>
   </Configurator>
 </Configuration>

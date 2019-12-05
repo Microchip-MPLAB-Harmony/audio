@@ -54,6 +54,7 @@
 #include "usb/src/usb_device_local.h"
 #include "driver/usb/drv_usb.h"
 
+//KEEP THIS - since it includes the debug default definitions
 #include "system/debug/sys_debug.h"
 
 /**********************************
