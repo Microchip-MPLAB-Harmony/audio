@@ -89,6 +89,14 @@ def requestDMAComment(Sym, event):
 def commonTxRxOption(Sym, event):
     Sym.setValue(event["value"])
 
+def txDMAOption(Sym, event):
+    global i2sTXDMAChannel
+    i2sTXDMAChannel.setVisible(event["value"])
+
+def rxDMAOption(Sym, event):
+    global i2sRXDMAChannel
+    i2sRXDMAChannel.setVisible(event["value"])
+
 def instantiateComponent(i2sComponent, index):
     global i2sPlibId
     global customVisible 
@@ -96,6 +104,8 @@ def instantiateComponent(i2sComponent, index):
     global dmaChannelRequests
     global i2sDMAInt
     global series
+    global i2sTXDMAChannel
+    global i2sRXDMAChannel
 
     customVisible = False
     customVisible2 = False
@@ -156,6 +166,7 @@ def instantiateComponent(i2sComponent, index):
     i2sTXDMA.setDefaultValue(True)
     i2sTXDMA.setVisible(True)
     i2sTXDMA.setDependencies(commonTxRxOption, ["DRV_I2S_TX_RX_DMA"])
+    i2sTXDMA.setDependencies(txDMAOption, ["DRV_I2S_TX_DMA"])
     
     i2sTXDMAChannel = i2sComponent.createIntegerSymbol("DRV_I2S_TX_DMA_CHANNEL", None)
     i2sTXDMAChannel.setLabel("DMA Channel for Transmit")
@@ -174,6 +185,7 @@ def instantiateComponent(i2sComponent, index):
     i2sRXDMA.setDefaultValue(True)
     i2sRXDMA.setVisible(True)
     i2sRXDMA.setDependencies(commonTxRxOption, ["DRV_I2S_TX_RX_DMA"])
+    i2sRXDMA.setDependencies(rxDMAOption, ["DRV_I2S_RX_DMA"])
     
     i2sRXDMAChannel = i2sComponent.createIntegerSymbol("DRV_I2S_RX_DMA_CHANNEL", None)
     i2sRXDMAChannel.setLabel("DMA Channel For Receive")
