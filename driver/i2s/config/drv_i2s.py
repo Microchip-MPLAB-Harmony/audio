@@ -49,21 +49,23 @@ def requestDMAChannel(Sym, event):
         if event["id"] == "DRV_I2S_TX_DMA":
             if i2sPlibId[:3] == "SSC":
                 dmaRequestID = "DMA_CH_NEEDED_FOR_SSC_Transmit"
-            elif (i2sPlibId[:4] == "I2SC"):
+            elif i2sPlibId[:4] == "I2SC":
                 dmaRequestID = "DMA_CH_NEEDED_FOR_" + i2sPlibId + "_Transmit_Left"
-            elif (i2sPlibId[:3] == "I2S"):
+            elif (i2sPlibId[:3] == "I2S") and (series[:6] == "PIC32M"):
+                # e.g. convert I2S2 to DMA_CH_NEEDED_FOR_SPI2_TX"
+                dmaRequestID = "DMA_CH_NEEDED_FOR_SPI" + i2sPlibId[3:4] + "_Transmit"
+            elif i2sPlibId[:3] == "I2S":
                 dmaRequestID = "DMA_CH_NEEDED_FOR_" + i2sPlibId + "_Transmit_0"
-            elif (i2sPlibId[:3] == "SPI"):
-                dmaRequestID = "DMA_CH_NEEDED_FOR_" + i2sPlibId + "_TX"
         elif event["id"] == "DRV_I2S_RX_DMA":
             if i2sPlibId[:3] == "SSC":
                 dmaRequestID = "DMA_CH_NEEDED_FOR_SSC_Receive"
-            elif (i2sPlibId[:4] == "I2SC"):
+            elif i2sPlibId[:4] == "I2SC":
                 dmaRequestID = "DMA_CH_NEEDED_FOR_" + i2sPlibId + "_Receive_Left"
-            elif (i2sPlibId[:3] == "I2S"):
+            elif (i2sPlibId[:3] == "I2S") and (series[:6] == "PIC32M"):
+                # e.g. convert I2S2 to DMA_CH_NEEDED_FOR_SPI2_RX"
+                dmaRequestID = "DMA_CH_NEEDED_FOR_SPI" + i2sPlibId[3:4] + "_Receive"
+            elif i2sPlibId[:3] == "I2S":
                 dmaRequestID = "DMA_CH_NEEDED_FOR_" + i2sPlibId + "_Receive_0"
-            elif (i2sPlibId[:3] == "SPI"):
-                dmaRequestID = "DMA_CH_NEEDED_FOR_" + i2sPlibId + "_RX"
         if dmaRequestID!="":
             Database.clearSymbolValue("core", dmaRequestID)
             Database.setSymbolValue("core", dmaRequestID, event["value"])
@@ -87,15 +89,15 @@ def requestDMAComment(Sym, event):
         Sym.setVisible(False)        
         
 def commonTxRxOption(Sym, event):
-    Sym.setValue(event["value"])
-
-def txDMAOption(Sym, event):
     global i2sTXDMAChannel
-    i2sTXDMAChannel.setVisible(event["value"])
-
-def rxDMAOption(Sym, event):
     global i2sRXDMAChannel
-    i2sRXDMAChannel.setVisible(event["value"])
+
+    if event["id"] == "DRV_I2S_TX_RX_DMA":
+        Sym.setValue(event["value"])
+    elif event["id"] == "DRV_I2S_TX_DMA":
+        i2sTXDMAChannel.setVisible(event["value"])
+    elif event["id"] == "DRV_I2S_RX_DMA":
+        i2sRXDMAChannel.setVisible(event["value"])	
 
 def instantiateComponent(i2sComponent, index):
     global i2sPlibId
@@ -115,11 +117,11 @@ def instantiateComponent(i2sComponent, index):
     processor = Variables.get( "__PROCESSOR" )
         
     # Enable "Generate Harmony Driver Common Files" option in MHC
-    if (Database.getSymbolValue("HarmonyCore", "ENABLE_DRV_COMMON") == False):
+    if Database.getSymbolValue("HarmonyCore", "ENABLE_DRV_COMMON") == False:
         Database.setSymbolValue("HarmonyCore", "ENABLE_DRV_COMMON", True)
 
     # Enable "Generate Harmony System Service Common Files" option in MHC
-    if (Database.getSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON") == False):
+    if Database.getSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON") == False:
         Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON")
 
     i2sSymIndex = i2sComponent.createIntegerSymbol("INDEX", None)
@@ -157,16 +159,15 @@ def instantiateComponent(i2sComponent, index):
     i2sDataLengthComment.setLabel("Must match Data Length field in I2SC/SSC PLIB")")
 
     i2sTXRXDMA = i2sComponent.createBooleanSymbol("DRV_I2S_TX_RX_DMA", None)
-    i2sTXRXDMA.setVisible(True)
+    i2sTXRXDMA.setVisible(False)        # currently always set for I2S
     i2sTXRXDMA.setLabel("Use DMA for Transmit and Receive?")
-    i2sTXRXDMA.setDefaultValue(False)
+    i2sTXRXDMA.setDefaultValue(True)
 
     i2sTXDMA = i2sComponent.createBooleanSymbol("DRV_I2S_TX_DMA", None)
     i2sTXDMA.setLabel("Use DMA for Transmit?")
     i2sTXDMA.setDefaultValue(True)
     i2sTXDMA.setVisible(True)
-    i2sTXDMA.setDependencies(commonTxRxOption, ["DRV_I2S_TX_RX_DMA"])
-    i2sTXDMA.setDependencies(txDMAOption, ["DRV_I2S_TX_DMA"])
+    i2sTXDMA.setDependencies(commonTxRxOption, ["DRV_I2S_TX_RX_DMA","DRV_I2S_TX_DMA"])
     
     i2sTXDMAChannel = i2sComponent.createIntegerSymbol("DRV_I2S_TX_DMA_CHANNEL", None)
     i2sTXDMAChannel.setLabel("DMA Channel for Transmit")
@@ -184,8 +185,7 @@ def instantiateComponent(i2sComponent, index):
     i2sRXDMA.setLabel("Use DMA for Receive?")
     i2sRXDMA.setDefaultValue(True)
     i2sRXDMA.setVisible(True)
-    i2sRXDMA.setDependencies(commonTxRxOption, ["DRV_I2S_TX_RX_DMA"])
-    i2sRXDMA.setDependencies(rxDMAOption, ["DRV_I2S_RX_DMA"])
+    i2sRXDMA.setDependencies(commonTxRxOption, ["DRV_I2S_TX_RX_DMA","DRV_I2S_RX_DMA"])
     
     i2sRXDMAChannel = i2sComponent.createIntegerSymbol("DRV_I2S_RX_DMA_CHANNEL", None)
     i2sRXDMAChannel.setLabel("DMA Channel For Receive")
