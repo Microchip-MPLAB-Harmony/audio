@@ -53,6 +53,7 @@
 #include "configuration.h"
 #include "definitions.h"
 
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: RTOS "Tasks" Routine
@@ -85,10 +86,14 @@ void _APP_Tasks(  void *pvParameters  )
 {
     while(1)
     {
-        //KEEP THIS - 
+/***** KEEP THIS, BEGIN *****/
+    /* Maintain Device Drivers */
         DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
+/***** KEEP THIS, END *****/
         APP_Tasks();
-        //vTaskDelay(10 / portTICK_PERIOD_MS);
+/***** KEEP THIS, BEGIN *****/
+        vTaskDelay(1 / portTICK_PERIOD_MS);
+/***** KEEP THIS, END *****/
     }
 }
 
@@ -107,13 +112,14 @@ void _APP_Tasks(  void *pvParameters  )
   Remarks:
     See prototype in system/common/sys_module.h.
 */
-
 void SYS_Tasks ( void )
 {
     /* Maintain system services */
     
 
-//KEEP THIS - place driver tasks in _APP_Tasks
+    /* Maintain Device Drivers */
+    //KEEP THIS
+    //DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
 
 
 
@@ -157,7 +163,6 @@ void SYS_Tasks ( void )
     vTaskStartScheduler(); /* This function never returns. */
 
 }
-
 
 /*******************************************************************************
  End of File
