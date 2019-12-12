@@ -212,6 +212,7 @@ extern "C" {
 
 
 
+
 /*** USB Driver Configuration ***/
 
 /* Maximum USB driver instances */
@@ -232,13 +233,11 @@ extern "C" {
 /* Maximum instances of Audio function driver */
 #define USB_DEVICE_AUDIO_INSTANCES_NUMBER    1 
 
+
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-//KEEP THIS - Not generated correctly
-//128+2 = 130
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 130 
-
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 130
 
 /* No of Audio streaming interfaces */
 #define USB_DEVICE_AUDIO_MAX_STREAMING_INTERFACES   1
