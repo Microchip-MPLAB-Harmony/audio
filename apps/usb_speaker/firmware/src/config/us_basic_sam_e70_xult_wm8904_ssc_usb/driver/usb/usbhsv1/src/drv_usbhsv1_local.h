@@ -554,9 +554,6 @@ typedef struct _DRV_USBHSV1_OBJ_STRUCT
     /* This is needed to track if the host is generating reset signal */
     bool isResetting;
 
-    /* Set if device if D+ pull up is enabled. */
-    bool isAttached;
-
     /* This counts the reset signal duration */
     DRV_USBHSV1_HOST_RESET_STATE resetState;
 

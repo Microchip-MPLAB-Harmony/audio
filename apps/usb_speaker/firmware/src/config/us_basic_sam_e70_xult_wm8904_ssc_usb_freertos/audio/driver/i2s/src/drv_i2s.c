@@ -290,6 +290,7 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object, DRV_I2S_DIRECTION dire
                 if( (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
                 {
                     uint32_t bufferSizeDmaWords = newObj->size;
+
                     // if this is half word transfer, need to divide size by 2
                     // NOTE:  dmaDataLength of 8 not supported. 
                     if (dObj->dmaDataLength == 16)
@@ -343,7 +344,6 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object, DRV_I2S_DIRECTION dire
                     {
                         bufferSizeDmaWords /= 4;
                     }
-
                     /************ code specific to SAM E70 ********************/
 #if defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
                     // Check if the data cache is enabled
@@ -663,10 +663,10 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
          * buffer to the DMA to start processing. */
         bufferObj->currentState = DRV_I2S_BUFFER_IS_PROCESSING;
 
+        uint32_t bufferSizeDmaWords = bufferObj->size;
+        // NOTE:  dmaDataLength of 8 not supported. 
         if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel))
         {
-            uint32_t bufferSizeDmaWords = bufferObj->size;
-            // NOTE:  dmaDataLength of 8 not supported. 
             // if this is half word transfer, need to divide size by 2
             if (dObj->dmaDataLength == 16)
             {
@@ -1141,3 +1141,4 @@ bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate)
     }
     return true;
 } //End DRV_I2S_LRCLK_Sync()
+

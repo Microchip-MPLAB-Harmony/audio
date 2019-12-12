@@ -83,15 +83,11 @@ const DRV_I2C_PLIB_INTERFACE drvI2C0PLibAPI = {
     /* I2C PLib Transfer Write Add function */
     .write = (DRV_I2C_PLIB_WRITE)TWIHS0_Write,
 
-
     /* I2C PLib Transfer Write Read Add function */
     .writeRead = (DRV_I2C_PLIB_WRITE_READ)TWIHS0_WriteRead,
 
     /* I2C PLib Transfer Status function */
     .errorGet = (DRV_I2C_PLIB_ERROR_GET)TWIHS0_ErrorGet,
-
-    /* I2C PLib Transfer Setup function */
-    .transferSetup = (DRV_I2C_PLIB_TRANSFER_SETUP)TWIHS0_TransferSetup,
 
     /* I2C PLib Callback Register */
     .callbackRegister = (DRV_I2C_PLIB_CALLBACK_REGISTER)TWIHS0_CallbackRegister,
@@ -161,6 +157,7 @@ DRV_I2S_INIT drvI2S0InitData =
     .dmaChannelReceive  = DRV_I2S_RCV_DMA_CH_IDX0,
     .i2sTransmitAddress = (void *)&(SSC_REGS->SSC_THR),
     .i2sReceiveAddress = (void *)&(SSC_REGS->SSC_RHR),
+
     .interruptDMA = XDMAC_IRQn,
 
     .dmaDataLength = DRV_I2S_DATA_LENGTH_IDX0,
@@ -276,7 +273,7 @@ void SYS_Initialize ( void* data )
 
     EFC_Initialize();
   
-    CLOCK_Initialize();
+    CLK_Initialize();
 	PIO_Initialize();
 
     XDMAC_Initialize();

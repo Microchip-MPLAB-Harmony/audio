@@ -101,6 +101,10 @@ extern "C" {
 #define DRV_I2C_QUEUE_SIZE_IDX0               2
 #define DRV_I2C_CLOCK_SPEED_IDX0              400000
 
+/* I2C Driver Common Configuration Options */
+#define DRV_I2C_INSTANCES_NUMBER              1
+
+
 /* I2S Driver Instance 0 Configuration Options */
 #define DRV_I2S_INDEX_0                       0
 #define DRV_I2S_CLIENTS_NUMBER_IDX0           1
@@ -108,16 +112,9 @@ extern "C" {
 #define DRV_I2S_QUEUE_SIZE_IDX0               128
 #define DRV_I2S_DATA_LENGTH_IDX0              16
 #define DRV_I2S_INT_SRC_IDX0                  SSC_IRQn
-#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_0
-#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_1
+#define DRV_I2S_XMIT_DMA_CH_IDX0              SYS_DMA_CHANNEL_1
+#define DRV_I2S_RCV_DMA_CH_IDX0               SYS_DMA_CHANNEL_0
 
-
-/* I2C Driver Common Configuration Options */
-#define DRV_I2C_INSTANCES_NUMBER              1
-
-
-/* I2S Driver Common Configuration Options */
-#define DRV_I2S_INSTANCES_NUMBER              1
 
 /*** Codec Driver Configuration ***/
 
@@ -188,6 +185,9 @@ extern "C" {
 #define DRV_CODEC_GetI2SDriver                              DRV_WM8904_GetI2SDriver
 #define DRV_CODEC_LRCLK_Sync                                DRV_WM8904_LRCLK_Sync 
 
+/* I2S Driver Common Configuration Options */
+#define DRV_I2S_INSTANCES_NUMBER              1
+
 
 
 // *****************************************************************************
@@ -206,7 +206,6 @@ extern "C" {
 
 /* EP0 size in bytes */
 #define USB_DEVICE_EP0_BUFFER_SIZE                          64
-
 
 
 
@@ -233,11 +232,12 @@ extern "C" {
 /* Maximum instances of Audio function driver */
 #define USB_DEVICE_AUDIO_INSTANCES_NUMBER    1 
 
-
 /* Audio Transfer Queue Size for both read and
    write. Applicable to all instances of the
    function driver */
-#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 130
+//KEEP THIS- Not generated correctly
+#define USB_DEVICE_AUDIO_QUEUE_DEPTH_COMBINED 130 
+
 
 /* No of Audio streaming interfaces */
 #define USB_DEVICE_AUDIO_MAX_STREAMING_INTERFACES   1
