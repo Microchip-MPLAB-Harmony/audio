@@ -61,6 +61,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 //DEBUG 
 #undef DEBUG_TONE_CODEC_TX
+#undef DEBUG_CLOCK_TUNING
+#define DEBUG_BUFFER_TIMING
 
 //=============================================================================
 //CLOCK CONTROL and TUNING
@@ -169,13 +171,26 @@ DRV_I2S_DATA32 __attribute__((aligned(32)))
 #include "tone_1000Hz_32bit_96Khz_p125.txt"
 #include "packs/ATSAME70Q21B_DFP/atsame70q21b.h" 
 };
-typedef struct  _BITS24
-{
-    int8_t bytes[3]; 
-} BITS24;
+
+//Pack/Unpack 24bit USB Data to 32 bit word.
+//ARM Packed byte structure (unaligned)
+#pragma pack(push, 1)  //Current pragma state is 1 byte packed
+typedef struct _UInt24  { uint8_t byte[3]; } UInt24;
+typedef struct  _BITS24 { int8_t bytes[3]; } BITS24;
+#pragma pack(pop) //Return to the non packed pragma state.
+
 int32_t _Convert24to32bit(BITS24 val);
 void _Unpack24to32bitBuffer(uint8_t *src, uint8_t*dst, int numUsb24BitSamples);
+inline uint32_t unpack(UInt24 x);
+inline UInt24 pack(uint32_t x);
 
+
+
+APP_PLAYBACK_BUFFER* currentPlayBuffer;
+int8_t codecWriteIdx; 
+//uint32_t *src; 
+UInt24   *src;
+uint32_t *dst;
 
 //Button Timer
 DRV_HANDLE tmrHandle;
@@ -396,6 +411,7 @@ void APP_USBDeviceAudioEventHandler(USB_DEVICE_AUDIO_INDEX iAudio,
 
             case USB_DEVICE_AUDIO_EVENT_READ_COMPLETE:
             {
+                TEST2_Toggle();
                 //We have received an audio frame from the Host.
                 //Now send this audio frame to Audio Codec for Playback.
                 readEventData = 
@@ -617,6 +633,13 @@ void APP_Initialize()
 
     appData.lrSync = true;
 
+#if defined(DEBUG_CLOCK_TUNING) || defined(DEBUG_BUFFER_TIMING)
+    TEST1_Clear();
+    TEST2_Clear();
+    TEST3_Clear();
+    TEST4_Clear();
+#endif
+
 #if defined(USE_DISPLAY)
     display_init(&DISPLAY_STATS);
 #endif
@@ -749,8 +772,10 @@ void APP_Tasks()
                 DRV_I2S_ClockGenerationSet(drvObj->i2sDriverHandle, d, m, d2);
                 DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
 
+#ifdef DEBUG_CLOCK_TUNING
                 TEST1_Clear();
                 TEST2_Clear();
+#endif //DEBUG_CLOCK_TUNING
 
                 plla = PMC_REGS->CKGR_PLLAR;
                 PMC_REGS->PMC_PCR =  PMC_PCR_PID(70);
@@ -915,6 +940,7 @@ void APP_Tasks()
                         usbReadBuffer->usbInUse = true;
 
                         //Read to Queue HEAD
+                        TEST1_Toggle();
                         audioErr1 = USB_DEVICE_AUDIO_Read(
                                         USB_DEVICE_INDEX_0, 
                                         &usbReadBuffer->usbReadHandle, 
@@ -997,8 +1023,8 @@ void APP_Tasks()
                      i < APP_INIT_QUEUE_LEVEL; i++)
                 {
 
-                    int8_t codecWriteIdx = appBufferQueue.codecWriteIdx;
-                        APP_PLAYBACK_BUFFER* currentPlayBuffer = 
+                    codecWriteIdx = appBufferQueue.codecWriteIdx;
+                    currentPlayBuffer = 
                             &appBufferQueue.playbackBuffer[codecWriteIdx];
 
 
@@ -1038,17 +1064,19 @@ void APP_Tasks()
                         #ifdef APP_BSUBFRAMESIZE_3
                         //Unpack the 24 bit buffer to the 32 bit buffer
                         // 4bytes x 4words = 12 bytes -> 4x24 bit samples
-                        int i;
+                        //int i;
                         int j;
                         int numUsb24BitSamples = appData.usbReadBufSize/3;
-                        //BITS24 *         in24Ptr  = (BITS24*) (currentPlayBuffer->buffer);
-                        //DRV_I2S_DATA32 * out32Ptr = 
-                        //                  (DRV_I2S_DATA32 *) (currentPlayBuffer->buffer32);
 
-                        uint32_t *src = (uint32_t *) currentPlayBuffer->buffer;
-                        uint32_t *dst = (uint32_t *) currentPlayBuffer->buffer32; 
-                        //_Unpack24to32bitBuffer(*src, *dst,  numUsb24BitSamples);
-
+                        src = (UInt24 *) currentPlayBuffer->buffer;
+                        dst = (uint32_t *) currentPlayBuffer->buffer32; 
+                        for (j=0; j<numUsb24BitSamples; j++) 
+                        {
+                            dst[j] = unpack(src[j]);
+                        }
+#if 0
+                        src = (uint32_t *) currentPlayBuffer->buffer;
+                        dst = (uint32_t *) currentPlayBuffer->buffer32; 
                         for (i=0, j=0; j<numUsb24BitSamples; i+=3, j+=4) 
                         {
                             //Every 3 32 bit words converted to 4 32 bit samples
@@ -1056,22 +1084,36 @@ void APP_Tasks()
                             sb = src[i+1];
                             sc = src[i+2]; //MS
 
+#define UPPER
+#ifdef UPPER
+                            //Q23 --> Q31
+                            //Little ENDIAN - shifted right MS bytes first
+                            dst[j+0] = sa & 0xFFFFFF00;
+                            dst[j+1] = ((sa<<24) | (sb>>8 & 0x00FFFF00);
+                            dst[j+2] = ((sb<<16) | (sc>>16 & 0xFFFFFF00);
+                            dst[j+3] = sc<<8;
+#else //LOWER
+                            //Q23 --> Q31
                             //Little ENDIAN - MS bytes first
-                            //dst[j+0] = sa & 0xFFFFFF00;
-                            dst[j+0] = sa<<8; 
-                            //dst[j+1] = ((sa<<24) | (sb>>8)) & 0xFFFFFF00;
-                            dst[j+1] = ((sb<<16) | (sa>>16)) & 0xFFFFFF00;
-                            //dst[j+2] = ((sb<<16) | (sc>>16)) & 0xFFFFFF00;
+                            //dst[j+0] = sa<<8; 
+                            dst[j+0] = sa>>8 & 0x00FFFFFF; 
+                            //dst[j+1] = (sa>>16)) | ((sb<<16) & 0xFFFFFF00;
+                            dst[j+1] = (sa<<16)) | (sb<<16 & 0xFFFF00);
+                            //dst[j+2] = ((sb>>8) | (sc<<24)) & 0xFFFFFF00;
                             dst[j+2] = ((sb>>8) | (sc<<24)) & 0xFFFFFF00;
-                            //dst[j+3] = sc<<8;
+                            //dst[j+3] = sc & 0xFFFFFF00;
                             dst[j+3] = sc & 0xFFFFFF00;
+#endif //UPPER?LOWER
+           
                         }
+#endif //0
 
                         //Initial CODEC Write
                         currentPlayBuffer->codecInUse = true;
                         #endif //APP_BSUBFRAMESIZE_3
 
                         //Write stereo tone to output instead of USB data.
+                        TEST3_Toggle();
                         DRV_CODEC_BufferAddWrite(
                                     appData.codecClientWrite.handle, 
                                     &currentPlayBuffer->codecWriteHandle,
@@ -1145,8 +1187,10 @@ void APP_Tasks()
                             //d  = _clockAdjDwn[CLOCKDWN_IND][0];
                             //m  = _clockAdjDwn[CLOCKDWN_IND][1];
                             //d2 = _clockAdjDwn[CLOCKDWN_IND][2];
+#ifdef DEBUG_CLOCK_TUNING
                             TEST1_Set();
                             TEST2_Clear();
+#endif //DEBUG_CLOCK_TUNING
 #endif //APP_CODEC_MASTER
                         }
                     }
@@ -1170,8 +1214,10 @@ void APP_Tasks()
                             d  = _clockAdjDwn[CLOCKDWN_IND][0];
                             m  = _clockAdjDwn[CLOCKDWN_IND][1];
                             d2 = _clockAdjDwn[CLOCKDWN_IND][2];
+#ifdef DEBUG_CLOCK_TUNING
                             TEST1_Clear();
                             TEST2_Set();
+#endif //DEBUG_CLOCK_TUNING
 #endif //APP_CODEC_MASTER
                         }
                     }
@@ -1221,6 +1267,7 @@ void APP_Tasks()
                 {
                     usbReadBuffer->usbReadCompleted = false;
 
+                    TEST1_Toggle();
                     audioErr1 = USB_DEVICE_AUDIO_Read(USB_DEVICE_INDEX_0, 
                                           &usbReadBuffer->usbReadHandle, 
 #ifdef APP_BSUBFRAMESIZE_3
@@ -1254,8 +1301,8 @@ void APP_Tasks()
                     //Playback Codec is Ready (not in use)
 
                     //CODEC Write to codecWriteIdx (Next Queue TAILIndex)
-                    int8_t codecWriteIdx = appBufferQueue.codecWriteIdx;
-                    APP_PLAYBACK_BUFFER* currentPlayBuffer = 
+                    codecWriteIdx = appBufferQueue.codecWriteIdx;
+                    currentPlayBuffer = 
                             &appBufferQueue.playbackBuffer[codecWriteIdx];
 
                     if (currentPlayBuffer->usbReadCompleted==true && 
@@ -1267,19 +1314,22 @@ void APP_Tasks()
                                                  &currentPlayBuffer->codecWriteHandle,
                                                  testBuffer2, sizeof(testBuffer2));
                         #else //DEBUG_TONE_CODEC_TX
-                        //USB Data
-
-                        #ifdef APP_BSUBFRAMESIZE_3
                         //Unpack the 24 bit buffer to the 32 bit buffer
-                        int i;
+                        //int i;
                         int j;
                         int numUsb24BitSamples = appData.usbReadBufSize/3;
-                        //BITS24 *         in24Ptr  = (BITS24*) (currentPlayBuffer->buffer);
-                        //DRV_I2S_DATA32 * out32Ptr = 
-                        //                  (DRV_I2S_DATA32 *) (currentPlayBuffer->buffer32);
 
-                        uint32_t *src = (uint32_t *) currentPlayBuffer->buffer;
-                        uint32_t *dst = (uint32_t *) currentPlayBuffer->buffer32; 
+                        src = (UInt24 *) currentPlayBuffer->buffer;
+                        dst = (uint32_t *) currentPlayBuffer->buffer32; 
+                        for (j=0; j<numUsb24BitSamples; j++) 
+                        {
+                            dst[j] = unpack(src[j]);
+                        }
+#if 0//
+#ifdef APP_BSUBFRAMESIZE_3
+
+                        src = (uint32_t *) currentPlayBuffer->buffer;
+                        dst = (uint32_t *) currentPlayBuffer->buffer32; 
 
                         //_Unpack24to32bitBuffer(*src, *dst,  numUsb24BitSamples);
                         for (i=0, j=0; j<numUsb24BitSamples; i+=3, j+=4) 
@@ -1299,8 +1349,11 @@ void APP_Tasks()
                             //dst[j+3] = sc<<8;
                             dst[j+3] = sc & 0xFFFFFF00;
                         }
-                        #endif //APP_BSUBFRAMESIZE_3
+#endif //APP_BSUBFRAMESIZE_3
+#endif //0
 
+
+                        TEST3_Toggle();
                         DRV_CODEC_BufferAddWrite(
                                     appData.codecClientWrite.handle, 
                                     &currentPlayBuffer->codecWriteHandle,
@@ -1476,6 +1529,7 @@ APP_CODECBufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
     {
         case DRV_CODEC_BUFFER_EVENT_COMPLETE:
         {
+            TEST4_Toggle();
 
             //DEBUG
             appBufferQueue.codecWriteCompleteCnt++;
@@ -1635,14 +1689,15 @@ static int _APP_ClearCodecReturnBuffer(DRV_CODEC_BUFFER_HANDLE handle)
 
 //******************************************************************************
 // Convert the packed 24 bit byte array value to 32 bit word value
+// NOTE:  This is an 24Bit integer unpack (not Q23 to Q31)
 //******************************************************************************
-int32_t _Convert24to32bit(BITS24 val)
+inline int32_t _Convert24to32bit(BITS24 val)
 {
         if ( val.bytes[2] & 0x80 ) 
         {
             //negative -->  24 to 32 bit sign extend.
             return ( 0xff << 24)         | 
-                    (val.bytes[2] << 16) | 
+                    (val.bytes[2] << 16) | //LS first 
                     (val.bytes[1] << 8)  | 
                     (val.bytes[0] << 0);
         }
@@ -1655,7 +1710,12 @@ int32_t _Convert24to32bit(BITS24 val)
 }
 
 
-void _Unpack24to32bitBuffer(uint8_t *src, uint8_t*dst, int numUsb24BitSamples)
+//******************************************************************************
+// Convert the Unpacked 32 bit byte array value to 24 bit word value
+// NOTE:  This is an 32Bit integer unpack (not Q23) without saturation
+//        (assumes 0 in the 32 bit LS byte)
+//******************************************************************************
+inline void _Unpack24to32bitBuffer(uint8_t *src, uint8_t*dst, int numUsb24BitSamples)
 {
     int i,j;
     uint32_t saa,sbb,scc;
@@ -1669,9 +1729,9 @@ void _Unpack24to32bitBuffer(uint8_t *src, uint8_t*dst, int numUsb24BitSamples)
 
         //Little ENDIAN - MS bytes first
         //dst[j+0] = saa & 0xFFFFFF00;
-        dst[j+0] = saa<<8; 
+        dst[j+0] = saa<<8;  //Shift off the MS byte leaving 24 bits 
         //dst[j+1] = ((saa<<24) | (sbb>>8)) & 0xFFFFFF00;
-        dst[j+1] = ((sbb<<16) | (saa>>16)) & 0xFFFFFF00;
+        dst[j+1] = ((sbb<<16) | (saa>>16)) & 0xFFFFFF00; 
         //dst[j+2] = ((sbb<<16) | (scc>>16)) & 0xFFFFFF00;
         dst[j+2] = ((sbb>>8) | (scc<<24)) & 0xFFFFFF00;
         //dst[j+3] = scc<<8;
@@ -1679,6 +1739,28 @@ void _Unpack24to32bitBuffer(uint8_t *src, uint8_t*dst, int numUsb24BitSamples)
     }
 }
 
+//3byte Q24 to 4byte Q31
+//If the byte index gives the addressing sequence, then this is Big Endian
+//byte order.
+inline uint32_t unpack(UInt24 x) 
+{
+    uint32_t retVal = x.byte[2];
+    retVal = retVal << 8 | x.byte[1];
+    retVal = retVal << 8 | x.byte[0];
+    return retVal;
+}
+
+//4byte Q31 to 3byte Q24
+//If the byte index gives the addressing sequence, then this is Big Endian
+//byte order.
+inline UInt24 pack(uint32_t x) 
+{
+    UInt24 retVal;
+    retVal.byte[2] = (x >> 16) & 0xff;
+    retVal.byte[1] = (x >> 8) & 0xff;
+    retVal.byte[0] = x & 0xff;
+    return retVal;
+}
 
 // ****************************************************************************
 // APP_TimerCallback()
@@ -1865,7 +1947,6 @@ void _APP_LED_Tasks()
         } //End switch(state)
     } //End LED1
 } //End _APP_LED_Tasks()
-
 /*******************************************************************************
  End of File
  */

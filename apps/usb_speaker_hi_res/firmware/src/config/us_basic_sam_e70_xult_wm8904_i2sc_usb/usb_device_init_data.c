@@ -222,7 +222,6 @@ const uint8_t fullSpeedConfigurationDescriptor[]=
     USB_AUDIO_FORMAT_TYPE ,         // FORMAT_TYPE subtype. (bDescriptorSubtype)
     0x01,                           // FORMAT_TYPE_1. (bFormatType)
     0x02,                           // two channel.(bNrChannels)
-    //************************************
     //****KEEP THIS below for 96Khz/24bit
     //0x02,                           // 2 byte per audio subframe.(bSubFrameSize)
     0x03,                           // 3 byte per audio subframe.(bSubFrameSize)
