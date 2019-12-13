@@ -37,8 +37,8 @@ def loadModule():
 
         Component.setDisplayType("Driver")
 
-    # Add Generic Dependency on Core Service
-    Component.addDependency("drv_" + Name + "_HarmonyCoreDependency", "Core Service", "Core Service", True, True)
+        # Add Generic Dependency on Core Service
+        Component.addDependency("drv_" + Name + "_HarmonyCoreDependency", "Core Service", "Core Service", True, True)
 
     component = Module.CreateComponent("audio_codec_ak4953", "AK4953", "/Audio/Drivers/Codec/", "codec/AK4953/config/ak4953.py")
     component.setDisplayType("Driver")
