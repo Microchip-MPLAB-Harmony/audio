@@ -63,19 +63,21 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 //#includes required for system_config.h from system_definitions.h
 #include "configuration.h"
 #include "definitions.h"
+#if 0
 #include "peripheral/clk/plib_clk.h"
-#include "peripheral/nvic/plib_nvic.h"
-#include "peripheral/pio/plib_pio.h"
+//#include "peripheral/nvic/plib_nvic.h"
+//#include "peripheral/pio/plib_pio.h"
 #include "bsp/bsp.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
 #include "osal/osal.h"
 #include "driver/i2c/drv_i2c.h"
-#include "peripheral/twihs/plib_twihs0.h"
+//#include "peripheral/twihs/plib_twihs0.h"
 #include "system/time/sys_time.h"
 
-#include "audio/driver/codec/wm8904/drv_wm8904_local.h"
+//#include "audio/driver/codec/wm8904/drv_wm8904_local.h"
 #include "audio/driver/codec/wm8904/drv_wm8904.h"
+#endif //0
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
@@ -216,6 +218,14 @@ typedef struct
     uintptr_t context;
     size_t bufferSize;
 } APP_CODEC_CLIENT;
+
+#ifdef PIC32MZEFC2
+// SWITCH<1,2,3>_Get()   E70CULT: SWITCH =   MZC2: SWITCH1
+// SWITCH<1,2,3>_STATE_PRESSED 
+// SWITCH<1,2,3>_STATE_RELEASED
+#define SWITCH_Get SWITCH1_Get 
+#define SWITCH_STATE_PRESSED SWITCH1_STATE_PRESSED  //Make same as SAME70CULT
+#endif //PIC32MZEFC2
 
 //LED State
 typedef enum

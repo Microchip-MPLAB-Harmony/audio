@@ -5,7 +5,9 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="config" projectFiles="true">
-        <logicalFolder name="f1" displayName="us_basic_pic32mz_ef_c2_ak4954" projectFiles="true">
+        <logicalFolder name="f1"
+                       displayName="us_basic_pic32mz_ef_c2_ak4954"
+                       projectFiles="true">
           <logicalFolder name="f4" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
               <logicalFolder name="f2" displayName="codec" projectFiles="true">
@@ -18,26 +20,7 @@
                 <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/driver/i2s/drv_i2s_definitions.h</itemPath>
               </logicalFolder>
             </logicalFolder>
-            <logicalFolder name="f2" displayName="math" projectFiles="true">
-              <logicalFolder name="f3" displayName="dsp" projectFiles="true">
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/dsp/dsp.h</itemPath>
-              </logicalFolder>
-              <logicalFolder name="f2" displayName="libq" projectFiles="true">
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq/libq.h</itemPath>
-              </logicalFolder>
-              <logicalFolder name="f1" displayName="libq_c" projectFiles="true">
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/libq_c.h</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/include/fast_trig_functions.h</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/include/fract_fixedpoint.h</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/include/LUT__3Terms__nLUT_256.h</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/include/pixel_rotation.h</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/include/SinX_LUT_91.h</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/include/XInDegrees_LUT_91.h</itemPath>
-              </logicalFolder>
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/audio_math.h</itemPath>
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/audio_math_config.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="peripheral" projectFiles="true">
+            <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
               <logicalFolder name="f1" displayName="i2s" projectFiles="true">
                 <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/peripheral/i2s/plib_i2s2.h</itemPath>
               </logicalFolder>
@@ -115,31 +98,21 @@
             <logicalFolder name="f2" displayName="gpio" projectFiles="true">
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/peripheral/gpio/plib_gpio.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="tmr" projectFiles="true">
+            <logicalFolder name="f6" displayName="tmr" projectFiles="true">
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/peripheral/tmr/plib_tmr_common.h</itemPath>
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/peripheral/tmr/plib_tmr2.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="uart" projectFiles="true">
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/peripheral/uart/plib_uart_common.h</itemPath>
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/peripheral/uart/plib_uart1.h</itemPath>
-            </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f6" displayName="system" projectFiles="true">
-            <logicalFolder name="f3" displayName="console" projectFiles="true">
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/console/sys_console.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f2" displayName="debug" projectFiles="true">
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/debug/sys_debug.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f6" displayName="dma" projectFiles="true">
+            <logicalFolder name="f4" displayName="dma" projectFiles="true">
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/dma/sys_dma.h</itemPath>
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/dma/sys_dma_mapping.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f4" displayName="int" projectFiles="true">
+            <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/int/sys_int.h</itemPath>
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/int/sys_int_mapping.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f5" displayName="ports" projectFiles="true">
+            <logicalFolder name="f3" displayName="ports" projectFiles="true">
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/ports/sys_ports.h</itemPath>
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/ports/sys_ports_mapping.h</itemPath>
             </logicalFolder>
@@ -200,7 +173,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="config" projectFiles="true">
-        <logicalFolder name="f1" displayName="us_basic_pic32mz_ef_c2_ak4954" projectFiles="true">
+        <logicalFolder name="f1"
+                       displayName="us_basic_pic32mz_ef_c2_ak4954"
+                       projectFiles="true">
           <logicalFolder name="f5" displayName="audio" projectFiles="true">
             <logicalFolder name="f1" displayName="driver" projectFiles="true">
               <logicalFolder name="f2" displayName="codec" projectFiles="true">
@@ -214,46 +189,7 @@
                 <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/driver/i2s/src/drv_i2s_local.h</itemPath>
               </logicalFolder>
             </logicalFolder>
-            <logicalFolder name="f2" displayName="math" projectFiles="true">
-              <logicalFolder name="f3" displayName="dsp" projectFiles="true">
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/dsp/dsp_mips32_mz_ef_nfO3.a</itemPath>
-              </logicalFolder>
-              <logicalFolder name="f2" displayName="libq" projectFiles="true">
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq/libq_mips32_mz_ef_nfO3.a</itemPath>
-              </logicalFolder>
-              <logicalFolder name="f1" displayName="libq_c" projectFiles="true">
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/fract.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/fast_trig_functions.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/pixel_rotation.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_FxNorm.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_Abs_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_Add_q15_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_DivisionWithSaturation_q15_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_ExpAvg_q15_q15_q1d15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_ExtractH_q31.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_MacR_q31_q15_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_MsuR_q31_q15_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_MultiplyR2_q15_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_Negate_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_RoundL_q31.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_ShiftLeft_q15_i16.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_ShiftRight_q15_i16.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q15_ShiftRightR_q15_i16.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q1d15_Sin_q10d6.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_Abs_q31.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_Add_q31_q31.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_DepositH_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_Mac_q31_q15_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_Msu_q31_q15_q15.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_Mult2_q15_q31.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_Multi_q15_q31.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_Negate_q31.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_ShiftLeft_q31_i16.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_ShiftRight_q31_i16.c</itemPath>
-                <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/math/libq_c/src/libq_q31_ShiftRightR_q31_i16.c</itemPath>
-              </logicalFolder>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="peripheral" projectFiles="true">
+            <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
               <logicalFolder name="f1" displayName="i2s" projectFiles="true">
                 <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/peripheral/i2s/plib_i2s2.c</itemPath>
               </logicalFolder>
@@ -297,32 +233,18 @@
             <logicalFolder name="f2" displayName="gpio" projectFiles="true">
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/peripheral/gpio/plib_gpio.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="tmr" projectFiles="true">
+            <logicalFolder name="f6" displayName="tmr" projectFiles="true">
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/peripheral/tmr/plib_tmr2.c</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f6" displayName="uart" projectFiles="true">
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/peripheral/uart/plib_uart1.c</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f1" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
           <logicalFolder name="f7" displayName="system" projectFiles="true">
-            <logicalFolder name="f3" displayName="console" projectFiles="true">
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/console/src/sys_console_local.h</itemPath>
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/console/src/sys_console.c</itemPath>
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/console/src/sys_console_uart.h</itemPath>
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/console/src/sys_console_uart_definitions.h</itemPath>
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/console/src/sys_console_uart.c</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f2" displayName="debug" projectFiles="true">
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/debug/src/sys_debug_local.h</itemPath>
-              <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/debug/src/sys_debug.c</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f5" displayName="dma" projectFiles="true">
+            <logicalFolder name="f3" displayName="dma" projectFiles="true">
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/dma/sys_dma.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f4" displayName="int" projectFiles="true">
+            <logicalFolder name="f2" displayName="int" projectFiles="true">
               <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/system/int/src/sys_int.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="time" projectFiles="true">

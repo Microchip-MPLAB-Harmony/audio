@@ -82,7 +82,12 @@ int usbReadCompleteQLvl = 0;
 
 uint16_t volumeLevels[VOLUME_STEPS] =
 {
-    0 /* off */, 64, 128, 255
+#ifdef CODEC_AK4954
+    0 /* off */, 192, 208, 224          // if using AK4954, use narrower range  
+#else 
+    //CODEC_WM8904
+    0 /* off */, 128, 192, 255
+#endif         
 };
 
 //NOTE: Cache Coherency, 16 byte alignment and N*16 length buffers 

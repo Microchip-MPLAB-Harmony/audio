@@ -103,6 +103,7 @@ typedef enum
 
 typedef    void (* DRV_BAUDSET)(const uint32_t);
 
+//PLIB Interface Member Functions 
 typedef    uint32_t (* DRV_I2S_LRCLK_GET)();
 
 // *****************************************************************************
@@ -198,9 +199,7 @@ typedef struct
 typedef struct
 {
 	/* I2S PLIB baud rate set function */
-	DRV_BAUDSET	setBaud;
     DRV_I2S_LRCLK_GET   I2S_LRCLK_Get;
-
 } DRV_I2S_PLIB_INTERFACE;
 
 // *****************************************************************************

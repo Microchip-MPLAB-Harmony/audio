@@ -18,7 +18,7 @@
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2018-2019 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -49,6 +49,9 @@
 // Section: File includes
 // *****************************************************************************
 // *****************************************************************************
+
+#include <stdint.h>
+#include <stdbool.h>
 
 #include "drv_i2s_definitions.h"
 
@@ -1355,8 +1358,8 @@ bool DRV_I2S_ReadBuffer( const DRV_HANDLE handle, void * buffer, const size_t si
   Remarks:
     None.                                            
 */
-bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate);
-
+bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, 
+                         const uint32_t sample_rate);
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
