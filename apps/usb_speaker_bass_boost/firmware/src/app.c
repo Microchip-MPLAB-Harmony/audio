@@ -194,52 +194,116 @@ static __attribute__((aligned(32)))
 #ifdef INCLUDE_BASS_BOOST
 //------------------------------------------------------------------------------
 #ifdef PIC32MZEFC2
-//MZ EF LIBQ/DSP
-//-- Using DSP_FilterIIR16(X, bb6DbCoeffsPic32Q15, z, B, scaleBquad)
-#define B 2 // use 2 biquad filters in cascade
-biquad16 bquad[B];
-int scaleBquad = 0;  //Input scaling by >>scaleBquad
-
-int16_t * ptrCoeffs = NULL;
+//-- Using DSP_FilterIIRQB16_fast(X, PARM_EQUAL_FILTER_16 *)
+// NOTE: All coefs are half value of original design, gain handled in algorithm
+// note subtract is handled in algorithm, so a coefs go in at actual transfer
+// funciton value.
+PARM_EQUAL_FILTER_16 * ptrFilterEQL = NULL;
+PARM_EQUAL_FILTER_16 * ptrFilterEQR = NULL;
 int16_t dataInQ15;
 
-int16_t zL[2*B]= {0};  //Delay State 
-int16_t zR[2*B]= {0};  //Delay State 
+PARM_EQUAL_FILTER_16  bb4DbCoeffsLeftQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x401F,0x80F5, 0x3f13}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
+PARM_EQUAL_FILTER_16  bb4DbCoeffsRightQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x401F,0x80F5, 0x3f13}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
 
-//Bass Boost  Coefficients requiring postShift of <<1
-#define BBGAIN4DB       4.00    
-int16_t bb4DbCoeffsPic32Q15[4*B]  = 
-    // a11, a21, a12, a22, b11, b21, b12, b22 }
-    {0xc077, 0x1f95, 0x8133, 0x3ef4, 0, 0, 0, 0};
-    //{0xc077, 0x1f95, 0x4000, 0x8133, 0x3ef4};
+PARM_EQUAL_FILTER_16  bb6DbCoeffsLeftQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x4032,0x80Fb, 0x3f05}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
+PARM_EQUAL_FILTER_16  bb6DbCoeffsRightQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x4032,0x80Fb, 0x3f05}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
 
-#define BBGAIN6DB       6.00    
-int16_t bb6DbCoeffsPic32Q15[4*B]  = 
-    {0xc077, 0x1f95, 0x815e, 0x3ed4, 0, 0, 0, 0};
-    //{0xc077, 0x1f95, 0x4000, 0x815e, 0x3ed4};
+PARM_EQUAL_FILTER_16  bb8DbCoeffsLeftQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x4048,0x8101, 0x3ef6}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
+PARM_EQUAL_FILTER_16  bb8DbCoeffsRightQ15  =
+{
+    //{ 0x401F, 0x0000, 0x80F5, 0x3F13, 0x7F12, 0xC0D5};
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x4048,0x8101, 0x3ef6}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
 
-#define BBGAIN8DB       8.00    
-int16_t bb8DbCoeffsPic32Q15[4*B] = 
-    {0xc077, 0x1f95, 0x818f, 0x3eb0, 0, 0, 0, 0};
-    //{0xc077, 0x1f95, 0x4000, 0x818f, 0x3eb0};
+PARM_EQUAL_FILTER_16  bb10DbCoeffsLeftQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x4060,0x8195, 0x3ee6}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
+PARM_EQUAL_FILTER_16  bb10DbCoeffsRightQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x4060,0x8195, 0x3ee6}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
 
-#define BBGAIN10DB      10.00    
-int16_t bb10DbCoeffsPic32Q15[4*B] =
-    {0xc077, 0x1f95, 0x81c7, 0x3e87, 0, 0,0, 0};
-    //{0xc077, 0x1f95, 0x4000, 0x81c7, 0x3e87};
-
-#define BBGAIN12DB      12.00    
-int16_t bb12DbCoeffsPic32Q15[4*B] =
-    {0xc077, 0x1f95, 0x8209, 0x3e5a, 0, 0, 0, 0};
-    //{0xc077, 0x1f95, 0x4000, 0x8209, 0x3e5a};
+PARM_EQUAL_FILTER_16  bb12DbCoeffsLeftQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x407d,0x8114, 0x33d4}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
+PARM_EQUAL_FILTER_16  bb12DbCoeffsRightQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x407d,0x8114, 0x33d4}, 
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
 
 #define NUMBBLEVELS 4
-int16_t * ptrBbCoeffsPic32Q15[NUMBBLEVELS] = 
+PARM_EQUAL_FILTER_16 *ptrBbCoeffsLeftQ15[NUMBBLEVELS] = 
 { 
-    bb4DbCoeffsPic32Q15, 
-    bb6DbCoeffsPic32Q15, 
-    bb8DbCoeffsPic32Q15, 
-    bb10DbCoeffsPic32Q15, 
+    &bb4DbCoeffsLeftQ15, 
+    &bb6DbCoeffsLeftQ15, 
+    &bb8DbCoeffsLeftQ15, 
+    &bb10DbCoeffsLeftQ15, 
+    //&bb12DbCoeffsLeftQ15, 
+};
+PARM_EQUAL_FILTER_16 *ptrBbCoeffsRightQ15[NUMBBLEVELS] = 
+{ 
+    &bb4DbCoeffsRightQ15, 
+    &bb6DbCoeffsRightQ15, 
+    &bb8DbCoeffsRightQ15, 
+    &bb10DbCoeffsRightQ15, 
+    //&bb12DbCoeffsRightQ15, 
 };
 
 #else //E70
@@ -787,7 +851,8 @@ TEST5_Set();
 
 #ifdef INCLUDE_BASS_BOOST
 #ifdef PIC32MZEFC2
-ptrCoeffs = bb12DbCoeffsPic32Q15;
+ptrFilterEQL = &bb4DbCoeffsLeftQ15;
+ptrFilterEQR = &bb4DbCoeffsRightQ15;
 #else  //E70
 arm_biquad_cascade_df1_init_q15(
     &bbLeftBiquadQ15,  BBNUMSTAGES, bbCoeffsMaArmQ15, bbLeftStateQ15,  BBCOEFSHIFTQ15);
@@ -1139,7 +1204,7 @@ void APP_Tasks()
                             appData.lrSync = false;
                         }
 
-                        #ifdef DEBUG_TONE_CODEC_TX
+#ifdef DEBUG_TONE_CODEC_TX
                         //Write stereo tone to output instead of USB data.
                         DRV_CODEC_BufferAddWrite(
                                     appData.codecClientWrite.handle, 
@@ -1147,7 +1212,7 @@ void APP_Tasks()
                                     &cpBuffer16[0],
                                     //sinBuffer16, 
                                     192); //1ms 16bit stereo buffer @ 48Khz 
-                        #else //DEBUG_TONE_CODEC_TX
+#else //DEBUG_TONE_CODEC_TX
                         currentBuffer = (DRV_I2S_DATA16 *) current->buffer;
 
                         DRV_CODEC_BufferAddWrite(
@@ -1155,8 +1220,7 @@ void APP_Tasks()
                                 &current->codecWriteHandle,
                                 currentBuffer, 
                                 appData.codecClientWrite.bufferSize); //48*4 bytes
-                        #endif //DEBUG_TONE_CODEC_TX 
-
+#endif //DEBUG_TONE_CODEC_TX 
                         if(current->codecWriteHandle != DRV_CODEC_BUFFER_HANDLE_INVALID)
                         {
 #ifdef SAME70CULT 
@@ -1272,7 +1336,7 @@ void APP_Tasks()
                     {
                         current->codecInUse = true;
 
-                        #ifdef DEBUG_TONE_CODEC_TX
+#ifdef DEBUG_TONE_CODEC_TX
                         //Write stereo tone to output instead of USB data.
                         DRV_CODEC_BufferAddWrite(
                                     appData.codecClientWrite.handle, 
@@ -1280,7 +1344,7 @@ void APP_Tasks()
                                     &cpBuffer16[0],
                                     //sinBuffer16, 
                                     192); //1ms 16bit stereo buffer @ 48Khz 
-                        #else
+#else //DEBUG_TONE_CODEC_TX
                         currentBuffer = (DRV_I2S_DATA16 *) current->buffer;
 
 #ifdef INCLUDE_BASS_BOOST
@@ -1313,23 +1377,22 @@ void APP_Tasks()
                                 currentBuffer[j].rightData = rightOutQ15[j];
                             }
 #elif defined(PIC32MZEFC2)
+                            //Buffer Filter Loop
                             for (j=0; j<48; j++)
                             {
                                 dataInQ15 = currentBuffer[j].leftData;
-                                //DSP_FilterIIR16(X, ptrCoeffs, z, B, scaleBquad)
                                 currentBuffer[j].leftData = 
-                                    DSP_FilterIIR16(
+                                    DSP_FilterIIRBQ16_fast(
                                         dataInQ15, 
-                                        ptrCoeffs, zL, B,
-                                        scaleBquad);
+                                        ptrFilterEQL);
+
                                 dataInQ15 = currentBuffer[j].rightData;
                                 currentBuffer[j].rightData = 
-                                    DSP_FilterIIR16(
+                                    DSP_FilterIIRBQ16_fast(
                                         dataInQ15, 
-                                        ptrCoeffs, zR, B,
-                                        scaleBquad);
-                            }
+                                        ptrFilterEQR);
 #endif //SAME70CULT/PIC32MZEFC2
+                            } //End Filter Loop;
                         } //End Bass Boost
 #endif //INCLUDE_BASS_BOOST
 #endif //DEBUG_TONE_CODEC
@@ -1524,7 +1587,9 @@ void APP_Tasks()
                     APP_USB_SPEAKER_PLAYBACK_NONE))
             {
 #if defined(SAME70CULT)
+                //TODO:
 #elif defined(PIC32MZEFC2)
+                //TODO:
 #endif //SAME70CULT/PIC32MZEFC2
             }
         }
@@ -1536,7 +1601,6 @@ void APP_Tasks()
         case APP_STATE_ERROR:
         default:
         {
-            /* TODO: Handle error in application's state machine. */
 #if defined(SAME70CULT)
             appData.ledState   = LED_ERROR_BLINK;
 #elif defined(PIC32MZEFC2)
@@ -1773,8 +1837,8 @@ void _APP_Button_Tasks()
                         appData.ledState = LED_AUDIO_PLAY;
                     }
                 } //End Button 1 LP - volume Mute
-#endif //SAME70CULT/PIC32MZEFC2
                 appData.blinkDelay = 0; 
+#endif //PIC32MZEF
                 appData.buttonState=BUTTON1_STATE_WAIT_FOR_RELEASE;                
             } //End Button 1 LONG PRESS
         } //End case BUTTON_STATE_BUTTON1_PRESSED:
@@ -1802,7 +1866,8 @@ void _APP_Button_Tasks()
                     {
                         appData.bassBoostIndex = 0;    
                     }
-                    ptrCoeffs = ptrBbCoeffsPic32Q15[appData.bassBoostIndex]; 
+                    ptrFilterEQL = ptrBbCoeffsLeftQ15[appData.bassBoostIndex]; 
+                    ptrFilterEQR = ptrBbCoeffsRightQ15[appData.bassBoostIndex]; 
                 } //End bassBoostEn
                 else
                 {
