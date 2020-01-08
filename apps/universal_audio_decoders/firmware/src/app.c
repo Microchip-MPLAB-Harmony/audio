@@ -52,6 +52,7 @@ uint16_t volumeLevels[VOL_LVL_MAX] =
     0 /* off */, 64, 128, 255            
 #endif 
 };
+
 #ifdef DATA32_ENABLED
 DRV_I2S_DATA32m __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
 DRV_I2S_DATA32m __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPLES];
@@ -1164,7 +1165,8 @@ void APP_Tasks ( void )
         // audio data Transmission under process
         case APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE:
             //__NOP();
-            break;           
+            break;
+            
         case APP_STATE_CLOSE_FILE:
 #ifdef GFX_ENABLED
             APP_Init_GUI_Strings();
@@ -1311,7 +1313,6 @@ void APP_LED_Tasks( void )
         }
     }
 }
-
 
 void LED_Set_Mode( uint8_t led, LED_STATES state, uint32_t prd_blinks)
 {

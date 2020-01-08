@@ -320,8 +320,7 @@ bool DISK_OpenTrack ( const char *fname )
     {
         DISK_EventHandler ( DISK_EVENT_FILE_OPEN_ERROR, appDataPtr->diskCurrentFile,appDataPtr->fileHandle );
         return false;
-    }   
-    return DISK_CloseFile(appDataPtr->fileHandle);
+    }
 }
 
 bool DISK_ReopenTrack(void)
