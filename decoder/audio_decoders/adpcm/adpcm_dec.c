@@ -59,7 +59,7 @@ typedef struct
 	int			prevsample;		/* Predicted adpcm sample */
 	int			previndex;		/* Index into step size table */
 	bool		isLE;			/* ADPCM stream in little endian format*/
-}AdpcmState;
+} AdpcmState;
 
 /*
 * Local ADPCM state instance
@@ -96,47 +96,6 @@ static const int stepSizeTable[89] =
 */
 static short ADPCMDecodeSample(unsigned char code, AdpcmState *state);
 
-int ADPCM_HdrGetFormat (void)
-{
-    return adpcmHeader.format;
-
-}
-int ADPCM_HdrGetNumOfChan(void)
-{
-    return adpcmHeader.numOfChan;
-}
-
-int ADPCM_HdrGetSamplesPerSec(void)
-{
-    return adpcmHeader.samplesPerSec;
-}
-
-int ADPCM_HdrGetBlockAlign(void)
-{
-   return adpcmHeader.blockAlign;
-}
-
-int ADPCM_HdrGetBitsPerSample(void)
-{
-    return adpcmHeader.bitsPerSample;
-
-}
-int ADPCM_HdrGetBytesPerSec(void)
-{
-    return adpcmHeader.bytesPerSec;
-
-}
-int ADPCM_HdrGetDataLen(void)
-{
-    return (int) adpcmHeader.dataLen;
-}
-
-unsigned int ADPCM_HdrGetFileSize(void)
-{
-    return (unsigned int) adpcmHeader.extralen;
-}
-
-
 void ADPCM_Initialize(uint8_t *input)
 {
 	if (input != NULL)
@@ -151,8 +110,7 @@ void ADPCM_Initialize(uint8_t *input)
 }
 
 bool ADPCM_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *output, uint16_t *written)
-{
-    
+{   
 	unsigned char* srcBuff=(unsigned char*)input;
 	int nBytes=inSize;
 	unsigned char pChar;	// packed ADPCM character
@@ -163,13 +121,13 @@ bool ADPCM_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *out
 		{
 			pChar = *srcBuff++;
 			*output++=ADPCMDecodeSample(pChar&0x0f, &adpcmState);
-            if( ADPCM_HdrGetNumOfChan() == 1 )
+            if (ADPCM_GetChannels() == 1 )
             {
                 *output = *(output-1);
                 output++;
             }
 			*output++=ADPCMDecodeSample((pChar>>4)&0x0f, &adpcmState);
-            if( ADPCM_HdrGetNumOfChan() == 1 )
+            if (ADPCM_GetChannels() == 1)
             {
                 *output = *(output-1);
                 output++;
@@ -182,13 +140,13 @@ bool ADPCM_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *out
 		{
 			pChar = *srcBuff++;
 			*output++ = ADPCMDecodeSample((pChar >> 4) & 0x0f, &adpcmState);
-            if( ADPCM_HdrGetNumOfChan() == 1 )
+            if (ADPCM_GetChannels() == 1)
             {
                 *output = *(output-1);
                 output++;
             }
 			*output++ = ADPCMDecodeSample(pChar & 0x0f, &adpcmState);
-            if( ADPCM_HdrGetNumOfChan() == 1 )
+            if (ADPCM_GetChannels() == 1)
             {
                 *output = *(output-1);
                 output++;
@@ -197,7 +155,7 @@ bool ADPCM_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *out
 	}
     // adpcm compression ratio 1:4
     *written = 4*inSize;
-    if( ADPCM_HdrGetNumOfChan() == 1 )
+    if (ADPCM_GetChannels() == 1)
     {
         *written *= 2;
     }
@@ -205,8 +163,24 @@ bool ADPCM_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *out
     return true;
 }
 
-uint8_t ADPCM_GetChannels(){
-	return ADPCM_HdrGetNumOfChan();
+uint8_t ADPCM_GetChannels()
+{
+	return adpcmHeader.numOfChan;
+}
+
+int ADPCM_GetSampleRate()
+{
+	return adpcmHeader.samplesPerSec;
+}
+
+int ADPCM__GetBitsPerSample(void)
+{
+    return adpcmHeader.bitsPerSample;
+}
+
+int ADPCM_GetDataLen(void)
+{
+    return (int)adpcmHeader.dataLen;
 }
 
 void ADPCM_Decoder_ConfigByteOrder(bool isLE)
@@ -216,10 +190,10 @@ void ADPCM_Decoder_ConfigByteOrder(bool isLE)
 
 static short ADPCMDecodeSample(unsigned char code, AdpcmState *state)
 {
-   int step;		/* Quantizer step size */
-   int predsample;		/* Output of ADPCM predictor */
-   int diffq;		/* Dequantized predicted difference */
-   int index;		/* Index into step size table */
+   int step;        /* Quantizer step size */
+   int predsample;  /* Output of ADPCM predictor */
+   int diffq;       /* Dequantized predicted difference */
+   int index;       /* Index into step size table */
 
    /* Restore previous values of predicted sample and quantizer step size index */
    predsample = state->prevsample;
@@ -230,21 +204,21 @@ static short ADPCMDecodeSample(unsigned char code, AdpcmState *state)
 
    /* Inverse quantize the ADPCM code into a difference using the quantizer step size */
    diffq = step >> 3;
-   if( code & 4 )
+   if (code & 4)
    {
       diffq += step;
    }
-   if( code & 2 )
+   if (code & 2)
    {
       diffq += step >> 1;
    }
-   if( code & 1 )
+   if (code & 1)
    {
       diffq += step >> 2;
    }
 
    /* Add the difference to the predicted sample */
-   if( code & 8 )
+   if (code & 8)
    {
       predsample -= diffq;
    }
@@ -253,38 +227,33 @@ static short ADPCMDecodeSample(unsigned char code, AdpcmState *state)
       predsample += diffq;
    }
 
-
-	if(predsample>32767)
+	if (predsample>32767)
 	{
 		predsample=32767;
 	}
-	else if(predsample<-32768)
+	else if (predsample<-32768)
 	{
 		predsample=-32768;
 	}
 	
+    /* Find new quantizer step size by adding the old index and a
+       table lookup using the ADPCM code */
+    index += indexTable[code];
 
+    /* Check for overflow of the new quantizer step size index */
+    if (index < 0)
+    {
+       index = 0;
+    }
+    if (index > 88)
+    {
+       index = 88;
+    }
 
-   /* Find new quantizer step size by adding the old index and a
-      table lookup using the ADPCM code */
-   index += indexTable[code];
+    /* Save predicted sample and quantizer step size index for next iteration */
+    state->prevsample = predsample;
+    state->previndex = index;
 
-   /* Check for overflow of the new quantizer step size index */
-   if( index < 0 )
-   {
-      index = 0;
-   }
-   if( index > 88 )
-   {
-      index = 88;
-   }
-
-
-   /* Save predicted sample and quantizer step size index for next iteration */
-   state->prevsample = predsample;
-   state->previndex = index;
-
-   /* Return the new speech sample */
-   return (short)predsample;
-
+    /* Return the new speech sample */
+    return (short)predsample;
 }

@@ -63,7 +63,6 @@ extern "C" {
 */
 #define ADPCM_HEADER_SIZE 44
     
-
 /*	ADPCM Audio File Header Structure
 	
 	Summary:
@@ -71,7 +70,8 @@ extern "C" {
 	Description:
 		This structure is header structure of wav container.
 */
-typedef struct {
+typedef struct
+{
     int format;
     int filesize;
     int filetype;
@@ -121,7 +121,6 @@ void ADPCM_Initialize(uint8_t *input);
 
 	Description:
 		Decode the ADPCM stream of inSize from input pointer into output pointer.
-
 	
 	Parameters:
 		input	- Pointer to the data of ADPCM byte stream.
@@ -137,171 +136,8 @@ void ADPCM_Initialize(uint8_t *input);
 bool ADPCM_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *output, uint16_t *written);
 
 // *****************************************************************************
-/* Function (deprecate):
-	int ADPCM_HdrGetFormat (void);
-
-	Summary:
-		Get ADPCM WAV conainter format code.
-
-	Description:
-		Get ADPCM WAV conainter format code.
-
-	Precondition:
-		Input pointer to ADPCM_Initialize function must not be null.
-
-	Parameters:
-		None.
-	Returns:
-		WAV header format code.
-*/
-int ADPCM_HdrGetFormat (void);
-
-// *****************************************************************************
-/* Function (deprecate):
-	int ADPCM_HdrGetNumOfChan (void);
-
-	Summary:
-		Get number of channel states in ADPCM WAV header.
-
-	Description:
-		Get number of channel states in ADPCM WAV header.
-
-	Precondition:
-		Input pointer to ADPCM_Initialize function must not be null.
-
-	Parameters:
-		None.
-	Returns:
-		Number of channels states in ADPCM WAV header structure.
-*/
-int ADPCM_HdrGetNumOfChan(void);
-
-// *****************************************************************************
-/* Function (deprecate):
-	int ADPCM_HdrGetSamplesPerSec (void);
-
-	Summary:
-		Get sample rate in ADPCM WAV header.
-
-	Description:
-		Get sample rate in ADPCM WAV header.
-
-	Precondition:
-		Input pointer to ADPCM_Initialize function must not be null.
-
-	Parameters:
-		None.
-	Returns:
-		Sample rate states in ADPCM WAV header structure.
-*/
-int ADPCM_HdrGetSamplesPerSec(void);
-
-// *****************************************************************************
-/* Function (deprecate):
-	int ADPCM_HdrGetBlockAlign (void);
-
-	Summary:
-		Get blockAlign (NumChannels * BitsPerSample/8)
-        in ADPCM WAV header.
-
-	Description:
-		Get blockAlign (NumChannels * BitsPerSample/8)
-        in ADPCM WAV header.
-
-	Precondition:
-		Input pointer to ADPCM_Initialize function must not be null.
-
-	Parameters:
-		None.
-	Returns:
-		blockAlign states in ADPCM WAV header structure.
-*/
-int ADPCM_HdrGetBlockAlign(void);
-
-// *****************************************************************************
-/* Function (deprecate):
-	int ADPCM_HdrGetBitsPerSample (void);
-
-	Summary:
-		Get bits per sample in ADPCM WAV header.
-
-	Description:
-		Get bits per sample in ADPCM WAV header,  
-		8 bits = 8, 16 bits = 16, etc.
-
-	Precondition:
-		Input pointer to ADPCM_Initialize function must not be null.
-
-	Parameters:
-		None.
-	Returns:
-		Bits per sample states in ADPCM WAV header structure.
-*/
-int ADPCM_HdrGetBitsPerSample(void);
-
-// *****************************************************************************
-/* Function (deprecate):
-	int ADPCM_HdrGetBytesPerSec (void);
-
-	Summary:
-		Get bytes per second in ADPCM WAV header.
-
-	Description:
-		Get bytes per second in ADPCM WAV header.
-	
-	Precondition:
-		Input pointer to ADPCM_Initialize function must not be null.
-
-	Parameters:
-		None.
-	Returns:
-		Bits per sample states in ADPCM WAV header structure.
-*/
-int ADPCM_HdrGetBytesPerSec(void);
-
-// *****************************************************************************
-/* Function (deprecate):
-	int ADPCM_HdrGetDataLen (void);
-
-	Summary:
-		Get ADPCM data size states in ADPCM WAV header.
-
-	Description:
-		Get ADPCM data size states in ADPCM WAV header.
-
-	Precondition:
-		Input pointer to ADPCM_Initialize function must not be null.
-
-	Parameters:
-		None.
-	Returns:
-		Data size states in ADPCM WAV header structure.
-*/
-int ADPCM_HdrGetDataLen(void);
-
-// *****************************************************************************
-/* Function (deprecate):
-	unsigned int ADPCM_HdrGetFileSize (void);
-
-	Summary:
-		Get ADPCM WAV file size.
-
-	Description:
-		Get ADPCM WAV file size.
-
-	Precondition:
-		Input pointer to ADPCM_Initialize function must not be null.
-
-	Parameters:
-		None.
-	Returns:
-		ADPCM WAV file size.
-*/
-unsigned int ADPCM_HdrGetFileSize(void);
-
-// *****************************************************************************
 /* Function:
-	int ADPCM_GetChannels (void);
+	int ADPCM_GetChannels(void);
 
 	Summary:
 		Get number of channel states in ADPCM WAV header.
@@ -321,7 +157,68 @@ uint8_t ADPCM_GetChannels();
 
 // *****************************************************************************
 /* Function:
-	void ADPCM_Decoder_ConfigByteOrder (bool isLE);
+	int ADPCM_GetSampleRate(void);
+
+	Summary:
+		Get sample rate in ADPCM WAV header.
+
+	Description:
+		Get sample rate in ADPCM WAV header.
+
+	Precondition:
+		Input pointer to ADPCM_Initialize function must not be null.
+
+	Parameters:
+		None.
+	Returns:
+		Sample rate states in ADPCM WAV header structure.
+*/
+int ADPCM_GetSampleRate(void);
+
+// *****************************************************************************
+/* Function:
+	int ADPCM__GetBitsPerSample(void);
+
+	Summary:
+		Get bits per sample in ADPCM WAV header.
+
+	Description:
+		Get bits per sample in ADPCM WAV header,  
+		8 bits = 8, 16 bits = 16, etc.
+
+	Precondition:
+		Input pointer to ADPCM_Initialize function must not be null.
+
+	Parameters:
+		None.
+	Returns:
+		Bits per sample states in ADPCM WAV header structure.
+*/
+int ADPCM__GetBitsPerSample(void);
+
+// *****************************************************************************
+/* Function:
+	int ADPCM_GetDataLen(void);
+
+	Summary:
+		Get ADPCM data size states in ADPCM WAV header.
+
+	Description:
+		Get ADPCM data size states in ADPCM WAV header.
+
+	Precondition:
+		Input pointer to ADPCM_Initialize function must not be null.
+
+	Parameters:
+		None.
+	Returns:
+		Data size states in ADPCM WAV header structure.
+*/
+int ADPCM_GetDataLen(void);
+
+// *****************************************************************************
+/* Function:
+	void ADPCM_Decoder_ConfigByteOrder(bool isLE);
 
 	Summary:
 		Configure input ADPCM stream byte order.
@@ -336,7 +233,6 @@ uint8_t ADPCM_GetChannels();
 		None.
 */
 void ADPCM_Decoder_ConfigByteOrder(bool isLE);
-
 
 #ifdef __cplusplus
 }

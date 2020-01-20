@@ -31,13 +31,39 @@ hdr_ext = ('.h')
 lib_ext = ('.a')
 imp_ext = ('.gpl', '.xiph')
 
-
-
 wavTable     = [("LIB_", "wav/", "wav_dec.h", "audio/decoder/audio_decoders/wav"),
                 ("LIB_", "wav/", "wav_dec.c", "audio/decoder/audio_decoders/wav")]
 
 adpcmTable   = [("LIB_", "adpcm/", "adpcm_dec.h", "audio/decoder/audio_decoders/adpcm"),
                 ("LIB_", "adpcm/", "adpcm_dec.c", "audio/decoder/audio_decoders/adpcm")]
+
+mp3Table     = [("LIB_", "mp3/", "mp3_dec.h", "audio/decoder/audio_decoders/mp3"),
+                ("LIB_", "mp3/", "mp3_dec.c", "audio/decoder/audio_decoders/mp3"),
+                ("LIB_", "../../../helix_mp3/fixpnt/", "mp3dec.c", "audio/decoder/audio_decoders/mp3/fixpnt"),
+                ("LIB_", "../../../helix_mp3/fixpnt/", "mp3tabs.c", "audio/decoder/audio_decoders/mp3/fixpnt"),
+                ("LIB_", "../../../helix_mp3/fixpnt/pub/", "mp3common.h", "audio/decoder/audio_decoders/mp3/fixpnt/pub"),
+                ("LIB_", "../../../helix_mp3/fixpnt/pub/", "mp3dec.h", "audio/decoder/audio_decoders/mp3/fixpnt/pub"),
+                ("LIB_", "../../../helix_mp3/fixpnt/pub/", "mpadecobjfixpt.h", "audio/decoder/audio_decoders/mp3/fixpnt/pub"),
+                ("LIB_", "../../../helix_mp3/fixpnt/pub/", "statname.h", "audio/decoder/audio_decoders/mp3/fixpnt/pub"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "assembly.h", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "coder.h", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "bitstream.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "buffers.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "dct32.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "dequant.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "dqchan.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "huffman.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "hufftabs.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "imdct.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "polyphase.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "scalfact.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "stproc.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "subband.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "../../../helix_mp3/fixpnt/real/", "trigtabs.c", "audio/decoder/audio_decoders/mp3/fixpnt/real"),
+                ("LIB_", "mp3/id3/", "id3.c", "audio/decoder/audio_decoders/mp3/id3"),
+                ("LIB_", "mp3/id3/", "id3.h", "audio/decoder/audio_decoders/mp3/id3"),
+                ("LIB_", "mp3/id3/", "utils.c", "audio/decoder/audio_decoders/mp3/id3"),
+                ("LIB_", "mp3/id3/", "utils.h", "audio/decoder/audio_decoders/mp3/id3")]
 
 flacTable    = [("LIB_", "flac/", "flac_dec.h", "audio/decoder/audio_decoders/flac"),
                 ("LIB_", "flac/", "flac_dec.c", "audio/decoder/audio_decoders/flac"),
@@ -492,9 +518,7 @@ utilsTable   = [("LIB_", "utils/", "utils.c", "audio/decoder/audio_decoders/util
 oggTable     = [("LIB_", "ogg/", "ogg.h", "audio/decoder/audio_decoders/ogg")]
 
 ftlTable     = [("LIB_", "../templates/", "audio_decoders.h.ftl", "audio/decoder"),
-                ("LIB_", "../templates/", "audio_decoders_config.h.ftl", "audio/decoder"),
-                ("LIB_", "../templates/", "gfx_decoders.h.ftl", "audio/decoder")]
-
+                ("LIB_", "../templates/", "audio_decoders_config.h.ftl", "audio/decoder")]
 
 # Wav
 def enableWavDecoderFiles(component, enable):
@@ -513,7 +537,6 @@ def enableWavDecoderFiles(component, enable):
         # Generate file symbol
         symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
         exec("component.getSymbolByID(\"" + symbol + "\").setEnabled(enable)")
-
   
 def enableWavDecoder(symbol, event):
     enableWavDecoderFiles(symbol.getComponent(), event["value"]==True)
@@ -535,11 +558,31 @@ def enableAdpcmDecoderFiles(component, enable):
         # Generate file symbol
         symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
         exec("component.getSymbolByID(\"" + symbol + "\").setEnabled(enable)")
-
   
 def enableAdpcmDecoder(symbol, event):
     enableAdpcmDecoderFiles(symbol.getComponent(), event["value"]==True)
 
+# MP3
+def enableMP3DecoderFiles(component, enable):
+
+    for fileSymbol, srcPath, file, destPath in mp3Table:
+        # Set type
+        baseFileName = os.path.splitext(file)[0]
+        ext = os.path.splitext(file)[-1].lower()
+        if ext in src_ext:
+            type = "SOURCE"
+        elif ext in hdr_ext:
+            type = "HEADER"
+        else:
+            type = "IMPORTANT"
+
+        # Generate file symbol
+        modifiedSrcPath = srcPath.replace("../../../", "")
+        symbol = fileSymbol + modifiedSrcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+        exec("component.getSymbolByID(\"" + symbol + "\").setEnabled(enable)")
+  
+def enableMP3Decoder(symbol, event):
+    enableMP3DecoderFiles(symbol.getComponent(), event["value"]==True)
 
 # FLAC
 def enableFlacDecoderFiles(component, enable):
@@ -558,11 +601,9 @@ def enableFlacDecoderFiles(component, enable):
         # Generate file symbol
         symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
         exec("component.getSymbolByID(\"" + symbol + "\").setEnabled(enable)")
-
   
 def enableFlacDecoder(symbol, event):
     enableFlacDecoderFiles(symbol.getComponent(), event["value"]==True)
-
 
 # SPEEX
 def enableSpeexDecoderFiles(component, enable):
@@ -581,11 +622,9 @@ def enableSpeexDecoderFiles(component, enable):
         # Generate file symbol
         symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
         exec("component.getSymbolByID(\"" + symbol + "\").setEnabled(enable)")
-
   
 def enableSpeexDecoder(symbol, event):
     enableSpeexDecoderFiles(symbol.getComponent(), event["value"]==True)
-
 
 # OPUS
 def enableOpusDecoderFiles(component, enable):
@@ -619,17 +658,14 @@ def enableOpusDecoderFiles(component, enable):
         # Generate file symbol
         symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
         exec("component.getSymbolByID(\"" + symbol + "\").setEnabled(enable)")
-
-  
+ 
 def enableOpusDecoder(symbol, event):
     enableOpusDecoderFiles(symbol.getComponent(), event["value"]==True)
-
-
-
     
 def instantiateComponent(audioDecoderComponent):
     global CONFIG_USE_WAV_STREAMING
     global CONFIG_USE_ADPCM_STREAMING
+    global CONFIG_USE_MP3_DECODER
 
     CONFIG_USE_WAV_STREAMING = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_WAV_STREAMING", None)
     CONFIG_USE_WAV_STREAMING.setVisible(True)
@@ -640,8 +676,14 @@ def instantiateComponent(audioDecoderComponent):
     CONFIG_USE_ADPCM_STREAMING = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_ADPCM_STREAMING", None)
     CONFIG_USE_ADPCM_STREAMING.setVisible(True)
     CONFIG_USE_ADPCM_STREAMING.setLabel("Enable ADPCM Decoder")
-    CONFIG_USE_ADPCM_STREAMING.setDefaultValue(True)
+    CONFIG_USE_ADPCM_STREAMING.setDefaultValue(False)
     CONFIG_USE_ADPCM_STREAMING.setDependencies(enableAdpcmDecoder, ["CONFIG_USE_ADPCM_STREAMING"])
+
+    CONFIG_USE_MP3_DECODER = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_MP3_DECODER", None)
+    CONFIG_USE_MP3_DECODER.setVisible(True)
+    CONFIG_USE_MP3_DECODER.setLabel("Enable MP3 Decoder")
+    CONFIG_USE_MP3_DECODER.setDefaultValue(False)
+    CONFIG_USE_MP3_DECODER.setDependencies(enableMP3Decoder, ["CONFIG_USE_MP3_DECODER"])
 
     CONFIG_USE_FLAC_DECODER = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_FLAC_DECODER", None)
     CONFIG_USE_FLAC_DECODER.setVisible(False)
@@ -666,12 +708,6 @@ def instantiateComponent(audioDecoderComponent):
     CONFIG_USE_WMA_DECODER.setLabel("Enable WMA Decoder")
     CONFIG_USE_WMA_DECODER.setDefaultValue(False)
     CONFIG_USE_WMA_DECODER.setDependencies(enableOpusDecoder, ["CONFIG_USE_WMA_DECODER"])
-    
-    CONFIG_USE_MP3_DECODER = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_MP3_DECODER", None)
-    CONFIG_USE_MP3_DECODER.setVisible(False)
-    CONFIG_USE_MP3_DECODER.setLabel("Enable MP3 Decoder")
-    CONFIG_USE_MP3_DECODER.setDefaultValue(False)
-#    CONFIG_USE_MP3_DECODER.setDependencies(enableMp3Decoder, ["CONFIG_USE_MP3_DECODER"])
     
     CONFIG_USE_AAC_DECODER = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_AAC_DECODER", None)
     CONFIG_USE_AAC_DECODER.setVisible(False)
@@ -712,7 +748,7 @@ def instantiateComponent(audioDecoderComponent):
         exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
         exec(symbol + ".setOutputName(\"" + file + "\")")
         exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/wav\")")
         exec(symbol + ".setType(\"" + type + "\")")
         exec(symbol + ".setEnabled(CONFIG_USE_WAV_STREAMING.getValue() == True)")
 
@@ -734,9 +770,32 @@ def instantiateComponent(audioDecoderComponent):
         exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
         exec(symbol + ".setOutputName(\"" + file + "\")")
         exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/adpcm\")")
         exec(symbol + ".setType(\"" + type + "\")")
         exec(symbol + ".setEnabled(CONFIG_USE_ADPCM_STREAMING.getValue() == True)")
+
+    for fileSymbol, srcPath, file, destPath in mp3Table:
+        # Set type
+        baseFileName = os.path.splitext(file)[0]
+        ext = os.path.splitext(file)[-1].lower()
+        if ext in src_ext:
+            type = "SOURCE"
+        elif ext in hdr_ext:
+            type = "HEADER"
+        else:
+            type = "IMPORTANT"
+
+        # Create unique file symbol
+        modifiedSrcPath = srcPath.replace("../../../", "")
+        symbol = fileSymbol + modifiedSrcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+
+        exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        exec(symbol + ".setOutputName(\"" + file + "\")")
+        exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/mp3\")")
+        exec(symbol + ".setType(\"" + type + "\")")
+        exec(symbol + ".setEnabled(CONFIG_USE_MP3_DECODER.getValue() == True)")
 
     # for fileSymbol, srcPath, file, destPath in flacTable:
         # # Set type
@@ -756,7 +815,7 @@ def instantiateComponent(audioDecoderComponent):
         # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
         # exec(symbol + ".setOutputName(\"" + file + "\")")
         # exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/flac\")")
         # exec(symbol + ".setType(\"" + type + "\")")
         # exec(symbol + ".setEnabled(CONFIG_USE_FLAC_DECODER.getValue() == True)")
 
@@ -778,7 +837,7 @@ def instantiateComponent(audioDecoderComponent):
         # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
         # exec(symbol + ".setOutputName(\"" + file + "\")")
         # exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/speex\")")
         # exec(symbol + ".setType(\"" + type + "\")")
         # exec(symbol + ".setEnabled(CONFIG_USE_OGG_SPEEX_DECODER.getValue() == True)")
 
@@ -800,7 +859,7 @@ def instantiateComponent(audioDecoderComponent):
         # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
         # exec(symbol + ".setOutputName(\"" + file + "\")")
         # exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/opus\")")
         # exec(symbol + ".setType(\"" + type + "\")")
         # exec(symbol + ".setEnabled(CONFIG_USE_OGG_OPUS_DECODER.getValue() == True)")
 
@@ -822,7 +881,7 @@ def instantiateComponent(audioDecoderComponent):
         # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
         # exec(symbol + ".setOutputName(\"" + file + "\")")
         # exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders\")")
+        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/ogg\")")
         # exec(symbol + ".setType(\"" + type + "\")")
         # exec(symbol + ".setEnabled(CONFIG_USE_OGG_OPUS_DECODER.getValue() == True)")
 
@@ -831,7 +890,7 @@ def instantiateComponent(audioDecoderComponent):
         baseFileName1 = os.path.splitext(file)[0]       # Strip the .ftl extension
         baseFileName = os.path.splitext(baseFileName1)[0]
         ext = os.path.splitext(baseFileName1)[-1].lower()
-        print("baseFileName1: " + baseFileName1 + ", baseFileName: " + baseFileName + ", ext: " + ext)
+        #print("baseFileName1: " + baseFileName1 + ", baseFileName: " + baseFileName + ", ext: " + ext)
         if ext in src_ext:
             type = "SOURCE"
         elif ext in hdr_ext:
@@ -863,9 +922,6 @@ def instantiateComponent(audioDecoderComponent):
        # CONFIG_USE_OGG_SPEEX_DECODER.setVisible(False)
        # CONFIG_USE_OGG_OPUS_DECODER.setVisible(False)
 
-# TTD
-#   Check if WMA, AAC, and MP3 .a files exist, if so setReadOnly(False)
-#    if(os.path.is_file("../premium/decoder_wma/):
    
 
     
