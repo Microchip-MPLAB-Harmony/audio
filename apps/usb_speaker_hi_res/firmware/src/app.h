@@ -298,6 +298,7 @@ typedef struct
     //Codec Volume
     int volume;
     int volumeIndex;
+    bool muteEn;
 
     //Button Handler
     DRV_HANDLE tmrHandle;

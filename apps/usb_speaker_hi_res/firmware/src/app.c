@@ -106,18 +106,6 @@ static uint32_t _clockAdjDwn[8][3] =
 };
 #endif //FS48KHZ
 
-#ifdef APP_DEBUG_CLOCK
-static uint32_t _clockAdj[6][6] = 
-{
-{2, 41, 10, 246000000, 24600000, 96093},  //0.097
-{1, 39, 19, 468000000, 24631578, 96217},  //0.226
-{2, 37,  9, 222000000, 24666666, 96354},  //0.369
-{3, 43,  7, 172000000, 24571428, 95982},  //-0.019
-{2, 45, 11, 270000000, 24545454, 95880},  //-0.125
-{2, 49, 12, 294000000, 24500000, 95703},  //-0.309
-};
-#endif //APP_DEBUG_CLOCK
-
 //d, m, and d2 values for E70 96Khz/64 bit stereo frame
 static uint32_t d,m,d2;
 #define CLOCKUP_IND   0   
@@ -259,6 +247,7 @@ APP_DATA __attribute__((aligned(32))) __attribute__((tcm)) appData =
     .dacMute = false,        //USB Mute command
     .ledState = LED_OFF,
     .blinkDelay = 0,
+    .muteEn = false,
     
     .sampleFreq = 0x17700,    //96000 Hz
     
@@ -913,6 +902,7 @@ void APP_Tasks()
                 queueFull = false;
                 queueEmpty = true;
                 appData.ledState = LED_ON;
+                appData.muteEn = false;
                 DRV_CODEC_MuteOff(appData.codecClientWrite.handle);
                 DRV_CODEC_VolumeSet(appData.codecClientWrite.handle, 
                                     DRV_CODEC_CHANNEL_LEFT_RIGHT, 
@@ -985,6 +975,7 @@ void APP_Tasks()
                 //queueEmpty = false;
 
                 appData.ledState = CONNECTED_BLINK;
+                appData.muteEn = true;
                 DRV_CODEC_MuteOn(appData.codecClientWrite.handle);
             }//No activeInterfaceAlternateSetting
 
@@ -1405,6 +1396,7 @@ void APP_Tasks()
                    APP_USB_SPEAKER_PLAYBACK_NONE)
             {
                 appData.ledState = CONNECTED_BLINK;
+                appData.muteEn = true;
                 DRV_CODEC_MuteOn(appData.codecClientWrite.handle);
                 appData.state = APP_IDLE;
             }
@@ -1412,6 +1404,7 @@ void APP_Tasks()
                     APP_USB_SPEAKER_PLAYBACK_STEREO)
             {
                 appData.ledState = LED_ON;
+                appData.muteEn = false;
                 DRV_CODEC_MuteOff(appData.codecClientWrite.handle);
                 appData.state = APP_STATE_INITIAL_USB_READ_REQUEST;
             }
@@ -1457,6 +1450,7 @@ void APP_Tasks()
                 if (SYS_STATUS_READY == codecStatus)
                 {
                     appData.ledState = MUTE_BLINK;
+                    appData.muteEn = true;
                     DRV_CODEC_MuteOn(appData.codecClientWrite.handle);
                     appData.state = APP_IDLE;
                 }
@@ -1470,6 +1464,7 @@ void APP_Tasks()
                 if (SYS_STATUS_READY == codecStatus)
                 {
                     appData.ledState = LED_ON;
+                    appData.muteEn = false;
                     DRV_CODEC_MuteOff(appData.codecClientWrite.handle);
                     _APP_Init_PlaybackBufferQueue();
                     appData.state =  APP_STATE_INITIAL_USB_READ_REQUEST;
@@ -1488,6 +1483,7 @@ void APP_Tasks()
             {
                 asm("Nop");
                 //appData.ledState = MUTE_BLINK;
+                //appData.muteEn = true;
                 //DRV_CODEC_MuteOn(appData.codecClientWrite.handle);
             }
         }
@@ -1831,11 +1827,13 @@ void _APP_Button_Tasks()
                 if (0==appData.volume)
                 {
                     appData.ledState = MUTE_BLINK;
+                    appData.muteEn = true;
                     DRV_CODEC_MuteOn(appData.codecClientWrite.handle);
                 }
                 else
                 {
                     appData.ledState = LED_ON;
+                    appData.muteEn = false;
                     DRV_CODEC_MuteOff(appData.codecClientWrite.handle);
                     DRV_CODEC_VolumeSet(appData.codecClientWrite.handle, 
                                        DRV_CODEC_CHANNEL_LEFT_RIGHT, 
@@ -1849,29 +1847,19 @@ void _APP_Button_Tasks()
             else if ((appData.buttonDelay==0)&&
                      (SWITCH_Get()==SWITCH_STATE_PRESSED))  
             {
-                //Long Press - Switch
-#ifdef APP_DEBUG_CLOCK   //Use Sw1 to cycle the clock rates
-                static uint32_t clockRate;
-                static uint32_t clockIndex = 0;
-                static uint32_t d,m,d2;
-                static DRV_WM8904_CLIENT_OBJ *clientObj;
-                static DRV_WM8904_OBJ *drvObj;
-                static DRV_HANDLE * handle;
 
-                clockRate = _clockAdj[clockIndex][5];
-                d         = _clockAdj[clockIndex][0];
-                m         = _clockAdj[clockIndex][1];
-                d2        = _clockAdj[clockIndex][2];
-                handle = (DRV_HANDLE *) appData.codecClientWrite.handle;
-                clientObj = (DRV_WM8904_CLIENT_OBJ *) handle;
-                drvObj = (DRV_WM8904_OBJ *) clientObj->hDriver;
-                DRV_I2S_ClockGenerationSet(drvObj->i2sDriverHandle, d, m, d2);
-                DRV_I2S_ProgrammableClockSet(drvObj->i2sDriverHandle, 2, d2);
-                SYS_PRINT("#%d d=%d m=%d d2=%d r=%d\r\n",
-                           clockIndex, d,m,d2,clockRate);
-                clockIndex++;
-                appData.buttonState=BUTTON_STATE_WAIT_FOR_RELEASE;                
-#endif //APP_DEBUG_CLOCK
+                //if (appData.muteEn == true)
+                //{
+                //    appData.ledState = LED_ON;
+                //    appData.muteEn   =false;
+                //    DRV_CODEC_MuteOff(appData.codecClientWrite.handle);
+                //}
+                //else
+                //{
+                //    appData.ledState = MUTE_BLINK;
+                //    appData.muteEn   =true;
+                //    DRV_CODEC_MuteOn(appData.codecClientWrite.handle);
+                //}
             }                          
         } 
         break;
