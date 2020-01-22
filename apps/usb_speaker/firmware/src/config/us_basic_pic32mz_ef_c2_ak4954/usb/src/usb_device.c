@@ -54,8 +54,6 @@
 #include "usb/src/usb_device_local.h"
 #include "driver/usb/drv_usb.h"
 
-#include "system/debug/sys_debug.h"
-
 /**********************************
  * Device layer instance objects.
  *********************************/

@@ -60,18 +60,14 @@
 #include "usb/usb_audio_v1_0.h"
 #include "driver/i2c/drv_i2c.h"
 #include "system/time/sys_time.h"
-#include "system/debug/sys_debug.h"
 #include "peripheral/coretimer/plib_coretimer.h"
 #include "driver/usb/usbhs/drv_usbhs.h"
-#include "peripheral/uart/plib_uart1.h"
 #include "peripheral/tmr/plib_tmr2.h"
 #include "library/i2cbb/i2c_bb.h"
 #include "audio/math/libq_c/libq_c.h"
 #include "audio/math/libq/libq.h"
 #include "audio/math/dsp/dsp.h"
 #include "audio/driver/codec/ak4954/drv_ak4954.h"
-#include "system/console/sys_console.h"
-#include "system/console/src/sys_console_uart_definitions.h"
 #include "audio/peripheral/i2s/plib_i2s2.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
@@ -208,13 +204,9 @@ typedef struct
     SYS_MODULE_OBJ drvI2S0;
 
     SYS_MODULE_OBJ  sysTime;
-    SYS_MODULE_OBJ  sysDebug;
-
 	SYS_MODULE_OBJ  drvUSBHSObject;
 
     SYS_MODULE_OBJ drvak4954Codec0;
-    SYS_MODULE_OBJ  sysConsole0;
-
 
 } SYSTEM_OBJECTS;
 
