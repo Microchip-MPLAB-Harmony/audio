@@ -212,10 +212,8 @@ static void I2C_BB_tasks(void)
         // After the 9th clock
         if (i2c_bbObj.I2CSWCounter == 0) {
           if ((i2c_bbObj.writeCount != (i2c_bbObj.writeSize)) &&
-            // KEEP THE FOLLOWING THREE LINES AS IS UNTIL JIRA MH3-17814 RESOLVED
-            // Commenting out the next line ignores the lack of ACK from AK4954 during reset
-            //((i2c_bbObj.I2CACKStatus == M_ACK)) &&
-              ((i2c_bbObj.transferState == I2CBB_TRANSFER_STATE_WRITE) ||
+            ((i2c_bbObj.I2CACKStatus == M_ACK))
+            &&((i2c_bbObj.transferState == I2CBB_TRANSFER_STATE_WRITE) ||
               (i2c_bbObj.transferState == I2CBB_TRANSFER_STATE_WRITE_READ))) {
             i2c_bbObj.I2CSWData = * i2c_bbObj.writeBuffer++;
             i2c_bbObj.i2cState = I2CBB_BUS_STATE_SCL_LOW_DATA;
@@ -381,6 +379,18 @@ void I2C_BB_Initialize(void)
     i2c_bbObj.i2cClockSpeed = pInitData->i2cClockSpeed;
 
     pInitData->i2cbbTmrPlib->timerCallbackRegister(I2C_BB_eventHandler,(uintptr_t)0);
+}
+
+bool I2C_BB_IsBusy(void)
+{
+    if( i2c_bbObj.i2cState != I2CBB_BUS_STATE_NULL_STATE )
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 bool I2C_BB_Read(uint16_t address, uint8_t *pdata, size_t length)

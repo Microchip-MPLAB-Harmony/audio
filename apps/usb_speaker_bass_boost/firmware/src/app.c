@@ -202,23 +202,27 @@ PARM_EQUAL_FILTER_16 * ptrFilterEQL = NULL;
 PARM_EQUAL_FILTER_16 * ptrFilterEQR = NULL;
 int16_t dataInQ15;
 
+//4Db Bass Boost
 PARM_EQUAL_FILTER_16  bb4DbCoeffsLeftQ15  =
 {
     //.G = 0x7FFF,
     .log2Alpha = 1,
-    .b = { 0x401F,0x80F5, 0x3f13}, 
-    .a = { 0x80ee, 0x3f2b},
-    .Z = { 0, 0},
-};
-PARM_EQUAL_FILTER_16  bb4DbCoeffsRightQ15  =
-{
-    //.G = 0x7FFF,
-    .log2Alpha = 1,
-    .b = { 0x401F,0x80F5, 0x3f13}, 
+    .b = { 0x401F, 0x80F5, 0x3f13},  //b0,b1,b2,a1,a2
     .a = { 0x80ee, 0x3f2b},
     .Z = { 0, 0},
 };
 
+PARM_EQUAL_FILTER_16  bb4DbCoeffsRightQ15  =
+{
+    //.G = 0x7FFF,
+    .log2Alpha = 1,
+    .b = { 0x401F, 0x80F5, 0x3f13},  //b0,b1,b2,a1,a2
+    .a = { 0x80ee, 0x3f2b},
+    .Z = { 0, 0},
+};
+
+//6Db Bass Boost
+//['0x4032', '0x80fb', '0x3f05', '0x4000', '0x80ee', '0x3f2b']
 PARM_EQUAL_FILTER_16  bb6DbCoeffsLeftQ15  =
 {
     //.G = 0x7FFF,
@@ -236,6 +240,8 @@ PARM_EQUAL_FILTER_16  bb6DbCoeffsRightQ15  =
     .Z = { 0, 0},
 };
 
+//8Db Bass Boost
+//['0x4048', '0x8101', '0x3ef6', '0x4000', '0x80ee', '0x3f2b']
 PARM_EQUAL_FILTER_16  bb8DbCoeffsLeftQ15  =
 {
     //.G = 0x7FFF,
@@ -254,6 +260,8 @@ PARM_EQUAL_FILTER_16  bb8DbCoeffsRightQ15  =
     .Z = { 0, 0},
 };
 
+//10Db Bass Boost
+//['0x4060', '0x8109', '0x3ee6', '0x4000', '0x80ee', '0x3f2b']
 PARM_EQUAL_FILTER_16  bb10DbCoeffsLeftQ15  =
 {
     //.G = 0x7FFF,
@@ -271,6 +279,8 @@ PARM_EQUAL_FILTER_16  bb10DbCoeffsRightQ15  =
     .Z = { 0, 0},
 };
 
+//12Db Bass Boost
+//['0x407d', '0x8114', '0x3ed4', '0x4000', '0x80ee', '0x3f2b']
 PARM_EQUAL_FILTER_16  bb12DbCoeffsLeftQ15  =
 {
     //.G = 0x7FFF,
@@ -289,6 +299,8 @@ PARM_EQUAL_FILTER_16  bb12DbCoeffsRightQ15  =
 };
 
 #define NUMBBLEVELS 4
+_Sat _Fract gainFactorFract;
+_Sat _Fract dataValFract;
 PARM_EQUAL_FILTER_16 *ptrBbCoeffsLeftQ15[NUMBBLEVELS] = 
 { 
     &bb4DbCoeffsLeftQ15, 
@@ -304,6 +316,10 @@ PARM_EQUAL_FILTER_16 *ptrBbCoeffsRightQ15[NUMBBLEVELS] =
     &bb8DbCoeffsRightQ15, 
     &bb10DbCoeffsRightQ15, 
     //&bb12DbCoeffsRightQ15, 
+};
+_Sat _Fract gainFactorLevelsQ15[NUMBBLEVELS] =
+{
+    .95, .95, .95, .95,
 };
 
 #else //E70
@@ -1381,6 +1397,7 @@ void APP_Tasks()
                             for (j=0; j<48; j++)
                             {
                                 dataInQ15 = currentBuffer[j].leftData;
+                                dataValFract = gainFactorFract * (_Fract) dataInQ15;
                                 currentBuffer[j].leftData = 
                                     DSP_FilterIIRBQ16_fast(
                                         dataInQ15, 
@@ -1391,8 +1408,8 @@ void APP_Tasks()
                                     DSP_FilterIIRBQ16_fast(
                                         dataInQ15, 
                                         ptrFilterEQR);
-#endif //SAME70CULT/PIC32MZEFC2
                             } //End Filter Loop;
+#endif //SAME70CULT/PIC32MZEFC2
                         } //End Bass Boost
 #endif //INCLUDE_BASS_BOOST
 #endif //DEBUG_TONE_CODEC
@@ -1868,6 +1885,7 @@ void _APP_Button_Tasks()
                     }
                     ptrFilterEQL = ptrBbCoeffsLeftQ15[appData.bassBoostIndex]; 
                     ptrFilterEQR = ptrBbCoeffsRightQ15[appData.bassBoostIndex]; 
+                    gainFactorFract = gainFactorLevelsQ15[appData.bassBoostIndex];
                 } //End bassBoostEn
                 else
                 {
