@@ -43,8 +43,8 @@ extern "C" {
 #define SWITCH_Get()            SWITCH1_Get()
 #define SWITCH_STATE_PRESSED    SWITCH1_STATE_PRESSED
 
-
-    
+#define SWAPCHANNELS    1
+ 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
 }

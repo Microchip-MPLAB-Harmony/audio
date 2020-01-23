@@ -752,7 +752,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="16384"/>
+        <property key="heap-size" value="14024"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
@@ -763,7 +763,7 @@
         <property key="oXC32ld-extra-opts" value=""/>
         <property key="optimization-level" value=""/>
         <property key="preprocessor-macros" value=""/>
-        <property key="remove-unused-sections" value="true"/>
+        <property key="remove-unused-sections" value="false"/>
         <property key="report-memory-usage" value="false"/>
         <property key="serial-length" value=""/>
         <property key="serial-origin" value=""/>
@@ -1153,7 +1153,7 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="1d000000-1d1fffff"/>
         <property key="programmerToGoFilePath"
-                  value="C:/microchip/harmony/h3/audio/apps-new/universal_audio_decoders-MZ C2-WQVGA/firmware/uad_pic32mz_ef_c2_ak4954_tm4301b.X/debug/pic32mz_ef_c2_ak4954/uad_pic32mz_ef_c2_ak4954_tm4301b_ptg"/>
+                  value="C:/microchip/harmony/h3/audio/apps/universal_audio_decoders/firmware/uad_pic32mz_ef_c2_ak4954_wqvga.X/debug/pic32mz_ef_c2_ak4954_wqvga/uad_pic32mz_ef_c2_ak4954_wqvga_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>

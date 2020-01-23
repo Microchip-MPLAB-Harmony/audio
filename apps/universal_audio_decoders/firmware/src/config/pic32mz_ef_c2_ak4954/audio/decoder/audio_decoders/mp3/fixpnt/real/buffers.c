@@ -61,7 +61,6 @@ FrameHeader fh;
 #else
 #include "stdlib.h" 
 #endif
-#include <stdio.h>
 
 /**************************************************************************************
  * Function:    ClearBuffer
@@ -138,11 +137,6 @@ MP3DecInfo *AllocateBuffers(void)
 	IMDCTInfo *mi;
 	SubbandInfo *sbi;
 
-//    int total = sizeof(MP3DecInfo) + sizeof(FrameHeader) + sizeof(SideInfo) + sizeof(ScaleFactorInfo) +
-//        sizeof(HuffmanInfo) + sizeof(DequantInfo) + sizeof(IMDCTInfo) + sizeof(SubbandInfo);
-    
-//    printf("about to allocate %d bytes\r\n",total);
-    
 	mp3DecInfo = (MP3DecInfo *)malloc(sizeof(MP3DecInfo));
 	if (!mp3DecInfo)
 		return 0;

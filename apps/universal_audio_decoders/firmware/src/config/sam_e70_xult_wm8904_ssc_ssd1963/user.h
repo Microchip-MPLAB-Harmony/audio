@@ -39,6 +39,8 @@ extern "C" {
     
 #define BUTTON_DEBOUNCE 50
 #define LONG_BUTTON_PRESS 1000
+    
+#define ALWAYS_DO_LRSYNC    1    
 
 #define GFX_ENABLED 1
 

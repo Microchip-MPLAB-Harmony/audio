@@ -46,8 +46,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "driver/usb/usbhs/src/drv_usbhs_local.h"
 #include "usb/usb_host.h"
 #include "usb/usb_host_client_driver.h"
-#include "driver/usb/usbhs/src/drv_usbhs_variant_mapping.h"
-
 
 
 /******************************************************************************
@@ -2667,7 +2665,7 @@ void DRV_USBHS_HOST_ROOT_HUB_OperationEnable
                 if(DRV_USBHS_OPMODE_DUAL_ROLE == pUSBDrvObj->usbDrvCommonObj.operationMode)
                 {
                     /* For Host the ID pin needs to be pull down */
-                    PLIB_PORTS_ChangeNoticePullDownPerPortEnable( PORTS_ID_0, PORT_CHANNEL_F, PORTS_BIT_POS_3 );
+                    // TODO PLIB_PORTS_ChangeNoticePullDownPerPortEnable( PORTS_ID_0, PORT_CHANNEL_F, PORTS_BIT_POS_3 );
                     pUSBDrvObj->usbDrvCommonObj.isDeviceRoleActive = false;
                 }
                 
@@ -2709,7 +2707,7 @@ void DRV_USBHS_HOST_ROOT_HUB_OperationEnable
                         (true == pUSBDrvObj->usbDrvCommonObj.isHostRoleActive) )
                 {
                     /* Disable CN Pull ups only if it was enabled */
-                    PLIB_PORTS_ChangeNoticePullDownPerPortDisable( PORTS_ID_0, PORT_CHANNEL_F, PORTS_BIT_POS_3 );
+                    // TODO PLIB_PORTS_ChangeNoticePullDownPerPortDisable( PORTS_ID_0, PORT_CHANNEL_F, PORTS_BIT_POS_3 );
                 }
 
                 _DRV_USBHS_NonPersistentInterruptSourceClear(pUSBDrvObj->usbDrvCommonObj.interruptSource);

@@ -103,10 +103,10 @@ void ${SSC_INSTANCE_NAME}_BaudSet(const uint32_t baud)
     // not used when SSC is in slave mode
 }
 
-<#if SSC_AUDIO_PROTOCOL == "AUDIO_LJ">
+<#if SSC_LRCLK_INVERT== "1">
 uint32_t ${SSC_INSTANCE_NAME}_LRCLK_Get(void)
 {
-    // for left-justified format, will sync on high to low transition
+    // if inverted, will sync on high to low transition
     volatile uint32_t ret = 1-${SSC_LRCLK_PIN_DEFINE};
     return ret;    
 }

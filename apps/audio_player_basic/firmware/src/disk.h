@@ -49,12 +49,10 @@ extern "C" {
 #endif
 //DOM-IGNORE-END
     
-    
-#include "data_structures.h"
 #include <string.h>
     
 #define DISK_MAX_DIRS   10
-#define DISK_MAX_FILES  750
+#define DISK_MAX_FILES  250
 
 typedef enum{
     DISK_EVENT_REMOVED,
@@ -96,8 +94,6 @@ typedef struct{
     char path[64]; // at most 64 bytes long
     bool trackPlayed;
 }DISK_FILE_PATH;
-
-
 
 typedef struct
 {

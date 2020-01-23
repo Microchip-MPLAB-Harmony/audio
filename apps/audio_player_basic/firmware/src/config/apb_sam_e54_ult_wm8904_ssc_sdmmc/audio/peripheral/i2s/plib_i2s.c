@@ -105,8 +105,8 @@ void I2S_Initialize ( void )
 
 uint32_t I2S_LRCLK_Get(void)
 {
-    // for I2S format, will sync on low to high transition
-    volatile uint32_t ret = ((PORT_REGS->GROUP[0].PORT_IN >> 9) & 0x1);
+    // for inverted (e.g. left-justified format), will sync on high to low transition
+    volatile uint32_t ret = 1-((PORT_REGS->GROUP[0].PORT_IN >> 9) & 0x1);
     return ret;    
 }
 

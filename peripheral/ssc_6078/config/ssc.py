@@ -500,6 +500,14 @@ def instantiateComponent(sscComponent):
             sscLRCPinDefine = "((PIO" + sscLRCPinPort + "_REGS->PIO_PDSR >> " + sscLRCPinPad + ") & 0x1)"
     sscLRCPin.setDefaultValue(sscLRCPinDefine)
 
+    sscLRCINV = sscComponent.createKeyValueSetSymbol("SSC_LRCLK_INVERT", None)
+    sscLRCINV.setLabel("LRCLK Invert")
+    sscLRCINV.addKey("0", "0", "Normal LRCLK_Get Return Value")
+    sscLRCINV.addKey("1", "1", "Invert LRCLK_Get Return Value")
+    sscLRCINV.setDisplayMode("Description")
+    sscLRCINV.setOutputMode("Value")
+    sscLRCINV.setDefaultValue(0)
+
     ######################################################################
 
     configName = Variables.get("__CONFIGURATION_NAME")

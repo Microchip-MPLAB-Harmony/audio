@@ -57,7 +57,7 @@ static DISK_FILE_NODE rootNode;
 
 
 // files index table
-static DISK_FILE_PATH FilesTable[DISK_MAX_FILES];
+static DISK_FILE_PATH FilesTable[DISK_MAX_FILES];   // about 48K with 750 files
 
 #define TRAVERSE_DEPTH DISK_MAX_DIRS
 
@@ -74,27 +74,6 @@ void DISK_Initialize( void )
     strcat(rootNode.path, "/");
     appDataPtr = APP_GetAppDataInstance();
 }
-
-/*bool DISK_Mount()
-{
-   return true;
-}
-
-bool DISK_Unmount(void)
-{
-      if(SYS_FS_Unmount("/mnt/myDrive1") != 0)
-      {
-          // The disk could not be mounted. Try
-                 // mounting again untill success. 
-          return false;
-      }
-      else
-      {
-          // Mount was successful. Try opening the file 
-          return true;
-      }
-}
-*/
 
 SYS_FS_RESULT DISK_FS_ReadDirFlat(const char *fname, uint8_t *dir_count, SYS_FS_FSTAT * dir_table, bool isRoot)
 {
@@ -137,7 +116,8 @@ SYS_FS_RESULT DISK_FS_ReadDirFlat(const char *fname, uint8_t *dir_count, SYS_FS_
                         (appDataPtr->totalAudioFiles)++;
                     }
                      
-                 }else if(diskData.dirstat.fattrib == SYS_FS_ATTR_DIR && diskData.dirstat.fname[0] != '.') // Skip ".\" and "..\" directories
+                 }
+                 else if(diskData.dirstat.fattrib == SYS_FS_ATTR_DIR && diskData.dirstat.fname[0] != '.') // Skip ".\" and "..\" directories
                  {
                      if(*dir_count < TRAVERSE_DEPTH)
                      {
@@ -145,7 +125,9 @@ SYS_FS_RESULT DISK_FS_ReadDirFlat(const char *fname, uint8_t *dir_count, SYS_FS_
                          (*dir_count)++;
                      }
                  }
-             }else{
+             }
+             else
+             {
                 ret = SYS_FS_RES_FAILURE;
                 break;
              }
@@ -155,13 +137,14 @@ SYS_FS_RESULT DISK_FS_ReadDirFlat(const char *fname, uint8_t *dir_count, SYS_FS_
              ret = SYS_FS_RES_FAILURE;
              break;
          }
-     }while(ret==SYS_FS_RES_SUCCESS);
+     } while(ret==SYS_FS_RES_SUCCESS);
      
      SYS_FS_DirClose(diskData.dirHandle);
      return ret;
 }
 
-void DISK_TraverseAllFiles(DISK_FILE_NODE node, bool isRoot,uint8_t depth){
+void DISK_TraverseAllFiles(DISK_FILE_NODE node, bool isRoot,uint8_t depth)
+{
      if(depth > TRAVERSE_DEPTH)
      {
          return;
@@ -192,19 +175,12 @@ void DISK_TraverseAllFiles(DISK_FILE_NODE node, bool isRoot,uint8_t depth){
              strcat(child_node.path, "/");
          }
          strcat(child_node.path, child_node.fstat.fname);
-         DISK_TraverseAllFiles(child_node, false, depth+1);
-         
-     }
-     
-     return;
+         DISK_TraverseAllFiles(child_node, false, depth+1);       
+     }     
  }
  
 
-/*bool DISK_ScanTask(void )
-{
-    return true;
-}
-*/
+
 void DISK_Tasks()
 {
     switch ( diskData.state )
@@ -225,17 +201,19 @@ void DISK_Tasks()
             appDataPtr->nextSongIdx     = 0;
             appDataPtr->previousSongIdx = 0;
             DISK_ResetPlayedTracks();
-            DISK_EventHandler ( DISK_EVENT_SCANNING_STARTED, 0, appDataPtr->fileHandle);
-        
+            DISK_EventHandler ( DISK_EVENT_SCANNING_STARTED, 0, appDataPtr->fileHandle);        
             break;
 
        case DISK_STATE_SCANNING:
             DISK_TraverseAllFiles(rootNode, true, 0);
             
-            if(appDataPtr->totalAudioFiles == 0){
+            if(appDataPtr->totalAudioFiles == 0)
+            {
                 // No Audio File
                 diskData.state = DISK_STATE_NO_AUDIO_FILES;
-            }else{
+            }
+            else
+            {
                 appDataPtr->nextSongIdx = 0;
                 diskData.state = DISK_STATE_SCAN_FINISHED;
                 DISK_EventHandler ( DISK_EVENT_SCANNING_FINISHED, 0, 0);  //from release
@@ -243,19 +221,29 @@ void DISK_Tasks()
             break;
         
         case DISK_STATE_SCAN_FINISHED:
+#if 1		
             if(appDataPtr->playbackDelay)
                 break;
-            
+#endif            
             appDataPtr->previousSongIdx = appDataPtr->currentSongIdx;
             appDataPtr->currentSongIdx = appDataPtr->nextSongIdx;
             DISK_SetNextTrack();
             strcpy(appDataPtr->fileName, FilesTable[appDataPtr->currentSongIdx].path);
             diskData.state = DISK_STATE_RUNNING;
-            //appDataPtr->state = APP_STATE_CODEC_SET_BUFFER_HANDLER;
             appDataPtr->state = APP_STATE_OPEN_FILE;
             break;
 
         case DISK_STATE_RUNNING:
+#if 1		
+            if(appDataPtr->totalAudioFiles == 0)
+            {
+                if(!appDataPtr->usbConnect)
+                {
+                    diskData.state = DISK_STATE_HALT;                    
+                }
+                break;
+            }
+#endif            
             if(!appDataPtr->usbConnect) 
             {
                 diskData.state = DISK_STATE_HALT;
@@ -280,6 +268,8 @@ void DISK_Tasks()
         case DISK_STATE_NO_AUDIO_FILES:
             appDataPtr->state = APP_STATE_NO_MEDIA;
             diskData.state = DISK_STATE_RUNNING;
+            break;
+            
         default:
             break;
     }
@@ -292,30 +282,22 @@ bool DISK_NextTrack(void)
     if(appDataPtr->currentSongIdx == appDataPtr->totalAudioFiles-1)
     {
         appDataPtr->nextSongIdx = 0;
-    }else{
+    }
+    else
+    {
         appDataPtr->nextSongIdx = appDataPtr->currentSongIdx + 1;
     }
     
     appDataPtr->currentSongIdx = appDataPtr->nextSongIdx;
 
-    if (DISK_OpenTrack(FilesTable[appDataPtr->currentSongIdx].path) == true)
-    {
-        return true;
-    }
-    else
-        return false;
+    return DISK_OpenTrack(FilesTable[appDataPtr->currentSongIdx].path);
 }
 
 bool DISK_PreviousTrack()
 {
     appDataPtr->previousSongIdx = (appDataPtr->currentSongIdx ? (appDataPtr->currentSongIdx - 1):(appDataPtr->totalAudioFiles - 1));
     appDataPtr->currentSongIdx = appDataPtr->previousSongIdx;
-    if (DISK_OpenTrack(FilesTable[appDataPtr->currentSongIdx].path) == true)
-    {
-        return true;
-    }
-    else
-        return false;
+    return DISK_OpenTrack(FilesTable[appDataPtr->currentSongIdx].path);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -325,8 +307,7 @@ bool DISK_OpenTrack ( const char *fname )
     appDataPtr->fileHandle = DISK_OpenFile(fname);
 
     if ( appDataPtr->fileHandle != SYS_FS_HANDLE_INVALID )
-    {
-        
+    {        
         if(DISK_FileStatus(fname) == true)
         {
             appDataPtr->current_filesize = DISK_GetFileSize(appDataPtr->fileHandle);
@@ -334,29 +315,22 @@ bool DISK_OpenTrack ( const char *fname )
             
             bytes_read = DISK_GetFilePosition(appDataPtr->fileHandle);
             return true;
-        }else
-        {
-              return false;
         }
-        
+        else
+        {
+            return false;
+        }       
     }
     else
     {
         DISK_EventHandler ( DISK_EVENT_FILE_OPEN_ERROR, appDataPtr->diskCurrentFile,appDataPtr->fileHandle );
-        return ( false );
+        return false;
     }
-    
-    return true;
 }
 
 bool DISK_ReopenTrack(void)
 {
-    if (DISK_OpenTrack(FilesTable[appDataPtr->currentSongIdx].path) == true)
-    {
-        return true;
-    }
-    else
-        return false;
+    return DISK_OpenTrack(FilesTable[appDataPtr->currentSongIdx].path);
 }
 
 
@@ -364,7 +338,6 @@ SYS_FS_HANDLE DISK_OpenFile ( const char *fname )
 {
     SYS_FS_HANDLE fileHandle;
     bytes_read = 0;
-    //playerDiskDataSize=0;
 
     fileHandle = SYS_FS_FileOpen(fname, (SYS_FS_FILE_OPEN_READ_PLUS));
     return fileHandle;
@@ -386,18 +359,17 @@ SYS_FS_HANDLE DISK_OpenFile ( const char *fname )
 
 uint16_t DISK_GetTotalFiles ( void )
 {
-    return ( appDataPtr->totalAudioFiles );
+    return appDataPtr->totalAudioFiles;
 }
 
 uint16_t DISK_GetCurrentFileNumber ( void )
 {
-    return ( (uint16_t) appDataPtr->diskCurrentFile );
+    return (uint16_t) appDataPtr->diskCurrentFile;
 }
 
 bool DISK_FileNameGet(SYS_FS_HANDLE handle, char* cName)
 {
-    bool stat = SYS_FS_FileNameGet(handle, (uint8_t*) cName, 255);
-    return stat;
+    return SYS_FS_FileNameGet(handle, (uint8_t*) cName, 255);
 }
 
 bool DISK_FileStatus(const char* fname)
@@ -417,8 +389,7 @@ bool DISK_FileStatus(const char* fname)
             strncpy (appDataPtr->fileStatus.lfname, appDataPtr->fileStatus.fname, len);
             appDataPtr->fileStatus.lfname[len] = '\0'; // null character
         }
-     }
-     
+     }     
      return true;
 }
 
@@ -441,42 +412,34 @@ bool DISK_FSeek(SYS_FS_HANDLE fileHandle,int32_t offset)
 {
     if(SYS_FS_FileSeek( fileHandle, offset, SYS_FS_SEEK_SET ) == -1)
     {
-         return false;
+        return false;
     }
     else
     {
         /* Check for End of file */
-         return true;
+        return true;
     }
 }
 
 bool DISK_EndOfFile(void)
+{    
+    return SYS_FS_FileEOF( appDataPtr->fileHandle );
+}
+
+bool DISK_SeekStartLocation(SYS_FS_HANDLE fileHandle,int32_t offset)
 {
-    
-    if(SYS_FS_FileEOF( appDataPtr->fileHandle ) == false )
+    /* Move file pointer to beginning of file */
+    if(SYS_FS_FileSeek( fileHandle, offset, SYS_FS_SEEK_END ) == -1)
     {
         return false;
     }
     else
     {
         return true;
-    }
-
-}
-bool DISK_SeekStartLocation(SYS_FS_HANDLE fileHandle,int32_t offset)
-{
-    /* Move file pointer to begining of file */
-    if(SYS_FS_FileSeek( fileHandle, offset, SYS_FS_SEEK_END ) == -1)
-    {
-            return false;
-    }
-    else
-    {
-            return true;
-    }
-            
+    }           
 }
 
+// NOT CURRENTLY USED
 bool DISK_FillBuffer(uint8_t *ptr)
 {
     switch(appDataPtr->currentStreamType)
@@ -517,16 +480,13 @@ bool DISK_FillBuffer(uint8_t *ptr)
     return true;
 }
 
-
 int32_t DISK_GetFilePosition (SYS_FS_HANDLE fileHandle )
 {
-    int32_t tell;
-
-    tell = SYS_FS_FileTell(fileHandle);
-    return ( tell );
+    return SYS_FS_FileTell(fileHandle);
 }
 
-int32_t DISK_GetCurrentFilePosition(){
+int32_t DISK_GetCurrentFilePosition()
+{
     return SYS_FS_FileTell(appDataPtr->fileHandle);
 }
 
@@ -538,7 +498,10 @@ bool DISK_SetFilePosition (SYS_FS_HANDLE fileHandle, int32_t pos )
     {
         return true;
     }
-    return false;
+    else
+    {
+        return false;
+    }
 }
 
 bool DISK_SetCurrentFilePosition(int32_t pos)
@@ -549,7 +512,10 @@ bool DISK_SetCurrentFilePosition(int32_t pos)
     {
         return true;
     }
-    return false;
+    else
+    {
+        return false;
+    }
 }
 
 bool DISK_SetCurrentFilePositionWithControl(int32_t pos, SYS_FS_FILE_SEEK_CONTROL whence)
@@ -560,11 +526,15 @@ bool DISK_SetCurrentFilePositionWithControl(int32_t pos, SYS_FS_FILE_SEEK_CONTRO
     {
         return true;
     }
-    return false;
+    else
+    {
+        return false;
+    }
 }
 
 
-uint32_t DISK_ReadCurrentFile(uint8_t *ptr, size_t readSize){
+uint32_t DISK_ReadCurrentFile(uint8_t *ptr, size_t readSize)
+{
     uint32_t ret = 0;
     appDataPtr->nBytesRead = SYS_FS_FileRead( appDataPtr->fileHandle,ptr,readSize);
     if ((appDataPtr->nBytesRead != readSize))
@@ -597,7 +567,8 @@ uint32_t DISK_GetCurrentFileSize()
 
 bool DISK_AreAllTracksPlayed()
 {
-    for(int i=0; i<appDataPtr->totalAudioFiles; i++)
+    int i;
+    for (i=0; i<appDataPtr->totalAudioFiles; i++)
     {
         if(FilesTable[i].trackPlayed)
         {
@@ -613,7 +584,8 @@ bool DISK_AreAllTracksPlayed()
 
 void DISK_ResetPlayedTracks()
 {
-    for(int i=0; i<appDataPtr->totalAudioFiles; i++)
+    int i;
+    for (i=0; i<appDataPtr->totalAudioFiles; i++)
     {
         FilesTable[i].trackPlayed = false;
     }
@@ -621,7 +593,7 @@ void DISK_ResetPlayedTracks()
 
 void DISK_SetNextTrack( void )
 {
-    switch(appDataPtr->playerBtnMode)
+    switch (appDataPtr->playerBtnMode)
     {
 /*        case RANDOM_TRACK_CHANGE:
             // Reset track played indicators if all tracks have been played

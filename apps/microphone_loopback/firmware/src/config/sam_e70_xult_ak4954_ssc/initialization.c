@@ -83,11 +83,15 @@ const DRV_I2C_PLIB_INTERFACE drvI2C0PLibAPI = {
     /* I2C PLib Transfer Write Add function */
     .write = (DRV_I2C_PLIB_WRITE)TWIHS0_Write,
 
+
     /* I2C PLib Transfer Write Read Add function */
     .writeRead = (DRV_I2C_PLIB_WRITE_READ)TWIHS0_WriteRead,
 
     /* I2C PLib Transfer Status function */
     .errorGet = (DRV_I2C_PLIB_ERROR_GET)TWIHS0_ErrorGet,
+
+    /* I2C PLib Transfer Setup function */
+    .transferSetup = (DRV_I2C_PLIB_TRANSFER_SETUP)TWIHS0_TransferSetup,
 
     /* I2C PLib Callback Register */
     .callbackRegister = (DRV_I2C_PLIB_CALLBACK_REGISTER)TWIHS0_CallbackRegister,
@@ -167,13 +171,16 @@ DRV_I2S_INIT drvI2S0InitData =
 /*** CODEC Driver Initialization Data ***/
 const DRV_AK4954_INIT drvak4954Codec0InitData =
 {
+    .i2sDriverModuleIndex = DRV_AK4954_I2S_DRIVER_MODULE_INDEX_IDX0,
+    .i2cDriverModuleIndex = DRV_AK4954_I2C_DRIVER_MODULE_INDEX_IDX0,
     .masterMode = DRV_AK4954_MASTER_MODE,
     .samplingRate = DRV_AK4954_AUDIO_SAMPLING_RATE,
     .volume = DRV_AK4954_VOLUME,
     .audioDataFormat = DRV_AK4954_AUDIO_DATA_FORMAT_MACRO,
     .whichMicInput = DRV_AK4954_WHICH_MIC_INPUT,
     .enableMicBias = DRV_AK4954_ENABLE_MIC_BIAS,
-    .micGain = DRV_AK4954_MIC_GAIN
+    .micGain = DRV_AK4954_MIC_GAIN,
+    .delayDriverInitialization = DRV_AK4954_DELAY_INITIALIZATION,
 };
 
 
@@ -202,12 +209,12 @@ SYSTEM_OBJECTS sysObj;
 
 const SYS_TIME_PLIB_INTERFACE sysTimePlibAPI = {
     .timerCallbackSet = (SYS_TIME_PLIB_CALLBACK_REGISTER)TC0_CH0_TimerCallbackRegister,
-    .timerCounterGet = (SYS_TIME_PLIB_COUNTER_GET)TC0_CH0_TimerCounterGet,
-    .timerPeriodSet = (SYS_TIME_PLIB_PERIOD_SET)TC0_CH0_TimerPeriodSet,
-    .timerFrequencyGet = (SYS_TIME_PLIB_FREQUENCY_GET)TC0_CH0_TimerFrequencyGet,
-    .timerCompareSet = (SYS_TIME_PLIB_COMPARE_SET)TC0_CH0_TimerCompareSet,
     .timerStart = (SYS_TIME_PLIB_START)TC0_CH0_TimerStart,
-    .timerStop = (SYS_TIME_PLIB_STOP)TC0_CH0_TimerStop 
+    .timerStop = (SYS_TIME_PLIB_STOP)TC0_CH0_TimerStop ,
+    .timerFrequencyGet = (SYS_TIME_PLIB_FREQUENCY_GET)TC0_CH0_TimerFrequencyGet,
+    .timerPeriodSet = (SYS_TIME_PLIB_PERIOD_SET)TC0_CH0_TimerPeriodSet,
+    .timerCompareSet = (SYS_TIME_PLIB_COMPARE_SET)TC0_CH0_TimerCompareSet,
+    .timerCounterGet = (SYS_TIME_PLIB_COUNTER_GET)TC0_CH0_TimerCounterGet,
 };
 
 const SYS_TIME_INIT sysTimeInitData =
@@ -235,8 +242,10 @@ void SYS_Initialize ( void* data )
 
     EFC_Initialize();
   
-    CLK_Initialize();
+    CLOCK_Initialize();
 	PIO_Initialize();
+
+
 
     XDMAC_Initialize();
 

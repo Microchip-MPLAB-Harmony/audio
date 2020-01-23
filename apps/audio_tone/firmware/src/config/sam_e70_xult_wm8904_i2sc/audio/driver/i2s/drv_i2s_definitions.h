@@ -205,7 +205,6 @@ typedef struct
 typedef struct
 {
 	/* I2S PLIB baud rate set function */
-	DRV_BAUDSET	setBaud;  //TODO: Someday
     DRV_I2S_LRCLK_GET   I2S_LRCLK_Get;
 /************************ Start of code specific to SAME70 ********************/
     DRV_I2S_PLLA_CLOCK_SET I2S_PLLA_CLOCK_SET;

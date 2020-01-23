@@ -49,11 +49,12 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "peripheral/nvmctrl/plib_nvmctrl.h"
-#include "peripheral/sercom/i2cm/plib_sercom6_i2c.h"
+#include "peripheral/sercom/i2c_master/plib_sercom6_i2c_master.h"
 #include "peripheral/port/plib_port.h"
 #include "peripheral/clock/plib_clock.h"
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/dmac/plib_dmac.h"
+#include "peripheral/cmcc/plib_cmcc.h"
 #include "bsp/bsp.h"
 #include "audio/driver/i2s/drv_i2s.h"
 #include "peripheral/tc/plib_tc0.h"

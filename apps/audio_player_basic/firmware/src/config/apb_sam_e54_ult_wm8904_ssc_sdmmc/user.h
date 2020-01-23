@@ -18,9 +18,6 @@
 
 #ifndef USER_H
 #define USER_H
-#include "audio/decoder/audio_decoders_config.h"
-#include "audio_decoders.h"
-
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility

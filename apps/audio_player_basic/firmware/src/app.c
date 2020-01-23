@@ -28,24 +28,21 @@
 // *****************************************************************************
 
 #include "app.h"
-#include "disk.h"
-#ifdef GFX_ENABLED
-#include "gfx/libaria/libaria_init.h"
-#include "gfx/libaria/inc/libaria_widget_circular_slider.h"
-#endif
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
+
 uint16_t volumeLevels[VOL_LVL_MAX] =
 {
-    0,      // Mute
-    16,     // -66 dB   : VOL_LVL_LOW
-    64,     // -48 dB   : VOL_LVL_MED
-    255     // 0 dB     : VOL_LVL_HIGH
+#ifdef DRV_AK4954_VOLUME
+    0 /* off */, 192, 208, 224          // if using AK4954, use narrower range  
+#else            
+    0 /* off */, 64, 128, 255            
+#endif 
 };
-
 
 #ifdef DATA32_ENABLED
 DRV_I2S_DATA32m __attribute__ ((aligned (32))) App_Audio_Output_Buffer1[NUM_SAMPLES];
@@ -57,28 +54,10 @@ DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Output_Buffer2[NUM_SAMPL
 #endif
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) App_Audio_Input_Buffer[NUM_SAMPLES];
 
-#ifdef WAV_STREAMING_ENABLED
+static uint16_t rd, wrtn;
+int32_t bytesRead;
+
 static dWAVHEADER wavHdr;
-extern WAV_DEC wavDecoder;
-#endif
-
-#ifdef ADPCM_STREAMING_ENABLED
-static ADPCMHEADER adpcmHdr;
-#endif
-
-#ifdef GFX_ENABLED
-extern laCircularSliderWidget * VolumeWidget;
-extern laProgressBarWidget * ProgressBarWidget;
-extern laLabelWidget * lblSampleRate;
-extern laLabelWidget * lblChannels;
-extern laLabelWidget * lblBitDepth;
-extern laLabelWidget * lblTrackTitle;
-extern laLabelWidget * lblVolumePercent;
-extern laLabelWidget * lblCurrPosition;
-extern laLabelWidget * lblEndPosition;
-
-laString laTmpStr;
-#endif
 
 // *****************************************************************************
 /* Application Data
@@ -96,18 +75,9 @@ laString laTmpStr;
 */
 APP_DATA appData;
 LED_DATA ledData;
-USB_DATA usbData;
 BTN_DATA btnData;
 
-static uint16_t rd, wrtn;
-
-/* This is the string that will written to the file */
-const uint8_t writeData[12]  __attribute__((aligned(16))) = "Hello World ";
-
- #define char_tolower(c)      (char) ((c >= 'A' && c <= 'Z') ? (c | 0x20) : c)
-
-
-
+#define char_tolower(c)      (char) ((c >= 'A' && c <= 'Z') ? (c | 0x20) : c)
 
 // *****************************************************************************
 // *****************************************************************************
@@ -151,17 +121,11 @@ static void App_TimerCallback( uintptr_t context)
     {
         appData.playbackDelay--;
     }
-#ifdef GFX_ENABLED
-    if (appData.guiUpdate)
-    {
-        appData.guiUpdate--;
-    }
-#else
     if (btnData.delay)
     {      
         btnData.delay--;
     }
-#endif
+    //LED2_Toggle();        // to check timing
 }
 
 // *****************************************************************************
@@ -169,36 +133,13 @@ static void App_TimerCallback( uintptr_t context)
 // Section: Application Local Functions
 // *****************************************************************************
 // *****************************************************************************
+/* TODO:  Add any necessary local functions.
+*/
+
 APP_DATA * APP_GetAppDataInstance()
 {
     return &appData;
 }
-
-
-/*APP_DECODER_TYPE APP_GetCurrentFileType ( char *ext )
-{
-    char lowercase[4];
-    if(ext[0] == '\0' || ext[1] =='\0'
-            || ext[2] == '\0')
-    {
-        return APP_DECODER_UNKNOWN;
-    }
-
-    
-    lowercase[0] = char_tolower(ext[0]);
-    lowercase[1] = char_tolower(ext[1]);
-    lowercase[2] = char_tolower(ext[2]);
-    lowercase[3] = '\0';
-    
-#ifdef WAV_STREAMING_ENABLED
-    if(strcmp(lowercase, "wav")==0)
-    {
-        return APP_DECODER_WAV;
-    }
-#endif
-    
-    return APP_DECODER_UNKNOWN;
-}*/
 
 void APP_PlayerInitialize ( void )
 {
@@ -211,186 +152,29 @@ void APP_PlayerInitialize ( void )
     DISK_Initialize();
 }
 
-
-/* TODO:  Add any necessary local functions.
-*/
-#ifdef GFX_ENABLED
-void APP_Set_GUI_BitDepthStr( void )
+void APP_UpdateTrackPosition()
 {
-    static char bdStr[5];
-    if( appData.bit_depth )
-    {
-        switch( appData.bit_depth )
-        {
-            case 8:
-                strcpy( bdStr, "8b");
-                break;
-            case 16:
-            default:
-                strcpy( bdStr, "16b");
-                break;
-        }
-        laTmpStr = laString_CreateFromCharBuffer( bdStr, 
-                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
-        laLabelWidget_SetText( lblBitDepth, laTmpStr );
-        laString_Destroy( &laTmpStr );
-    }
-}
-
-void APP_Set_GUI_SampleRateStr( void )
-{
-    static char srStr[10];
-    
-    if( appData.sampleRate )
-    {
-        sprintf( srStr, "%d", (int)appData.sampleRate );
-        laTmpStr = laString_CreateFromCharBuffer( srStr, 
-                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
-        laLabelWidget_SetText( lblSampleRate, laTmpStr );
-        laString_Destroy( &laTmpStr );
-    }
-}
-void APP_Get_GUI_Volume( void )
-{
-    static char volPctStr[5];
-    uint16_t volPercent;
-    
-    if( (appData.state != APP_STATE_IDLE) && (appData.state != APP_STATE_INIT) && (appData.state != APP_STATE_CODEC_OPEN) )
-    {
-        // Returns 32 bit value
-        volPercent = laCircularSliderWidget_GetValue( VolumeWidget );
-        if( appData.oldVolPercent != volPercent )
-        {
-            appData.volume = (volPercent * 255) / 100;
-            //DRV_CODEC_VolumeSet( appData.codecData.handle, DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume );
-            snprintf( volPctStr, sizeof(volPctStr)-1, "%d%s", (uint8_t)volPercent, "%");
-            laTmpStr = laString_CreateFromCharBuffer( volPctStr, 
-                                    GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
-            laLabelWidget_SetText( lblVolumePercent, laTmpStr );
-            laString_Destroy( &laTmpStr );
-            appData.oldVolPercent = appData.volPercent;
-        }
-    }
-}
-void APP_Set_GUI_ChnlStr( void )
-{
-    static char chnlStr[10];
-    
-    if( appData.numOfChnls )
-    {
-        switch( appData.numOfChnls )
-        {
-            case 1:
-                strcpy( chnlStr, "Mono");
-                break;
-            case 2:
-            default:
-                strcpy( chnlStr, "Stereo");
-                break;
-            case 3:
-                strcpy( chnlStr, "2.1");
-                break;
-            case 6:
-                strcpy( chnlStr, "5.1");
-                break;
-            case 8:
-                strcpy( chnlStr, "7.1");
-                break;
-        }
-        laTmpStr = laString_CreateFromCharBuffer( chnlStr, 
-                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
-        laLabelWidget_SetText( lblChannels, laTmpStr );
-        laString_Destroy( &laTmpStr );
-    }
-}
-
-void APP_Set_GUI_TrackPositionStr( void )
-{
-    uint32_t time, mins, secs;
-    static char totalTimeStr[10];
-    static char currTimeStr[10];
+    uint32_t dur, time;
     if( appData.sampleRate && appData.numOfChnls )
     {
         switch( appData.currentStreamType )
         {
-#ifdef WAV_STREAMING_ENABLED
             case APP_STREAM_WAV:
-                time = (appData.fileSize - sizeof( WAV_FILE_HEADER ))/(appData.sampleRate*2*appData.numOfChnls);
-                break;
-#endif
-#ifdef ADPCM_STREAMING_ENABLED
-            case APP_STREAM_ADPCM:
-                time = 4*(appData.fileSize - sizeof( ADPCMHEADER ))/(appData.sampleRate*2*appData.numOfChnls);
-                break;
-#endif
-            default:
-                time = 0;
-                break;
-        }
-        mins = time / 60;
-        secs = time % 60;
-        sprintf( totalTimeStr, "%02d:%02d", (int)mins, (int)secs);
-        laTmpStr = laString_CreateFromCharBuffer( totalTimeStr, 
-                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
-        laLabelWidget_SetText( lblEndPosition, laTmpStr );
-        laString_Destroy( &laTmpStr );
-
-        switch( appData.currentStreamType )
-        {
-#ifdef WAV_STREAMING_ENABLED
-            case APP_STREAM_WAV:
+                dur = (appData.fileSize - sizeof( WAV_FILE_HEADER ))/(appData.sampleRate*2*appData.numOfChnls);
                 time = (appData.currPos - sizeof( WAV_FILE_HEADER))/(appData.sampleRate*2*appData.numOfChnls);
                 break;
-#endif
-#ifdef ADPCM_STREAMING_ENABLED
-            case APP_STREAM_ADPCM:
-                time = 4*(appData.currPos - sizeof( ADPCMHEADER ))/(appData.sampleRate*2*appData.numOfChnls);
-                break;
-#endif
-            default:
-                time = 0;
-                break;
-        }
-        mins = time / 60;
-        secs = time % 60;
-        sprintf( currTimeStr, "%02d:%02d", (int)mins, (int)secs);
-        laTmpStr = laString_CreateFromCharBuffer( currTimeStr, 
-                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
-        laLabelWidget_SetText( lblCurrentPosition, laTmpStr );
-        laString_Destroy( &laTmpStr );
-        
-        switch( appData.currentStreamType )
-        {
-#ifdef WAV_STREAMING_ENABLED
-            case APP_STREAM_WAV:
-                laProgressBarWidget_SetValue( ProgressBarWidget, (appData.currPos - sizeof( WAV_FILE_HEADER))*100/(appData.fileSize- sizeof( WAV_FILE_HEADER)) );
-                break;
-#endif
-#ifdef ADPCM_STREAMING_ENABLED
-            case APP_STREAM_ADPCM:
-                laProgressBarWidget_SetValue( ProgressBarWidget, (appData.currPos - sizeof( ADPCMHEADER))*100/(appData.fileSize- sizeof( ADPCMHEADER)) );
-                break;
-#endif
-            default:
-                break;
-        }
-    }
-}
 
-void APP_Set_GUI_FileNameStr( void )
-{
-    static char fileNameStr[20];
-    
-    if( strlen(appData.fileName) > strlen("/mnt/myDrive1/") )
-    {
-        sprintf( fileNameStr, "%s", &appData.fileName[strlen("/mnt/myDrive1/")]);
-        laTmpStr = laString_CreateFromCharBuffer( fileNameStr, 
-                                GFXU_StringFontIndexLookup( &stringTable, string_StringChars, 0 ));
-        laLabelWidget_SetText( lblTrackTitle, laTmpStr );
-        laString_Destroy( &laTmpStr );
+            default:
+                time = dur = 0;
+                break;
+        }
+       
+        if (time >= dur)
+        {
+            appData.state = APP_STATE_CLOSE_FILE;   // if at or past duration, force file to close
+        }        
     }
 }
-#endif
 
 // *****************************************************************************
 // *****************************************************************************
@@ -424,9 +208,7 @@ void APP_Initialize ( void )
     /* TODO: Initialize your application's state machine and other
      * parameters.
      */   
-    appData.state = APP_STATE_IDLE;
-    usbData.state = USB_STATE_INIT;
-	usbData.deviceIsConnected = false;
+    appData.state = APP_STATE_INIT;//APP_STATE_IDLE;
     btnData.state = BTN_STATE_IDLE;
     appData.volLevel = VOL_LVL_LOW;
     appData.prevVol = 0;
@@ -435,11 +217,10 @@ void APP_Initialize ( void )
     LED_Set_Mode( 1, LED_STATE_TOGGLE, _100ms );
     LED_Set_Mode( 2, LED_STATE_OFF, _50ms );
     appData.playbackDelay = _1sec;
-#ifdef GFX_ENABLED
-    appData.guiUpdate = _200ms;
-#endif
     _audioCodecInitialize (&appData.codecData);
     
+    appData.deviceIsConnected = false;
+    appData.usbConnect = false;
     appData.pingPong = true;
     appData.headphone_out = true;
     APP_PlayerInitialize();
@@ -451,7 +232,7 @@ USB_HOST_EVENT_RESPONSE APP_USBHostEventHandler (USB_HOST_EVENT event, void * ev
     switch (event)
     {
         case USB_HOST_EVENT_DEVICE_UNSUPPORTED:
-            usbData.state = USB_STATE_WAIT_FOR_DEVICE_ATTACH;
+            appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
             break;
         default:
             break;
@@ -464,14 +245,13 @@ void APP_SYSFSEventHandler(SYS_FS_EVENT event, void * eventData, uintptr_t conte
     switch(event)
     {
         case SYS_FS_EVENT_MOUNT:
-            usbData.deviceIsConnected = true;
+            appData.deviceIsConnected = true;
             LED_Set_Mode( 1, LED_STATE_OFF, 0 );
             break;
             
         case SYS_FS_EVENT_UNMOUNT:
-            usbData.deviceIsConnected = false;
+            appData.deviceIsConnected = false;
             appData.usbConnect = false;
-            usbData.state = USB_STATE_WAIT_FOR_DEVICE_ATTACH;
             LED_Set_Mode( 1, LED_STATE_TOGGLE, 0 );
             LED_Set_Mode( 2, LED_STATE_OFF, _50ms );
             appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
@@ -504,22 +284,13 @@ bool APP_IsSupportedAudioFile(char *name)
     lowercase[2] = char_tolower(name[i+3]);
     lowercase[3] = '\0';
     
-#ifdef WAV_STREAMING_ENABLED
     if( strcmp( lowercase, "wav" ) == 0 )
     {
         strcpy( appData.ext, "wav" );
         appData.currentStreamType = APP_STREAM_WAV;
         return true;
     }
-#endif
-#ifdef ADPCM_STREAMING_ENABLED
-    if( strcmp( lowercase, "pcm" ) == 0 )
-    {
-        strcpy( appData.ext, "pcm" );
-        appData.currentStreamType = APP_STREAM_ADPCM;
-        return true;
-    }
-#endif
+
     strcpy( appData.ext, "n/a" );
     appData.currentStreamType = APP_STREAM_UNKNOWN;
     return false;
@@ -529,20 +300,24 @@ void APP_ValidateFile( void )
 {
     switch( appData.currentStreamType )
     {
-#ifdef WAV_STREAMING_ENABLED
         case APP_STREAM_WAV:
             // Read the header data
-            SYS_FS_FileRead( appData.fileHandle, &wavHdr, sizeof(wavHdr));
-            WAV_Initialize_N( (uint8_t *)&wavHdr, appData.fileHandle );
+            bytesRead = SYS_FS_FileRead( appData.fileHandle, &wavHdr, sizeof(wavHdr));
+            // If end of file is reached then close this file
+            if ((0==bytesRead) || (-1==bytesRead) || SYS_FS_FileEOF(appData.fileHandle))
+            {
+                appData.state = APP_STATE_CLOSE_FILE; 
+                break;
+            }             
+            WAV_Initialize_N( (uint8_t *)&wavHdr, appData.fileHandle );                     
             
-            // Go to next track if it's not a WAVE header or the data is not in PCM format or 8000 > samplerate > 96000
             appData.numOfChnls = WAV_GetChannels();
-            appData.bytesRemaining = WAV_HdrGetDataLen();
+            appData.bytesRemaining = WAV_GetDataLen();
             appData.sampleRate = WAV_GetSampleRate();
             appData.playbackDuration = WAV_GetDuration();
-            appData.bit_depth = wavHdr.bitsPerSample;
-            appData.codecData.bufferSize1 = BUFFER_SIZE;
-            appData.codecData.bufferSize2 = BUFFER_SIZE;
+            appData.bitDepth = WAV_GetBitsPerSample();
+            appData.bufferSize1 = BUFFER_SIZE;
+            appData.bufferSize2 = BUFFER_SIZE;
             
             if((wavHdr.format == 0x46464952 ) && ( wavHdr.filetype == 0x45564157 ) && 
                 ( wavHdr.frmtchunk_marker == 0x20746d66 ) & (wavHdr.type_frmt == 1) && 
@@ -552,30 +327,10 @@ void APP_ValidateFile( void )
                 appData.validFile = true;
             }
             break;
-#endif
-#ifdef ADPCM_STREAMING_ENABLED
-        case APP_STREAM_ADPCM:
-            SYS_FS_FileRead( appData.fileHandle, &adpcmHdr, sizeof(adpcmHdr));
-            ADPCM_Initialize((uint8_t *)&adpcmHdr);
-            appData.numOfChnls = ADPCM_GetChannels();
-            appData.bytesRemaining = ADPCM_HdrGetDataLen();
-            appData.sampleRate = ADPCM_HdrGetSamplesPerSec();
-            appData.playbackDuration = adpcmHdr.extralen/adpcmHdr.bytesPerSec;
-            appData.bit_depth = adpcmHdr.bitsPerSample;
-            appData.codecData.bufferSize1 = BUFFER_SIZE/8;
-            appData.codecData.bufferSize2 = BUFFER_SIZE/8;
-            
-            if((adpcmHdr.format == 0x46464952 ) && ( adpcmHdr.filetype == 0x45564157 ) && 
-                ( adpcmHdr.frmtchunk_marker == 0x20746d66 ) && (adpcmHdr.type_frmt == 17) && 
-                (appData.sampleRate >= 8000) && (appData.sampleRate <= 96000))
-            {
-                appData.validFile = true;
-            }
-            break;
-#endif
+
         default:
-            appData.codecData.bufferSize1 = 0;
-            appData.codecData.bufferSize2 = 0;
+            appData.bufferSize1 = 0;
+            appData.bufferSize2 = 0;
             appData.validFile = false;
             break;
     }
@@ -586,16 +341,10 @@ bool APP_Decoder(uint8_t * inBuf, uint16_t inSize, uint16_t * bytesRd, int16_t *
     bool ret = false;
     switch( appData.currentStreamType )
     {
-#ifdef WAV_STREAMING_ENABLED
         case APP_STREAM_WAV:
             ret = WAV_Decoder( inBuf, inSize, bytesRd, outBuf, outSize );
             break;
-#endif
-#ifdef ADPCM_STREAMING_ENABLED
-        case APP_STREAM_ADPCM:
-            ret = ADPCM_Decoder( inBuf, inSize, bytesRd, outBuf, outSize );
-            break;
-#endif
+
         default:
             break;
     }
@@ -611,16 +360,14 @@ bool APP_Decoder(uint8_t * inBuf, uint16_t inSize, uint16_t * bytesRd, int16_t *
  */
 DRV_HANDLE tmrHandle;
 
+bool firstRead = true;
+bool oldPause = false;
+
 void APP_Tasks ( void )
-{
-    int retval = 0;
-    
-    USB_Tasks();
+{  
     DISK_Tasks();
     APP_LED_Tasks();
-#ifndef GFX_ENABLED
    	BTN_Tasks();
-#endif
     
     // check the application's current state
     switch ( appData.state )
@@ -640,20 +387,19 @@ void APP_Tasks ( void )
         }
         case APP_STATE_CODEC_OPEN:
             {
-                // see if codec is done initializing
-                SYS_STATUS status = DRV_CODEC_Status(sysObjdrvCodec0);
-                if (SYS_STATUS_READY == status)
+            // see if codec is done initializing
+            SYS_STATUS status = DRV_CODEC_Status(sysObjdrvCodec0);
+            if (SYS_STATUS_READY == status)
+            {
+                // This means the driver can now be be opened.
+                // a client opens the driver object to get an Handle
+                appData.codecData.handle = DRV_CODEC_Open(DRV_CODEC_INDEX_0, 
+                    DRV_IO_INTENT_WRITE | DRV_IO_INTENT_EXCLUSIVE);       
+                if(appData.codecData.handle != DRV_HANDLE_INVALID)
                 {
-                    // This means the driver can now be be opened.
-                    // a client opens the driver object to get an Handle
-                    appData.codecData.handle = DRV_CODEC_Open(DRV_CODEC_INDEX_0, 
-                        DRV_IO_INTENT_WRITE | DRV_IO_INTENT_EXCLUSIVE);       
-                    if(appData.codecData.handle != DRV_HANDLE_INVALID)
-                    {
-                        appData.state = APP_STATE_CODEC_SET_BUFFER_HANDLER;
-                        //srand(appData.playbackDelay);
-                    }            
-                }
+                    appData.state = APP_STATE_CODEC_SET_BUFFER_HANDLER;
+                }            
+            }
             break;
         }
         
@@ -663,14 +409,53 @@ void APP_Tasks ( void )
             DRV_CODEC_BufferEventHandlerSet(appData.codecData.handle, 
                                             appData.codecData.bufferHandler, 
                                             appData.codecData.context);
-            appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
+            appData.state = APP_STATE_BUS_ENABLE;           
+
+            DRV_CODEC_VolumeSet(appData.codecData.handle,
+                DRV_CODEC_CHANNEL_LEFT_RIGHT, 75/*appData.volume*/);                
             break;
+            
+        case APP_STATE_BUS_ENABLE:
+        {
+           // set the event handler and enable the bus
+#ifndef USE_SDMMC
+            SYS_FS_EventHandlerSet(APP_SYSFSEventHandler, (uintptr_t)NULL);
+            USB_HOST_EventHandlerSet(APP_USBHostEventHandler, 0);
+            USB_HOST_BusEnable(0);
+            appData.state = APP_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE;
+#else
+            appData.state = APP_STATE_MOUNT_DISK;
+#endif
+            break;
+        }
+		
+        case APP_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE:
+        {
+#ifndef USE_SDMMC		
+            if(USB_HOST_BusIsEnabled(0))
+            {
+                appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
+            }
+#endif			
+            break;
+        }
+		
+#ifdef USE_SDMMC            
+        case APP_STATE_MOUNT_DISK:
+            if( SYS_FS_Mount( SDCARD_DEV_NAME, SDCARD_MOUNT_NAME, FAT, 0, NULL) == SYS_FS_RES_SUCCESS )
+            {
+                appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
+                appData.deviceIsConnected = true;
+                LED_Set_Mode( 1, LED_STATE_OFF, _50ms );
+            }
+            break;
+#endif		            
 
         case APP_STATE_WAIT_FOR_DEVICE_ATTACH:
             /* Wait for device attach. The state machine will move
              * to the next state when the attach event
              * is received.  */
-            if(usbData.deviceIsConnected)
+            if(appData.deviceIsConnected)
             {
                 appData.state = APP_STATE_DEVICE_CONNECTED;
                 appData.usbConnect = true;
@@ -685,12 +470,12 @@ void APP_Tasks ( void )
         
         case APP_STATE_READY_TO_SCAN:
             // Wait until the disk has been scanned for all requested file types
-            __NOP();
+            //__NOP();
             break;
         
         case APP_STATE_SCANNING:
             // Wait until the next file has been chosen to open and play
-            __NOP();
+            //__NOP();
             break;
         
         case APP_STATE_OPEN_FILE:
@@ -699,7 +484,7 @@ void APP_Tasks ( void )
                 appData.state = APP_STATE_SCANNING;
                 break;
             }
-            appData.pause = false;
+            appData.pause = oldPause = false;
             LED_Set_Mode( 2, LED_STATE_ON, _50ms );
             if( APP_IsSupportedAudioFile( appData.fileName ))
             {
@@ -719,10 +504,13 @@ void APP_Tasks ( void )
                     }
                     else
                     {
-                        // file opened successfully -- read from file
-                        appData.state = APP_STATE_READ_FILE;
                         // Read the header data
                         appData.validFile = false;
+                        
+                        appData.lrSync = true;  
+						appData.pingPong = true;
+                        firstRead = true;                          
+                        appData.state = APP_STATE_INIT_READ_FILE;    
                     }
                 }
             }
@@ -731,110 +519,133 @@ void APP_Tasks ( void )
                 appData.state = APP_STATE_SCANNING;
             }
             break;
-        case APP_STATE_READ_FILE:
             
-            APP_ValidateFile();
+        case APP_STATE_INIT_READ_FILE:
+            
+            APP_ValidateFile();         
+                    
             if( !appData.validFile )
             {
                 // Look for next file
                 appData.state = APP_STATE_CLOSE_FILE;
+            }
+            else
+            { 
+                DRV_CODEC_SamplingRateSet(appData.codecData.handle, appData.sampleRate);
+                appData.state = APP_STATE_READ_FILE;
+            }
+            break;
+            
+        case APP_STATE_READ_FILE:
+            if (appData.pause)
+            {
+                if (oldPause==false)
+                {
+                    DRV_I2S_WriteQueuePurge(DRV_CODEC_GetI2SDriver(appData.codecData.handle));                
+                }
+                oldPause = appData.pause;                
                 break;
             }
+            else
+            {
+                if (oldPause==true)
+                {
+                    firstRead = true;                
+                }
+                oldPause = appData.pause;                
+            }
             
-            // Set sample rate to what was found in the header
-            DRV_CODEC_SamplingRateSet(appData.codecData.handle, appData.sampleRate);
-            
-            retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, appData.codecData.bufferSize1);
-            if ( (retval == -1) || (retval == 0) )
+            bytesRead = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, appData.bufferSize1);
+            if ((0==bytesRead) || (-1==bytesRead) || SYS_FS_FileEOF(appData.fileHandle))
             {
                 // read was not successful or no data read -- assume end of file
                 appData.state = APP_STATE_CLOSE_FILE;
             }
             else
             {
+                if (appData.pingPong)     // will write to I2S from buffer 1    
+                {                    
 #ifndef DATA32_ENABLED
-                APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
-                        (int16_t *) App_Audio_Output_Buffer1, &wrtn);
+                    APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)bytesRead, &rd,
+                            (int16_t *) App_Audio_Output_Buffer1, &wrtn);
 #else
-                APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
-                        (int16_t *) App_Audio_Output_TempBuf, &wrtn);
-                for( int i = 0; i < NUM_SAMPLES; i++ )
-                {
-                    App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
-                    App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
-                }
-                wrtn *= 2;
+                    APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)bytesRead, &rd,
+                            (int16_t *) App_Audio_Output_TempBuf, &wrtn);
+                    int i;
+                    for( i = 0; i < NUM_SAMPLES; i++ )
+                    {
+                        App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
+                        App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
+                    }
+                    wrtn *= 2;
 #endif
-                appData.codecData.txbufferObject1 = (uint8_t *)App_Audio_Output_Buffer1;
-                //appData.codecData.bufferSize1 = wrtn;
-                appData.lrSync = true;
+                    appData.codecData.txbufferObject1 = (uint8_t *)App_Audio_Output_Buffer1;
+                    appData.codecData.bufferSize1 = wrtn;
+                }
+                else
+                {
+#ifndef DATA32_ENABLED
+                    APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)bytesRead, &rd,
+                            (int16_t *) App_Audio_Output_Buffer2, &wrtn);
+#else
+                    APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)bytesRead, &rd,
+                            (int16_t *) App_Audio_Output_TempBuf, &wrtn);
+                    int i;
+                    for( i = 0; i < NUM_SAMPLES; i++ )
+                    {
+                        App_Audio_Output_Buffer2[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
+                        App_Audio_Output_Buffer2[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
+                    }
+                    wrtn *= 2;
+#endif
+                    appData.codecData.txbufferObject2 = (uint8_t *) App_Audio_Output_Buffer2;
+                    appData.codecData.bufferSize2 = wrtn;                        
+                }
+            }               
+            
+            if (firstRead)
+            {
                 appData.state = APP_STATE_CODEC_ADD_BUFFER;
+                firstRead = false;
             }
-            break;        
-       
+            else
+            {
+                appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;    
+            }
+            break;
+            
         case APP_STATE_CODEC_ADD_BUFFER:
-            if(appData.playbackDelay)
-                break;
-            // Don't try to r/w more data if the storage device is not mounted
-            if(!usbData.deviceIsConnected)
+#ifndef USE_SDMMC                           
+            if (appData.lrSync)                  
+            {
+                DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
+                appData.lrSync = false;
+            }
+#else
+            DRV_CODEC_LRCLK_Sync(appData.codecData.handle);     // resync for every buffer            
+#endif            
+            
+            if(!appData.deviceIsConnected)
             {
                 appData.state = APP_STATE_WAIT_FOR_DEVICE_ATTACH;
                 break;
-            }
-            if ( appData.pause || (appData.volLevel == VOL_LVL_MUTE))
-            {
-                break;      // paused
-            }
+            }            
             
-            if(appData.lrSync)
-            {
-                DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
-#ifndef USE_SDMMC
-                appData.lrSync = false;
-#endif
-            }
-            if ( appData.pingPong )
+            if ( appData.pingPong )     // writing from 1, will decode  into 2     
             {
                 DRV_CODEC_BufferAddWrite(appData.codecData.handle,
                                             &appData.codecData.writeBufHandle1,
                                             appData.codecData.txbufferObject1,
-                                            wrtn);
+                                            appData.codecData.bufferSize1);
 
                 // initiated a write to the codec via I2S, read next buffer full
                 if(appData.codecData.writeBufHandle1 != DRV_CODEC_BUFFER_HANDLE_INVALID)
                 {
                     appData.pingPong = false;
-                    appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
-                    retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, appData.codecData.bufferSize2);
-                    if ( (retval == -1) || (retval == 0) )
-                    {
-                        // read was not successful or no data read -- assume end of file
-                        appData.state = APP_STATE_CLOSE_FILE;
-                    }
-                    else
-                    {
-#ifndef DATA32_ENABLED
-                        APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
-                                (int16_t *) App_Audio_Output_Buffer2, &wrtn);
-#else
-                        APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
-                                (int16_t *) App_Audio_Output_TempBuf, &wrtn);
-                        for( int i = 0; i < NUM_SAMPLES; i++ )
-                        {
-                            App_Audio_Output_Buffer2[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
-                            App_Audio_Output_Buffer2[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
-                        }
-                        wrtn *= 2;
-#endif
-                        appData.codecData.txbufferObject2 = (uint8_t *) App_Audio_Output_Buffer2;
-                        //appData.codecData.bufferSize2 = wrtn;
-                    }                    
-                    
+                    appData.state = APP_STATE_READ_FILE;
                 }
                 else
                 {
-                    //appData.state = APP_STATE_ERROR;
-                    // this one needs to be modified
                     appData.state = APP_STATE_CLOSE_FILE;
                 }
             }
@@ -843,112 +654,55 @@ void APP_Tasks ( void )
                 DRV_CODEC_BufferAddWrite(appData.codecData.handle,
                                             &appData.codecData.writeBufHandle2,
                                             appData.codecData.txbufferObject2,
-                                            wrtn);
+                                            appData.codecData.bufferSize2);
                 
                 // initiated a write to the codec via I2S, read next buffer full
                 if(appData.codecData.writeBufHandle2 != DRV_CODEC_BUFFER_HANDLE_INVALID)
                 {
                     appData.pingPong = true;
-                    appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
-                    // try reading the file            
-                    retval = SYS_FS_FileRead( appData.fileHandle, (uint8_t *) App_Audio_Input_Buffer, appData.codecData.bufferSize1);
-                    if ( (retval == -1) || (retval == 0) )
-                    {
-                        // read was not successful or no data read -- assume end of file
-                        // this one needs to be modified
-                        appData.state = APP_STATE_CLOSE_FILE;
-                    }
-                    else
-                    {
-#ifndef DATA32_ENABLED
-                        APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
-                                (int16_t *) App_Audio_Output_Buffer1, &wrtn);
-#else
-                        APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)retval, &rd,
-                                (int16_t *) App_Audio_Output_TempBuf, &wrtn);
-                        // The library only deals with 16 bit data.  32 data needs to be manipulated..
-                        for( int i = 0; i < NUM_SAMPLES; i++ )
-                        {
-                            App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
-                            App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
-                        }
-                        wrtn *= 2;
-#endif
-                        appData.codecData.txbufferObject1 = (uint8_t *)App_Audio_Output_Buffer1;
-                    }                    
+                    appData.state = APP_STATE_READ_FILE;
                 }               
                 else
                 {
                     appData.state = APP_STATE_CLOSE_FILE;
                 }
             }
-#ifdef GFX_ENABLED
-            APP_Update_GUI_Tasks();
-#endif
+            appData.currPos = SYS_FS_FileTell( appData.fileHandle );            
+            APP_UpdateTrackPosition();            
+
             if( appData.prevVol != appData.volume )
             {
                 DRV_CODEC_VolumeSet(appData.codecData.handle,
                     DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);
                 appData.prevVol = appData.volume;
             }
-            appData.currPos = SYS_FS_FileTell( appData.fileHandle );
-            break;
-
+            break;                                  
+            
         // audio data Transmission under process
         case APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE:
-            __NOP();
+            //__NOP();
             break;
             
         case APP_STATE_CLOSE_FILE:
             SYS_FS_FileClose( appData.fileHandle );
+            DRV_I2S_WriteQueuePurge(DRV_CODEC_GetI2SDriver(appData.codecData.handle));          
             appData.state = APP_STATE_SCANNING;
             break;
+            
+        case APP_STATE_CLOSE_AND_REOPEN_FILE:          
+            SYS_FS_FileClose( appData.fileHandle );
+            DRV_I2S_WriteQueuePurge(DRV_CODEC_GetI2SDriver(appData.codecData.handle));          
+            appData.state = APP_STATE_OPEN_FILE;
+            break;            
         
-        case APP_STATE_NO_MEDIA:
+        case APP_STATE_NO_MEDIA:          
             appData.state = APP_STATE_SCANNING;
-            appData.pause = true;
+            appData.pause = true;           
 		default:
-            __NOP();
+            //__NOP();
             break;
     }
 }
-
-#ifdef GFX_ENABLED
-
-void APP_Update_GUI_Tasks( void )
-{
-    if( !appData.guiUpdate )
-    {
-        switch( appData.guiState )
-        {
-            case GUI_STATE_VOLUME:
-                APP_Get_GUI_Volume();
-                break;
-            case GUI_STATE_BIT_DEPTH:
-                APP_Set_GUI_BitDepthStr();
-                break;
-            case GUI_STATE_TRACK_POSITION:
-                APP_Set_GUI_TrackPositionStr();
-                break;
-            case GUI_STATE_FILENAME:
-                APP_Set_GUI_FileNameStr();
-                break;
-            case GUI_STATE_CHANNELS:
-                APP_Set_GUI_ChnlStr();
-                break;
-            case GUI_STATE_SAMPLE_RATE:
-                APP_Set_GUI_SampleRateStr();
-            default:
-                break;
-        }
-        appData.guiState++;
-        appData.guiState %= GUI_STATE_MAX;
-        appData.guiUpdate = _20ms;
-    }
-}
-
-
-#endif
 
 void APP_LED_Tasks( void )
 {
@@ -988,8 +742,7 @@ void APP_LED_Tasks( void )
                     ledData.led1BlinkCnt--;
                 }
                 break;
-        }
-        
+        }        
     }
     if( !ledData.led2Delay )
     {
@@ -1030,7 +783,6 @@ void APP_LED_Tasks( void )
         }
     }
 }
-
 
 void LED_Set_Mode( uint8_t led, LED_STATES state, uint32_t prd_blinks)
 {
@@ -1074,79 +826,6 @@ void LED_Set_Mode( uint8_t led, LED_STATES state, uint32_t prd_blinks)
     }
 }
 
-
-
-void USB_Tasks ( void )
-{
-    switch(usbData.state)
-    {
-        case USB_STATE_INIT:
-        {
-            usbData.state = USB_STATE_BUS_ENABLE;
-            break;
-        }
-        case USB_STATE_BUS_ENABLE:
-        {
-           // set the event handler and enable the bus
-#ifndef USE_SDMMC
-            SYS_FS_EventHandlerSet(APP_SYSFSEventHandler, (uintptr_t)NULL);
-            USB_HOST_EventHandlerSet(APP_USBHostEventHandler, 0);
-            USB_HOST_BusEnable(0);
-            usbData.state = USB_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE;
-#else
-            usbData.state = USB_STATE_MOUNT_DISK;
-#endif
-            break;
-        }
-        case USB_STATE_WAIT_FOR_BUS_ENABLE_COMPLETE:
-        {
-#ifndef USE_SDMMC
-            if(USB_HOST_BusIsEnabled(0))
-
-            {
-                usbData.state = USB_STATE_WAIT_FOR_DEVICE_ATTACH;
-            }
-#endif
-            break;
-        }
-
-#ifdef USE_SDMMC            
-        case USB_STATE_MOUNT_DISK:
-            if( SYS_FS_Mount( SDCARD_DEV_NAME, SDCARD_MOUNT_NAME, FAT, 0, NULL) == SYS_FS_RES_SUCCESS )
-            {
-                usbData.state = USB_STATE_WAIT_FOR_DEVICE_ATTACH;
-                usbData.deviceIsConnected = true;
-                LED_Set_Mode( 1, LED_STATE_OFF, _50ms );
-            }
-            break;
-#endif
-
-        case USB_STATE_WAIT_FOR_DEVICE_ATTACH:
-        {
-            /* Wait for device attach. The state machine will move
-             * to the next state when the attach event
-             * is received.  */
-            if(usbData.deviceIsConnected)
-            {
-                usbData.state = USB_STATE_DEVICE_CONNECTED;
-            }
-            break;
-        }
-        case USB_STATE_DEVICE_CONNECTED:
-        {
-            // device was mounted. We can r/w the disk
-            usbData.state = USB_STATE_IDLE;
-            appData.state = APP_STATE_INIT;
-            break;
-        }
-        case USB_STATE_IDLE:
-        default:
-        {
-            break;
-        }
-    }
-}
-
 void BTN_ShortPress( void )
 {
     switch( appData.playerBtnMode )
@@ -1165,7 +844,7 @@ void BTN_ShortPress( void )
             appData.volume = volumeLevels[appData.volLevel];
             break;
         case LINEAR_TRACK_CHANGE:
-            SYS_FS_FileSeek( appData.fileHandle, 0, SYS_FS_SEEK_END );
+            appData.state = APP_STATE_CLOSE_FILE;
             break;
         default:
             break;
@@ -1185,8 +864,7 @@ void BTN_LongPress( void )
         LED_Set_Mode( 1, LED_STATE_OFF, _50ms );
     }
 }
-    
-    
+       
 void BTN_Tasks()
 {
    //BUTTON PROCESSING
@@ -1245,6 +923,7 @@ void BTN_Tasks()
             break;
     }
 }
+
 //******************************************************************************
 // 
 // Audio_Codec_TxBufferComplete() - Set APP_Tasks Next state to buffer complete.
@@ -1262,7 +941,7 @@ void Audio_Codec_BufferEventHandler(DRV_CODEC_BUFFER_EVENT event,
     switch(event)
     {
         case DRV_CODEC_BUFFER_EVENT_COMPLETE:
-            //Signal to APP that Tx is complete.
+            // Signal to APP that DMA has finished
                 appData.state = APP_STATE_CODEC_ADD_BUFFER; 
             break;
 
@@ -1290,9 +969,6 @@ bool DISK_EventHandler ( DISK_EVENT event, uint32_t variable,SYS_FS_HANDLE fileH
             return ( true );
 
         case DISK_EVENT_SCANNING_FINISHED:
-            /*Have the audio files list*/
-            /*Put in display list widget*/
-            /*Shoud we create this list before user request it*/
             return ( true );
 
         case DISK_EVENT_TRACK_CHANGED:

@@ -237,6 +237,9 @@ extern "C" {
 /* Total number of devices to be supported */
 #define USB_HOST_DEVICES_NUMBER                             1
 
+/* Size of Endpoint 0 buffer */
+#define USB_DEVICE_EP0_BUFFER_SIZE                          64
+
 /* Target peripheral list entries */
 #define  USB_HOST_TPL_ENTRIES                               1 
 
@@ -287,8 +290,6 @@ extern "C" {
 
 /* Reset duration in milli Seconds */ 
 #define DRV_USBHS_HOST_RESET_DURATION                     100
-
-
 
 /* Alignment for buffers that are submitted to USB Driver*/ 
 #define USB_ALIGN  CACHE_ALIGN

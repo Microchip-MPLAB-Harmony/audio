@@ -902,8 +902,6 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="400000-5fffff"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/microchip/harmony/h3/audio/apps-new/universal_audio_decoders-E70 SSD1963/firmware/uad_sam_e70_xult_wm8904_ssc_wqvga.X/debug/apb_sam_e70_xult_wm8904_ssc_tm4301b/uad_sam_e70_xult_wm8904_ssc_wqvga_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"

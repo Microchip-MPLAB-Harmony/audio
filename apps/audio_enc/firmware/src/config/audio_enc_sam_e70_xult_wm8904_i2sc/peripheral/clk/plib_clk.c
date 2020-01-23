@@ -168,7 +168,7 @@ static void CLK_ProgrammableClockInitialize(void)
 /*********************************************************************************
 Clock Initialize
 *********************************************************************************/
-void CLK_Initialize( void )
+void CLOCK_Initialize( void )
 {
 
 

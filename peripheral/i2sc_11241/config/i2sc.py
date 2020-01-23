@@ -216,6 +216,14 @@ def instantiateComponent(i2scComponent):
             i2scLRCPinDefine = "((PIO" + i2scLRCPinPort + "_REGS->PIO_PDSR >> " + i2scLRCPinPad + ") & 0x1)"
     i2scLRCPin.setDefaultValue(i2scLRCPinDefine)
 
+    i2scLRCINV = i2scComponent.createKeyValueSetSymbol("I2SC_LRCLK_INVERT", None)
+    i2scLRCINV.setLabel("LRCLK Invert")
+    i2scLRCINV.addKey("0", "0", "Normal LRCLK_Get Return Value")
+    i2scLRCINV.addKey("1", "1", "Invert LRCLK_Get Return Value")
+    i2scLRCINV.setDisplayMode("Description")
+    i2scLRCINV.setOutputMode("Value")
+    i2scLRCINV.setDefaultValue(0)
+
     ######################################################################
    
     configName = Variables.get("__CONFIGURATION_NAME")

@@ -282,20 +282,13 @@ void _USB_HOST_MSD_TransferTasks
                          * meaningful.
                          * */
 
-                        if(((msdCSW->bCSWStatus == USB_MSD_CSW_STATUS_GOOD) || (msdCSW->bCSWStatus == USB_MSD_CSW_STATUS_FAIL)))
+                        if(((msdCSW->bCSWStatus == USB_MSD_CSW_STATUS_GOOD) || (msdCSW->bCSWStatus == USB_MSD_CSW_STATUS_FAIL)) &&
+                                (msdCSW->dCSWDataResidue <= msdInstanceInfo->msdCBW->dCBWDataTransferLength))
                         {
                             /* This means the CSW is meaningful. We must let the
                              * MSD client know if the command has failed or
                              * passed. This is know in the bCSWStatus of CSW. */
-                            if ( (msdCSW->dCSWDataResidue <= msdInstanceInfo->msdCBW->dCBWDataTransferLength) )
-                            {   
-                                processedBytes = msdInstanceInfo->msdCBW->dCBWDataTransferLength - msdCSW->dCSWDataResidue;
-                            }
-                            else
-                            {
-                                /* The dCSWDataResidue shall not exceed the value sent in the dCBWDataTransfer length */
-                                processedBytes = msdInstanceInfo->msdCBW->dCBWDataTransferLength ;
-                            }
+                            processedBytes = msdInstanceInfo->msdCBW->dCBWDataTransferLength - msdCSW->dCSWDataResidue;
                             transferIsDone = true;
                             msdResult = msdCSW->bCSWStatus;
                         }

@@ -84,7 +84,7 @@ extern "C" {
 #define SYS_TIME_MAX_TIMERS                  5
 #define SYS_TIME_HW_COUNTER_WIDTH            16
 #define SYS_TIME_HW_COUNTER_PERIOD           65535U
-#define SYS_TIME_HW_COUNTER_HALF_PERIOD		 (SYS_TIME_HW_COUNTER_PERIOD>>1)
+#define SYS_TIME_HW_COUNTER_HALF_PERIOD	     (SYS_TIME_HW_COUNTER_PERIOD>>1)
 #define SYS_TIME_CPU_CLOCK_FREQUENCY         246000000
 #define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES      (900)
 
@@ -128,6 +128,9 @@ extern "C" {
 #define DRV_AK4954_WHICH_MIC_INPUT                          MIC1
 #define DRV_AK4954_ENABLE_MIC_BIAS                          true
 #define DRV_AK4954_MIC_GAIN	                      	        20
+#define DRV_AK4954_MCLK_SAMPLE_FREQ_MULTPLIER               256
+#define DRV_AK4954_BCLK_BIT_CLK_DIVISOR                     4
+#define DRV_AK4954_DELAY_INITIALIZATION                     false
 
 #define DRV_AK4954_I2S_DRIVER_MODULE_INDEX_IDX0             DRV_I2S_INDEX_0
 #define DRV_AK4954_I2C_DRIVER_MODULE_INDEX_IDX0             DRV_I2C_INDEX_0
@@ -172,7 +175,9 @@ extern "C" {
 #define DRV_CODEC_MicMuteOn                                 DRV_AK4954_MicMuteOn
 #define DRV_CODEC_MicMuteOff                                DRV_AK4954_MicMuteOff
 #define DRV_CODEC_GetI2SDriver                              DRV_AK4954_GetI2SDriver
-#define DRV_CODEC_LRCLK_Sync                                DRV_AK4954_LRCLK_Sync 
+#define DRV_CODEC_LRCLK_Sync                                DRV_AK4954_LRCLK_Sync
+#define DRV_CODEC_EnableInitialization                      DRV_AK4954_EnableInitialization    
+#define DRV_CODEC_IsInitializationDelayed                   DRV_AK4954_IsInitializationDelayed         
 
 /* I2S Driver Common Configuration Options */
 #define DRV_I2S_INSTANCES_NUMBER              1

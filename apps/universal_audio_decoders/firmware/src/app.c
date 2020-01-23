@@ -429,6 +429,43 @@ void APP_Set_GUI_FileNameStr( void )
         laString_Destroy( &laTmpStr );
     }
 }
+#else
+void APP_UpdateTrackPosition()
+{
+    uint32_t dur, time;
+    if( appData.sampleRate && appData.numOfChnls )
+    {
+        switch( appData.currentStreamType )
+        {
+#ifdef WAV_STREAMING_ENABLED
+            case APP_STREAM_WAV:
+                dur = (appData.fileSize - sizeof( WAV_FILE_HEADER ))/(appData.sampleRate*2*appData.numOfChnls);
+                time = (appData.currPos - sizeof( WAV_FILE_HEADER))/(appData.sampleRate*2*appData.numOfChnls);
+                break;
+#endif
+#ifdef ADPCM_STREAMING_ENABLED
+            case APP_STREAM_ADPCM:
+                dur = 4*(appData.fileSize - sizeof( ADPCMHEADER ))/(appData.sampleRate*2*appData.numOfChnls);
+                time = 4*(appData.currPos - sizeof( ADPCMHEADER ))/(appData.sampleRate*2*appData.numOfChnls);
+                break;
+#endif
+#ifdef MP3_DECODER_ENABLED
+            case APP_STREAM_MP3:
+                dur = appData.playbackDuration;
+                time = ((appData.currPos-appData.mp3FirstFrame)*appData.playbackDuration)/appData.fileSize;
+                break;
+#endif                
+            default:
+                time = dur = 0;
+                break;
+        }
+       
+        if (time >= dur)
+        {
+            appData.state = APP_STATE_CLOSE_FILE;   // if at or past duration, force file to close
+        }        
+    }
+}
 #endif
 
 // *****************************************************************************
@@ -463,8 +500,9 @@ void APP_Initialize ( void )
     /* TODO: Initialize your application's state machine and other
      * parameters.
      */   
-    appData.state = APP_STATE_INIT;//APP_STATE_IDLE;
+    appData.state = APP_STATE_INIT;
     btnData.state = BTN_STATE_IDLE;
+    appData.playerBtnMode = VOL_ADJUST;
     appData.volLevel = VOL_LVL_LOW;
     appData.prevVol = 0;
     appData.volume = volumeLevels[appData.volLevel];
@@ -638,10 +676,10 @@ void APP_ValidateFile( void )
 #ifdef MP3_DECODER_ENABLED
         case APP_STREAM_MP3:
             // Read the mp3 file. Fill the first buffer of data from the input file.
-            bytesRead = SYS_FS_FileRead(appData.fileHandle, MP3readBuf, READBUF_SIZE);                
+            bytesRead = SYS_FS_FileRead(appData.fileHandle, MP3readBuf, READBUF_SIZE);                           
             // If end of file is reached then close this file
-            if ((0==bytesRead) || (-1==bytesRead) || SYS_FS_FileEOF(appData.fileHandle))
-            {
+            if ((0==bytesRead) || (-1==bytesRead) /*|| SYS_FS_FileEOF(appData.fileHandle)*/)
+            {               
                 appData.state = APP_STATE_CLOSE_FILE; 
                 break;
             }                  
@@ -662,7 +700,8 @@ void APP_ValidateFile( void )
             MP3bytesLeft -= MP3offset;
 
             // Determine the audio format from the first frame header
-            if (MP3_GetSampleRate() != 44100 || MP3_GetChannels() != 2)
+            //if (MP3_GetSampleRate() != 44100 || MP3_GetChannels() != 2)
+            if (MP3_GetChannels() != 2)                
             {
                 // This means that the MP3 file is either a mono audio stream or
                 // not sampled at 44100Hz.  We currently don't want to handle
@@ -742,8 +781,6 @@ APP_STATES oldAppState = -1;
 bool firstRead = true;
 
 bool oldPause = false;
-
-int lrctr;
 
 void APP_Tasks ( void )
 {  
@@ -992,8 +1029,13 @@ void APP_Tasks ( void )
 #ifndef DATA32_ENABLED 
                     for (i=0; i < 2*NUM_MP3_OUTPUT_SAMPLES;)
                     {
+#ifdef SWAPCHANNELS                         
+                        App_Audio_Output_Buffer1[j].leftData = (int16_t)MP3outBuf[i+1];
+                        App_Audio_Output_Buffer1[j].rightData = (int16_t)MP3outBuf[i];
+#else
                         App_Audio_Output_Buffer1[j].leftData = (int16_t)MP3outBuf[i];
-                        App_Audio_Output_Buffer1[j].rightData = (int16_t)MP3outBuf[i+1];
+                        App_Audio_Output_Buffer1[j].rightData = (int16_t)MP3outBuf[i+1];                        
+#endif
                         i += 2;
                         j++;
                     }                    
@@ -1001,8 +1043,13 @@ void APP_Tasks ( void )
 #else
                     for (i=0; i < 2*NUM_MP3_OUTPUT_SAMPLES;
                     {
+#ifdef SWAPCHANNELS                         
+                        App_Audio_Output_Buffer1[j].leftData = (int32_t)MP3outBuf[i+1]<<16;
+                        App_Audio_Output_Buffer1[j].rightData = (int32_t)MP3outBuf[i]<<16;
+#else
                         App_Audio_Output_Buffer1[j].leftData = (int32_t)MP3outBuf[i]<<16;
-                        App_Audio_Output_Buffer1[j].rightData = (int32_t)MP3outBuf[i+1]<<16;
+                        App_Audio_Output_Buffer1[j].rightData = (int32_t)MP3outBuf[i+1]<<16;                        
+#endif                        
                         i += 2;
                         j++;                        
                     }
@@ -1015,8 +1062,13 @@ void APP_Tasks ( void )
 #ifndef DATA32_ENABLED 
                     for (i=0; i < 2*NUM_MP3_OUTPUT_SAMPLES;)
                     {
+#ifdef SWAPCHANNELS                         
+                        App_Audio_Output_Buffer2[j].leftData = (int16_t)MP3outBuf[i+1];
+                        App_Audio_Output_Buffer2[j].rightData = (int16_t)MP3outBuf[i];
+#else
                         App_Audio_Output_Buffer2[j].leftData = (int16_t)MP3outBuf[i];
-                        App_Audio_Output_Buffer2[j].rightData = (int16_t)MP3outBuf[i+1];
+                        App_Audio_Output_Buffer2[j].rightData = (int16_t)MP3outBuf[i+1];                        
+#endif                        
                         i += 2;
                         j++;
                     }
@@ -1024,8 +1076,13 @@ void APP_Tasks ( void )
 #else
                     for (i=0; i < 2*NUM_MP3_OUTPUT_SAMPLES;)
                     {
+#ifdef SWAPCHANNELS                         
+                        App_Audio_Output_Buffer2[j].leftData = (int32_t)MP3outBuf[i+1]<<16;
+                        App_Audio_Output_Buffer2[j].rightData = (int32_t)MP3outBuf[i]<<16;
+#else
                         App_Audio_Output_Buffer2[j].leftData = (int32_t)MP3outBuf[i]<<16;
-                        App_Audio_Output_Buffer2[j].rightData = (int32_t)MP3outBuf[i+1]<<16;
+                        App_Audio_Output_Buffer2[j].rightData = (int32_t)MP3outBuf[i+1]<<16;                        
+#endif
                         i += 2;
                         j++;                        
                     }
@@ -1051,14 +1108,28 @@ void APP_Tasks ( void )
 #ifndef DATA32_ENABLED
                         APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)bytesRead, &rd,
                                 (int16_t *) App_Audio_Output_Buffer1, &wrtn);
+#ifdef SWAPCHANNELS                       
+                        int i;
+                        for( i = 0; i < NUM_SAMPLES; i++ )
+                        {
+                            uint16_t temp = App_Audio_Output_Buffer1[i].leftData;
+                            App_Audio_Output_Buffer1[i].leftData = App_Audio_Output_Buffer1[i].rightData;
+                            App_Audio_Output_Buffer1[i].rightData = temp;
+                        }
+#endif
 #else
                         APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)bytesRead, &rd,
                                 (int16_t *) App_Audio_Output_TempBuf, &wrtn);
                         int i;
                         for( i = 0; i < NUM_SAMPLES; i++ )
                         {
+#ifdef SWAPCHANNELS                             
+                            App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
+                            App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
+#else
                             App_Audio_Output_Buffer1[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
-                            App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
+                            App_Audio_Output_Buffer1[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;                            
+#endif
                         }
                         wrtn *= 2;
 #endif
@@ -1070,14 +1141,28 @@ void APP_Tasks ( void )
 #ifndef DATA32_ENABLED
                         APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)bytesRead, &rd,
                                 (int16_t *) App_Audio_Output_Buffer2, &wrtn);
+#ifdef SWAPCHANNELS                       
+                        int i;
+                        for( i = 0; i < NUM_SAMPLES; i++ )
+                        {
+                            uint16_t temp = App_Audio_Output_Buffer2[i].leftData;
+                            App_Audio_Output_Buffer2[i].leftData = App_Audio_Output_Buffer2[i].rightData;
+                            App_Audio_Output_Buffer2[i].rightData = temp;
+                        }
+#endif                        
 #else
                         APP_Decoder( (uint8_t *)App_Audio_Input_Buffer, (uint16_t)bytesRead, &rd,
                                 (int16_t *) App_Audio_Output_TempBuf, &wrtn);
                         int i;
                         for( i = 0; i < NUM_SAMPLES; i++ )
                         {
+#ifdef SWAPCHANNELS                             
+                            App_Audio_Output_Buffer2[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
+                            App_Audio_Output_Buffer2[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
+#else
                             App_Audio_Output_Buffer2[i].leftData = (int32_t)App_Audio_Output_TempBuf[i].leftData<<16;
-                            App_Audio_Output_Buffer2[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;
+                            App_Audio_Output_Buffer2[i].rightData = (int32_t)App_Audio_Output_TempBuf[i].rightData<<16;                            
+#endif                            
                         }
                         wrtn *= 2;
 #endif
@@ -1090,7 +1175,6 @@ void APP_Tasks ( void )
             if (firstRead)
             {
                 appData.state = APP_STATE_CODEC_ADD_BUFFER;
-                lrctr = 0;
                 firstRead = false;
             }
             else
@@ -1100,13 +1184,13 @@ void APP_Tasks ( void )
             break;
             
         case APP_STATE_CODEC_ADD_BUFFER:
- //           if(appData.lrSync)
-            if((lrctr%4)==0)                
+            if (appData.lrSync)            
             {
                 DRV_CODEC_LRCLK_Sync(appData.codecData.handle);
-                //appData.lrSync = false;
+#ifndef ALWAYS_DO_LRSYNC                
+                appData.lrSync = false;
+#endif                
             }
-            lrctr++;
             
             if(!appData.deviceIsConnected)
             {
@@ -1150,16 +1234,18 @@ void APP_Tasks ( void )
                     appData.state = APP_STATE_CLOSE_FILE;
                 }
             }
+            appData.currPos = SYS_FS_FileTell( appData.fileHandle );            
 #ifdef GFX_ENABLED
             APP_Update_GUI_Tasks();
+#else
+            APP_UpdateTrackPosition();            
 #endif
             if( appData.prevVol != appData.volume )
             {
                 DRV_CODEC_VolumeSet(appData.codecData.handle,
                     DRV_CODEC_CHANNEL_LEFT_RIGHT, appData.volume);
                 appData.prevVol = appData.volume;
-            }
-            appData.currPos = SYS_FS_FileTell( appData.fileHandle );
+            }            
             break;                                  
             
         // audio data Transmission under process

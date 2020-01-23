@@ -184,22 +184,27 @@
             </Boolean>
           </Attributes>
         </File>
-        <Boolean dnOrder="10" id="enableAppSupport">
+        <Integer dnOrder="10" id="ariaHeap">
+          <Values dnOrder="0">
+            <User dnOrder="0" value="14024"/>
+          </Values>
+        </Integer>
+        <Boolean dnOrder="11" id="enableAppSupport">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="aria_gfx_library" value="true"/>
           </Values>
         </Boolean>
-        <Boolean dnOrder="11" id="enableInput">
+        <Boolean dnOrder="12" id="enableInput">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="aria_gfx_pda_tm4301b" value="true"/>
           </Values>
         </Boolean>
-        <Boolean dnOrder="12" id="useGlobalPalette">
+        <Boolean dnOrder="13" id="useGlobalPalette">
           <Values dnOrder="0">
             <User dnOrder="0" value="false"/>
           </Values>
         </Boolean>
-        <Boolean dnOrder="13" id="useRTOSExtensions">
+        <Boolean dnOrder="14" id="useRTOSExtensions">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="aria_gfx_library" value="false"/>
           </Values>
@@ -3254,13 +3259,13 @@
         <Setting dnOrder="532" id="XC32_HEAP">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="value">
-              <Value dnOrder="0">16384</Value>
+              <Value dnOrder="0">14024</Value>
             </String>
           </Attributes>
         </Setting>
         <Integer dnOrder="533" id="XC32_HEAP_SIZE">
           <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="aria_gfx_library" value="16384"/>
+            <Dynamic dnOrder="0" id="aria_gfx_library" value="14024"/>
           </Values>
         </Integer>
         <KeyValueSet dnOrder="534" id="clkSvcMode">
@@ -4256,7 +4261,7 @@
         <ElementPosition dnOrder="0" id="BSP_PIC32MZ_EF_Curiosity_2.0" x="372" y="15"/>
         <ElementPosition dnOrder="1" id="HarmonyCore" x="6" y="62"/>
         <ElementPosition dnOrder="2" id="a_drv_i2s" x="208" y="494"/>
-        <ElementPosition dnOrder="3" id="a_i2s2" x="20" y="557"/>
+        <ElementPosition dnOrder="3" id="a_i2s2" x="20" y="558"/>
         <ElementPosition dnOrder="4" id="aria_gfx_library" x="732" y="241"/>
         <ElementPosition dnOrder="5" id="aria_gfx_pda_tm4301b" x="351" y="55"/>
         <ElementPosition dnOrder="6" id="audio_codec_ak4954" x="695" y="443"/>

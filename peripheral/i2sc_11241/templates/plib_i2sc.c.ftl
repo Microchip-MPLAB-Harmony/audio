@@ -72,12 +72,21 @@ void ${I2SC_INSTANCE_NAME}_Initialize ( void )
     while(!(${I2SC_INSTANCE_NAME}_REGS->I2SC_SR & I2SC_SR_TXEN_Msk));
 }
 
+<#if I2SC_LRCLK_INVERT== "1">
+uint32_t ${I2SC_INSTANCE_NAME}_LRCLK_Get(void)
+{
+    // if inverted, will sync on high to low transition
+    volatile uint32_t ret = 1-${I2SC_LRCLK_PIN_DEFINE};
+    return ret;    
+}
+<#else>
 uint32_t ${I2SC_INSTANCE_NAME}_LRCLK_Get(void)
 {
     // for I2S format, will sync on low to high transition
     volatile uint32_t ret = ${I2SC_LRCLK_PIN_DEFINE};
     return ret;    
 }
+</#if>
 
 /*********************************************************************************
  * I2SC1_PLLAClockSet() - Master Mode PLLA Clock set for the I2SC

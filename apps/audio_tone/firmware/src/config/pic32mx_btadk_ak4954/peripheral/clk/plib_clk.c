@@ -118,12 +118,11 @@ void CLK_Initialize( void )
     {
         __builtin_mtc0(12, 0,(__builtin_mfc0(12, 0) | 0x0001));
     }
-
     /* Peripheral Module Disable Configuration */
-    PMD1SET = 0xffffffff;
-    PMD2SET = 0xffffffff;
-    PMD3SET = 0xffffffff;
-    PMD4SET = 0xffffffff;
-    PMD5SET = 0xfffefeff;
-    PMD6SET = 0xfffffffd;
+    PMD1 = 0x1101;
+    PMD2 = 0x3;
+    PMD3 = 0x1f001f;
+    PMD4 = 0xffffffff;
+    PMD5 = 0xfffefeff;
+    PMD6 = 0xfffffffd;
 }

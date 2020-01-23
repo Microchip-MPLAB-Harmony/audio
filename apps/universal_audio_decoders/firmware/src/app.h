@@ -170,7 +170,7 @@ typedef enum
     MP3_PLAYBACK,
     MP3_FILE_CLOSE,
     
-}MP3_APPLICATION_STATE;
+} MP3_APPLICATION_STATE;
 
 
 // *****************************************************************************
@@ -220,7 +220,7 @@ typedef enum
     PLAYER_CMD_PREV_FILE,
     PLAYER_CMD_FAST_FORWARD,
     PLAYER_CMD_REWIND,
-}PLAYER_COMMAND;
+} PLAYER_COMMAND;
 
 typedef enum
 {
@@ -244,10 +244,10 @@ typedef enum
     PLAYER_EVENT_ERROR_MESSAGE,
     PLAYER_EVENT_GOTO_EXPLORER_WINDOW,
     PLAYER_EVENT_GOTO_PLAYER_WINDOW,
-}
-PLAYER_EVENT;
+} PLAYER_EVENT;
 
-typedef enum{
+typedef enum
+{
     APP_STREAM_MP3,
     APP_STREAM_WMA,
     APP_STREAM_WAV,
@@ -257,18 +257,20 @@ typedef enum{
     APP_STREAM_OPUS,
     APP_STREAM_FLAC,
     APP_STREAM_UNKNOWN,
-}PLAYER_STREAM_TYPE;
+} PLAYER_STREAM_TYPE;
 
-typedef enum{
+typedef enum
+{
     APP_FILE_TYPE_WAV,
     APP_FILE_TYPE_MP3,
     APP_FILE_TYPE_WMA,
     APP_FILE_TYPE_AAC,
     APP_FILE_TYPE_MP4,
     APP_FILE_TYPE_UNKNOWN,
-}APP_FILE_TYPE;
+} APP_FILE_TYPE;
 
-typedef enum{
+typedef enum
+{
     APP_DECODER_MP3,
     APP_DECODER_AAC,
     APP_DECODER_ADPCM,
@@ -278,25 +280,28 @@ typedef enum{
     APP_DECODER_OPUS,
     APP_DECODER_FLAC,
     APP_DECODER_UNKNOWN,
-}APP_DECODER_TYPE;
+} APP_DECODER_TYPE;
 
-typedef enum{
+typedef enum
+{
     VOL_LVL_MUTE,
     VOL_LVL_LOW,
     VOL_LVL_MED,
     VOL_LVL_HIGH,
     VOL_LVL_MAX,
-}VOL_LEVEL;
+} VOL_LEVEL;
 
-typedef enum{
+typedef enum
+{
     VOL_ADJUST,
     LINEAR_TRACK_CHANGE,
 //    RANDOM_TRACK_CHANGE,
     MAX_MODES,
-}PLAYER_MODE;
+} PLAYER_MODE;
 
 #ifdef WAV_STREAMING_ENABLED
-typedef struct{
+typedef struct
+{
     char chunkID[4];        // "RIFF"
     uint32_t chunkSize;
     char format[4];         // "WAVE"
@@ -310,23 +315,25 @@ typedef struct{
     uint16_t bitsPerSample;
     char subChunk2Id[4];    // "data"
     uint32_t subChunk2Size;
-}WAV_FILE_HEADER;
+} WAV_FILE_HEADER;
 #endif
 
-typedef struct{
+typedef struct
+{
     bool bStereoMode;
-}APP_RUNDCPT; // application layer descriptor 
+} APP_RUNDCPT; // application layer descriptor 
 
 #define AUDIO_QUEUEBUFFER_NUMBER 2
 
-typedef struct{
+typedef struct
+{
 //    int8_t buffer[DECODER_MAX_OUTPUT_BUFFER_SIZE];
     bool inUse;
     bool decoded;
     uint32_t offset;
     DRV_CODEC_BUFFER_HANDLE writeHandler;
     size_t bufferSize;
-}AUDIO_QUEUEBUFFER;
+} AUDIO_QUEUEBUFFER;
 
 typedef struct
 {
@@ -344,7 +351,8 @@ typedef struct
     bool led2On;
 } LED_DATA;
 
-typedef struct {
+typedef struct
+{
     /* SYS_FS File handle for 1st file */
     SYS_FS_HANDLE fileHandle;
     SYS_FS_FSTAT fileStatus;
@@ -382,7 +390,7 @@ typedef struct {
 #ifdef MP3_DECODER_ENABLED    
     uint32_t mp3FirstFrame;
 #endif    
-}APP_DATA ;
+} APP_DATA ;
 
 typedef struct
 {

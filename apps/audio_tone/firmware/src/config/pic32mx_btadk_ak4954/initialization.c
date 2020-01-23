@@ -96,9 +96,6 @@
 
 
 
-
-
-
 // *****************************************************************************
 // *****************************************************************************
 // Section: Driver Initialization Data
@@ -121,11 +118,15 @@ const DRV_I2C_PLIB_INTERFACE drvI2C0PLibAPI = {
     /* I2C PLib Transfer Write Add function */
     .write = (DRV_I2C_PLIB_WRITE)I2C1_Write,
 
+
     /* I2C PLib Transfer Write Read Add function */
     .writeRead = (DRV_I2C_PLIB_WRITE_READ)I2C1_WriteRead,
 
     /* I2C PLib Transfer Status function */
     .errorGet = (DRV_I2C_PLIB_ERROR_GET)I2C1_ErrorGet,
+
+    /* I2C PLib Transfer Setup function */
+    .transferSetup = (DRV_I2C_PLIB_TRANSFER_SETUP)I2C1_TransferSetup,
 
     /* I2C PLib Callback Register */
     .callbackRegister = (DRV_I2C_PLIB_CALLBACK_REGISTER)I2C1_CallbackRegister,
@@ -177,6 +178,8 @@ const DRV_I2C_INIT drvI2C0InitData =
 DRV_I2S_PLIB_INTERFACE drvI2S0PlibAPI =
 {
     .I2S_LRCLK_Get = (DRV_I2S_LRCLK_GET)I2S1_LRCLK_Get,  
+    .I2S_RefClockSet = (DRV_I2S_REFCLOCKSET) I2S1_RefClockSet,
+    .I2S_BaudRateSet = (DRV_I2S_BAUDRATESET) I2S1_BaudRateSet,
 };
 
 /* I2S Driver Initialization Data */
@@ -208,13 +211,16 @@ DRV_I2S_INIT drvI2S0InitData =
 /*** CODEC Driver Initialization Data ***/
 const DRV_AK4954_INIT drvak4954Codec0InitData =
 {
+    .i2sDriverModuleIndex = DRV_AK4954_I2S_DRIVER_MODULE_INDEX_IDX0,
+    .i2cDriverModuleIndex = DRV_AK4954_I2C_DRIVER_MODULE_INDEX_IDX0,
     .masterMode = DRV_AK4954_MASTER_MODE,
     .samplingRate = DRV_AK4954_AUDIO_SAMPLING_RATE,
     .volume = DRV_AK4954_VOLUME,
     .audioDataFormat = DRV_AK4954_AUDIO_DATA_FORMAT_MACRO,
     .whichMicInput = DRV_AK4954_WHICH_MIC_INPUT,
     .enableMicBias = DRV_AK4954_ENABLE_MIC_BIAS,
-    .micGain = DRV_AK4954_MIC_GAIN
+    .micGain = DRV_AK4954_MIC_GAIN,
+    .delayDriverInitialization = DRV_AK4954_DELAY_INITIALIZATION,
 };
 
 
@@ -243,11 +249,12 @@ SYSTEM_OBJECTS sysObj;
 
 const SYS_TIME_PLIB_INTERFACE sysTimePlibAPI = {
     .timerCallbackSet = (SYS_TIME_PLIB_CALLBACK_REGISTER)CORETIMER_CallbackSet,
-    .timerCounterGet = (SYS_TIME_PLIB_COUNTER_GET)CORETIMER_CounterGet,
-    .timerFrequencyGet = (SYS_TIME_PLIB_FREQUENCY_GET)CORETIMER_FrequencyGet,
-    .timerCompareSet = (SYS_TIME_PLIB_COMPARE_SET)CORETIMER_CompareSet,
     .timerStart = (SYS_TIME_PLIB_START)CORETIMER_Start,
-    .timerStop = (SYS_TIME_PLIB_STOP)CORETIMER_Stop 
+    .timerStop = (SYS_TIME_PLIB_STOP)CORETIMER_Stop ,
+    .timerFrequencyGet = (SYS_TIME_PLIB_FREQUENCY_GET)CORETIMER_FrequencyGet,
+    .timerPeriodSet = (SYS_TIME_PLIB_PERIOD_SET)NULL,
+    .timerCompareSet = (SYS_TIME_PLIB_COMPARE_SET)CORETIMER_CompareSet,
+    .timerCounterGet = (SYS_TIME_PLIB_COUNTER_GET)CORETIMER_CounterGet,
 };
 
 const SYS_TIME_INIT sysTimeInitData =
@@ -277,7 +284,6 @@ void SYS_Initialize ( void* data )
 
   
     CLK_Initialize();
-	GPIO_Initialize();
 
     /* Configure KSEG0 as cacheable memory. This is needed for Prefetch Buffer */
     __builtin_mtc0(16, 0,(__builtin_mfc0(16, 0) | 0x3));
@@ -291,6 +297,9 @@ void SYS_Initialize ( void* data )
 
 
 
+
+
+	GPIO_Initialize();
 
     DMAC_Initialize();
     CORETIMER_Initialize();

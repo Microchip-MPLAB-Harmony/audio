@@ -44,8 +44,8 @@ extern "C" {
 #define SWITCH_STATE_PRESSED    SWITCH1_STATE_PRESSED
     
 #define GFX_ENABLED 1
-
-
+    
+#define SWAPCHANNELS 1    
     
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

@@ -27,40 +27,40 @@
           <Name dnOrder="1">drv_ak4954.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/audio/driver/codec/ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/codec/ak4954/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B1933996005C56C7D1B198A3BD14F542</GeneratedChecksum>
-          <UserChecksum dnOrder="5">B1933996005C56C7D1B198A3BD14F542</UserChecksum>
+          <GeneratedChecksum dnOrder="4">CDDAF0762B3130FCE2DC6D702E04C2A4</GeneratedChecksum>
+          <UserChecksum dnOrder="5">CDDAF0762B3130FCE2DC6D702E04C2A4</UserChecksum>
         </File>
         <File dnOrder="3">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">drv_ak4954_local.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/audio/driver/codec/ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/codec/ak4954/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">953ED526357BCB04C236E9CCEF2EC4A9</GeneratedChecksum>
-          <UserChecksum dnOrder="5">953ED526357BCB04C236E9CCEF2EC4A9</UserChecksum>
+          <GeneratedChecksum dnOrder="4">BB7509DBA3F9E66FFD7F675227423656</GeneratedChecksum>
+          <UserChecksum dnOrder="5">BB7509DBA3F9E66FFD7F675227423656</UserChecksum>
         </File>
         <File dnOrder="4">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">drv_i2c.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">00BE2152C659AE45DBA8630ACD809BD2</GeneratedChecksum>
-          <UserChecksum dnOrder="5">00BE2152C659AE45DBA8630ACD809BD2</UserChecksum>
+          <GeneratedChecksum dnOrder="4">F8F67559DCD0F596A25E40B898976144</GeneratedChecksum>
+          <UserChecksum dnOrder="5">F8F67559DCD0F596A25E40B898976144</UserChecksum>
         </File>
         <File dnOrder="5">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">drv_i2c_local.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">56728194E73D695E178AF2B34855ADBB</GeneratedChecksum>
-          <UserChecksum dnOrder="5">56728194E73D695E178AF2B34855ADBB</UserChecksum>
+          <GeneratedChecksum dnOrder="4">37780F17759DED907A0F36E28BFB3136</GeneratedChecksum>
+          <UserChecksum dnOrder="5">37780F17759DED907A0F36E28BFB3136</UserChecksum>
         </File>
         <File dnOrder="6">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">drv_i2s.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/audio/driver/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/i2s/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">92408711DFE17D3B209CF39E0372C7BF</GeneratedChecksum>
-          <UserChecksum dnOrder="5">92408711DFE17D3B209CF39E0372C7BF</UserChecksum>
+          <GeneratedChecksum dnOrder="4">AF0B16E0482BD623C201B23916653971</GeneratedChecksum>
+          <UserChecksum dnOrder="5">AF0B16E0482BD623C201B23916653971</UserChecksum>
         </File>
         <File dnOrder="7">
           <Type dnOrder="0">SOURCE</Type>
@@ -83,16 +83,16 @@
           <Name dnOrder="1">i2c_bb.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/library/i2cbb/</LogicalPath>
           <PhysicalPath dnOrder="3">/library/i2cbb/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">09F033090BC29A51BD62372EC633F277</GeneratedChecksum>
-          <UserChecksum dnOrder="5">9320D3EF88B65737A25C00EC0539E849</UserChecksum>
+          <GeneratedChecksum dnOrder="4">0ADC16A09A7B4BE957C6D0729EED664A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">1EAE3C4576C8E32CC15A66AE3A216E28</UserChecksum>
         </File>
         <File dnOrder="10">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">initialization.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">7E29CDDA06E24E52FBDB277817F26743</GeneratedChecksum>
-          <UserChecksum dnOrder="5">7E29CDDA06E24E52FBDB277817F26743</UserChecksum>
+          <GeneratedChecksum dnOrder="4">F30958FE32C619EF8C956797E3740466</GeneratedChecksum>
+          <UserChecksum dnOrder="5">F30958FE32C619EF8C956797E3740466</UserChecksum>
         </File>
         <File dnOrder="11">
           <Type dnOrder="0">SOURCE</Type>
@@ -115,8 +115,8 @@
           <Name dnOrder="1">plib_clk.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/peripheral/clk/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/clk/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F335587CD59AD413DEE220C08197C142</GeneratedChecksum>
-          <UserChecksum dnOrder="5">F335587CD59AD413DEE220C08197C142</UserChecksum>
+          <GeneratedChecksum dnOrder="4">CF8770098B4B2B7ACE2196F9466B362C</GeneratedChecksum>
+          <UserChecksum dnOrder="5">CF8770098B4B2B7ACE2196F9466B362C</UserChecksum>
         </File>
         <File dnOrder="14">
           <Type dnOrder="0">SOURCE</Type>
@@ -147,16 +147,16 @@
           <Name dnOrder="1">plib_gpio.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/peripheral/gpio/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/gpio/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">15E090380E44240F6264FC4C7172762F</GeneratedChecksum>
-          <UserChecksum dnOrder="5">15E090380E44240F6264FC4C7172762F</UserChecksum>
+          <GeneratedChecksum dnOrder="4">4E8C0A92F9D48A1A52211172C2CACCF4</GeneratedChecksum>
+          <UserChecksum dnOrder="5">4E8C0A92F9D48A1A52211172C2CACCF4</UserChecksum>
         </File>
         <File dnOrder="18">
           <Type dnOrder="0">SOURCE</Type>
           <Name dnOrder="1">plib_i2s1.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/audio/peripheral/i2s</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/peripheral/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">9CB6D40C0C9521C104E6341674118D97</GeneratedChecksum>
-          <UserChecksum dnOrder="5">9CB6D40C0C9521C104E6341674118D97</UserChecksum>
+          <GeneratedChecksum dnOrder="4">9F0BBFAE2CA72E415DD6F84B2B9832ED</GeneratedChecksum>
+          <UserChecksum dnOrder="5">9F0BBFAE2CA72E415DD6F84B2B9832ED</UserChecksum>
         </File>
         <File dnOrder="19">
           <Type dnOrder="0">SOURCE</Type>
@@ -187,8 +187,8 @@
           <Name dnOrder="1">sys_time.c</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/system/time/</LogicalPath>
           <PhysicalPath dnOrder="3">/system/time/src/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">70DAE413C209782D51F61D7C896593FB</GeneratedChecksum>
-          <UserChecksum dnOrder="5">70DAE413C209782D51F61D7C896593FB</UserChecksum>
+          <GeneratedChecksum dnOrder="4">28C868D3255F7D85CF4B31AA2A050AF6</GeneratedChecksum>
+          <UserChecksum dnOrder="5">28C868D3255F7D85CF4B31AA2A050AF6</UserChecksum>
         </File>
         <File dnOrder="23">
           <Type dnOrder="0">SOURCE</Type>
@@ -227,8 +227,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">06D0FF63D60C301C7DA4F4B6434FC30C</GeneratedChecksum>
-          <UserChecksum dnOrder="5">06D0FF63D60C301C7DA4F4B6434FC30C</UserChecksum>
+          <GeneratedChecksum dnOrder="4">9F1B68379E2C181737E5BA392B213DD9</GeneratedChecksum>
+          <UserChecksum dnOrder="5">9F1B68379E2C181737E5BA392B213DD9</UserChecksum>
         </File>
         <File dnOrder="28">
           <Type dnOrder="0">HEADER</Type>
@@ -275,48 +275,48 @@
           <Name dnOrder="1">drv_i2c.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">7DC093674665965E223A7AD52F7BAF83</GeneratedChecksum>
-          <UserChecksum dnOrder="5">7DC093674665965E223A7AD52F7BAF83</UserChecksum>
+          <GeneratedChecksum dnOrder="4">3C6689B8800C6234028EC2FBE82E25CF</GeneratedChecksum>
+          <UserChecksum dnOrder="5">3C6689B8800C6234028EC2FBE82E25CF</UserChecksum>
         </File>
         <File dnOrder="34">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">drv_i2c_definitions.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">A2D12C1907596C873BA91F3009960CF0</GeneratedChecksum>
-          <UserChecksum dnOrder="5">A2D12C1907596C873BA91F3009960CF0</UserChecksum>
+          <GeneratedChecksum dnOrder="4">2872C68B45CE75A8BBBC1DD7F7287282</GeneratedChecksum>
+          <UserChecksum dnOrder="5">2872C68B45CE75A8BBBC1DD7F7287282</UserChecksum>
         </File>
         <File dnOrder="35">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">drv_i2s.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/audio/driver/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">3DCC478824D5F8545672CBCAAA7194CB</GeneratedChecksum>
-          <UserChecksum dnOrder="5">3DCC478824D5F8545672CBCAAA7194CB</UserChecksum>
+          <GeneratedChecksum dnOrder="4">286480D625E01930A6754127AA6F0360</GeneratedChecksum>
+          <UserChecksum dnOrder="5">286480D625E01930A6754127AA6F0360</UserChecksum>
         </File>
         <File dnOrder="36">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">drv_i2s_definitions.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/audio/driver/i2s/</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/driver/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">079B5794667972364BF4AC5A67E0F015</GeneratedChecksum>
-          <UserChecksum dnOrder="5">079B5794667972364BF4AC5A67E0F015</UserChecksum>
+          <GeneratedChecksum dnOrder="4">8EEB17867F41E54FD6535DB4F88AC6FE</GeneratedChecksum>
+          <UserChecksum dnOrder="5">8EEB17867F41E54FD6535DB4F88AC6FE</UserChecksum>
         </File>
         <File dnOrder="37">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">i2c_bb.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/library/i2cbb/</LogicalPath>
           <PhysicalPath dnOrder="3">/library/i2cbb/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">B5805DB9014AF6B17B69DB1FB708AC1C</GeneratedChecksum>
-          <UserChecksum dnOrder="5">B5805DB9014AF6B17B69DB1FB708AC1C</UserChecksum>
+          <GeneratedChecksum dnOrder="4">FB4AF2A058582909E8A72A6364445FB6</GeneratedChecksum>
+          <UserChecksum dnOrder="5">FB4AF2A058582909E8A72A6364445FB6</UserChecksum>
         </File>
         <File dnOrder="38">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">i2c_bb_local.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/library/i2cbb/</LogicalPath>
           <PhysicalPath dnOrder="3">/library/i2cbb/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">008ADEE5C676A0AC7BBE84E305796933</GeneratedChecksum>
-          <UserChecksum dnOrder="5">008ADEE5C676A0AC7BBE84E305796933</UserChecksum>
+          <GeneratedChecksum dnOrder="4">4DBFD6AAE4EE2D0388D5284205D0594B</GeneratedChecksum>
+          <UserChecksum dnOrder="5">4DBFD6AAE4EE2D0388D5284205D0594B</UserChecksum>
         </File>
         <File dnOrder="39">
           <Type dnOrder="0">HEADER</Type>
@@ -355,8 +355,8 @@
           <Name dnOrder="1">plib_coretimer.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/peripheral/coretimer/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/coretimer/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">44ACE604994590C35CF6AD051B454C0E</GeneratedChecksum>
-          <UserChecksum dnOrder="5">44ACE604994590C35CF6AD051B454C0E</UserChecksum>
+          <GeneratedChecksum dnOrder="4">1D877CBA54146E86B82DEF3259D51199</GeneratedChecksum>
+          <UserChecksum dnOrder="5">1D877CBA54146E86B82DEF3259D51199</UserChecksum>
         </File>
         <File dnOrder="44">
           <Type dnOrder="0">HEADER</Type>
@@ -387,8 +387,8 @@
           <Name dnOrder="1">plib_i2s1.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/audio/peripheral/i2s</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/peripheral/i2s/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">3F2FC687048D2420466E1CC5B75D53BC</GeneratedChecksum>
-          <UserChecksum dnOrder="5">3F2FC687048D2420466E1CC5B75D53BC</UserChecksum>
+          <GeneratedChecksum dnOrder="4">179E28C5A188F7BADA7AA73F2B78CCF7</GeneratedChecksum>
+          <UserChecksum dnOrder="5">179E28C5A188F7BADA7AA73F2B78CCF7</UserChecksum>
         </File>
         <File dnOrder="48">
           <Type dnOrder="0">HEADER</Type>
@@ -459,16 +459,16 @@
           <Name dnOrder="1">sys_time.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/system/time/</LogicalPath>
           <PhysicalPath dnOrder="3">/system/time/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">5B1C0201624F17531B457421E59F38CD</GeneratedChecksum>
-          <UserChecksum dnOrder="5">5B1C0201624F17531B457421E59F38CD</UserChecksum>
+          <GeneratedChecksum dnOrder="4">466D676839280C0E7FC2CC6F78BA6EE9</GeneratedChecksum>
+          <UserChecksum dnOrder="5">466D676839280C0E7FC2CC6F78BA6EE9</UserChecksum>
         </File>
         <File dnOrder="57">
           <Type dnOrder="0">HEADER</Type>
           <Name dnOrder="1">sys_time_definitions.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/system/time/</LogicalPath>
           <PhysicalPath dnOrder="3">/system/time/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F8165EAB8A02643100386E92CD7EB3C6</GeneratedChecksum>
-          <UserChecksum dnOrder="5">F8165EAB8A02643100386E92CD7EB3C6</UserChecksum>
+          <GeneratedChecksum dnOrder="4">82C87C4CF49EE4D859363C15E9073333</GeneratedChecksum>
+          <UserChecksum dnOrder="5">82C87C4CF49EE4D859363C15E9073333</UserChecksum>
         </File>
         <File dnOrder="58">
           <Type dnOrder="0">HEADER</Type>
@@ -507,8 +507,8 @@
           <Name dnOrder="1">toolchain_specifics.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_btadk_ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F7924D60AC5CC08996AB2DAEC62D3C54</GeneratedChecksum>
-          <UserChecksum dnOrder="5">F7924D60AC5CC08996AB2DAEC62D3C54</UserChecksum>
+          <GeneratedChecksum dnOrder="4">9D344CAF1743381AA0EA1641ABCDE373</GeneratedChecksum>
+          <UserChecksum dnOrder="5">9D344CAF1743381AA0EA1641ABCDE373</UserChecksum>
         </File>
         <File dnOrder="63">
           <Type dnOrder="0">HEADER</Type>
@@ -523,16 +523,16 @@
         <Setting append="true" category="C32" delimiter=";" dnOrder="0" key="extra-include-directories" value="../src;../src/config/pic32mz_ef_btadk_ak4954;../src/packs/PIC32MZ2048EFH144_DFP;;../src/mips"/>
         <Setting category="C32-LD" dnOrder="1" key="heap-size" value="512"/>
         <Setting category="C32-LD" dnOrder="2" key="no-device-startup-code" value="true"/>
-        <Setting category="C32-LD" dnOrder="3" key="preprocessor-macros" value=""/>
+        <Setting append="true" category="C32-LD" delimiter=";" dnOrder="3" key="preprocessor-macros" value=""/>
       </Settings>
     </Manifest>
     <Settings dnOrder="4">
-      <Setting dnOrder="0" key="CMSISPath" value=".\dev_packs\arm\CMSIS\5.5.1"/>
-      <Setting dnOrder="1" key="DFPPath" value=".\dev_packs\Microchip\PIC32MZ_EF_DFP\1.0.29\atdf\PIC32MZ2048EFH144.atdf"/>
+      <Setting dnOrder="0" key="CMSISPath" value=".\dev_packs\arm\CMSIS\5.6.0"/>
+      <Setting dnOrder="1" key="DFPPath" value=".\dev_packs\Microchip\PIC32MZ_EF_DFP\1.1.45\atdf\PIC32MZ2048EFH144.atdf"/>
       <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
       <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
       <Setting dnOrder="4" key="MERGE_STRATEGY" value="ALL"/>
-      <Setting dnOrder="5" key="PackageFilter" value="audio;bsp;core;csp;"/>
+      <Setting dnOrder="5" key="PackageFilter" value="audio;bsp;bt;core;csp;gfx;gfx_apps;usb;"/>
     </Settings>
   </Configurator>
 </Configuration>

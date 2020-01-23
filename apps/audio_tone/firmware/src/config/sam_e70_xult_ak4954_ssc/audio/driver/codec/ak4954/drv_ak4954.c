@@ -225,6 +225,8 @@ SYS_MODULE_OBJ  DRV_AK4954_Initialize
     drvObj->whichMicInput                   = ak4954Init->whichMicInput;
     drvObj->enableMicBias                   = ak4954Init->enableMicBias;
     drvObj->micGain                         = ak4954Init->micGain;
+    drvObj->mclk_multiplier                 = DRV_AK4954_MCLK_SAMPLE_FREQ_MULTPLIER;
+    drvObj->bclk_divider                    = DRV_AK4954_BCLK_BIT_CLK_DIVISOR;
     
     drvObj->readComplete = false;
     drvObj->writeComplete = false;    
@@ -1395,8 +1397,8 @@ void DRV_AK4954_SamplingRateSet(DRV_HANDLE handle, uint32_t samplingRate)
         return;
     }
     drvObj = (DRV_AK4954_OBJ *)clientObj->hDriver;
-
     drvObj->samplingRate = samplingRate;
+
     drvObj->command = DRV_AK4954_COMMAND_SEND;
 
     AK4954_COMMAND *sampleRateSetCmd;

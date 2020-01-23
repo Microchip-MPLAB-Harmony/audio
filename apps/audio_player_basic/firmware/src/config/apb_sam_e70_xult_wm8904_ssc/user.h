@@ -26,8 +26,6 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
-#include "audio/decoder/audio_decoders_config.h"
-#include "audio_decoders.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -41,7 +39,6 @@ extern "C" {
 #define LONG_BUTTON_PRESS 1000
 
 
-    
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
 }
