@@ -627,8 +627,8 @@
           <Name dnOrder="1">configuration.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">72E97AC4644556249CD64B2465864506</GeneratedChecksum>
-          <UserChecksum dnOrder="5">72E97AC4644556249CD64B2465864506</UserChecksum>
+          <GeneratedChecksum dnOrder="4">65DC8CD8432D7EEF3AAADB1781B34C1C</GeneratedChecksum>
+          <UserChecksum dnOrder="5">65DC8CD8432D7EEF3AAADB1781B34C1C</UserChecksum>
         </File>
         <File dnOrder="78">
           <Type dnOrder="0">HEADER</Type>
@@ -1372,7 +1372,7 @@
       <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
       <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
       <Setting dnOrder="4" key="MERGE_STRATEGY" value="ALL"/>
-      <Setting dnOrder="5" key="PackageFilter" value="audio;bsp;bt;core;csp;gfx;gfx_apps;usb;"/>
+      <Setting dnOrder="5" key="PackageFilter" value="audio;bsp;bt;core;crypto;csp;gfx;usb;"/>
     </Settings>
   </Configurator>
 </Configuration>

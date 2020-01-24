@@ -40,6 +40,25 @@ extern "C" {
 
 #undef ONE_BUTTON_VERSION
 
+#ifdef SYS_DEBUG_USE_CONSOLE
+
+#ifndef SYS_MESSAGE
+    #define SYS_MESSAGE(message)                SYS_DEBUG_Message(message)
+#endif
+
+#ifndef SYS_DEBUG_MESSAGE
+    #define SYS_DEBUG_MESSAGE(level, message)   _SYS_DEBUG_MESSAGE(level, message)
+#endif
+
+#ifndef SYS_PRINT
+    #define SYS_PRINT(fmt, ...)                 SYS_DEBUG_Print(fmt, ##__VA_ARGS__)
+#endif
+
+#ifndef SYS_DEBUG_PRINT
+    #define SYS_DEBUG_PRINT(level, fmt, ...)    _SYS_DEBUG_PRINT(level, fmt, ##__VA_ARGS__)
+#endif
+#endif //SYS_DEBUG_USE_CONSOLE
+
 #define SYS_PRINT(fmt, ...)    _SYS_DEBUG_PRINT(0, fmt, ##__VA_ARGS__)
 
 //DOM-IGNORE-BEGIN
