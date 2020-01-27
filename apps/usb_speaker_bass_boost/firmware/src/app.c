@@ -1868,7 +1868,7 @@ void _APP_Button_Tasks()
         //Long Press  - Boost Enable Toggle
         case BUTTON_STATE_BUTTON2_PRESSED:
         {
-            int sw2Val;
+            int __attribute__((unused))  sw2Val;
             sw2Val = SWITCH2_Get();
             if ((appData.buttonDelay>0) &&
                 (SWITCH2_Get()!=SWITCH2_STATE_PRESSED) &&
