@@ -131,33 +131,38 @@ static DRV_I2C_TRANSFER_OBJ drvI2C0TransferObj[DRV_I2C_QUEUE_SIZE_IDX0];
 const DRV_I2C_PLIB_INTERFACE drvI2C0PLibAPI = {
 
     /* I2C PLib Transfer Read Add function */
-    .read = (DRV_I2C_PLIB_READ)I2C_BB_Read,
+    .read = (DRV_I2C_PLIB_READ)I2C1_Read,
 
     /* I2C PLib Transfer Write Add function */
-    .write = (DRV_I2C_PLIB_WRITE)I2C_BB_Write,
+    .write = (DRV_I2C_PLIB_WRITE)I2C1_Write,
 
+    /* I2C PLib Transfer Forced Write Add function */
+    .writeForced = (DRV_I2C_PLIB_WRITE)I2C1_WriteForced,
 
     /* I2C PLib Transfer Write Read Add function */
-    .writeRead = (DRV_I2C_PLIB_WRITE_READ)I2C_BB_WriteRead,
+    .writeRead = (DRV_I2C_PLIB_WRITE_READ)I2C1_WriteRead,
 
     /* I2C PLib Transfer Status function */
-    .errorGet = (DRV_I2C_PLIB_ERROR_GET)I2C_BB_ErrorGet,
+    .errorGet = (DRV_I2C_PLIB_ERROR_GET)I2C1_ErrorGet,
 
     /* I2C PLib Transfer Setup function */
-    .transferSetup = (DRV_I2C_PLIB_TRANSFER_SETUP)I2C_BB_TransferSetup,
+    .transferSetup = (DRV_I2C_PLIB_TRANSFER_SETUP)I2C1_TransferSetup,
 
     /* I2C PLib Callback Register */
-    .callbackRegister = (DRV_I2C_PLIB_CALLBACK_REGISTER)I2C_BB_CallbackRegister,
+    .callbackRegister = (DRV_I2C_PLIB_CALLBACK_REGISTER)I2C1_CallbackRegister,
 };
 
 
 const DRV_I2C_INTERRUPT_SOURCES drvI2C0InterruptSources =
 {
-    /* Peripheral has single interrupt vector */
-    .isSingleIntSrc                        = true,
+    /* Peripheral has more than one interrupt vector */
+    .isSingleIntSrc                        = false,
 
-    /* Peripheral interrupt line */
-    .intSources.i2cInterrupt             = I2C_BB_IRQn,
+    /* Peripheral interrupt lines */
+    .intSources.multi.i2cInt0          = _I2C1_BUS_VECTOR,
+    .intSources.multi.i2cInt1          = _I2C1_MASTER_VECTOR,
+    .intSources.multi.i2cInt2          = -1,
+    .intSources.multi.i2cInt3          = -1,
 };
 
 /* I2C Driver Initialization Data */
@@ -346,7 +351,7 @@ void SYS_Initialize ( void* data )
 
 	BSP_Initialize();
     CORETIMER_Initialize();
-    TMR2_Initialize();
+    I2C1_Initialize();
 
 	I2S2_Initialize();
 
@@ -356,8 +361,6 @@ void SYS_Initialize ( void* data )
     /* Initialize I2S0 Driver Instance */
     sysObj.drvI2S0 = DRV_I2S_Initialize(DRV_I2S_INDEX_0, (SYS_MODULE_INIT *)&drvI2S0InitData);
 
-
-    I2C_BB_Initialize();
     sysObj.drvak4954Codec0 = DRV_AK4954_Initialize(DRV_AK4954_INDEX_0, (SYS_MODULE_INIT *)&drvak4954Codec0InitData);
 
 

@@ -93,12 +93,6 @@
             <itemPath>../src/config/pic32mz_ef_c2_ak4954/driver/driver.h</itemPath>
             <itemPath>../src/config/pic32mz_ef_c2_ak4954/driver/driver_common.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f7" displayName="library" projectFiles="true">
-            <logicalFolder name="f1" displayName="i2cbb" projectFiles="true">
-              <itemPath>../src/config/pic32mz_ef_c2_ak4954/library/i2cbb/i2c_bb_local.h</itemPath>
-              <itemPath>../src/config/pic32mz_ef_c2_ak4954/library/i2cbb/i2c_bb.h</itemPath>
-            </logicalFolder>
-          </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
               <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/clk/plib_clk.h</itemPath>
@@ -115,9 +109,9 @@
             <logicalFolder name="f2" displayName="gpio" projectFiles="true">
               <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/gpio/plib_gpio.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="tmr" projectFiles="true">
-              <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/tmr/plib_tmr_common.h</itemPath>
-              <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/tmr/plib_tmr2.h</itemPath>
+            <logicalFolder name="f6" displayName="i2c" projectFiles="true">
+              <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/i2c/plib_i2c1.h</itemPath>
+              <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/i2c/plib_i2c_master.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f6" displayName="system" projectFiles="true">
@@ -266,11 +260,6 @@
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f8" displayName="library" projectFiles="true">
-            <logicalFolder name="f1" displayName="i2cbb" projectFiles="true">
-              <itemPath>../src/config/pic32mz_ef_c2_ak4954/library/i2cbb/i2c_bb.c</itemPath>
-            </logicalFolder>
-          </logicalFolder>
           <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
               <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/clk/plib_clk.c</itemPath>
@@ -287,8 +276,8 @@
             <logicalFolder name="f2" displayName="gpio" projectFiles="true">
               <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/gpio/plib_gpio.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="tmr" projectFiles="true">
-              <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/tmr/plib_tmr2.c</itemPath>
+            <logicalFolder name="f6" displayName="i2c" projectFiles="true">
+              <itemPath>../src/config/pic32mz_ef_c2_ak4954/peripheral/i2c/plib_i2c1.c</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f1" displayName="stdio" projectFiles="true">
@@ -846,7 +835,7 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="1d000000-1d1fffff"/>
         <property key="programmerToGoFilePath"
-                  value="C:/Microchip/harmony/h3_V350Math/audio/apps/usb_speaker_bass_boost/firmware/us_bb_pic32mz_ef_c2_ak4954.X/debug/pic32mz_ef_c2_ak4954/us_bb_pic32mz_ef_c2_ak4954_ptg"/>
+                  value="C:/Microchip/harmony/h3_V350x/audio/apps/usb_speaker_bass_boost/firmware/us_bb_pic32mz_ef_c2_ak4954.X/debug/pic32mz_ef_c2_ak4954/us_bb_pic32mz_ef_c2_ak4954_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
