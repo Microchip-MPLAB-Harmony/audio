@@ -886,6 +886,14 @@ static void _DRV_I2C_WriteReadTransferAdd (
                 transferObj->writeSize
             );
         }
+        else if (transferFlags == DRV_I2C_TRANSFER_OBJ_FLAG_WRITE_FORCED)
+        {
+            dObj->i2cPlib->writeForced(
+                transferObj->slaveAddress,
+                transferObj->writeBuffer,
+                transferObj->writeSize
+            );
+        }
         else
         {
             dObj->i2cPlib->writeRead(

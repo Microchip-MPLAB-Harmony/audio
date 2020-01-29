@@ -437,6 +437,7 @@ bool I2C1_WriteRead(uint16_t address, uint8_t* wdata, size_t wlength, uint8_t* r
     i2c1Obj.transferType        = I2C_TRANSFER_TYPE_WRITE;
     i2c1Obj.error               = I2C_ERROR_NONE;
     i2c1Obj.state               = I2C_STATE_ADDR_BYTE_1_SEND;
+    i2c1Obj.forcedWrite         = false;
 
     I2C1CONSET                  = _I2C1CON_SEN_MASK;
     IEC3SET                     = _IEC3_I2C1MIE_MASK;

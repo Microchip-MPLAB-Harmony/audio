@@ -44,7 +44,7 @@
           <LogicalPath dnOrder="2">config/us_basic_pic32mz_ef_c2_ak4954/driver/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/i2c/src/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">1BDB29DF695C620C95A6CEF7F926F899</GeneratedChecksum>
-          <UserChecksum dnOrder="5">183278E60CCEC516B1320451E8C1CFEB</UserChecksum>
+          <UserChecksum dnOrder="5">1BDB29DF695C620C95A6CEF7F926F899</UserChecksum>
         </File>
         <File dnOrder="5">
           <Type dnOrder="0">SOURCE</Type>
@@ -164,7 +164,7 @@
           <LogicalPath dnOrder="2">config/us_basic_pic32mz_ef_c2_ak4954/peripheral/i2c/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/i2c/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">71E30A5863497C67A14F287297D8CF63</GeneratedChecksum>
-          <UserChecksum dnOrder="5">DE734607EE815F6E5AF4A9102E39AABE</UserChecksum>
+          <UserChecksum dnOrder="5">B2E5559733B1415C2163AB69C505DE36</UserChecksum>
         </File>
         <File dnOrder="20">
           <Type dnOrder="0">SOURCE</Type>
@@ -916,7 +916,7 @@
       <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
       <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
       <Setting dnOrder="4" key="MERGE_STRATEGY" value="ALL"/>
-      <Setting dnOrder="5" key="PackageFilter" value="audio;bsp;bt;core;crypto;csp;gfx;usb;"/>
+      <Setting dnOrder="5" key="PackageFilter" value="audio;bsp;bt;core;crypto;csp;gfx;gfx_apps;usb;"/>
     </Settings>
   </Configurator>
 </Configuration>
