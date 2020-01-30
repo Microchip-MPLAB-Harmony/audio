@@ -48,7 +48,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 // LUT for sin(degrees), 0 <= degrees <= 90
 #include "./XInDegrees_LUT_91.h"
-#include "./SinX_Lut_91.h"
+#include "./SinX_LUT_91.h"
 
 // *****************************************************************************
 /* Function:
