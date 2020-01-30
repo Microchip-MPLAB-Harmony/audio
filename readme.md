@@ -1,3 +1,6 @@
+![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
+![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
+
 # MPLAB® Harmony 3 Audio, Support Package
 
 MPLAB Harmony 3 is an extension of the MPLAB® ecosystem for creating
@@ -25,7 +28,7 @@ reference information.
  - Multiple external audio codec drivers
  - USB host and device audio solutions
  - Encoder and decoder libraries
- - Basic audio device interation, I2S, microphone and speaker support
+ - Basic audio device integration, I2S, microphone and speaker support
  - I2S driver
  - I2S peripheral libraries (PLIBs) for supported processors
  - MISRA C (manadatory) compliant
@@ -35,12 +38,11 @@ reference information.
 | Folder | Description |
 | --- | --- |
 | apps | Example applications |
-| decoder | Wave and ADPCM decoders |
+| decoder | WAV, ADPCM and MP3 decoders |
 | doc | Help documentation |
 | docs | Help documentation (HTML) |
 | driver | I2S and Codec drivers |
-| encoder | Wave and ADPCM encoders |
+| encoder | WAV and ADPCM encoders |
+| math | DSP and math libraries |
 | peripheral | I2S peripheral libraries |
 | templates | Audio template (codec + I2S + I2S/I2SC/SSC peripheral) |
-
-
