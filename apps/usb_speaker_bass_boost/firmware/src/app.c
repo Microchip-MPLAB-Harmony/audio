@@ -63,8 +63,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #ifdef PIC32MZEFC2
 //LIBQ/DSP
 #else //E70
-//CMSIS-DSP
-#include "packs\CMSIS\CMSIS\DSP\Include\arm_math.h"
+//CMSIS-DSP - not included in definitions.h
+#include "arm_math.h"
 #endif //PIC32MZEFC2
 
 
