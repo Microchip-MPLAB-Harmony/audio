@@ -175,7 +175,6 @@
               <logicalFolder name="f2" displayName="codec" projectFiles="true">
                 <logicalFolder name="f1" displayName="ak4954" projectFiles="true">
                   <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/driver/codec/ak4954/drv_ak4954.c</itemPath>
-                  <itemPath>../src/config/us_basic_pic32mz_ef_c2_ak4954/audio/driver/codec/ak4954/drv_ak4954_local.h</itemPath>
                 </logicalFolder>
               </logicalFolder>
               <logicalFolder name="f1" displayName="i2s" projectFiles="true">
@@ -779,8 +778,6 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="1d000000-1d1fffff"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/Microchip/harmony/h3_V350Math/audio/apps/usb_speaker_bass_boost/firmware/us_bb_pic32mz_ef_c2_ak4954.X/debug/pic32mz_ef_c2_ak4954/us_bb_pic32mz_ef_c2_ak4954_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>

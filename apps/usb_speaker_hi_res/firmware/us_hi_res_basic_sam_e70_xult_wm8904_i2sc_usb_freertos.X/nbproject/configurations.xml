@@ -379,14 +379,14 @@
         <targetDevice>ATSAME70Q21B</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>ICD4Tool</platformTool>
+        <platformTool>EdbgTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>2.30</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
         <pack name="SAME70_DFP" vendor="Microchip" version="4.0.40"/>
+        <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
       </packs>
       <compileType>
         <linkerTool>
@@ -625,7 +625,7 @@
         <property key="memories.programmemory.ranges" value="400000-5fffff"/>
         <property key="poweroptions.powerenable" value="false"/>
         <property key="programmerToGoFilePath"
-                  value="C:/Microchip/harmony/h3_V350us/audio/apps/usb_speaker_hi_res/firmware/us_hi_res_basic_sam_e70_xult_wm8904_i2sc_usb_freertos.X/debug/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/us_hi_res_basic_sam_e70_xult_wm8904_i2sc_usb_freertos_ptg"/>
+                  value="C:/Microchip/harmony/h3_V350x/audio/apps/usb_speaker_hi_res/firmware/us_hi_res_basic_sam_e70_xult_wm8904_i2sc_usb_freertos.X/debug/us_basic_sam_e70_xult_wm8904_i2sc_usb_freertos/us_hi_res_basic_sam_e70_xult_wm8904_i2sc_usb_freertos_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.ledbrightness" value="5"/>
