@@ -305,13 +305,13 @@ USB_DEVICE_CONFIGURATION_DESCRIPTORS_TABLE fullSpeedConfigDescSet[1] =
     {
         uint8_t bLength;                                    // Size of this descriptor in bytes
         uint8_t bDscType;                                   // STRING descriptor type
-        uint16_t string[40];                                // String
+        uint16_t string[27];                                // String
     }
     sd002 =
     {
         sizeof(sd002),
         USB_DESCRIPTOR_STRING,
-		{'H','a','r','m','o','n','y',' ','U','S','B',' ','S','p','e','a','k','e',' ','w','/','B','a','s','s',' ','B','o','o','s','t','r',' ','E','x','a','m','p','l','e'}
+		{'H','a','r','m','o','n','y',' ','U','S','B',' ','S','p','e','a','k','e','r',' ','E','x','a','m','p','l','e'}
     }; 
 /***************************************
  * Array of string descriptors

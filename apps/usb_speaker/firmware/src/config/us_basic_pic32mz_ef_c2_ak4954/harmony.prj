@@ -235,8 +235,8 @@
           <Name dnOrder="1">usb_device_init_data.c</Name>
           <LogicalPath dnOrder="2">config/us_basic_pic32mz_ef_c2_ak4954/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">CAFD1384A531682414209E6A77D0B80F</GeneratedChecksum>
-          <UserChecksum dnOrder="5">CAFD1384A531682414209E6A77D0B80F</UserChecksum>
+          <GeneratedChecksum dnOrder="4">95096F310A33B09C73C9971DCB034590</GeneratedChecksum>
+          <UserChecksum dnOrder="5">95096F310A33B09C73C9971DCB034590</UserChecksum>
         </File>
         <File dnOrder="29">
           <Type dnOrder="0">SOURCE</Type>
