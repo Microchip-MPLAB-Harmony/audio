@@ -46,7 +46,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 // LUT for sin(degrees), 0 <= degrees <= 90
 #include "audio/math/libq_c/include/XInDegrees_LUT_91.h"
-#include "audio/math/libq_c/include/SinX_Lut_91.h"
+#include "audio/math/libq_c/include/SinX_LUT_91.h"
 
 #if !defined(GFX_COMMON_H)
 // *****************************************************************************

@@ -48,7 +48,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 // LUT for sin(degrees), 0 <= degrees <= 90
 #include "audio/math/libq_c/include/XInDegrees_LUT_91.h"
-//KEEP THIS - case problem for Linux build
 #include "audio/math/libq_c/include/SinX_LUT_91.h"
 
 // *****************************************************************************

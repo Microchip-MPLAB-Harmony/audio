@@ -683,8 +683,8 @@
           <Name dnOrder="1">fast_trig_functions.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/audio/math/libq_c</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/math/libq_c/include/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">892985C71B63BEA0BB1B490397597A51</GeneratedChecksum>
-          <UserChecksum dnOrder="5">10AAE56A6162A1ED49991EA94D181B08</UserChecksum>
+          <GeneratedChecksum dnOrder="4">C4178322D785B8C1C9E846016261B93A</GeneratedChecksum>
+          <UserChecksum dnOrder="5">C4178322D785B8C1C9E846016261B93A</UserChecksum>
         </File>
         <File dnOrder="85">
           <Type dnOrder="0">HEADER</Type>
@@ -739,8 +739,8 @@
           <Name dnOrder="1">pixel_rotation.h</Name>
           <LogicalPath dnOrder="2">config/pic32mz_ef_c2_ak4954/audio/math/libq_c</LogicalPath>
           <PhysicalPath dnOrder="3">/audio/math/libq_c/include/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">10AFDFFB5A89E81E3865AE03A6604570</GeneratedChecksum>
-          <UserChecksum dnOrder="5">10AFDFFB5A89E81E3865AE03A6604570</UserChecksum>
+          <GeneratedChecksum dnOrder="4">92B0CF31318480988E78AE1C27BB2CF4</GeneratedChecksum>
+          <UserChecksum dnOrder="5">92B0CF31318480988E78AE1C27BB2CF4</UserChecksum>
         </File>
         <File dnOrder="92">
           <Type dnOrder="0">HEADER</Type>
