@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Setup (Initialization)</title>
+<title>DSP_FilterIIRBQ16_cascade8_fast Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00460.html" target="topic">Using the Library</a> &gt; <a href="00452.html" target="topic">How the Library Works</a> &gt; <a href="00448.html" target="topic">Setup (Initialization)</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00448.html" target="topic">DSP_FilterIIRBQ16_cascade8_fast Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00452.html" target="topic">Previous</a> | <a href="00452.html" target="topic">Up</a> | <a href="00447.html" target="topic">Next</a></div>
+<a href="00447.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00449.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC DRV Setup Topic Title: Setup (Initialization))&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_FilterIIRBQ16_cascade8_fast@int16_t@PARM_EQUAL_FILTER_16 * Topic Title: DSP_FilterIIRBQ16_cascade8_fast Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Setup (Initialization)</div>
+DSP_FilterIIRBQ16_cascade8_fast Function</div>
 </div>
 </div>
 
@@ -46,29 +46,152 @@ Setup (Initialization)</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
-<div class="Element15">
-System Initialization</div>
 <p class="Element10">
-The system performs the initialization of the device driver with settings that affect only the instance of the device that is being initialized. During system initialization in the system_init.c file, each instance of the WM8904 module would be initialized with the following configuration settings (either passed dynamically at run time using <a href="00307.html" target="topic">DRV_WM8904_INIT</a> or by using Initialization Overrides) that are supported by the specific WM8904 device hardware:</p>
-<ul class="Element630">
-<li class="Element600">Device requested power state: one of the System Module Power States. For specific details please refer to Data Types and Constants in the Library Interface section.</li>
-<li class="Element600">I2C driver module index. The module index should be same as the one used in initializing the I2C Driver</li>
-<li class="Element600">I2S driver module index. The module index should be same as the one used in initializing the I2S Driver</li>
-<li class="Element600">Sampling rate</li>
-<li class="Element600">Volume</li>
-<li class="Element600">Audio data format. The audio data format should match with the audio data format settings done in I2S driver initialization</li>
-<li class="Element600">Determines whether or not the microphone input is enabled</li>
-</ul><p class="Element10">
-The <a href="00317.html" target="topic">DRV_WM8904_Initialize</a> API returns an object handle of the type SYS_MODULE_OBJ. The object handle returned by the Initialize interface would be used by the other system interfaces such as DRV_ WM8904_Deinitialize, DRV_ WM8904_Status and DRV_I2S_Tasks.</p></div>
+Performs a single-sample IIR Biquad Filter as a cascade of 8 series filters.</p></div>
 </div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Function DSP_FilterIIRBQ16_cascade8_fast:&nbsp;</p>
+<p class="Element10">
+int16_t DSP_FilterIIRBQ16_cascade8_fast(int16_t Xin, PARM_EQUAL_FILTER_16 *pFilter_Array);&nbsp;</p>
+<p class="Element10">
+Calculates a single pass IIR biquad cascade filter on Xin, and delivers the result as a 16-bit output. The cascade of filters is 8 unique biquad filters arranged in series such that the output of one is provided as the input to the next. A unique filter coefficient set is provided to each, and 16 bit delay lines are maintained for each. All math is performed using 16 bit instructions, which results rounded to 16-bits for the output. All values are fractional Q15, see data structure for specifics. The function will saturate the output should it exceed maximum or minimum values.&nbsp;</p>
+<p class="Element10">
+Y = Y7 &lt;- Y6 &lt;- Y5 &lt;- Y4 &lt;- Y3 &lt;- Y2 &lt;- Y1 &lt;- Y0 where each Yn filter element represents a unique IIR biquad: Yn = Y(n-1)*b0 + (b1 * Y(n-2)) + (b2 * Y(n-3)) - (a1 * Yn(-1)) - (a2 * Yn(-2)) and: for Y0; Y(n-1) = Xin(0)</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Delay register values should be initialized to zero.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+Xin&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+input data element X (int16_t)&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+pFilter&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+pointer to filter coef and delay structure&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Sample output Y (int16_t)</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">
+PARM_EQUAL_FILTER_16 filtArray[8];
+uint16_t dataY, dataX;
+
+<i><span style="color: #008000">// example to use 2 filter blocks as notch filters</span></i>
+<i><span style="color: #008000">// fill entire Filter Array with coefs</span></i>
+<strong><span style="color: #000080">for</span></strong> (i=0;i&lt;8;i++)
+{
+    filtArray[i].Z[0]=0;
+    filtArray[i].Z[1]=0;
+
+    <i><span style="color: #008000">// note all coefs are half value of original design, gain handled in algorithm</span></i>
+    <i><span style="color: #008000">// all pass</span></i>
+    filtArray[i].b[0]=0x4000;
+    filtArray[i].b[1]=0;        <i><span style="color: #008000">// feed forward b1 coef</span></i>
+    filtArray[i].b[2]=0;  <i><span style="color: #008000">// feed forward b2 coef</span></i>
+
+    filtArray[i].a[0]=0;  <i><span style="color: #008000">// feedback a1 coef</span></i>
+    filtArray[i].a[1]=0;  <i><span style="color: #008000">// feedback a2 coef</span></i>
+}
+    <i><span style="color: #008000">// Unique filters for example</span></i>
+    <i><span style="color: #008000">// 10KHz notch filter -- divide coefs by 2</span></i>
+    b0 = 0.5883783602332997
+    b1 = -0.17124071441396285
+    b2 = 0.5883783602332997
+    a1 = -0.17124071441396285
+    a2 = 0.1767567204665992
+
+    <i><span style="color: #008000">// note all coefs are half value of original design, gain handled in algorithm</span></i>
+    filtArray[3].b[0]=0x25a7;           <i><span style="color: #008000">// feed forward b0 coef</span></i>
+    filtArray[3].b[1]=0xf508;           <i><span style="color: #008000">// feed forward b1 coef</span></i>
+    filtArray[3].b[2]=0x25a7;           <i><span style="color: #008000">// feed forward b2 coef</span></i>
+
+    <i><span style="color: #008000">// note all coefs are half value of original design, gain handled in algorithm</span></i>
+    <i><span style="color: #008000">// note subtract is handled in algorithm, so coefs go in at actual value</span></i>
+    filtArray[3].a[0]=0xf508;           <i><span style="color: #008000">// feedback a1 coef</span></i>
+    filtArray[3].a[1]=0x0b4f;           <i><span style="color: #008000">// feedback a2 coef</span></i>
+
+    <i><span style="color: #008000">// 1 KHz notch filter -- divide coefs by 2</span></i>
+    b0 = 0.9087554064944908
+    b1 = -1.7990948352036205
+    b2 = 0.9087554064944908
+    a1 = -1.7990948352036205
+    a2 = 0.8175108129889816
+
+    <i><span style="color: #008000">// note all coefs are half value of original design, gain handled in algorithm</span></i>
+    filtArray[7].b[0]=0x3a29;           <i><span style="color: #008000">// feed forward b0 coef</span></i>
+    filtArray[7].b[1]=0x8cdc;           <i><span style="color: #008000">// feed forward b1 coef</span></i>
+    filtArray[7].b[2]=0x3a29;           <i><span style="color: #008000">// feed forward b2 coef</span></i>
+
+    <i><span style="color: #008000">// note all coefs are half value of original design, gain handled in algorithm</span></i>
+    <i><span style="color: #008000">// note subtract is handled in algorithm, so coefs go in at actual value</span></i>
+    filtArray[7].a[0]=0x8cdc;           <i><span style="color: #008000">// feedback a1 coef</span></i>
+    filtArray[7].a[1]=0x3452;           <i><span style="color: #008000">// feedback a2 coef</span></i>
+
+<strong><span style="color: #000080">for</span></strong> (i=0;i&lt;256;i++)
+    {
+     <i><span style="color: #008000">// *** get input data here</span></i>
+     dataX = compound_300_1K_hz16[i];
+
+     dataY = DSP_FilterIIRBQ16_cascade8_fast(dataX, filtArray);
+
+     <i><span style="color: #008000">// *** do something with the DataY here</span></i>
+     }</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The delay register values should be initialized to zero prior to the first call to the function, they are updated each pass. A gain of 2 has been hard coded into the function. This implies that all coefs should be input at half value. This is purposeful, since many filter designs need a div2 to have each coef between the required -1</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100">int16_t <strong><span style="color: #000000">DSP_FilterIIRBQ16_cascade8_fast</span></strong>(
+    int16_t <strong><span style="color: #000000">Xin</span></strong>, 
+    PARM_EQUAL_FILTER_16 * <strong><span style="color: #000000">pFilter_Array</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00460.html" target="topic">Using the Library</a> &gt; <a href="00452.html" target="topic">How the Library Works</a> &gt; <a href="00448.html" target="topic">Setup (Initialization)</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00448.html" target="topic">DSP_FilterIIRBQ16_cascade8_fast Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -76,13 +199,13 @@ The <a href="00317.html" target="topic">DRV_WM8904_Initialize</a> API returns an
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00452.html" target="topic">Previous</a> | <a href="00452.html" target="topic">Up</a> | <a href="00447.html" target="topic">Next</a></div>
+<a href="00447.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00449.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC DRV Setup Topic Title: Setup (Initialization))&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_FilterIIRBQ16_cascade8_fast@int16_t@PARM_EQUAL_FILTER_16 * Topic Title: DSP_FilterIIRBQ16_cascade8_fast Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

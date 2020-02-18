@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>WAV_HdrGetFileSize Function</title>
+<title>DRV_WM8904_VersionGet Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00095.html" target="topic">Decoder Library Help</a> &gt; <a href="00415.html" target="topic">WAV Decoder Library</a> &gt; <a href="00417.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00429.html" target="topic">WAV_HdrGetFileSize Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00770.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00771.html" target="topic">Library Interface</a> &gt; Other Functions &gt; <a href="00429.html" target="topic">DRV_WM8904_VersionGet Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00428.html" target="topic">Previous</a> | <a href="00417.html" target="topic">Up</a> | <a href="00426.html" target="topic">Next</a></div>
+<a href="00403.html" target="topic">Previous</a> | <a href="00771.html" target="topic">Up</a> | <a href="00430.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WAV_HdrGetFileSize Topic Title: WAV_HdrGetFileSize Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_VersionGet Topic Title: DRV_WM8904_VersionGet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-WAV_HdrGetFileSize Function</div>
+DRV_WM8904_VersionGet Function</div>
 </div>
 </div>
 
@@ -46,20 +46,74 @@ WAV_HdrGetFileSize Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This is function WAV_HdrGetFileSize.</p></div>
+  uint32_t DRV_WM8904_VersionGet( void )&nbsp;</p>
+<p class="Element10">
+&nbsp;</p></div>
+</div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This function returns the version of WM8904 driver</p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The version number returned from the DRV_WM8904_VersionGet function is an unsigned integer in the following decimal format. * 10000 + * 100 +  Where the numbers are represented in decimal and the meaning is the same as above. Note that there is no numerical representation of release type.</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+None.</p></div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+returns the version of WM8904 driver.</p></div>
+</div>
+<a name="4578616D706C652031"></a><div class="Element14">
+Example 1</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+For version &quot;0.03a&quot;, return: 0 * 10000 + 3 * 100 + 0 For version &quot;1.00&quot;, return: 1 * 100000 + 0 * 100 + 0</p></div>
+</div>
+<a name="4578616D706C652032"></a><div class="Element14">
+Example 2</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">    uint32_t WM8904version;
+    WM8904version = DRV_WM8904_VersionGet();</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+None.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">unsigned</span></strong> <strong><span style="color: #000080">int</span></strong> <strong><span style="color: #000000">WAV_HdrGetFileSize</span></strong>();</pre></div></div>
+<div class="Element101"><div class="Element100"><pre class="Element100">uint32_t <strong><span style="color: #000000">DRV_WM8904_VersionGet</span></strong>();</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00095.html" target="topic">Decoder Library Help</a> &gt; <a href="00415.html" target="topic">WAV Decoder Library</a> &gt; <a href="00417.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00429.html" target="topic">WAV_HdrGetFileSize Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00770.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00771.html" target="topic">Library Interface</a> &gt; Other Functions &gt; <a href="00429.html" target="topic">DRV_WM8904_VersionGet Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -67,13 +121,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00428.html" target="topic">Previous</a> | <a href="00417.html" target="topic">Up</a> | <a href="00426.html" target="topic">Next</a></div>
+<a href="00403.html" target="topic">Previous</a> | <a href="00771.html" target="topic">Up</a> | <a href="00430.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WAV_HdrGetFileSize Topic Title: WAV_HdrGetFileSize Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_VersionGet Topic Title: DRV_WM8904_VersionGet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

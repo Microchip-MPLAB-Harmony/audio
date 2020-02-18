@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<title>DSP_VectorBexp16 Function</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoadEx('frames.html', 'topic', '00498.html');" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00498.html" target="topic">DSP_VectorBexp16 Function</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element1">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element2">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element90">
+<a href="00497.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00499.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element96">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_VectorBexp16@int16_t *@int Topic Title: DSP_VectorBexp16 Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table><div class="Element5">
+DSP_VectorBexp16 Function</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<a name="PageContent"></a><div class="Element58">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Computes the maximum binary exponent of a vector.</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Function DSP_VectorBexp16:&nbsp;</p>
+<p class="Element10">
+int DSP_VectorBexp16(int16_t *DataIn, int N);&nbsp;</p>
+<p class="Element10">
+Calculates the maximum binary exponent on the first N elements of the input vector DataIn, and stores the integer result. The returned value represents the potential binary scaling of the vector, and may be used with other functions that auto scale their output without saturation. Inputs are given in Q15 fractional data format.</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+N must be a multiple of 2 and greater or equal to 2.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+DataIn&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+pointer to input array of 16-bit elements (int16_t)&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+N&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+number of samples (int)&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Binary exponent [log2 multiplier] (int)</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">
+<strong><span style="color: #000080">int</span></strong> valN = 4;
+int16_t  dummy16[valN]={0x3004, 0x00CC, 0xFC04, 0xFFF0};
+<i><span style="color: #008000">//                         0.375, 0.0062, -0.0311, -0.00049</span></i>
+<strong><span style="color: #000080">int</span></strong> answer;
+
+answer =   DSP_VectorBexp16(dummy16, valN);
+
+<i><span style="color: #008000">// answer = 1, maximum binary gain is 2.</span></i>
+</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+None.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">int</span></strong> <strong><span style="color: #000000">DSP_VectorBexp16</span></strong>(
+    int16_t * <strong><span style="color: #000000">DataIn</span></strong>, 
+    <strong><span style="color: #000080">int</span></strong> <strong><span style="color: #000000">N</span></strong>
+);</pre></div></div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00498.html" target="topic">DSP_VectorBexp16 Function</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element3">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element4">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element91">
+<a href="00497.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00499.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_VectorBexp16@int16_t *@int Topic Title: DSP_VectorBexp16 Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

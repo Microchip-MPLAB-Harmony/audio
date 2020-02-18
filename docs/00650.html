@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<title>Using the Library</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoadEx('frames.html', 'topic', '00650.html');" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00650.html" target="topic">Using the Library</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element1">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element2">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element90">
+<a href="00647.html" target="topic">Previous</a> | <a href="00638.html" target="topic">Up</a> | <a href="00645.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element96">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: Math Library DSP Using the Library Topic Title: Using the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table><div class="Element5">
+Using the Library</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<a name="PageContent"></a><div class="Element58">
+<a name="4465736372697074696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+ &nbsp;</p>
+<p class="Element10">
+<strong>Interface Header File: <span class="Element146">dsp.h,</span></strong>&nbsp;</p>
+<p class="Element10">
+The interface to the DSP Fixed-Point library is defined in the <span class="Element146">dsp.h</span> header file. Any C language source (.c) file that uses the DSP Fixed-Point library must include <span class="Element146">dsp.h</span>. This file is automatically included by definitions<span class="Element146">.h</span> when the library is generated using MHC.&nbsp;</p>
+<p class="Element10">
+Some functions make special use of the optimized fixed-point math library<span class="Element146"> libq.h</span>. For use of those functions, the<span class="Element146"> libq.h</span> file must also be included in a project. The <sup>libq.h</sup> file is also installed with MPLAB Harmony. Specific notes within each function will describe if the function is dependent on the LibQ Fixed-Point Math Library.&nbsp;</p>
+<p class="Element10">
+Library Files:&nbsp;</p>
+<p class="Element10">
+The DSP Fixed-Point library archive (.a) files are installed with MPLAB Harmony. Although there are two PIC32 DSP files, the linker will only utilize one of these depending on your device usage.&nbsp;</p>
+<p class="Element10">
+This library is only available in prebuilt binary form, with prototypes for each function described in the <span class="Element146">dsp.h</span> file. The available library versions are:</p>
+<ul class="Element630">
+<li class="Element600">dsp_mips32_mz_ef_nfO3.a</li>
+<li class="Element600">dsp_mips32_mz_ef_nfOs.a</li>
+</ul><p class="Element10">
+The naming convention for these libraries is as follows: </p><p class="Element10" style="text-align: center;">
+&lt;name&gt;_&lt;arch&gt;_&lt;core&gt;_&lt;fpu&gt;_&lt;codes&gt;.a</p><p class="Element10">
+where, “name” is the name of the library (DSP); “arch” is the 32 MIPS architecture (MIPS32); “core” is the microAptive core with DSP ASE extensions (MZ); and “fpu” indicates that a Floating Point Unit(FPU) is available. The “codes” are as follows:</p>
+<ul class="Element630">
+<li class="Element600">&lt;nf, fpu&gt; - FPU disabled or enabled</li>
+<li class="Element600">&lt;O3,OS&gt; - Fully optimized for speed or optimized for size.</li>
+</ul></div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00650.html" target="topic">Using the Library</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element3">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element4">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element91">
+<a href="00647.html" target="topic">Previous</a> | <a href="00638.html" target="topic">Up</a> | <a href="00645.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: Math Library DSP Using the Library Topic Title: Using the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

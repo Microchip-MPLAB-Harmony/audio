@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_AK4954_CommandEventHandlerSet Function</title>
+<title>Running the Demonstration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00143.html" target="topic">DRV_AK4954_CommandEventHandlerSet Function</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00140.html" target="topic">usb_speaker_bass_boost</a> &gt; <a href="00143.html" target="topic">Running the Demonstration</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00138.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00135.html" target="topic">Next</a></div>
+<a href="00142.html" target="topic">Previous</a> | <a href="00140.html" target="topic">Up</a> | <a href="00146.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_CommandEventHandlerSet@DRV_HANDLE@DRV_AK4954_COMMAND_EVENT_HANDLER@uintptr_t Topic Title: DRV_AK4954_CommandEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker_bass_boost_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_AK4954_CommandEventHandlerSet Function</div>
+Running the Demonstration</div>
 </div>
 </div>
 
@@ -46,142 +46,244 @@ DRV_AK4954_CommandEventHandlerSet Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46756E6374696F6E"></a><div class="Element11">
+<a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<p class="Element10">
-      void DRV_AK4954_CommandEventHandlerSet&nbsp;</p>
-<p class="Element10">
-      (&nbsp;</p>
-<p class="Element10">
-          DRV_HANDLE handle,&nbsp;</p>
-<p class="Element10">
-          const <a href="00142.html" target="topic">DRV_AK4954_COMMAND_EVENT_HANDLER</a> eventHandler,&nbsp;</p>
-<p class="Element10">
-          const uintptr_t contextHandle&nbsp;</p>
-<p class="Element10">
-      )&nbsp;</p>
-<p class="Element10">
-&nbsp;</p></div>
-</div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function allows a client to identify a command event handling function for the driver to call back when the last submitted command have finished.</p></div>
-</div>
-</div>
-<a name="4465736372697074696F6E"></a><div class="Element14">
-Description</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function allows a client to identify a command event handling function for the driver to call back when the last submitted command have finished.&nbsp;</p>
-<p class="Element10">
-When a client calls <a href="00136.html" target="topic">DRV_AK4954_BufferAddWrite</a> function, it is provided with a handle identifying the buffer that was added to the driver's buffer queue. The driver will pass this handle back to the client by calling &quot;eventHandler&quot; function when the buffer transfer has completed.&nbsp;</p>
-<p class="Element10">
-The event handler should be set before the client performs any &quot;AK4954 CODEC Specific Client Routines&quot; operations that could generate events. The event handler once set, persists until the client closes the driver or sets another event handler (which could be a &quot;NULL&quot; pointer to indicate no callback).</p></div>
-</div>
-<a name="507265636F6E646974696F6E73"></a><div class="Element14">
-Preconditions</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-The <a href="00160.html" target="topic">DRV_AK4954_Initialize</a> routine must have been called for the specified AK4954 driver instance.&nbsp;</p>
-<p class="Element10">
-<a href="00178.html" target="topic">DRV_AK4954_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p></div>
-</div>
-<a name="506172616D6574657273"></a><div class="Element14">
-Parameters</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element312">
+<div class="Element63">
 <div class="TableDiv">
-<table cellspacing="0" class="Table3">
+<table cellspacing="0" class="Table0">
 <tr>
-<td class="Element300" valign="top" width="35%">
-<div class="Element301">
-Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
-<div class="Element305">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-A valid open-instance handle, returned from the driver's open routine&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-eventHandler&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Pointer to the event handler function.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-context&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-The value of parameter will be passed back to the client unchanged, when the eventHandler function is called. It can be used to identify any client specific data object that identifies the instance of the client module (for example, it may be a pointer to the client module's state structure).&nbsp;</div></td></tr></table></div></div>
-</div>
-</div>
-<a name="52657475726E73"></a><div class="Element14">
-Returns</div>
-<div class="Element11">
-<div class="Element10">
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Important icon.png" border="0" alt="" title=""><br>&nbsp;</div></td><td class="Element67" valign="top" width="12%" style="border:none;">
+<div class="Element68">
+<strong>Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="83%" style="border:none;">
+<div class="Element68">
+Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-None.</p></div>
-</div>
-<a name="4578616D706C65"></a><div class="Element14">
-Example</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12">MY_APP_OBJ myAppObj;
-uint8_t mybuffer[MY_BUFFER_SIZE];
-<a href="00133.html" target="topic">DRV_AK4954_BUFFER_HANDLE</a> bufferHandle;
-
-<i><span style="color: #008000">// myAK4954Handle is the handle returned</span></i>
-<i><span style="color: #008000">// by the DRV_AK4954_Open function.</span></i>
-
-<i><span style="color: #008000">// Client registers an event handler with driver</span></i>
-
-DRV_AK4954_CommandEventHandlerSet(myAK4954Handle,
-                APP_AK4954CommandEventHandler, (uintptr_t)&amp;myAppObj);
-
-DRV_AK4954_DeEmphasisFilterSet(myAK4954Handle, DRV_AK4954_DEEMPHASIS_FILTER_44_1KHZ)
-
-<i><span style="color: #008000">// Event is received when</span></i>
-<i><span style="color: #008000">// the buffer is processed.</span></i>
-
-<strong><span style="color: #000080">void</span></strong> APP_AK4954CommandEventHandler(uintptr_t contextHandle)
-{
-    <i><span style="color: #008000">// contextHandle points to myAppObj.</span></i>
-
-    <strong><span style="color: #000080">switch</span></strong>(event)
-    {
-            <i><span style="color: #008000">// Last Submitted command is completed.</span></i>
-            <i><span style="color: #008000">// Perform further processing here</span></i>
-    }
-}</pre></div></div>
-</div>
-</div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
+Configure the board as described in the previous section. Attach either the EDBG or PKOB4 USB cable from the PC Host to the board, as described in the prior section.&nbsp;</p>
 <p class="Element10">
-If the client does not want to be notified when the command has completed, it does not need to register a callback.</p></div>
+To compile, select the appropriate MPLAB X ® IDE project configuration (see Table above). Compile and program the target device. Refer to Building the Application for details&nbsp;</p>
+<p class="Element10">
+Do the following to run the demonstration:&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<ol class="Element630">
+<li value="1" class="Element600">After connecting a standard USB cable from the Host PC to either the EDBG or PKOB4 of the respective board, compile the application and program the target device. Run the device. The system will be in a waiting for the USB to be connected (LED1 off). The RGB LED on the Curiosity 2 board will run red, indicating no USB connection.</li>
+<li value="2" class="Element600">Connect a standard USB cable to the USB Host via the micro-mini connector located, either:
+<ul class="Element631">
+<li class="Element601">Above the push-button switches on the right side of the SAM E70 Xplained board, or</li>
+<li class="Element601">Above and to the left of the Reset switch on the PIC32 MZ EF Curiosity 2 board</li>
+</ul></li>
+<li value="3" class="Element600">Allow the Host computer to acknowledge, install drivers (if needed), and enumerate the device. No special software is necessary on the Host side.</li>
+</ol><p class="Element10">
+LED1 will turn on as the USB function is enumerated (it may blink if audio is not streaming over the connection). The RGB LED on the Curiosity board will turn from red to green.&nbsp;</p>
+<p class="Element10">
+If needed, configure the Host computer to use the usb_speaker as the selected audio recording device. For Windows 7, this is done in the &quot;Playback&quot; tab in the &quot;Sound&quot; dialog accessed by right clicking the loudspeaker icon on the taskbar. For Windows 10, this is accessed by right clicking the loudspeaker icon on the taskbar and clicking “Open Sound Settings”. Select the “Speaker( Harmony USB Speaker w/Bass Boost Example)” as the default device. Now all sounds should be heard through the headphones </p><p class="Element10" style="text-align: center;">
+<img src="usb speaker bb sound dialog.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i>Windows 10 Sound Setting showing USB Speaker w/Bass Boost Example selection.</i>&nbsp;</p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="10%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title=""> <strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
+<div class="Element68">
+The &quot;Harmony USB Speaker w/Bass Boost Example&quot; should be available along with a sound level meter, indicating audio when playing. If no sound level is registering when audio is playing, uninstall the driver, since it may have incorrect configuration set by a similar connection to one of the other MPLAB-X Harmony USB Audio Demos.&nbsp;</div></td></tr></table></div></div>
+
+<ol class="Element630">
+<li value="4" class="Element600">Open a playback application (such as Window Media Player) and initiate playback, which should be heard throught the headphones.</li>
+<li value="5" class="Element600">Four volume levels are available, when pressing SWITCH 1. Initially, it is set to the lowest playback level. Pressing 2 more times will change the volume from the lowest to the highest playback level. Pressing 1 more time will mute audio and LED 1 will blink slowly. Pressing the button again will go back to the initial setting, from which the volume sequence began.</li>
+<li value="6" class="Element600">“Bass Boost” is demonstrated as follows:</li>
+</ol><p class="Element10">
+<u> Using the SAM E70 Xplained board and the WM8904 Daughter Board</u>&nbsp;</p>
+<p class="Element10">
+A “Long Press” of SWITCH 1 will turn on “Bass Boost”. This will enhance (boost) the lower audio frequencies heard through the headphones. You can cycle from boosted audio to normal audio by repeating the “Long Press” of SWITCH1.&nbsp;</p>
+<p class="Element10">
+<u>Using the PIC32 MZ EF Curiosity 2 and the AK4965 Daughter Board</u>&nbsp;</p>
+<p class="Element10">
+Pressing SWITCH 2 will turn on LED 2 and the RGB LED will turn blue (indicating boost). The audio “Bass Boost” filter will be at its lowest level. Pressing SWITCH 2 repeatedly will cycle through 4 levels of “Bass Boost” (4, 6, 8, and 10 dB). A “Long” press of SWITCH 2 will turn off the “Bass Boost”, LED 2 will turn off and the RGB LED will turn green. Pressing again will turn on “Bass Boost” at the previous level.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><div class="Element15">
+Control Description</div>
+<p class="Element10">
+<u>Using the SAM E70 Xplained board and the WM8904 Daughter Board:</u>&nbsp;</p>
+<p class="Element10">
+Button control uses the push button function sequence given in the table below: </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="62%">
+<div class="Element66">
+Function&nbsp;</div></td><td class="Element65" valign="top" width="38%">
+<div class="Element66">
+Press&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Volume Control Level 1&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+Low (-66 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Volume Control Level 2&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+Medium (-48 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Volume Control Level 3&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+High (-0 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Mute&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+Mute&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+<strong>Note:</strong> Mute will transition to Volume Control Level 1 on the next button push.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+USB operational status is given by LED, as shown below: </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="35%">
+<div class="Element66">
+LED Status&nbsp;</div></td><td class="Element65" valign="top" width="65%">
+<div class="Element66">
+Status&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="35%">
+<div class="Element68">
+OFF&nbsp;</div></td><td class="Element67" valign="top" width="65%">
+<div class="Element68">
+USB cable detached&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="35%">
+<div class="Element68">
+ON&nbsp;</div></td><td class="Element67" valign="top" width="65%">
+<div class="Element68">
+USB cable attached&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="35%">
+<div class="Element68">
+Blinking - Fast&nbsp;</div></td><td class="Element67" valign="top" width="65%">
+<div class="Element68">
+USB cable attached (no audio)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="35%">
+<div class="Element68">
+Blinking - Slow&nbsp;</div></td><td class="Element67" valign="top" width="65%">
+<div class="Element68">
+Playback muted&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>Using the PIC32 MZ EF Curiosity 2 and the AK4965 Daughter Board:</u>&nbsp;</p>
+<p class="Element10">
+Button control uses SWITCH 1 in the push button function sequence given in the table below:. </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="62%">
+<div class="Element66">
+Function&nbsp;</div></td><td class="Element65" valign="top" width="38%">
+<div class="Element66">
+Press&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Volume Control Level 1&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+Low (-66 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Volume Control Level 2&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+Medium (-48 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Volume Control Level 3&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+High (-0 dB)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="62%">
+<div class="Element68">
+Mute&nbsp;</div></td><td class="Element67" valign="top" width="38%">
+<div class="Element68">
+Mute&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+<strong>Note:</strong> Mute will transition to Volume Control Level 1 on the next button push.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+USB operational status is given by LED, as shown below: </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="26%">
+<div class="Element66">
+LED1 Status&nbsp;</div></td><td class="Element65" valign="top" width="74%">
+<div class="Element66">
+Status&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="26%">
+<div class="Element68">
+OFF&nbsp;</div></td><td class="Element67" valign="top" width="74%">
+<div class="Element68">
+USB cable detached or (USB attached &amp; invalid enumeration)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="26%">
+<div class="Element68">
+ON&nbsp;</div></td><td class="Element67" valign="top" width="74%">
+<div class="Element68">
+USB cable attached&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="26%">
+<div class="Element68">
+Blinking - Fast&nbsp;</div></td><td class="Element67" valign="top" width="74%">
+<div class="Element68">
+USB cable attached (no audio)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="26%">
+<div class="Element68">
+Blinking - Slow&nbsp;</div></td><td class="Element67" valign="top" width="74%">
+<div class="Element68">
+Playback muted&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="25%">
+<div class="Element66">
+LED2/RGB LED Status&nbsp;</div></td><td class="Element65" valign="top" width="75%">
+<div class="Element66">
+Status&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+OFF/Red&nbsp;</div></td><td class="Element67" valign="top" width="75%">
+<div class="Element68">
+USB cable detached or (USB attached &amp; invalid enumeration)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+ON/Green&nbsp;</div></td><td class="Element67" valign="top" width="75%">
+<div class="Element68">
+USB cable attached and audio enumerated (normal audio)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+ON/Blue&nbsp;</div></td><td class="Element67" valign="top" width="75%">
+<div class="Element68">
+USB cable attached and audio enumerated (“Bass Boost” enabled)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+Blinking – Fast/Red&nbsp;</div></td><td class="Element67" valign="top" width="75%">
+<div class="Element68">
+USB cable attached (no audio)&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="25%">
+<div class="Element68">
+Blinking – Slow/Green or Blue&nbsp;</div></td><td class="Element67" valign="top" width="75%">
+<div class="Element68">
+Audio Playback muted in either normal (green) or boosted (blue) modes&nbsp;</div></td></tr></table></div></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_AK4954_CommandEventHandlerSet</span></strong>(
-    DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> <a href="00142.html" target="topic">DRV_AK4954_COMMAND_EVENT_HANDLER</a> <strong><span style="color: #000000">eventHandler</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> uintptr_t <strong><span style="color: #000000">contextHandle</span></strong>
-);</pre></div></div>
+</div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00143.html" target="topic">DRV_AK4954_CommandEventHandlerSet Function</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00140.html" target="topic">usb_speaker_bass_boost</a> &gt; <a href="00143.html" target="topic">Running the Demonstration</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -189,13 +291,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00138.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00135.html" target="topic">Next</a></div>
+<a href="00142.html" target="topic">Previous</a> | <a href="00140.html" target="topic">Up</a> | <a href="00146.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_CommandEventHandlerSet@DRV_HANDLE@DRV_AK4954_COMMAND_EVENT_HANDLER@uintptr_t Topic Title: DRV_AK4954_CommandEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker_bass_boost_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

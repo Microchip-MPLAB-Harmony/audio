@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_AK4954_BUFFER_EVENT Type</title>
+<title>universal_audio_decoders</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00131.html" target="topic">DRV_AK4954_BUFFER_EVENT Type</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00131.html" target="topic">universal_audio_decoders</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00127.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00132.html" target="topic">Next</a></div>
+<a href="00112.html" target="topic">Previous</a> | <a href="00129.html" target="topic">Up</a> | <a href="00132.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BUFFER_EVENT Topic Title: DRV_AK4954_BUFFER_EVENT Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO universal_audio_decoders Topic Title: universal_audio_decoders)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_AK4954_BUFFER_EVENT Type</div>
+universal_audio_decoders</div>
 </div>
 </div>
 
@@ -46,36 +46,207 @@ DRV_AK4954_BUFFER_EVENT Type</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="53756D6D617279"></a><div class="Element11">
+<a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Identifies the possible events that can result from a buffer add request.</p></div>
+The Universal Audio Decoders application uses the MPLAB Harmony Decoder Library to decode music files on a USB thumb drive.&nbsp;</p>
+<p class="Element10">
+The application configures the development board to be in USB Host mode, and supports the FAT32 file system. When a mass storage device is connected to the development board, the application begins to scan the root directory. Once the scan is complete, the first track in the list will be opened and played. The fill buffer routine will read a chunk of data as an input to the decoder of the supported file format. The decoder will decode the packet and send the first frame of audio data to the codec driver through I2S Driver and the output will be audible through the speakers. The following block diagram depicts a representation of the application.&nbsp;</p>
+<p class="Element10">
+Button or touch controls provide typical VCR-like control over the playback, such as play/pause, rewind, and next track.&nbsp;</p>
+<p class="Element10">
+The application currently supports ADPCM, WAV and MP3 files: </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="4%">
+<div class="Element66">
+Audio Format&nbsp;</div></td><td class="Element65" valign="top" width="7%">
+<div class="Element66">
+Decoder Location&nbsp;</div></td><td class="Element65" valign="top" width="7%">
+<div class="Element66">
+Sampling Rates (kHz)&nbsp;</div></td><td class="Element65" valign="top" width="82%">
+<div class="Element66">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="4%">
+<div class="Element68">
+ADPCM&nbsp;</div></td><td class="Element67" valign="top" width="7%">
+<div class="Element68">
+audio/decoder&nbsp;</div></td><td class="Element67" valign="top" width="7%">
+<div class="Element68">
+8, 16&nbsp;</div></td><td class="Element67" valign="top" width="82%">
+<div class="Element68">
+Adaptive Delta Pulse Code Modulation (ADPCM) is a sub-class of the Microsoft waveform (<span class="Element146">.wav</span>) file format. In this demonstration, it only decodes ADPCM audio which has a WAV header. The extension name for this format is pcm.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="4%">
+<div class="Element68">
+WAVE&nbsp;</div></td><td class="Element67" valign="top" width="7%">
+<div class="Element68">
+audio/decoder&nbsp;</div></td><td class="Element67" valign="top" width="7%">
+<div class="Element68">
+8 through 96&nbsp;</div></td><td class="Element67" valign="top" width="82%">
+<div class="Element68">
+The WAVE file format is the native file format used by Microsoft Windows for storing digital audio data.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="4%">
+<div class="Element68">
+MP3&nbsp;</div></td><td class="Element67" valign="top" width="7%">
+<div class="Element68">
+helix_mp3&nbsp;</div></td><td class="Element67" valign="top" width="7%">
+<div class="Element68">
+8 through 48&nbsp;</div></td><td class="Element67" valign="top" width="82%">
+<div class="Element68">
+The MPEG 2.5 Layer 3 is a lossy digital compression formats for audio data. The current version of the MP3 Library is an open-source based on the Helix MP3 decoder used in RealPlayer. The version in MPLAB Harmony is v1.0.&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<div class="Element15">
+Architecture</div>
+<p class="Element10">
+There are four different projects packaged in this application.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>PIC32 MZ EF Curiosity 2.0 Project:</u>&nbsp;</p>
+<p class="Element10">
+Two projects run on the PIC32 MZ EF Curiosity 2.0 board, using the PIC32MZ2048EFM144 microcontroller with 2 MB of Flash memory and 512 KB of RAM running at 198 MHz. The PIC32 MZ EF Curiosity 2.0 board includes the following features:</p>
+<ul class="Element630">
+<li class="Element600">Four push buttons (SW1-SW4, only SW1 is used)</li>
+<li class="Element600">Four LEDs (LED1-LED4, only LED1 is used)</li>
+<li class="Element600">AK4954 Codec Daughter Board mounted on X32 HEADER 2 socket</li>
+<li class="Element600">Optional PDA TM4301B 480x272 (WQVGA) display</li>
+</ul><p class="Element10">
+The PIC32 MZ EF Curiosity 2.0 board does not include the AK4954 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC324954.&nbsp;</p>
+<p class="Element10">
+The following figure illustrates the application architecture for the PIC32 MZ EF Curiosity 2.0 project without a display. The program takes up to approximately 9% (188 KB) of the PIC32MZ2048EFM144 microcontroller’s program space, and 14% (71 KB) of the RAM. No heap is used. </p><p class="Element10" style="text-align: center;">
+<img src="UAD PIC32MZ C2 Architecture Diagram.png" border="0" alt="" title=""></p><p class="Element10">
+This figure illustrates the application architecture for the PIC32 MZ EF Curiosity 2.0 project with a display. The program takes up to approximately 32% (656 KB) of the PIC32MZ2048EFM144 microcontroller’s program space, and 66% (340 KB) of the RAM, including a 14 KB heap. </p><p class="Element10" style="text-align: center;">
+<img src="UAD PIC32MZ C2+display Architecture Diagram.png" border="0" alt="" title=""></p><p class="Element10">
+For both configurations, the I2S (Inter-IC Sound Controller) is used with the AK4954 codec. The AK4954 is configured in slave mode, meaning it receives I<sup>2</sup>S clocks (LRCLK and BCLK) from the PIC32, and the I2S peripheral is configured as a master.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<u>SAM E70 Xplained Ultra Projects:</u>&nbsp;</p>
+<p class="Element10">
+Two projects run on the SAM E70 Xplained Ultra Board, which contains a ATSAME70Q21B microcontroller with 2 MB of Flash memory and 384 KB of RAM running at 300 MHz using the following features:</p>
+<ul class="Element630">
+<li class="Element600">One push button (SW1, may be labeled as SW0 on some boards)</li>
+<li class="Element600">Two LEDs (LED1 and 2, only LED1 is used)</li>
+<li class="Element600">AK4954 Codec Daughter Board mounted on a X32 socket</li>
+</ul><p class="Element10">
+The SAM E70 Xplained Ultra board does not include the AK4954 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part numbers AC324954.&nbsp;</p>
+<p class="Element10">
+The following figure illustrates the application architecture for the SAM E70 Xplained Ultra project without a display. The program takes up to approximately 5% (110 KB) of the ATSAME70Q21B microcontroller’s program space, and 19% (71 KB) of the RAM. No heap is used. </p><p class="Element10" style="text-align: center;">
+<img src="UAD E70 Architecture Diagram.png" border="0" alt="" title=""></p><p class="Element10">
+This figure illustrates the application architecture for the SAM E70 Xplained Ultra project with a display. The program takes up to approximately 14% (277 KB) of the ATSAME70Q21B microcontroller’s program space, and 21% (77 KB) of the RAM, including a 14 KB heap. </p><p class="Element10" style="text-align: center;">
+<img src="UAD E70+display Architecture Diagram.png" border="0" alt="" title=""></p><p class="Element10">
+The SSC (Synchronous Serial Controller) is used with the WM8904 codec, selected by a strapping option on the WM8904 daughterboard. The WM8904 is configured in master mode, meaning it generates the I<sup>2</sup>S clocks (LRCLK and BCLK), and the SSC peripheral is configured as a slave.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p><div class="Element15">
+Demonstration Features</div>
+
+<ul class="Element630">
+<li class="Element600">USB MSD Host Client Driver (see USB MSD Host Client Driver Library)</li>
+<li class="Element600">FAT File System (see File System Service Library)</li>
+<li class="Element600">Audio real-time buffer handling</li>
+<li class="Element600">AK4954 or WM8904 Codec Driver (see Audio Codec Driver Libraries)</li>
+<li class="Element600">I<sup>2</sup>S usage in audio system (see I2S Driver Library)</li>
+<li class="Element600">DMA (see DMA Peripheral Library)</li>
+<li class="Element600">Timer (see Timer Peripheral Library)</li>
+<li class="Element600">GPIO Control (see Port Peripheral Library)</li>
+<li class="Element600">For the projects using the display, use of the touch screen as a UI</li>
+</ul><p class="Element10">
+&nbsp;</p>
+<div class="Element15">
+Tools Setup Differences</div>
+<p class="Element10">
+<u>For the projects using the PIC32MZ, the I2S interface and the AK4954 as a Slave (the I2S peripheral generates the I<sup>2</sup>S clocks), with or without a display:</u>&nbsp;</p>
+<p class="Element10">
+When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name based on the BSP. Select the appropriate processor (PIC32MZ2048EFM144 for the PIC32 MZ EF Curiosity 2.0). Click Finish.&nbsp;</p>
+<p class="Element10">
+In the MHC, under Available Components select the BSP PIC32 MZ EF Curiosity 2.0. Under <i>Audio&gt;Templates</i>, double-click on AK4954 Codec. Answer Yes to all questions except for the one regarding FreeRTOS; answer No to that one. Then under <i>Libraries&gt;USB&gt;Host Stack</i>, double-click on MSD Client Driver. Finally, under <i>Harmony&gt;System Services</i>, double-click on FILE SYSTEM.&nbsp;</p>
+<p class="Element10">
+You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+<img src="uad pic32mz ef c2 ak4954 project graph.jpg" border="0" alt="" title=""></p><p class="Element10">
+Connect the MSD Client Driver block to the FILE SYSTEM block. Click on the FILE SYSTEM block.&nbsp;</p>
+<p class="Element10">
+Under File System Settings, check the checkbox for Use File System Auto Mount Feature. Under Media0&gt;Media Configuration0, change the Media Type to SYS_FS_MEDIA_TYPE_MSD. </p><p class="Element10" style="text-align: center;">
+<img src="uad pic32mz ef c2 ak4954 file system.jpg" border="0" alt="" title=""></p><p class="Element10">
+Click on the I2S Peripheral. In the Configurations Options, under 32/16-Bit Communication Select bits, select (AUDEN=1) 16-bit data, 16-bit FIFO, 32-bit Channel/64-bit Frame. Change Master Clock the Baud Rate to 44,100. Set the Frame Select Pin to C2. The configuration should look like this: </p><p class="Element10" style="text-align: center;">
+<img src="uad pic32mz ef c2 ak4954 I2S2.jpg" border="0" alt="" title=""></p><p class="Element10">
+Under Tools, click on Clock Configuration. In the Clock Diagram:</p>
+<ul class="Element630">
+<li class="Element600">Change the Primary Oscillator frequency to 12,000,000 Hz, and select EC under POSCMOD.</li>
+<li class="Element600">Change FPLLICLK to POSC, FPLLIDIV to DIV_2, and FPLLMULT to MUL_66 for an SPLL value of 198 MHz. Change the UPLLFSEL to FREQ_12MHZ.</li>
+<li class="Element600">In the Reference Clock #1 section, check the ON and OE checkboxes,, and set ROTRIM1 to 393 and RODIV1 to 8. This should give a REFCLKO1 output of 11,291,601 Hz, which is 256 times the 44,100 Hz sample rate.</li>
+</ul><p class="Element10">
+You should end up with a clock diagram like this: </p><p class="Element10" style="text-align: center;">
+<img src="uad pic32mz ef c2 ak4954 clocks.jpg" border="0" alt="" title=""></p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+For the project using the PIC32 MZ EF Curiosity 2.0 board with the TM4301B WQVGA display, under <i>Graphics&gt;Templates</i>, you will also want to double-click on Aria Graphics w/ PDA TM4301B Display. You will end up with a project graph that looks like this instead. </p><p class="Element10" style="text-align: center;">
+<img src="uad pic32mz ef c2 ak4954 wqvga project graph.jpg" border="0" alt="" title=""></p><p class="Element10">
+Follow the instructions above for the non-display version re the File System, I2S and clock settings.&nbsp;</p>
+<p class="Element10">
+<u>For projects using the E70, the SSC interface and the WM8904 as a Master (the WM8904 codec generates the I<sup>2</sup>S clocks), with or without a display:</u>&nbsp;</p>
+<p class="Element10">
+When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name based on the BSP used. Select the appropriate processor (ATSAME70Q21B). Click Finish.&nbsp;</p>
+<p class="Element10">
+In the MHC, under Available Components select the appropriate BSP (SAM E70 Xplained Ultra). Under <i>Audio&gt;Templates</i>, double-click on WM8904 Codec. Answer Yes to all questions except for the one regarding FreeRTOS; answer No to that one. Then under <i>Libraries&gt;USB&gt;Host Stack</i>, double-click on MSD Client Driver. Finally, under <i>Harmony&gt;System Services</i>, double-click on FILE SYSTEM.&nbsp;</p>
+<p class="Element10">
+You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+<img src="uad sam e70 xult wm8904 project graph.jpg" border="0" alt="" title=""></p><p class="Element10">
+Connect the MSD Client Driver block to the FILE SYSTEM block. Click on the FILE SYSTEM block.&nbsp;</p>
+<p class="Element10">
+Under File System Settings, check the checkbox for Use File System Auto Mount Feature. Under Media0&gt;Media Configuration0, change the Media Type to SYS_FS_MEDIA_TYPE_MSD. </p><p class="Element10" style="text-align: center;">
+<img src="uad pic32mz ef c2 ak4954 file system.jpg" border="0" alt="" title=""></p><p class="Element10">
+Click on the WM8904 Driver. In the Configurations Options, set the Sample Rate to 44,100.&nbsp;</p>
+<p class="Element10">
+In the Clock Diagram, set MOSCEL to Main Crystal, check the Bypass checkbox, and uncheck the RC Crystal Oscillator and Main Crystal Oscillator boxes, to make use of the 12 MHz external oscillator: </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO E70 clock diagram main bypass.png" border="0" alt="" title=""></p><p class="Element10">
+Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Controller </strong>section, check the On checkbox, and set CSS to MAINCLK (12 MHz). Then check the SSC checkbox in the <strong>Peripheral Clock Controller</strong> section.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+For the project using the SAM E70 Xplained Ultra board with the TM4301B WQVGA display and SSD1963 Controller, under <i>Graphics&gt;Templates</i>, you will also want to double-click on Aria Graphics w/ PDA TM4301B Display. Then click on the LCC block, and click on the red X in the toolbar remove it. Also delete the TC2 block left behind.&nbsp;</p>
+<p class="Element10">
+Under <i>Graphics&gt;Driver, </i>double-click on SSD1963. Under <i>Graphics&gt;Interface, </i>double-click on Parallel (SMC). Connect the SMC_CS node of the Parallel (SMC) block to SMC_CS0 of the SMC block, and the Display Interface node to the SSD1963 block. Connect the Display Driver node of the SSD1963 block to the GFX Core block. After rearranging the boxes. you should end up with a project graph that looks like this instead. </p><p class="Element10" style="text-align: center;">
+<img src="uad sam e70 xult wm8904 ssd1963 project graph.jpg" border="0" alt="" title=""></p><p class="Element10">
+Follow the instructions above for the non-display version re the File System and clock settings.</p></div>
 </div>
-<a name="4465736372697074696F6E"></a><div class="Element14">
-Description</div>
+<a name="546F70696373"></a><div class="Element14">
+Topics</div>
 <div class="Element11">
 <div class="Element10">
-<p class="Element10">
-AK4954 Driver Events&nbsp;</p>
-<p class="Element10">
-This enumeration identifies the possible events that can result from a buffer add request caused by the client calling either the <a href="00136.html" target="topic">DRV_AK4954_BufferAddWrite</a>() or the <a href="00135.html" target="topic">DRV_AK4954_BufferAddRead</a>() function.</p></div>
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table1">
+<tr>
+<td class="Element200" valign="top" width="35%">
+<div class="Element201">
+Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
+<div class="Element205">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00132.html" target="topic">Building the Application</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This section identifies the MPLAB X IDE project name and location and lists and describes the available configurations for the demonstration&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00133.html" target="topic">Configuring the Hardware</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This section describes how to configure the supported hardware.&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00134.html" target="topic">Running the Demonstration</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></table></div></div>
 </div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-One of these values is passed in the &quot;event&quot; parameter of the event handling callback function that the client registered with the driver by calling the <a href="00138.html" target="topic">DRV_AK4954_BufferEventHandlerSet</a> function when a buffer transfer request is completed.</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">enum</span></strong> DRV_AK4954_BUFFER_EVENT@1 <strong><span style="color: #000000">DRV_AK4954_BUFFER_EVENT</span></strong>;</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00131.html" target="topic">DRV_AK4954_BUFFER_EVENT Type</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00131.html" target="topic">universal_audio_decoders</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -83,13 +254,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00127.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00132.html" target="topic">Next</a></div>
+<a href="00112.html" target="topic">Previous</a> | <a href="00129.html" target="topic">Up</a> | <a href="00132.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BUFFER_EVENT Topic Title: DRV_AK4954_BUFFER_EVENT Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO universal_audio_decoders Topic Title: universal_audio_decoders)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

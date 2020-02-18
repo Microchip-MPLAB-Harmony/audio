@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>adpcm_enc.h</title>
+<title>_LIBQ_Q2_29_acos_Q31_Fast Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00098.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a> &gt; <a href="00011.html" target="topic">Files</a> &gt; <a href="00019.html" target="topic">adpcm_enc.h</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00653.html" target="topic">LibQ</a> &gt; <a href="00657.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00019.html" target="topic">_LIBQ_Q2_29_acos_Q31_Fast Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00011.html" target="topic">Previous</a> | <a href="00011.html" target="topic">Up</a> | <a href="00379.html" target="topic">Next</a></div>
+<a href="00018.html" target="topic">Previous</a> | <a href="00657.html" target="topic">Up</a> | <a href="00020.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: adpcm_enc.h Topic Title: adpcm_enc.h)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: _LIBQ_Q2_29_acos_Q31_Fast@_Q31 Topic Title: _LIBQ_Q2_29_acos_Q31_Fast Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-adpcm_enc.h</div>
+_LIBQ_Q2_29_acos_Q31_Fast Function</div>
 </div>
 </div>
 
@@ -46,35 +46,91 @@ adpcm_enc.h</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46696C65204E616D65"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-adpcm_enc.h</p></div>
-</div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-Contains the ADPCM encoder specific defintions and function prototypes.</p></div>
-</div>
+Calculates the value of acos(x). This function executes faster than <a href="00018.html" target="topic">_LIBQ_Q2_29_acos_Q31</a> but is less precise.</p></div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
 Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-ADPCM Decoder Header File&nbsp;</p>
+Function _LIBQ_Q2_29_acos_Q31_Fast:&nbsp;</p>
 <p class="Element10">
-This file contains the ADPCM encoder specific defintions and function prototypes.</p></div>
+_Q2_29 _LIBQ_Q2_29_acos_Q31_Fast (_Q31 x);&nbsp;</p>
+<p class="Element10">
+Calculates the acos(x), where x is of type _Q31 and the resulting value is of type _Q2_29. The output value will be radians in the range pi &gt;= result &gt;= -pi.</p></div>
 </div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+None.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+x&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+The _Q31 input value from which to calculate acos(x).&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+_LIBQ_Q2_29_acos_Q31_Fast returns the _Q2_29 fixed point result from the calculation acos(x).</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">
+_Q2_29 resultAcos;
+
+resultAcos = _LIBQ_Q2_29_acos_Q31_Fast ((_Q31)0xee63708c);  <i><span style="color: #008000">// _LIBQ_Q2_29_acos_Q31_Fast(-0.1375903431) =  1.7088244837 (0x36aeb0af)</span></i>
+</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The function <a href="00021.html" target="topic">_LIBQ_Q2_29_asin_Q31_Fast</a> is called by this routine and thus must be linked into the executable image.&nbsp;</p>
+<p class="Element10">
+Execution Time (cycles): 517 typical (32 to 1310) Program Memory 28 bytes&nbsp;</p>
+<p class="Element10">
+Error &lt;= 0.000000911 (accurate to 9 least significant _Q2_29 bits)&nbsp;</p>
+<p class="Element10">
+A higher precision function with reduced performance exists, see <a href="00018.html" target="topic">_LIBQ_Q2_29_acos_Q31</a></p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100">_Q2_29 <strong><span style="color: #000000">_LIBQ_Q2_29_acos_Q31_Fast</span></strong>(
+    _Q31 <strong><span style="color: #000000">x</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00098.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a> &gt; <a href="00011.html" target="topic">Files</a> &gt; <a href="00019.html" target="topic">adpcm_enc.h</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00653.html" target="topic">LibQ</a> &gt; <a href="00657.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00019.html" target="topic">_LIBQ_Q2_29_acos_Q31_Fast Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -82,13 +138,13 @@ This file contains the ADPCM encoder specific defintions and function prototypes
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00011.html" target="topic">Previous</a> | <a href="00011.html" target="topic">Up</a> | <a href="00379.html" target="topic">Next</a></div>
+<a href="00018.html" target="topic">Previous</a> | <a href="00657.html" target="topic">Up</a> | <a href="00020.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: adpcm_enc.h Topic Title: adpcm_enc.h)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: _LIBQ_Q2_29_acos_Q31_Fast@_Q31 Topic Title: _LIBQ_Q2_29_acos_Q31_Fast Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

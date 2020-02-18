@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>adpcm_encoder_free Function</title>
+<title>_LIBQ_Q2_29_atan_Q16 Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00098.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a> &gt; <a href="00015.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00022.html" target="topic">adpcm_encoder_free Function</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00653.html" target="topic">LibQ</a> &gt; <a href="00657.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00022.html" target="topic">_LIBQ_Q2_29_atan_Q16 Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00021.html" target="topic">Previous</a> | <a href="00015.html" target="topic">Up</a> | <a href="00014.html" target="topic">Next</a></div>
+<a href="00021.html" target="topic">Previous</a> | <a href="00657.html" target="topic">Up</a> | <a href="00023.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: adpcm_encoder_free Topic Title: adpcm_encoder_free Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: _LIBQ_Q2_29_atan_Q16@_Q16 Topic Title: _LIBQ_Q2_29_atan_Q16 Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-adpcm_encoder_free Function</div>
+_LIBQ_Q2_29_atan_Q16 Function</div>
 </div>
 </div>
 
@@ -46,20 +46,89 @@ adpcm_encoder_free Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This is function adpcm_encoder_free.</p></div>
+Calculates the value of atan(x).</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Function _LIBQ_Q2_29_atan_Q16:&nbsp;</p>
+<p class="Element10">
+_Q2_29 _LIBQ_Q2_29_atan_Q16 (_Q16 x);&nbsp;</p>
+<p class="Element10">
+Calculates the atan(x), where x is of type _Q16 and the resulting value is of type _Q2_29. The output value will be radians in the range pi &gt;= result &gt;= -pi.</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+None.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+x&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+The _Q16 input value from which to calculate atan(x).&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+_LIBQ_Q2_29_atan_Q16 returns the _Q2_29 fixed point result from the calculation atan(x).</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">
+_Q2_29 resultAtan;
+
+resultAtan = _LIBQ_Q2_29_atan_Q16 ((_Q16)0x00098b31);  <i><span style="color: #008000">// _LIBQ_Q2_29_atan_Q16(9.543716) = 1.466396 (0x2eecb7ee)</span></i>
+</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The function <a href="00023.html" target="topic">_LIBQ_Q2_29_atan2_Q16</a> is called by this routine and thus must be linked into the executable image.&nbsp;</p>
+<p class="Element10">
+Execution Time (cycles): 354 typical (178 to 360) Program Memory 16 bytes&nbsp;</p>
+<p class="Element10">
+Error &lt;= 0.000000003 (accurate within one least significant _Q2_29 bit)</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">adpcm_encoder_free</span></strong>();</pre></div></div>
+<div class="Element101"><div class="Element100"><pre class="Element100">_Q2_29 <strong><span style="color: #000000">_LIBQ_Q2_29_atan_Q16</span></strong>(
+    _Q16 <strong><span style="color: #000000">x</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00098.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a> &gt; <a href="00015.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00022.html" target="topic">adpcm_encoder_free Function</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00653.html" target="topic">LibQ</a> &gt; <a href="00657.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00022.html" target="topic">_LIBQ_Q2_29_atan_Q16 Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -67,13 +136,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00021.html" target="topic">Previous</a> | <a href="00015.html" target="topic">Up</a> | <a href="00014.html" target="topic">Next</a></div>
+<a href="00021.html" target="topic">Previous</a> | <a href="00657.html" target="topic">Up</a> | <a href="00023.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: adpcm_encoder_free Topic Title: adpcm_encoder_free Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: _LIBQ_Q2_29_atan_Q16@_Q16 Topic Title: _LIBQ_Q2_29_atan_Q16 Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

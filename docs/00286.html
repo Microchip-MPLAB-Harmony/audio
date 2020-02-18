@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_WM8904_BufferAddWrite Function</title>
+<title>DRV_AK4954_VOLUME Macro</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00286.html" target="topic">DRV_WM8904_BufferAddWrite Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00088.html" target="topic">Configuring the Library</a> &gt; <a href="00102.html" target="topic">System Configuration</a> &gt; <a href="00286.html" target="topic">DRV_AK4954_VOLUME Macro</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00285.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00287.html" target="topic">Next</a></div>
+<a href="00268.html" target="topic">Previous</a> | <a href="00102.html" target="topic">Up</a> | <a href="00289.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BufferAddWrite@DRV_HANDLE@DRV_WM8904_BUFFER_HANDLE *@void *@size_t Topic Title: DRV_WM8904_BufferAddWrite Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_VOLUME Topic Title: DRV_AK4954_VOLUME Macro)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_WM8904_BufferAddWrite Function</div>
+DRV_AK4954_VOLUME Macro</div>
 </div>
 </div>
 
@@ -46,172 +46,36 @@ DRV_WM8904_BufferAddWrite Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46756E6374696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-        void DRV_WM8904_BufferAddWrite&nbsp;</p>
-<p class="Element10">
-        (&nbsp;</p>
-<p class="Element10">
-            const DRV_HANDLE handle,&nbsp;</p>
-<p class="Element10">
-            <a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> *bufferHandle,&nbsp;</p>
-<p class="Element10">
-            void *buffer, size_t size&nbsp;</p>
-<p class="Element10">
-        )&nbsp;</p>
-<p class="Element10">
-&nbsp;</p></div>
-</div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-Schedule a non-blocking driver write operation.</p></div>
-</div>
+Specifies the initial volume level.</p></div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
 Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This function schedules a non-blocking write operation. The function returns with a valid buffer handle in the bufferHandle argument if the write request was scheduled successfully. The function adds the request to the hardware instance transmit queue and returns immediately. While the request is in the queue, the application buffer is owned by the driver and should not be modified. The function returns <a href="00284.html" target="topic">DRV_WM8904_BUFFER_HANDLE_INVALID</a>:</p>
-<ul class="Element630">
-<li class="Element600">if a buffer could not be allocated to the request</li>
-<li class="Element600">if the input buffer pointer is NULL</li>
-<li class="Element600">if the buffer size is 0.</li>
-<li class="Element600">if the queue is full or the queue depth is insufficient</li>
-</ul><p class="Element10">
-If the requesting client registered an event callback with the driver, the driver will issue a DRV_WM8904_BUFFER_EVENT_COMPLETE event if the buffer was processed successfully of DRV_WM8904_BUFFER_EVENT_ERROR event if the buffer was not processed successfully.</p></div>
-</div>
-<a name="507265636F6E646974696F6E73"></a><div class="Element14">
-Preconditions</div>
-<div class="Element11">
-<div class="Element10">
+AK4954 Volume&nbsp;</p>
 <p class="Element10">
-The <a href="00317.html" target="topic">DRV_WM8904_Initialize</a> routine must have been called for the specified WM8904 device instance and the <a href="00327.html" target="topic">DRV_WM8904_Status</a> must have returned SYS_STATUS_READY.&nbsp;</p>
-<p class="Element10">
-<a href="00323.html" target="topic">DRV_WM8904_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p>
-<p class="Element10">
-DRV_IO_INTENT_WRITE must have been specified in the <a href="00323.html" target="topic">DRV_WM8904_Open</a> call.</p></div>
-</div>
-<a name="506172616D6574657273"></a><div class="Element14">
-Parameters</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element312">
-<div class="TableDiv">
-<table cellspacing="0" class="Table3">
-<tr>
-<td class="Element300" valign="top" width="35%">
-<div class="Element301">
-Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
-<div class="Element305">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Handle of the WM8904 instance as return by the <a href="00323.html" target="topic">DRV_WM8904_Open</a> function.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-buffer&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Data to be transmitted.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-size&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Buffer size in bytes.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-bufferHandle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Pointer to an argument that will contain the return buffer handle.&nbsp;</div></td></tr></table></div></div>
-</div>
-</div>
-<a name="52657475726E73"></a><div class="Element14">
-Returns</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-The bufferHandle parameter will contain the return buffer handle. This will be <a href="00284.html" target="topic">DRV_WM8904_BUFFER_HANDLE_INVALID</a> if the function was not successful.</p></div>
-</div>
-<a name="4578616D706C65"></a><div class="Element14">
-Example</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12">
-MY_APP_OBJ myAppObj;
-uint8_t mybuffer[MY_BUFFER_SIZE];
-<a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle;
-
-<i><span style="color: #008000">// myWM8904Handle is the handle returned</span></i>
-<i><span style="color: #008000">// by the DRV_WM8904_Open function.</span></i>
-
-<i><span style="color: #008000">// Client registers an event handler with driver</span></i>
-
-<a href="00288.html" target="topic">DRV_WM8904_BufferEventHandlerSet</a>(myWM8904Handle,
-                APP_WM8904BufferEventHandler, (uintptr_t)&amp;myAppObj);
-
-DRV_WM8904_BufferAddWrite(myWM8904handle, &amp;bufferHandle
-                                    myBuffer, MY_BUFFER_SIZE);
-
-<strong><span style="color: #000080">if</span></strong>(<a href="00284.html" target="topic">DRV_WM8904_BUFFER_HANDLE_INVALID</a> == bufferHandle)
-{
-    <i><span style="color: #008000">// Error handling here</span></i>
-}
-
-<i><span style="color: #008000">// Event is received when</span></i>
-<i><span style="color: #008000">// the buffer is processed.</span></i>
-
-<strong><span style="color: #000080">void</span></strong> APP_WM8904BufferEventHandler(<a href="00278.html" target="topic">DRV_WM8904_BUFFER_EVENT</a> event,
-        <a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle)
-{
-    <i><span style="color: #008000">// contextHandle points to myAppObj.</span></i>
-
-    <strong><span style="color: #000080">switch</span></strong>(event)
-    {
-        <strong><span style="color: #000080">case</span></strong> DRV_WM8904_BUFFER_EVENT_COMPLETE:
-
-            <i><span style="color: #008000">// This means the data was transferred.</span></i>
-            <strong><span style="color: #000080">break</span></strong>;
-
-        <strong><span style="color: #000080">case</span></strong> DRV_WM8904_BUFFER_EVENT_ERROR:
-
-            <i><span style="color: #008000">// Error handling here.</span></i>
-            <strong><span style="color: #000080">break</span></strong>;
-
-        <strong><span style="color: #000080">default</span></strong>:
-            <strong><span style="color: #000080">break</span></strong>;
-    }
-}
-</pre></div></div>
-</div>
+Sets the initial volume level, in the range 0-255.</p></div>
 </div>
 <a name="52656D61726B73"></a><div class="Element14">
 Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This function is thread safe in a RTOS application. It can be called from within the WM8904 Driver Buffer Event Handler that is registered by this client. It should not be called in the event handler associated with another WM8904 driver instance. It should not otherwise be called directly in an ISR.</p></div>
+The value is mapped to an internal AK4954 volume level in the range 0-192 using a logarithmic table so the input scale appears linear (128 is half volume).</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_BufferAddWrite</span></strong>(
-    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> * <strong><span style="color: #000000">bufferHandle</span></strong>, 
-    <strong><span style="color: #000080">void</span></strong> * <strong><span style="color: #000000">buffer</span></strong>, 
-    size_t <strong><span style="color: #000000">size</span></strong>
-);</pre></div></div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">#define</span></strong> <strong><span style="color: #000000">DRV_AK4954_VOLUME</span></strong> </pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00286.html" target="topic">DRV_WM8904_BufferAddWrite Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00088.html" target="topic">Configuring the Library</a> &gt; <a href="00102.html" target="topic">System Configuration</a> &gt; <a href="00286.html" target="topic">DRV_AK4954_VOLUME Macro</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -219,13 +83,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00285.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00287.html" target="topic">Next</a></div>
+<a href="00268.html" target="topic">Previous</a> | <a href="00102.html" target="topic">Up</a> | <a href="00289.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BufferAddWrite@DRV_HANDLE@DRV_WM8904_BUFFER_HANDLE *@void *@size_t Topic Title: DRV_WM8904_BufferAddWrite Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_VOLUME Topic Title: DRV_AK4954_VOLUME Macro)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

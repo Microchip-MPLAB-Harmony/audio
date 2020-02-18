@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_GENERICCODEC_WriteQueuePurge Function</title>
+<title>DRV_AK4954_Close Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00348.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00349.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00241.html" target="topic">DRV_GENERICCODEC_WriteQueuePurge Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00098.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00241.html" target="topic">DRV_AK4954_Close Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00231.html" target="topic">Previous</a> | <a href="00349.html" target="topic">Up</a> | <a href="00224.html" target="topic">Next</a></div>
+<a href="00278.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00238.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_WriteQueuePurge@DRV_HANDLE Topic Title: DRV_GENERICCODEC_WriteQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_Close@DRV_HANDLE Topic Title: DRV_AK4954_Close Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_GENERICCODEC_WriteQueuePurge Function</div>
+DRV_AK4954_Close Function</div>
 </div>
 </div>
 
@@ -49,7 +49,7 @@ DRV_GENERICCODEC_WriteQueuePurge Function</div>
 <a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-   bool DRV_GENERICCODEC_WriteQueuePurge( const DRV_HANDLE handle )&nbsp;</p>
+   void DRV_AK4954_Close( DRV_Handle handle )&nbsp;</p>
 <p class="Element10">
 &nbsp;</p></div>
 </div>
@@ -59,7 +59,7 @@ DRV_GENERICCODEC_WriteQueuePurge Function</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Removes all buffer requests from the write queue.</p></div>
+Closes an opened-instance of the AK4954 driver</p></div>
 </div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
@@ -67,14 +67,16 @@ Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This function removes all the buffer requests from the write queue. The client can use this function to purge the queue on timeout or to remove unwanted stalled buffer requests or in any other use case.</p></div>
+This routine closes an opened-instance of the AK4954 driver, invalidating the handle. Any buffers in the driver queue that were submitted by this client will be removed. After calling this routine, the handle passed in &quot;handle&quot; must not be used with any of the remaining driver routines. A new handle must be obtained by calling <a href="00278.html" target="topic">DRV_AK4954_Open</a> before the caller may use the driver again</p></div>
 </div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-<a href="00230.html" target="topic">DRV_GENERICCODEC_Open</a> must have been called to obtain a valid opened device handle.</p></div>
+The <a href="00260.html" target="topic">DRV_AK4954_Initialize</a> routine must have been called for the specified AK4954 driver instance.&nbsp;</p>
+<p class="Element10">
+<a href="00278.html" target="topic">DRV_AK4954_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -93,7 +95,7 @@ Description&nbsp;</div></td></tr><tr>
 <div class="Element303">
 handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-Handle of the communication channel as returned by the <a href="00230.html" target="topic">DRV_GENERICCODEC_Open</a> function.&nbsp;</div></td></tr></table></div></div>
+A valid open-instance handle, returned from the driver's open routine&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -101,27 +103,15 @@ Returns</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-True - Write queue purge is successful. False - Write queue purge has failed.</p></div>
+None.</p></div>
 </div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12"><i><span style="color: #008000">// myCodecHandle is the handle returned by the DRV_GENERICCODEC_Open function.</span></i>
-<i><span style="color: #008000">// Use DRV_GENERICCODEC_BufferAddWrite to queue write requests</span></i>
+<div class="Element13"><div class="Element12"><pre class="Element12">DRV_HANDLE handle;  <i><span style="color: #008000">// Returned from DRV_AK4954_Open</span></i>
 
-<i><span style="color: #008000">// Application timeout function, where remove queued buffers.</span></i>
-<strong><span style="color: #000080">void</span></strong> APP_TimeOut(<strong><span style="color: #000080">void</span></strong>)
-{
-    <strong><span style="color: #000080">if</span></strong>(<strong><span style="color: #000080">false</span></strong> == DRV_GENERICCODEC_WriteQueuePurge(myCodecHandle))
-    {
-        <i><span style="color: #008000">//Couldn't purge the write queue, try again.</span></i>
-    }
-    <strong><span style="color: #000080">else</span></strong>
-    {
-        <i><span style="color: #008000">//Queue purge successful.</span></i>
-    }
-}</pre></div></div>
+DRV_AK4954_Close(handle);</pre></div></div>
 </div>
 </div>
 <a name="52656D61726B73"></a><div class="Element14">
@@ -129,11 +119,11 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This function is thread safe when used in an RTOS environment. Avoid this function call from within the callback.</p></div>
+Usually there is no need for the driver client to verify that the Close operation has completed. The driver will abort any ongoing operations when this routine is called.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">DRV_GENERICCODEC_WriteQueuePurge</span></strong>(
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_AK4954_Close</span></strong>(
     <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>
 );</pre></div></div>
 </div>
@@ -141,7 +131,7 @@ C</div>
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00348.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00349.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00241.html" target="topic">DRV_GENERICCODEC_WriteQueuePurge Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00098.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00241.html" target="topic">DRV_AK4954_Close Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -149,13 +139,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00231.html" target="topic">Previous</a> | <a href="00349.html" target="topic">Up</a> | <a href="00224.html" target="topic">Next</a></div>
+<a href="00278.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00238.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_WriteQueuePurge@DRV_HANDLE Topic Title: DRV_GENERICCODEC_WriteQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_Close@DRV_HANDLE Topic Title: DRV_AK4954_Close Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<title>Introduction</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoadEx('frames.html', 'topic', '00669.html');" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00156.html" target="topic">Audio Libraries Help</a> &gt; <a href="00151.html" target="topic">Decoder Library Help</a> &gt; <a href="00668.html" target="topic">MP3 Decoder Library</a> &gt; <a href="00669.html" target="topic">Introduction</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element1">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element2">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element90">
+<a href="00668.html" target="topic">Previous</a> | <a href="00668.html" target="topic">Up</a> | <a href="00667.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element96">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: MP3 Decoder Library Introduction Topic Title: Introduction)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table><div class="Element5">
+Introduction</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<a name="PageContent"></a><div class="Element58">
+<a name="4465736372697074696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+MP3 is a lossy compression standard. MP3 compression works by reducing (or approximating) the accuracy of certain components of sound that are considered (by psychoacoustic analysis) to be beyond the hearing capabilities of most humans. This method is commonly referred to as perceptual coding or as psychoacoustic modeling.[8] The remaining audio information is then recorded in a space-efficient manner, using MDCT and FFT algorithms. Compared to CD-quality digital audio, MP3 compression can commonly achieve a 75 to 95% reduction in size.&nbsp;</p>
+<p class="Element10">
+In Harmony 3, the MP3 decoder is limited to 16-bit audio, typically recorded at either CD quality (44100 samples/second) or DVD quality (48000 samples/second).&nbsp;</p>
+<p class="Element10">
+In addition to audio, an MP3 file may contain metadata, called ID3 tags, which include the name of the song, name of the artist, name of the album, and other information.&nbsp;</p>
+<p class="Element10">
+An MP3 file is made up of MP3 frames, which consist of a header and a data block. This sequence of frames is called an elementary stream. Due to the &quot;bit reservoir&quot;, frames are not independent items and cannot usually be extracted on arbitrary frame boundaries. The MP3 Data blocks contain the (compressed) audio information in terms of frequencies and amplitudes. The MP3 Header consists of a sync word, which is used to identify the beginning of a valid frame. This is followed by a bit indicating that this is the MPEG standard and two bits that indicate that layer 3 is used; hence MPEG-1 Audio Layer 3 or MP3.&nbsp;</p>
+<p class="Element10">
+MP3 was originally patented, but the last patent expired on April 16, 2017.&nbsp;</p>
+<p class="Element10">
+In Harmony 3, an open-source MP3 decoder called Helix MP3 is used. The main porition of the code is located in a separate repository called helix_mp3. The MP3 Decoder Library in the audio repository is just a wrapper that calls functions in the main library (which is brought in automatically when you generate code in MHC, with the MP3 Decoder Library selected).</p></div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00156.html" target="topic">Audio Libraries Help</a> &gt; <a href="00151.html" target="topic">Decoder Library Help</a> &gt; <a href="00668.html" target="topic">MP3 Decoder Library</a> &gt; <a href="00669.html" target="topic">Introduction</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element3">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element4">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element91">
+<a href="00668.html" target="topic">Previous</a> | <a href="00668.html" target="topic">Up</a> | <a href="00667.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: MP3 Decoder Library Introduction Topic Title: Introduction)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

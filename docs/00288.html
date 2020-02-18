@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_WM8904_BufferEventHandlerSet Function</title>
+<title>DRV_AK4954_VolumeSet Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00288.html" target="topic">DRV_WM8904_BufferEventHandlerSet Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00098.html" target="topic">Library Interface</a> &gt; Settings Functions &gt; <a href="00288.html" target="topic">DRV_AK4954_VolumeSet Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00295.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00297.html" target="topic">Next</a></div>
+<a href="00287.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00265.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BufferEventHandlerSet@DRV_HANDLE@DRV_WM8904_BUFFER_EVENT_HANDLER@uintptr_t Topic Title: DRV_WM8904_BufferEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_VolumeSet@DRV_HANDLE@DRV_AK4954_CHANNEL@uint8_t Topic Title: DRV_AK4954_VolumeSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_WM8904_BufferEventHandlerSet Function</div>
+DRV_AK4954_VolumeSet Function</div>
 </div>
 </div>
 
@@ -49,17 +49,7 @@ DRV_WM8904_BufferEventHandlerSet Function</div>
 <a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-      void DRV_WM8904_BufferEventHandlerSet&nbsp;</p>
-<p class="Element10">
-      (&nbsp;</p>
-<p class="Element10">
-          DRV_HANDLE handle,&nbsp;</p>
-<p class="Element10">
-          const <a href="00282.html" target="topic">DRV_WM8904_BUFFER_EVENT_HANDLER</a> eventHandler,&nbsp;</p>
-<p class="Element10">
-          const uintptr_t contextHandle&nbsp;</p>
-<p class="Element10">
-      )&nbsp;</p>
+  void DRV_AK4954_VolumeSet(DRV_HANDLE handle, <a href="00239.html" target="topic">DRV_AK4954_CHANNEL</a> channel, uint8_t volume);&nbsp;</p>
 <p class="Element10">
 &nbsp;</p></div>
 </div>
@@ -69,7 +59,7 @@ DRV_WM8904_BufferEventHandlerSet Function</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-This function allows a client to identify a buffer event handling function for the driver to call back when queued buffer transfers have finished.</p></div>
+This function sets the volume for AK4954 Codec.</p></div>
 </div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
@@ -77,18 +67,16 @@ Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-When a client calls <a href="00286.html" target="topic">DRV_WM8904_BufferAddWrite</a> function, it is provided with a handle identifying the buffer that was added to the driver's buffer queue. The driver will pass this handle back to the client by calling &quot;eventHandler&quot; function when the buffer transfer has completed.&nbsp;</p>
-<p class="Element10">
-The event handler should be set before the client performs any &quot;buffer add&quot; operations that could generate events. The event handler once set, persists until the client closes the driver or sets another event handler (which could be a &quot;NULL&quot; pointer to indicate no callback).</p></div>
+This functions sets the volume value from 0-255. The codec has DAC value to volume range mapping as :- 00 H : +12dB FF H : -115dB In order to make the volume value to dB mapping monotonically increasing from 00 to FF, re-mapping is introduced which reverses the volume value to dB mapping as well as normalizes the volume range to a more audible dB range. The current driver implementation assumes that all dB values under -60 dB are inaudible to the human ear. Re-Mapped values 00 H : -60 dB FF H : +12 dB</p></div>
 </div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-The <a href="00317.html" target="topic">DRV_WM8904_Initialize</a> routine must have been called for the specified WM8904 driver instance.&nbsp;</p>
+The <a href="00260.html" target="topic">DRV_AK4954_Initialize</a> routine must have been called for the specified AK4954 driver instance.&nbsp;</p>
 <p class="Element10">
-<a href="00323.html" target="topic">DRV_WM8904_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p></div>
+<a href="00278.html" target="topic">DRV_AK4954_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -110,14 +98,14 @@ handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 A valid open-instance handle, returned from the driver's open routine&nbsp;</div></td></tr><tr>
 <td class="Element302" valign="top" width="35%">
 <div class="Element303">
-eventHandler&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+chan&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-Pointer to the event handler function.&nbsp;</div></td></tr><tr>
+Audio channel volume to be set&nbsp;</div></td></tr><tr>
 <td class="Element302" valign="top" width="35%">
 <div class="Element303">
-context&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+volume&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-The value of parameter will be passed back to the client unchanged, when the eventHandler function is called. It can be used to identify any client specific data object that identifies the instance of the client module (for example, it may be a pointer to the client module's state structure).&nbsp;</div></td></tr></table></div></div>
+volume value specified in the range 0-255 (0x00 to 0xFF)&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -131,50 +119,17 @@ None.</p></div>
 Example</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12">MY_APP_OBJ myAppObj;
+<div class="Element13"><div class="Element12"><pre class="Element12"><i><span style="color: #008000">// myAppObj is an application specific object.</span></i>
+MY_APP_OBJ myAppObj;
+
 uint8_t mybuffer[MY_BUFFER_SIZE];
-<a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle;
+DRV_BUFFER_HANDLE bufferHandle;
 
-<i><span style="color: #008000">// myWM8904Handle is the handle returned</span></i>
-<i><span style="color: #008000">// by the DRV_WM8904_Open function.</span></i>
+<i><span style="color: #008000">// myAK4954Handle is the handle returned</span></i>
+<i><span style="color: #008000">// by the DRV_AK4954_Open function.</span></i>
 
-<i><span style="color: #008000">// Client registers an event handler with driver</span></i>
-
-DRV_WM8904_BufferEventHandlerSet(myWM8904Handle,
-                APP_WM8904BufferEventHandler, (uintptr_t)&amp;myAppObj);
-
-<a href="00286.html" target="topic">DRV_WM8904_BufferAddWrite</a>(myWM8904handle, &amp;bufferHandle
-                                    myBuffer, MY_BUFFER_SIZE);
-
-<strong><span style="color: #000080">if</span></strong>(<a href="00284.html" target="topic">DRV_WM8904_BUFFER_HANDLE_INVALID</a> == bufferHandle)
-{
-    <i><span style="color: #008000">// Error handling here</span></i>
-}
-
-<i><span style="color: #008000">// Event is received when</span></i>
-<i><span style="color: #008000">// the buffer is processed.</span></i>
-
-<strong><span style="color: #000080">void</span></strong> APP_WM8904BufferEventHandler(<a href="00278.html" target="topic">DRV_WM8904_BUFFER_EVENT</a> event,
-        <a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle)
-{
-    <i><span style="color: #008000">// contextHandle points to myAppObj.</span></i>
-
-    <strong><span style="color: #000080">switch</span></strong>(event)
-    {
-        <strong><span style="color: #000080">case</span></strong> DRV_WM8904_BUFFER_EVENT_COMPLETE:
-
-            <i><span style="color: #008000">// This means the data was transferred.</span></i>
-            <strong><span style="color: #000080">break</span></strong>;
-
-        <strong><span style="color: #000080">case</span></strong> DRV_WM8904_BUFFER_EVENT_ERROR:
-
-            <i><span style="color: #008000">// Error handling here.</span></i>
-            <strong><span style="color: #000080">break</span></strong>;
-
-        <strong><span style="color: #000080">default</span></strong>:
-            <strong><span style="color: #000080">break</span></strong>;
-    }
-}</pre></div></div>
+    DRV_AK4954_VolumeSet(myAK4954Handle, DRV_AK4954_CHANNEL_LEFT, 120); 
+</pre></div></div>
 </div>
 </div>
 <a name="52656D61726B73"></a><div class="Element14">
@@ -182,21 +137,21 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-If the client does not want to be notified when the queued buffer transfer has completed, it does not need to register a callback.</p></div>
+None.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_BufferEventHandlerSet</span></strong>(
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_AK4954_VolumeSet</span></strong>(
     DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> <a href="00282.html" target="topic">DRV_WM8904_BUFFER_EVENT_HANDLER</a> <strong><span style="color: #000000">eventHandler</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> uintptr_t <strong><span style="color: #000000">contextHandle</span></strong>
+    <a href="00239.html" target="topic">DRV_AK4954_CHANNEL</a> <strong><span style="color: #000000">channel</span></strong>, 
+    uint8_t <strong><span style="color: #000000">volume</span></strong>
 );</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00288.html" target="topic">DRV_WM8904_BufferEventHandlerSet Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00098.html" target="topic">Library Interface</a> &gt; Settings Functions &gt; <a href="00288.html" target="topic">DRV_AK4954_VolumeSet Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -204,13 +159,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00295.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00297.html" target="topic">Next</a></div>
+<a href="00287.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00265.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BufferEventHandlerSet@DRV_HANDLE@DRV_WM8904_BUFFER_EVENT_HANDLER@uintptr_t Topic Title: DRV_WM8904_BufferEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_VolumeSet@DRV_HANDLE@DRV_AK4954_CHANNEL@uint8_t Topic Title: DRV_AK4954_VolumeSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

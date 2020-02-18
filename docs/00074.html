@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Building the Application</title>
+<title>How the Library Works</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00074.html" target="topic">Building the Application</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00080.html" target="topic">Using the Library</a> &gt; <a href="00074.html" target="topic">How the Library Works</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00073.html" target="topic">Previous</a> | <a href="00073.html" target="topic">Up</a> | <a href="00075.html" target="topic">Next</a></div>
+<a href="00077.html" target="topic">Previous</a> | <a href="00080.html" target="topic">Up</a> | <a href="00072.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_tone_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC How the Library Works Topic Title: How the Library Works)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Building the Application</div>
+How the Library Works</div>
 </div>
 </div>
 
@@ -48,84 +48,36 @@ Building the Application</div>
 <a name="PageContent"></a><div class="Element58">
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<p class="Element10">
-The parent folder for these files is <span class="Element146">audio/apps/audio_tone</span>. To build this project, you must open the <span class="Element146">audio/apps/audio_tone/firmware/*.X</span> project file in MPLAB X IDE that corresponds to your hardware configuration.</p><div class="Element15">
-MPLAB X IDE Project Configurations</div>
-<p class="Element10">
-The following table lists and describes supported project configurations. </p><div class="Element63">
+</div>
+</div>
+<a name="546F70696373"></a><div class="Element14">
+Topics</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
 <div class="TableDiv">
-<table cellspacing="0" class="Table2">
+<table cellspacing="0" class="Table1">
 <tr>
-<td class="Element65" valign="top" width="10%">
-<div class="Element66">
-Project Name&nbsp;</div></td><td class="Element65" valign="top" width="3%">
-<div class="Element66">
-BSP Used&nbsp;</div></td><td class="Element65" valign="top" width="87%">
-<div class="Element66">
+<td class="Element200" valign="top" width="35%">
+<div class="Element201">
+Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
+<div class="Element205">
 Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
-<div class="Element68">
-audio_tone_<br>pic32mx_btadk_<br>ak4954&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-pic32mx_btadk&nbsp;</div></td><td class="Element67" valign="top" width="87%">
-<div class="Element68">
-This demonstration runs on the PIC32MX470F512L processor on the Bluetooth Audio Development Kit (BTADK) and the AK4954 Audio Codec Daughter Board. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the I2S PLIB. The AK4954 codec is configured as the slave, and the I2S peripheral as the master.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
-<div class="Element68">
-audio_tone_<br>pic32mz_ef_btadk_<br>ak4954&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-pic32mz_ef_btadk&nbsp;</div></td><td class="Element67" valign="top" width="87%">
-<div class="Element68">
-This demonstration runs on the PIC32MZ2048EFH144 processor on the Bluetooth Audio Development Kit (BTADK) and the AK4954 Audio Codec Daughter Board. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the I2S PLIB. The AK4954 codec is configured as the slave, and the I2S peripheral as the master.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
-<div class="Element68">
-audio_tone_<br>pic32mz_ef_c2_<br>ak4954&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-pic32mz_ef_curiosity_v2&nbsp;</div></td><td class="Element67" valign="top" width="87%">
-<div class="Element68">
-This demonstration runs on the PIC32MZ2048EFM144 processor on the PIC32 MZ EF Curiosity 2.0 board and the AK4954 Audio Codec Daughter Board. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the I2S PLIB. The AK4954 codec is configured as the slave, and the I2S peripheral as the master.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
-<div class="Element68">
-audio_tone_<br>sam_e54_cult<br>wm8904_ssc_freertos&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e54_cult&nbsp;</div></td><td class="Element67" valign="top" width="87%">
-<div class="Element68">
-This demonstration runs on the ATSAME54P20A processor on the SAM E54 Curiosity Ultra board and the WM8904 Audio Codec Daughter Board. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the SSC PLIB. The WM8904 codec is configured as the master, and the SSC peripheral as the slave. This demonstration also uses FreeRTOS.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
-<div class="Element68">
-audio_tone_<br>sam_e70_xult_<br>ak4954_ssc&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="87%">
-<div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board and the AK4954 Audio Codec Daughter Board. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the SSC PLIB. The AK4954 codec is configured as the slave, and the SSC peripheral as the master.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
-<div class="Element68">
-audio_tone_<br>sam_e70_xult_<br>wm8904_ssc&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="87%">
-<div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the SSC PLIB. The WM8904 codec is configured as the master, and the SSC peripheral as the slave.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
-<div class="Element68">
-audio_tone_<br>sam_e70_xult_<br>wm8904_ssc_freertos&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="87%">
-<div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the SSC PLIB. The WM8904 codec is configured as the master, and the SSC peripheral as the slave. This demonstration also uses FreeRTOS.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
-<div class="Element68">
-audio_tone_<br>sam_e70_xult<br>_wm8904_i2sc&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="87%">
-<div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the I2SC PLIB. The WM8904 codec is configured as the slave, and the I2SC peripheral as the master.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
-<div class="Element68">
-audio_tone_<br>sam_v71_xult&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_v71_xult&nbsp;</div></td><td class="Element67" valign="top" width="87%">
-<div class="Element68">
-This demonstration runs on the ATSAMV71Q21B processor on the SAM V71 Xplained Ultra board along with the on-board WM8904 codec. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the SSC PLIB. The WM8904 codec is configured as the master, and the SSC peripheral as the slave.&nbsp;</div></td></tr></table></div></div>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00072.html" target="topic">Setup (Initialization)</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This topic describes system initialization, implementations, and includes a system access code example.&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00070.html" target="topic">Client Access</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This topic describes driver initialization and provides a code example.&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00071.html" target="topic">Client Operations</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+This topic provides information on client operations.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -133,7 +85,7 @@ This demonstration runs on the ATSAMV71Q21B processor on the SAM V71 Xplained Ul
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a> &gt; <a href="00074.html" target="topic">Building the Application</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00080.html" target="topic">Using the Library</a> &gt; <a href="00074.html" target="topic">How the Library Works</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -141,13 +93,13 @@ This demonstration runs on the ATSAMV71Q21B processor on the SAM V71 Xplained Ul
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00073.html" target="topic">Previous</a> | <a href="00073.html" target="topic">Up</a> | <a href="00075.html" target="topic">Next</a></div>
+<a href="00077.html" target="topic">Previous</a> | <a href="00080.html" target="topic">Up</a> | <a href="00072.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_tone_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC How the Library Works Topic Title: How the Library Works)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<title>DSP_VectorDotp32 Function</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoadEx('frames.html', 'topic', '00505.html');" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00505.html" target="topic">DSP_VectorDotp32 Function</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element1">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element2">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element90">
+<a href="00504.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00506.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element96">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_VectorDotp32@int32_t *@int32_t *@int@int Topic Title: DSP_VectorDotp32 Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table><div class="Element5">
+DSP_VectorDotp32 Function</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<a name="PageContent"></a><div class="Element58">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Computes the dot product of two vectors, and scales the output by a binary factor</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Function DSP_VectorDotp32:&nbsp;</p>
+<p class="Element10">
+int32_t DSP_VectorDotp32(int32_t *indata1, int32_t *indata2, int N, int scale);&nbsp;</p>
+<p class="Element10">
+Calculates the dot product of two input vectors, and scales the output. Function will saturate if it exceeds maximum or minimum values. Scaling is done by binary shifting, after calculation of the result. All calculations are done in Q31 fractional format. return = 1/(2^scale) * sum(indata1[i] * indata2[i])</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The pointers outdata and indata must be aligned on 4-byte boundaries. N must be greater than or equal to four and a multiple of four.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+indata1&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+pointer to input array of 16-bit elements (int32_t)&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+indata2&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+pointer to input array of 16-bit elements (int32_t)&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+scale&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+number of bits to shift return right (int)&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+N&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+number of samples (int)&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+int16_t - scaled output of calculation, Q31 format</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">
+int32_t inBufMultA[8]={0x7FFFFFFF, 0x80000000, 0x73333333, 0x66666666,
+                           0x19999999, 0x40000000, 0x7FFFFFFF, 0xB3333334};
+<i><span style="color: #008000">//                  1,     -1,      0.9,    0.8,    0.2,   0.5,    1,     -0.6</span></i>
+int32_t inBufMultB[8]={0x0CCCCCCD, 0x0CCCCCCD, 0x40000000, 0xC0000000,
+                           0xE6666667, 0x40000000, 0x00000000, 0x0CCCCCCD};
+<i><span style="color: #008000">//                  0.1,    0.1,    0.5,   -0.5,   -0.2,   0.5,    0,      0.1</span></i>
+<strong><span style="color: #000080">int</span></strong> Num = 8;
+<strong><span style="color: #000080">int</span></strong> scaleVal = 2;
+int32_t outScalar;
+
+<strong><span style="color: #000080">int</span></strong> Num = 8;
+
+outScalar = DSP_VectorDotp32(inBufMultA, inBufMultB, Num, scaleVal);
+
+<i><span style="color: #008000">// outScalar = 1/(2^scaleVal)*(inBufMultA[] dot inBufMultB[]) =</span></i>
+<i><span style="color: #008000">//   (1/4) * (0.1 + -0.1 + 0.45 + -0.4 + -0.04 + 0.25 + 0 + -0.06) = 0.25 * 0.20 = 0.05</span></i>
+<i><span style="color: #008000">//      = (int32_t)0x06666666</span></i>
+</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This must be assembled with .set microMIPS.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100">int32_t <strong><span style="color: #000000">DSP_VectorDotp32</span></strong>(
+    int32_t * <strong><span style="color: #000000">indata1</span></strong>, 
+    int32_t * <strong><span style="color: #000000">indata2</span></strong>, 
+    <strong><span style="color: #000080">int</span></strong> <strong><span style="color: #000000">N</span></strong>, 
+    <strong><span style="color: #000080">int</span></strong> <strong><span style="color: #000000">scale</span></strong>
+);</pre></div></div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00505.html" target="topic">DSP_VectorDotp32 Function</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element3">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element4">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element91">
+<a href="00504.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00506.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_VectorDotp32@int32_t *@int32_t *@int@int Topic Title: DSP_VectorDotp32 Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

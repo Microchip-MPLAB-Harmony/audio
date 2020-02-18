@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Introduction</title>
+<title>_LIBQ_Q16Sqrt Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00098.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a> &gt; <a href="00013.html" target="topic">Introduction</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00653.html" target="topic">LibQ</a> &gt; <a href="00657.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00013.html" target="topic">_LIBQ_Q16Sqrt Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00010.html" target="topic">Previous</a> | <a href="00010.html" target="topic">Up</a> | <a href="00099.html" target="topic">Next</a></div>
+<a href="00012.html" target="topic">Previous</a> | <a href="00657.html" target="topic">Up</a> | <a href="00014.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: ADPCM Ecncoder Library Introduction Topic Title: Introduction)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: _LIBQ_Q16Sqrt@_Q16 Topic Title: _LIBQ_Q16Sqrt Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Introduction</div>
+_LIBQ_Q16Sqrt Function</div>
 </div>
 </div>
 
@@ -46,21 +46,91 @@ Introduction</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Adaptive Differential Pulse Code Modulation (ADPCM) is a royalty-free audio codec. It is a lossy compression standard. It is a variant of Differential Pulse-Code Modulation (DPCM). The file format used to contain an ADPCM files, is the same as WAV.&nbsp;</p>
-<p class="Element10">
-Its popularity comes because it achieves compression of 4 to 1 but does not require high processing power.&nbsp;</p>
-<p class="Element10">
-Typical applications using ADPCM are for speech. This implementation currently supports 16 bit stereo.</p></div>
+Square root of a positive _Q16 fixed point value.</p></div>
 </div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Function _LIBQ_Q16Sqrt:&nbsp;</p>
+<p class="Element10">
+_Q16 _LIBQ_Q16Sqrt(_Q16 x);&nbsp;</p>
+<p class="Element10">
+Calculate the square root of a positive _Q16 fixed point value, and return the _Q16 result.</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The input value must be positive.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+x&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+The _Q16 fixed point value input from which to find the square root.&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+_LIBQ_Q16Sqrt returns the _Q16 fixed point value which is the square root of the input parameter.</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">
+_Q16 squareRoot;
+
+squareRoot = _LIBQ_Q16Sqrt((_Q16)0x01000000);  <i><span style="color: #008000">// The square root of 256.0 is 16.0 (0x00100000)</span></i>
+
+squareRoot = _LIBQ_Q16Sqrt((_Q16)0x00004000);  <i><span style="color: #008000">// The square root of 0.25 is 0.5 (0x00008000)</span></i>
+
+squareRoot = _LIBQ_Q16Sqrt((_Q16)0x5851f42d);  <i><span style="color: #008000">// The square root of 22609.953125 is 150.366074 (0x00965db7)</span></i>
+</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Execution Time (cycles): 240 typical (104 to 258) Program Memory 152 bytes&nbsp;</p>
+<p class="Element10">
+Error &lt;= 0.000015258789 (accurate to least significant _Q16 bit)</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100">_Q16 <strong><span style="color: #000000">_LIBQ_Q16Sqrt</span></strong>(
+    _Q16 <strong><span style="color: #000000">x</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00098.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a> &gt; <a href="00013.html" target="topic">Introduction</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00653.html" target="topic">LibQ</a> &gt; <a href="00657.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00013.html" target="topic">_LIBQ_Q16Sqrt Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -68,13 +138,13 @@ Typical applications using ADPCM are for speech. This implementation currently s
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00010.html" target="topic">Previous</a> | <a href="00010.html" target="topic">Up</a> | <a href="00099.html" target="topic">Next</a></div>
+<a href="00012.html" target="topic">Previous</a> | <a href="00657.html" target="topic">Up</a> | <a href="00014.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: ADPCM Ecncoder Library Introduction Topic Title: Introduction)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: _LIBQ_Q16Sqrt@_Q16 Topic Title: _LIBQ_Q16Sqrt Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

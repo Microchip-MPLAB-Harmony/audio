@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<title>DSP_VectorRecip Function</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoadEx('frames.html', 'topic', '00521.html');" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00521.html" target="topic">DSP_VectorRecip Function</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element1">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element2">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element90">
+<a href="00520.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00522.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element96">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_VectorRecip@_Q16 *@_Q16 *@int Topic Title: DSP_VectorRecip Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table><div class="Element5">
+DSP_VectorRecip Function</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<a name="PageContent"></a><div class="Element58">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Computes the reciprocal (1/x) of the first N elements of inVector, and stores the result in outVector.</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Function DSP_VectorRecip:&nbsp;</p>
+<p class="Element10">
+void DSP_VectorRecip(_Q16 *outVector, _Q16 *inVector, int N);&nbsp;</p>
+<p class="Element10">
+Computes the reciprocal (1/x) on the first N elements of inVector. The output is stored to outVector. Both vectors are _Q16 format, which is 32-bit data with 15 bits for the integer and 16 bits for the fractional portion. If values exceed maximum or minimum they will saturate to the maximum or minimum respectively.</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The pointers outdata and indata must be aligned on 4-byte boundaries. This function uses the Div function from the LibQ library. That library must be compiled as part of the project.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+outdata&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+pointer to destination array of elements (_Q16)&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+indata&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+pointer to source array of elements (_Q16)&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+N&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+number of samples (int)&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+None.</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">
+<strong><span style="color: #000080">int</span></strong> recNum = 4;
+_Q16 inRecVec[8] = {0x08000000, 0xfffc0000,0x00020000,0x00100000,0x00038000,
+               0x00400000,0xfffe0000,0x00058000};
+<i><span style="color: #008000">//            2048.0, -4.0, 2.0, 16.0, 3.5, 64.0, -2.0, 5.5</span></i>
+_Q16 outRecVec[8] = {0};
+
+DSP_VectorRecip(outRecVec, inRecVec,  recNum);
+
+<i><span style="color: #008000">// outRecVec =  0x00000020, 0xFFFFC0000, 0x00008000, 0x00001000, 0, 0, 0, 0</span></i>
+<i><span style="color: #008000">//                0.000488,       -0.25,        0.5,     0.0625, 0, 0, 0, 0</span></i></pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This function uses the Microchip PIC32MZ LibQ library to function. The user must include that library and header file into the design in order to operate this function. For more information on the Div function see the LibQ documentation for <a href="00010.html" target="topic">_LIBQ_Q16Div</a>. A value of zero in the array will not cause an error, but will return 0.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DSP_VectorRecip</span></strong>(
+    _Q16 * <strong><span style="color: #000000">outVector</span></strong>, 
+    _Q16 * <strong><span style="color: #000000">inVector</span></strong>, 
+    <strong><span style="color: #000080">int</span></strong> <strong><span style="color: #000000">N</span></strong>
+);</pre></div></div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00521.html" target="topic">DSP_VectorRecip Function</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element3">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element4">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element91">
+<a href="00520.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00522.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_VectorRecip@_Q16 *@_Q16 *@int Topic Title: DSP_VectorRecip Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

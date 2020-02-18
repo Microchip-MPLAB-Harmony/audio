@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Confuguring MHC</title>
+<title>DRV_GENERICCODEC_WriteQueuePurge Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00348.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00341.html" target="topic">Confuguring MHC</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00573.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00574.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00341.html" target="topic">DRV_GENERICCODEC_WriteQueuePurge Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00238.html" target="topic">Previous</a> | <a href="00348.html" target="topic">Up</a> | <a href="00337.html" target="topic">Next</a></div>
+<a href="00331.html" target="topic">Previous</a> | <a href="00574.html" target="topic">Up</a> | <a href="00324.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: GENERIC AUDIO DRIVER CODEC Configuring MHC Topic Title: Confuguring MHC)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_WriteQueuePurge@DRV_HANDLE Topic Title: DRV_GENERICCODEC_WriteQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Confuguring MHC</div>
+DRV_GENERICCODEC_WriteQueuePurge Function</div>
 </div>
 </div>
 
@@ -46,51 +46,102 @@ Confuguring MHC</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
- &nbsp;</p>
+   bool DRV_GENERICCODEC_WriteQueuePurge( const DRV_HANDLE handle )&nbsp;</p>
 <p class="Element10">
-When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the based on the BSP, and select the appropriate processor (such as ATSAME70Q21B).&nbsp;</p>
-<p class="Element10">
-In the MHC, under Available Components select the appropriate BSP, such as SAM E70 Xplained Ultra. Under <i>Audio&gt;Templates</i>, double-click on a codec template such as Generic. Answer Yes to all questions.&nbsp;</p>
-<p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone_E70_Generic_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-Click on the Generic Driver component (not Generic Codec) and the following menu will be displayed in the Configurations Options: </p><p class="Element10" style="text-align: center;">
-<img src="DRV AUDIO Generic MHC.png" border="0" alt="" title=""></p>
-<ul class="Element630">
-<li class="Element600"><strong>I2C Driver Used</strong> will display the driver instance used for the I<sup>2</sup>C interface.</li>
-<li class="Element600"><strong>I2S Driver Used</strong> will display the driver instance used for the I<sup>2</sup>S interface.</li>
-<li class="Element600"><strong>Number of Generic Clients</strong> indicates the maximum number of clients that can be connected to the Generic Driver.</li>
-<li class="Element600"><strong>Sampling Rate</strong> indicates the number of samples per second per channel, 8000 to 96,000.</li>
-<li class="Element600"><strong>Volume</strong> indicates the volume in a linear scale from 0-255.</li>
-<li class="Element600"><strong>Audio Data Format</strong> is either
-<ul class="Element631">
-<li class="Element601">24-bit Left Justified (ADC), 24-bit Right-justified(DAC)</li>
-<li class="Element601">24-bit Left Justified (ADC), 16-bit Right-justified(DAC)</li>
-<li class="Element601">24-bit Left Justified (ADC), 24-bit Left-justified(DAC)</li>
-<li class="Element601">24/16-bit I2S</li>
-<li class="Element601">32-bit Left Justified (ADC), 32-bit Left-justified(DAC)</li>
-<li class="Element601">32-bit I2S</li>
-</ul></li>
-</ul><p class="Element10">
-It must match the audio protocol and data length set up in either the SSC or I2S PLIB..&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-You can also bring in the Generic Driver by itself, by double clicking Generic under Audio<i>-&gt;Driver-&gt;Codec</i> in the Available Components list. You will then need to add any additional needed components manually and connect them together.&nbsp;</p>
-<p class="Element10">
-Note that the Generic requires the TCx Peripheral Library and TIME System Service in order to perform some of its internal timing sequences.</p></div>
+&nbsp;</p></div>
 </div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Removes all buffer requests from the write queue.</p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This function removes all the buffer requests from the write queue. The client can use this function to purge the queue on timeout or to remove unwanted stalled buffer requests or in any other use case.</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+<a href="00330.html" target="topic">DRV_GENERICCODEC_Open</a> must have been called to obtain a valid opened device handle.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+Handle of the communication channel as returned by the <a href="00330.html" target="topic">DRV_GENERICCODEC_Open</a> function.&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+True - Write queue purge is successful. False - Write queue purge has failed.</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12"><i><span style="color: #008000">// myCodecHandle is the handle returned by the DRV_GENERICCODEC_Open function.</span></i>
+<i><span style="color: #008000">// Use DRV_GENERICCODEC_BufferAddWrite to queue write requests</span></i>
+
+<i><span style="color: #008000">// Application timeout function, where remove queued buffers.</span></i>
+<strong><span style="color: #000080">void</span></strong> APP_TimeOut(<strong><span style="color: #000080">void</span></strong>)
+{
+    <strong><span style="color: #000080">if</span></strong>(<strong><span style="color: #000080">false</span></strong> == DRV_GENERICCODEC_WriteQueuePurge(myCodecHandle))
+    {
+        <i><span style="color: #008000">//Couldn't purge the write queue, try again.</span></i>
+    }
+    <strong><span style="color: #000080">else</span></strong>
+    {
+        <i><span style="color: #008000">//Queue purge successful.</span></i>
+    }
+}</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This function is thread safe when used in an RTOS environment. Avoid this function call from within the callback.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">DRV_GENERICCODEC_WriteQueuePurge</span></strong>(
+    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00348.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00341.html" target="topic">Confuguring MHC</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00573.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00574.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00341.html" target="topic">DRV_GENERICCODEC_WriteQueuePurge Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -98,13 +149,13 @@ Note that the Generic requires the TCx Peripheral Library and TIME System Servic
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00238.html" target="topic">Previous</a> | <a href="00348.html" target="topic">Up</a> | <a href="00337.html" target="topic">Next</a></div>
+<a href="00331.html" target="topic">Previous</a> | <a href="00574.html" target="topic">Up</a> | <a href="00324.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: GENERIC AUDIO DRIVER CODEC Configuring MHC Topic Title: Confuguring MHC)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_WriteQueuePurge@DRV_HANDLE Topic Title: DRV_GENERICCODEC_WriteQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

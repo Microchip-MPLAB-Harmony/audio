@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_WM8904_BUFFER_EVENT Enumeration</title>
+<title>DRV_AK4954_Open Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00278.html" target="topic">DRV_WM8904_BUFFER_EVENT Enumeration</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00098.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00278.html" target="topic">DRV_AK4954_Open Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00271.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00282.html" target="topic">Next</a></div>
+<a href="00283.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00241.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BUFFER_EVENT Topic Title: DRV_WM8904_BUFFER_EVENT Enumeration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_Open@SYS_MODULE_INDEX@DRV_IO_INTENT Topic Title: DRV_AK4954_Open Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_WM8904_BUFFER_EVENT Enumeration</div>
+DRV_AK4954_Open Function</div>
 </div>
 </div>
 
@@ -46,70 +46,124 @@ DRV_WM8904_BUFFER_EVENT Enumeration</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="53756D6D617279"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Identifies the possible events that can result from a buffer add request.</p></div>
+   DRV_HANDLE DRV_AK4954_Open&nbsp;</p>
+<p class="Element10">
+   (&nbsp;</p>
+<p class="Element10">
+       const SYS_MODULE_INDEX drvIndex,&nbsp;</p>
+<p class="Element10">
+       const DRV_IO_INTENT ioIntent&nbsp;</p>
+<p class="Element10">
+   )&nbsp;</p>
+<p class="Element10">
+&nbsp;</p></div>
+</div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Opens the specified AK4954 driver instance and returns a handle to it.</p></div>
+</div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
 Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-WM8904 Driver Events&nbsp;</p>
+This routine opens the specified AK4954 driver instance and provides a handle that must be provided to all other client-level operations to identify the caller and the instance of the driver. The ioIntent parameter defines how the client interacts with this driver instance.&nbsp;</p>
 <p class="Element10">
-This enumeration identifies the possible events that can result from a buffer add request caused by the client calling either the <a href="00286.html" target="topic">DRV_WM8904_BufferAddWrite</a>() or the <a href="00285.html" target="topic">DRV_WM8904_BufferAddRead</a>() function.</p></div>
+The DRV_IO_INTENT_BLOCKING and DRV_IO_INTENT_NONBLOCKING ioIntent options are not relevant to this driver. All the data transfer functions of this driver are non blocking.&nbsp;</p>
+<p class="Element10">
+AK4954 can be opened with DRV_IO_INTENT_WRITE, or DRV_IO_INTENT_READ or DRV_IO_INTENT_WRITEREAD io_intent option. This decides whether the driver is used for headphone output, or microphone input or both modes simultaneously.&nbsp;</p>
+<p class="Element10">
+Specifying a DRV_IO_INTENT_EXCLUSIVE will cause the driver to provide exclusive access to this client. The driver cannot be opened by any other client.</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Function <a href="00260.html" target="topic">DRV_AK4954_Initialize</a> must have been called before calling this function.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
+<div class="TableDiv">
+<table cellspacing="0" class="Table3">
+<tr>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+drvIndex&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+Identifier for the object instance to be opened<br>&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+ioIntent&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+Zero or more of the values from the enumeration DRV_IO_INTENT &quot;ORed&quot; together to indicate the intended use of the driver. See function description for details.&nbsp;</div></td></tr></table></div></div>
+</div>
+</div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+If successful, the routine returns a valid open-instance handle (a number identifying both the caller and the module instance).&nbsp;</p>
+<p class="Element10">
+If an error occurs, the return value is DRV_HANDLE_INVALID. Error can occur</p>
+<ul class="Element630">
+<li class="Element600">if the number of client objects allocated via <a href="00240.html" target="topic">DRV_AK4954_CLIENTS_NUMBER</a> is insufficient.</li>
+<li class="Element600">if the client is trying to open the driver but driver has been opened exclusively by another client.</li>
+<li class="Element600">if the driver hardware instance being opened is not initialized or is invalid.</li>
+<li class="Element600">if the ioIntent options passed are not relevant to this driver.</li>
+</ul></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">DRV_HANDLE handle;
+
+handle = DRV_AK4954_Open(<a href="00253.html" target="topic">DRV_AK4954_INDEX_0</a>, DRV_IO_INTENT_WRITEREAD | DRV_IO_INTENT_EXCLUSIVE);
+<strong><span style="color: #000080">if</span></strong> (DRV_HANDLE_INVALID == handle)
+{
+    <i><span style="color: #008000">// Unable to open the driver</span></i>
+    <i><span style="color: #008000">// May be the driver is not initialized or the initialization</span></i>
+    <i><span style="color: #008000">// is not complete.</span></i>
+}</pre></div></div>
+</div>
 </div>
 <a name="52656D61726B73"></a><div class="Element14">
 Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-One of these values is passed in the &quot;event&quot; parameter of the event handling callback function that the client registered with the driver by calling the <a href="00288.html" target="topic">DRV_WM8904_BufferEventHandlerSet</a> function when a buffer transfer request is completed.</p></div>
+The handle returned is valid until the <a href="00241.html" target="topic">DRV_AK4954_Close</a> routine is called. This routine will NEVER block waiting for hardware.If the requested intent flags are not supported, the routine will return DRV_HANDLE_INVALID. This function is thread safe in a RTOS application. It should not be called in an ISR.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">enum</span></strong> {
-  <strong><span style="color: #000000">DRV_WM8904_BUFFER_EVENT_COMPLETE</span></strong>,
-  <strong><span style="color: #000000">DRV_WM8904_BUFFER_EVENT_ERROR</span></strong>,
-  <strong><span style="color: #000000">DRV_WM8904_BUFFER_EVENT_ABORT</span></strong>
-} DRV_WM8904_BUFFER_EVENT;</pre></div></div>
-<a name="4D656D62657273"></a><div class="Element14">
-Members</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element272">
-<div class="TableDiv">
-<table cellspacing="0" class="Table4">
-<tr>
-<td class="Element260" valign="top" width="35%">
-<div class="Element261">
-Members&nbsp;</div></td><td class="Element264" valign="top" width="65%">
-<div class="Element265">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element262" valign="top" width="35%">
-<div class="Element263">
-DRV_WM8904_BUFFER_EVENT_COMPLETE&nbsp;</div></td><td class="Element266" valign="top" width="65%">
-<div class="Element267">
-Data was transferred successfully.&nbsp;</div></td></tr><tr>
-<td class="Element262" valign="top" width="35%">
-<div class="Element263">
-DRV_WM8904_BUFFER_EVENT_ERROR&nbsp;</div></td><td class="Element266" valign="top" width="65%">
-<div class="Element267">
-Error while processing the request&nbsp;</div></td></tr><tr>
-<td class="Element262" valign="top" width="35%">
-<div class="Element263">
-DRV_WM8904_BUFFER_EVENT_ABORT&nbsp;</div></td><td class="Element266" valign="top" width="65%">
-<div class="Element267">
-Data transfer aborted (Applicable in DMA mode)&nbsp;</div></td></tr></table></div></div>
-</div>
-</div>
+<div class="Element101"><div class="Element100"><pre class="Element100">DRV_HANDLE <strong><span style="color: #000000">DRV_AK4954_Open</span></strong>(
+    <strong><span style="color: #000080">const</span></strong> SYS_MODULE_INDEX <strong><span style="color: #000000">iDriver</span></strong>, 
+    <strong><span style="color: #000080">const</span></strong> DRV_IO_INTENT <strong><span style="color: #000000">ioIntent</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00278.html" target="topic">DRV_WM8904_BUFFER_EVENT Enumeration</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00098.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00278.html" target="topic">DRV_AK4954_Open Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -117,13 +171,13 @@ Data transfer aborted (Applicable in DMA mode)&nbsp;</div></td></tr></table></di
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00271.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00282.html" target="topic">Next</a></div>
+<a href="00283.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00241.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BUFFER_EVENT Topic Title: DRV_WM8904_BUFFER_EVENT Enumeration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_Open@SYS_MODULE_INDEX@DRV_IO_INTENT Topic Title: DRV_AK4954_Open Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Building the Application</title>
+<title>Configuring MHC</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00065.html" target="topic">audio_player_basic</a> &gt; <a href="00066.html" target="topic">Building the Application</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00066.html" target="topic">Configuring MHC</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00065.html" target="topic">Previous</a> | <a href="00065.html" target="topic">Up</a> | <a href="00067.html" target="topic">Next</a></div>
+<a href="00082.html" target="topic">Previous</a> | <a href="00069.html" target="topic">Up</a> | <a href="00064.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_player_basic_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC Configuring MHC Topic Title: Configuring MHC)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Building the Application</div>
+Configuring MHC</div>
 </div>
 </div>
 
@@ -49,63 +49,58 @@ Building the Application</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-The parent folder for these files is <span class="Element146">audio/apps/audio_player_basic</span>. To build this project, you must open the <span class="Element146">audio/apps/audio_player_basic/firmware/*.X</span> project file in MPLAB X IDE that corresponds to your hardware configuration.</p><div class="Element15">
-MPLAB X IDE Project Configurations</div>
+When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the based on the BSP, and select the appropriate processor.&nbsp;</p>
 <p class="Element10">
-The following table lists and describes supported project configurations. </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="7%">
-<div class="Element66">
-Project Name&nbsp;</div></td><td class="Element65" valign="top" width="3%">
-<div class="Element66">
-BSP Used&nbsp;</div></td><td class="Element65" valign="top" width="90%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="7%">
-<div class="Element68">
-apb_sam_e54_ult_wm8904_i2s_sdmmc&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e54_cult&nbsp;</div></td><td class="Element67" valign="top" width="90%">
-<div class="Element68">
-This demonstration runs on the ATSAME54P20A processor on the SAM E54 Curiosity Ultra board with the WM8904 Audio Codec Daughter Board. The WM8904 codec is configured as the master, and the I2S peripheral as the slave. The project config is for reading data from a microSD card. The data is sent to the headphone output of the codec daughter card via I2S driver.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="7%">
-<div class="Element68">
-apb_sam_e54_ult_wm8904_i2s_sdmmc_freertos&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e54_cult&nbsp;</div></td><td class="Element67" valign="top" width="90%">
-<div class="Element68">
-This demonstration runs on the ATSAME54P20A processor on the SAM E54 Curiosity Ultra board with the WM8904 Audio Codec Daughter Board. The WM8904 codec is configured as the master, and the I2S peripheral as the slave. The project config is for reading data from a microSD card. The data is sent to the headphone output of the codec daughter card via I2S driver. This demonstration uses FreeRTOS to schedule running tasks.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="7%">
-<div class="Element68">
-apb_sam_e70_xult_wm8904_ssc&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="90%">
-<div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board with the WM8904 Audio Codec Daughter Board. The WM8904 codec is configured as the master, and the SSC peripheral as the slave. The project configuration is for reading data from a file on a USB Mass Storage Device. The data is sent to the headphone output of the codec daughter card via I2S protocol using the SSC PLib.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="7%">
-<div class="Element68">
-apb_sam_e70_xult_wm8904_ssc_freertos&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="90%">
-<div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board with the WM8904 Audio Codec Daughter Board. The WM8904 codec is configured as the master, and the SSC peripheral as the slave. The project configuration is for reading data from a file on a USB Mass Storage Device. The data is sent to the headphone output of the codec daughter card via I2S protocol using the SSC PLib. This demonstration uses FreeRTOS to schedule tasks to run.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="7%">
-<div class="Element68">
-apb_sam_e70_xult_wm8904_ssc_wqvga&nbsp;</div></td><td class="Element67" valign="top" width="3%">
-<div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="90%">
-<div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board with the WM8904 Audio Codec Daughter Board. The WM8904 codec is configured as the master, and the SSC peripheral as the slave. The project configuration is for reading data from a file on a USB Mass Storage Device. The data is sent to the headphone output of the codec daughter card via I2S protocol using the SSC PLib. This demonstration also uses graphics to display status and controls for the board.&nbsp;</div></td></tr></table></div></div>
-</div>
+In the MHC, under Available Components select the appropriate BSP. Under <i>Audio&gt;Templates</i>, double-click on a codec template such as AK4953. Answer Yes to all questions.&nbsp;</p>
+<p class="Element10">
+You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_tone_E70_AK4953_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
+Click on the AK4953 Driver component (not AK4953 Codec) and the following menu will be displayed in the Configurations Options: </p><p class="Element10" style="text-align: center;">
+<img src="DRV AUDIO AK4953 MHC.png" border="0" alt="" title=""></p>
+<ul class="Element630">
+<li class="Element600"><strong>I2C Driver Used</strong> will display the driver instance used for the I<sup>2</sup>C interface.</li>
+<li class="Element600"><strong>I2S Driver Used</strong> will display the driver instance used for the I<sup>2</sup>S interface.</li>
+<li class="Element600"><strong>Usage Mode</strong> indicates whether the AK4953 is a Master (supplies I<sup>2</sup>S clocks) or a Slave (MCU supplies I<sup>2</sup>S clocks).</li>
+<li class="Element600"><strong>Number of AK4953 Clients</strong> indicates the maximum number of clients that can be connected to the AK4953 Driver.</li>
+<li class="Element600"><strong>Sampling Rate</strong> indicates the number of samples per second per channel, 8000 to 96,000.</li>
+<li class="Element600"><strong>Volume</strong> indicates the volume in a linear scale from 0-255.</li>
+<li class="Element600"><strong>Audio Data Format</strong> is either
+<ul class="Element631">
+<li class="Element601">24-bit Left Justified (ADC), 24-bit Right-justified(DAC)</li>
+<li class="Element601">24-bit Left Justified (ADC), 16-bit Right-justified(DAC)</li>
+<li class="Element601">24-bit Left Justified (ADC), 24-bit Left-justified(DAC)</li>
+<li class="Element601">24/16-bit I2S</li>
+</ul></li>
+</ul><p class="Element10">
+It must match the audio protocol and data length set up in either the SSC or I2S PLIB.</p>
+<ul class="Element630">
+<li class="Element600"><strong>Microphone/Line Input</strong> selects which microphone or line input is selected, either:
+<ul class="Element631">
+<li class="Element601">Internal Mic (mounted on the AK4953 daughterboard)</li>
+<li class="Element601">External Mic Input</li>
+<li class="Element601">Line Input</li>
+</ul></li>
+</ul><p class="Element10">
+If External Mic input or Line Input is selected, then the following option is provided:</p>
+<ul class="Element630">
+<li class="Element600"><strong>Ext Mic Gain in dB range 0(min) to 31(max)</strong></li>
+</ul><p class="Element10">
+If External Mic input is selected, then the following option is provided:</p>
+<ul class="Element630">
+<li class="Element600"><strong>Enable Microphone Bias </strong>should be checked if using an electret microphone.</li>
+</ul><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+You can also bring in the AK4953 Driver by itself, by double clicking AK4953 under Audio<i>-&gt;Driver-&gt;Codec</i> in the Available Components list. You will then need to add any additional needed components manually and connect them together.&nbsp;</p>
+<p class="Element10">
+Note that the AK4953 requires the TCx Peripheral Library and TIME System Service in order to perform some of its internal timing sequences.</p></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00065.html" target="topic">audio_player_basic</a> &gt; <a href="00066.html" target="topic">Building the Application</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00066.html" target="topic">Configuring MHC</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -113,13 +108,13 @@ This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ul
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00065.html" target="topic">Previous</a> | <a href="00065.html" target="topic">Up</a> | <a href="00067.html" target="topic">Next</a></div>
+<a href="00082.html" target="topic">Previous</a> | <a href="00069.html" target="topic">Up</a> | <a href="00064.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_player_basic_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC Configuring MHC Topic Title: Configuring MHC)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_AK4954_ReadQueuePurge Function</title>
+<title>System Access</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00179.html" target="topic">DRV_AK4954_ReadQueuePurge Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00175.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00182.html" target="topic">Using the Library</a> &gt; <a href="00173.html" target="topic">How the Library Works</a> &gt; <a href="00179.html" target="topic">System Access</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00137.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00190.html" target="topic">Next</a></div>
+<a href="00173.html" target="topic">Previous</a> | <a href="00173.html" target="topic">Up</a> | <a href="00166.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_ReadQueuePurge@DRV_HANDLE Topic Title: DRV_AK4954_ReadQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S System Access Topic Title: System Access)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_AK4954_ReadQueuePurge Function</div>
+System Access</div>
 </div>
 </div>
 
@@ -46,102 +46,63 @@ DRV_AK4954_ReadQueuePurge Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46756E6374696F6E"></a><div class="Element11">
+<a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
+<div class="Element15">
+System Initialization</div>
 <p class="Element10">
-   bool DRV_AK4954_ReadQueuePurge( const DRV_HANDLE handle )&nbsp;</p>
-<p class="Element10">
-&nbsp;</p></div>
-</div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-Removes all buffer requests from the read queue.</p></div>
-</div>
-</div>
-<a name="4465736372697074696F6E"></a><div class="Element14">
-Description</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function removes all the buffer requests from the read queue. The client can use this function to purge the queue on timeout or to remove unwanted stalled buffer requests or in any other use case.</p></div>
-</div>
-<a name="507265636F6E646974696F6E73"></a><div class="Element14">
-Preconditions</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-<a href="00260.html" target="topic">DRV_I2S_Open</a> must have been called to obtain a valid opened device handle.</p></div>
-</div>
-<a name="506172616D6574657273"></a><div class="Element14">
-Parameters</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element312">
+The system performs the initialization of the device driver with settings that affect only the instance of the device that is being initialized. During system initialization, each instance of the I2S module would be initialized with the following configuration settings (either passed dynamically at run time using DRV_I2S_INIT or by using Initialization Overrides) that are supported by the specific I2S device hardware:</p>
+<ul class="Element630">
+<li class="Element600">Device requested power state: one of the System Module Power States. For specific details please refer to <strong>Data Types and Constants</strong> in the <a href="00176.html" target="topic">Library Interface</a> section.</li>
+<li class="Element600">The actual peripheral ID enumerated as the PLIB level module ID (e.g., SPI_ID_2)</li>
+<li class="Element600">Defining the respective interrupt sources for TX, RX, DMA TX Channel, DMA RX Channel and Error Interrupt</li>
+</ul><p class="Element10">
+The <a href="00358.html" target="topic">DRV_I2S_Initialize</a> API returns an object handle of the type SYS_MODULE_OBJ. The object handle returned by the Initialize interface would be used by the other system interfaces such as DRV_I2S_Deinitialize, <a href="00366.html" target="topic">DRV_I2S_Status</a>, DRV_I2S_Tasks, and DRV_I2S_TasksError. </p><div class="Element63">
 <div class="TableDiv">
-<table cellspacing="0" class="Table3">
+<table cellspacing="0" class="Table0">
 <tr>
-<td class="Element300" valign="top" width="35%">
-<div class="Element301">
-Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
-<div class="Element305">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Handle of the communication channel as returned by the <a href="00178.html" target="topic">DRV_AK4954_Open</a> function.&nbsp;</div></td></tr></table></div></div>
-</div>
-</div>
-<a name="52657475726E73"></a><div class="Element14">
-Returns</div>
-<div class="Element11">
-<div class="Element10">
+<td class="Element67" valign="top" width="10%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title=""> <strong>Notes:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
+<div class="Element68">
+</p>
+<ol class="Element630">
+<li value="1" class="Element600">The system initialization setting only effect the instance of the peripheral that is being initialized.</li>
+<li value="2" class="Element600">Configuration of the dynamic driver for DMA mode(uses DMA channel for data transfer) or Non DMA mode can be performed by appropriately setting the 'dmaChannelTransmit' and 'dmaChannelReceive' variables of the DRV_I2S_INIT structure. For example the TX will be in DMA mode when 'dmaChannelTransmit' is initialized to a valid supported channel number from the enum DMA_CHANNEL. TX will be in Non DMA mode when 'dmaChannelTransmit' is initialized to 'DMA_CHANNEL_NONE'.</li>
+</ol><p class="Element68">
+&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-True - Read queue purge is successful. False - Read queue purge has failed.</p></div>
-</div>
-<a name="4578616D706C65"></a><div class="Element14">
-Example</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12"><i><span style="color: #008000">// myCodecHandle is the handle returned by the DRV_AK4954_Open function.</span></i>
-<i><span style="color: #008000">// Use DRV_AK4954_BufferAddRead to queue read requests</span></i>
+<strong>Example:</strong> </p><div class="Element13"><div class="Element12"><pre class="Element12">    DRV_I2S_INIT                  init;
+    SYS_MODULE_OBJ              objectHandle;
 
-<i><span style="color: #008000">// Application timeout function, where remove queued buffers.</span></i>
-<strong><span style="color: #000080">void</span></strong> APP_TimeOut(<strong><span style="color: #000080">void</span></strong>)
-{
-    <strong><span style="color: #000080">if</span></strong>(<strong><span style="color: #000080">false</span></strong> == DRV_AK4954_ReadQueuePurge(myCodecHandle))
+    <i><span style="color: #008000">/* I2S Driver Initialization Data */</span></i>
+    DRV_I2S_INIT drvI2S0InitData =
     {
-        <i><span style="color: #008000">//Couldn't purge the read queue, try again.</span></i>
-    }
-    <strong><span style="color: #000080">else</span></strong>
-    {
-        <i><span style="color: #008000">//Queue purge successful.</span></i>
-    }
-}</pre></div></div>
-</div>
-</div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
+        .i2sPlib = &amp;drvI2S0PlibAPI,
+        .interruptI2S = DRV_I2S_INT_SRC_IDX0,
+        .numClients = DRV_I2S_CLIENTS_NUMBER_IDX0,
+        .queueSize = DRV_I2S_QUEUE_SIZE_IDX0,
+        .dmaChannelTransmit = DRV_I2S_XMIT_DMA_CH_IDX0,
+        .dmaChannelReceive  = DRV_I2S_RCV_DMA_CH_IDX0,
+        .i2sTransmitAddress = (<strong><span style="color: #000080">void</span></strong> *)&amp;(SSC_REGS-&gt;SSC_THR),
+        .i2sReceiveAddress = (<strong><span style="color: #000080">void</span></strong> *)&amp;(SSC_REGS-&gt;SSC_RHR),
+        .interruptDMA = XDMAC_IRQn,
+        .dmaDataLength = DRV_I2S_DATA_LENGTH_IDX0,
+    };
+
+    sysObj.drvI2S0 = DRV_I2S_Initialize(DRV_I2S_INDEX_0, (SYS_MODULE_INIT *)&amp;drvI2S0InitData);
+</pre></div></div>
 <p class="Element10">
-This function is thread safe when used in an RTOS environment. Avoid this function call from within the callback.</p></div>
+<strong>Task Routine</strong>&nbsp;</p>
+<p class="Element10">
+There is no task routine, since polled mode is not currently supported.</p></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">bool</span></strong> <strong><span style="color: #000000">DRV_AK4954_ReadQueuePurge</span></strong>(
-    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>
-);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00179.html" target="topic">DRV_AK4954_ReadQueuePurge Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00175.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00182.html" target="topic">Using the Library</a> &gt; <a href="00173.html" target="topic">How the Library Works</a> &gt; <a href="00179.html" target="topic">System Access</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -149,13 +110,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00137.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00190.html" target="topic">Next</a></div>
+<a href="00173.html" target="topic">Previous</a> | <a href="00173.html" target="topic">Up</a> | <a href="00166.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_ReadQueuePurge@DRV_HANDLE Topic Title: DRV_AK4954_ReadQueuePurge Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S System Access Topic Title: System Access)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

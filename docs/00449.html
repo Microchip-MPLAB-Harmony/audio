@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Client Operations</title>
+<title>DSP_FilterIIRBQ16_fast Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00460.html" target="topic">Using the Library</a> &gt; <a href="00452.html" target="topic">How the Library Works</a> &gt; <a href="00449.html" target="topic">Client Operations</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00449.html" target="topic">DSP_FilterIIRBQ16_fast Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00447.html" target="topic">Previous</a> | <a href="00452.html" target="topic">Up</a> | <a href="00444.html" target="topic">Next</a></div>
+<a href="00448.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00450.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC DRV Usage Model 2 Topic Title: Client Operations)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_FilterIIRBQ16_fast@int16_t@PARM_EQUAL_FILTER_16 * Topic Title: DSP_FilterIIRBQ16_fast Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Client Operations</div>
+DSP_FilterIIRBQ16_fast Function</div>
 </div>
 </div>
 
@@ -46,41 +46,121 @@ Client Operations</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Client operations provide the API interface for control command and audio data transfer to the WM8904 Codec.&nbsp;</p>
+Performs a single-pass IIR Biquad Filter.</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
 <p class="Element10">
-The following WM8904 Codec specific control command functions are provided:</p>
-<ul class="Element630">
-<li class="Element600"><a href="00326.html" target="topic">DRV_WM8904_SamplingRateSet</a></li>
-<li class="Element600"><a href="00325.html" target="topic">DRV_WM8904_SamplingRateGet</a></li>
-<li class="Element600"><a href="00333.html" target="topic">DRV_WM8904_VolumeSet</a></li>
-<li class="Element600"><a href="00332.html" target="topic">DRV_WM8904_VolumeGet</a></li>
-<li class="Element600"><a href="00322.html" target="topic">DRV_WM8904_MuteOn</a></li>
-<li class="Element600"><a href="00321.html" target="topic">DRV_WM8904_MuteOff</a></li>
-</ul><p class="Element10">
-These functions schedule a non-blocking control command transfer operation. These functions submit the control command request to the WM8904 Codec. These functions submit the control command request to I2C Driver transmit queue, the request is processed immediately if it is the first request, or processed when the previous request is complete.&nbsp;</p>
+Function DSP_FilterIIRBQ16_fast:&nbsp;</p>
 <p class="Element10">
-<a href="00286.html" target="topic">DRV_WM8904_BufferAddWrite</a>, <a href="00285.html" target="topic">DRV_WM8904_BufferAddRead</a>, and <a href="00287.html" target="topic">DRV_WM8904_BufferAddWriteRead</a> are buffered data operation functions. These functions schedule non-blocking audio data transfer operations. These functions add the request to I2S Driver transmit or receive buffer queue depends on the request type, and are executed immediately if it is the first buffer, or executed later when the previous buffer is complete. The driver notifies the client with DRV_WM8904_BUFFER_EVENT_COMPLETE, DRV_WM8904_BUFFER_EVENT_ERROR, or DRV_WM8904_BUFFER_EVENT_ABORT events. &nbsp;</p><div class="Element63">
+int16_t DSP_FilterIIRBQ16_fast(int16_t Xin, PARM_EQUAL_FILTER_16 *pFilter);&nbsp;</p>
+<p class="Element10">
+Calculates a single pass IIR biquad filter on Xin, and delivers the result as a 16-bit output. All math is performed using 16 bit instructions, with results rounded to 16-bits for the output. The delay register is stored as a 16-bit value for subsequent functions. The function will saturate the results if maximum or minimum fractional values are exceeded. All values are fractional Q15 format.&nbsp;</p>
+<p class="Element10">
+Y = X(0)*b0 + (b1 * X(-1)) + (b2 * X(-2)) - (a1 * Y(-1)) - (a2 * Y(-2))</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Delay register values should be initialized to zero.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
 <div class="TableDiv">
-<table cellspacing="0" class="Table0">
+<table cellspacing="0" class="Table3">
 <tr>
-<td class="Element67" valign="top" width="5%" style="border:none;">
-<div class="Element68">
-<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="13%" style="border:none;">
-<div class="Element68">
-<strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="82%" style="border:none;">
-<div class="Element68">
-It is not necessary to close and reopen the client between multiple transfers.&nbsp;</div></td></tr></table></div></div>
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+Xin&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+input data element X (int16_t)&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+pFilter&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+pointer to filter coef and delay structure&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Sample output Y (int16_t)</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">
+PARM_EQUAL_FILTER_16 *ptrFilterEQ;
+PARM_EQUAL_FILTER_16 FilterEQ;
+uint16_t DataIn, DataOut;
+ptrFilterEQ = &amp;FilterEQ;
+
+<i><span style="color: #008000">// 48KHz sampling; 1 KHz bandpass filter; Q=0.9</span></i>
+<i><span style="color: #008000">//  divide by 2 and convert to Q15</span></i>
+<i><span style="color: #008000">//   b0 = 0.06761171785499065</span></i>
+<i><span style="color: #008000">//   b1 = 0</span></i>
+<i><span style="color: #008000">//   b2 = -0.06761171785499065</span></i>
+<i><span style="color: #008000">//   a1 = -1.848823142275648</span></i>
+<i><span style="color: #008000">//   a2 = 0.8647765642900187</span></i>
+
+<i><span style="color: #008000">// note all coefs are half value of original design, gain handled in algorithm</span></i>
+ptrFiltEQ32-&gt;b[0]=0x0453;       <i><span style="color: #008000">// feed forward b0 coef</span></i>
+ptrFiltEQ32-&gt;b[1]=0;            <i><span style="color: #008000">// feed forward b1 coef</span></i>
+ptrFiltEQ32-&gt;b[2]=0xFBAD;       <i><span style="color: #008000">// feed forward b2 coef</span></i>
+
+<i><span style="color: #008000">// note all coefs are half value of original design, gain handled in algorithm</span></i>
+<i><span style="color: #008000">// note subtract is handled in algorithm, so coefs go in at actual value</span></i>
+ptrFiltEQ32-&gt;a[0]=0x89AD;       <i><span style="color: #008000">// feedback a1 coef</span></i>
+ptrFiltEQ32-&gt;a[1]=0x3758;       <i><span style="color: #008000">// feedback a2 coef</span></i>
+
+<strong><span style="color: #000080">for</span></strong> (i=0;i&lt;256;i++)
+    {
+    <i><span style="color: #008000">// *** get some input data here</span></i>
+       DataIn32 = three_hundred_hz[i];
+
+       DataOut = DSP_FilterIIRBQ16_fast(DataIn, ptrFilterEQ);
+
+     <i><span style="color: #008000">// *** do something with the DataOut here</span></i>
+     }</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The delay register values should be initialized to zero prior to the first call to the function, they are updated each pass. A gain of 2 has been hard coded into the function. This implies that all coefs should be input at half value. This is purposeful, since many filter designs need a div2 to have each coef between the required -1</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100">int16_t <strong><span style="color: #000000">DSP_FilterIIRBQ16_fast</span></strong>(
+    int16_t <strong><span style="color: #000000">Xin</span></strong>, 
+    PARM_EQUAL_FILTER_16 * <strong><span style="color: #000000">pFilter</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00460.html" target="topic">Using the Library</a> &gt; <a href="00452.html" target="topic">How the Library Works</a> &gt; <a href="00449.html" target="topic">Client Operations</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00638.html" target="topic">DSP</a> &gt; <a href="00648.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00449.html" target="topic">DSP_FilterIIRBQ16_fast Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -88,13 +168,13 @@ It is not necessary to close and reopen the client between multiple transfers.&n
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00447.html" target="topic">Previous</a> | <a href="00452.html" target="topic">Up</a> | <a href="00444.html" target="topic">Next</a></div>
+<a href="00448.html" target="topic">Previous</a> | <a href="00648.html" target="topic">Up</a> | <a href="00450.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: WM8904 AUDIO DRIVER CODEC DRV Usage Model 2 Topic Title: Client Operations)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DSP_FilterIIRBQ16_fast@int16_t@PARM_EQUAL_FILTER_16 * Topic Title: DSP_FilterIIRBQ16_fast Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

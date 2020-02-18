@@ -1,5 +1,5 @@
 # Microchip MPLAB Harmony 3 Release Notes
-## Audio Release v3.4.0 (February, 2020)
+## Audio Release v3.5.0 (February, 2020)
 ### ADDITIONS AND UPDATES FOR 3.5.0:
 
 - **New Applications/Projects**
@@ -127,6 +127,7 @@ This release supports applications for the following development kits
 The current known issues are as follows:
 
 * Code is compliant to MISRA C 2012 Mandatory guidelines, except applications using graphics (Rule 9.1).
+ - USB Speaker Bass Boost app fails Mandatory Rules 17.3 and 17.4, but these appear to be false positives as the same code passes using another tool (Coverity) 
 * The ICD4 loads the reset line of the SAM V71 Xplained Ultra board. When running demo projects using the V71, the ICD4 flex cable should be removed after programming to run the application.
 * Interactive help using the Show User Manual Entry in the Right-click menu for configuration options provided by the drivers and libraries is not yet available from within the MPLAB Harmony Configurator (MHC).  Please see the *Configuring the Library* section in the help documentation in the doc folder for the relevant Harmony 3 module instead.  Help is available in both CHM and PDF formats.
 * audio_enc demonstration:

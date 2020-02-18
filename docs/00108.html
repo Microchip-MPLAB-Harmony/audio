@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Building the Library</title>
+<title>Running the Demonstration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00118.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00108.html" target="topic">Building the Library</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00105.html" target="topic">audio_enc</a> &gt; <a href="00108.html" target="topic">Running the Demonstration</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00357.html" target="topic">Previous</a> | <a href="00118.html" target="topic">Up</a> | <a href="00119.html" target="topic">Next</a></div>
+<a href="00107.html" target="topic">Previous</a> | <a href="00105.html" target="topic">Up</a> | <a href="00113.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S Building the Library Topic Title: Building the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_enc_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Building the Library</div>
+Running the Demonstration</div>
 </div>
 </div>
 
@@ -48,83 +48,132 @@ Building the Library</div>
 <a name="PageContent"></a><div class="Element58">
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<p class="Element10">
-The following three tables list and describe the header (<span class="Element146">.h</span>) and source (<span class="Element146">.c</span>) files that implement this library. The parent folder for these files is core<span class="Element146">/driver/i2s</span>.</p><div class="Element15">
-Interface File(s)</div>
-<p class="Element10">
-This table lists and describes the header files that must be included (i.e., using <span class="Element146">#include</span>) by any code that uses this library. </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Source File Name&nbsp;</div></td><td class="Element65" valign="top" width="82%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="18%">
-<div class="Element68">
-<span class="Element146"><a href="00243.html" target="topic">drv_i2s.h</a></span>&nbsp;</div></td><td class="Element67" valign="top" width="82%">
-<div class="Element68">
-This file provides the interface definitions of the I2S driver (generated via template <span class="Element146">audio/driver/i2s/templates/drv_i2s.h.ftl</span>)&nbsp;</div></td></tr></table></div></div>
-<div class="Element15">
-Required File(s)</div>
 <div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table0">
 <tr>
-<td class="Element67" valign="top" width="10%" style="border:none;">
+<td class="Element67" valign="top" width="5%" style="border:none;">
 <div class="Element68">
-<img src="MHC_Logo_Medium.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
+<img src="Important icon.png" border="0" alt="" title=""><br>&nbsp;</div></td><td class="Element67" valign="top" width="12%" style="border:none;">
 <div class="Element68">
-<span style="color: #008000"><strong><i>All of the required files listed in the following table are automatically added into the MPLAB X IDE project by the MHC when the library is selected for use.</i></strong></span>&nbsp;</div></td></tr></table></div></div>
+<strong>Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="83%" style="border:none;">
+<div class="Element68">
+Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-This table lists and describes the source and header files that must <i>always</i> be included in the MPLAB X IDE project to build this library. </p><div class="Element63">
+Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project based. Refer to Building the Application for details.</p>
+<ol class="Element630">
+<li value="1" class="Element600">Connect headphones to the green HP OUT jack of the WM8904 Audio Codec Daughter Board, and a microphone to the pink MIC IN jack.</li>
+<li value="2" class="Element600">Connect power to the board. The system will be in a wait state for USB to be connected (amber LED1 blinking).</li>
+<li value="3" class="Element600">Connect a USB mass storage device (thumb drive) to the USB TARGET connector of the SAM E70 Xplained Ultra board. You will probably need a USB-A Female to Micro-B Male adapter cable to do so. The application currently can only record WAVE (.wav) format audio files.</li>
+</ol><p class="Element10">
+&nbsp;</p>
+<div class="Element15">
+Control Description</div>
+<p class="Element10">
+&nbsp;</p>
+
+<ol class="Element630">
+<li value="1" class="Element600">Long presses of the push button cause the app to attempt to playback the last encoded file that is saved on the MSD. The two LEDs flash if there is no file that has been encoded.</li>
+<li value="2" class="Element600">Short presses of the push button cause the app to start or stop encoding.</li>
+</ol><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+Button control is shown in the table below. </p><p class="Element10" style="text-align: center;">
+<strong>Button Operations</strong></p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="19%">
+<td class="Element65" valign="top" width="50%">
 <div class="Element66">
-Source File Name&nbsp;</div></td><td class="Element65" valign="top" width="81%">
+Operation&nbsp;</div></td><td class="Element65" valign="top" width="50%">
 <div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="19%">
+Function&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="50%">
 <div class="Element68">
-<span class="Element146">/src/drv_i2s.c</span>&nbsp;</div></td><td class="Element67" valign="top" width="81%">
+Long Press (&gt; 1 sec)&nbsp;</div></td><td class="Element67" valign="top" width="50%">
 <div class="Element68">
-This file contains the core implementation of the I2S driver with DMA support (generated via template audio<span class="Element146">/driver/i2s/templates/drv_i2s.c.ftl</span>)&nbsp;</div></td></tr></table></div></div>
-<div class="Element15">
-Optional File(s)</div>
+Play back the last encoded&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="50%">
+<div class="Element68">
+Short Press (&lt; 1 sec)&nbsp;</div></td><td class="Element67" valign="top" width="50%">
+<div class="Element68">
+Start/Stop Encoding&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-This table lists and describes the source and header files that may optionally be included if required for the desired implementation. </p><div class="Element63">
+&nbsp;</p>
+<div class="Element15">
+Status Indicator Description</div>
+<p class="Element10">
+&nbsp;</p>
+
+<ol class="Element630">
+<li value="1" class="Element600">When the application first starts running, it looks to find an attached storage device. If one is not found, LED1 will toggle on and off about every 100 ms indicating that a storage device is not attached.</li>
+<li value="2" class="Element600">If/When a storage device is attached, LED1 will turn off.</li>
+<li value="3" class="Element600">LED2 will turn on when the application is ready to start encoding or playback the last encoded file. If playback is chosen without first creating an encoded file, LED1 and LED2 will toggle briefly then the app will wait for encoding to start.</li>
+</ol><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+LED status indication is shown in the table below. </p><p class="Element10" style="text-align: center;">
+<strong>LED Status</strong></p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="68%">
+<td class="Element65" valign="top" width="61%">
 <div class="Element66">
-Source File Name&nbsp;</div></td><td class="Element65" valign="top" width="32%">
+Operation&nbsp;</div></td><td class="Element65" valign="top" width="16%">
 <div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="68%">
+LED 1 Status&nbsp;</div></td><td class="Element65" valign="top" width="23%">
+<div class="Element66">
+LED 2 Status&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
 <div class="Element68">
-<span class="Element146">N/A</span>&nbsp;</div></td><td class="Element67" valign="top" width="32%">
+No Storage Device Connected&nbsp;</div></td><td class="Element67" valign="top" width="16%">
 <div class="Element68">
-&nbsp;</div></td></tr></table></div></div>
-<div class="Element15">
-Module Dependencies</div>
-<p class="Element10">
-The I2S Driver Library depends on the following modules:</p>
-<ul class="Element630">
-<li class="Element600">I2S Peripheral Library, <i>or</i></li>
-<li class="Element600">SSC Peripheral Library</li>
-<li class="Element600">I2SC Peripheral Library</li>
-</ul></div>
+Toggling&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Off&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Storage Device Connected&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Don’t Care&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Ready to Encode/Playback&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Don’t Care&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Not Ready to Encode/Playback&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Off&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Encoding&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Off&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Toggling&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="61%">
+<div class="Element68">
+Playback before Encoded File Created&nbsp;</div></td><td class="Element67" valign="top" width="16%">
+<div class="Element68">
+Toggling&nbsp;</div></td><td class="Element67" valign="top" width="23%">
+<div class="Element68">
+Toggling&nbsp;</div></td></tr></table></div></div>
+</div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00118.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00108.html" target="topic">Building the Library</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00105.html" target="topic">audio_enc</a> &gt; <a href="00108.html" target="topic">Running the Demonstration</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -132,13 +181,13 @@ The I2S Driver Library depends on the following modules:</p>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00357.html" target="topic">Previous</a> | <a href="00118.html" target="topic">Up</a> | <a href="00119.html" target="topic">Next</a></div>
+<a href="00107.html" target="topic">Previous</a> | <a href="00105.html" target="topic">Up</a> | <a href="00113.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S Building the Library Topic Title: Building the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_enc_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

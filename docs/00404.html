@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Configuring the Library</title>
+<title>DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDXx Macro</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00390.html" target="topic">Peripheral Libraries Help</a> &gt; <a href="00408.html" target="topic">SSC Peripheral Library Help</a> &gt; <a href="00404.html" target="topic">Configuring the Library</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00770.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00760.html" target="topic">Configuring the Library</a> &gt; <a href="00774.html" target="topic">System Configuration</a> &gt; <a href="00404.html" target="topic">DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDXx Macro</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00407.html" target="topic">Previous</a> | <a href="00408.html" target="topic">Up</a> | <a href="00411.html" target="topic">Next</a></div>
+<a href="00402.html" target="topic">Previous</a> | <a href="00774.html" target="topic">Up</a> | <a href="00405.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: SSC 6078 Configuring the Library Topic Title: Configuring the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDXx Topic Title: DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDXx Macro)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Configuring the Library</div>
+DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDXx Macro</div>
 </div>
 </div>
 
@@ -46,29 +46,29 @@ Configuring the Library</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="4465736372697074696F6E"></a><div class="Element11">
+<a name="53756D6D617279"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-The library is configured for the supported processor when the processor is chosen in MPLAB X IDE, using the Microchip Harmony Configurator (MHC).&nbsp;</p>
-<p class="Element10">
-Choose the SSC peripheral by clicking on the appropriate instance under <i>Peripherals-&gt;SSC</i> in the Available Components section of MHC. (The SSC component may also be added automatically as a result of using a BSP Template, such as one for a codec or Bluetooth module).&nbsp;</p>
-<p class="Element10">
-When the SSC peripheral is clicked on in the Project Graph, the following menu is displayed in the Configurations Options): </p><p class="Element10" style="text-align: center;">
-<img src="CSP SSC MHC.png" border="0" alt="" title=""></p><p class="Element10">
-Default values are shown. The <strong>DMA</strong> and <strong>Interrupt Mode</strong> are always enabled.&nbsp;</p>
-<p class="Element10">
-<strong>Usage Mode</strong> can be either Master -- the SSC peripheral supplies the I2S clocks, or Slave -- the peripheral such as a codec or Bluetooth module supplies the I2S clocks.&nbsp;</p>
-<p class="Element10">
-<strong>Audio Protocol Mode </strong>can be either I2S, Left Justified, or Custom. In the latter case, a number of other options are then available, which allows the SSC peripheral to be used for a number of protocols (not currently supported by existing drivers).&nbsp;</p>
-<p class="Element10">
-<strong>Data Length </strong>is set to the number of data bits per channel.&nbsp;</p></div>
+Specifies the instance number of the I2C interface.</p></div>
 </div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+WM8904 I2C instance number&nbsp;</p>
+<p class="Element10">
+Specifies the instance number of the I2C interface being used by the MCU to send commands and receive status to and from the WM8904. enabled.</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">#define</span></strong> <strong><span style="color: #000000">DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDXx</span></strong> </pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00390.html" target="topic">Peripheral Libraries Help</a> &gt; <a href="00408.html" target="topic">SSC Peripheral Library Help</a> &gt; <a href="00404.html" target="topic">Configuring the Library</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00770.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00760.html" target="topic">Configuring the Library</a> &gt; <a href="00774.html" target="topic">System Configuration</a> &gt; <a href="00404.html" target="topic">DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDXx Macro</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -76,13 +76,13 @@ Default values are shown. The <strong>DMA</strong> and <strong>Interrupt Mode</s
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00407.html" target="topic">Previous</a> | <a href="00408.html" target="topic">Up</a> | <a href="00411.html" target="topic">Next</a></div>
+<a href="00402.html" target="topic">Previous</a> | <a href="00774.html" target="topic">Up</a> | <a href="00405.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: SSC 6078 Configuring the Library Topic Title: Configuring the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDXx Topic Title: DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDXx Macro)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

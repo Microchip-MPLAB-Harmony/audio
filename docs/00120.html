@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Library Overview</title>
+<title>Running the Demonstration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00118.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00125.html" target="topic">Using the Library</a> &gt; <a href="00120.html" target="topic">Library Overview</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00117.html" target="topic">audio_signal_generator</a> &gt; <a href="00120.html" target="topic">Running the Demonstration</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00107.html" target="topic">Previous</a> | <a href="00125.html" target="topic">Up</a> | <a href="00116.html" target="topic">Next</a></div>
+<a href="00119.html" target="topic">Previous</a> | <a href="00117.html" target="topic">Up</a> | <a href="00121.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S Library Overview Topic Title: Library Overview)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_signal_generator_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Library Overview</div>
+Running the Demonstration</div>
 </div>
 </div>
 
@@ -48,51 +48,64 @@ Library Overview</div>
 <a name="PageContent"></a><div class="Element58">
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<p class="Element10">
-Refer to the Driver Library Overwiew section for information on how the driver operates in a system.&nbsp;</p>
-<p class="Element10">
-<span style="color: #000000">The </span>I2S driver library provides an API interface to transfer/receive digital audio data using supported Audio protocols. T<span style="color: #000000">he library interface routines are divided into various sub-sections, which address one of the blocks or the overall operation of the I2S Driver Library.</span> &nbsp;</p><div class="Element63">
+<div class="Element63">
 <div class="TableDiv">
-<table cellspacing="0" class="Table2">
+<table cellspacing="0" class="Table0">
 <tr>
-<td class="Element65" valign="top" width="40%">
-<div class="Element66">
-Library Interface Section&nbsp;</div></td><td class="Element65" valign="top" width="60%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
+<td class="Element67" valign="top" width="5%" style="border:none;">
 <div class="Element68">
-System Interaction Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
+<img src="Important icon.png" border="0" alt="" title=""><br>&nbsp;</div></td><td class="Element67" valign="top" width="12%" style="border:none;">
 <div class="Element68">
-Provides device initialization and status functions.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
+<strong>Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="83%" style="border:none;">
 <div class="Element68">
-Client Setup Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Provides open and close functions.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
-<div class="Element68">
-Data Transfer Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Provides data transfer functions.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
-<div class="Element68">
-Miscellaneous Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-Provides driver miscellaneous functions such as get error functions, L/R clock sync, etc.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="40%">
-<div class="Element68">
-Data Types and Constants&nbsp;</div></td><td class="Element67" valign="top" width="60%">
-<div class="Element68">
-These data types and constants are required while interacting and setting up the I2S Driver Library.&nbsp;</div></td></tr></table></div></div>
-</div>
+Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project based. Refer to <a href="00122.html" target="topic">Building the Application</a> for details.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<ol class="Element630">
+<li value="1" class="Element600">Connect headphones to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>).</li>
+</ol><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_sig_gen Fig 1.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i>Fig 1. SAM E70 Xplained Ultra Board with WM8904 Codec Daughterboard</i>&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p>
+
+<ol class="Element630">
+<li value="2" class="Element600">Initially the program will be a single-tone continuous sine wave mode, frequency set at 1000 Hz, and a 25% volume level.</li>
+<li value="3" class="Element600">Turn the tone on and off by tapping on the speaker icon in the center of the screen, to the left of the Volume control. The sound waves will change to a red <span style="color: #FF0000"><strong><span class="Element146">X</span></strong></span> when enabled.</li>
+<li value="4" class="Element600">Change the waveform type by pressing one of the four buttons on the left of the screen: sine, square, sawtooth, and triangle wave.</li>
+<li value="5" class="Element600">Change the volume by rotating the circular control in the middle of the screen.</li>
+<li value="6" class="Element600">To swtich from a continuous tone to a timed one, tap the Loop checkbox. When unchecked, the tone duration will be determined by the Duration setting in the lower right of the screen. Durations can range from 10 ms to 20000 ms (20 seconds). Pressing the <span style="color: #008000"><strong><span class="Element146">+</span></strong></span> button will increase the duration by 10 ms; pressing the <span style="color: #FF0000"><strong><span class="Element146">-</span></strong></span> button will decrease by 10 ms. Holding either button down over one second will change it at a faster rate.</li>
+<li value="7" class="Element600">The frequency can be adjusted using the Starting Frequency control. Pressing the <span style="color: #008000"><strong>+</strong></span> button will increase the frequency by 10 Hz; pressing the <span style="color: #FF0000"><strong>-</strong></span> button will decrease by 10 Hz. Holding either button down over one second will change it at a faster rate. Some frequencies can not be output exactly.</li>
+</ol><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_sig_generator GUI.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p>
+
+<ol class="Element630">
+<li value="8" class="Element600">If the Sweep checkbox is tapped so it becomes checked, an Ending Frequency control becomes visible. This used to sweep the frequency from a Starting Frequency to an Ending Frequency over a specified Duration. The frequency can be adjusted the same as for the Starting Frequency control.</li>
+</ol><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_sig_generator GUI2.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+&nbsp;</p>
+
+<ol class="Element630">
+<li value="9" class="Element600">Pressing the Output Trigger button on the lower left corner of the display switches to a second screen, which is used to control a digital trigger that is output on pin PA00 (pin 7 of the EXT1 connector on the SAM E70 Xplained Ultra board), which by default is 1 µs long. The Pulse Duration control can change the pulse width to either 1, 5, or 10 µs using up and down arrow buttons.</li>
+<li value="10" class="Element600">By default, the pulse is output at the beginning of a sweep cycle. But this can be delayed using the Delay control, as a per cent of the Duration. Either <span style="color: #00FF00"><strong>+</strong></span> / <span style="color: #FF0000"><strong>-</strong></span> buttons of the slider can be used to change the Delay.</li>
+</ol><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_sig_generator GUI3.png" border="0" alt="" title=""></p>
+<ol class="Element630">
+<li value="11" class="Element600">Pressing the Signal Generator button on the lower left corner of the display switches back to the first screen.</li>
+</ol></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00118.html" target="topic">I2S Driver Library Help</a> &gt; <a href="00125.html" target="topic">Using the Library</a> &gt; <a href="00120.html" target="topic">Library Overview</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00117.html" target="topic">audio_signal_generator</a> &gt; <a href="00120.html" target="topic">Running the Demonstration</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -100,13 +113,13 @@ These data types and constants are required while interacting and setting up the
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00107.html" target="topic">Previous</a> | <a href="00125.html" target="topic">Up</a> | <a href="00116.html" target="topic">Next</a></div>
+<a href="00119.html" target="topic">Previous</a> | <a href="00117.html" target="topic">Up</a> | <a href="00121.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV I2S Library Overview Topic Title: Library Overview)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_signal_generator_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>audio_tone</title>
+<title>Files</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00073.html" target="topic">Files</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00072.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00074.html" target="topic">Next</a></div>
+<a href="00211.html" target="topic">Previous</a> | <a href="00069.html" target="topic">Up</a> | <a href="00097.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_tone Topic Title: audio_tone)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC Files Topic Title: Files)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-audio_tone</div>
+Files</div>
 </div>
 </div>
 
@@ -48,515 +48,6 @@ audio_tone</div>
 <a name="PageContent"></a><div class="Element58">
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<p class="Element10">
-In this demonstration application the Codec Driver sets up an AK4954 or WM8904 Codec. The demonstration sends out generated audio waveforms (sine tone) with volume and frequency modifiable through the on-board push button. Success is indicated by an audible output corresponding to displayed parameters.&nbsp;</p>
-<p class="Element10">
-The sine tone is one of four frequencies: 250 Hz, 500 Hz, 1 kHz, and 2 kHz, sent by default at 48,000 samples/second, which is modifiable in the MHC as described below.&nbsp;</p>
-<p class="Element10">
-To know more about the MPLAB Harmony Codec Drivers, configuring the Codec Drivers, and the APIs provided by the Codec Drivers, refer to Codec Driver Libraries.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p><div class="Element15">
-Architecture</div>
-<p class="Element10">
-There are nine different projects packaged in this application.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<u>PIC32_MX/MZ Bluetooth Audio Development Kit Projects:</u>&nbsp;</p>
-<p class="Element10">
-Two projects run on the Bluetooth Audio Development Kit (BTADK). One uses the microcontroller installed on the board, namely the PIC32MX470F512L with 512 KB of Flash memory and 128 KB of RAM running at 96 MHz,and the other uses a PIC32MZ EF PIM, which contains a PIC32MZ2048EFH144 microcontroller with 2 MB of Flash memory and 512 KB of RAM running at 198 MHz. The BTADK includes the following features:</p>
-<ul class="Element630">
-<li class="Element600">Six push buttons (SW1-SW6, only SW1 is used)</li>
-<li class="Element600">Five LEDs (D5-D9, only D5 is used)</li>
-<li class="Element600">AK4954 Codec Daughter Board mounted on the rear X32 socket</li>
-</ul><p class="Element10">
-The BTADK also includes an LCD display, which is not used in these projects.&nbsp;</p>
-<p class="Element10">
-The BTADK does not include the AK4954 Audio Codec daughterboard or the PIC32MZ EF Audio PIM, which are sold separately on microchipDIRECT as part number AC324954 and MA320018 respectively.&nbsp;</p>
-<p class="Element10">
-For the version using the PIC32MX470F512L microcontroller, the program takes up to approximately 9% (50 KB) of the microcontroller’s program space, and 89% (114 KB) of the RAM. No heap is used. For the version using the PIC32MZ2048EFH144 microcontroller, the program takes up to approximately 3% (55 KB) of the microcontroller’s program space, and 23% (115 KB) of the RAM. No heap is used.&nbsp;</p>
-<p class="Element10">
-The following figure illustrates the application architecture for the two PIC32 Bluetooth Audio Development Kit configurations: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone PIC32MX BTADK Architecture Diagram.png" border="0" alt="" title=""></p><p class="Element10">
-The PIC32MX470F512L configuration (above) uses the hardware I2C driver, whereas the PIC32MZ2048EFH144 configuration (below) uses the I2C Bit-Banged Library. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone PIC32MZ BTADK Architecture Diagram.png" border="0" alt="" title=""></p><p class="Element10">
-The I2S (Inter-IC Sound Controller) is used with the AK4954 codec. The AK4954 is configured in slave mode, meaning it receives I<sup>2</sup>S clocks (LRCLK and BCLK) from the PIC32, and the I2S peripheral is configured as a master.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<u>PIC32 MZ EF Curiosity 2.0 Project:</u>&nbsp;</p>
-<p class="Element10">
-One project runs on the PIC32 MZ EF Curiosity 2.0 board, using the PIC32MZ2048EFM144 microcontroller with 2 MB of Flash memory and 512 KB of RAM running at 198 MHz. The PIC32 MZ EF Curiosity 2.0 board includes the following features:</p>
-<ul class="Element630">
-<li class="Element600">Four push buttons (SW1-SW4, only SW1 is used)</li>
-<li class="Element600">Four LEDs (LED1-LED4, only LED1 is used)</li>
-<li class="Element600">AK4954 Codec Daughter Board mounted on X32 HEADER 2 socket</li>
-</ul><p class="Element10">
-The PIC32 MZ EF Curiosity 2.0 board does not include the AK4954 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC324954.&nbsp;</p>
-<p class="Element10">
-The program takes up to approximately 3% (55 KB) of the PIC32MZ2048EFM144 microcontroller’s program space, and 23% (115 KB) of the RAM. No heap is used.&nbsp;</p>
-<p class="Element10">
-The following figure illustrates the application architecture for the PIC32 MZ EF Curiosity 2.0 configuration: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone PIC32MZ C2 Architecture Diagram.png" border="0" alt="" title=""></p><p class="Element10">
-For both configurations, the I2S (Inter-IC Sound Controller) is used with the AK4954 codec. The AK4954 is configured in slave mode, meaning it receives I<sup>2</sup>S clocks (LRCLK and BCLK) from the PIC32, and the I2S peripheral is configured as a master.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<u>SAM E54 Curiosity Ultra Projects:</u>&nbsp;</p>
-<p class="Element10">
-Two projects run on the SAM E54 Curiosity Ultra Board, which contains a ATSAME54P20A microcontroller with 1 MB of Flash memory and 256 KB of RAM running at 48 MHz using the following features:</p>
-<ul class="Element630">
-<li class="Element600">Two push buttons (SW1 and SW2, only SW1 is used)</li>
-<li class="Element600">Two LEDs (LED1 and 2, only LED1 is used)</li>
-<li class="Element600">WM8904 Codec Daughter Board mounted on a X32 socket</li>
-</ul><p class="Element10">
-The SAM E54 Curiosity Ultra board does not include the WM8904 Audio Codec daughterboard, which is sold separately on microchipDIRECT as part number AC328904.&nbsp;</p>
-<p class="Element10">
-The non-RTOS version of the program takes up to approximately 3% (28 KB) of the ATSAME54P20A microcontroller’s program space. The 16-bit configuration uses 45% (115 KB) of the RAM. No heap is used. For the FreeRTOS project, the program takes up to approximately 1% (22 KB) of the ATSAME54P20A microcontroller’s program space, and the 16-bit configuration uses 60% (155 KB) of the RAM. No heap is used.&nbsp;</p>
-<p class="Element10">
-The following figure illustrates the application architecture for the two SAM E54 Xplained Ultra configurations (RTOS not shown): </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone E54 Architecture Diagram.png" border="0" alt="" title=""></p><p class="Element10">
-The I2S (Inter-IC Sound Controller) is used with the WM8904 codec. The WM8904 is configured in master mode, meaning it generates the I<sup>2</sup>S clocks (LRCLK and BCLK), and the I2S peripheral is configured as a slave.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<u>SAM E70 Xplained Ultra Projects:</u>&nbsp;</p>
-<p class="Element10">
-Four projects run on the SAM E70 Xplained Ultra Board, which contains a ATSAME70Q21B microcontroller with 2 MB of Flash memory and 384 KB of RAM running at 300 MHz using the following features:</p>
-<ul class="Element630">
-<li class="Element600">One push button (SW1, may be labeled as SW0 on some boards)</li>
-<li class="Element600">Two LEDs (LED1 and 2, only LED1 is used)</li>
-<li class="Element600">AK4954 or WM8904 Codec Daughter Board mounted on a X32 socket</li>
-</ul><p class="Element10">
-The SAM E70 Xplained Ultra board does not include the AK4954 or WM8904 Audio Codec daughterboards, which are sold separately on microchipDIRECT as part numbers AC324954 and AC328904, respectively.&nbsp;</p>
-<p class="Element10">
-The two non-RTOS versions of the program take up to approximately 1% (18 KB) of the ATSAME70Q21B microcontroller’s program space. The 16-bit configuration uses 30% (115 KB) of the RAM. No heap is used. For the FreeRTOS project, the program takes up to approximately 1% (22 KB) of the ATSAME70Q21B microcontroller’s program space, and the 16-bit configuration uses 41% (155 KB) of the RAM. No heap is used.&nbsp;</p>
-<p class="Element10">
-The following figure illustrates the application architecture for the three SAM E70 Xplained Ultra configurations using the WM8904 (RTOS not shown). The AK4954 version is the same with the substitution of the AK4954 Driver and Codec blocks. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone E70 Architecture Diagram.png" border="0" alt="" title=""></p><p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-The AK4954 codec is only used with the SSC (Synchronous Serial Controller). The WM8904 is configured in slave mode and the SSC peripheral is a master and generates the I2SC clocks.&nbsp;</p>
-<p class="Element10">
-Depending on the project, either the SSC (Synchronous Serial Controller) or I2SC (Inter-IC Sound Controller) is used with the WM8904 codec, selected by a strapping option on the WM8904 daughterboard. When using the SSC interface, the WM8904 is configured in master mode, meaning it generates the I<sup>2</sup>S clocks (LRCLK and BCLK), and the SSC peripheral is configured as a slave. When using the I2SC interface, the WM8904 is configured in slave mode and the SSC peripheral is a master and generates the I2SC clocks. The other two possibilities (SSC as master and WM8904 as slave, or I2SC as slave and WM8904 as master) are possible, but not discussed.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<u>SAMV71 Xplained Ultra Project:</u>&nbsp;</p>
-<p class="Element10">
-One project runs on the SAMV71 Xplained Ultra Board, which contains a ATSAMV71Q21B microcontroller with 2 MB of Flash memory and 384 KB of RAM running at 300 MHz using the following features:</p>
-<ul class="Element630">
-<li class="Element600">Two push buttons (SW0 and SW1, only SW0 is used)</li>
-<li class="Element600">Two LEDs (LED0 and 1, only LED0 is used)</li>
-<li class="Element600">WM8904 codec (on board)</li>
-</ul><p class="Element10">
-The program takes up to approximately 1% (18 KB) of the ATSAME70Q21B microcontroller’s program space. The 16-bit configuration uses 30% (115 KB) of the RAM (with 15K of that used by the three audio buffers). No heap is used.&nbsp;</p>
-<p class="Element10">
-The architecture is the same as for the SAM E70 Ultra board configurations; however only the SSC is available.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-The same application code is used without change between the seven projects.&nbsp;</p>
-<p class="Element10">
-The PIC32 or SAM microcontroller (MCU) runs the application code, and communicates with the AK4954 or WM8904 codec via an I<sup>2</sup>C interface. The audio interface between the microcontroller and the codec use the I<sup>2</sup>S interface. Audio is configured as 16-bit, 48,000 samples/second, I<sup>2</sup>S format. (16-bit, 48 kHz is the standard rate used for DVD audio. An alternate that could be used is 44,100 samples/second. This is the same sample rate used for CD's. The sample rate is configurable in the MHC.)&nbsp;</p>
-<p class="Element10">
-The Master Clock (MCLK) signal used by the codec is generated by the Peripheral Clock section of the microcontroller, and is fixed at 12 MHz.&nbsp;</p>
-<p class="Element10">
-The button and LED are interfaced using GPIO pins. There is no screen.&nbsp;</p>
-<p class="Element10">
-As with any MPLAB Harmony application, the SYS_Initialize function, which is located in the <span class="Element146">initialization.c</span> source file, makes calls to initialize various subsystems as needed, such as the clock, ports, board support package (BSP), codec, I2S, I2C, DMA, timers, and interrupts.&nbsp;</p>
-<p class="Element10">
-The codec driver and the application state machines are all updated through calls located in the SYS_Tasks function in the <span class="Element146">tasks.c</span> file.&nbsp;</p>
-<p class="Element10">
-The application code is contained in the several source files. The application’s state machine (<span class="Element146">APP_Tasks</span>) is contained in <span class="Element146">app.c</span>. It first initializes the application, which includes <span class="Element146">APP_Tasks</span> then periodically calls <span class="Element146">APP_Button_Tasks</span> to process any pending button presses.&nbsp;</p>
-<p class="Element10">
-Then the application state machine inside <span class="Element146">APP_Tasks</span> is given control, which first gets a handle to a timer driver instance and sets up a periodic (alarm) callback. In the next state it gets a handle to the codec driver by calling the <span class="Element146">DRV_CODEC_Open</span> function with a mode of <span class="Element146">DRV_IO_INTENT_WRITE</span> and sets up the volume.&nbsp;</p>
-<p class="Element10">
-The application state machine then registers an event handler <span class="Element146">APP_CODEC_BufferEventHandler</span> as a callback with the codec driver (which in turn is called by the DMA driver).&nbsp;</p>
-<p class="Element10">
-Two buffers are used for generating a sine wave in a ping-pong fashion. Initially values for the first buffer are calculated, and then the buffer is handed off to the DMA using a <span class="Element146">DRV_CODEC_BufferAddWrite</span>. While the DMA is transferring data to the SSC or I2SC/I2S peripheral, causing the tone to sent to the codec over I<sup>2</sup>S, the program calculates the values for the next cycle. (In the current version of the program, this is always the same unless the frequency is changed manually.) Then when the DMA callback <span class="Element146">Audio_Codec_BufferEventHandler</span> is called, the second buffer is handed off and the first buffer re-initialized, back and forth.&nbsp;</p>
-<p class="Element10">
-A table called <span class="Element146">samples</span> contains the number of samples for each frequency that correspond to one cycle of audio (e.g. 48 for 48000 samples/sec, and 1 kHz tone). This is divided into the <span class="Element146">MAX_AUDIO_NUM_SAMPLES</span> value (maximum number of elements in the tone) to provide the number of cycles of tone to be generated to fill the table. Another table (<span class="Element146">appData.numSamples1</span> or <span class="Element146">2</span>) is then filled in with the number of samples for each cycle to be generated. <strong> Note: </strong>the <span class="Element146">samples</span> table will need to be modified if changing the sample rate to something other than 48000 samples/second.&nbsp;</p>
-<p class="Element10">
-This table with the number of samples per cycle to be generated is then passed to the function <span class="Element146">APP_TONE_LOOKUP_TABLE_Initialize</span> along with which buffer to work with (1 or 2) and the sample rate. The 16-bit value for each sample is calculated based on the relative distance (angle) from 0, based in turn on the current sample number and total number of samples for one cycle. First the angle is calculated in radians:&nbsp;</p>
-<p class="Element10">
-<span class="Element146">double radians = (M_PI*(double)(360.0/(double)currNumSamples)*(double)i)/180.0;</span>&nbsp;</p>
-<p class="Element10">
-Then the sample value is calculated using the sine function:&nbsp;</p>
-<p class="Element10">
-<span class="Element146">lookupTable[i].leftData = (int16_t)(0x7FFF*sin(radians));</span>&nbsp;</p>
-<p class="Element10">
-If the number of samples divides into the sample rate evenly, then only 1/4 (90°) of the samples are calculated, and the remainder is filled in by reflection. Otherwise each sample is calculated individually. Before returning, the size of the buffer is calculated based on the number of samples filled in.</p><div class="Element15">
-Demonstration Features</div>
-
-<ul class="Element630">
-<li class="Element600">Calculation of a sine wave based on the number of samples and sample rate using the sin function, with reflection if possible</li>
-<li class="Element600">Uses the Codec Driver Library to write audio samples to the AK4954 or WM8904</li>
-<li class="Element600">At a lower level, uses the I2S Driver Library between the codec library and the chosen peripheral (SSC or I2SC or I2S) to send the audio to the codec</li>
-<li class="Element600">Use of ping-pong buffers and DMA</li>
-<li class="Element600">Use of two timers: one as a periodic 1 ms timer for the application for button debouncing, and a second used by the Codec Driver (see Timer Driver Library)</li>
-</ul><p class="Element10">
-&nbsp;</p>
-<div class="Element15">
-Tools Setup Differences</div>
-<p class="Element10">
-<u>For the projects using the PIC32MX and the I2S interface and the AK4954 as a Slave (the I2S peripheral generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
-<p class="Element10">
-When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name based on the BSP. Select the appropriate processor (PIC32MX470F512L). Click Finish.&nbsp;</p>
-<p class="Element10">
-In the MHC, under Available Components select the BSP PIC32MX Bluetooth Audio Development Kit. Under <i>Audio&gt;Templates</i>, double-click on AK4954 Codec. Answer Yes to all questions except for the one regarding FreeRTOS; answer No to that one.&nbsp;</p>
-<p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
-<img src="audio tone pic32mx btadk ak4954.jpg" border="0" alt="" title=""></p><p class="Element10">
-Click on the I2S1 Peripheral. In the Configurations Options, under 32/16-Bit Communication Select bits, select (AUDEN=1) 24-bit data, 32-bit FIFO, 32-bit Channel/64-bit Frame. Change Master Clock Enable bit to REFCLK. Set the Frame Select Pin to D9. The configuration should look like this: </p><p class="Element10" style="text-align: center;">
-<img src="audio tone pic32mx btadk i2sc1.jpg" border="0" alt="" title=""></p><p class="Element10">
-Under Tools, click on Clock Configuration. In the Clock Diagram:</p>
-<ul class="Element630">
-<li class="Element600">Change the Primary Oscillator frequency to 12,000,000 Hz, and select HS under POSCMOD.</li>
-<li class="Element600">Change the UPPLLDIV divider to DIV_3.</li>
-<li class="Element600">Change the FNOSC input to PRIPLL.</li>
-<li class="Element600">In the Reference CLock section, check the ON and OE checkboxes, change the input to USBPLL, and set ROTRIM to 464 and RODIV to 3. This should give a REFCLKO output of 12,288,000 Hz, which is 256 times the 48 KHz sample rate.</li>
-</ul><p class="Element10">
-You should end up with a clock diagram like this: </p><p class="Element10" style="text-align: center;">
-<img src="audio tone pic32mx btadk ak4954 clocks.jpg" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-&nbsp;</p>
-<p class="Element10">
-<u>For the projects using the PIC32MZ, the I2S interface and the AK4954 as a Slave (the I2S peripheral generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
-<p class="Element10">
-When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name based on the BSP. Select the appropriate processor (PIC32MZ2048EFH144 for the BTADK or PIC32MZ2048EFM144 for the PIC32 MZ EF Curiosity 2.0). Click Finish.&nbsp;</p>
-<p class="Element10">
-In the MHC, under Available Components select the BSP PIC32MZ Bluetooth Audio Development Kit or PIC32 MZ EF Curiosity 2.0. Under <i>Audio&gt;Templates</i>, double-click on AK4954 Codec. Answer Yes to all questions except for the one regarding FreeRTOS; answer No to that one.&nbsp;</p>
-<p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
-<img src="audio tone pic32mz btadk ak4954.jpg" border="0" alt="" title=""></p><p class="Element10">
-The diagram above is for the PIC32 MZ EF PIM and BTADK; the one for the PIC32 MZ EF Curiosity 2.0 is almost the same except it uses I2S2 instead of I2S1. Click on the I2S Peripheral. In the Configurations Options, under 32/16-Bit Communication Select bits, select (AUDEN=1) 24-bit data, 32-bit FIFO, 32-bit Channel/64-bit Frame. Change Master Clock Enable bit to REFCLK. Set the Frame Select Pin to D9 for the BTADK or C2 for the Curiosity 2.0 board. The configuration should look like this (i2S1/BTADK version shown): </p><p class="Element10" style="text-align: center;">
-<img src="audio tone pic32mx btadk i2sc1.jpg" border="0" alt="" title=""></p><p class="Element10">
-The Curiosity 2.0 looks the same except for the Frame Select Pin being C2.&nbsp;</p>
-<p class="Element10">
-Under Tools, click on Clock Configuration. In the Clock Diagram:</p>
-<ul class="Element630">
-<li class="Element600">Change the Primary Oscillator frequency to 12,000,000 Hz, and select HS under POSCMOD.</li>
-<li class="Element600">Change the FPLLRNG to 8-16 MHz, and FPLLMULT to MUL_33.</li>
-<li class="Element600">In the Reference CLock section, check the ON and OE checkboxes,, and set ROTRIM1 to 29 and RODIV1 to 8. This should give a REFCLKO1 output of 12,288,000 Hz, which is 256 times the 48 KHz sample rate.</li>
-</ul><p class="Element10">
-You should end up with a clock diagram like this: </p><p class="Element10" style="text-align: center;">
-<img src="audio tone pic32mz btadk ak4954 clocks.jpg" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-&nbsp;</p>
-<p class="Element10">
-<u>For projects using the E54, the I2S interface and the WM8904 as a Master (the WM8904 codec generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
-<p class="Element10">
-When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name based on the BSP. Select the appropriate processor (ATSAME54P20A). Click Finish.&nbsp;</p>
-<p class="Element10">
-In the MHC, under Available Components select the BSP SAM E54 Curiosity Ultra. Under <i>Audio&gt;Templates</i>, double-click on WM8904 Codec. Answer Yes to all questions. Click on the WM8904 Codec component (<i>not</i> the WM8904 Driver). Answer Yes to all questions except for the one regarding FreeRTOS; answer Yes or No to that one depending on whether you will be using FreeRTOS or not.&nbsp;</p>
-<p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone_E54_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-Click on the WM8904 Driver. In the Configurations Options, under Audio Data Format, change it to 32-bit I2S. Set the desired Sample Rate if different from the default (48,000) under Sampling Rate.&nbsp;</p>
-<p class="Element10">
-In the Clock Diagram:</p>
-<ul class="Element630">
-<li class="Element600">Enable the Crystal Oscillator, change it frequency to 12,000,000 Hz, and select CRYSTAL.</li>
-<li class="Element600">Uncheck the Fractional Digital Phase Locked Loop enable (FDPLL 0).</li>
-<li class="Element600">In the CLK Generator 0 box, change the input to DFLL for an output of 48 MHz.</li>
-<li class="Element600">In the CLK Generator 1 box, change the input to XOSC0 with a divider of 1 for an output of 12 MHz.</li>
-<li class="Element600">In the GCLK Generator, uncheck the selection for GCLK 2, and then select the GCLK 3 tab. Choose the DFLL as the input, with a divide by 4 for an output of 12 MHz.</li>
-</ul><p class="Element10">
-You should end up with a clock diagram like this: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E54 clock diagram I2S slave.png" border="0" alt="" title=""></p><p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<u>For projects using the E70, the SSC interface and the AK4954 as a Slave (the SAM E70 generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
-<p class="Element10">
-When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name based on the BSP. Select the appropriate processor (ATSAME70Q21B). Click Finish.&nbsp;</p>
-<p class="Element10">
-In the MHC, under Available Components select the BSP SAM E70 Xplained Ultra. Under <i>Audio&gt;Templates</i>, double-click on AK4954 Codec. Answer Yes to all questions. Click on the AK4954 Codec component (<i>not</i> the AK4954 Driver). In the Configuration Options, under AK4954 Interface, select I2SC instead of SSC. Answer Yes to all questions except for the one regarding FreeRTOS; answer Yes or No to that one depending on whether you will be using FreeRTOS or not.&nbsp;</p>
-<p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone_E70_AK4954_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-Click on the AK4954 Driver. In the Configurations Options, under Usage Mode, change Master to Slave. Set the desired Sample Rate if different from the default (48,000) under Sampling Rate.&nbsp;</p>
-<p class="Element10">
-In the Clock Diagram, set MOSCEL to Main Crystal, check the Bypass checkbox, and uncheck the RC Crystal Oscillator and Main Crystal Oscillator boxes, to make use of the 12 MHz external oscillator: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E70 clock diagram main bypass.png" border="0" alt="" title=""></p><p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-Still in the Clock Diagram, enable the PLLA Clock. Leave the divider at 1 (12 MHz) and change the multiplier to 41 for an output of 492 MHz. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E70 clock diagram plla 492.png" border="0" alt="" title=""></p><p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-In the Master Clock Controller, select the source (CSS) as PLLACK (492 MHz), all all three dividers as divide by 2 to generate a Processor Clock of 246 MHz and a Master Clock of 123 MHz. In the Programmable Clock Controller section, select the PCK2 tab, select the source (CSS) as PLLACK (492 MHz), the divider of 40 for a PCK2 output of 12,300,000 Hz. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E70 clock diagram master 246.png" border="0" alt="" title=""></p><p class="Element10">
-Then check the SSC checkbox in the <strong>Peripheral Clock Controller</strong> section.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<u>For projects using the E70 or V71, the SSC interface and the WM8904 as a Master (the WM8904 codec generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
-<p class="Element10">
-When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name based on the BSP used. Select the appropriate processor (ATSAME70Q21B or ATSAMV71Q21B) depending on your board. Click Finish.&nbsp;</p>
-<p class="Element10">
-In the MHC, under Available Components select the appropriate BSP (SAM E70 Xplained Ultra or SAM V71 Xplained Ultra). Under <i>Audio&gt;Templates</i>, double-click on WM8904 Codec. Answer Yes to all questions except for the one regarding FreeRTOS; answer Yes or No to that one depending on whether you will be using FreeRTOS or not.&nbsp;</p>
-<p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes, assuming a non-FreeRTOS project: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone_E70_ssc_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
-Click on the WM8904 Driver. In the Configurations Options, set the desired Sample Rate if different from the default (48,000) under Sampling Rate.&nbsp;</p>
-<p class="Element10">
-If using the SAM E70 Xplained Ultra board, in the Clock Diagram, set MOSCEL to Main Crystal, check the Bypass checkbox, and uncheck the RC Crystal Oscillator and Main Crystal Oscillator boxes, to make use of the 12 MHz external oscillator: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E70 clock diagram main bypass.png" border="0" alt="" title=""></p><p class="Element10">
-If using the ATSAMV71Q21B, in the Clock Diagram set MOSCEL to Main Crystal, uncheck the Bypass checkbox and RC Crystal Oscillator checkbox, and check the Main Crystal Oscillator box.&nbsp;</p>
-<p class="Element10">
-Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Controller </strong>section, check the On checkbox, and set CSS to MAINCLK (12 MHz). Then check the SSC checkbox in the <strong>Peripheral Clock Controller</strong> section.&nbsp;</p>
-<p class="Element10">
-It is also possible to change the audio format from 16 to 32-bits, and from I2S to Left Justified (SSC only). These changes need to be done in the MHC in both the WM8904, and SSC/I2SC Peripherals. In the current application code (app.h), a #define is also set to the current width.&nbsp;</p>
-<p class="Element10">
-If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00328.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<u>For projects using the E70, the I2SC interface and the WM8904 as a Slave (the SAM E70 generates the I<sup>2</sup>S clocks):</u>&nbsp;</p>
-<p class="Element10">
-When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name based on the BSP. Select the appropriate processor (ATSAME70Q21B). (The WM8904 on the SAM V71 Xplained Ultra cannot be used with I2SC.) Click Finish.&nbsp;</p>
-<p class="Element10">
-In the MHC, under Available Components select the BSP SAM E70 Xplained Ultra. Under <i>Audio&gt;Templates</i>, double-click on WM8904 Codec. Answer Yes to all questions. Click on the WM8904 Codec component (<i>not</i> the WM8904 Driver). In the Configuration Options, under WM8904 Interface, select I2SC instead of SSC. Answer Yes to all questions except for the one regarding FreeRTOS; answer Yes or No to that one depending on whether you will be using FreeRTOS or not.&nbsp;</p>
-<p class="Element10">
-You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO audio_tone_E70_i2sc_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
-Click on the WM8904 Driver. In the Configurations Options, under Usage Mode, change Master to Slave. Set the desired Sample Rate if different from the default (48,000) under Sampling Rate.&nbsp;</p>
-<p class="Element10">
-If using the SAM E70 Xplained Ultra board, in the Clock Diagram, set MOSCEL to Main Crystal, check the Bypass checkbox, and uncheck the RC Crystal Oscillator and Main Crystal Oscillator boxes, to make use of the 12 MHz external oscillator: </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E70 clock diagram main bypass.png" border="0" alt="" title=""></p><p class="Element10">
-Also in the Clock Diagram, in the PCK2 tab of the <strong>Programmable Clock Controller </strong>section, check the On checkbox, and set CSS to MAINCLK (12 MHz).&nbsp;</p>
-<p class="Element10">
-The following tables show suggested settings for various sample rates in the Clock Diagram when using the I2SC Peripheral in Master mode. Make sure <strong>PLLA Clock</strong> checkbox is checked, and fill in the values for the PLLA Multiplier and Divider boxes. Select the I2S1 tab under <strong>Generic Clock Controller</strong>, set GCLKCSS to PLLACK, fill in the Divider value as shown, and check the checkbox next to it. </p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO E70 clock diagram I2SC clocks.png" border="0" alt="" title=""></p><p class="Element10">
-The values in the first table give the lowest error rate, but have varying PLLACK values so it is best to use the UPPCLKDIV selection for CSS under <strong>Master Clock Controller</strong>, for a Processor Clock of 240 MHz. </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="17%">
-<div class="Element66">
-Desired Sample Rate&nbsp;</div></td><td class="Element65" valign="top" width="8%">
-<div class="Element66">
-PLLA Multipler&nbsp;</div></td><td class="Element65" valign="top" width="9%">
-<div class="Element66">
-PLLA Divider&nbsp;</div></td><td class="Element65" valign="top" width="16%">
-<div class="Element66">
-PLLACK&nbsp;</div></td><td class="Element65" valign="top" width="15%">
-<div class="Element66">
-I2SC Generic Clock Divider&nbsp;</div></td><td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Calculated Sample Rate&nbsp;</div></td><td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Error&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-8000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-43&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-258 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-126&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-7998&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.025%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-16000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-43&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-258 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-63&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-15997&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.0187%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-44100&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-1&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-16&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-192 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-17&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-41117&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-0.0385%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-48000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-43&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-258 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-21&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-47991&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.0187%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-96000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-3&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-43&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-172 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-7&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-95982&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.0187%&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-The values in the second table have somewhat higher error rates, but use a PLLACK value of 294 MHz which is suitable to be used as a Processor Clock (using the PLLACK selection for CSS) which is closer to the maximum of 300 MHz. </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="17%">
-<div class="Element66">
-Desired Sample Rate&nbsp;</div></td><td class="Element65" valign="top" width="8%">
-<div class="Element66">
-PLLA Multipler&nbsp;</div></td><td class="Element65" valign="top" width="9%">
-<div class="Element66">
-PLLA Divider&nbsp;</div></td><td class="Element65" valign="top" width="16%">
-<div class="Element66">
-PLLACK&nbsp;</div></td><td class="Element65" valign="top" width="15%">
-<div class="Element66">
-I2SC Generic Clock Divider&nbsp;</div></td><td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Calculated Sample Rate&nbsp;</div></td><td class="Element65" valign="top" width="18%">
-<div class="Element66">
-Error&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-8000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-144&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-7975&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.3125%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-16000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-72&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-15950&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.3125%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-44100&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-26&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-41170&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-0.1587%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-48000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-2&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-24&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-47851&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.3104%&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="17%">
-<div class="Element68">
-96000&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-3&nbsp;</div></td><td class="Element67" valign="top" width="9%">
-<div class="Element68">
-49&nbsp;</div></td><td class="Element67" valign="top" width="16%">
-<div class="Element68">
-294 MHz&nbsp;</div></td><td class="Element67" valign="top" width="15%">
-<div class="Element68">
-12&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
-95703&nbsp;</div></td><td class="Element67" valign="top" width="18%">
-<div class="Element68">
--0.3094%&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-It is also possible to change the audio format from 16 to 32-bits. This changes need to be done in the MHC in both the WM8904 Driver and I2SC Peripheral. In the current application code (app.h), a #define is also set to the current width.&nbsp;</p>
-<p class="Element10">
-If using FreeRTOS, in the code you will need to move the call to <span class="Element146"><a href="00328.html" target="topic">DRV_WM8904_Tasks</a>(sysObj.drvwm8904Codec0);</span> from the <span class="Element146">SYS_Tasks</span> function in src/config/&lt;config_name&gt;/<span class="Element146">tasks.c</span> to inside the <span class="Element146">while(1)</span> loop of <span class="Element146">_APP_Tasks</span> (just before the call to <span class="Element146">APP_Tasks</span>).</p></div>
-</div>
-<a name="546F70696373"></a><div class="Element14">
-Topics</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element212">
-<div class="TableDiv">
-<table cellspacing="0" class="Table1">
-<tr>
-<td class="Element200" valign="top" width="35%">
-<div class="Element201">
-Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
-<div class="Element205">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00074.html" target="topic">Building the Application</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-This section identifies the MPLAB X IDE project name and location and lists and describes the available configurations for the demonstration.&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00075.html" target="topic">Configuring the Hardware</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-This section describes how to configure the supported hardware.&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00080.html" target="topic">Running the Demonstration</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -564,7 +55,7 @@ This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></t
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00073.html" target="topic">audio_tone</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00073.html" target="topic">Files</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -572,13 +63,13 @@ This section demonstrates how to run the demonstration.&nbsp;</div></td></tr></t
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00072.html" target="topic">Previous</a> | <a href="00081.html" target="topic">Up</a> | <a href="00074.html" target="topic">Next</a></div>
+<a href="00211.html" target="topic">Previous</a> | <a href="00069.html" target="topic">Up</a> | <a href="00097.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_tone Topic Title: audio_tone)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC Files Topic Title: Files)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

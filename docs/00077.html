@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Bulding the Application</title>
+<title>Library Overview</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00076.html" target="topic">audio_tone_linkeddma</a> &gt; <a href="00077.html" target="topic">Bulding the Application</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00080.html" target="topic">Using the Library</a> &gt; <a href="00077.html" target="topic">Library Overview</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00076.html" target="topic">Previous</a> | <a href="00076.html" target="topic">Up</a> | <a href="00078.html" target="topic">Next</a></div>
+<a href="00063.html" target="topic">Previous</a> | <a href="00080.html" target="topic">Up</a> | <a href="00074.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_tone_linkeddma_build Topic Title: Bulding the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC Library Overview Topic Title: Library Overview)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Bulding the Application</div>
+Library Overview</div>
 </div>
 </div>
 
@@ -49,35 +49,58 @@ Bulding the Application</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-The parent folder for these files is audio/apps/audio_tone_linkeddma. To build this project, you must open the audio/apps/audio/audio_tone_linkeddma/firmware/*.X project file in MPLAB X IDE that corresponds to your hardware configuration.&nbsp;</p>
+<span style="color: #000000">Refer to the Driver Library Overview section for information on how the driver operates in a system.</span>&nbsp;</p>
 <p class="Element10">
-<strong>MPLAB X IDE Project Configurations</strong>&nbsp;</p>
-<p class="Element10">
-The following table lists and describes supported configurations. </p><div class="Element63">
+<span style="color: #000000">The AK4953 Codec Driver Library provides an API interface to transfer control commands and digital audio data to the serially interfaced AK4953 Codec module. The library interface routines are divided into various sub-sections, which address one of the blocks or the overall operation of the AK4953 Codec Driver Library.</span> </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="10%">
+<td class="Element65" valign="top" width="40%">
 <div class="Element66">
-Project Name&nbsp;</div></td><td class="Element65" valign="top" width="3%">
-<div class="Element66">
-BSP Used&nbsp;</div></td><td class="Element65" valign="top" width="87%">
+Library Interface Section&nbsp;</div></td><td class="Element65" valign="top" width="60%">
 <div class="Element66">
 Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
+<td class="Element67" valign="top" width="40%">
 <div class="Element68">
-audio_tone_ld_sam_e70_xult_wm8904_ssc&nbsp;</div></td><td class="Element67" valign="top" width="3%">
+System Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
 <div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="87%">
+Provides system module interfaces, device initialization, deinitialization, reinitialization, tasks and status functions.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="40%">
 <div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board, using linked DMA. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the SSC PLIB. The WM8904 codec is configured as the master, and the SSC peripheral as the slave.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="10%">
+Client Setup Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
 <div class="Element68">
-audio_tone_ld_sam_e70_xult_wm8904_i2sc&nbsp;</div></td><td class="Element67" valign="top" width="3%">
+Provides open and close functions.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="40%">
 <div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="87%">
+Data Transfer Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
 <div class="Element68">
-This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ultra board and the WM8904 Audio Codec Daughter Board, using linked DMA. The project configuration is for a sine tone with 16-bit data width, 48000 Hz sampling frequency, and I<sup>2</sup>S audio protocol using the I2SC PLIB. The WM8904 codec is configured as the slave, and the I2SC peripheral as the master.&nbsp;</div></td></tr></table></div></div>
+Provides data transfer functions, such as Buffer Read and Write.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="40%">
+<div class="Element68">
+Settings Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
+<div class="Element68">
+Provides driver specific functions for settings, such as volume control and sampling rate.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="40%">
+<div class="Element68">
+Other Functions&nbsp;</div></td><td class="Element67" valign="top" width="60%">
+<div class="Element68">
+Miscellaneous functions, such as getting the driver’s version number and syncing to the LRCLK signal.&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="40%">
+<div class="Element68">
+Data Types and Constants&nbsp;</div></td><td class="Element67" valign="top" width="60%">
+<div class="Element68">
+These data types and constants are required while interacting and setting up the AK4953 Codec Driver Library.&nbsp;</div></td></tr></table></div></div>
+<div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="5%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="2%" style="border:none;">
+<div class="Element68">
+<strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="93%" style="border:none;">
+<div class="Element68">
+All functions and constants in this section are named with the format DRV_ AK4953_xxx, where 'xxx' is a function name or constant. These names are redefined in the appropriate configuration’s configuration.h file to the format DRV_CODEC_xxx using #defines so that code in the application that references the library can be written as generically as possible (e.g., by writing DRV_CODEC_Open instead of DRV_ AK4953_Open etc.). This allows the codec type to be changed in the MHC without having to modify the application’s source code.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -85,7 +108,7 @@ This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ul
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00076.html" target="topic">audio_tone_linkeddma</a> &gt; <a href="00077.html" target="topic">Bulding the Application</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00080.html" target="topic">Using the Library</a> &gt; <a href="00077.html" target="topic">Library Overview</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -93,13 +116,13 @@ This demonstration runs on the ATSAME70Q21B processor on the SAM E70 Xplained Ul
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00076.html" target="topic">Previous</a> | <a href="00076.html" target="topic">Up</a> | <a href="00078.html" target="topic">Next</a></div>
+<a href="00063.html" target="topic">Previous</a> | <a href="00080.html" target="topic">Up</a> | <a href="00074.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_tone_linkeddma_build Topic Title: Bulding the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC Library Overview Topic Title: Library Overview)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

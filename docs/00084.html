@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Building the Application</title>
+<title>Abstration Model</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00083.html" target="topic">usb_microphone</a> &gt; <a href="00084.html" target="topic">Building the Application</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00104.html" target="topic">Using the Library</a> &gt; <a href="00084.html" target="topic">Abstration Model</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00083.html" target="topic">Previous</a> | <a href="00083.html" target="topic">Up</a> | <a href="00085.html" target="topic">Next</a></div>
+<a href="00104.html" target="topic">Previous</a> | <a href="00104.html" target="topic">Up</a> | <a href="00099.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_microphone_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4954 AUDIO DRIVER CODEC Abstraction Model Topic Title: Abstration Model)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Building the Application</div>
+Abstration Model</div>
 </div>
 </div>
 
@@ -49,47 +49,17 @@ Building the Application</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-The parent folder for these files is<span class="Element146"> audio/apps/usb_microphone</span>. To build this project, you must open the <span class="Element146">audio/apps/usb_microphone/firmware/*.X</span> project file in MPLAB X IDE that corresponds to your hardware configuration.&nbsp;</p>
-<p class="Element10">
-<strong>MPLAB X IDE Project</strong>&nbsp;</p>
-<p class="Element10">
-This table lists the name and location of the MPLAB X IDE project folder for the demonstration.&nbsp;</p>
-<p class="Element10">
-<strong>MPLAB X IDE Project Configurations</strong>&nbsp;</p>
-<p class="Element10">
-This table lists and describes the supported configurations of the demonstration, which are located within <span class="Element146">./firmware/src/config</span>. </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="33%">
-<div class="Element66">
-Project Name&nbsp;</div></td><td class="Element65" valign="top" width="8%">
-<div class="Element66">
-BSP Used&nbsp;</div></td><td class="Element65" valign="top" width="59%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="33%">
-<div class="Element68">
-usb_microphone_basic_sam_e70_xult_<br>wm8904_i2sc_usb&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="59%">
-<div class="Element68">
-This demonstration runs on the SAM E70 Xplained Ultra board with the WM8904 daughter board&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="33%">
-<div class="Element68">
-usb_microphone_basic_sam_e70_xult_<br>wm8904_i2sc_usb_freertos&nbsp;</div></td><td class="Element67" valign="top" width="8%">
-<div class="Element68">
-sam_e70_xult&nbsp;</div></td><td class="Element67" valign="top" width="59%">
-<div class="Element68">
-This demonstration runs on the SAM E70 Xplained Ultra board with the WM8904 daughter board. It also uses FreeRTOS.&nbsp;</div></td></tr></table></div></div>
-</div>
+The abstraction model shown in the following diagram depicts how the AK4954 Codec Driver is positioned in the MPLAB Harmony framework. The AK4954 Codec Driver uses the I2C and I2S drivers for control and audio data transfers to the AK4954 module. </p><p class="Element10" style="text-align: center;">
+<strong>AK4954 Driver Abstraction Model</strong>&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<img src="DRV AUDIO AK4954 abstraction model.png" border="0" alt="" title=""></p></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00083.html" target="topic">usb_microphone</a> &gt; <a href="00084.html" target="topic">Building the Application</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00104.html" target="topic">Using the Library</a> &gt; <a href="00084.html" target="topic">Abstration Model</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -97,13 +67,13 @@ This demonstration runs on the SAM E70 Xplained Ultra board with the WM8904 daug
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00083.html" target="topic">Previous</a> | <a href="00083.html" target="topic">Up</a> | <a href="00085.html" target="topic">Next</a></div>
+<a href="00104.html" target="topic">Previous</a> | <a href="00104.html" target="topic">Up</a> | <a href="00099.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_microphone_build Topic Title: Building the Application)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4954 AUDIO DRIVER CODEC Abstraction Model Topic Title: Abstration Model)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

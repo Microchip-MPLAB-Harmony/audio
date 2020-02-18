@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_WM8904_BUFFER_EVENT_HANDLER Type</title>
+<title>DRV_AK4954_Status Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00282.html" target="topic">DRV_WM8904_BUFFER_EVENT_HANDLER Type</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00098.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00282.html" target="topic">DRV_AK4954_Status Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00278.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00283.html" target="topic">Next</a></div>
+<a href="00246.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00283.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BUFFER_EVENT_HANDLER Topic Title: DRV_WM8904_BUFFER_EVENT_HANDLER Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_Status@SYS_MODULE_OBJ Topic Title: DRV_AK4954_Status Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_WM8904_BUFFER_EVENT_HANDLER Type</div>
+DRV_AK4954_Status Function</div>
 </div>
 </div>
 
@@ -46,21 +46,35 @@ DRV_WM8904_BUFFER_EVENT_HANDLER Type</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="53756D6D617279"></a><div class="Element11">
+<a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Pointer to a WM8904 Driver Buffer Event handler function</p></div>
+   SYS_STATUS DRV_AK4954_Status( SYS_MODULE_OBJ object)&nbsp;</p>
+<p class="Element10">
+&nbsp;</p></div>
+</div>
+<a name="53756D6D617279"></a><div class="Element14">
+<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
+<div id="div53756D6D617279">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Gets the current status of the AK4954 driver module.</p></div>
+</div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
 Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-WM8904 Driver Buffer Event Handler Function&nbsp;</p>
+This routine provides the current status of the AK4954 driver module.</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
 <p class="Element10">
-This data type defines the required function signature for the WM8904 driver buffer event handling callback function. A client must register a pointer to a buffer event handling function who's function signature (parameter and return value types) match the types specified by this function pointer in order to receive buffer related event calls back from the driver.&nbsp;</p>
-<p class="Element10">
-The parameters and return values are described here and a partial example implementation is provided.</p></div>
+Function <a href="00260.html" target="topic">DRV_AK4954_Initialize</a> should have been called before calling this function.</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -77,19 +91,9 @@ Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
 Description&nbsp;</div></td></tr><tr>
 <td class="Element302" valign="top" width="35%">
 <div class="Element303">
-event&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+object&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-Identifies the type of event<br>&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-bufferHandle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Handle identifying the buffer to which the event relates<br>&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-context&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Value identifying the context of the application that registered the event handling function.&nbsp;</div></td></tr></table></div></div>
+Driver object handle, returned from the <a href="00260.html" target="topic">DRV_AK4954_Initialize</a> routine&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -97,29 +101,26 @@ Returns</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-None.</p></div>
+SYS_STATUS_DEINITIALIZED - Indicates that the driver has been deinitialized&nbsp;</p>
+<p class="Element10">
+SYS_STATUS_READY - Indicates that any previous module operation for the specified module has completed&nbsp;</p>
+<p class="Element10">
+SYS_STATUS_BUSY - Indicates that a previous module operation for the specified module has not yet completed&nbsp;</p>
+<p class="Element10">
+SYS_STATUS_ERROR - Indicates that the specified module is in an error state</p></div>
 </div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12"><strong><span style="color: #000080">void</span></strong> APP_MyBufferEventHandler( <a href="00278.html" target="topic">DRV_WM8904_BUFFER_EVENT</a> event,
-                               <a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle,
-                               uintptr_t context )
+<div class="Element13"><div class="Element12"><pre class="Element12">SYS_MODULE_OBJ      object;     <i><span style="color: #008000">// Returned from DRV_AK4954_Initialize</span></i>
+SYS_STATUS          AK4954Status;
+
+AK4954Status = DRV_AK4954_Status(object);
+<strong><span style="color: #000080">if</span></strong> (SYS_STATUS_READY == AK4954Status)
 {
-    MY_APP_DATA_STRUCT pAppData = (MY_APP_DATA_STRUCT) context;
-
-    <strong><span style="color: #000080">switch</span></strong>(event)
-    {
-        <strong><span style="color: #000080">case</span></strong> DRV_WM8904_BUFFER_EVENT_COMPLETE:
-            <i><span style="color: #008000">// Handle the completed buffer.</span></i>
-        <strong><span style="color: #000080">break</span></strong>;
-
-        <strong><span style="color: #000080">case</span></strong> DRV_WM8904_BUFFER_EVENT_ERROR:
-        <strong><span style="color: #000080">default</span></strong>:
-            <i><span style="color: #008000">// Handle error.</span></i>
-        <strong><span style="color: #000080">break</span></strong>;
-    }
+    <i><span style="color: #008000">// This means the driver can be opened using the</span></i>
+    <i><span style="color: #008000">// DRV_AK4954_Open() function.</span></i>
 }</pre></div></div>
 </div>
 </div>
@@ -128,29 +129,19 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-If the event is DRV_WM8904_BUFFER_EVENT_COMPLETE, this means that the data was transferred successfully.&nbsp;</p>
-<p class="Element10">
-If the event is DRV_WM8904_BUFFER_EVENT_ERROR, this means that the data was not transferred successfully. The bufferHandle parameter contains the buffer handle of the buffer that failed. The DRV_WM8904_BufferProcessedSizeGet() function can be called to find out how many bytes were processed.&nbsp;</p>
-<p class="Element10">
-The bufferHandle parameter contains the buffer handle of the buffer that associated with the event.&nbsp;</p>
-<p class="Element10">
-The context parameter contains a handle to the client context, provided at the time the event handling function was registered using the <a href="00288.html" target="topic">DRV_WM8904_BufferEventHandlerSet</a> function. This context handle value is passed back to the client as the &quot;context&quot; parameter. It can be any value necessary to identify the client context or instance (such as a pointer to the client's data) instance of the client that made the buffer add request.&nbsp;</p>
-<p class="Element10">
-The buffer handle in bufferHandle expires after this event handler exits. In that the buffer object that was allocated is deallocated by the driver after the event handler exits.&nbsp;</p>
-<p class="Element10">
-The event handler function executes in the data driver(i2S) peripheral's interrupt context when the driver is configured for interrupt mode operation. It is recommended of the application to not perform process intensive or blocking operations with in this function.&nbsp;</p>
-<p class="Element10">
-<a href="00286.html" target="topic">DRV_WM8904_BufferAddWrite</a> function can be called in the event handler to add a buffer to the driver queue.&nbsp;</p></div>
+A driver can opened only when its status is SYS_STATUS_READY.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">typedef</span></strong> <strong><span style="color: #000080">void</span></strong> (* <strong><span style="color: #000000">DRV_WM8904_BUFFER_EVENT_HANDLER</span></strong>)(<a href="00278.html" target="topic">DRV_WM8904_BUFFER_EVENT</a> event, <a href="00283.html" target="topic">DRV_WM8904_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle);</pre></div></div>
+<div class="Element101"><div class="Element100"><pre class="Element100">SYS_STATUS <strong><span style="color: #000000">DRV_AK4954_Status</span></strong>(
+    SYS_MODULE_OBJ <strong><span style="color: #000000">object</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; Data Types and Constants &gt; <a href="00282.html" target="topic">DRV_WM8904_BUFFER_EVENT_HANDLER Type</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00098.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00282.html" target="topic">DRV_AK4954_Status Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -158,13 +149,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00278.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00283.html" target="topic">Next</a></div>
+<a href="00246.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00283.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_BUFFER_EVENT_HANDLER Topic Title: DRV_WM8904_BUFFER_EVENT_HANDLER Type)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_Status@SYS_MODULE_OBJ Topic Title: DRV_AK4954_Status Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

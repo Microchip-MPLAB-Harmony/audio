@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<title>Confuguring MHC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoadEx('frames.html', 'topic', '00566.html');" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00573.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00566.html" target="topic">Confuguring MHC</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element1">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element2">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element90">
+<a href="00338.html" target="topic">Previous</a> | <a href="00573.html" target="topic">Up</a> | <a href="00562.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element96">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: GENERIC AUDIO DRIVER CODEC Configuring MHC Topic Title: Confuguring MHC)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table><div class="Element5">
+Confuguring MHC</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<a name="PageContent"></a><div class="Element58">
+<a name="4465736372697074696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+ &nbsp;</p>
+<p class="Element10">
+When building a new application, start by creating a 32-bit MPLAB Harmony 3 project in MPLAB X IDE by selecting <i>File &gt; New Project</i>. Chose the Configuration name the based on the BSP, and select the appropriate processor (such as ATSAME70Q21B).&nbsp;</p>
+<p class="Element10">
+In the MHC, under Available Components select the appropriate BSP, such as SAM E70 Xplained Ultra. Under <i>Audio&gt;Templates</i>, double-click on a codec template such as Generic. Answer Yes to all questions.&nbsp;</p>
+<p class="Element10">
+You should end up with a project graph that looks like this, after rearranging the boxes: </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO audio_tone_E70_Generic_project_graph.png" border="0" alt="" title=""></p><p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+Click on the Generic Driver component (not Generic Codec) and the following menu will be displayed in the Configurations Options: </p><p class="Element10" style="text-align: center;">
+<img src="DRV AUDIO Generic MHC.png" border="0" alt="" title=""></p>
+<ul class="Element630">
+<li class="Element600"><strong>I2C Driver Used</strong> will display the driver instance used for the I<sup>2</sup>C interface.</li>
+<li class="Element600"><strong>I2S Driver Used</strong> will display the driver instance used for the I<sup>2</sup>S interface.</li>
+<li class="Element600"><strong>Number of Generic Clients</strong> indicates the maximum number of clients that can be connected to the Generic Driver.</li>
+<li class="Element600"><strong>Sampling Rate</strong> indicates the number of samples per second per channel, 8000 to 96,000.</li>
+<li class="Element600"><strong>Volume</strong> indicates the volume in a linear scale from 0-255.</li>
+<li class="Element600"><strong>Audio Data Format</strong> is either
+<ul class="Element631">
+<li class="Element601">24-bit Left Justified (ADC), 24-bit Right-justified(DAC)</li>
+<li class="Element601">24-bit Left Justified (ADC), 16-bit Right-justified(DAC)</li>
+<li class="Element601">24-bit Left Justified (ADC), 24-bit Left-justified(DAC)</li>
+<li class="Element601">24/16-bit I2S</li>
+<li class="Element601">32-bit Left Justified (ADC), 32-bit Left-justified(DAC)</li>
+<li class="Element601">32-bit I2S</li>
+</ul></li>
+</ul><p class="Element10">
+It must match the audio protocol and data length set up in either the SSC or I2S PLIB..&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+You can also bring in the Generic Driver by itself, by double clicking Generic under Audio<i>-&gt;Driver-&gt;Codec</i> in the Available Components list. You will then need to add any additional needed components manually and connect them together.&nbsp;</p>
+<p class="Element10">
+Note that the Generic requires the TCx Peripheral Library and TIME System Service in order to perform some of its internal timing sequences.</p></div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00573.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00566.html" target="topic">Confuguring MHC</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="25%">
+<div class="Element3">
+MPLAB Harmony Audio Help</div>
+</td><td width="25%">
+<div class="Element4">
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
+</td><td width="25%">
+<div class="Element91">
+<a href="00338.html" target="topic">Previous</a> | <a href="00573.html" target="topic">Up</a> | <a href="00562.html" target="topic">Next</a></div>
+</td><td width="25%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: GENERIC AUDIO DRIVER CODEC Configuring MHC Topic Title: Confuguring MHC)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Running the Demonstration</title>
+<title>Bulding the Library</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00061.html" target="topic">microphone_loopback</a> &gt; <a href="00064.html" target="topic">Running the Demonstration</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00064.html" target="topic">Bulding the Library</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00063.html" target="topic">Previous</a> | <a href="00061.html" target="topic">Up</a> | <a href="00083.html" target="topic">Next</a></div>
+<a href="00066.html" target="topic">Previous</a> | <a href="00069.html" target="topic">Up</a> | <a href="00076.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC Bulding the Library Topic Title: Bulding the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Running the Demonstration</div>
+Bulding the Library</div>
 </div>
 </div>
 
@@ -48,134 +48,84 @@ Running the Demonstration</div>
 <a name="PageContent"></a><div class="Element58">
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<div class="Element63">
+<p class="Element10">
+This section lists the files that are available in the src folder of the AK4953 Codec Driver. It lists which files need to be included in the build based on either a hardware feature present on the board or configuration option selected by the system.&nbsp;</p>
+<p class="Element10">
+The following three tables list and describe the header (.h) and source (.c) files that implement this library. The parent folder for these files is audio/driver/codec/AK4953.&nbsp;</p>
+<p class="Element10">
+<strong>Interface File(s)</strong>&nbsp;</p>
+<p class="Element10">
+This table lists and describes the header files that must be included (i.e., using #include) by any code that uses this library. </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="40%">
+<div class="Element66">
+Source File Name&nbsp;</div></td><td class="Element65" valign="top" width="60%">
+<div class="Element66">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="40%">
+<div class="Element68">
+<span style="color: #0000FF">drv_ak4953.h</span>&nbsp;</div></td><td class="Element67" valign="top" width="60%">
+<div class="Element68">
+<span style="color: #0000FF">Header file that exports the driver API.</span>&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+<strong>Required File(s)</strong> </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table0">
 <tr>
-<td class="Element67" valign="top" width="5%" style="border:none;">
+<td class="Element67" valign="top" width="10%" style="border:none;">
 <div class="Element68">
-<img src="Important icon.png" border="0" alt="" title=""><br>&nbsp;</div></td><td class="Element67" valign="top" width="12%" style="border:none;">
+<img src="MHC_Logo_Medium.png" border="0" alt="" title="">&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
 <div class="Element68">
-<strong>Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="83%" style="border:none;">
-<div class="Element68">
-Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
+<span style="color: #008000"><strong><i>All of the required files listed in the following table are automatically added into the MPLAB X IDE project by the MHC when the library is selected for use.</i></strong></span>&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<strong>Projects using a Pushbutton LED User interface:</strong>&nbsp;</p>
-<p class="Element10">
-Compile the program using MPLAB X, and program the target device using the EDBG interface (ICD4 for the project using the Bluetooth Audio Development Kit). While compiling, select the appropriate MPLAB X IDE project. Refer to <a href="00074.html" target="topic">Building the Application</a> for details.&nbsp;</p>
-<p class="Element10">
-Four different delays can be generated. <strong>Tables 1-3</strong> provides a summary of the button actions that can used to control the volume and delay amount.</p>
-<ol class="Element630">
-<li value="1" class="Element600">Connect headphones to the HP OUT jack of the AK4954 or WM8904 Audio Codec Daughter Board (see <strong>Figures 1-2</strong>), or the HEADPHONE jack of the SAM V71 Xplained Ultra board.</li>
-<li value="2" class="Element600">If applicable, connect a microphone to the MIC IN jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 2</strong>), or the MICROPHONE jack of the SAM V71 Xplained Ultra board. (For the AK4954, the internal microphone contained on the daughterboard is used instead, see <strong>Figure 1</strong>.)</li>
-<li value="3" class="Element600">The lowest-numbered pushbutton (SW0 or SW1) and LED are used as the user interface to control the program, as shown in Tables 1-3 below, depending on the board used. Initially the program will be in delay-setting mode (LED on) at a medium volume setting. Pressing the pushbutton with the LED on will cycle through four delay settings.</li>
-<li value="4" class="Element600">Pressing the pushbutton longer than one second will change to volume-setting mode (LED off). Pressing the pushbutton with the LED off will cycle through four volume settings (including mute). There is never any delay when setting the volume.</li>
-<li value="5" class="Element600">Pressing the pushbutton longer than one second again will switch back to delay-setting mode again (LED on).</li>
-</ol><p class="Element10" style="text-align: center;">
-<img src="BTADK+PIM+mic.jpg" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-<strong>Figure 1: AK4954 Audio Codec Daughter Board on Bluetooth Audio Development Kit with PIC32MZ EF Audio PIM</strong>&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-<img src="E70-WM8904+mic-I2SC.jpg" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-<strong>Figure 2: WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board</strong></p><p class="Element10">
-&nbsp;</p>
-<div class="Element15">
-Control Descriptions</div>
-<p class="Element10">
-<strong>Table 1: Button Controls for Bluetooth Audio Development Kit</strong> </p><div class="Element63">
+This table lists and describes the source and header files that must <i>always</i> be included in the MPLAB X IDE project to build this library. </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="20%">
+<td class="Element65" valign="top" width="36%">
 <div class="Element66">
-Control&nbsp;</div></td><td class="Element65" valign="top" width="80%">
+Source File Name&nbsp;</div></td><td class="Element65" valign="top" width="64%">
 <div class="Element66">
 Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
+<td class="Element67" valign="top" width="36%">
 <div class="Element68">
-SW1 short press&nbsp;</div></td><td class="Element67" valign="top" width="80%">
+<span style="color: #0000FF">/src/drv_ak4953.c</span>&nbsp;</div></td><td class="Element67" valign="top" width="64%">
 <div class="Element68">
-If LED D5 is off, SW1 cycles through four volume levels (one muted). If LED D5 is on, SW1 cycles through four delays: ¼ second, ½ second, 1 second and 1½ seconds.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
-<div class="Element68">
-SW1 long press<br>(&gt; 1 second)&nbsp;</div></td><td class="Element67" valign="top" width="80%">
-<div class="Element68">
-Alternates between modes (LED D5 on or off).&nbsp;</div></td></tr></table></div></div>
+<span style="color: #0000FF">This file contains implementation of the AK4953 Codec Driver.</span>&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-&nbsp;</p>
+<strong>Optional File(s)</strong>&nbsp;</p>
 <p class="Element10">
-<strong>Table 2: Button Controls for SAM E54 Curiosity Ultra board and SAM E70 Xplained Ultra board</strong>&nbsp;</p>
-<p class="Element10">
-(On some E70 boards, SW0/LED0 are the lowest numbered pushbutton and LED, so use Table 3 instead.) </p><div class="Element63">
+This table lists and describes the source and header files that may optionally be included if required for the desired implementation. </p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table2">
 <tr>
-<td class="Element65" valign="top" width="20%">
+<td class="Element65" valign="top" width="32%">
 <div class="Element66">
-Control&nbsp;</div></td><td class="Element65" valign="top" width="80%">
-<div class="Element66">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
-<div class="Element68">
-SW1 short press&nbsp;</div></td><td class="Element67" valign="top" width="80%">
-<div class="Element68">
-If LED1 if off, SW1 cycles through four volume levels (one muted). If LED1 is on, SW1 cycles through four delays: ¼ second, ½ second, 1 second and 1½ seconds.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
-<div class="Element68">
-SW1 long press<br>(&gt; 1 second)&nbsp;</div></td><td class="Element67" valign="top" width="80%">
-<div class="Element68">
-Alternates between modes (LED1 on or off).&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-<strong>Table 3: Button Controls for SAM V71 Xplained Ultra board</strong> </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="20%">
-<div class="Element66">
-Control&nbsp;</div></td><td class="Element65" valign="top" width="80%">
+Source File Name&nbsp;</div></td><td class="Element65" valign="top" width="68%">
 <div class="Element66">
 Description&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
+<td class="Element67" valign="top" width="32%">
 <div class="Element68">
-SW0 short press&nbsp;</div></td><td class="Element67" valign="top" width="80%">
+<span style="color: #0000FF">N/A</span>&nbsp;</div></td><td class="Element67" valign="top" width="68%">
 <div class="Element68">
-If LED0 if off, SW0 cycles through four volume levels (one muted). If LED0 is on, SW0 cycles through four delays: ¼ second, ½ second, 1 second and 1½ seconds.&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="20%">
-<div class="Element68">
-SW0 long press<br>(&gt; 1 second)&nbsp;</div></td><td class="Element67" valign="top" width="80%">
-<div class="Element68">
-Alternates between modes (LED0 on or off).&nbsp;</div></td></tr></table></div></div>
+<span style="color: #0000FF">No optional files are available for this library.</span>&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-&nbsp;</p>
+<strong>Module Dependencies</strong>&nbsp;</p>
 <p class="Element10">
-<strong>Project using a Graphical User Interface:</strong>&nbsp;</p>
-<p class="Element10">
-Compile the program using MPLAB X, and program the target device using the EDBG interface. While compiling, select the appropriate MPLAB X IDE project. Refer to <a href="00074.html" target="topic">Building the Application</a> for details.</p>
-<ol class="Element630">
-<li value="1" class="Element600">Connect headphones to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>).</li>
-<li value="2" class="Element600">Connect a microphone to the MIC IN jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>).</li>
-<li value="3" class="Element600">Initially the program will be in delay-setting mode, with a 800 ms delay and a medium volume setting.</li>
-<li value="4" class="Element600">The Delay can be adjusted from 10 ms to 1000 ms (1 second) using the center circular control.</li>
-<li value="5" class="Element600">The Output Volume can be adjusted from 0% to 100% using the circular control on the right.</li>
-<li value="6" class="Element600">The Microphone Gain can be adjusted from 0% to 100% using the slider on the left.</li>
-<li value="7" class="Element600">Adjusting the microphone gain or output volume causes the delay to be temporarily disabled. Re-enable the previous value using the Enable Delay switch.</li>
-<li value="8" class="Element600">The Enable Delay swtich can also be manually toggled at any time to disable the delay and provide immediate microphone loopback to the headphones.</li>
-</ol><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO microphone_loopback GUI.png" border="0" alt="" title=""></p></div>
+The AK4953 Codec Driver Library depends on the following modules:</p>
+<ul class="Element630">
+<li class="Element600">I2S Driver Library</li>
+<li class="Element600">I2C Driver Library</li>
+</ul></div>
 </div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00061.html" target="topic">microphone_loopback</a> &gt; <a href="00064.html" target="topic">Running the Demonstration</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00069.html" target="topic">AK4953 CODEC Driver Library Help</a> &gt; <a href="00064.html" target="topic">Bulding the Library</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -183,13 +133,13 @@ Compile the program using MPLAB X, and program the target device using the EDBG 
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00063.html" target="topic">Previous</a> | <a href="00061.html" target="topic">Up</a> | <a href="00083.html" target="topic">Next</a></div>
+<a href="00066.html" target="topic">Previous</a> | <a href="00069.html" target="topic">Up</a> | <a href="00076.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO audio_microphone_loopback_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4953 AUDIO CODEC Bulding the Library Topic Title: Bulding the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

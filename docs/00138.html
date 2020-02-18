@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_AK4954_BufferEventHandlerSet Function</title>
+<title>Running the Demonstration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00138.html" target="topic">DRV_AK4954_BufferEventHandlerSet Function</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00135.html" target="topic">usb_microphone</a> &gt; <a href="00138.html" target="topic">Running the Demonstration</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00141.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00143.html" target="topic">Next</a></div>
+<a href="00137.html" target="topic">Previous</a> | <a href="00135.html" target="topic">Up</a> | <a href="00139.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BufferEventHandlerSet@DRV_HANDLE@DRV_AK4954_BUFFER_EVENT_HANDLER@uintptr_t Topic Title: DRV_AK4954_BufferEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_microphone_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_AK4954_BufferEventHandlerSet Function</div>
+Running the Demonstration</div>
 </div>
 </div>
 
@@ -46,157 +46,120 @@ DRV_AK4954_BufferEventHandlerSet Function</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="46756E6374696F6E"></a><div class="Element11">
+<a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<p class="Element10">
-      void DRV_AK4954_BufferEventHandlerSet&nbsp;</p>
-<p class="Element10">
-      (&nbsp;</p>
-<p class="Element10">
-          DRV_HANDLE handle,&nbsp;</p>
-<p class="Element10">
-          const <a href="00132.html" target="topic">DRV_AK4954_BUFFER_EVENT_HANDLER</a> eventHandler,&nbsp;</p>
-<p class="Element10">
-          const uintptr_t contextHandle&nbsp;</p>
-<p class="Element10">
-      )&nbsp;</p>
-<p class="Element10">
-&nbsp;</p></div>
-</div>
-<a name="53756D6D617279"></a><div class="Element14">
-<a onclick="toggleVisibilityStored('53756D6D617279');" class="a_Element14"><img src="btn_collapse_large.gif" border="0" alt="" title="" id="img53756D6D617279">Summary</a></div>
-<div id="div53756D6D617279">
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function allows a client to identify a buffer event handling function for the driver to call back when queued buffer transfers have finished.</p></div>
-</div>
-</div>
-<a name="4465736372697074696F6E"></a><div class="Element14">
-Description</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-This function allows a client to identify a buffer event handling function for the driver to call back when queued buffer transfers have finished. When a client calls <a href="00135.html" target="topic">DRV_AK4954_BufferAddRead</a> function, it is provided with a handle identifying the buffer that was added to the driver's buffer queue. The driver will pass this handle back to the client by calling &quot;eventHandler&quot; function when the buffer transfer has completed.&nbsp;</p>
-<p class="Element10">
-The event handler should be set before the client performs any &quot;buffer add&quot; operations that could generate events. The event handler once set, persists until the client closes the driver or sets another event handler (which could be a &quot;NULL&quot; pointer to indicate no callback).</p></div>
-</div>
-<a name="507265636F6E646974696F6E73"></a><div class="Element14">
-Preconditions</div>
-<div class="Element11">
-<div class="Element10">
-<p class="Element10">
-The <a href="00160.html" target="topic">DRV_AK4954_Initialize</a> routine must have been called for the specified AK4954 driver instance.&nbsp;</p>
-<p class="Element10">
-<a href="00178.html" target="topic">DRV_AK4954_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p></div>
-</div>
-<a name="506172616D6574657273"></a><div class="Element14">
-Parameters</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element312">
+<div class="Element63">
 <div class="TableDiv">
-<table cellspacing="0" class="Table3">
+<table cellspacing="0" class="Table0">
 <tr>
-<td class="Element300" valign="top" width="35%">
-<div class="Element301">
-Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
-<div class="Element305">
-Description&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-A valid open-instance handle, returned from the driver's open routine&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-eventHandler&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-Pointer to the event handler function.&nbsp;</div></td></tr><tr>
-<td class="Element302" valign="top" width="35%">
-<div class="Element303">
-context&nbsp;</div></td><td class="Element306" valign="top" width="65%">
-<div class="Element307">
-The value of parameter will be passed back to the client unchanged, when the eventHandler function is called. It can be used to identify any client specific data object that identifies the instance of the client module (for example, it may be a pointer to the client module's state structure).&nbsp;</div></td></tr></table></div></div>
-</div>
-</div>
-<a name="52657475726E73"></a><div class="Element14">
-Returns</div>
-<div class="Element11">
-<div class="Element10">
+<td class="Element67" valign="top" width="15%" style="border:none;">
+<div class="Element68">
+<img src="Important icon.png" border="0" alt="" title=""><strong> Important!</strong>&nbsp;</div></td><td class="Element67" valign="top" width="85%" style="border:none;">
+<div class="Element68">
+Prior to using this demonstration, it is recommended to review the MPLAB Harmony 3 Release Notes for any known issues.&nbsp;</div></td></tr></table></div></div>
 <p class="Element10">
-None.</p></div>
-</div>
-<a name="4578616D706C65"></a><div class="Element14">
-Example</div>
-<div class="Element11">
-<div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12">MY_APP_OBJ myAppObj;
-uint8_t mybuffer[MY_BUFFER_SIZE];
-<a href="00133.html" target="topic">DRV_AK4954_BUFFER_HANDLE</a> bufferHandle;
+Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project. Refer to Building the Application for details. </p><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO usb_microphone Figure 1.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i>Figure 1. WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board. Headphone Out Jack is green. Microphone In Jack is pink.</i>&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i>Note: the brown wire is a jumper wire which is not relevant for this app.</i></p><p class="Element10">
+Do the following to run the demonstration:</p>
+<ol class="Element630">
+<li value="1" class="Element600"> Attach the WM8904 Daughter Board to the X32 connector. Connect headphones (monitor headphones) to the HP OUT jack of the WM8904 Audio Codec Daughter Board (see Figure 1) and a microphone to the pink MIC IN jack (Refer to Figure 1.</li>
+<li value="2" class="Element600">Connect power to the board and connect the USB cable (EDBG) used for programming the device (Refer to Figure 1). Compile the application and program the target device using the EDBG. Run the device. The system then will be in a waiting for USB to be connected (amber LED1 off).</li>
+<li value="3" class="Element600">Connect to the USB Host via the micro-mini connector (Refer to Figure 1) located above the push-button switches on the right side of the board using a standard USB cable. The LED1 should turn to a solid amber color as the host enumerates and then initiates the audio stream.</li>
+<li value="4" class="Element600">After the Host computer acknowledges the connection, it will install drivers (if needed), No special software is necessary on the Host side.</li>
+</ol><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO usb_microphone Sound Dialog.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i> Figure 2. Windows 7 Sound Dialog showing USB Microphone with Sound Level Meter</i></p>
+<ol class="Element630">
+<li value="5" class="Element600">If needed, configure the Host computer to use the usb_microphone as the selected audio recording device. For Windows, this is done in the &quot;Recording&quot; tab in the &quot;Sound&quot; dialog (as shown in Figure 2) accessed by right clicking the loudspeaker icon on the taskbar.</li>
+</ol><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element67" valign="top" width="10%" style="border:none;">
+<div class="Element68">
+<img src="Note icon.png" border="0" alt="" title=""> <strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
+<div class="Element68">
+The device &quot;Harmony USB Microphone Example&quot; should be available along with a sound level meter indication audio when playing. If no sound level is registering, uninstall the driver and reboot the host computer, since it may have incorrect configuration set by a similar connection to one of the other MPLAB-X Harmony Audio Demos.&nbsp;</div></td></tr></table></div></div>
 
-<i><span style="color: #008000">// myAK4954Handle is the handle returned</span></i>
-<i><span style="color: #008000">// by the DRV_AK4954_Open function.</span></i>
-
-<i><span style="color: #008000">// Client registers an event handler with driver</span></i>
-
-DRV_AK4954_BufferEventHandlerSet(myAK4954Handle,
-                APP_AK4954BufferEventHandler, (uintptr_t)&amp;myAppObj);
-
-<a href="00135.html" target="topic">DRV_AK4954_BufferAddRead</a>(myAK4954handle, &amp;bufferHandle
-                                    myBuffer, MY_BUFFER_SIZE);
-
-<strong><span style="color: #000080">if</span></strong>(<a href="00134.html" target="topic">DRV_AK4954_BUFFER_HANDLE_INVALID</a> == bufferHandle)
-{
-    <i><span style="color: #008000">// Error handling here</span></i>
-}
-
-<i><span style="color: #008000">// Event is received when</span></i>
-<i><span style="color: #008000">// the buffer is processed.</span></i>
-
-<strong><span style="color: #000080">void</span></strong> APP_AK4954BufferEventHandler(<a href="00131.html" target="topic">DRV_AK4954_BUFFER_EVENT</a> event,
-        <a href="00133.html" target="topic">DRV_AK4954_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle)
-{
-    <i><span style="color: #008000">// contextHandle points to myAppObj.</span></i>
-
-    <strong><span style="color: #000080">switch</span></strong>(event)
-    {
-        <strong><span style="color: #000080">case</span></strong> DRV_AK4954_BUFFER_EVENT_COMPLETE:
-
-            <i><span style="color: #008000">// This means the data was transferred.</span></i>
-            <strong><span style="color: #000080">break</span></strong>;
-
-        <strong><span style="color: #000080">case</span></strong> DRV_AK4954_BUFFER_EVENT_ERROR:
-
-            <i><span style="color: #008000">// Error handling here.</span></i>
-            <strong><span style="color: #000080">break</span></strong>;
-
-        <strong><span style="color: #000080">default</span></strong>:
-            <strong><span style="color: #000080">break</span></strong>;
-    }
-}</pre></div></div>
-</div>
-</div>
-<a name="52656D61726B73"></a><div class="Element14">
-Remarks</div>
-<div class="Element11">
-<div class="Element10">
+<ol class="Element630">
+<li value="6" class="Element600">The Microphone audio should be heard through the monitor headphones</li>
+<li value="7" class="Element600">Open a recording application (such as Audacity) and initiate a recording sessiont through the USB Microphone.</li>
+</ol><p class="Element10" style="text-align: center;">
+<img src="APPS AUDIO usb_microphone audacity.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10" style="text-align: center;">
+<i>Figure 3. Audacity Recording Session using USB Microphone</i></p>
+<ol class="Element630">
+<li value="7" class="Element600">Playback of recording session audio is being heard in the USB Microphone headphones.</li>
+</ol><p class="Element10">
+&nbsp;</p>
+<div class="Element15">
+Control Description</div>
 <p class="Element10">
-If the client does not want to be notified when the queued buffer transfer has completed, it does not need to register a callback.</p></div>
+Button control uses SW1 in a push button function sequence given in the table below: </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="21%">
+<div class="Element66">
+Function #&nbsp;</div></td><td class="Element65" valign="top" width="44%">
+<div class="Element66">
+Function&nbsp;</div></td><td class="Element65" valign="top" width="35%">
+<div class="Element66">
+Press&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="21%">
+<div class="Element68">
+1&nbsp;</div></td><td class="Element67" valign="top" width="44%">
+<div class="Element68">
+Gain Cont&nbsp;</div></td><td class="Element67" valign="top" width="35%">
+<div class="Element68">
+Low Gain&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="21%">
+<div class="Element68">
+2&nbsp;</div></td><td class="Element67" valign="top" width="44%">
+<div class="Element68">
+Gain Cont&nbsp;</div></td><td class="Element67" valign="top" width="35%">
+<div class="Element68">
+High Gain&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+<strong>Note:</strong> Function 2 will transition back to Function 1 on the next button push&nbsp;</p>
+<p class="Element10">
+USB operational status is given by LED, as shown below: </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table2">
+<tr>
+<td class="Element65" valign="top" width="26%">
+<div class="Element66">
+LED Status&nbsp;</div></td><td class="Element65" valign="top" width="74%">
+<div class="Element66">
+Status&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="26%">
+<div class="Element68">
+OFF&nbsp;</div></td><td class="Element67" valign="top" width="74%">
+<div class="Element68">
+USB cable detached&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="26%">
+<div class="Element68">
+ON&nbsp;</div></td><td class="Element67" valign="top" width="74%">
+<div class="Element68">
+USB cable attached&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="26%">
+<div class="Element68">
+Blinking&nbsp;</div></td><td class="Element67" valign="top" width="74%">
+<div class="Element68">
+Attached/not Streaming&nbsp;</div></td></tr></table></div></div>
 </div>
-<a name="43"></a><div class="Element99">
-C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_AK4954_BufferEventHandlerSet</span></strong>(
-    DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> <a href="00132.html" target="topic">DRV_AK4954_BUFFER_EVENT_HANDLER</a> <strong><span style="color: #000000">eventHandler</span></strong>, 
-    <strong><span style="color: #000080">const</span></strong> uintptr_t <strong><span style="color: #000000">contextHandle</span></strong>
-);</pre></div></div>
+</div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00049.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00050.html" target="topic">Library Interface</a> &gt; Client Setup Functions &gt; <a href="00138.html" target="topic">DRV_AK4954_BufferEventHandlerSet Function</a></div>
+<a href="00152.html" target="topic">Audio Demonstrations</a> &gt; <a href="00129.html" target="topic">Demonstrations</a> &gt; <a href="00135.html" target="topic">usb_microphone</a> &gt; <a href="00138.html" target="topic">Running the Demonstration</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -204,13 +167,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00141.html" target="topic">Previous</a> | <a href="00050.html" target="topic">Up</a> | <a href="00143.html" target="topic">Next</a></div>
+<a href="00137.html" target="topic">Previous</a> | <a href="00135.html" target="topic">Up</a> | <a href="00139.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_AK4954_BufferEventHandlerSet@DRV_HANDLE@DRV_AK4954_BUFFER_EVENT_HANDLER@uintptr_t Topic Title: DRV_AK4954_BufferEventHandlerSet Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_microphone_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

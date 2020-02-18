@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>Running the Demonstration</title>
+<title>Files</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00087.html" target="topic">usb_speaker</a> &gt; <a href="00094.html" target="topic">Running the Demonstration</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00094.html" target="topic">Files</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00089.html" target="topic">Previous</a> | <a href="00087.html" target="topic">Up</a> | <a href="00090.html" target="topic">Next</a></div>
+<a href="00258.html" target="topic">Previous</a> | <a href="00097.html" target="topic">Up</a> | <a href="00226.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4954 AUDIO DRIVER CODEC Files Topic Title: Files)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-Running the Demonstration</div>
+Files</div>
 </div>
 </div>
 
@@ -48,105 +48,31 @@ Running the Demonstration</div>
 <a name="PageContent"></a><div class="Element58">
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
-<p class="Element10">
-Compile and program the target device. While compiling, select the appropriate MPLAB X IDE project. Refer to Building the Application for details.&nbsp;</p>
-<p class="Element10">
-Do the following to run the demonstration:&nbsp;</p>
-<p class="Element10">
-1. Attach the WM8904 Daughter Board to the X32 connector. Connect headphones to the HP OUT (green) jack of the WM8904 Audio Codec Daughter Board (see <strong>Figure 1</strong>).&nbsp;</p>
-<p class="Element10">
-<strong>Important:</strong> The I2SC/SSC jumpers must be in the correct position for the configuration being run. &nbsp;</p><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_microphone Figure 1.png" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-<i>Figure 1. WM8904 Audio Codec Daughter Board on SAM E70 Xplained Ultra board. Headphone Out Jack is green.</i>&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-<i> Note: the brown wire is a jumper which is not relevant for this app.</i>&nbsp;</p>
-<ol class="Element630">
-<li value="2" class="Element600">Connect power to the board, compiles the application and program the target device. Run the device. The system will be in a waiting for USB to be connected (amber LED1 off).</li>
-<li value="3" class="Element600">Connect to the USB Host via the micro-mini connector located above the push-button switches on the right side of the board using a standard USB cable.</li>
-<li value="4" class="Element600">Allow the Host computer to acknowledge, install drivers (if needed), and enumerate the device. No special software is necessary on the Host side.</li>
-</ol><p class="Element10" style="text-align: center;">
-<img src="APPS AUDIO usb_speaker Sound Dialog1.png" border="0" alt="" title="">&nbsp;</p>
-<p class="Element10" style="text-align: center;">
-<i> Figure 2. Windows 7 Sound Dialog showing USB Microphone with Sound Level Meter</i></p>
-<ol class="Element630">
-<li value="5" class="Element600">If needed, configure the Host computer to use the usb_speaker as the selected audio playback device. For Windows, this is done in the &quot;Playback&quot; tab in the &quot;Sound&quot; dialog (as shown in Figure 2) accessed by right clicking the loudspeaker icon in the taskbar.</li>
-</ol><div class="Element63">
+</div>
+</div>
+<a name="46696C6573"></a><div class="Element14">
+Files</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
 <div class="TableDiv">
-<table cellspacing="0" class="Table0">
+<table cellspacing="0" class="Table1">
 <tr>
-<td class="Element67" valign="top" width="10%" style="border:none;">
-<div class="Element68">
-<img src="Note icon.png" border="0" alt="" title=""> <strong>Note:</strong>&nbsp;</div></td><td class="Element67" valign="top" width="90%" style="border:none;">
-<div class="Element68">
-The device &quot;Harmony USB Hi Res Speaker Example&quot; should be available along with a sound level meter indication audio when playing. If no sound level is registering, uninstall the driver, since it may have incorrect configuration set by a similar connection to one of the other MPLAB-X Harmony Audio Demos. Disconnect and reconnect the usb cable to the PC. The reconfigured driver will then be installed for the correct USB device.&nbsp;</div></td></tr></table></div></div>
-
-<ol class="Element630">
-<li value="6" class="Element600">Open a playback application (such as Window Media Player) and initiate playback through the USB Speaker</li>
-<li value="7" class="Element600">Playback will demonstrate that the audio is being heard in the USB Speaker headphones. Use the pushbutton switch to mute and change volume levels to the headphone.</li>
-</ol><p class="Element10">
-&nbsp;</p>
-<div class="Element15">
-Control Description</div>
-<p class="Element10">
-Button control uses the push button function sequence given in the table below: </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="62%">
-<div class="Element66">
-Function&nbsp;</div></td><td class="Element65" valign="top" width="38%">
-<div class="Element66">
-Press&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="62%">
-<div class="Element68">
-Volume Control Level 1&nbsp;</div></td><td class="Element67" valign="top" width="38%">
-<div class="Element68">
-Low (-66 dB)&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="62%">
-<div class="Element68">
-Volume Control Level 2&nbsp;</div></td><td class="Element67" valign="top" width="38%">
-<div class="Element68">
-Medium (-48 dB)&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="62%">
-<div class="Element68">
-Volume Control Level 3&nbsp;</div></td><td class="Element67" valign="top" width="38%">
-<div class="Element68">
-High (-0 dB)&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="62%">
-<div class="Element68">
-Mute&nbsp;</div></td><td class="Element67" valign="top" width="38%">
-<div class="Element68">
-Mute&nbsp;</div></td></tr></table></div></div>
-<p class="Element10">
-<strong>Note:</strong> Mute will transition to Volume Control Level 1 on the next button push.&nbsp;</p>
-<p class="Element10">
-&nbsp;</p>
-<p class="Element10">
-USB operational status is given by LED, as shown below: </p><div class="Element63">
-<div class="TableDiv">
-<table cellspacing="0" class="Table2">
-<tr>
-<td class="Element65" valign="top" width="29%">
-<div class="Element66">
-LED Status&nbsp;</div></td><td class="Element65" valign="top" width="71%">
-<div class="Element66">
-Status&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="29%">
-<div class="Element68">
-OFF&nbsp;</div></td><td class="Element67" valign="top" width="71%">
-<div class="Element68">
-USB cable detached&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="29%">
-<div class="Element68">
-ON&nbsp;</div></td><td class="Element67" valign="top" width="71%">
-<div class="Element68">
-USB cable attached&nbsp;</div></td></tr><tr>
-<td class="Element67" valign="top" width="29%">
-<div class="Element68">
-Blinking&nbsp;</div></td><td class="Element67" valign="top" width="71%">
-<div class="Element68">
-Playback muted&nbsp;</div></td></tr></table></div></div>
+<td class="Element200" valign="top" width="35%">
+<div class="Element201">
+Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
+<div class="Element205">
+Description&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00226.html" target="topic">drv_ak4954.h</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+AK4954 Codec Driver Interface header file&nbsp;</div></td></tr><tr>
+<td class="Element202" valign="top" width="35%">
+<div class="Element203">
+<a href="00244.html" target="topic">drv_ak4954_config_template.h</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
+<div class="Element207">
+AK4954 Codec Driver Configuration Template.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 </div>
@@ -154,7 +80,7 @@ Playback muted&nbsp;</div></td></tr></table></div></div>
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00096.html" target="topic">Audio Demonstrations</a> &gt; <a href="00081.html" target="topic">Demonstrations</a> &gt; <a href="00087.html" target="topic">usb_speaker</a> &gt; <a href="00094.html" target="topic">Running the Demonstration</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00097.html" target="topic">AK4954 CODEC Driver Library Help</a> &gt; <a href="00094.html" target="topic">Files</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -162,13 +88,13 @@ Playback muted&nbsp;</div></td></tr></table></div></div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00089.html" target="topic">Previous</a> | <a href="00087.html" target="topic">Up</a> | <a href="00090.html" target="topic">Next</a></div>
+<a href="00258.html" target="topic">Previous</a> | <a href="00097.html" target="topic">Up</a> | <a href="00226.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: APPS AUDIO usb_speaker_run Topic Title: Running the Demonstration)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: AK4954 AUDIO DRIVER CODEC Files Topic Title: Files)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

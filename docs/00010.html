@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>ADPCM Ecncoder Library</title>
+<title>_LIBQ_Q16Div Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00098.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00653.html" target="topic">LibQ</a> &gt; <a href="00657.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00010.html" target="topic">_LIBQ_Q16Div Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00098.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00013.html" target="topic">Next</a></div>
+<a href="00009.html" target="topic">Previous</a> | <a href="00657.html" target="topic">Up</a> | <a href="00011.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: ADPCM Ecncoder Library Topic Title: ADPCM Ecncoder Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: _LIBQ_Q16Div@_Q16@_Q16 Topic Title: _LIBQ_Q16Div Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-ADPCM Ecncoder Library</div>
+_LIBQ_Q16Div Function</div>
 </div>
 </div>
 
@@ -46,47 +46,100 @@ ADPCM Ecncoder Library</div>
 
 <!-- Begin Page Content -->
 <a name="PageContent"></a><div class="Element58">
-<a name="546F70696373"></a><div class="Element14">
-Topics</div>
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+_Q16 fixed point divide.</p></div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+Description</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element212">
+<p class="Element10">
+Function _LIBQ_Q16Div:&nbsp;</p>
+<p class="Element10">
+_Q16 _LIBQ_Q16Div (_Q16 dividend, _Q16 divisor);&nbsp;</p>
+<p class="Element10">
+Quotient (_Q16) = Dividend (_Q16) / Divisor (_Q16).</p></div>
+</div>
+<a name="507265636F6E646974696F6E73"></a><div class="Element14">
+Preconditions</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Divisor must not equal 0.</p></div>
+</div>
+<a name="506172616D6574657273"></a><div class="Element14">
+Parameters</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element312">
 <div class="TableDiv">
-<table cellspacing="0" class="Table1">
+<table cellspacing="0" class="Table3">
 <tr>
-<td class="Element200" valign="top" width="35%">
-<div class="Element201">
-Name&nbsp;</div></td><td class="Element204" valign="top" width="65%">
-<div class="Element205">
+<td class="Element300" valign="top" width="35%">
+<div class="Element301">
+Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
+<div class="Element305">
 Description&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00013.html" target="topic">Introduction</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
-Adaptive Differential Pulse Code Modulation (ADPCM) is a royalty-free audio codec. It is a lossy compression standard. It is a variant of Differential Pulse-Code Modulation (DPCM). The file format used to contain an ADPCM files, is the same as WAV.<br>Its popularity comes because it achieves compression of 4 to 1 but does not require high processing power.<br>Typical applications using ADPCM are for speech. This implementation currently supports 16 bit stereo.&nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00099.html" target="topic">Using the Library</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
- &nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00015.html" target="topic">Library Interface</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
- &nbsp;</div></td></tr><tr>
-<td class="Element202" valign="top" width="35%">
-<div class="Element203">
-<a href="00011.html" target="topic">Files</a>&nbsp;</div></td><td class="Element206" valign="top" width="65%">
-<div class="Element207">
- &nbsp;</div></td></tr></table></div></div>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+dividend&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+The divide operation dividend (_Q16)<br>&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+divisor&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+The divide operation divisor (_Q16)&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
+<a name="52657475726E73"></a><div class="Element14">
+Returns</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+_Q16 quotient of the divide operation</p></div>
+</div>
+<a name="4578616D706C65"></a><div class="Element14">
+Example</div>
+<div class="Element11">
+<div class="Element10">
+<div class="Element13"><div class="Element12"><pre class="Element12">
+_Q16  quotient, dividend, divisor;
+
+dividend = (_Q16)0x00010000;  <i><span style="color: #008000">// 1</span></i>
+divisor  = (_Q16)0x00008000;  <i><span style="color: #008000">// 0.5</span></i>
+
+quotient = _LIBQ_Q16Div (dividend, divisor);
+
+<i><span style="color: #008000">// quotient now equals 2;  i.e.,  (_Q16)0x00020000;</span></i>
+</pre></div></div>
+</div>
+</div>
+<a name="52656D61726B73"></a><div class="Element14">
+Remarks</div>
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+The _LIBQ_Q16Div operation saturates its result.&nbsp;</p>
+<p class="Element10">
+Execution Time (cycles): 143 typical (80 to 244) Program Memory 204 bytes&nbsp;</p>
+<p class="Element10">
+Error &lt;= 0.000015258789 (accurate to least significant _Q16 bit within the non-saturated range)</p></div>
+</div>
+<a name="43"></a><div class="Element99">
+C</div>
+<div class="Element101"><div class="Element100"><pre class="Element100">_Q16 <strong><span style="color: #000000">_LIBQ_Q16Div</span></strong>(
+    _Q16 <strong><span style="color: #000000">dividend</span></strong>, 
+    _Q16 <strong><span style="color: #000000">divisor</span></strong>
+);</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00100.html" target="topic">Audio Libraries Help</a> &gt; <a href="00098.html" target="topic">Encoder Library Help</a> &gt; <a href="00010.html" target="topic">ADPCM Ecncoder Library</a></div>
+<a href="00651.html" target="topic">Math Libraries Help</a> &gt; <a href="00653.html" target="topic">LibQ</a> &gt; <a href="00657.html" target="topic">Library Interface</a> &gt; Functions &gt; <a href="00010.html" target="topic">_LIBQ_Q16Div Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -94,13 +147,13 @@ Adaptive Differential Pulse Code Modulation (ADPCM) is a royalty-free audio code
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00098.html" target="topic">Previous</a> | <a href="00098.html" target="topic">Up</a> | <a href="00013.html" target="topic">Next</a></div>
+<a href="00009.html" target="topic">Previous</a> | <a href="00657.html" target="topic">Up</a> | <a href="00011.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: ADPCM Ecncoder Library Topic Title: ADPCM Ecncoder Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: _LIBQ_Q16Div@_Q16@_Q16 Topic Title: _LIBQ_Q16Div Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->

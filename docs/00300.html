@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<title>DRV_WM8904_Deinitialize Function</title>
+<title>DRV_GENERICCODEC_BufferAddWrite Function</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="Doc-O-Matic" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,7 +18,7 @@
 <!-- Begin Page Header -->
 <div class="Element710" id="areafixed">
 <div class="Element94">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00300.html" target="topic">DRV_WM8904_Deinitialize Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00573.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00574.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00300.html" target="topic">DRV_GENERICCODEC_BufferAddWrite Function</a></div>
 <div class="Element92">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -26,15 +26,15 @@
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element2">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element90">
-<a href="00317.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00327.html" target="topic">Next</a></div>
+<a href="00299.html" target="topic">Previous</a> | <a href="00574.html" target="topic">Up</a> | <a href="00301.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element96">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_Deinitialize@SYS_MODULE_OBJ Topic Title: DRV_WM8904_Deinitialize Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_BufferAddWrite@DRV_HANDLE@DRV_GENERICCODEC_BUFFER_HANDLE *@void *@size_t Topic Title: DRV_GENERICCODEC_BufferAddWrite Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table><div class="Element5">
-DRV_WM8904_Deinitialize Function</div>
+DRV_GENERICCODEC_BufferAddWrite Function</div>
 </div>
 </div>
 
@@ -49,7 +49,17 @@ DRV_WM8904_Deinitialize Function</div>
 <a name="46756E6374696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
-   void DRV_WM8904_Deinitialize( SYS_MODULE_OBJ object)&nbsp;</p>
+        void DRV_GENERICCODEC_BufferAddWrite&nbsp;</p>
+<p class="Element10">
+        (&nbsp;</p>
+<p class="Element10">
+            const DRV_HANDLE handle,&nbsp;</p>
+<p class="Element10">
+            <a href="00297.html" target="topic">DRV_GENERICCODEC_BUFFER_HANDLE</a> *bufferHandle,&nbsp;</p>
+<p class="Element10">
+            void *buffer, size_t size&nbsp;</p>
+<p class="Element10">
+        )&nbsp;</p>
 <p class="Element10">
 &nbsp;</p></div>
 </div>
@@ -59,7 +69,7 @@ DRV_WM8904_Deinitialize Function</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Deinitializes the specified instance of the WM8904 driver module</p></div>
+Schedule a non-blocking driver write operation.</p></div>
 </div>
 </div>
 <a name="4465736372697074696F6E"></a><div class="Element14">
@@ -67,14 +77,25 @@ Description</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Deinitializes the specified instance of the WM8904 driver module, disabling its operation (and any hardware). Invalidates all the internal data.</p></div>
+This function schedules a non-blocking write operation. The function returns with a valid buffer handle in the bufferHandle argument if the write request was scheduled successfully. The function adds the request to the hardware instance transmit queue and returns immediately. While the request is in the queue, the application buffer is owned by the driver and should not be modified. The function returns <a href="00298.html" target="topic">DRV_GENERICCODEC_BUFFER_HANDLE_INVALID</a>:</p>
+<ul class="Element630">
+<li class="Element600">if a buffer could not be allocated to the request</li>
+<li class="Element600">if the input buffer pointer is NULL</li>
+<li class="Element600">if the buffer size is 0.</li>
+<li class="Element600">if the queue is full or the queue depth is insufficient</li>
+</ul><p class="Element10">
+If the requesting client registered an event callback with the driver, the driver will issue a DRV_GENERICCODEC_BUFFER_EVENT_COMPLETE event if the buffer was processed successfully of DRV_GENERICCODEC_BUFFER_EVENT_ERROR event if the buffer was not processed successfully.</p></div>
 </div>
 <a name="507265636F6E646974696F6E73"></a><div class="Element14">
 Preconditions</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Function <a href="00317.html" target="topic">DRV_WM8904_Initialize</a> should have been called before calling this function.</p></div>
+The <a href="00321.html" target="topic">DRV_GENERICCODEC_Initialize</a> routine must have been called for the specified Generic Codec device instance and the <a href="00334.html" target="topic">DRV_GENERICCODEC_Status</a> must have returned SYS_STATUS_READY.&nbsp;</p>
+<p class="Element10">
+<a href="00330.html" target="topic">DRV_GENERICCODEC_Open</a> must have been called to obtain a valid opened device handle.&nbsp;</p>
+<p class="Element10">
+DRV_IO_INTENT_WRITE must have been specified in the <a href="00330.html" target="topic">DRV_GENERICCODEC_Open</a> call.</p></div>
 </div>
 <a name="506172616D6574657273"></a><div class="Element14">
 Parameters</div>
@@ -91,9 +112,24 @@ Parameters&nbsp;</div></td><td class="Element304" valign="top" width="65%">
 Description&nbsp;</div></td></tr><tr>
 <td class="Element302" valign="top" width="35%">
 <div class="Element303">
-object&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+handle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
 <div class="Element307">
-Driver object handle, returned from the <a href="00317.html" target="topic">DRV_WM8904_Initialize</a> routine&nbsp;</div></td></tr></table></div></div>
+Handle of the Generic Codec instance as return by the <a href="00330.html" target="topic">DRV_GENERICCODEC_Open</a> function.&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+buffer&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+Data to be transmitted.&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+size&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+Buffer size in bytes.&nbsp;</div></td></tr><tr>
+<td class="Element302" valign="top" width="35%">
+<div class="Element303">
+bufferHandle&nbsp;</div></td><td class="Element306" valign="top" width="65%">
+<div class="Element307">
+Pointer to an argument that will contain the return buffer handle.&nbsp;</div></td></tr></table></div></div>
 </div>
 </div>
 <a name="52657475726E73"></a><div class="Element14">
@@ -101,24 +137,58 @@ Returns</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-None.</p></div>
+The bufferHandle parameter will contain the return buffer handle. This will be <a href="00298.html" target="topic">DRV_GENERICCODEC_BUFFER_HANDLE_INVALID</a> if the function was not successful.</p></div>
 </div>
 <a name="4578616D706C65"></a><div class="Element14">
 Example</div>
 <div class="Element11">
 <div class="Element10">
-<div class="Element13"><div class="Element12"><pre class="Element12">SYS_MODULE_OBJ      object;     <i><span style="color: #008000">//  Returned from DRV_WM8904_Initialize</span></i>
-SYS_STATUS          status;
+<div class="Element13"><div class="Element12"><pre class="Element12">
+MY_APP_OBJ myAppObj;
+uint8_t mybuffer[MY_BUFFER_SIZE];
+<a href="00297.html" target="topic">DRV_GENERICCODEC_BUFFER_HANDLE</a> bufferHandle;
 
+<i><span style="color: #008000">// myGENERICCODECHandle is the handle returned</span></i>
+<i><span style="color: #008000">// by the DRV_GENERICCODEC_Open function.</span></i>
 
-DRV_WM8904_Deinitialize(object);
+<i><span style="color: #008000">// Client registers an event handler with driver</span></i>
 
-status = <a href="00327.html" target="topic">DRV_WM8904_Status</a>(object);
-<strong><span style="color: #000080">if</span></strong> (SYS_MODULE_DEINITIALIZED != status)
+<a href="00302.html" target="topic">DRV_GENERICCODEC_BufferEventHandlerSet</a>(myGENERICCODECHandle,
+                DRV_GENERICCODECBufferEventHandler, (uintptr_t)&amp;myAppObj);
+
+DRV_GENERICCODEC_BufferAddWrite(myGENERICCODEChandle, &amp;bufferHandle
+                                    myBuffer, MY_BUFFER_SIZE);
+
+<strong><span style="color: #000080">if</span></strong>(<a href="00298.html" target="topic">DRV_GENERICCODEC_BUFFER_HANDLE_INVALID</a> == bufferHandle)
 {
-    <i><span style="color: #008000">// Check again later if you need to know</span></i>
-    <i><span style="color: #008000">// when the driver is deinitialized.</span></i>
-}</pre></div></div>
+    <i><span style="color: #008000">// Error handling here</span></i>
+}
+
+<i><span style="color: #008000">// Event is received when</span></i>
+<i><span style="color: #008000">// the buffer is processed.</span></i>
+
+<strong><span style="color: #000080">void</span></strong> DRV_GENERICCODECBufferEventHandler(<a href="00295.html" target="topic">DRV_GENERICCODEC_BUFFER_EVENT</a> event,
+        <a href="00297.html" target="topic">DRV_GENERICCODEC_BUFFER_HANDLE</a> bufferHandle, uintptr_t contextHandle)
+{
+    <i><span style="color: #008000">// contextHandle points to myAppObj.</span></i>
+
+    <strong><span style="color: #000080">switch</span></strong>(event)
+    {
+        <strong><span style="color: #000080">case</span></strong> DRV_GENERICCODEC_BUFFER_EVENT_COMPLETE:
+
+            <i><span style="color: #008000">// This means the data was transferred.</span></i>
+            <strong><span style="color: #000080">break</span></strong>;
+
+        <strong><span style="color: #000080">case</span></strong> DRV_GENERICCODEC_BUFFER_EVENT_ERROR:
+
+            <i><span style="color: #008000">// Error handling here.</span></i>
+            <strong><span style="color: #000080">break</span></strong>;
+
+        <strong><span style="color: #000080">default</span></strong>:
+            <strong><span style="color: #000080">break</span></strong>;
+    }
+}
+</pre></div></div>
 </div>
 </div>
 <a name="52656D61726B73"></a><div class="Element14">
@@ -126,19 +196,22 @@ Remarks</div>
 <div class="Element11">
 <div class="Element10">
 <p class="Element10">
-Once the Initialize operation has been called, the De-initialize operation must be called before the Initialize operation can be called again. This routine will NEVER block waiting for hardware.</p></div>
+This function is thread safe in a RTOS application. It can be called from within the Generic Codec Driver Buffer Event Handler that is registered by this client. It should not be called in the event handler associated with another Generic Codec driver instance. It should not otherwise be called directly in an ISR.</p></div>
 </div>
 <a name="43"></a><div class="Element99">
 C</div>
-<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_WM8904_Deinitialize</span></strong>(
-    SYS_MODULE_OBJ <strong><span style="color: #000000">object</span></strong>
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #000080">void</span></strong> <strong><span style="color: #000000">DRV_GENERICCODEC_BufferAddWrite</span></strong>(
+    <strong><span style="color: #000080">const</span></strong> DRV_HANDLE <strong><span style="color: #000000">handle</span></strong>, 
+    <a href="00297.html" target="topic">DRV_GENERICCODEC_BUFFER_HANDLE</a> * <strong><span style="color: #000000">bufferHandle</span></strong>, 
+    <strong><span style="color: #000080">void</span></strong> * <strong><span style="color: #000000">buffer</span></strong>, 
+    size_t <strong><span style="color: #000000">size</span></strong>
 );</pre></div></div>
 </div>
 <!-- End Page Content -->
 
 <!-- Begin Page Footer -->
 <div class="Element95">
-<a href="00106.html" target="topic">Driver Libraries Help</a> &gt; <a href="00097.html" target="topic">Codec Libraries Help</a> &gt; <a href="00454.html" target="topic">WM8904 CODEC Driver Library Help</a> &gt; <a href="00455.html" target="topic">Library Interface</a> &gt; System Interaction Functions &gt; <a href="00300.html" target="topic">DRV_WM8904_Deinitialize Function</a></div>
+<a href="00163.html" target="topic">Driver Libraries Help</a> &gt; <a href="00153.html" target="topic">Codec Libraries Help</a> &gt; <a href="00573.html" target="topic">GENERIC AUDIO DRIVER CODEC Library</a> &gt; <a href="00574.html" target="topic">Library Interface</a> &gt; Data Transfer Functions &gt; <a href="00300.html" target="topic">DRV_GENERICCODEC_BufferAddWrite Function</a></div>
 <div class="Element93">
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr><td width="25%">
@@ -146,13 +219,13 @@ C</div>
 MPLAB Harmony Audio Help</div>
 </td><td width="25%">
 <div class="Element4">
-<a href="contents.html" target="tocidx">Contents</a> | <a href="00102.html" target="topic">Home</a></div>
+<a href="contents.html" target="tocidx">Contents</a> | <a href="00158.html" target="topic">Home</a></div>
 </td><td width="25%">
 <div class="Element91">
-<a href="00317.html" target="topic">Previous</a> | <a href="00455.html" target="topic">Up</a> | <a href="00327.html" target="topic">Next</a></div>
+<a href="00299.html" target="topic">Previous</a> | <a href="00574.html" target="topic">Up</a> | <a href="00301.html" target="topic">Next</a></div>
 </td><td width="25%">
 <div class="Element97">
-<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_WM8904_Deinitialize@SYS_MODULE_OBJ Topic Title: DRV_WM8904_Deinitialize Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: DRV_GENERICCODEC_BufferAddWrite@DRV_HANDLE@DRV_GENERICCODEC_BUFFER_HANDLE *@void *@size_t Topic Title: DRV_GENERICCODEC_BufferAddWrite Function)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com" target="_blank">Microchip Support</a></div>
 </td></tr></table></div>
 
 <!-- End Page Footer -->
