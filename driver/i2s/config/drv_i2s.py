@@ -288,6 +288,22 @@ def instantiateComponent(i2sComponent, index):
     i2sSymSystemInitFile.setSourcePath("i2s/templates/system/system_initialize.c.ftl")
     i2sSymSystemInitFile.setMarkup(True)
 
+    driverHeaderRootFile = i2sComponent.createFileSymbol("DRIVER_ROOT", None)
+    driverHeaderRootFile.setSourcePath("../../core/driver/driver.h")
+    driverHeaderRootFile.setOutputName("driver.h")
+    driverHeaderRootFile.setDestPath("driver/")
+    driverHeaderRootFile.setProjectPath("config/" + configName + "/driver/")
+    driverHeaderRootFile.setType("HEADER")
+    driverHeaderRootFile.setOverwrite(True)
+
+    driverHeaderCommonFile = i2sComponent.createFileSymbol("DRIVER_COMMON", None)
+    driverHeaderCommonFile.setSourcePath("../../core/driver/driver_common.h")
+    driverHeaderCommonFile.setOutputName("driver_common.h")
+    driverHeaderCommonFile.setDestPath("driver/")
+    driverHeaderCommonFile.setProjectPath("config/" + configName + "/driver/")
+    driverHeaderCommonFile.setType("HEADER")
+    driverHeaderCommonFile.setOverwrite(True)
+
 # this callback occurs when user connects SSC or I2SCx block to I2S driver block in Project Graph    
 def onDependencyConnected(info):
     global i2sPlibId
