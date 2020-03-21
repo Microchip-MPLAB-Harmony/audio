@@ -89,9 +89,9 @@ uint32_t ${I2SC_INSTANCE_NAME}_LRCLK_Get(void)
 </#if>
 
 /*********************************************************************************
- * I2SC1_PLLAClockSet() - Master Mode PLLA Clock set for the I2SC
+ * I2SCx_PLLAClockSet() - Master Mode PLLA Clock set for the I2SC
 *********************************************************************************/
-uint32_t I2SC1_PLLAClockSet(const uint8_t div, const uint8_t mul)
+uint32_t ${I2SC_INSTANCE_NAME}_PLLAClockSet(const uint8_t div, const uint8_t mul)
 {
     if ( (div > 0) && (div < 257) &&
          (mul > 0) && (mul < 64) )
@@ -114,9 +114,9 @@ uint32_t I2SC1_PLLAClockSet(const uint8_t div, const uint8_t mul)
 }
 
 /*********************************************************************************
- * I2SC1_GenericClockSet() - Master mode set GCLK for the I2SC 
+ * I2SCx_GenericClockSet() - Master mode set GCLK for the I2SC 
 *********************************************************************************/
-uint32_t I2SC1_GenericClockSet(const uint8_t div2)
+uint32_t ${I2SC_INSTANCE_NAME}_GenericClockSet(const uint8_t div2)
 {
     //Range check
     if ( (div2 > 0) && (div2 < 257))
@@ -140,11 +140,11 @@ uint32_t I2SC1_GenericClockSet(const uint8_t div2)
 }
 
 /*********************************************************************************
- * I2SC1_ProgrammableClockSet() - Set the Programmable Clock Divider for PCKx
+ * I2SCx_ProgrammableClockSet() - Set the Programmable Clock Divider for PCKx
  * 
  * NOTE:  This is only used for E70 xult board implementation of I2SC1 interfacejj
 *********************************************************************************/
-uint32_t I2SC1_ProgrammableClockSet(const uint8_t pClkNum, const uint8_t div2)
+uint32_t ${I2SC_INSTANCE_NAME}_ProgrammableClockSet(const uint8_t pClkNum, const uint8_t div2)
 {
 
     if ((pClkNum > 0) && (pClkNum < 8))
