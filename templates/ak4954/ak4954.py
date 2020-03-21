@@ -34,6 +34,7 @@ execfile(Module.getPath() + "Support_BSP_SAM_E70_Xplained_Ultra.py")
 execfile(Module.getPath() + "Support_BSP_PIC32MX_Bluetooth_Audio Dev_Kit.py")
 execfile(Module.getPath() + "Support_BSP_PIC32MZ_EF_Bluetooth_Audio Dev_Kit.py")
 execfile(Module.getPath() + "Support_BSP_PIC32MZ_EF_Curiosity_2_0.py")
+execfile(Module.getPath() + "Support_BSP_PIC32MX_BM83_Bluetooth_Audio_Development_Board.py")
 
 def enableSSCPins(bspID, enable):
     pinConfigs = getBSPSupportNode(bspID, "SSC").getPinConfig()
@@ -62,6 +63,12 @@ def enablePIC32MZ_BTADK_I2SPins(bspID, enable):
         resetPinsPIC32M(pinConfigs)
         if (enable == True):
             configurePinsPIC32M(pinConfigs)
+
+def enablePIC32MX_BM83_BTADBPins(bspID, enable):
+    pinConfigs = getBSPSupportNode(bspID, "PIC32MX_BM83_BTADB").getPinConfig()
+    resetPinsPIC32M(pinConfigs)
+    if (enable == True):
+        configurePinsPIC32M(pinConfigs)
 
 def enablePIC32MZ_Curiosity20_I2SPins(bspID, enable):
     pinConfigs= getBSPSupportNode(bspID, "PIC32MZ_CURIOSITY20_I2S").getPinConfig()
@@ -114,6 +121,16 @@ def enablePIC32MZ_BTADK_I2SInterface(bspID, enable):
             res = Database.deactivateComponents(componentIDTable)
         enablePIC32MZ_BTADK_I2SPins(bspID, enable)
 
+def enablePIC32MX_BM83_BTADBInterface(bspID, enable):
+    componentIDTable = getBSPSupportNode(bspID, "PIC32MX_BM83_BTADB").getComponentActivateList()
+    autoConnectTable = getBSPSupportNode(bspID, "PIC32MX_BM83_BTADB").getComponentAutoConnectList()
+    if (enable == True):
+        res = Database.activateComponents(componentIDTable)
+        res = Database.connectDependencies(autoConnectTable)
+    elif (enable == False):
+        res = Database.deactivateComponents(componentIDTable)
+    enablePIC32MX_BM83_BTADBPins(bspID, enable)
+
 def enablePIC32MZ_Curiosity20_I2SInterface(bspID, enable):
     if getBSPSupportNode(bspID, "PIC32MZ_CURIOSITY20_I2S"):
         componentIDTable = getBSPSupportNode(bspID, "PIC32MZ_CURIOSITY20_I2S").getComponentActivateList()
@@ -140,6 +157,8 @@ def configureAK4954Interface(bspID, interface):
             enablePIC32MX_BTADK_I2SInterface(bspID, True)
         elif (str(interface) == "PIC32MZ_BTADK_I2S"):
             enablePIC32MZ_BTADK_I2SInterface(bspID, True)
+        elif (str(interface) == "PIC32MX_BM83_BTADB"):
+            enablePIC32MX_BM83_BTADBInterface(bspID, True)
         elif (str(interface) == "PIC32MZ_CURIOSITY20_I2S"):
             enablePIC32MZ_Curiosity20_I2SInterface(bspID, True)
 
@@ -165,6 +184,8 @@ def instantiateComponent(bspComponent):
         configureAK4954Interface(bspID, "PIC32MX_BTADK_I2S")
     elif getBSPSupportNode(bspID, "PIC32MZ_BTADK_I2S"):
         configureAK4954Interface(bspID, "PIC32MZ_BTADK_I2S")
+    elif getBSPSupportNode(bspID, "PIC32MX_BM83_BTADB"):
+        configureAK4954Interface(bspID, "PIC32MX_BM83_BTADB")
     elif getBSPSupportNode(bspID, "PIC32MZ_CURIOSITY20_I2S"):
         configureAK4954Interface(bspID, "PIC32MZ_CURIOSITY20_I2S")
 
