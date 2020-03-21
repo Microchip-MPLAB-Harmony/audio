@@ -218,7 +218,9 @@ SYS_MODULE_OBJ  DRV_AK4954_Initialize
     drvObj->status                          = SYS_STATUS_UNINITIALIZED;
     drvObj->numClients                      = 0;
     drvObj->masterMode                      = ak4954Init->masterMode;
+<#if DRV_AK4954_I2S != "I2S">
     drvObj->i2sDriverModuleIndex            = ak4954Init->i2sDriverModuleIndex;
+</#if>
     drvObj->i2cDriverModuleIndex            = ak4954Init->i2cDriverModuleIndex;
     drvObj->samplingRate                    = DRV_AK4954_AUDIO_SAMPLING_RATE;
     drvObj->audioDataFormat                 = DRV_AK4954_AUDIO_DATA_FORMAT_MACRO;
@@ -664,6 +666,7 @@ DRV_HANDLE DRV_AK4954_Open
                     drvObj->isExclusive = true;
                 }
 
+<#if DRV_AK4954_I2S != "I2S">
                 if(DRV_IO_INTENT_READWRITE == (ioIntent & DRV_IO_INTENT_READWRITE))
                 {
                     hClient->ioIntent = DRV_IO_INTENT_READWRITE;
@@ -695,6 +698,7 @@ DRV_HANDLE DRV_AK4954_Open
 
                 DRV_I2S_BaudRateSet(drvObj->i2sDriverHandle, drvObj->samplingRate*drvObj->bclk_divider,
                         drvObj->samplingRate);
+</#if>
 </#if>
 
                 /* Remember which AK4954 driver instance owns me */
@@ -769,6 +773,7 @@ void DRV_AK4954_Close( const DRV_HANDLE handle)
 
     drvObj = (DRV_AK4954_OBJ *) clientObj->hDriver;
 
+<#if DRV_AK4954_I2S != "I2S">
     if(DRV_IO_INTENT_READ == (clientObj->ioIntent & DRV_IO_INTENT_READWRITE))
     {
         DRV_I2S_Close (drvObj->i2sDriverClientHandleRead);
@@ -784,12 +789,14 @@ void DRV_AK4954_Close( const DRV_HANDLE handle)
 
     }
 
+</#if>
     /* De-allocate the object */
     clientObj->inUse = false;
     /* Reduce the number of clients */
     drvObj->numClients--;
 } /* DRV_AK4954_Close */
 
+<#if DRV_AK4954_I2S != "I2S">
 // *****************************************************************************
 /*
 Function:
@@ -1349,6 +1356,7 @@ void DRV_AK4954_I2SBufferHandlerSet
         (DRV_I2S_BUFFER_EVENT_HANDLER) I2SBufferEventHandler,
         (uintptr_t)(drvObj));
 }
+</#if>
 
 // *****************************************************************************
 // *****************************************************************************
@@ -1403,6 +1411,7 @@ void DRV_AK4954_SamplingRateSet(DRV_HANDLE handle, uint32_t samplingRate)
     }
     drvObj = (DRV_AK4954_OBJ *)clientObj->hDriver;
     drvObj->samplingRate = samplingRate;
+<#if DRV_AK4954_I2S != "I2S">
 <#if __PROCESSOR?matches("PIC32M.*") == true>
 
     DRV_I2S_RefClockSet(drvObj->i2sDriverHandle, SYS_TIME_CPU_CLOCK_FREQUENCY,
@@ -1410,6 +1419,7 @@ void DRV_AK4954_SamplingRateSet(DRV_HANDLE handle, uint32_t samplingRate)
 
     DRV_I2S_BaudRateSet(drvObj->i2sDriverHandle, drvObj->samplingRate*drvObj->bclk_divider,
             drvObj->samplingRate);
+</#if>
 </#if>
 
     drvObj->command = DRV_AK4954_COMMAND_SEND;
@@ -2470,7 +2480,12 @@ static DRV_HANDLE _DRV_AK4954_ConrolRegisterReSet
     uint32_t size
 )
 {
-    DRV_I2C_WriteTransferAdd( drvObj->drvI2CMasterHandle,
+<#if __PROCESSOR?matches("PIC32M.*") == true>
+    DRV_I2C_ForcedWriteTransferAdd
+<#else>
+    DRV_I2C_WriteTransferAdd
+</#if>   
+                            ( drvObj->drvI2CMasterHandle,
                               AK4954_I2C_ADDR,
                               (uint8_t *)controlData, 
                               size,
@@ -2544,11 +2559,13 @@ static void _DRV_AK4954_ControlTasks(DRV_AK4954_OBJ *drvObj)
 
         case DRV_AK4954_COMMAND_INIT_CLK_PDN_SET:
         {
+<#if DRV_AK4954_I2S != "I2S">
 <#if __PROCESSOR?matches("PIC32M.*") == true>
 			/* Generate master clock from REFCLOCK for the given sampling rate */
             DRV_I2S_RefClockSet(drvObj->i2sDriverHandle, SYS_TIME_CPU_CLOCK_FREQUENCY,
                     drvObj->samplingRate, drvObj->mclk_multiplier);
 
+</#if>
 </#if>
             /* If the delayDriverInitialization option is enabled, we will skip
                toggling the chip's reset pin, since we assume it is tied to a
@@ -2870,6 +2887,7 @@ static void _DRV_AK4954_ControlTasks(DRV_AK4954_OBJ *drvObj)
     }
 }
 
+<#if DRV_AK4954_I2S != "I2S">
 // *****************************************************************************
  /*
   Function:
@@ -2928,6 +2946,7 @@ static void _DRV_AK4954_I2SBufferEventHandler
         ;
     }
 }
+</#if>
 
 // helper routine to get value for AK4954A_REG_MODE_CTRL2 register (FS0-3 bits) for AK4954
 uint8_t _getAK4954_samplerate(uint32_t samplingRate)
@@ -2987,6 +3006,7 @@ uint8_t _getAK4954_samplerate(uint32_t samplingRate)
     return ak4954_rate;
 }
 
+<#if DRV_AK4954_I2S != "I2S">
 // *****************************************************************************
 /*
   Function:
@@ -3054,6 +3074,7 @@ bool DRV_AK4954_LRCLK_Sync (const DRV_HANDLE handle)
 
     return DRV_I2S_LRCLK_Sync (drvObj->i2sDriverHandle, samplingRate);
 }
+</#if>
 
 // *****************************************************************************
 // *****************************************************************************

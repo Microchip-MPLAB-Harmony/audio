@@ -814,14 +814,17 @@ typedef struct _DRV_AK4954_OBJ_STRUCT
     /* Number of clients possible with the hardware instance */
     uint8_t numClients;
 
+<#if DRV_AK4954_I2S != "I2S">
     /* Identifies data module(I2S) driver ID for
      * data interface of Codec */
     SYS_MODULE_INDEX i2sDriverModuleIndex;
 
+</#if>
     /* Identifies data module(I2C) driver ID for
      * control interface of Codec */
     SYS_MODULE_INDEX i2cDriverModuleIndex;
-    
+ 
+<#if DRV_AK4954_I2S != "I2S">   
     /* Identifies data module(I2S) driver open handle */
     DRV_HANDLE i2sDriverHandle;
 
@@ -829,6 +832,7 @@ typedef struct _DRV_AK4954_OBJ_STRUCT
 
     DRV_HANDLE i2sDriverClientHandleWrite;
 
+</#if>
     /* Identifies control module timer ID for
      * control interface of Codec */
     SYS_MODULE_INDEX tmrDriverModuleIndex;
@@ -1062,6 +1066,7 @@ static uintptr_t _DRV_AK4954_ConrolRegisterReSet (DRV_AK4954_OBJ *drvObj,
 */
 static void _DRV_AK4954_ControlTasks(DRV_AK4954_OBJ *drvObj);
 
+<#if DRV_AK4954_I2S != "I2S">
 // *****************************************************************************
  /*
   Function:
@@ -1084,6 +1089,7 @@ static void _DRV_AK4954_I2SBufferEventHandler
     uintptr_t contextHandle
 );
 
+</#if>
 // helper routine to get value for AK4954A_REG_MODE_CTRL2 register (FS0-3 bits) for AK4954
 uint8_t _getAK4954_samplerate(uint32_t samplingRate);
 

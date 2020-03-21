@@ -203,7 +203,8 @@ def instantiateComponent(ak4954Component):
     ak4954SymSourceFile.setOverwrite(True)
 
     ak4954SymHeaderLocalFile = ak4954Component.createFileSymbol("DRV_AK4954_HEADER_LOCAL", None)
-    ak4954SymHeaderLocalFile.setSourcePath("codec/AK4954/src/drv_ak4954_local.h")
+    ak4954SymHeaderLocalFile.setMarkup(True) 
+    ak4954SymHeaderLocalFile.setSourcePath("codec/AK4954/templates/drv_ak4954_local.h.ftl")
     ak4954SymHeaderLocalFile.setOutputName("drv_ak4954_local.h")
     ak4954SymHeaderLocalFile.setDestPath("audio/driver/codec/ak4954/")
     ak4954SymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/codec/ak4954/")
