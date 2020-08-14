@@ -1437,7 +1437,7 @@ uint32_t DRV_I2S_BaudRateSet(DRV_HANDLE handle, uint32_t bitClk, uint32_t baudRa
 </#if>
 <#if DRV_I2S_DMA_LL_ENABLE == true>
 
-typedef void (*DRV_I2S_LL_CALLBACK)();
+typedef void (*DRV_I2S_LL_CALLBACK)(void);
 void DRV_I2S_InitWriteLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,
     uint16_t currDescrip, uint16_t nextDescrip, uint8_t* buffer, uint32_t bufferSize);
 void DRV_I2S_StartWriteLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,

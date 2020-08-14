@@ -104,7 +104,7 @@ typedef enum
 typedef    void (* DRV_BAUDSET)(const uint32_t);
 
 //PLIB Interface Member Functions 
-typedef    uint32_t (* DRV_I2S_LRCLK_GET)();
+typedef    uint32_t (* DRV_I2S_LRCLK_GET)(void);
 <#if __PROCESSOR?matches("ATSAME70.*") == true && DRV_I2S_PLIB?matches("I2SC.*") >
 
 /************************ Start of code specific to SAME70 ********************/

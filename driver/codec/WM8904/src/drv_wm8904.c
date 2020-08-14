@@ -1680,7 +1680,11 @@ void _samplingRateSet(DRV_WM8904_OBJ *drvObj, uint32_t sampleRate, bool standalo
     if (fvco >= FVCO_MIN)
     {
         double nk = (double)fvco / (double)FREF;    // calc N.K value
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Wbad-function-cast"
+// ignore error: cast from function call of type 'double' to non-matching type 'unsigned char' [-Werror=bad-function-cast]
         uint16_t n = (uint8_t) floor(nk);            // integer part N
+  #pragma GCC diagnostic pop
         double k = nk - (double)n;                  // frac part K
         uint16_t k16 = (uint16_t)(65536.0 * k);     // K converted to parts in 65536
         uint16_t lrclk_rate = bitClk / sampleRate;

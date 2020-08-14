@@ -1108,7 +1108,7 @@ uint8_t _getAK4954_samplerate(uint32_t samplingRate);
   Remarks:
     None
 */
-static AK4954_COMMAND* _DRV_AK4954_CommandQueueGetSlot();
+static AK4954_COMMAND* _DRV_AK4954_CommandQueueGetSlot(void);
  /*
   Function:
         static void _DRV_AK4954_CommandQueuePop
@@ -1124,7 +1124,7 @@ static AK4954_COMMAND* _DRV_AK4954_CommandQueueGetSlot();
   Remarks:
     None
 */
-static AK4954_COMMAND* _DRV_AK4954_CommandQueuePop();
+static AK4954_COMMAND* _DRV_AK4954_CommandQueuePop(void);
 
  /*
   Function:
@@ -1141,7 +1141,7 @@ static AK4954_COMMAND* _DRV_AK4954_CommandQueuePop();
   Remarks:
     None
 */
-static AK4954_COMMAND* _DRV_AK4954_CommandQueueTop();
+static AK4954_COMMAND* _DRV_AK4954_CommandQueueTop(void);
  /*
   Function:
         static uint8_t _DRV_AK4954_CONTROL_REG_FIELD_WRITE_Wrapper

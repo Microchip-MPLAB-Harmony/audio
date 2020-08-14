@@ -183,8 +183,8 @@ uint32_t ${I2S_INSTANCE_NAME}_RefClockSet(uint32_t sysclk, uint32_t samplingRate
     printf("%s_RefClockSet: %d %d %d %d\r\n","${I2S_INSTANCE_NAME}",
             rodivInt,rotrimInt,calcSamplingrate,refclko);
     
-    bool int_flag = false;
-    int_flag = (bool)__builtin_disable_interrupts();
+    unsigned int int_flag = false;
+    int_flag = __builtin_disable_interrupts();
 
     /* unlock system for clock configuration */
     SYSKEY = 0x00000000;
@@ -217,7 +217,7 @@ uint32_t ${I2S_INSTANCE_NAME}_RefClockSet(uint32_t sysclk, uint32_t samplingRate
 </#if>
    
     /* Lock system since done with clock configuration */
-    int_flag = (bool)__builtin_disable_interrupts();
+    int_flag = __builtin_disable_interrupts();
 
     SYSKEY = 0x33333333;
 
