@@ -94,9 +94,7 @@ void ${I2S_INSTANCE_NAME}_Initialize ( void )
     ${I2S_INSTANCE_NAME}_REGS->I2S_TXCTRL = I2S_TXCTRL_MONO(${I2S_TXCTRL_MONO}) |
                                             I2S_TXCTRL_WORDADJ(${I2S_TXCTRL_WORDADJ}) |
                                             I2S_TXCTRL_DATASIZE(${I2S_TXCTRL_DATASIZE}) |
-                                            I2S_TXCTRL_SLOTADJ(${I2S_TXCTRL_SLOTADJ}) |
-                                            I2S_TXCTRL_CLKSEL(${I2S_TXCTRL_CLKSEL}) |
-                                            I2S_TXCTRL_SERMODE(I2S_TXCTRL_SERMODE_TX_Val);
+                                            I2S_TXCTRL_SLOTADJ(${I2S_TXCTRL_SLOTADJ});
 
     // configure RX serializer
     ${I2S_INSTANCE_NAME}_REGS->I2S_RXCTRL = I2S_RXCTRL_MONO(${I2S_RXCTRL_MONO}) |

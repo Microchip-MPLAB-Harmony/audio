@@ -181,6 +181,7 @@ def instantiateComponent(i2sComponent):
     i2sTxCLKSEL.setDisplayMode("Description")
     i2sTxCLKSEL.setOutputMode("Value")
     i2sTxCLKSEL.setDefaultValue(0)
+    i2sTxCLKSEL.setReadOnly(True)   # TXCTRL hardwired to Clock 0
 
 # RX Serializer
     i2sRxSerializerEN = i2sComponent.createBooleanSymbol("I2S_RX_SERIALIZER_ENABLE", None)
