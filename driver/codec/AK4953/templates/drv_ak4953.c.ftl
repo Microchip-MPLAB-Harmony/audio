@@ -2704,8 +2704,8 @@ static void _DRV_AK4953_ControlTasks(DRV_AK4953_OBJ *drvObj)
                             AK4953A_REG_MODE_CTRL1,
                             0xFF,
                             0, 
-//                            drvObj->audioDataFormat
-                            MODECTRL1_DIF1_UP | MODECTRL1_DIF0_UP
+                            drvObj->audioDataFormat
+                            //MODECTRL1_DIF1_UP | MODECTRL1_DIF0_UP
                             );
                 command_array[6] = regValue;
 
@@ -2713,8 +2713,8 @@ static void _DRV_AK4953_ControlTasks(DRV_AK4953_OBJ *drvObj)
                             AK4953A_REG_MODE_CTRL2,
                             0xFF,
                             0,
-//                            _getAK4953_samplerate(drvObj->samplingRate)
-                            MODECTRL2_FS1_UP
+                            _getAK4953_samplerate(drvObj->samplingRate)
+                            //MODECTRL2_FS1_UP
                             );
                 command_array[7] = regValue;
 
