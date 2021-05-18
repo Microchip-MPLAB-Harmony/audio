@@ -25,8 +25,8 @@
 
 <#-- Instance 0 -->
 <#if DRV_CODEC_WM8904_INST_IDX0 == true>
-#define DRV_WM8904_I2S_DRIVER_MODULE_INDEX_IDX0             DRV_I2S_INDEX_0
-#define DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0             DRV_I2C_INDEX_0
+#define DRV_WM8904_I2S_DRIVER_MODULE_INDEX_IDX0             ${DRV_WM8904_I2S?replace("DRV_I2S_", "DRV_I2S_INDEX_")}
+#define DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0             ${DRV_WM8904_I2C?replace("DRV_I2C_", "DRV_I2C_INDEX_")}
 </#if> 
 /* CODEC Driver Abstraction definition */
 

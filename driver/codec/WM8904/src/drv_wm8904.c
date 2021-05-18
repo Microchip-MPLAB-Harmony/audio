@@ -281,6 +281,7 @@ SYS_MODULE_OBJ  DRV_WM8904_Initialize
     drvObj->numClients                      = 0;
     drvObj->masterMode                      = wm8904Init->masterMode;
     drvObj->i2sDriverModuleIndex            = wm8904Init->i2sDriverModuleIndex;
+    drvObj->i2cDriverModuleIndex            = wm8904Init->i2cDriverModuleIndex;
     drvObj->samplingRate                    = wm8904Init->samplingRate;
     drvObj->audioDataFormat                 = wm8904Init->audioDataFormat;
     drvObj->enableMicInput                  = wm8904Init->enableMicInput;
@@ -2493,7 +2494,7 @@ static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
         case DRV_WM8904_STATE_OPEN:
         {
             /* Open the I2C Driver */
-            drvObj->drvI2CHandle = DRV_I2C_Open( DRV_I2C_INDEX_0,
+            drvObj->drvI2CHandle = DRV_I2C_Open(drvObj->i2cDriverModuleIndex,
                     DRV_IO_INTENT_READWRITE );
             
             if ( DRV_HANDLE_INVALID == drvObj->drvI2CHandle )

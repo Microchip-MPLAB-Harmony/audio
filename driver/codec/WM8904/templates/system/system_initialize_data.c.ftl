@@ -3,10 +3,10 @@
 <#if DRV_CODEC_WM8904_INST_IDX0 == true>
 const DRV_WM8904_INIT drvwm8904Codec0InitData =
 {
-<#if DRV_WM8904_I2S_DRIVER_MODULE_INDEX_IDX0?has_content>
+<#if DRV_WM8904_I2S?has_content>
     .i2sDriverModuleIndex = DRV_WM8904_I2S_DRIVER_MODULE_INDEX_IDX0,
 </#if>
-<#if DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0?has_content>
+<#if DRV_WM8904_I2C?has_content>
     .i2cDriverModuleIndex = DRV_WM8904_I2C_DRIVER_MODULE_INDEX_IDX0,
 </#if>
     .masterMode = DRV_WM8904_MASTER_MODE,

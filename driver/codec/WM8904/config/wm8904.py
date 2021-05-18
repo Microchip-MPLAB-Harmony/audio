@@ -216,7 +216,10 @@ def onDependencyConnected(info):
         plibUsed = info["localComponent"].getSymbolByID("DRV_WM8904_I2S")
         i2sOri2cId = info["remoteComponent"].getID().upper()
         i2sOri2cId = i2sOri2cId.replace("A_","")    # I2S driver in audio repo have an "a_" prefix
+        Log.writeInfoMessage("I2S, Instance Chosen: " + i2sOri2cId)
     elif info["dependencyID"] == "DRV_I2C":
         plibUsed = info["localComponent"].getSymbolByID("DRV_WM8904_I2C")
         i2sOri2cId = info["remoteComponent"].getID().upper()
+        i2sOri2cId = i2sOri2cId.replace("A_","")    # I2C driver in audio repo have an "a_" prefix
+        Log.writeInfoMessage("I2C, Instance Chosen: " + i2sOri2cId)
     plibUsed.setValue(i2sOri2cId, 1)
