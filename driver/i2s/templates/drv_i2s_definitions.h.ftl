@@ -272,6 +272,9 @@ typedef struct
     /* I2S receive register address used for DMA operation. */
     void                        *i2sReceiveAddress;
 
+    /* Interrupt source ID for DMA RX interrupt. */
+    INT_SOURCE                  interruptRxDMA;
+
     /* Interrupt source ID for DMA interrupt. */
     INT_SOURCE                  interruptDMA;
 

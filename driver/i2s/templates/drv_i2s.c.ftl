@@ -99,10 +99,28 @@ static bool _DRV_I2S_ResourceLock(DRV_I2S_OBJ * object)
 
     /* We will disable I2S and/or DMA interrupt so that the driver resource
      * is not updated asynchronously. */
+<#if __PROCESSOR?matches("PIC32M.*") == false>
+    <#if DMA_INSTANCE_NAME?has_content>
+    if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
+    {
+        SYS_INT_SourceDisable(dObj->interruptDMA);
+    }
+    if (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel)
+    {
+        SYS_INT_SourceDisable(dObj->interruptRxDMA);
+    }
+    <#else>
     if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
     {
         SYS_INT_SourceDisable(dObj->interruptDMA);
     }
+    </#if>
+<#else>
+    if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    {
+        SYS_INT_SourceDisable(dObj->interruptDMA);
+    }
+</#if>
 
     SYS_INT_SourceDisable(dObj->interruptI2S);
 
@@ -114,11 +132,29 @@ static bool _DRV_I2S_ResourceUnlock(DRV_I2S_OBJ * object)
     DRV_I2S_OBJ * dObj = object;
 
     /* Restore the interrupt and release mutex. */
+<#if __PROCESSOR?matches("PIC32M.*") == false>
+    <#if DMA_INSTANCE_NAME?has_content>
+    if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
+    {
+        SYS_INT_SourceEnable(dObj->interruptDMA);
+    }
+    if (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel)
+    {
+        SYS_INT_SourceEnable(dObj->interruptRxDMA);
+    }
+    <#else>
     if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
     {
         SYS_INT_SourceEnable(dObj->interruptDMA);
     }
-
+    </#if>
+<#else>
+    if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    {
+        SYS_INT_SourceEnable(dObj->interruptDMA);
+    }
+</#if>
+    
     SYS_INT_SourceEnable(dObj->interruptI2S);
 
     OSAL_MUTEX_Unlock(&(dObj->mutexDriverInstance));
@@ -492,6 +528,12 @@ SYS_MODULE_OBJ DRV_I2S_Initialize( const SYS_MODULE_INDEX drvIndex, const SYS_MO
     dObj->txAddress             = i2sInit->i2sTransmitAddress;
     dObj->rxAddress             = i2sInit->i2sReceiveAddress;
     dObj->interruptDMA          = i2sInit->interruptDMA;
+
+<#if __PROCESSOR?matches("PIC32M.*") == false>
+    <#if DMA_INSTANCE_NAME?has_content>
+    dObj->interruptRxDMA        = i2sInit->interruptRxDMA;
+    </#if>
+</#if>
     dObj->dmaDataLength         = i2sInit->dmaDataLength;
 
     /* Create the Mutexes needed for RTOS mode. These calls always passes in the
