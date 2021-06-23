@@ -1918,7 +1918,7 @@ uint8_t _convertGainToMGain(uint8_t gain)
 {
     uint8_t ret;
     // convert external gain setting 0-31 to internal MGAIN value
-    if (gain << 6)
+    if (gain < 6)
     {
         ret = SIGSLCT1_MGAIN_0DB;
     }
