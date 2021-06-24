@@ -1,6 +1,37 @@
 # Microchip MPLAB Harmony 3 Release Notes
+## Audio Release v3.5.1 (June, 2021)
+
+### UPDATES FOR 3.5.1:
+
+**Note**: This is an interim release only to allow other applications to build correctly with the latest Harmony repos and compilers.
+
+However no applications have been updated.  They will be moved to a separate audio_apps repo in an upcoming 3.6 release.  The audio apps have been retained in this release of the repo, and will build as is, but will not regenerate correctly.  For that, you must revert to the 3.5.0 version of the audio repo and use the respective older versions of other repos as specified in the package.xml file.
+
+- **Updated Drivers**
+
+The following table provides the list of updated audio drivers:
+
+| Driver | Description | BTADK | BTADK/MZ | MZ EF/C2 | E54 | E70 | V71 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| All | Fixes for new compiler switches and XC32 3.0 compiler | x | x | x | x | x | x |
+| AK4954 | Remove 32-bit data formats | x | x |  x | x | x | |
+| WM8904 | Always tries to open I2C Driver instance 0 | x | x |  x | x | x | x |
+
+
+
+- **Updated Peripheral Libraries (PLIBs)**
+
+The following table provides the list of updated audio peripheral libraries:
+
+| Driver | Description | BTADK | BTADK/MZ | MZ EF/C2 | E54 | E70 | V71 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| All | Fixes for new compiler switches and XC32 3.0 compiler | x | x | x | x | x | x |
+| i2sc 11241 | Fix incorrect names being created for some functions | | | | | x | |
+| i2sc 11241 | Remove unused clock-related functions | | | | | x | |
+| i2s u2224 | Remove references to deleted TXCTRL bits | | | | x | | |
+
 ## Audio Release v3.5.0 (February, 2020)
-### ADDITIONS AND UPDATES FOR 3.5.0:
+### Additions and Updates for 3.4.0:
 
 - **New Applications/Projects**
 
