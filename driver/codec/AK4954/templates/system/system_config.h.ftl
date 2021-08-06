@@ -37,6 +37,7 @@
 
 #define DRV_CODEC_INDEX_0                                   DRV_AK4954_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvak4954Codec0
+#define DRV_CODEC_I2S_MASTER_MODE                           DRV_AK4954_I2S_MASTER_MODE
 <#if DRV_AK4954_I2S != "I2S">
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_AK4954_BUFFER_HANDLE
 #define DRV_CODEC_BUFFER_HANDLE_INVALID                     DRV_AK4954_BUFFER_HANDLE_INVALID
@@ -55,6 +56,7 @@
 #define DRV_CODEC_Initialize                                DRV_AK4954_Initialize
 #define DRV_CODEC_Deinitialize                              DRV_AK4954_Deinitialize
 #define DRV_CODEC_Status                                    DRV_AK4954_Status
+#define DRV_CODEC_ClientReady                               DRV_AK4954_ClientReady
 #define DRV_CODEC_Tasks                                     DRV_AK4954_Tasks
 #define DRV_CODEC_Open                                      DRV_AK4954_Open
 #define DRV_CODEC_Close                                     DRV_AK4954_Close

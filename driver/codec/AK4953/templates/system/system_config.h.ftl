@@ -12,9 +12,9 @@
 </#if>
 
 <#if DRV_AK4953_MASTER_MODE == "MASTER">
-#define DRV_AK4953_MASTER_MODE                              true
+#define DRV_AK4953_I2S_MASTER_MODE                              true
 <#else>
-#define DRV_AK4953_MASTER_MODE                              false
+#define DRV_AK4953_I2S_MASTER_MODE                              false
 </#if>
 #define DRV_AK4953_AUDIO_SAMPLING_RATE                      ${DRV_AK4953_BAUD_RATE}
 #define DRV_AK4953_VOLUME	                      	        ${DRV_AK4953_VOLUME}
@@ -35,6 +35,7 @@
 
 #define DRV_CODEC_INDEX_0                                   DRV_AK4953_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvak4953Codec0
+#define DRV_CODEC_I2S_MASTER_MODE                           DRV_AK4953_I2S_MASTER_MODE
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_AK4953_BUFFER_HANDLE
 #define DRV_CODEC_BUFFER_HANDLE_INVALID                     DRV_AK4953_BUFFER_HANDLE_INVALID
 #define DRV_CODEC_BUFFER_EVENT_HANDLER                      DRV_AK4953_BUFFER_EVENT_HANDLER
@@ -47,6 +48,8 @@
 #define DRV_CODEC_CHANNEL_LEFT                              DRV_AK4953_CHANNEL_LEFT
 #define DRV_CODEC_CHANNEL_RIGHT                             DRV_AK4953_CHANNEL_RIGHT
 #define DRV_CODEC_CHANNEL_LEFT_RIGHT                        DRV_AK4953_CHANNEL_LEFT_RIGHT
+#define DRV_CODEC_AUDIO_SAMPLING_RATE                       DRV_AK4953_AUDIO_SAMPLING_RATE
+#define DRV_CODEC_WHICH_MIC_INPUT                          DRV_AK4953_WHICH_MIC_INPUT
 
 #define DRV_CODEC_Initialize                                DRV_AK4953_Initialize
 #define DRV_CODEC_Deinitialize                              DRV_AK4953_Deinitialize
@@ -54,6 +57,7 @@
 #define DRV_CODEC_Tasks                                     DRV_AK4953_Tasks
 #define DRV_CODEC_Open                                      DRV_AK4953_Open
 #define DRV_CODEC_Close                                     DRV_AK4953_Close
+//#define DRV_CODEC_ClientReady                               DRV_AK4953_ClientReady
 #define DRV_CODEC_BufferEventHandlerSet                     DRV_AK4953_BufferEventHandlerSet
 #define DRV_CODEC_CommandEventHandlerSet                    DRV_AK4953_CommandEventHandlerSet
 #define DRV_CODEC_BufferAddWrite                            DRV_AK4953_BufferAddWrite

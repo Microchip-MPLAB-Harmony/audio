@@ -14,7 +14,7 @@
 <#if DRV_WM8904_MASTER_MODE == "MASTER">
 #define DRV_WM8904_MASTER_MODE                              true
 <#else>
-#define DRV_WM8904_MASTER_MODE                              false
+#define DRV_WM8904_I2S_MASTER_MODE                          false
 </#if>
 #define DRV_WM8904_AUDIO_SAMPLING_RATE                      ${DRV_WM8904_BAUD_RATE}
 #define DRV_WM8904_VOLUME	                      	        ${DRV_WM8904_VOLUME}
@@ -33,7 +33,7 @@
 //Codec Driver Instance
 #define DRV_CODEC_INDEX_0                                   DRV_WM8904_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvwm8904Codec0
-#define DRV_CODEC_I2S_MASTER_MODE                               DRV_WM8904_MASTER_MODE
+#define DRV_CODEC_I2S_MASTER_MODE                           DRV_WM8904_I2S_MASTER_MODE
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_WM8904_BUFFER_HANDLE
 #define DRV_CODEC_BUFFER_HANDLE_INVALID                     DRV_WM8904_BUFFER_HANDLE_INVALID
 #define DRV_CODEC_BUFFER_EVENT_HANDLER                      DRV_WM8904_BUFFER_EVENT_HANDLER
@@ -48,6 +48,7 @@
 #define DRV_CODEC_CHANNEL_RIGHT                             DRV_WM8904_CHANNEL_RIGHT
 #define DRV_CODEC_CHANNEL_LEFT_RIGHT                        DRV_WM8904_CHANNEL_LEFT_RIGHT
 #define DRV_CODEC_AUDIO_SAMPLING_RATE                       DRV_WM8904_AUDIO_SAMPLING_RATE
+#define DRV_CODEC_WHICH_MIC_INPUT                           DRV_WM8904_WHICH_MIC_INPUT
 #define DRV_CODEC_VOLUME	                        	    DRV_WM8904_VOLUME
 #define DRV_CODEC_AUDIO_DATA_FORMAT_MACRO                 	DRV_WM8904_AUDIO_DATA_FORMAT_MACRO
 #define DRV_CODEC_ENABLE_MIC_INPUT                          DRV_WM8904_ENABLE_MIC_INPUT
@@ -58,6 +59,7 @@
 #define DRV_CODEC_Initialize                                DRV_WM8904_Initialize
 #define DRV_CODEC_Deinitialize                              DRV_WM8904_Deinitialize
 #define DRV_CODEC_Status                                    DRV_WM8904_Status
+#define DRV_CODEC_ClientReady                               DRV_WM8904_ClientReady
 #define DRV_CODEC_Tasks                                     DRV_WM8904_Tasks
 #define DRV_CODEC_Open                                      DRV_WM8904_Open
 #define DRV_CODEC_Close                                     DRV_WM8904_Close

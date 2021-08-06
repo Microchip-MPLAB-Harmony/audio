@@ -7,7 +7,7 @@ const DRV_AK4954_INIT drvak4954Codec0InitData =
     .i2sDriverModuleIndex = DRV_AK4954_I2S_DRIVER_MODULE_INDEX_IDX0,
 </#if>
     .i2cDriverModuleIndex = DRV_AK4954_I2C_DRIVER_MODULE_INDEX_IDX0,
-    .masterMode = DRV_AK4954_MASTER_MODE,
+    .masterMode = DRV_I2S_AK4954_MASTER_MODE,
     .samplingRate = DRV_AK4954_AUDIO_SAMPLING_RATE,
     .volume = DRV_AK4954_VOLUME,
     .audioDataFormat = DRV_AK4954_AUDIO_DATA_FORMAT_MACRO,

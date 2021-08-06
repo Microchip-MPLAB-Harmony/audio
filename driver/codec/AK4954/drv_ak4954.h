@@ -742,6 +742,46 @@ bool DRV_AK4954_IsInitializationDelayed(SYS_MODULE_OBJ object);
 
 // *****************************************************************************
 /* Function:
+    bool DRV_AK4954_ClientReady( iClient )
+
+  Summary:
+    Returns true if the AK4954 driver is ready for client operations
+
+  Description:
+    Returns true if the AK4954 driver is ready for client operations
+
+  Precondition:
+    Function DRV_AK4954_Initialize/DRV_AK4954_Open should have been called 
+    before calling this function.
+
+  Parameters:
+    object          - Driver object handle, returned from the
+                      DRV_AK4954_Initialize routine
+
+  Returns:
+   true - Driver is open for client operations
+   false - driver is not ready for client operations
+
+  Example:
+    <code>
+    SYS_MODULE_OBJ      object;     // Returned from DRV_AK4954_Initialize
+    SYS_STATUS          AK4954Status;
+
+    AK4954Status = DRV_AK4954_Status(object);
+    if (DRV_AK4954_ClientReady(0)==true)
+    {
+        //Ready to perform driver functions
+    }
+    </code>
+
+  Remarks:
+    Driver operation can only commence after the client interface is ready. 
+ */
+bool DRV_AK4954_ClientReady(uint32_t iClient);
+
+
+// *****************************************************************************
+/* Function:
     void  DRV_AK4954_Tasks(SYS_MODULE_OBJ object);
 
   Summary:

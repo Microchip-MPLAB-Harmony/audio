@@ -637,6 +637,46 @@ SYS_STATUS DRV_WM8904_Status(SYS_MODULE_OBJ object);
 
 // *****************************************************************************
 /* Function:
+    bool DRV_WM8904_ClientReady( iClient )
+
+  Summary:
+    Returns true if the WM8904 driver is ready for client operations
+
+  Description:
+    Returns true if the WM8904 driver is ready for client operations
+
+  Precondition:
+    Function DRV_WM8904_Initialize/DRV_WM8904_Open should have been called 
+    before calling this function.
+
+  Parameters:
+    object          - Driver object handle, returned from the
+                      DRV_WM8904_Initialize routine
+
+  Returns:
+   true - Driver is open for client operations
+   false - driver is not ready for client operations
+
+  Example:
+    <code>
+    SYS_MODULE_OBJ      object;     // Returned from DRV_WM8904_Initialize
+    SYS_STATUS          WM8904Status;
+
+    WM8904Status = DRV_WM8904_Status(object);
+    if (DRV_WM8904_ClientReady(0)==true)
+    {
+        //Ready to perform driver functions
+    }
+    </code>
+
+  Remarks:
+    Driver operation can only commence after the client interface is ready. 
+ */
+bool DRV_WM8904_ClientReady(uint32_t iClient);
+
+
+// *****************************************************************************
+/* Function:
     void  DRV_WM8904_Tasks(SYS_MODULE_OBJ object);
 
   Summary:
