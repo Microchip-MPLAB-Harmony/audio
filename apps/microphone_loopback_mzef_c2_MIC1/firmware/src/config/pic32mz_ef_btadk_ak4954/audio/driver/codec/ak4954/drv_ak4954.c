@@ -355,6 +355,39 @@ void DRV_AK4954_Deinitialize( SYS_MODULE_OBJ object)
 
 // *****************************************************************************
 /* Function:
+    bool DRV_AK4954_ClientReady(iClient)
+
+  Summary:
+    Returns true if the AK4954 driver is ready for client operations
+
+  Description:
+    Returns true if the AK4954 driver is ready for client operations
+
+  Precondition:
+    Function DRV_AK4954_Initialize/DRV_WM8904_Open should have been called 
+    before calling this function.
+
+  Parameters:
+    object          - Driver object handle, returned from the
+                      DRV_AK4954_Initialize routine
+  Returns:
+   true - Driver is open for client operations
+   false - driver is not ready for client operations
+*/
+bool DRV_AK4954_ClientReady(uint32_t iClient)
+{
+    DRV_AK4954_CLIENT_OBJ *hClient;
+
+    //KEEP THIS - MHC Typo
+    hClient = (DRV_AK4954_CLIENT_OBJ *)&gDrvak4954ClientObj[iClient];
+    /* Return the readiness of the driver client*/
+    return hClient->inUse;
+
+} /* DRV_AK4954_Ready*/
+
+
+// *****************************************************************************
+/* Function:
     SYS_STATUS DRV_AK4954_Status( SYS_MODULE_OBJ object)
 
   Summary:
@@ -1285,7 +1318,6 @@ void DRV_AK4954_BufferEventHandlerSet
         return;
     }
 
-    /* Assing the event handler and the context */
     clientObj = (DRV_AK4954_CLIENT_OBJ *) handle;
     if(false == clientObj->inUse)
     {
@@ -1293,6 +1325,7 @@ void DRV_AK4954_BufferEventHandlerSet
         return;
     }
     drvObj = clientObj->hDriver;
+
     /* Set the Event Handler and context */
     clientObj->pEventCallBack = eventHandler;
     clientObj->hClientArg = contextHandle;

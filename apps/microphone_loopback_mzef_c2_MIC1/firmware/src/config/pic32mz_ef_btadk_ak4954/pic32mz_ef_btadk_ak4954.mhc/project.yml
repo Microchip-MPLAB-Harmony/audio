@@ -13,13 +13,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 82184E6E6BF21D7C0E91DE0BD7609E90
-- generatedChecksum: 8A4CDDAC2BC85DFA1471AA06A9EB2D03
+- generatedChecksum: 774AAF4E54A4DB1EB558009DB900EB46
   logicalPath: config/pic32mz_ef_btadk_ak4954/audio/driver/codec/ak4954
   name: drv_ak4954.c
   physicalPath: audio/driver/codec/ak4954
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 8A4CDDAC2BC85DFA1471AA06A9EB2D03
+  userChecksum: 774AAF4E54A4DB1EB558009DB900EB46
 - generatedChecksum: D7CB7F305208715624357B71229B20B4
   logicalPath: config/pic32mz_ef_btadk_ak4954/audio/driver/codec/ak4954
   name: drv_ak4954_local.h
@@ -62,20 +62,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: D230A6B646D2E78CEAA6AA924E04FCA0
-- generatedChecksum: 3170B19A78BC20295599E87E3816A506
+- generatedChecksum: 05F5F37EEEEBBD558128810A2EC70215
   logicalPath: config/pic32mz_ef_btadk_ak4954
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 3170B19A78BC20295599E87E3816A506
-- generatedChecksum: 407582B77F572BE9606AEAD26C888067
+  userChecksum: 05F5F37EEEEBBD558128810A2EC70215
+- generatedChecksum: BCFA2816D7034F280411F6C54359A80A
   logicalPath: config/pic32mz_ef_btadk_ak4954
   name: interrupts.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 407582B77F572BE9606AEAD26C888067
+  userChecksum: BCFA2816D7034F280411F6C54359A80A
 - generatedChecksum: null
   logicalPath: ''
   name: main.c
@@ -97,20 +97,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 2FEFEA0D4E94F5A5F3D76BAEC3D602E5
-- generatedChecksum: 53CB5A0C1AD90B26256FA6748DA4E3D7
+- generatedChecksum: 706CF9D9EFA2BCAE46AA1E83688FE018
   logicalPath: config/pic32mz_ef_btadk_ak4954/peripheral/dmac
   name: plib_dmac.c
   physicalPath: peripheral/dmac
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 53CB5A0C1AD90B26256FA6748DA4E3D7
-- generatedChecksum: 2B0E3B86A5DDDFF8B2C1E6076622C67E
+  userChecksum: 706CF9D9EFA2BCAE46AA1E83688FE018
+- generatedChecksum: 22E09ABB178BB95377CE29D1ACDDFE89
   logicalPath: config/pic32mz_ef_btadk_ak4954/peripheral/evic
   name: plib_evic.c
   physicalPath: peripheral/evic
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 2B0E3B86A5DDDFF8B2C1E6076622C67E
+  userChecksum: 22E09ABB178BB95377CE29D1ACDDFE89
 - generatedChecksum: 2363B65659BE6AD9693CA5C988F97DB8
   logicalPath: config/pic32mz_ef_btadk_ak4954/peripheral/gpio
   name: plib_gpio.c
@@ -188,13 +188,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 5FB617BE61782FBB4894E08E1711345F
-- generatedChecksum: E270D49A20C8A2588F716A6C8D650BD9
+- generatedChecksum: 1699869B38E91F033980412B25A55DC9
   logicalPath: config/pic32mz_ef_btadk_ak4954
   name: configuration.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: E270D49A20C8A2588F716A6C8D650BD9
+  userChecksum: B1355C4D0168487439AA251233BD2D49
 - generatedChecksum: 1530CE9EAEB77E43E264D78E7B3E844D
   logicalPath: config/pic32mz_ef_btadk_ak4954
   name: definitions.h
@@ -223,13 +223,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: CC7DFCC51CD25171A3E400E18969354F
-- generatedChecksum: EAD815C10EEA424B3FB22EA1BE3EB29D
+- generatedChecksum: C9E105A6A746DB1FCBFAC0F99F47897F
   logicalPath: config/pic32mz_ef_btadk_ak4954/audio/driver/codec/ak4954
   name: drv_ak4954.h
   physicalPath: audio/driver/codec/ak4954
   security: NON_SECURE
   type: HEADER
-  userChecksum: EAD815C10EEA424B3FB22EA1BE3EB29D
+  userChecksum: C9E105A6A746DB1FCBFAC0F99F47897F
 - generatedChecksum: 3C6689B8800C6234028EC2FBE82E25CF
   logicalPath: config/pic32mz_ef_btadk_ak4954/driver/i2c
   name: drv_i2c.h

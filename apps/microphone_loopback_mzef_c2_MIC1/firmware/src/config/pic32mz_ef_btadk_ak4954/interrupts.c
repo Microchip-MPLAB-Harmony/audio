@@ -64,8 +64,8 @@
 void CORE_TIMER_InterruptHandler( void );
 void I2C1_BUS_InterruptHandler( void );
 void I2C1_MASTER_InterruptHandler( void );
-void DMA2_InterruptHandler( void );
-void DMA3_InterruptHandler( void );
+void DMA0_InterruptHandler( void );
+void DMA1_InterruptHandler( void );
 
 
 
@@ -85,14 +85,14 @@ void __ISR(_I2C1_MASTER_VECTOR, ipl1SRS) I2C1_MASTER_Handler (void)
     I2C1_MASTER_InterruptHandler();
 }
 
-void __ISR(_DMA2_VECTOR, ipl1SRS) DMA2_Handler (void)
+void __ISR(_DMA0_VECTOR, ipl1SRS) DMA0_Handler (void)
 {
-    DMA2_InterruptHandler();
+    DMA0_InterruptHandler();
 }
 
-void __ISR(_DMA3_VECTOR, ipl1SRS) DMA3_Handler (void)
+void __ISR(_DMA1_VECTOR, ipl1SRS) DMA1_Handler (void)
 {
-    DMA3_InterruptHandler();
+    DMA1_InterruptHandler();
 }
 
 
