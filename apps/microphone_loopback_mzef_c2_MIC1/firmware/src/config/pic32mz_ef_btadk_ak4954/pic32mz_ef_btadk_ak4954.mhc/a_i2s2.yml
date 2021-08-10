@@ -1,0 +1,30 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: a_i2s2}
+children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: I2S_BRG_VALUE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: a_i2s2, value: '1'}
+- type: Attachments
+  children:
+  - type: DirectCapability
+    attributes: {id: SPI2_I2S}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: a_drv_i2s_0}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: drv_i2s_I2S_dependency}
+- type: ElementPosition
+  attributes: {x: '191', y: '323', id: a_i2s2}

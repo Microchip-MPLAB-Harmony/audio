@@ -1,0 +1,21 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: a_i2sc1}
+children:
+- type: Attachments
+  children:
+  - type: DirectCapability
+    attributes: {id: I2SC1_I2S}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: a_drv_i2s_0}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: drv_i2s_I2S_dependency}
+- type: ElementPosition
+  attributes: {x: '120', y: '449', id: a_i2sc1}
