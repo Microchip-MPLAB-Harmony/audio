@@ -267,11 +267,12 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
     }
 
     /* Get the buffer object at queue head */
-    if(DRV_I2S_DIRECTION_RX == direction)
+    if (DRV_I2S_DIRECTION_RX == direction)
     {
         currentQueue = dObj->queueRead;
     }
-    else if(DRV_I2S_DIRECTION_TX == direction)
+    else if ((DRV_I2S_DIRECTION_TX == direction) ||
+             (DRV_I2S_DIRECTION_TX_RX == direction))
     {
         //NOTE:  queueWrite may also be Write/Read
         currentQueue = dObj->queueWrite;
@@ -441,20 +442,32 @@ static void _DRV_I2S_TX_DMA_CallbackHandler(SYS_DMA_TRANSFER_EVENT event,
                                             uintptr_t context)
 {
     DRV_I2S_OBJ *dObj = (DRV_I2S_OBJ *)context;
+    DRV_I2S_DIRECTION  direction;
+
+    if (dObj->process == DRV_I2S_TASK_PROCESS_WRITE_ONLY)
+    {
+        direction = DRV_I2S_DIRECTION_TX;
+    }
+    else
+    {
+        direction = DRV_I2S_DIRECTION_TX_RX;
+    }
 
     if(SYS_DMA_TRANSFER_COMPLETE == event)
     {
         txCompleteCnt++;
-        if(txCompleteCnt%2000 == 1) SYS_MESSAGE("[TC1]");
-        if(txCompleteCnt%2000 == 0) SYS_PRINT("[TC%d]",txCompleteCnt);
+        if(txCompleteCnt == 1) SYS_MESSAGE("[TC1]");
+        if(txCompleteCnt%5000 == 0) SYS_PRINT("[TC%d]",txCompleteCnt);
 
         _DRV_I2S_BufferQueueTask(dObj, 
-                                 DRV_I2S_DIRECTION_TX, 
+                                 direction, 
                                  DRV_I2S_BUFFER_EVENT_COMPLETE);
     }
     else if(SYS_DMA_TRANSFER_ERROR == event)
     {
-        _DRV_I2S_BufferQueueTask(dObj, DRV_I2S_DIRECTION_TX, DRV_I2S_BUFFER_EVENT_ERROR);
+        _DRV_I2S_BufferQueueTask(dObj, 
+                                 direction, 
+                                 DRV_I2S_BUFFER_EVENT_ERROR);
     }
 }
 
@@ -465,8 +478,8 @@ static void _DRV_I2S_RX_DMA_CallbackHandler(SYS_DMA_TRANSFER_EVENT event, uintpt
     if(SYS_DMA_TRANSFER_COMPLETE == event)
     {
         rxCompleteCnt++;
-        if(rxCompleteCnt%2000 == 1) SYS_MESSAGE("[RC1]");
-        if(rxCompleteCnt%2000 == 0) SYS_PRINT("[RC%d]",rxCompleteCnt);
+        if(rxCompleteCnt == 1) SYS_MESSAGE("[RC1]");
+        if(rxCompleteCnt%5000 == 0) SYS_PRINT("[RC%d]",rxCompleteCnt);
 
         _DRV_I2S_BufferQueueTask(dObj, DRV_I2S_DIRECTION_RX, DRV_I2S_BUFFER_EVENT_COMPLETE);
     }
@@ -897,14 +910,11 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
         txCompleteCnt = 0;
         rxQCnt = 0;
         rxCompleteCnt = 0;
-        SYS_MESSAGE("[TX1RX1]\r\n");
 
         /* This is the first buffer in the queue */
         dObj->queueWrite = bufferObj;
         dObj->process = DRV_I2S_TASK_PROCESS_WRITE_READ;
-
-        //Purge the Read queue to initiate simultaneous WriteReads
-        qstat = DRV_I2S_ReadQueuePurge(handle);
+        SYS_MESSAGE("[TX1RX1]\r\n");
 
         /* Because this is the first buffer in the queue, we need to submit the
          * buffer to the DMA to start processing. */

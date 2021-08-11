@@ -171,7 +171,10 @@ typedef enum
     DRV_I2S_DIRECTION_RX,
 
     /* Transmit Operation */
-    DRV_I2S_DIRECTION_TX
+    DRV_I2S_DIRECTION_TX,
+
+    //Receive and transmit simultaneously
+    DRV_I2S_DIRECTION_TX_RX,
 
 } DRV_I2S_DIRECTION;
 

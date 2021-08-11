@@ -1757,16 +1757,16 @@ void APP_Tasks()
                     }
                     else
                     {
-                        SYS_MESSAGE("[mNR]\r\n");
+                        SYS_MESSAGE("[micNR]\r\n");
                         //errorNum = ERR_CODEC;
-                        //appData.state = APP_STATE_ERROR;
-                        appData.state = APP_STATE_INITIAL_CODEC_WRITEREAD_REQUESTS;
+                        appData.state = APP_STATE_ERROR;
+                        //appData.state = APP_STATE_INITIAL_CODEC_WRITEREAD_REQUESTS;
                         break;
                     }
                 }
                 else
                 {
-                    SYS_MESSAGE("[mNR]\r\n");
+                    SYS_MESSAGE("[micNR]\r\n");
                     errorNum = ERR_CODEC;
                     appData.state = APP_STATE_ERROR;
                     break;
@@ -2040,7 +2040,7 @@ void APP_CODECBufferEventHandlerWriteRead(DRV_CODEC_BUFFER_EVENT event,
             if (appWRQueue.usbCompleteBufferLevel <= 0)
             {
                 //USB Read needs to complete before next Codec Write.
-                SYS_MESSAGE("APQ: QUEUE Empty\r\n");
+                SYS_MESSAGE("[Q0]\r\n");
                 appWRQueue.usbCompleteBufferLevel = 0;
                 queueEmpty = true;
             }
