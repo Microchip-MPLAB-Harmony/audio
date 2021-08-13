@@ -1,0 +1,1494 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Configuration>
+  <Configurator>
+    <Name dnOrder="0" value="uh_basic_mz_ef_c2_ak4954_i2s_usb"/>
+    <Processor dnOrder="1" value="PIC32MZ2048EFM144"/>
+    <Harmony dnOrder="2" path="../../.."/>
+    <Folder_Name dnOrder="3" value=""/>
+    <Manifest dnOrder="4">
+      <Files dnOrder="0">
+        <File dnOrder="0">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">app.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3"/>
+          <PhysicalPath dnOrder="4">/../../</PhysicalPath>
+          <GeneratedChecksum dnOrder="5"/>
+          <UserChecksum dnOrder="6"/>
+        </File>
+        <File dnOrder="1">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">bsp.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/bsp/</LogicalPath>
+          <PhysicalPath dnOrder="4">/bsp/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">82184E6E6BF21D7C0E91DE0BD7609E90</GeneratedChecksum>
+          <UserChecksum dnOrder="6">82184E6E6BF21D7C0E91DE0BD7609E90</UserChecksum>
+        </File>
+        <File dnOrder="2">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_ak4954.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/driver/codec/ak4954/</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/driver/codec/ak4954/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">791ADC8FEA6733F048DD2CD1894BB8F2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4891685690182BA0A1E59BADD97DE8E2</UserChecksum>
+        </File>
+        <File dnOrder="3">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_ak4954_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/driver/codec/ak4954/</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/driver/codec/ak4954/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BB7509DBA3F9E66FFD7F675227423656</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BB7509DBA3F9E66FFD7F675227423656</UserChecksum>
+        </File>
+        <File dnOrder="4">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_i2c.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/i2c/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/i2c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">39534E1CE0B7BEBCA64DAF598E5024E7</GeneratedChecksum>
+          <UserChecksum dnOrder="6">39534E1CE0B7BEBCA64DAF598E5024E7</UserChecksum>
+        </File>
+        <File dnOrder="5">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_i2c_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/i2c/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/i2c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">37780F17759DED907A0F36E28BFB3136</GeneratedChecksum>
+          <UserChecksum dnOrder="6">37780F17759DED907A0F36E28BFB3136</UserChecksum>
+        </File>
+        <File dnOrder="6">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_i2s.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/driver/i2s/</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/driver/i2s/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AF0B16E0482BD623C201B23916653971</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AF0B16E0482BD623C201B23916653971</UserChecksum>
+        </File>
+        <File dnOrder="7">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_i2s_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/driver/i2s/</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/driver/i2s/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">08F4D5AEB0865BF6C9CC7F6D5E425CEF</GeneratedChecksum>
+          <UserChecksum dnOrder="6">08F4D5AEB0865BF6C9CC7F6D5E425CEF</UserChecksum>
+        </File>
+        <File dnOrder="8">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_usbhs.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">8048089AA9DA0663AE185F78DF90D645</GeneratedChecksum>
+          <UserChecksum dnOrder="6">86EA1C1D2C3B2E31D752511E90166840</UserChecksum>
+        </File>
+        <File dnOrder="9">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_usbhs_device.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1E6A7D3B04A51A3F5A955081DA2FB1C4</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1E6A7D3B04A51A3F5A955081DA2FB1C4</UserChecksum>
+        </File>
+        <File dnOrder="10">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">exceptions.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">322976BB28859B437B0D6D3B8E2AFE42</GeneratedChecksum>
+          <UserChecksum dnOrder="6">322976BB28859B437B0D6D3B8E2AFE42</UserChecksum>
+        </File>
+        <File dnOrder="11">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">fast_trig_functions.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5E4D03A3F94F843D36E9676C36C0F0AD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5E4D03A3F94F843D36E9676C36C0F0AD</UserChecksum>
+        </File>
+        <File dnOrder="12">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">fract.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B04346093C903E463E6878C924CEAEFC</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B04346093C903E463E6878C924CEAEFC</UserChecksum>
+        </File>
+        <File dnOrder="13">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">initialization.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">FDEDE8E8C917823306C38E2DD5C4EBD5</GeneratedChecksum>
+          <UserChecksum dnOrder="6">3DE39E82D2DFA2774FEEE8C50AD8FE7B</UserChecksum>
+        </File>
+        <File dnOrder="14">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">interrupts.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">892FF902D89D11C68E5054FAEE8DABDF</GeneratedChecksum>
+          <UserChecksum dnOrder="6">892FF902D89D11C68E5054FAEE8DABDF</UserChecksum>
+        </File>
+        <File dnOrder="15">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_FxNorm.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">210D92179D79DF939E57100B9AA200B2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">210D92179D79DF939E57100B9AA200B2</UserChecksum>
+        </File>
+        <File dnOrder="16">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_Abs_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A67DD273C08CA47A4760999A84BAE0BB</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A67DD273C08CA47A4760999A84BAE0BB</UserChecksum>
+        </File>
+        <File dnOrder="17">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_Add_q15_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">812B7A7C3FF3C405E8FB947F19687DA9</GeneratedChecksum>
+          <UserChecksum dnOrder="6">812B7A7C3FF3C405E8FB947F19687DA9</UserChecksum>
+        </File>
+        <File dnOrder="18">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_DivisionWithSaturation_q15_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">7CF84DD588FC2615C150851B0F0CD49E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">7CF84DD588FC2615C150851B0F0CD49E</UserChecksum>
+        </File>
+        <File dnOrder="19">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_ExpAvg_q15_q15_q1d15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">017209E9BF2673CE79D98E53DA729FC7</GeneratedChecksum>
+          <UserChecksum dnOrder="6">017209E9BF2673CE79D98E53DA729FC7</UserChecksum>
+        </File>
+        <File dnOrder="20">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_ExtractH_q31.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B5B9495203DDEE7E61E1EF832BF752E5</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B5B9495203DDEE7E61E1EF832BF752E5</UserChecksum>
+        </File>
+        <File dnOrder="21">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_MacR_q31_q15_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BD1013417BC587AE4B15A6B95C4FB2CC</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BD1013417BC587AE4B15A6B95C4FB2CC</UserChecksum>
+        </File>
+        <File dnOrder="22">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_MsuR_q31_q15_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C4E28528267A433A2376A08A24F9B9F1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C4E28528267A433A2376A08A24F9B9F1</UserChecksum>
+        </File>
+        <File dnOrder="23">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_MultiplyR2_q15_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">954370D2036882682678576B23A4A90E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">954370D2036882682678576B23A4A90E</UserChecksum>
+        </File>
+        <File dnOrder="24">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_Negate_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E211B83BBC216CF0E7B255C0CDC79A46</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E211B83BBC216CF0E7B255C0CDC79A46</UserChecksum>
+        </File>
+        <File dnOrder="25">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_RoundL_q31.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">74B23C0B01B8A57ED8E3AC294A8EB11D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">74B23C0B01B8A57ED8E3AC294A8EB11D</UserChecksum>
+        </File>
+        <File dnOrder="26">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_ShiftLeft_q15_i16.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">41C72B8E93309D513231CE334BC126F2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">41C72B8E93309D513231CE334BC126F2</UserChecksum>
+        </File>
+        <File dnOrder="27">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_ShiftRightR_q15_i16.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">439FBB5ECAA63E53A0469D2D49EF22D4</GeneratedChecksum>
+          <UserChecksum dnOrder="6">439FBB5ECAA63E53A0469D2D49EF22D4</UserChecksum>
+        </File>
+        <File dnOrder="28">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q15_ShiftRight_q15_i16.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">0C25D87BDCDC6FDE59DEE1F271FE3A64</GeneratedChecksum>
+          <UserChecksum dnOrder="6">0C25D87BDCDC6FDE59DEE1F271FE3A64</UserChecksum>
+        </File>
+        <File dnOrder="29">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q1d15_Sin_q10d6.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CBBCA3E9E73B8F9CDE96357B5E2E10C8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">CBBCA3E9E73B8F9CDE96357B5E2E10C8</UserChecksum>
+        </File>
+        <File dnOrder="30">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_Abs_q31.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">37995D3769A0928C11A8B5EB6D8616CD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">37995D3769A0928C11A8B5EB6D8616CD</UserChecksum>
+        </File>
+        <File dnOrder="31">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_Add_q31_q31.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">12EC62495AD900F82A4BE9192E49E47B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">12EC62495AD900F82A4BE9192E49E47B</UserChecksum>
+        </File>
+        <File dnOrder="32">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_DepositH_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">ACEA2A0A943210D7425FD68C06D3D927</GeneratedChecksum>
+          <UserChecksum dnOrder="6">ACEA2A0A943210D7425FD68C06D3D927</UserChecksum>
+        </File>
+        <File dnOrder="33">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_Mac_q31_q15_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">69A0223578E928AA97AE90A4BD0786E6</GeneratedChecksum>
+          <UserChecksum dnOrder="6">69A0223578E928AA97AE90A4BD0786E6</UserChecksum>
+        </File>
+        <File dnOrder="34">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_Msu_q31_q15_q15.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">98367BBEAB0EC13094E18F4CCB4DFC3E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">98367BBEAB0EC13094E18F4CCB4DFC3E</UserChecksum>
+        </File>
+        <File dnOrder="35">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_Mult2_q15_q31.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AC4774E0F7D6D24EAD3F5431E1F6566B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AC4774E0F7D6D24EAD3F5431E1F6566B</UserChecksum>
+        </File>
+        <File dnOrder="36">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_Multi_q15_q31.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9A4E6D5E5B361722291AD453BE04CA14</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9A4E6D5E5B361722291AD453BE04CA14</UserChecksum>
+        </File>
+        <File dnOrder="37">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_Negate_q31.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">452A63C2D32B1E96D0538DB607640243</GeneratedChecksum>
+          <UserChecksum dnOrder="6">452A63C2D32B1E96D0538DB607640243</UserChecksum>
+        </File>
+        <File dnOrder="38">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_ShiftLeft_q31_i16.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5A24B86BA5EC8F4CAF84E0E008C20400</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5A24B86BA5EC8F4CAF84E0E008C20400</UserChecksum>
+        </File>
+        <File dnOrder="39">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_ShiftRightR_q31_i16.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A11125397D3C3D839623E2FB48E74AD0</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A11125397D3C3D839623E2FB48E74AD0</UserChecksum>
+        </File>
+        <File dnOrder="40">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libq_q31_ShiftRight_q31_i16.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1227CBC0CF189A63D89767E63FE3148D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1227CBC0CF189A63D89767E63FE3148D</UserChecksum>
+        </File>
+        <File dnOrder="41">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">main.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3"/>
+          <PhysicalPath dnOrder="4">/../../</PhysicalPath>
+          <GeneratedChecksum dnOrder="5"/>
+          <UserChecksum dnOrder="6"/>
+        </File>
+        <File dnOrder="42">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">pixel_rotation.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C0F5F18A6C929CB1D793AC6CC2CBE2A8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C0F5F18A6C929CB1D793AC6CC2CBE2A8</UserChecksum>
+        </File>
+        <File dnOrder="43">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_clk.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/clk/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/clk/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1B3904C328B106650CA94133C0A15CCE</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1B3904C328B106650CA94133C0A15CCE</UserChecksum>
+        </File>
+        <File dnOrder="44">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_coretimer.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/coretimer/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/coretimer/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">2FEFEA0D4E94F5A5F3D76BAEC3D602E5</GeneratedChecksum>
+          <UserChecksum dnOrder="6">2FEFEA0D4E94F5A5F3D76BAEC3D602E5</UserChecksum>
+        </File>
+        <File dnOrder="45">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_dmac.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/dmac/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/dmac/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CF9A5ED5170E457EDF692FF303597A00</GeneratedChecksum>
+          <UserChecksum dnOrder="6">EE0AC67CA55692E96D67519AA46520D7</UserChecksum>
+        </File>
+        <File dnOrder="46">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_evic.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/evic/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/evic/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">104AA1801B29EC838CB5537130679D5B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">104AA1801B29EC838CB5537130679D5B</UserChecksum>
+        </File>
+        <File dnOrder="47">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_gpio.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/gpio/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/gpio/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6ECBABB81BC18359399C609229A3C67A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6ECBABB81BC18359399C609229A3C67A</UserChecksum>
+        </File>
+        <File dnOrder="48">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_i2c1.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/i2c/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/i2c/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">71E30A5863497C67A14F287297D8CF63</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B2E5559733B1415C2163AB69C505DE36</UserChecksum>
+        </File>
+        <File dnOrder="49">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_i2s2.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/peripheral/i2s</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/peripheral/i2s/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">2C5CFD456E83A78B8002254FD7967D7C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">2C5CFD456E83A78B8002254FD7967D7C</UserChecksum>
+        </File>
+        <File dnOrder="50">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_uart6.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/uart/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/uart/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">8E957508D7C43BD8626159B8AA2D8D82</GeneratedChecksum>
+          <UserChecksum dnOrder="6">8E957508D7C43BD8626159B8AA2D8D82</UserChecksum>
+        </File>
+        <File dnOrder="51">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_console.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/console/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/console/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">20C22A19D5DC74DEBFC4CCCA83B6F603</GeneratedChecksum>
+          <UserChecksum dnOrder="6">20C22A19D5DC74DEBFC4CCCA83B6F603</UserChecksum>
+        </File>
+        <File dnOrder="52">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_console_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/console/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/console/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5BA0902794A8669B3FE37E8A8BEE9D65</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5BA0902794A8669B3FE37E8A8BEE9D65</UserChecksum>
+        </File>
+        <File dnOrder="53">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_console_uart.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/console/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/console/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CA5E9B63704372DE5FBC0BDC006B16C3</GeneratedChecksum>
+          <UserChecksum dnOrder="6">CA5E9B63704372DE5FBC0BDC006B16C3</UserChecksum>
+        </File>
+        <File dnOrder="54">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_console_uart.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/console/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/console/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">767495C6A39617A915D8107093DC1A72</GeneratedChecksum>
+          <UserChecksum dnOrder="6">767495C6A39617A915D8107093DC1A72</UserChecksum>
+        </File>
+        <File dnOrder="55">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_console_uart_definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/console/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/console/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5D10B9438117B64220180660AB022150</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5D10B9438117B64220180660AB022150</UserChecksum>
+        </File>
+        <File dnOrder="56">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_debug.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/debug/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/debug/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">68C0D499B9EDAA3BFD7E131A48514212</GeneratedChecksum>
+          <UserChecksum dnOrder="6">68C0D499B9EDAA3BFD7E131A48514212</UserChecksum>
+        </File>
+        <File dnOrder="57">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_debug_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/debug/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/debug/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B8C6C7356AC7841AECC7C779040F745C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B8C6C7356AC7841AECC7C779040F745C</UserChecksum>
+        </File>
+        <File dnOrder="58">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_dma.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/dma/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/dma/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">2E02308556447B0510575953A9E9DF6E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">2E02308556447B0510575953A9E9DF6E</UserChecksum>
+        </File>
+        <File dnOrder="59">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_int.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/int/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/int/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">640A4B35B8CDB53BD8EA5077D81386BE</GeneratedChecksum>
+          <UserChecksum dnOrder="6">640A4B35B8CDB53BD8EA5077D81386BE</UserChecksum>
+        </File>
+        <File dnOrder="60">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_time.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/time/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/time/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">40A99C84F50EB7DFAA579B8675F140DD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">40A99C84F50EB7DFAA579B8675F140DD</UserChecksum>
+        </File>
+        <File dnOrder="61">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">tasks.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">DFBA03343C9C6A2B359AB2DA31270C36</GeneratedChecksum>
+          <UserChecksum dnOrder="6">DFBA03343C9C6A2B359AB2DA31270C36</UserChecksum>
+        </File>
+        <File dnOrder="62">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">usb_device.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BCCEF5B801FFD0CF22D0B454D2F25F1F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BCCEF5B801FFD0CF22D0B454D2F25F1F</UserChecksum>
+        </File>
+        <File dnOrder="63">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">usb_device_audio_read_write.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">543857D8B80023CD3A12A25063A49BE2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">543857D8B80023CD3A12A25063A49BE2</UserChecksum>
+        </File>
+        <File dnOrder="64">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">usb_device_audio_v1_0.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">38679CD762E487C856EBC5BCFC55F690</GeneratedChecksum>
+          <UserChecksum dnOrder="6">38679CD762E487C856EBC5BCFC55F690</UserChecksum>
+        </File>
+        <File dnOrder="65">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">usb_device_init_data.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">7C3B9EEE18018346D0A026FFB4548800</GeneratedChecksum>
+          <UserChecksum dnOrder="6">7C3B9EEE18018346D0A026FFB4548800</UserChecksum>
+        </File>
+        <File dnOrder="66">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">xc32_monitor.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/stdio/</LogicalPath>
+          <PhysicalPath dnOrder="4">/stdio/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A9F55E7CB78F22D9000CA03DC635973C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A9F55E7CB78F22D9000CA03DC635973C</UserChecksum>
+        </File>
+        <File dnOrder="67">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">LUT__3Terms__nLUT_256.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">4515D4362C366889B90DF5C524C84FDC</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4515D4362C366889B90DF5C524C84FDC</UserChecksum>
+        </File>
+        <File dnOrder="68">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">SinX_LUT_91.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">647403E3C9241EDA8CAFA650E541E975</GeneratedChecksum>
+          <UserChecksum dnOrder="6">647403E3C9241EDA8CAFA650E541E975</UserChecksum>
+        </File>
+        <File dnOrder="69">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">XInDegrees_LUT_91.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">81E1C05436B4D5C2D3E9B65999746A1E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">81E1C05436B4D5C2D3E9B65999746A1E</UserChecksum>
+        </File>
+        <File dnOrder="70">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">app.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3"/>
+          <PhysicalPath dnOrder="4">/../../</PhysicalPath>
+          <GeneratedChecksum dnOrder="5"/>
+          <UserChecksum dnOrder="6"/>
+        </File>
+        <File dnOrder="71">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">audio_math.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AF576D81A932543F2E91AD29E83F7555</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AF576D81A932543F2E91AD29E83F7555</UserChecksum>
+        </File>
+        <File dnOrder="72">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">audio_math_config.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5804CF9602A141ACD9AD84D3BC95A78B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5804CF9602A141ACD9AD84D3BC95A78B</UserChecksum>
+        </File>
+        <File dnOrder="73">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">bsp.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/bsp/</LogicalPath>
+          <PhysicalPath dnOrder="4">/bsp/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5FB617BE61782FBB4894E08E1711345F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5FB617BE61782FBB4894E08E1711345F</UserChecksum>
+        </File>
+        <File dnOrder="74">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">configuration.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">34580C416085F88A02ADEBD1C84E0425</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C3E295404988129985D4355C54E9E728</UserChecksum>
+        </File>
+        <File dnOrder="75">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1F31560F9467713847DD667416932BB8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1F31560F9467713847DD667416932BB8</UserChecksum>
+        </File>
+        <File dnOrder="76">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">device.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/PIC32MZ2048EFM144_DFP/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/PIC32MZ2048EFM144_DFP/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5D5C52527AB1435153DB9B50ADE6B79D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5D5C52527AB1435153DB9B50ADE6B79D</UserChecksum>
+        </File>
+        <File dnOrder="77">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">driver.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1D2094DFA60F847FFD4E8153B6E78027</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1D2094DFA60F847FFD4E8153B6E78027</UserChecksum>
+        </File>
+        <File dnOrder="78">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">driver_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CC7DFCC51CD25171A3E400E18969354F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">CC7DFCC51CD25171A3E400E18969354F</UserChecksum>
+        </File>
+        <File dnOrder="79">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_ak4954.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/driver/codec/ak4954/</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/driver/codec/ak4954/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">95DAA2C2C107749CB43BC508D529BA11</GeneratedChecksum>
+          <UserChecksum dnOrder="6">95DAA2C2C107749CB43BC508D529BA11</UserChecksum>
+        </File>
+        <File dnOrder="80">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_i2c.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/i2c/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/i2c/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">3C6689B8800C6234028EC2FBE82E25CF</GeneratedChecksum>
+          <UserChecksum dnOrder="6">3C6689B8800C6234028EC2FBE82E25CF</UserChecksum>
+        </File>
+        <File dnOrder="81">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_i2c_definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/i2c/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/i2c/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5FA3FDC136CCB667D6952682F7664DE1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5FA3FDC136CCB667D6952682F7664DE1</UserChecksum>
+        </File>
+        <File dnOrder="82">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_i2s.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/driver/i2s/</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/driver/i2s/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">286480D625E01930A6754127AA6F0360</GeneratedChecksum>
+          <UserChecksum dnOrder="6">286480D625E01930A6754127AA6F0360</UserChecksum>
+        </File>
+        <File dnOrder="83">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_i2s_definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/driver/i2s/</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/driver/i2s/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">8EEB17867F41E54FD6535DB4F88AC6FE</GeneratedChecksum>
+          <UserChecksum dnOrder="6">8EEB17867F41E54FD6535DB4F88AC6FE</UserChecksum>
+        </File>
+        <File dnOrder="84">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_usb.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">DF147276AE56CA76E3E9BEB8447620AB</GeneratedChecksum>
+          <UserChecksum dnOrder="6">DF147276AE56CA76E3E9BEB8447620AB</UserChecksum>
+        </File>
+        <File dnOrder="85">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_usb_external_dependencies.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">520DC1C088A41A16C28DCB58C92BDEC1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">520DC1C088A41A16C28DCB58C92BDEC1</UserChecksum>
+        </File>
+        <File dnOrder="86">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_usbhs.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">111CA749DD3C4A12029D163277253BBF</GeneratedChecksum>
+          <UserChecksum dnOrder="6">111CA749DD3C4A12029D163277253BBF</UserChecksum>
+        </File>
+        <File dnOrder="87">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_usbhs_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">3B3FD1E40A9CA581FF4D113058B1E46C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">3B3FD1E40A9CA581FF4D113058B1E46C</UserChecksum>
+        </File>
+        <File dnOrder="88">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_usbhs_variant_mapping.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5B375CF6C397852741ACFCAA92674989</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5B375CF6C397852741ACFCAA92674989</UserChecksum>
+        </File>
+        <File dnOrder="89">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">fast_trig_functions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C4178322D785B8C1C9E846016261B93A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C4178322D785B8C1C9E846016261B93A</UserChecksum>
+        </File>
+        <File dnOrder="90">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">fract_fixedpoint.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AFFBDA9694EE8BC59280187BB4E41DFD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AFFBDA9694EE8BC59280187BB4E41DFD</UserChecksum>
+        </File>
+        <File dnOrder="91">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">libq.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BA9F8E0E227CEE2F8BDDC03616693F55</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BA9F8E0E227CEE2F8BDDC03616693F55</UserChecksum>
+        </File>
+        <File dnOrder="92">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">libq_c.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A27A1095FB64F559F1892A45B155B9A2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A27A1095FB64F559F1892A45B155B9A2</UserChecksum>
+        </File>
+        <File dnOrder="93">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">osal.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">/osal/</LogicalPath>
+          <PhysicalPath dnOrder="4">/osal/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F0AD88762263B7CB89B02AB4F5876059</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F0AD88762263B7CB89B02AB4F5876059</UserChecksum>
+        </File>
+        <File dnOrder="94">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">osal_definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">/osal/</LogicalPath>
+          <PhysicalPath dnOrder="4">/osal/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">0AC88C49E4585B606FD5AC6804F0C340</GeneratedChecksum>
+          <UserChecksum dnOrder="6">0AC88C49E4585B606FD5AC6804F0C340</UserChecksum>
+        </File>
+        <File dnOrder="95">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">osal_impl_basic.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">/osal/</LogicalPath>
+          <PhysicalPath dnOrder="4">/osal/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">63FBE37825657165B9EA584BF05DBA43</GeneratedChecksum>
+          <UserChecksum dnOrder="6">63FBE37825657165B9EA584BF05DBA43</UserChecksum>
+        </File>
+        <File dnOrder="96">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">pixel_rotation.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/math/libq_c</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/math/libq_c/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">92B0CF31318480988E78AE1C27BB2CF4</GeneratedChecksum>
+          <UserChecksum dnOrder="6">92B0CF31318480988E78AE1C27BB2CF4</UserChecksum>
+        </File>
+        <File dnOrder="97">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_clk.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/clk/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/clk/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">7066CC390335CF75126E2A50C46E3BDD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">7066CC390335CF75126E2A50C46E3BDD</UserChecksum>
+        </File>
+        <File dnOrder="98">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_coretimer.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/coretimer/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/coretimer/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1D877CBA54146E86B82DEF3259D51199</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1D877CBA54146E86B82DEF3259D51199</UserChecksum>
+        </File>
+        <File dnOrder="99">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_dmac.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/dmac/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/dmac/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">010E7C6872724F56A94D25C46D528ECA</GeneratedChecksum>
+          <UserChecksum dnOrder="6">010E7C6872724F56A94D25C46D528ECA</UserChecksum>
+        </File>
+        <File dnOrder="100">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_evic.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/evic/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/evic/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B38028A617FDD4D90B80660771629645</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B38028A617FDD4D90B80660771629645</UserChecksum>
+        </File>
+        <File dnOrder="101">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_gpio.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/gpio/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/gpio/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C354A5C77B1626E833BD66666033FA87</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C354A5C77B1626E833BD66666033FA87</UserChecksum>
+        </File>
+        <File dnOrder="102">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_i2c1.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/i2c/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/i2c/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">956F85E7C0A0B208ECB920D209457F36</GeneratedChecksum>
+          <UserChecksum dnOrder="6">956F85E7C0A0B208ECB920D209457F36</UserChecksum>
+        </File>
+        <File dnOrder="103">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_i2c_master.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/i2c/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/i2c/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">0CE7018D4B951DF14C45D3AC2E8F9B19</GeneratedChecksum>
+          <UserChecksum dnOrder="6">0CE7018D4B951DF14C45D3AC2E8F9B19</UserChecksum>
+        </File>
+        <File dnOrder="104">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_i2s2.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/audio/peripheral/i2s</LogicalPath>
+          <PhysicalPath dnOrder="4">/audio/peripheral/i2s/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BE06AA80269C9CC117532D9FB369F739</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BE06AA80269C9CC117532D9FB369F739</UserChecksum>
+        </File>
+        <File dnOrder="105">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_uart6.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/uart/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/uart/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9D17B93296BA45D9DFDB00F37F1A6931</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9D17B93296BA45D9DFDB00F37F1A6931</UserChecksum>
+        </File>
+        <File dnOrder="106">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_uart_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/uart/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/uart/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">903175300C64256E267D1DB8F91D7861</GeneratedChecksum>
+          <UserChecksum dnOrder="6">903175300C64256E267D1DB8F91D7861</UserChecksum>
+        </File>
+        <File dnOrder="107">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_usbhs.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CD26F27EDC181E4AAB47A522AD24EA5F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">CD26F27EDC181E4AAB47A522AD24EA5F</UserChecksum>
+        </File>
+        <File dnOrder="108">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_usbhs_header.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">696059AC9F4DC7CE9282F22900F397C2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">696059AC9F4DC7CE9282F22900F397C2</UserChecksum>
+        </File>
+        <File dnOrder="109">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_console.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/console/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/console/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">91CB36F6EC29DAA7C584282A875E5CBA</GeneratedChecksum>
+          <UserChecksum dnOrder="6">91CB36F6EC29DAA7C584282A875E5CBA</UserChecksum>
+        </File>
+        <File dnOrder="110">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_debug.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/debug/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/debug/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6972608768DDBE6E37A2D81B83DF490B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6972608768DDBE6E37A2D81B83DF490B</UserChecksum>
+        </File>
+        <File dnOrder="111">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_dma.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/dma/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/dma/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">4A7FFAD7ACF8378CEC16FBF2BC2368BE</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4A7FFAD7ACF8378CEC16FBF2BC2368BE</UserChecksum>
+        </File>
+        <File dnOrder="112">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_dma_mapping.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/dma/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/dma/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">FF2FADFBBFB94FF4B4A57085D719E7C8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">FF2FADFBBFB94FF4B4A57085D719E7C8</UserChecksum>
+        </File>
+        <File dnOrder="113">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_int.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/int/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/int/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">47330C2D8F204B2B69F8A86240A564B6</GeneratedChecksum>
+          <UserChecksum dnOrder="6">47330C2D8F204B2B69F8A86240A564B6</UserChecksum>
+        </File>
+        <File dnOrder="114">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_int_mapping.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/int/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/int/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">FC7B55936A09E0CA1395AE4DFB1A188F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">FC7B55936A09E0CA1395AE4DFB1A188F</UserChecksum>
+        </File>
+        <File dnOrder="115">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_ports.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/ports/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/ports/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6348A6C05D5693300B296BD46CCC535D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6348A6C05D5693300B296BD46CCC535D</UserChecksum>
+        </File>
+        <File dnOrder="116">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_ports_mapping.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/ports/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/ports/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BC6E1661BF4CAC21B70F5F56A0D7BBDB</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BC6E1661BF4CAC21B70F5F56A0D7BBDB</UserChecksum>
+        </File>
+        <File dnOrder="117">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_time.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/time/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/time/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">466D676839280C0E7FC2CC6F78BA6EE9</GeneratedChecksum>
+          <UserChecksum dnOrder="6">466D676839280C0E7FC2CC6F78BA6EE9</UserChecksum>
+        </File>
+        <File dnOrder="118">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_time_definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/time/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/time/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">82C87C4CF49EE4D859363C15E9073333</GeneratedChecksum>
+          <UserChecksum dnOrder="6">82C87C4CF49EE4D859363C15E9073333</UserChecksum>
+        </File>
+        <File dnOrder="119">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_time_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/time/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/time/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">62F39464265EC34979649F761FB4FE57</GeneratedChecksum>
+          <UserChecksum dnOrder="6">62F39464265EC34979649F761FB4FE57</UserChecksum>
+        </File>
+        <File dnOrder="120">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">system.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BE95B4F134C5C929787B9DA6FDBF3501</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BE95B4F134C5C929787B9DA6FDBF3501</UserChecksum>
+        </File>
+        <File dnOrder="121">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">system_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C3F5136D520DAC4416512EBFCCA023C3</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C3F5136D520DAC4416512EBFCCA023C3</UserChecksum>
+        </File>
+        <File dnOrder="122">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">system_module.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/system/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1C75A8A6B60598A2FD0D533F57839B72</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1C75A8A6B60598A2FD0D533F57839B72</UserChecksum>
+        </File>
+        <File dnOrder="123">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">toolchain_specifics.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9D344CAF1743381AA0EA1641ABCDE373</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9D344CAF1743381AA0EA1641ABCDE373</UserChecksum>
+        </File>
+        <File dnOrder="124">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_audio_v1_0.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">83863E3CA7CB279E2CB0CECE60299E16</GeneratedChecksum>
+          <UserChecksum dnOrder="6">83863E3CA7CB279E2CB0CECE60299E16</UserChecksum>
+        </File>
+        <File dnOrder="125">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_chapter_9.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">39659CDE2CC726544BD68544FB7EF4B2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">39659CDE2CC726544BD68544FB7EF4B2</UserChecksum>
+        </File>
+        <File dnOrder="126">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">2AAF1AB3341FB7F74004B6C7EFF8929C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">2AAF1AB3341FB7F74004B6C7EFF8929C</UserChecksum>
+        </File>
+        <File dnOrder="127">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_device.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C3A6851F02AB3A2A5169A42F2EA459C6</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C3A6851F02AB3A2A5169A42F2EA459C6</UserChecksum>
+        </File>
+        <File dnOrder="128">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_device_audio_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E11497D3030037195235D0FC1079152B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E11497D3030037195235D0FC1079152B</UserChecksum>
+        </File>
+        <File dnOrder="129">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_device_audio_v1_0.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">ED4BFFC34B0707FD69B7F27D22A8E02C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">ED4BFFC34B0707FD69B7F27D22A8E02C</UserChecksum>
+        </File>
+        <File dnOrder="130">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_device_function_driver.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">626BFDDD140B808E90C9DD2E4A27421E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">626BFDDD140B808E90C9DD2E4A27421E</UserChecksum>
+        </File>
+        <File dnOrder="131">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_device_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9B727D396CAEBD5FCB12F1F8264C4FD9</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9B727D396CAEBD5FCB12F1F8264C4FD9</UserChecksum>
+        </File>
+        <File dnOrder="132">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_device_mapping.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C8D4A1D9092FD842506F565CE9B8C265</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C8D4A1D9092FD842506F565CE9B8C265</UserChecksum>
+        </File>
+        <File dnOrder="133">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_external_dependencies.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6C4A6859DB16EA8C046F995C6B6C1C6F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6C4A6859DB16EA8C046F995C6B6C1C6F</UserChecksum>
+        </File>
+        <File dnOrder="134">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_host.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F127C67A3E33E5788C0F057F648EE57C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F127C67A3E33E5788C0F057F648EE57C</UserChecksum>
+        </File>
+        <File dnOrder="135">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_host_client_driver.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6EBC5E4D06FC96A02ADF3B7416957DD6</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6EBC5E4D06FC96A02ADF3B7416957DD6</UserChecksum>
+        </File>
+        <File dnOrder="136">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_host_hub_interface.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">757C8484C955543C893361992D11FD4C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">757C8484C955543C893361992D11FD4C</UserChecksum>
+        </File>
+        <File dnOrder="137">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb_hub.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/usb/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">3E3CC6BC9128194CB4D19F29C57E312B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">3E3CC6BC9128194CB4D19F29C57E312B</UserChecksum>
+        </File>
+        <File dnOrder="138">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_ClockResetControl_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">92EB24A8BD2D772947C0BF8AC050833F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">92EB24A8BD2D772947C0BF8AC050833F</UserChecksum>
+        </File>
+        <File dnOrder="139">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_ClockResetControl_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">DE4F2288F390CFA9881DE462794F0DDA</GeneratedChecksum>
+          <UserChecksum dnOrder="6">DE4F2288F390CFA9881DE462794F0DDA</UserChecksum>
+        </File>
+        <File dnOrder="140">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_EP0Status_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C633386FC9C5872623EA1EFBAB764442</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C633386FC9C5872623EA1EFBAB764442</UserChecksum>
+        </File>
+        <File dnOrder="141">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_EP0Status_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D3CA06CFFAF0BAED492DB71AC775EEBD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D3CA06CFFAF0BAED492DB71AC775EEBD</UserChecksum>
+        </File>
+        <File dnOrder="142">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_EndpointFIFO_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D1DA501EF7BAB24A2CEADE3CBD29AEB6</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D1DA501EF7BAB24A2CEADE3CBD29AEB6</UserChecksum>
+        </File>
+        <File dnOrder="143">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_EndpointFIFO_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">4A752D8534E86F7FE62082A735AD041D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4A752D8534E86F7FE62082A735AD041D</UserChecksum>
+        </File>
+        <File dnOrder="144">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_EndpointOperations_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">78FB74FDBAB09F28AD644ED2959752A2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">78FB74FDBAB09F28AD644ED2959752A2</UserChecksum>
+        </File>
+        <File dnOrder="145">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_EndpointOperations_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">381AB7453B25DF9AB7A16A93704FEBC8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">381AB7453B25DF9AB7A16A93704FEBC8</UserChecksum>
+        </File>
+        <File dnOrder="146">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_HighSpeedSupport_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">456E97A1CFF4C0C132CC9FB17FA86A54</GeneratedChecksum>
+          <UserChecksum dnOrder="6">456E97A1CFF4C0C132CC9FB17FA86A54</UserChecksum>
+        </File>
+        <File dnOrder="147">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_HighSpeedSupport_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9B6843BEE1C3DE488EFA017EF03E239E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9B6843BEE1C3DE488EFA017EF03E239E</UserChecksum>
+        </File>
+        <File dnOrder="148">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_Interrupts_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A7B4C37BC9B019F1EF0D638AE3B5F751</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A7B4C37BC9B019F1EF0D638AE3B5F751</UserChecksum>
+        </File>
+        <File dnOrder="149">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_Interrupts_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F64EC7A0E28E413630A114E4A2BD81EE</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F64EC7A0E28E413630A114E4A2BD81EE</UserChecksum>
+        </File>
+        <File dnOrder="150">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_ModuleControl_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6B89CE47C098F2F2C08D7FD6269CF8A2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6B89CE47C098F2F2C08D7FD6269CF8A2</UserChecksum>
+        </File>
+        <File dnOrder="151">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_ModuleControl_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5C0545CC006D8D8F43B2674F99AF3D8F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5C0545CC006D8D8F43B2674F99AF3D8F</UserChecksum>
+        </File>
+        <File dnOrder="152">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_RxEPStatus_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">4C53000458C43B6AA3D342A5C0E19D98</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4C53000458C43B6AA3D342A5C0E19D98</UserChecksum>
+        </File>
+        <File dnOrder="153">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_RxEPStatus_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">80935F65B5AA43F175AE93EDB0429F0E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">80935F65B5AA43F175AE93EDB0429F0E</UserChecksum>
+        </File>
+        <File dnOrder="154">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_SoftReset_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6EBA0CA23919D6861098B126EE5BB68F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6EBA0CA23919D6861098B126EE5BB68F</UserChecksum>
+        </File>
+        <File dnOrder="155">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_SoftReset_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">958C517D7A3A0DADAC6EAA0151016948</GeneratedChecksum>
+          <UserChecksum dnOrder="6">958C517D7A3A0DADAC6EAA0151016948</UserChecksum>
+        </File>
+        <File dnOrder="156">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_TxEPStatus_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">DD22742221B2FFC5CF75A5FE70050337</GeneratedChecksum>
+          <UserChecksum dnOrder="6">DD22742221B2FFC5CF75A5FE70050337</UserChecksum>
+        </File>
+        <File dnOrder="157">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_TxEPStatus_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5A0C7E357552842059C217766C2DEB25</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5A0C7E357552842059C217766C2DEB25</UserChecksum>
+        </File>
+        <File dnOrder="158">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_USBIDControl_Default.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">75C41D5914D078AAA731F9BA9D07E88C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">75C41D5914D078AAA731F9BA9D07E88C</UserChecksum>
+        </File>
+        <File dnOrder="159">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_USBIDControl_Unsupported.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AF999B951C57AD5D333E1260532C88E2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AF999B951C57AD5D333E1260532C88E2</UserChecksum>
+        </File>
+        <File dnOrder="160">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_registers.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A0803FFCE7DA932883C0B89AD48FA04C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A0803FFCE7DA932883C0B89AD48FA04C</UserChecksum>
+        </File>
+        <File dnOrder="161">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usbhs_registers.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/driver/usb/usbhs/src/templates</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/usb/usbhs/src/templates/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A0803FFCE7DA932883C0B89AD48FA04C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A0803FFCE7DA932883C0B89AD48FA04C</UserChecksum>
+        </File>
+        <File dnOrder="162">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">user.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/uh_basic_mz_ef_c2_ak4954_i2s_usb/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5"/>
+          <UserChecksum dnOrder="6"/>
+        </File>
+      </Files>
+      <Settings dnOrder="1">
+        <Setting append="true" category="C32" delimiter=";" dnOrder="0" key="extra-include-directories" security="NON_SECURE" value="../src;../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb;../src/packs/PIC32MZ2048EFM144_DFP;"/>
+        <Setting category="C32-LD" dnOrder="1" key="heap-size" security="NON_SECURE" value="96000"/>
+        <Setting category="C32-LD" dnOrder="2" key="no-device-startup-code" security="NON_SECURE" value="true"/>
+        <Setting append="true" category="C32-LD" delimiter=";" dnOrder="3" key="preprocessor-macros" security="NON_SECURE" value=""/>
+      </Settings>
+    </Manifest>
+    <Settings dnOrder="5">
+      <Setting dnOrder="0" key="CMSISPath" value=".\dev_packs\arm\CMSIS\5.6.0"/>
+      <Setting dnOrder="1" key="DFPPath" value=".\dev_packs\Microchip\PIC32MZ-EF_DFP\1.1.45\atdf\PIC32MZ2048EFM144.atdf"/>
+      <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
+      <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
+      <Setting dnOrder="4" key="MERGE_STRATEGY" value="ALL"/>
+      <Setting dnOrder="5" key="PackageFilter" value="audio;bsp;bt;core;crypto;csp;gfx;gfx_apps;usb;"/>
+    </Settings>
+  </Configurator>
+</Configuration>

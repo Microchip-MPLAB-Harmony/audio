@@ -1,0 +1,105 @@
+format_version: v1.0
+type: GeneratorComponent
+attributes: {id: usb_device_audio}
+children:
+- type: Instances
+  children:
+  - type: InstanceComponent
+    attributes: {instance: '0', id: usb_device_audio}
+    children:
+    - type: Symbols
+      children:
+      - type: Combo
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_AUDIO_DEVICE_TYPE}
+        children:
+        - type: Values
+          children:
+          - type: User
+            attributes: {value: Audio v1.0 USB Headset}
+      - type: Integer
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_AUDIO_MAX_ALTERNATE_SETTING}
+        children:
+        - type: Values
+          children:
+          - type: Dynamic
+            attributes: {id: usb_device_audio_0, value: '2'}
+      - type: Integer
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_AUDIO_STREAMING_INTERFACES_NUMBER}
+        children:
+        - type: Values
+          children:
+          - type: Dynamic
+            attributes: {id: usb_device_audio_0, value: '2'}
+      - type: Combo
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_AUDIO_VERSION}
+        children:
+        - type: Values
+          children:
+          - type: Dynamic
+            attributes: {id: usb_device_audio_0, value: Audio v1}
+      - type: Integer
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_INTERFACE_NUMBER}
+        children:
+        - type: Values
+          children:
+          - type: Dynamic
+            attributes: {id: usb_device_audio_0, value: '0'}
+      - type: Integer
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_IN_ENDPOINT_NUMBER}
+        children:
+        - type: Attributes
+          children:
+          - type: Boolean
+            attributes: {id: visible}
+            children:
+            - {type: Value, value: 'true'}
+        - type: Values
+          children:
+          - type: Dynamic
+            attributes: {id: usb_device_audio_0, value: '0'}
+          - type: User
+            attributes: {value: '2'}
+      - type: Integer
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_NUMBER_OF_INTERFACES}
+        children:
+        - type: Values
+          children:
+          - type: Dynamic
+            attributes: {id: usb_device_audio_0, value: '3'}
+      - type: Integer
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_OUT_ENDPOINT_NUMBER}
+        children:
+        - type: Values
+          children:
+          - type: Dynamic
+            attributes: {id: usb_device_audio_0, value: '1'}
+      - type: Integer
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_READ_Q_SIZE}
+        children:
+        - type: Values
+          children:
+          - type: User
+            attributes: {value: '8'}
+      - type: Boolean
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_USE_IAD}
+        children:
+        - type: Values
+          children:
+          - type: Dynamic
+            attributes: {id: usb_device_audio_0, value: 'false'}
+      - type: Integer
+        attributes: {id: CONFIG_USB_DEVICE_FUNCTION_WRITE_Q_SIZE}
+        children:
+        - type: Values
+          children:
+          - type: User
+            attributes: {value: '8'}
+      - type: Integer
+        attributes: {id: USB_DEVICE_AUDIO_FUNCTION_DESCRIPTOR_SIZE_CURRENT}
+        children:
+        - type: Values
+          children:
+          - type: Dynamic
+            attributes: {id: usb_device_audio_0, value: '225'}
+- type: ElementPosition
+  attributes: {x: '389', y: '396', id: usb_device_audio}

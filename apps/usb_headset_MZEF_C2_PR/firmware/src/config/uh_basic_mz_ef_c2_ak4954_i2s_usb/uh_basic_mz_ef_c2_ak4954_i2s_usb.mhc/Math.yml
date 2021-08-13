@@ -1,0 +1,49 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: Math}
+children:
+- type: Symbols
+  children:
+  - type: Boolean
+    attributes: {id: CONFIG_USE_DSP_NFO3_LIBRARY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'false'}
+  - type: Boolean
+    attributes: {id: CONFIG_USE_LIBQ_NFO3_LIBRARY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'false'}
+  - type: File
+    attributes: {id: LIB_DSP_DSP_HEADER}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
+  - type: File
+    attributes: {id: LIB_DSP_LIB_DSP_MIPS32_MZ_EF_NFO3_SOURCE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
+  - type: File
+    attributes: {id: LIB_LIBQ_LIB_LIBQ_MIPS32_MZ_EF_NFO3_SOURCE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
+- type: ElementPosition
+  attributes: {x: '640', y: '20', id: Math}
