@@ -93,7 +93,7 @@ typedef struct
 
 void WAV_Initialize(uint8_t *input);
 void WAV_Initialize_N(uint8_t *input, SYS_FS_HANDLE wavFilehandle);
-uint32_t WAV_GetAudioSize();
+uint32_t WAV_GetAudioSize(void);
 bool WAV_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *output, uint16_t *written);
 
 int WAV_GetFormat (void);
@@ -111,7 +111,7 @@ uint32_t WAV_GetDuration(void);
 
 bool isWAVdecoder_enabled(void);
 uint32_t WAV_UpdatePlaytime(void);
-uint8_t WAV_GetChannels(void);
+//uint8_t WAV_GetChannels(void);
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

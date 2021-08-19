@@ -153,7 +153,7 @@ bool ADPCM_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *out
 	Returns:
 		Number of channels states in ADPCM WAV header structure.
 */
-uint8_t ADPCM_GetChannels();
+uint8_t ADPCM_GetChannels(void);
 
 // *****************************************************************************
 /* Function:

@@ -43,8 +43,8 @@ static ID3_EVENT_HANDLER ID3eventHandler;
 
 static int32_t ID3_Initialize(uint8_t *buffer);
 static uint32_t ID3_Parse_Frame(uint8_t *buffer, size_t left, int8_t *ret);
-static void ID3_ParseFrameV22 (ID3V22_FRAME *frame, uint32_t frameSize, char *id, uint16_t event);
-static void ID3_ParseFrameV23 (ID3V23_FRAME *frame, uint32_t frameSize, char *id, uint16_t event);
+static void ID3_ParseFrameV22 (ID3V22_FRAME *frame, uint32_t frameSize, const char* const id, uint16_t event);
+static void ID3_ParseFrameV23 (ID3V23_FRAME *frame, uint32_t frameSize, const char* const id, uint16_t event);
 static bool ID3_EventHandler (ID3_EVENT event, uint32_t data);
 
 // Read ID3 tag header
@@ -264,11 +264,11 @@ static uint32_t ID3_Parse_Frame(uint8_t *buffer, size_t left, int8_t *ret){
     return skip;
 }
 
-static void ID3_ParseFrameV22 (ID3V22_FRAME *frame, uint32_t frameSize, char *id, uint16_t event)
+static void ID3_ParseFrameV22 (ID3V22_FRAME *frame, uint32_t frameSize, const char* const id, uint16_t event)
 {
     int8_t str[ID3_STRING_SIZE];
 
-    if (memcmp (frame->id, id, 3) == 0)
+    if (memcmp (frame->id, (const void*)id, 3) == 0)
     {
         if ( ENCODING_FormatASCII ( frame->encoding, frame->contents, frameSize - 1, str, sizeof ( str ) - 1 ) != 0)
         {
@@ -277,11 +277,11 @@ static void ID3_ParseFrameV22 (ID3V22_FRAME *frame, uint32_t frameSize, char *id
     }
 }
 
-static void ID3_ParseFrameV23 (ID3V23_FRAME *frame, uint32_t frameSize, char *id, uint16_t event)
+static void ID3_ParseFrameV23 (ID3V23_FRAME *frame, uint32_t frameSize, const char* const id, uint16_t event)
 {
     int8_t str[ID3_STRING_SIZE];
 
-    if (memcmp (frame->id, id, 4) == 0)
+    if (memcmp (frame->id, (const void*)id, 4) == 0)
     {
         if (ENCODING_FormatASCII (frame->encoding, frame->contents, frameSize - 1, str, sizeof ( str ) - 1 ) != 0)
         {

@@ -25,7 +25,9 @@ import os
 import sys
 
 dbg = 0
-
+# Modification Start
+include_flac_logic = 0
+# Modification End
 src_ext = ('.c')
 hdr_ext = ('.h')
 lib_ext = ('.a')
@@ -67,70 +69,49 @@ mp3Table     = [("LIB_", "mp3/", "mp3_dec.h", "audio/decoder/audio_decoders/mp3"
 
 flacTable    = [("LIB_", "flac/", "flac_dec.h", "audio/decoder/audio_decoders/flac"),
                 ("LIB_", "flac/", "flac_dec.c", "audio/decoder/audio_decoders/flac"),
-                # ("LIB_", "flac/src/", "bitmath.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "bitreader.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "cpu.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "crc.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "fixed.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "float.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "format.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "lpc.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "main.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "md5.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "memory.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/src/", "stream_decoder.c", "audio/decoder/audio_decoders/flac/src"),
-                # ("LIB_", "flac/include/", "config.h", "audio/decoder/audio_decoders/flac/include"),
-                # ("LIB_", "flac/include/FLAC/", "all.h", "audio/decoder/audio_decoders/flac/include/FLAC"),
-                # ("LIB_", "flac/include/FLAC/", "assert.h", "audio/decoder/audio_decoders/flac/include/FLAC"),
-                # ("LIB_", "flac/include/FLAC/", "callback.h", "audio/decoder/audio_decoders/flac/include/FLAC"),
-                # ("LIB_", "flac/include/FLAC/", "export.h", "audio/decoder/audio_decoders/flac/include/FLAC"),
-                # ("LIB_", "flac/include/FLAC/", "format.h", "audio/decoder/audio_decoders/flac/include/FLAC"),
-                # ("LIB_", "flac/include/FLAC/", "metadata.h", "audio/decoder/audio_decoders/flac/include/FLAC"),
-                # ("LIB_", "flac/include/FLAC/", "ordinals.h", "audio/decoder/audio_decoders/flac/include/FLAC"),
-                # ("LIB_", "flac/include/FLAC/", "stream_decoder.h", "audio/decoder/audio_decoders/flac/include/FLAC"),
-                # ("LIB_", "flac/include/FLAC/", "stream_encoder.h", "audio/decoder/audio_decoders/flac/include/FLAC"),
-                # ("LIB_", "flac/include/private/", "all.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "bitmath.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "bitreader.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "bitwriter.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "cpu.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "crc.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "fixed.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "float.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "format.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "lpc.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "macros.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "md5.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "memory.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "metadata.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "ogg_decoder_aspect.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "ogg_encoder_aspect.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "ogg_helper.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "ogg_mapping.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "stream_encoder.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "stream_encoder_framing.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/private/", "window.h", "audio/decoder/audio_decoders/flac/include/private"),
-                # ("LIB_", "flac/include/protected/", "all.h", "audio/decoder/audio_decoders/flac/include/protected"),
-                # ("LIB_", "flac/include/protected/", "stream_decoder.h", "audio/decoder/audio_decoders/flac/include/protected"),
-                # ("LIB_", "flac/include/protected/", "stream_encoder.h", "audio/decoder/audio_decoders/flac/include/protected"),
-                # ("LIB_", "flac/include/share/", "alloc.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "compat.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "endswap.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "getopt.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "grabbag.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "macros.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "private.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "replaygain_analysis.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "replaygain_synthesis.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "safe_str.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "utf8.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/", "win_utf8_io.h", "audio/decoder/audio_decoders/flac/include/share"),
-                # ("LIB_", "flac/include/share/grabbag/", "cuesheet.h", "audio/decoder/audio_decoders/flac/include/share/grabbag"),
-                # ("LIB_", "flac/include/share/grabbag/", "file.h", "audio/decoder/audio_decoders/flac/include/share/grabbag"),
-                # ("LIB_", "flac/include/share/grabbag/", "picture.h", "audio/decoder/audio_decoders/flac/include/share/grabbag"),
-                # ("LIB_", "flac/include/share/grabbag/", "replaygain.h", "audio/decoder/audio_decoders/flac/include/share/grabbag"),
-                # ("LIB_", "flac/include/share/grabbag/", "seektable.h", "audio/decoder/audio_decoders/flac/include/share/grabbag"),
-                ]
+                #
+                ("LIB_", "../../../xiph_flac/flac_master/include/", "flac_config.h", "audio/decoder/audio_decoders/flac/flac_master/include"),
+                #
+                ("LIB_", "../../../xiph_flac/flac_master/include/FLAC/", "assert.h", "audio/decoder/audio_decoders/flac/flac_master/include/FLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/include/FLAC/", "export.h", "audio/decoder/audio_decoders/flac/flac_master/include/FLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/include/FLAC/", "format.h", "audio/decoder/audio_decoders/flac/flac_master/include/FLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/include/FLAC/", "ordinals.h", "audio/decoder/audio_decoders/flac/flac_master/include/FLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/include/FLAC/", "stream_decoder.h", "audio/decoder/audio_decoders/flac/flac_master/include/FLAC"),
+                #
+                ("LIB_", "../../../xiph_flac/flac_master/include/share/", "alloc.h", "audio/decoder/audio_decoders/flac/flac_master/include/share"),
+                ("LIB_", "../../../xiph_flac/flac_master/include/share/", "compat.h", "audio/decoder/audio_decoders/flac/flac_master/include/share"),
+                ("LIB_", "../../../xiph_flac/flac_master/include/share/", "endswap.h", "audio/decoder/audio_decoders/flac/flac_master/include/share"),
+                #
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "bitmath.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "bitreader.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "cpu.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "crc.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "fixed.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "float.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "format.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "lpc.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "md5.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "memory.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/", "stream_decoder.c", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC"),
+                #
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "bitmath.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "bitreader.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "cpu.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "crc.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "fixed.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "float.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "format.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "lpc.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "macros.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "md5.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "memory.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/", "ogg_decoder_aspect.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private"),
+                #
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/ogg/", "ogg.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private/ogg"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/ogg/", "ogg_config_types.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private/ogg"),
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/private/ogg/", "os_types.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/private/ogg"),
+                #
+                ("LIB_", "../../../xiph_flac/flac_master/src/libFLAC/include/protected/", "stream_decoder.h", "audio/decoder/audio_decoders/flac/flac_master/src/libFLAC/include/protected")]
 
 opusTable    = [("LIB_", "opus/", "opus_dec.h", "audio/decoder/audio_decoders/opus"),
                 ("LIB_", "opus/", "opus_dec.c", "audio/decoder/audio_decoders/opus"),
@@ -586,7 +567,10 @@ def enableMP3Decoder(symbol, event):
 
 # FLAC
 def enableFlacDecoderFiles(component, enable):
-
+    # Modification Start
+    configName = Variables.get("__CONFIGURATION_NAME")  # e.g. "default"
+    Log.writeInfoMessage("enableFlacDecoderFiles:" + configName)
+    # Modification End
     for fileSymbol, srcPath, file, destPath in flacTable:
         # Set type
         baseFileName = os.path.splitext(file)[0]
@@ -599,7 +583,12 @@ def enableFlacDecoderFiles(component, enable):
             type = "IMPORTANT"
 
         # Generate file symbol
-        symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+        # Modification Start
+        modifiedSrcPath = srcPath.replace("../../../", "")
+        symbol = fileSymbol + modifiedSrcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
+        # Modification End
+        # Old code
+        # symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
         exec("component.getSymbolByID(\"" + symbol + "\").setEnabled(enable)")
   
 def enableFlacDecoder(symbol, event):
@@ -666,6 +655,27 @@ def instantiateComponent(audioDecoderComponent):
     global CONFIG_USE_WAV_STREAMING
     global CONFIG_USE_ADPCM_STREAMING
     global CONFIG_USE_MP3_DECODER
+    # Modification Start 	
+    global include_flac_logic
+    global CONFIG_USE_FLAC_DECODER
+    # Modification End
+
+    ############################################################################
+    ####                         Code Generation                            ####
+    ############################################################################
+    configName = Variables.get("__CONFIGURATION_NAME")  # e.g. "default"
+    Log.writeInfoMessage("Audio Decoders Instantiated:" + configName)
+    
+    # Modification Start
+    # To avoid adding into a graphic projects 
+    include_flac_logic = 0
+    if "wqvga" not in configName: 
+        if "ssd1963" not in configName:
+            include_flac_logic = 1
+            Log.writeInfoMessage("No Graphics, Can Include FLAC Logic")
+        else:
+            Log.writeInfoMessage("Has Graphics, Not including FLAC Logic")
+    # Modification End 
 
     CONFIG_USE_WAV_STREAMING = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_WAV_STREAMING", None)
     CONFIG_USE_WAV_STREAMING.setVisible(True)
@@ -686,7 +696,12 @@ def instantiateComponent(audioDecoderComponent):
     CONFIG_USE_MP3_DECODER.setDependencies(enableMP3Decoder, ["CONFIG_USE_MP3_DECODER"])
 
     CONFIG_USE_FLAC_DECODER = audioDecoderComponent.createBooleanSymbol("CONFIG_USE_FLAC_DECODER", None)
-    CONFIG_USE_FLAC_DECODER.setVisible(False)
+    # Modification Start
+    CONFIG_USE_FLAC_DECODER.setVisible(include_flac_logic == 1)
+    # Modification End
+    # Old Code
+    # CONFIG_USE_FLAC_DECODER.setVisible(False) 
+
     CONFIG_USE_FLAC_DECODER.setLabel("Enable FLAC Decoder")
     CONFIG_USE_FLAC_DECODER.setDefaultValue(False)
     CONFIG_USE_FLAC_DECODER.setDependencies(enableFlacDecoder, ["CONFIG_USE_FLAC_DECODER"])
@@ -720,15 +735,6 @@ def instantiateComponent(audioDecoderComponent):
     CONFIG_USE_JPEG_DECODER.setLabel("Enable JPEG Decoder")
     CONFIG_USE_JPEG_DECODER.setDefaultValue(False)
 #    CONFIG_USE_JPEG_DECODER.setDependencies(enableOpusDecoder, ["CONFIG_USE_JPEG_DECODER"])
-    
-
-
-    ############################################################################
-    #### Code Generation ####
-    ############################################################################
-    configName = Variables.get("__CONFIGURATION_NAME")  # e.g. "default"
-
-    Log.writeInfoMessage("Audio Decoders instantiated")
 
     for fileSymbol, srcPath, file, destPath in wavTable:
         # Set type
@@ -796,28 +802,30 @@ def instantiateComponent(audioDecoderComponent):
         exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/mp3\")")
         exec(symbol + ".setType(\"" + type + "\")")
         exec(symbol + ".setEnabled(CONFIG_USE_MP3_DECODER.getValue() == True)")
+    # Modification Start
+    for fileSymbol, srcPath, file, destPath in flacTable:
+        # Set type
+        baseFileName = os.path.splitext(file)[0]
+        ext = os.path.splitext(file)[-1].lower()
+        if ext in src_ext:
+            type = "SOURCE"
+        elif ext in hdr_ext:
+            type = "HEADER"
+        else:
+            type = "IMPORTANT"
 
-    # for fileSymbol, srcPath, file, destPath in flacTable:
-        # # Set type
-        # baseFileName = os.path.splitext(file)[0]
-        # ext = os.path.splitext(file)[-1].lower()
-        # if ext in src_ext:
-            # type = "SOURCE"
-        # elif ext in hdr_ext:
-            # type = "HEADER"
-        # else:
-            # type = "IMPORTANT"
+        # Create unique file symbol
+        modifiedSrcPath = srcPath.replace("../../../", "")
+        symbol = fileSymbol + modifiedSrcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
 
-        # # Create unique file symbol
-        # symbol = fileSymbol + srcPath.replace("/", "_").upper() + baseFileName.upper() + "_" + type.upper()
-
-        # exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
-        # exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
-        # exec(symbol + ".setOutputName(\"" + file + "\")")
-        # exec(symbol + ".setDestPath(\"" + destPath + "\")")
-        # exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/flac\")")
-        # exec(symbol + ".setType(\"" + type + "\")")
-        # exec(symbol + ".setEnabled(CONFIG_USE_FLAC_DECODER.getValue() == True)")
+        exec(symbol + " = audioDecoderComponent.createFileSymbol(\"" + symbol + "\", None)")
+        exec(symbol + ".setSourcePath(\"" + srcPath + file + "\")")
+        exec(symbol + ".setOutputName(\"" + file + "\")")
+        exec(symbol + ".setDestPath(\"" + destPath + "\")")
+        exec(symbol + ".setProjectPath(\"config/" + configName + "/audio/decoder/audio_decoders/flac\")")
+        exec(symbol + ".setType(\"" + type + "\")")
+        exec(symbol + ".setEnabled(CONFIG_USE_FLAC_DECODER.getValue() == True)")
+    # Modification End 
 
     # for fileSymbol, srcPath, file, destPath in speexTable:
         # # Set type
@@ -921,7 +929,3 @@ def instantiateComponent(audioDecoderComponent):
        # CONFIG_USE_FLAC_DECODER.setVisible(False)
        # CONFIG_USE_OGG_SPEEX_DECODER.setVisible(False)
        # CONFIG_USE_OGG_OPUS_DECODER.setVisible(False)
-
-   
-
-    

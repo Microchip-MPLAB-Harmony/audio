@@ -52,8 +52,8 @@ extern "C" {
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
-#include "system/fs/sys_fs.h"
 #include "configuration.h"
+#include "system/fs/sys_fs.h"
 
 #include "audio/decoder/audio_decoders/mp3/fixpnt/pub/mp3common.h"
 #include "audio/decoder/audio_decoders/mp3/fixpnt/pub/mp3dec.h"
@@ -63,7 +63,9 @@ extern "C" {
 #include "audio/decoder/audio_decoders/mp3/fixpnt/real/coder.h"
 
 #include "audio/decoder/audio_decoders/mp3/id3/id3.h"
-
+#include "audio/decoder/audio_decoders_config.h"
+#include "audio/decoder/audio_decoders.h"
+    
 #define MP3_HEADER_SAMPLERATE_44100         0b00
 #define MP3_HEADER_SAMPLERATE_48000         0b01
 #define MP3_HEADER_SAMPLERATE_32000         0b10
@@ -162,7 +164,7 @@ typedef struct{
 
 void MP3_Initialize(uint8_t *input);
 void MP3_Initialize_N(uint8_t *input, SYS_FS_HANDLE wavFilehandle);
-uint32_t MP3_GetAudioSize();
+uint32_t MP3_GetAudioSize(void);
 bool MP3_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *output, uint16_t *written);
 int MP3_HdrGetSamplesPerSec(void);
 int MP3_HdrGetBytesPerSec(void);
@@ -171,8 +173,8 @@ unsigned int MP3_HdrGetFileSize(void);
 
 uint32_t MP3_GetDuration(void);
 
-bool isMP3decoder_enabled();
-uint32_t MP3_UpdatePlaytime();
+bool isMP3decoder_enabled(void);
+uint32_t MP3_UpdatePlaytime(void);
 
 uint32_t MP3_GetSampleRate(void);
 uint8_t MP3_GetChannels(void);

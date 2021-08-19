@@ -151,12 +151,12 @@ ID3_STATE;
 
 #define     ID3V22_ZERO     "\0\0\0"
 #define     ID3V22_TITLE    "TT2"
-#define     ID3V22_ARTIST   "TP1"
+#define     ID3V22_ARTIST   ((const char* const)"TP1")
 #define     ID3V22_ALBUM    "TAL"
 #define     ID3V23_ZERO     "\0\0\0\0"
-#define     ID3V23_TITLE    "TIT2"
-#define     ID3V23_ARTIST   "TPE1"
-#define     ID3V23_ALBUM    "TALB"
+#define     ID3V23_TITLE    ((const char* const)"TIT2")
+#define     ID3V23_ARTIST   ((const char* const)"TPE1")
+#define     ID3V23_ALBUM    ((const char* const)"TALB")
 
 // <editor-fold defaultstate="collapsed" desc="ID3v2 Frame ID String">
 //4.20    AENC    [[#sec4.20|Audio encryption]]
