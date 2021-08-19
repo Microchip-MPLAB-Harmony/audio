@@ -1146,7 +1146,7 @@ children:
       - type: Boolean
         attributes: {id: enabled}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: 'false'}
   - type: File
     attributes: {id: CACHE_LOCAL_H}
     children:
@@ -1155,7 +1155,7 @@ children:
       - type: Boolean
         attributes: {id: enabled}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: 'false'}
   - type: File
     attributes: {id: CACHE_PIC32MZ_H}
     children:
@@ -1164,7 +1164,7 @@ children:
       - type: Boolean
         attributes: {id: enabled}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: 'false'}
   - type: File
     attributes: {id: CACHE_SOURCE_PIC32MZ_C}
     children:
@@ -1173,7 +1173,7 @@ children:
       - type: Boolean
         attributes: {id: enabled}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: 'false'}
   - type: File
     attributes: {id: CACHE_SOURCE_PIC32MZ_S}
     children:
@@ -1182,7 +1182,7 @@ children:
       - type: Boolean
         attributes: {id: enabled}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: 'false'}
   - type: File
     attributes: {id: CACHE_SYSTEM_DEF_H}
     children:
@@ -1191,7 +1191,7 @@ children:
       - type: Boolean
         attributes: {id: enabled}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: 'false'}
   - type: Integer
     attributes: {id: CAN1_CLOCK_FREQUENCY}
     children:
@@ -1276,6 +1276,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '3'}
+  - type: KeyValueSet
+    attributes: {id: CONFIG_PRECON_PREFEN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
   - type: Integer
     attributes: {id: CONFIG_SYS_CLK_CONFIG_PRIMARY_XTAL}
     children:
@@ -1504,7 +1511,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: 'true'}
+        attributes: {id: core, value: 'false'}
   - type: String
     attributes: {id: DCH0_CON_CHPRI_VALUE}
     children:
@@ -1569,7 +1576,7 @@ children:
       - type: Boolean
         attributes: {id: enabled}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: 'false'}
   - type: Boolean
     attributes: {id: DMA0_INTERRUPT_ENABLE}
     children:
@@ -2060,21 +2067,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: '3'}
+        attributes: {value: '2'}
   - type: Hex
     attributes: {id: EVIC_133_PRIVALUE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '3072'}
-  - type: Combo
-    attributes: {id: EVIC_133_SUBPRIORITY}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: '0'}
+        attributes: {id: core, value: '2048'}
   - type: Hex
     attributes: {id: EVIC_133_SUBPRIVALUE}
     children:
@@ -2334,6 +2334,8 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+      - type: User
+        attributes: {value: 'false'}
   - type: Boolean
     attributes: {id: EVIC_188_HANDLER_LOCK}
     children:
@@ -2823,7 +2825,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: 'true'}
+        attributes: {id: core, value: 'false'}
   - type: String
     attributes: {id: KEIL_STACK_HEAP_SIZE}
     children:
@@ -3647,7 +3649,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: 'false'}
+        attributes: {id: core, value: 'true'}
   - type: String
     attributes: {id: UART6_FAULT_INTERRUPT_HANDLER}
     children:
@@ -3782,13 +3784,6 @@ children:
       - type: Dynamic
         attributes: {id: drv_usbhs_v1, value: 'true'}
   - type: Boolean
-    attributes: {id: USE_CACHE_MAINTENANCE}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: 'true'}
-  - type: Boolean
     attributes: {id: USE_PPS_INPUT_0}
     children:
     - type: Values
@@ -3852,14 +3847,14 @@ children:
       - type: String
         attributes: {id: value}
         children:
-        - {type: Value, value: '200000'}
+        - {type: Value, value: '400000'}
   - type: Integer
     attributes: {id: XC32_HEAP_SIZE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: '200000'}
+        attributes: {value: '400000'}
   - type: KeyValueSet
     attributes: {id: clkSvcMode}
     children:

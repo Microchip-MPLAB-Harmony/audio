@@ -61,10 +61,10 @@ static int rxQCnt = 0;
 static int txCompleteCnt = 0;
 static int rxCompleteCnt = 0;
 
-DRV_I2S_OBJ        *dObj              = NULL;
-DRV_I2S_BUFFER_OBJ *currentQueue      = NULL;
-DRV_I2S_BUFFER_OBJ *newObj            = NULL;
-uint32_t           bufferSizeDmaWords = 0;
+static DRV_I2S_OBJ        *dObj              = NULL;
+static DRV_I2S_BUFFER_OBJ *currentQueue      = NULL;
+static DRV_I2S_BUFFER_OBJ *newObj            = NULL;
+static uint32_t           bufferSizeDmaWords = 0;
 
 /* This is the driver instance object array. */
 DRV_I2S_OBJ gDrvI2SObj[DRV_I2S_INSTANCES_NUMBER] ;
@@ -307,7 +307,6 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
         //Get the next buffer object in the queue 
         //--deallocate the current buffer, data still valid for USB Read Queue
         newObj = currentQueue->next;
-        bufferSizeDmaWords = newObj->size;
         _DRV_I2S_BufferObjectRelease(currentQueue);
 
         //RX Only with buffer allocated on queueRead
@@ -317,8 +316,10 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
         {
             dObj->queueRead = newObj;   //Head of queue
             dObj->queueSizeCurrentRead --;
+
             if (newObj != NULL)
             {
+                bufferSizeDmaWords = newObj->size;
                 newObj->currentState = DRV_I2S_BUFFER_IS_PROCESSING;
 
                 if (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel) 
@@ -366,12 +367,13 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
         else if ((dObj->process == DRV_I2S_TASK_PROCESS_WRITE_ONLY) ||
             (dObj->process == DRV_I2S_TASK_PROCESS_WRITE_READ))
         {
-            dObj->queueWrite = newObj;
+            dObj->queueWrite   = newObj;
             dObj->queueSizeCurrentWrite --;
             //_DRV_I2S_BufferObjectRelease(currentQueue);
 
             if (newObj != NULL)
             {
+                bufferSizeDmaWords = newObj->size;
                 newObj->currentState = DRV_I2S_BUFFER_IS_PROCESSING;
 
                 if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel))

@@ -68,7 +68,6 @@ void DRV_USBHS_InterruptHandler( void );
 void DRV_USBHS_DMAInterruptHandler( void );
 void DMA0_InterruptHandler( void );
 void DMA1_InterruptHandler( void );
-void UART6_FAULT_InterruptHandler( void );
 void UART6_RX_InterruptHandler( void );
 void UART6_TX_InterruptHandler( void );
 
@@ -85,12 +84,12 @@ void __ISR(_I2C1_BUS_VECTOR, ipl1SRS) I2C1_BUS_Handler (void)
     I2C1_BUS_InterruptHandler();
 }
 
-void __ISR(_I2C1_MASTER_VECTOR, ipl1SRS) I2C1_MASTER_Handler (void)
+void __ISR(_I2C1_MASTER_VECTOR, ipl4SRS) I2C1_MASTER_Handler (void)
 {
     I2C1_MASTER_InterruptHandler();
 }
 
-void __ISR(_USB_VECTOR, ipl2SRS) USB_Handler (void)
+void __ISR(_USB_VECTOR, ipl3SRS) USB_Handler (void)
 {
     DRV_USBHS_InterruptHandler();
 }
@@ -100,19 +99,14 @@ void __ISR(_USB_DMA_VECTOR, ipl2SRS) USB_DMA_Handler (void)
     DRV_USBHS_DMAInterruptHandler();
 }
 
-void __ISR(_DMA0_VECTOR, ipl3SRS) DMA0_Handler (void)
+void __ISR(_DMA0_VECTOR, ipl2SRS) DMA0_Handler (void)
 {
     DMA0_InterruptHandler();
 }
 
-void __ISR(_DMA1_VECTOR, ipl3SRS) DMA1_Handler (void)
+void __ISR(_DMA1_VECTOR, ipl2SRS) DMA1_Handler (void)
 {
     DMA1_InterruptHandler();
-}
-
-void __ISR(_UART6_FAULT_VECTOR, ipl1SRS) UART6_FAULT_Handler (void)
-{
-    UART6_FAULT_InterruptHandler();
 }
 
 void __ISR(_UART6_RX_VECTOR, ipl1SRS) UART6_RX_Handler (void)

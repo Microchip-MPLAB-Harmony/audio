@@ -1933,6 +1933,7 @@ void DRV_AK4954_IntExtMicSet(DRV_HANDLE handle, DRV_AK4954_INT_EXT_MIC micInput)
     }
 }
 
+//Convert linear range 0-31 to AK4954 min to max gain in steps
 uint8_t _convertGainToMGain(uint8_t gain)
 {
     uint8_t ret;
@@ -2016,7 +2017,9 @@ void DRV_AK4954_MicSet(DRV_HANDLE handle, DRV_AK4954_MIC micInput)
     
     drvObj = (DRV_AK4954_OBJ *)clientObj->hDriver;
     drvObj->command = DRV_AK4954_COMMAND_SEND;
+    drvObj->whichMicInput = micInput;
     
+    //Use the current gain.
     gain = _convertGainToMGain(drvObj->micGain);
     
     switch (micInput)
@@ -2172,6 +2175,223 @@ void DRV_AK4954_MicSet(DRV_HANDLE handle, DRV_AK4954_MIC micInput)
     micSetCmd->control_data[2] = (uint8_t)(regValue1&0xFF);
     micSetCmd->array_size = 3;
 }
+
+
+// *****************************************************************************
+/*
+  Function:
+    void DRV_AK4954_MicGainSet(DRV_HANDLE handle, uint8_t gain);
+
+  Summary:
+    This function sets the gain for the current microphone input
+    for the AK4954 Codec 
+
+  Description:
+
+  Precondition:
+    The DRV_AK4954_Initialize routine must have been called for the specified
+    AK4954 driver instance.
+
+    DRV_AK4954_Open must have been called to obtain a valid opened device handle.
+
+  Parameters:
+    handle       - A valid open-instance handle, returned from the driver's
+                   open routine
+    micInput     - MIC1 or MIC2
+
+  Returns:
+    None
+
+  Remarks:
+    None.
+*/
+void DRV_AK4954_MicGainSet(DRV_HANDLE handle, uint8_t micGain)
+{
+    DRV_AK4954_OBJ *drvObj;
+    DRV_AK4954_CLIENT_OBJ *clientObj;
+    uint8_t regValue0, regValue1, gain;
+//KEEP THIS
+    DRV_AK4954_MIC micInput;
+    
+    if((DRV_HANDLE_INVALID == handle) || (0 == handle))
+    {
+        /* This means the handle is invalid */
+        SYS_DEBUG(0, "Handle is invalid \r\n");
+        return;
+    }
+
+    clientObj = (DRV_AK4954_CLIENT_OBJ *) handle;
+    
+    if(false == clientObj->inUse)
+    {
+        SYS_DEBUG(0, "Invalid driver handle \r\n");
+        return;
+    }
+
+    drvObj = (DRV_AK4954_OBJ *)clientObj->hDriver;
+    drvObj->command = DRV_AK4954_COMMAND_SEND;
+    
+//KEEP THIS
+    micInput = drvObj->whichMicInput;
+    drvObj->micGain = micGain;
+
+    //Convert linear range 0-31 to AK4954 min to max gain in steps
+    gain = _convertGainToMGain(drvObj->micGain);
+    
+    switch (micInput)
+    {
+        case MIC1:
+        {
+            if(drvObj->lastRegValue[AK4954A_REG_SIG_SLCT1] == 
+               (DRV_AK4954_CONTROL_REG_FIELD_WRITE(AK4954A_REG_SIG_SLCT1, 
+                                                   0x10, 
+                                                   0, 
+                                                   0)) && 
+               drvObj->lastRegValue[AK4954A_REG_SIG_SLCT2] == 
+               (DRV_AK4954_CONTROL_REG_FIELD_WRITE(AK4954A_REG_SIG_SLCT2, 
+                                                   0x0F, 
+                                                   0, 
+                                                   0)))
+            {
+                return;
+            }
+            //MPSEL: MPWR Output Select
+            regValue0 = _DRV_AK4954_CONTROL_REG_FIELD_WRITE_Wrapper(drvObj,
+                        AK4954A_REG_SIG_SLCT1,
+                        0x10,
+                        0, 
+                        0x0
+                        );
+            regValue1 = _DRV_AK4954_CONTROL_REG_FIELD_WRITE_Wrapper(drvObj,
+                        AK4954A_REG_SIG_SLCT2,
+                        0x0F,
+                        0, 
+                        0x0
+                        );
+        } //End MIC1
+        break;
+
+        case MIC2:
+        {   //External Mic
+            if(drvObj->lastRegValue[AK4954A_REG_SIG_SLCT1] == 
+               (DRV_AK4954_CONTROL_REG_FIELD_WRITE(AK4954A_REG_SIG_SLCT1, 
+                                                   0x17, 
+                                                   0, 
+                                                   SIGSLCT1_MPSEL_UP |
+                                                   gain << SIGSLCT1_MGAIN_SHIFT)) && 
+               drvObj->lastRegValue[AK4954A_REG_SIG_SLCT2] == 
+               (DRV_AK4954_CONTROL_REG_FIELD_WRITE(AK4954A_REG_SIG_SLCT2, 
+                                                   0x0F, 
+                                                   0, 
+                                                   SIGSLCT2_INL0_ON | 
+                                                   SIGSLCT2_INR0_ON)))
+            {
+                return;
+            }
+
+            //MPWR2 w/ selected gain
+            regValue0 = _DRV_AK4954_CONTROL_REG_FIELD_WRITE_Wrapper(
+                                drvObj,
+                                AK4954A_REG_SIG_SLCT1,
+                                0x17,
+                                0, 
+                                SIGSLCT1_MPSEL_UP |
+                                gain << SIGSLCT1_MGAIN_SHIFT);                
+            //MIC2
+            regValue1 = _DRV_AK4954_CONTROL_REG_FIELD_WRITE_Wrapper(
+                                drvObj,
+                                AK4954A_REG_SIG_SLCT2,
+                                0x0F,
+                                0, 
+                                SIGSLCT2_INL0_ON | SIGSLCT2_INR0_ON);
+        } //End MIC2
+        break;
+
+        case MIC3:
+        {
+            // selected gain only
+            if(drvObj->lastRegValue[AK4954A_REG_SIG_SLCT1] == 
+               (DRV_AK4954_CONTROL_REG_FIELD_WRITE(AK4954A_REG_SIG_SLCT1, 
+                                                   0x17, 
+                                                   0, 
+                                                   gain << SIGSLCT1_MGAIN_SHIFT) ) && 
+
+                drvObj->lastRegValue[AK4954A_REG_SIG_SLCT2] == 
+                (DRV_AK4954_CONTROL_REG_FIELD_WRITE(AK4954A_REG_SIG_SLCT2, 
+                                                    0x0F, 
+                                                    0, 
+                                                    SIGSLCT2_INL1_ON | 
+                                                    SIGSLCT2_INR1_ON))  )
+            {
+                return;
+            }
+
+            //No MPWR, +20dB Gain
+            regValue0 = _DRV_AK4954_CONTROL_REG_FIELD_WRITE_Wrapper(
+                                drvObj,
+                                AK4954A_REG_SIG_SLCT1,
+                                0x17,
+                                0, 
+                                gain << SIGSLCT1_MGAIN_SHIFT);
+
+            //MIC3
+            regValue1 = _DRV_AK4954_CONTROL_REG_FIELD_WRITE_Wrapper(
+                                drvObj,
+                                AK4954A_REG_SIG_SLCT2,
+                                0x0F,
+                                0, 
+                                SIGSLCT2_INL1_ON | SIGSLCT2_INR1_ON);
+        }
+        break;
+
+        default: //MIC1
+        {
+            if(drvObj->lastRegValue[AK4954A_REG_SIG_SLCT1] == 
+               (DRV_AK4954_CONTROL_REG_FIELD_WRITE(AK4954A_REG_SIG_SLCT1, 
+                                                   0x10, 
+                                                   0, 
+                                                   SIGSLCT1_MPSEL_UP)) && 
+               drvObj->lastRegValue[AK4954A_REG_SIG_SLCT2] == 
+               (DRV_AK4954_CONTROL_REG_FIELD_WRITE(AK4954A_REG_SIG_SLCT2, 
+                                                   0x0F, 
+                                                   0, 
+                                                   SIGSLCT2_INL0_ON | 
+                                                   SIGSLCT2_INR0_ON)))
+            {
+                return;
+            }
+
+            regValue0 = _DRV_AK4954_CONTROL_REG_FIELD_WRITE_Wrapper(
+                                drvObj,
+                                AK4954A_REG_SIG_SLCT1,
+                                0x10,
+                                0, 
+                                SIGSLCT1_MPSEL_UP);
+
+            regValue1 = _DRV_AK4954_CONTROL_REG_FIELD_WRITE_Wrapper(
+                                drvObj,
+                                AK4954A_REG_SIG_SLCT2,
+                                0x0F,
+                                0, 
+                                SIGSLCT2_INL0_ON | SIGSLCT2_INR0_ON);
+        }
+        break;
+    } //End default
+    
+    AK4954_COMMAND *micSetCmd;
+    micSetCmd = _DRV_AK4954_CommandQueueGetSlot();
+    if(micSetCmd == NULL)
+    {
+        return;
+    }
+    
+    micSetCmd->command = DRV_AK4954_COMMAND_MIC_SET;
+    micSetCmd->control_data[0] = (uint8_t)(AK4954A_REG_SIG_SLCT1&0xFF);
+    micSetCmd->control_data[1] = (uint8_t)(regValue0&0xFF);
+    micSetCmd->control_data[2] = (uint8_t)(regValue1&0xFF);
+    micSetCmd->array_size = 3;
+}
+
 
 // *****************************************************************************
 /*

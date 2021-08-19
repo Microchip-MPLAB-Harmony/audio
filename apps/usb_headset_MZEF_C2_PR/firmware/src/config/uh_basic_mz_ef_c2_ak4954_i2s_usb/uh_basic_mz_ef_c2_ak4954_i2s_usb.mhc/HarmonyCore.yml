@@ -144,7 +144,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: HarmonyCore, value: 'true'}
+        attributes: {id: HarmonyCore, value: 'false'}
       - type: User
         attributes: {value: 'false'}
   - type: Boolean

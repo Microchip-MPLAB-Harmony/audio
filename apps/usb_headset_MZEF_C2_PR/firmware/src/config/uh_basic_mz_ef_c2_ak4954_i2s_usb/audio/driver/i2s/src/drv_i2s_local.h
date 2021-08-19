@@ -267,14 +267,11 @@ typedef struct
     /* Hardware instance mutex */
     OSAL_MUTEX_DECLARE(mutexDriverInstance);
 
-    /* The buffer queue for the write(Tx) operations */
+    /* The buffer queue for the write(Tx) and write/read (Tx/Rx) operations */
     DRV_I2S_BUFFER_OBJ  *queueWrite;
 
     /* The buffer queue for the read(Rx) operations */
     DRV_I2S_BUFFER_OBJ  *queueRead;
-
-    /* The buffer queue for the read(Rx) operations */
-    DRV_I2S_BUFFER_OBJ  *queueWriteRead;
 
     /* Read queue size */
     size_t queueSizeRead;

@@ -51,6 +51,15 @@ children:
       children:
       - type: Dynamic
         attributes: {id: uart6, value: 'true'}
+  - type: Comment
+    attributes: {id: UART_INTRRUPT_ENABLE_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
   - type: KeyValueSet
     attributes: {id: UART_OPERATING_MODE}
     children:

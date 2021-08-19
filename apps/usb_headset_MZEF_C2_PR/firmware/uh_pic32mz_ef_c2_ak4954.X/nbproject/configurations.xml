@@ -100,10 +100,6 @@
             <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/osal/osal_impl_basic.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
-            <logicalFolder name="f8" displayName="cache" projectFiles="true">
-              <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/cache/plib_cache.h</itemPath>
-              <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/cache/plib_cache_pic32mz.h</itemPath>
-            </logicalFolder>
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
               <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/clk/plib_clk.h</itemPath>
             </logicalFolder>
@@ -184,7 +180,6 @@
           <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/configuration.h</itemPath>
           <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/interrupts.h</itemPath>
           <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/device.h</itemPath>
-          <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/device_cache.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f3" displayName="osal" projectFiles="true">
@@ -289,11 +284,6 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
-            <logicalFolder name="f8" displayName="cache" projectFiles="true">
-              <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/cache/plib_cache_local.h</itemPath>
-              <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/cache/plib_cache.c</itemPath>
-              <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/cache/plib_cache_pic32mz.S</itemPath>
-            </logicalFolder>
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
               <itemPath>../src/config/uh_basic_mz_ef_c2_ak4954_i2s_usb/peripheral/clk/plib_clk.c</itemPath>
             </logicalFolder>
@@ -532,7 +522,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="true"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="200000"/>
+        <property key="heap-size" value="400000"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
@@ -1058,6 +1048,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="1d000000-1d1fffff"/>
         <property key="memories.rww" value="true"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/Microchip/harmony/h3_v360/audio/apps/usb_headset_MZEF_C2_PR/firmware/uh_pic32mz_ef_c2_ak4954.X/debug/uh_basic_mz_ef_c2_ak4954_i2s_usb/uh_pic32mz_ef_c2_ak4954_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>

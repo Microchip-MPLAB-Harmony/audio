@@ -192,19 +192,22 @@ void __attribute__((noreturn)) _cache_err_exception_handler(void)
     Refer to the XC32 User's Guide for additional information.
  */
 
-void __attribute__((noreturn)) _simple_tlb_refill_exception_handler(void)
+//void __attribute__((noreturn)) _simple_tlb_refill_exception_handler(void)
+void _simple_tlb_refill_exception_handler(void)
 {
     /* Mask off the ExcCode Field from the Cause Register
     Refer to the MIPs Software User's manual */
     _excep_code = (_CP0_GET_CAUSE() & 0x0000007C) >> 2;
     _excep_addr = _CP0_GET_EPC();
 
+#if 1
     while (1)
     {
         #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
             __builtin_software_breakpoint();
         #endif
     }
+#endif
 }
 /*******************************************************************************
  End of File

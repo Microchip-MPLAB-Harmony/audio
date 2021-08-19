@@ -2204,7 +2204,7 @@ void APP_Tasks()
         {
             static int irpQCalc   = 0;  //Calculated count 
             static int irpQActual = 0;  //Actual count 
-            static int irpQCnt = 0;
+            static int __attribute__((unused)) irpQCnt = 0;
 
             //Disable interrupts - critical section
             #if defined(__arm__)
