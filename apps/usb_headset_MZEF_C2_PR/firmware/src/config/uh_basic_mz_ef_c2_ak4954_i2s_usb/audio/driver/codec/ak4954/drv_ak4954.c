@@ -2210,7 +2210,6 @@ void DRV_AK4954_MicGainSet(DRV_HANDLE handle, uint8_t micGain)
     DRV_AK4954_OBJ *drvObj;
     DRV_AK4954_CLIENT_OBJ *clientObj;
     uint8_t regValue0, regValue1, gain;
-//KEEP THIS
     DRV_AK4954_MIC micInput;
     
     if((DRV_HANDLE_INVALID == handle) || (0 == handle))
@@ -2231,7 +2230,6 @@ void DRV_AK4954_MicGainSet(DRV_HANDLE handle, uint8_t micGain)
     drvObj = (DRV_AK4954_OBJ *)clientObj->hDriver;
     drvObj->command = DRV_AK4954_COMMAND_SEND;
     
-//KEEP THIS
     micInput = drvObj->whichMicInput;
     drvObj->micGain = micGain;
 

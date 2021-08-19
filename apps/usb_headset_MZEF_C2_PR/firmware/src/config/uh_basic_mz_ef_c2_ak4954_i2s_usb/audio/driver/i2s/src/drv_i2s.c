@@ -39,7 +39,7 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 //DOM-IGNORE-END
-//KEEP EVERYTHING
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Included Files
@@ -48,7 +48,6 @@
 #include "configuration.h"
 #include "audio/driver/i2s/drv_i2s.h"
 #include "audio/driver/i2s/src/drv_i2s_local.h"
-#include "system/debug/sys_debug.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -56,15 +55,12 @@
 // *****************************************************************************
 // *****************************************************************************
 
-static int txQCnt = 0;
-static int rxQCnt = 0;
-static int txCompleteCnt = 0;
-static int rxCompleteCnt = 0;
 
 static DRV_I2S_OBJ        *dObj              = NULL;
 static DRV_I2S_BUFFER_OBJ *currentQueue      = NULL;
 static DRV_I2S_BUFFER_OBJ *newObj            = NULL;
 static uint32_t           bufferSizeDmaWords = 0;
+static volatile DRV_I2S_BUFFER_OBJ *bufferObj;
 
 /* This is the driver instance object array. */
 DRV_I2S_OBJ gDrvI2SObj[DRV_I2S_INSTANCES_NUMBER] ;
@@ -110,34 +106,27 @@ static bool _DRV_I2S_ResourceLock(DRV_I2S_OBJ * object)
 
     /* We will disable I2S and/or DMA interrupt so that the driver resource
      * is not updated asynchronously. */
-    if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel))
+    if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
     {
         SYS_INT_SourceDisable(dObj->interruptTxDMA);
     }
-
-    /* We will disable I2S and/or DMA interrupt so that the driver resource
-     * is not updated asynchronously. */
-    if ((SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    if (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel)
     {
         SYS_INT_SourceDisable(dObj->interruptRxDMA);
     }
-
     return true;
 }
-
 
 static bool _DRV_I2S_ResourceUnlock(DRV_I2S_OBJ * object)
 {
     DRV_I2S_OBJ * dObj = object;
 
     /* Restore the interrupt and release mutex. */
-    if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel))
+    if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
     {
         SYS_INT_SourceEnable(dObj->interruptTxDMA);
     }
-
-    /* Restore the interrupt and release mutex. */
-    if ((SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    if (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel)
     {
         SYS_INT_SourceEnable(dObj->interruptRxDMA);
     }
@@ -181,10 +170,8 @@ static DRV_I2S_BUFFER_OBJ * _DRV_I2S_BufferObjectGet()
 }
 
 
-static volatile DRV_I2S_BUFFER_OBJ *bufferObj;
 static void _DRV_I2S_BufferObjectRelease( DRV_I2S_BUFFER_OBJ * object )
 {
-    //DRV_I2S_BUFFER_OBJ *bufferObj = object;
     bufferObj = object;
 
     /* Reset the buffer object */
@@ -197,18 +184,18 @@ static void _DRV_I2S_BufferObjectRelease( DRV_I2S_BUFFER_OBJ * object )
 static bool _DRV_I2S_WriteBufferQueuePurge( DRV_I2S_OBJ * object )
 {
     DRV_I2S_OBJ * dObj = object;
-    DRV_I2S_BUFFER_OBJ * iterator = NULL;
+    DRV_I2S_BUFFER_OBJ * iteratorTx = NULL;
     DRV_I2S_BUFFER_OBJ * nextBufferObj = NULL;
 
     _DRV_I2S_ResourceLock(dObj);
 
-    iterator = dObj->queueWrite;
+    iteratorTx = dObj->queueWrite;
 
-    while(iterator != NULL)
+    while(iteratorTx != NULL)
     {
-        nextBufferObj = iterator->next;
-        _DRV_I2S_BufferObjectRelease(iterator);
-        iterator = nextBufferObj;
+        nextBufferObj = iteratorTx->next;
+        _DRV_I2S_BufferObjectRelease(iteratorTx);
+        iteratorTx = nextBufferObj;
     }
 
     /* Make the head pointer to NULL */
@@ -225,18 +212,18 @@ static bool _DRV_I2S_WriteBufferQueuePurge( DRV_I2S_OBJ * object )
 static bool _DRV_I2S_ReadBufferQueuePurge( DRV_I2S_OBJ * object )
 {
     DRV_I2S_OBJ * dObj = object;
-    DRV_I2S_BUFFER_OBJ * iterator = NULL;
+    DRV_I2S_BUFFER_OBJ * iteratorRx = NULL;
     DRV_I2S_BUFFER_OBJ * nextBufferObj = NULL;
 
     _DRV_I2S_ResourceLock(dObj);
 
-    iterator = dObj->queueRead;
+    iteratorRx = dObj->queueRead;
 
-    while(iterator != NULL)
+    while(iteratorRx != NULL)
     {
-        nextBufferObj = iterator->next;
-        _DRV_I2S_BufferObjectRelease(iterator);
-        iterator = nextBufferObj;
+        nextBufferObj = iteratorRx->next;
+        _DRV_I2S_BufferObjectRelease(iteratorRx);
+        iteratorRx = nextBufferObj;
     }
 
     /* Make the head pointer to NULL */
@@ -367,7 +354,7 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
         else if ((dObj->process == DRV_I2S_TASK_PROCESS_WRITE_ONLY) ||
             (dObj->process == DRV_I2S_TASK_PROCESS_WRITE_READ))
         {
-            dObj->queueWrite   = newObj;
+            dObj->queueWrite = newObj;
             dObj->queueSizeCurrentWrite --;
             //_DRV_I2S_BufferObjectRelease(currentQueue);
 
@@ -378,7 +365,6 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
 
                 if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel))
                 {
-                    /************ code specific to SAM E70 ********************/
 #if defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
                     // Check if the data cache is enabled
                     if( (SCB->CCR & SCB_CCR_DC_Msk) == SCB_CCR_DC_Msk)
@@ -388,7 +374,6 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
                                                  newObj->size);
                     }
 #endif
-                    /************ end of E70 specific code ********************/
 
                     //DEBUG - Queued Buffer Write
 
@@ -468,10 +453,6 @@ static void _DRV_I2S_TX_DMA_CallbackHandler(SYS_DMA_TRANSFER_EVENT event,
 
     if(SYS_DMA_TRANSFER_COMPLETE == event)
     {
-        txCompleteCnt++;
-        if(txCompleteCnt == 1) SYS_MESSAGE("[TC1]");
-        if(txCompleteCnt%5000 == 0) SYS_PRINT("[TC%d]",txCompleteCnt);
-
         _DRV_I2S_BufferQueueTask(dObj, 
                                  direction, 
                                  DRV_I2S_BUFFER_EVENT_COMPLETE);
@@ -490,10 +471,6 @@ static void _DRV_I2S_RX_DMA_CallbackHandler(SYS_DMA_TRANSFER_EVENT event, uintpt
 
     if(SYS_DMA_TRANSFER_COMPLETE == event)
     {
-        rxCompleteCnt++;
-        if(rxCompleteCnt == 1) SYS_MESSAGE("[RC1]");
-        if(rxCompleteCnt%5000 == 0) SYS_PRINT("[RC%d]",rxCompleteCnt);
-
         _DRV_I2S_BufferQueueTask(dObj, DRV_I2S_DIRECTION_RX, DRV_I2S_BUFFER_EVENT_COMPLETE);
     }
     else if(SYS_DMA_TRANSFER_ERROR == event)
@@ -529,10 +506,10 @@ SYS_MODULE_OBJ DRV_I2S_Initialize( const SYS_MODULE_INDEX drvIndex, const SYS_MO
     dObj = &gDrvI2SObj[drvIndex];
     dObj->inUse = true;
     dObj->clientInUse           = false;
-    dObj->i2sPlib             = i2sInit->i2sPlib;
+    dObj->i2sPlib               = i2sInit->i2sPlib;
     dObj->queueSizeRead         = i2sInit->queueSize;
     dObj->queueSizeWrite        = i2sInit->queueSize;
-    dObj->interruptI2S        = i2sInit->interruptI2S;
+    dObj->interruptI2S          = i2sInit->interruptI2S;
     dObj->queueSizeCurrentRead  = 0;
     dObj->queueSizeCurrentWrite = 0;
     dObj->queueRead             = NULL;
@@ -543,7 +520,6 @@ SYS_MODULE_OBJ DRV_I2S_Initialize( const SYS_MODULE_INDEX drvIndex, const SYS_MO
     dObj->rxAddress             = i2sInit->i2sReceiveAddress;
     dObj->interruptTxDMA        = i2sInit->interruptTxDMA;
     dObj->interruptRxDMA        = i2sInit->interruptRxDMA;
-
     dObj->dmaDataLength         = i2sInit->dmaDataLength;
     dObj->process               = DRV_I2S_TASK_PROCESS_NONE;
 
@@ -696,7 +672,7 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
 {
     DRV_I2S_OBJ * dObj = NULL;
     DRV_I2S_BUFFER_OBJ * bufferObj = NULL;
-    DRV_I2S_BUFFER_OBJ * iterator = NULL;
+    DRV_I2S_BUFFER_OBJ * iteratorTx = NULL;
 
     /* Validate the Request */
     if (bufferHandle == NULL)
@@ -803,14 +779,14 @@ void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size
     {
         /* This means the write queue is not empty. We must add
          * the buffer object to the end of the queue */
-        iterator = dObj->queueWrite;
-        while(iterator->next != NULL) //Next buffer
+        iteratorTx = dObj->queueWrite;
+        while(iteratorTx->next != NULL) //Next buffer
         {
             /* Get the next buffer object */
-            iterator = iterator->next;
+            iteratorTx = iteratorTx->next;
         }
 
-        iterator->next = bufferObj;
+        iteratorTx->next = bufferObj;
     }
 
     //MUTEX Stop
@@ -919,15 +895,9 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
 
     if (dObj->queueWrite == NULL)
     {
-        txQCnt = 0;
-        txCompleteCnt = 0;
-        rxQCnt = 0;
-        rxCompleteCnt = 0;
-
         /* This is the first buffer in the queue */
         dObj->queueWrite = bufferObj;
         dObj->process = DRV_I2S_TASK_PROCESS_WRITE_READ;
-        SYS_MESSAGE("[TX1RX1]\r\n");
 
         /* Because this is the first buffer in the queue, we need to submit the
          * buffer to the DMA to start processing. */
@@ -956,8 +926,6 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
             SYS_DMA_ChannelTransfer(dObj->rxDMAChannel, (const void *)dObj->rxAddress,
                 (const void *)bufferObj->rxbuffer, bufferSizeDmaWords);
 
-            rxQCnt++;
-
 #if defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
             /************ code specific to SAM E70 ********************/
             // Check if the data cache is enabled
@@ -982,18 +950,12 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
 
             SYS_DMA_ChannelTransfer(dObj->txDMAChannel, (const void *)bufferObj->txbuffer,
                 (const void *)dObj->txAddress, bufferSizeDmaWords);
-
-            txQCnt++;
         }
     }
     else
     {
-        //NOTE:  Assumes that the TX Completes at the same time as the Rx.
-        txQCnt++;
-        rxQCnt++;
-
-        //Buffer not empty
-        //--Add new Tx buffer to queue
+        /* This means the write queue is not empty. We must add
+         * the buffer object to the end of the queue */
         iteratorTx = dObj->queueWrite;
         while(iteratorTx->next != NULL)
         {
@@ -1015,7 +977,7 @@ void DRV_I2S_ReadBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size,
 {
     DRV_I2S_OBJ * dObj = NULL;
     DRV_I2S_BUFFER_OBJ * bufferObj = NULL;
-    DRV_I2S_BUFFER_OBJ * iterator = NULL;
+    DRV_I2S_BUFFER_OBJ * iteratorRx = NULL;
 
     /* Validate the Request */
     if (bufferHandle == NULL)
@@ -1120,13 +1082,13 @@ void DRV_I2S_ReadBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size,
     {
         /* This means the write queue is not empty. We must add
          * the buffer object to the end of the queue */
-        iterator = dObj->queueRead;
-        while(iterator->next != NULL)
+        iteratorRx = dObj->queueRead;
+        while(iteratorRx->next != NULL)
         {
             /* Get the next buffer object */
-            iterator = iterator->next;
+            iteratorRx = iteratorRx->next;
         }
-        iterator->next = bufferObj;
+        iteratorRx->next = bufferObj;
     }
 
     _DRV_I2S_ResourceUnlock(dObj);

@@ -253,12 +253,12 @@ typedef struct
     /* I2S receive register address used for DMA operation. */
     void                        *i2sReceiveAddress;
 
-    /* Interrupt source ID for DMA RX interrupt. */
+    /* Interrupt source ID for DMA TX interrupt. */
+    INT_SOURCE                  interruptTxDMA;
+
+    /* Interrupt source ID for DMA Rx interrupt. */
     INT_SOURCE                  interruptRxDMA;
 
-    /* Interrupt source ID for DMA interrupt. */
-    //KEEP THIS
-    INT_SOURCE                  interruptTxDMA;
 
     /* DMA data length from I2S or SSC PLIB */
     uint8_t                     dmaDataLength;
