@@ -231,9 +231,9 @@ def instantiateComponent(i2sComponent, index):
     i2sSymHeaderFile.setProjectPath("config/" + configName + "/audio/driver/i2s/")
     i2sSymHeaderFile.setType("HEADER")
     i2sSymHeaderFile.setOverwrite(True)
-    
+
     i2sSymSourceFile = i2sComponent.createFileSymbol("DRV_I2S_SOURCE", None)
-    i2sSymSourceFile.setMarkup(True) 
+    i2sSymSourceFile.setMarkup(True)
     i2sSymSourceFile.setSourcePath("i2s/templates/drv_i2s.c.ftl")
     i2sSymSourceFile.setOutputName("drv_i2s.c")
     i2sSymSourceFile.setDestPath("audio/driver/i2s/src")
@@ -242,7 +242,7 @@ def instantiateComponent(i2sComponent, index):
     i2sSymSourceFile.setOverwrite(True)
 
     i2sSymHeaderDefFile = i2sComponent.createFileSymbol("DRV_I2S_DEF", None)
-    i2sSymHeaderDefFile.setMarkup(True) 
+    i2sSymHeaderDefFile.setMarkup(True)
     i2sSymHeaderDefFile.setSourcePath("i2s/templates/drv_i2s_definitions.h.ftl")
     i2sSymHeaderDefFile.setOutputName("drv_i2s_definitions.h")
     i2sSymHeaderDefFile.setDestPath("audio/driver/i2s/")
@@ -251,19 +251,20 @@ def instantiateComponent(i2sComponent, index):
     i2sSymHeaderDefFile.setOverwrite(True)
 
     i2sSymHeaderLocalFile = i2sComponent.createFileSymbol("DRV_I2S_HEADER_LOCAL", None)
-    i2sSymHeaderLocalFile.setSourcePath("i2s/src/drv_i2s_local.h")
+    i2sSymSourceFile.setMarkup(True)
+    i2sSymHeaderLocalFile.setSourcePath("i2s/templates/drv_i2s_local.h.ftl")
     i2sSymHeaderLocalFile.setOutputName("drv_i2s_local.h")
-    i2sSymHeaderLocalFile.setDestPath("audio/driver/i2s/src")
+    i2sSymHeaderLocalFile.setDestPath("audio/driver/i2s/")
     i2sSymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/i2s/")
-    i2sSymHeaderLocalFile.setType("SOURCE")
+    i2sSymHeaderLocalFile.setType("HEADER")
     i2sSymHeaderLocalFile.setOverwrite(True)
-    
+
     i2sSymSystemDefIncFile = i2sComponent.createFileSymbol("DRV_I2S_SYSTEM_DEF", None)
     i2sSymSystemDefIncFile.setType("STRING")
     i2sSymSystemDefIncFile.setOutputName("core.LIST_SYSTEM_DEFINITIONS_H_INCLUDES")
     i2sSymSystemDefIncFile.setSourcePath("i2s/templates/system/system_definitions.h.ftl")
     i2sSymSystemDefIncFile.setMarkup(True)
-    
+
     i2sSymSystemDefObjFile = i2sComponent.createFileSymbol("DRV_I2S_SYSTEM_DEF_OBJECT", None)
     i2sSymSystemDefObjFile.setType("STRING")
     i2sSymSystemDefObjFile.setOutputName("core.LIST_SYSTEM_DEFINITIONS_H_OBJECTS")

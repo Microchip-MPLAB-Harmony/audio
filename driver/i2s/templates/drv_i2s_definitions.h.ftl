@@ -272,11 +272,17 @@ typedef struct
     /* I2S receive register address used for DMA operation. */
     void                        *i2sReceiveAddress;
 
-    /* Interrupt source ID for DMA RX interrupt. */
-    INT_SOURCE                  interruptRxDMA;
+<#if __PROCESSOR?matches("PIC32M.*") == true>
+    /* Interrupt source ID for DMA TX interrupt. */
+    INT_SOURCE                  interruptTxDMA;
 
+    /* Interrupt source ID for DMA Rx interrupt. */
+    INT_SOURCE                  interruptRxDMA;
+<#else> 
     /* Interrupt source ID for DMA interrupt. */
     INT_SOURCE                  interruptDMA;
+</#if>
+
 
     /* DMA data length from I2S or SSC PLIB */
     uint8_t                     dmaDataLength;

@@ -12,9 +12,9 @@
 </#if>
 
 <#if DRV_AK4954_MASTER_MODE == "MASTER">
-#define DRV_AK4954_MASTER_MODE                              true
+#define DRV_AK4954_I2S_MASTER_MODE                              true
 <#else>
-#define DRV_AK4954_MASTER_MODE                              false
+#define DRV_AK4954_I2S_MASTER_MODE                              false
 </#if>
 #define DRV_AK4954_AUDIO_SAMPLING_RATE                      ${DRV_AK4954_BAUD_RATE}
 #define DRV_AK4954_VOLUME	                      	        ${DRV_AK4954_VOLUME}
@@ -38,6 +38,7 @@
 #define DRV_CODEC_INDEX_0                                   DRV_AK4954_INDEX_0
 #define sysObjdrvCodec0                                     sysObj.drvak4954Codec0
 #define DRV_CODEC_I2S_MASTER_MODE                           DRV_AK4954_I2S_MASTER_MODE
+
 <#if DRV_AK4954_I2S != "I2S">
 #define DRV_CODEC_BUFFER_HANDLE                             DRV_AK4954_BUFFER_HANDLE
 #define DRV_CODEC_BUFFER_HANDLE_INVALID                     DRV_AK4954_BUFFER_HANDLE_INVALID
@@ -47,8 +48,11 @@
 #define DRV_CODEC_BUFFER_EVENT_ERROR                        DRV_AK4954_BUFFER_EVENT_ERROR
 #define DRV_CODEC_BUFFER_EVENT_ABORT                        DRV_AK4954_BUFFER_EVENT_ABORT
 </#if>
-#define DRV_CODEC_COMMAND_EVENT_HANDLER                     DRV_AK4954_COMMAND_EVENT_HANDLER
 
+#define DRV_CODEC_COMMAND_EVENT_HANDLER                     DRV_AK4954_COMMAND_EVENT_HANDLER
+#define DRV_CODEC_AUDIO_SAMPLING_RATE                       DRV_AK4954_AUDIO_SAMPLING_RATE
+#define DRV_CODEC_WHICH_MIC_INPUT                           DRV_AK4954_WHICH_MIC_INPUT
+#define DRV_CODEC_MIC_GAIN                                  DRV_AK4954_MIC_GAIN
 #define DRV_CODEC_CHANNEL_LEFT                              DRV_AK4954_CHANNEL_LEFT
 #define DRV_CODEC_CHANNEL_RIGHT                             DRV_AK4954_CHANNEL_RIGHT
 #define DRV_CODEC_CHANNEL_LEFT_RIGHT                        DRV_AK4954_CHANNEL_LEFT_RIGHT

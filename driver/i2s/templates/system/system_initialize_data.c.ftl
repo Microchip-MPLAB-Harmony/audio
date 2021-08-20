@@ -41,25 +41,20 @@ DRV_I2S_INIT drvI2S${INDEX?string}InitData =
 <#else>
     .dmaChannelTransmit = SYS_DMA_CHANNEL_NONE,
     .dmaChannelReceive = SYS_DMA_CHANNEL_NONE,
-
 </#if>
+
 <#if __PROCESSOR?matches("PIC32M.*") == true>
-    .interruptDMA = _DMA0_VECTOR,
+    <#if DRV_I2S_TX_DMA_CHANNEL?has_content>
+    .interruptTxDMA = _DMA${DRV_I2S_TX_DMA_CHANNEL}_VECTOR,
+    </#if>
+    <#if DRV_I2S_RX_DMA_CHANNEL?has_content>
+    .interruptRxDMA = _DMA${DRV_I2S_RX_DMA_CHANNEL}_VECTOR,
+    </#if>
 <#else>
     <#if DMA_INSTANCE_NAME?has_content>
-        <#if DRV_I2S_TX_DMA_CHANNEL?has_content>
-        .interruptDMA = DMAC_${DRV_I2S_TX_DMA_CHANNEL}_IRQn,
-        </#if>
-        <#if DRV_I2S_RX_DMA_CHANNEL?has_content>
-        .interruptRxDMA = DMAC_${DRV_I2S_RX_DMA_CHANNEL}_IRQn,
-        </#if>
-    <#else>
-    <#if core.DMA_ENABLE?has_content>
         .interruptDMA = ${core.DMA_INSTANCE_NAME}_IRQn,
     </#if>
-    </#if>
 </#if>
-
     .dmaDataLength = DRV_I2S_DATA_LENGTH_IDX${INDEX?string},
 };
 
