@@ -250,14 +250,15 @@ def instantiateComponent(i2sComponent, index):
     i2sSymHeaderDefFile.setType("HEADER")
     i2sSymHeaderDefFile.setOverwrite(True)
 
-    i2sSymHeaderLocalFile = i2sComponent.createFileSymbol("DRV_I2S_HEADER_LOCAL", None)
-    i2sSymSourceFile.setMarkup(True)
-    i2sSymHeaderLocalFile.setSourcePath("i2s/templates/drv_i2s_local.h.ftl")
-    i2sSymHeaderLocalFile.setOutputName("drv_i2s_local.h")
-    i2sSymHeaderLocalFile.setDestPath("audio/driver/i2s/")
-    i2sSymHeaderLocalFile.setProjectPath("config/" + configName + "/audio/driver/i2s/")
-    i2sSymHeaderLocalFile.setType("HEADER")
-    i2sSymHeaderLocalFile.setOverwrite(True)
+    i2sSymHeaderFile = i2sComponent.createFileSymbol("DRV_I2S_HEADER_LOCAL", None)
+    i2sSymHeaderFile.setMarkup(True)
+    i2sSymHeaderFile.setSourcePath("i2s/templates/drv_i2s_local.h.ftl")
+    i2sSymHeaderFile.setOutputName("drv_i2s_local.h")
+    i2sSymHeaderFile.setDestPath("audio/driver/i2s/")
+    i2sSymHeaderFile.setProjectPath("config/" + configName + "/audio/driver/i2s/")
+    i2sSymHeaderFile.setType("HEADER")
+    i2sSymHeaderFile.setOverwrite(True)
+
 
     i2sSymSystemDefIncFile = i2sComponent.createFileSymbol("DRV_I2S_SYSTEM_DEF", None)
     i2sSymSystemDefIncFile.setType("STRING")

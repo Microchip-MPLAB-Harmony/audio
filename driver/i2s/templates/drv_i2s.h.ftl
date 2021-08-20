@@ -1360,8 +1360,9 @@ bool DRV_I2S_ReadBuffer( const DRV_HANDLE handle, void * buffer, const size_t si
 */
 bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, 
                          const uint32_t sample_rate);
-<#if __PROCESSOR?matches("ATSAME70.*") == true && DRV_I2S_PLIB?matches("I2SC.*") >
 
+
+<#if __PROCESSOR?matches("ATSAME70.*") == true && DRV_I2S_PLIB?matches("I2SC.*") >
 /************************ Start of code specific to SAME70 ********************/
 /* Function:
     bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, uint8_t pClkNum, uint8_t div2);
@@ -1431,7 +1432,7 @@ bool DRV_I2S_ClockGenerationSet(DRV_HANDLE handle,
 /**************** End of SAM E70 specific code ********************/
 </#if>
 <#if __PROCESSOR?matches("PIC32M.*") == true>
-
+/******************* PIC32M* specific code ***********************/
 uint32_t DRV_I2S_RefClockSet(DRV_HANDLE handle, uint32_t sysclk, uint32_t samplingRate, uint32_t mclk_sampleRate_multiplier);
 uint32_t DRV_I2S_BaudRateSet(DRV_HANDLE handle, uint32_t bitClk, uint32_t baudRate);
 </#if>
@@ -1450,6 +1451,7 @@ void DRV_I2S_StartReadLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIE
     DRV_I2S_LL_CALLBACK callBack, bool blockInt);
 void DRV_I2S_ReadNextLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,
     uint16_t currDescrip, uint16_t nextDescrip, uint16_t nextNextDescrip, uint8_t* buffer, uint32_t bufferSize);
+/******************* End of PIC32M* specific code ***********************/
 </#if>
 
 //DOM-IGNORE-BEGIN

@@ -118,8 +118,6 @@ typedef enum
 } DRV_I2S_BUFFER_STATE;
 
 
-
-  //KEEP EVERYTHING
 // *****************************************************************************
 /* I2S Driver Buffer States
 
@@ -298,14 +296,18 @@ typedef struct
     void * rxAddress;
     
 <#if __PROCESSOR?matches("PIC32M.*") == true>
+/******************* Start of Code Specific to PIC32M* ***********************/
     /* This is the RX DMA channel interrupt source. */
     INT_SOURCE interruptRxDMA;
 
     /* This is the DMA channel interrupt source. */
     INT_SOURCE interruptTxDMA;
+/******************* End of PIC32M* specific code ***********************/
 </#if>
 <#if __PROCESSOR?matches("ATSAME70.*") == true && DRV_I2S_PLIB?matches("I2SC.*") >
+/************************ Start of code specific to SAME70 ********************/
     INT_SOURCE interruptTxDMA;
+/**************** End of SAM E70 specific code ********************/
 </#if>
 
     /* Size of DMA channel in I2S or SSC PLIB */
