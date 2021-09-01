@@ -59,8 +59,7 @@
 static DRV_I2S_OBJ        *dObj              = NULL;
 static DRV_I2S_BUFFER_OBJ *currentQueue      = NULL;
 static DRV_I2S_BUFFER_OBJ *newObj            = NULL;
-static uint32_t           bufferSizeDmaWords = 0;
-static volatile DRV_I2S_BUFFER_OBJ *bufferObj;
+static DRV_I2S_BUFFER_OBJ *bufferObj;
 
 /* This is the driver instance object array. */
 DRV_I2S_OBJ gDrvI2SObj[DRV_I2S_INSTANCES_NUMBER] ;
@@ -95,7 +94,7 @@ static bool _DRV_I2S_ValidateClientHandle(DRV_I2S_OBJ * object, DRV_HANDLE handl
 
 static bool _DRV_I2S_ResourceLock(DRV_I2S_OBJ * object)
 {
-    DRV_I2S_OBJ * dObj = object;
+    dObj = object;
 
     /* Grab a mutex to avoid other threads to modify driver resource
      * asynchronously. */
@@ -126,7 +125,7 @@ static bool _DRV_I2S_ResourceLock(DRV_I2S_OBJ * object)
 
 static bool _DRV_I2S_ResourceUnlock(DRV_I2S_OBJ * object)
 {
-    DRV_I2S_OBJ * dObj = object;
+    dObj = object;
 
     /* Restore the interrupt and release mutex. */
 <#if __PROCESSOR?matches("PIC32M.*") == true>
@@ -151,7 +150,7 @@ static bool _DRV_I2S_ResourceUnlock(DRV_I2S_OBJ * object)
 }
 
 
-static DRV_I2S_BUFFER_OBJ * _DRV_I2S_BufferObjectGet()
+static DRV_I2S_BUFFER_OBJ * _DRV_I2S_BufferObjectGet(void)
 {
     unsigned int i = 0;
 
@@ -197,7 +196,7 @@ static void _DRV_I2S_BufferObjectRelease( DRV_I2S_BUFFER_OBJ * object )
 
 static bool _DRV_I2S_WriteBufferQueuePurge( DRV_I2S_OBJ * object )
 {
-    DRV_I2S_OBJ * dObj = object;
+    dObj = object;
     DRV_I2S_BUFFER_OBJ * iteratorTx = NULL;
     DRV_I2S_BUFFER_OBJ * nextBufferObj = NULL;
 
@@ -225,7 +224,7 @@ static bool _DRV_I2S_WriteBufferQueuePurge( DRV_I2S_OBJ * object )
 
 static bool _DRV_I2S_ReadBufferQueuePurge( DRV_I2S_OBJ * object )
 {
-    DRV_I2S_OBJ * dObj = object;
+    dObj = object;
     DRV_I2S_BUFFER_OBJ * iteratorRx = NULL;
     DRV_I2S_BUFFER_OBJ * nextBufferObj = NULL;
 
@@ -264,10 +263,11 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
                                      DRV_I2S_DIRECTION direction,
                                      DRV_I2S_BUFFER_EVENT event)
 {
+    uint32_t  bufferSizeDmaWords = 0;
+
     dObj = object;
     currentQueue = NULL;
     newObj = NULL;
-    bufferSizeDmaWords = 0;
 
     if((false == dObj->inUse) || (SYS_STATUS_READY != dObj->status))
     {
@@ -485,7 +485,7 @@ static void _DRV_I2S_BufferQueueTask(DRV_I2S_OBJ *object,
 static void _DRV_I2S_TX_DMA_CallbackHandler(SYS_DMA_TRANSFER_EVENT event, 
                                             uintptr_t context)
 {
-    DRV_I2S_OBJ *dObj = (DRV_I2S_OBJ *)context;
+    dObj = (DRV_I2S_OBJ *)context;
     DRV_I2S_DIRECTION  direction;
 
     if (dObj->process == DRV_I2S_TASK_PROCESS_WRITE_ONLY)
@@ -513,7 +513,7 @@ static void _DRV_I2S_TX_DMA_CallbackHandler(SYS_DMA_TRANSFER_EVENT event,
 
 static void _DRV_I2S_RX_DMA_CallbackHandler(SYS_DMA_TRANSFER_EVENT event, uintptr_t context)
 {
-    DRV_I2S_OBJ *dObj = (DRV_I2S_OBJ *)context;
+    dObj = (DRV_I2S_OBJ *)context;
 
     if(SYS_DMA_TRANSFER_COMPLETE == event)
     {
@@ -534,7 +534,7 @@ static void _DRV_I2S_RX_DMA_CallbackHandler(SYS_DMA_TRANSFER_EVENT event, uintpt
 // *****************************************************************************
 SYS_MODULE_OBJ DRV_I2S_Initialize( const SYS_MODULE_INDEX drvIndex, const SYS_MODULE_INIT * const init )
 {
-    DRV_I2S_OBJ *dObj = NULL;
+    dObj = NULL;
     DRV_I2S_INIT *i2sInit = (DRV_I2S_INIT *)init ;
 
     /* Validate the request */
@@ -617,7 +617,7 @@ SYS_STATUS DRV_I2S_Status( SYS_MODULE_OBJ object)
 // *****************************************************************************
 DRV_HANDLE DRV_I2S_Open( const SYS_MODULE_INDEX drvIndex, const DRV_IO_INTENT ioIntent )
 {
-    DRV_I2S_OBJ *dObj = NULL;
+    dObj = NULL;
 
     /* Validate the request */
     if (DRV_I2S_INSTANCES_NUMBER <= drvIndex)
@@ -650,7 +650,7 @@ DRV_HANDLE DRV_I2S_Open( const SYS_MODULE_INDEX drvIndex, const DRV_IO_INTENT io
 // *****************************************************************************
 void DRV_I2S_Close( DRV_HANDLE handle )
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
 
     /* Validate the request */
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
@@ -675,7 +675,7 @@ void DRV_I2S_Close( DRV_HANDLE handle )
 
 DRV_I2S_ERROR DRV_I2S_ErrorGet( const DRV_HANDLE handle )
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
     DRV_I2S_ERROR errors = DRV_I2S_ERROR_NONE;
 
     /* Validate the request */
@@ -702,7 +702,7 @@ DRV_I2S_ERROR DRV_I2S_ErrorGet( const DRV_HANDLE handle )
 void DRV_I2S_BufferEventHandlerSet( const DRV_HANDLE handle,
     const DRV_I2S_BUFFER_EVENT_HANDLER eventHandler, const uintptr_t context )
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
 
     /* Validate the Request */
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
@@ -720,8 +720,8 @@ void DRV_I2S_BufferEventHandlerSet( const DRV_HANDLE handle,
 void DRV_I2S_WriteBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size,
     DRV_I2S_BUFFER_HANDLE * bufferHandle)
 {
-    DRV_I2S_OBJ * dObj = NULL;
-    DRV_I2S_BUFFER_OBJ * bufferObj = NULL;
+    dObj = NULL;
+    bufferObj = NULL;
     DRV_I2S_BUFFER_OBJ * iteratorTx = NULL;
 
     /* Validate the Request */
@@ -902,8 +902,8 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
                                 size_t size, 
                                 DRV_I2S_BUFFER_HANDLE  *bufferHandle)
 {
-    DRV_I2S_OBJ * dObj = NULL;
-    DRV_I2S_BUFFER_OBJ * bufferObj = NULL;
+    dObj = NULL;
+    bufferObj = NULL;
     static volatile DRV_I2S_BUFFER_OBJ * iteratorTx = NULL;
     bool volatile __attribute__((unused)) qstat;
 
@@ -1057,8 +1057,8 @@ void DRV_I2S_WriteReadBufferAdd(const DRV_HANDLE handle,
 void DRV_I2S_ReadBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size,
     DRV_I2S_BUFFER_HANDLE * bufferHandle)
 {
-    DRV_I2S_OBJ * dObj = NULL;
-    DRV_I2S_BUFFER_OBJ * bufferObj = NULL;
+    dObj = NULL;
+    bufferObj = NULL;
     DRV_I2S_BUFFER_OBJ * iteratorRx = NULL;
 
     /* Validate the Request */
@@ -1198,8 +1198,9 @@ void DRV_I2S_ReadBufferAdd( DRV_HANDLE handle, void * buffer, const size_t size,
 // *****************************************************************************
 size_t DRV_I2S_BufferCompletedBytesGet( DRV_I2S_BUFFER_HANDLE bufferHandle )
 {
-    DRV_I2S_BUFFER_OBJ * bufferObj = NULL;
     size_t processedBytes = DRV_I2S_BUFFER_HANDLE_INVALID;
+
+    bufferObj = NULL;
 
     /* Validate the Request */
     if(DRV_I2S_BUFFER_HANDLE_INVALID == bufferHandle)
@@ -1227,7 +1228,7 @@ size_t DRV_I2S_BufferCompletedBytesGet( DRV_I2S_BUFFER_HANDLE bufferHandle )
 // *****************************************************************************
 DRV_I2S_BUFFER_EVENT DRV_I2S_BufferStatusGet( const DRV_I2S_BUFFER_HANDLE bufferHandle )
 {
-    DRV_I2S_BUFFER_OBJ * bufferObj = NULL;
+    bufferObj = NULL;
 
     /* Validate the Request */
     if(DRV_I2S_BUFFER_HANDLE_INVALID == bufferHandle)
@@ -1245,7 +1246,7 @@ DRV_I2S_BUFFER_EVENT DRV_I2S_BufferStatusGet( const DRV_I2S_BUFFER_HANDLE buffer
 // *****************************************************************************
 bool DRV_I2S_WriteQueuePurge( const DRV_HANDLE handle )
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
 
     /* Validate the Request */
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
@@ -1261,7 +1262,7 @@ bool DRV_I2S_WriteQueuePurge( const DRV_HANDLE handle )
 // *****************************************************************************
 bool DRV_I2S_ReadQueuePurge( const DRV_HANDLE handle )
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
 
     /* Validate the Request */
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
@@ -1304,7 +1305,7 @@ bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate)
     max_cnt = 10 * ((1000*ns_per_frame / PS_PER_INSTR) / CYCLES_PER_LOOP);
     uint32_t cnt = 0;       // # of passes through loop -- max (typ. 86) at full frame time (10.4 us at 48K s/s)
    
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
 
     /* Validate the Request */
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
@@ -1424,7 +1425,7 @@ bool DRV_I2S_ClockGenerationSet(const DRV_HANDLE handle,
 
 uint32_t DRV_I2S_RefClockSet(DRV_HANDLE handle,uint32_t sysclk, uint32_t samplingRate, uint32_t mclk_sampleRate_multiplier)
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
     DRV_I2S_PLIB_INTERFACE * i2s;
 
     /* Validate the Request */
@@ -1441,7 +1442,7 @@ uint32_t DRV_I2S_RefClockSet(DRV_HANDLE handle,uint32_t sysclk, uint32_t samplin
 
 uint32_t DRV_I2S_BaudRateSet(DRV_HANDLE handle, uint32_t bitClk, uint32_t baudRate)
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
     DRV_I2S_PLIB_INTERFACE * i2s;
 
     /* Validate the Request */
@@ -1478,7 +1479,7 @@ void _LinkedListCallBack(XDMAC_TRANSFER_EVENT event, uintptr_t contextHandle)
 void DRV_I2S_InitWriteLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,
     uint16_t currDescrip, uint16_t nextDescrip, uint8_t* buffer, uint32_t bufferSize)
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
     {
         return;
@@ -1563,7 +1564,7 @@ void DRV_I2S_StartWriteLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VI
 void DRV_I2S_WriteNextLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,
         uint16_t currDescrip, uint16_t nextDescrip, uint16_t nextNextDescrip, uint8_t* buffer, uint32_t bufferSize)
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
     {
         return;
@@ -1606,7 +1607,7 @@ void DRV_I2S_WriteNextLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIE
 void DRV_I2S_InitReadLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,
     uint16_t currDescrip, uint16_t nextDescrip, uint8_t* buffer, uint32_t bufferSize)
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
     {
         return;
@@ -1640,7 +1641,7 @@ void DRV_I2S_InitReadLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW
 void DRV_I2S_StartReadLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,
             DRV_I2S_LL_CALLBACK callBack, bool blockInt)
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
     {
         return;
@@ -1702,7 +1703,7 @@ void DRV_I2S_StartReadLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIE
 void DRV_I2S_ReadNextLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,
         uint16_t currDescrip, uint16_t nextDescrip, uint16_t nextNextDescrip, uint8_t* buffer, uint32_t bufferSize)
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
     {
         return;

@@ -40,6 +40,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 *******************************************************************************/
 // DOM-IGNORE-END
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waggregate-return"
 GFX_Point RotatePixel( fract_q9d6_t theta,
                        GFX_Point* pCenter,
                        GFX_Point* pSourcePoint )
@@ -141,3 +143,4 @@ GFX_Point FindSourcePixel( fract_q9d6_t theta,
     return ptSource;
     
 }//FindSourcePixel
+#pragma GCC diagnostic pop 

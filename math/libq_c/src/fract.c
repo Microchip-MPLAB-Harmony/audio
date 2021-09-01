@@ -120,7 +120,10 @@ fract_q31_t Fract_Convert_Q15bfpToQ31( fract_q15bfp_t x )
     }
     else
     { // Exponent > 0, This conversion may not work.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waggregate-return"
         xtemp = Fract_Convert_Q15ToQ15bfp(x.m);
+#pragma GCC diagnostic pop 
         if ( x.e - xtemp.e <= 0 )
         { // Leading bits in x.m allow number to fit into Q31
             ans = x.m<<16;  // Shift from Q15 to Q31
@@ -145,8 +148,9 @@ fract_q31_t Fract_Convert_Q15bfpToQ31( fract_q15bfp_t x )
 
 }//Fract_Convert_Q15bfpToQ31
 
-
-fract_q15bfp_t Fract_Convert_Q15ToQ15bfp( fract_q15_t x )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waggregate-return"
+fract_q15bfp_t Fract_Convert_Q15ToQ15bfp(fract_q15_t x)
 {
     bool           neg_x = false;
     fract_q15bfp_t xbfp;
@@ -335,6 +339,7 @@ fract_q15bfp_t Fract_XminusY_Q15bfp( fract_q15bfp_t x, fract_q15bfp_t y )
     return x_minus_y;
 
 }//Fract_XminusY_Q15bfp
+#pragma GCC diagnostic pop 
 
 
 // *****************************************************************************
@@ -373,6 +378,8 @@ fract_q15d16_t Fract_XtimesY_Q15D16(fract_q15d16_t x, fract_q15d16_t y )
 }//Fract_XtimesY_Q15
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waggregate-return"
 fract_q15bfp_t Fract_XtimesY_Q15bfp(fract_q15bfp_t x, fract_q15bfp_t y )
 {
     bool           neg_product = false;
@@ -433,7 +440,10 @@ fract_q15bfp_t Fract_XoverY_Q15bfp(fract_q15bfp_t x, fract_q15bfp_t y )
 
     mx_over_my = Fract_XoverY_Q15d16FromQ15(x.m,y.m);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waggregate-return"
     xm_over_my_bfp = Fract_Convert_Q15d16ToQ15bfp(mx_over_my);
+#pragma GCC diagnostic pop 
 
     x_over_y.m = xm_over_my_bfp.m;
     x_over_y.e += xm_over_my_bfp.e;
@@ -452,6 +462,7 @@ fract_q15bfp_t Fract_XoverY_Q15bfpFromQ15(fract_q15_t x, fract_q15_t y )
     return Fract_XoverY_Q15bfp(xbfp,ybfp);
 
 }//Fract_XoverY_Q15bfpFromQ15
+#pragma GCC diagnostic pop 
 
 
 // *****************************************************************************
@@ -609,6 +620,8 @@ uint32_t Fract_Power( uint16_t nBase, uint16_t nExponent )
 }//Fract_Power
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waggregate-return"
 fract_q15bfp_t Fract_InversePower( uint16_t nBase, uint16_t nExponent )
 {
     fract_q15bfp_t returnValue;
@@ -636,6 +649,7 @@ fract_q15bfp_t Fract_InversePower( uint16_t nBase, uint16_t nExponent )
     return returnValue;
 
 }//Fract_InversePower
+#pragma GCC diagnostic pop 
 
 
 #define Q31_ONE     0x7FFFFFFF   // pow(2,31 - 1
@@ -677,6 +691,8 @@ fract_q15_t Fract_2toMinusX_Q15( fract_q15_t x )
 }//Fract_2toMinusX
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waggregate-return"
 fract_q15d16_t Fract_2toX_Q15d16( fract_q15d16_t x )
 {
     fract_q15bfp_t xbfp;
@@ -729,6 +745,7 @@ fract_q15bfp_t Fract_2toX_Q15bfpFromQ15d16( fract_q15d16_t x )
     return ans;
 }
 //Fract_2toX_Q15bfpFromQ15d16
+#pragma GCC diagnostic pop 
 
 
 static fract_q15d16_t _Log10Base2_Q15d16 = 0x0003526A;
@@ -748,6 +765,8 @@ fract_q15d16_t Fract_10toX_Q15d16( fract_q15d16_t x )
 }//Fract_10toX
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waggregate-return"
 fract_q15bfp_t Fract_10toX_Q15bfp( fract_q15bfp_t xbfp )
 {
     fract_q15d16_t x,y;
@@ -773,6 +792,7 @@ fract_q15bfp_t Fract_10toX_Q15bfpFromQ15d16( fract_q15d16_t x )
     return ybfp;
 
 }//Fract_10toX_Q15bfp
+#pragma GCC diagnostic pop 
 
 
 // *****************************************************************************

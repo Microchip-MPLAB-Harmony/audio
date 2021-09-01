@@ -268,7 +268,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define TWOSEVENTYQ10D22 Fl2FxPnt32(270,22) /* 270 degrees scaled to Q10d22   */
 #define THREESIXTYQ10D22 Fl2FxPnt32(360,22) /* 360 degrees scaled to Q10d22   */
 
-#define INV_LOG2_10_Q1DOT31 UINT64_C(0x268826a1) // Inverse log base 2 of 10
+#define INV_LOG2_10_Q1DOT31 UINT32_C(0x268826a1) // Inverse log base 2 of 10
 #define LOG10_2 0x00004D10L // = log10(2), To convert dB into dBFS add this to output of Fract_log10fix
 
 /* find the maximum of two numbers */
