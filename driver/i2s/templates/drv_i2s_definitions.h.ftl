@@ -283,7 +283,6 @@ typedef struct
     INT_SOURCE                  interruptDMA;
 </#if>
 
-
     /* DMA data length from I2S or SSC PLIB */
     uint8_t                     dmaDataLength;
 

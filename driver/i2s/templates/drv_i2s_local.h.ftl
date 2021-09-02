@@ -303,10 +303,9 @@ typedef struct
     /* This is the DMA channel interrupt source. */
     INT_SOURCE interruptTxDMA;
 /******************* End of PIC32M* specific code ***********************/
-</#if>
-<#if __PROCESSOR?matches("ATSAME70.*") == true && DRV_I2S_PLIB?matches("I2SC.*") >
-/************************ Start of code specific to SAME70 ********************/
-    INT_SOURCE interruptTxDMA;
+<#else>
+/************************ Start of code specific to ATSAM ********************/
+    INT_SOURCE interruptDMA;
 /**************** End of SAM E70 specific code ********************/
 </#if>
 

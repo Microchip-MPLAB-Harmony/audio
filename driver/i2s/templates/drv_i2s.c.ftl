@@ -1359,7 +1359,7 @@ bool DRV_I2S_LRCLK_Sync (const DRV_HANDLE handle, const uint32_t sample_rate)
 bool DRV_I2S_ProgrammableClockSet(DRV_HANDLE handle, 
                                   uint8_t pClkNum, uint8_t div2)
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
 
     /* Validate the Request */
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
@@ -1395,8 +1395,9 @@ bool DRV_I2S_ClockGenerationSet(const DRV_HANDLE handle,
                                 const uint8_t mul, 
                                 const uint8_t div2)
 {
-    DRV_I2S_OBJ * dObj = NULL;
     DRV_I2S_PLIB_INTERFACE * i2s;
+
+    dObj = NULL;
 
     /* Validate the Request */
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
@@ -1513,7 +1514,8 @@ void DRV_I2S_InitWriteLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIE
 void DRV_I2S_StartWriteLinkedListTransfer(DRV_HANDLE handle, XDMAC_DESCRIPTOR_VIEW_1* pLinkedListDesc,
         DRV_I2S_LL_CALLBACK callBack, bool blockInt)
 {
-    DRV_I2S_OBJ * dObj = NULL;
+    dObj = NULL;
+
     if( false == _DRV_I2S_ValidateClientHandle(dObj, handle))
     {
         return;

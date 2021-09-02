@@ -326,7 +326,7 @@ typedef void ( *DRV_I2S_BUFFER_EVENT_HANDLER )( DRV_I2S_BUFFER_EVENT event, DRV_
 
     SYS_MODULE_OBJ              objectHandle;
 
-    I2S_PLIB_API drvUsart0PlibAPI = {
+    I2S_PLIB_API drvXXXX0PlibAPI = {
         {
             .readCallbackRegister = I2S1_ReadCallbackRegister,
             .read = I2S1_Read,
@@ -340,7 +340,7 @@ typedef void ( *DRV_I2S_BUFFER_EVENT_HANDLER )( DRV_I2S_BUFFER_EVENT event, DRV_
         }
     };
 
-    DRV_I2S_INIT drvUsart0InitData =
+    DRV_I2S_INIT drvXXXX0InitData =
     {
         .i2sPlib = &drvUsart0PlibAPI,
         .interruptI2S = I2S1_IRQn,
