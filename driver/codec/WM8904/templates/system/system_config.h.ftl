@@ -12,7 +12,7 @@
 </#if>
 
 <#if DRV_WM8904_MASTER_MODE == "MASTER">
-#define DRV_WM8904_MASTER_MODE                              true
+#define DRV_WM8904_I2S_MASTER_MODE                          true
 <#else>
 #define DRV_WM8904_I2S_MASTER_MODE                          false
 </#if>
