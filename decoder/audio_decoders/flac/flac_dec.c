@@ -352,20 +352,20 @@ bool FLAC_DecoderIsFileValid(void)
     return FlacData.file_valid;
 }
 
-bool FLAC_DecodeSingleFrame(uint8_t *output, uint32_t *written)
+bool FLAC_DecodeSingleFrame(uint8_t *output)
 {
     bool ret = false;
     if((FlacData.decoder != NULL)&&(FlacData.file_valid))
     {
         FlacData.decodebuf = (uint32_t *)output;
-        FlacData.decodesize = written;
+        //FlacData.decodesize = written;
         
         ret = FLAC__stream_decoder_process_single(FlacData.decoder, output);
     }
     return ret;
 }
 
-bool isFLACdecoder_enabled(void)
+bool FLAC_isDecoder_enabled(void)
 {
     return true;
 }
