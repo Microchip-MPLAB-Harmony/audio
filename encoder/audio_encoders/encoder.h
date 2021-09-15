@@ -223,7 +223,6 @@ extern const HAR_ENCODER speexEncoderInst;
 extern const HAR_ENCODER pcmEncoderInst;
 extern const HAR_ENCODER adpcmEncoderInst;
 extern const HAR_ENCODER opusEncoderInst;
-extern const HAR_ENCODER speexEncoderInst;
 
     /* Provide C++ Compatibility */
 #ifdef __cplusplus

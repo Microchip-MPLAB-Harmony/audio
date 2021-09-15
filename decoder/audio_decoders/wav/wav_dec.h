@@ -76,9 +76,15 @@ typedef struct
     int bytesPerSec;
     short blockAlign;
     short bitsPerSample;
-    int *extra;
-    unsigned int extralen;        
+    int datatag;
+    unsigned int datachunk_len;        
 } dWAVHEADER; 
+
+typedef struct
+{
+    int tag;
+    int size;
+} dWAVCHNKHEADER;  
 
 typedef struct
 {
@@ -93,6 +99,7 @@ typedef struct
 
 void WAV_Initialize(uint8_t *input);
 void WAV_Initialize_N(uint8_t *input, SYS_FS_HANDLE wavFilehandle);
+bool WAV_Initialize_SkipOpts(uint8_t *input, SYS_FS_HANDLE wavFilehandle);
 uint32_t WAV_GetAudioSize(void);
 bool WAV_Decoder(uint8_t *input, uint16_t inSize, uint16_t *read, int16_t *output, uint16_t *written);
 

@@ -158,7 +158,7 @@ extern "C" {
 
     bool pcm_encode_frame(void *pin, uint32_t insize, void *pout, uint32_t *outsize);
 	bool pcm_encoder_init(int channel, int inputSampleRate);
-    bool pcm_encoder_free();
+    bool pcm_encoder_free(void);
     /* Provide C++ Compatibility */
 #ifdef __cplusplus
 }

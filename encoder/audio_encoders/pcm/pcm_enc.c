@@ -131,7 +131,7 @@ bool pcm_encoder_init(int channel, int inputSampleRate)
     return true;
 }
 
-bool pcm_encoder_free()
+bool pcm_encoder_free(void)
 {
     // no resources needs to be freed
     return true;
