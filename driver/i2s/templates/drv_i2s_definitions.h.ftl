@@ -1,5 +1,5 @@
 /*******************************************************************************
-  SPI Driver Definitions Header File
+  I2S Driver Definitions Header File
 
   Company:
     Microchip Technology Inc.
@@ -273,20 +273,26 @@ typedef struct
     void                        *i2sReceiveAddress;
 
 <#if __PROCESSOR?matches("PIC32M.*") == true>
+    /************ code specific to PIC32M. ********************/
     /* Interrupt source ID for DMA TX interrupt. */
     INT_SOURCE                  interruptTxDMA;
 
     /* Interrupt source ID for DMA Rx interrupt. */
     INT_SOURCE                  interruptRxDMA;
-<#else> 
+    /************ end of PIC32M. specific code ********************/
+<#elseif __PROCESSOR?matches("ATSAME54.*") == true>
+    /************ code specific to SAM E54 ********************/
+    /* Interrupt source ID for DMA TX interrupt. */
+    INT_SOURCE                  interruptTxDMA;
+
+    /* Interrupt source ID for DMA Rx interrupt. */
+    INT_SOURCE                  interruptRxDMA;
+    /************ end of E54 specific code ********************/
+<#else>
+    /************ code specific to SAM E70 ********************/
     /* Interrupt source ID for DMA interrupt. */
-    //INT_SOURCE                  interruptDMA;
-
-    /* Interrupt source ID for DMA TX interrupt. */
-    INT_SOURCE                  interruptTxDMA;
-
-    /* Interrupt source ID for DMA Rx interrupt. */
-    INT_SOURCE                  interruptRxDMA;
+    INT_SOURCE                  interruptDMA;
+    /************ code specific to SAM E70 ********************/
 </#if>
 
     /* DMA data length from I2S or SSC PLIB */

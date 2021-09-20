@@ -106,6 +106,7 @@ static bool _DRV_I2S_ResourceLock(DRV_I2S_OBJ * object)
     /* We will disable I2S and/or DMA interrupt so that the driver resource
      * is not updated asynchronously. */
 <#if __PROCESSOR?matches("PIC32M.*") == true>
+    /************ code specific to PIC32M ********************/
     if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
     {
         SYS_INT_SourceDisable(dObj->interruptTxDMA);
@@ -114,19 +115,25 @@ static bool _DRV_I2S_ResourceLock(DRV_I2S_OBJ * object)
     {
         SYS_INT_SourceDisable(dObj->interruptRxDMA);
     }
+    /************ end of PIC32M specific code ********************/
+<#elseif __PROCESSOR?matches("ATSAME54.*") == true> 
+    /************ code specific to SAM E54 ********************/
+    if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
+    {
+        SYS_INT_SourceDisable(dObj->interruptTxDMA);
+    }
+    if (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel)
+    {
+        SYS_INT_SourceDisable(dObj->interruptRxDMA);
+    }
+    /************ end of E54 specific code ********************/
 <#else>
-    //if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
-    //{
-    //    SYS_INT_SourceDisable(dObj->interruptDMA);
-    //}
-    if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
+    /************ code specific to SAM E70 ********************/
+    if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
     {
-        SYS_INT_SourceDisable(dObj->interruptTxDMA);
+        SYS_INT_SourceDisable(dObj->interruptDMA);
     }
-    if (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel)
-    {
-        SYS_INT_SourceDisable(dObj->interruptRxDMA);
-    }
+    /************ end of E70 specific code ********************/
 </#if>
     return true;
 }
@@ -137,6 +144,7 @@ static bool _DRV_I2S_ResourceUnlock(DRV_I2S_OBJ * object)
 
     /* Restore the interrupt and release mutex. */
 <#if __PROCESSOR?matches("PIC32M.*") == true>
+    /************ code specific to PIC32M ********************/
     if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
     {
         SYS_INT_SourceEnable(dObj->interruptTxDMA);
@@ -145,7 +153,9 @@ static bool _DRV_I2S_ResourceUnlock(DRV_I2S_OBJ * object)
     {
         SYS_INT_SourceEnable(dObj->interruptRxDMA);
     }
-<#else> 
+    /************ end of PIC32M. specific code ********************/
+<#elseif __PROCESSOR?matches("ATSAME54.*")>
+    /************ code specific to SAM E54 ********************/
     if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
     {
         SYS_INT_SourceEnable(dObj->interruptTxDMA);
@@ -154,10 +164,14 @@ static bool _DRV_I2S_ResourceUnlock(DRV_I2S_OBJ * object)
     {
         SYS_INT_SourceEnable(dObj->interruptRxDMA);
     }
-    //if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
-    //{
-    //    SYS_INT_SourceEnable(dObj->interruptDMA);
-    //}
+    /************ end of SAM E54 specific code ********************/
+<#else>
+    /************ code specific to SAM E70 ********************/
+    if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    {
+        SYS_INT_SourceEnable(dObj->interruptDMA);
+    }
+    /************ end of E70 specific code ********************/
 </#if>
 
     OSAL_MUTEX_Unlock(&(dObj->mutexDriverInstance));
@@ -581,12 +595,19 @@ SYS_MODULE_OBJ DRV_I2S_Initialize( const SYS_MODULE_INDEX drvIndex, const SYS_MO
     dObj->txAddress             = i2sInit->i2sTransmitAddress;
     dObj->rxAddress             = i2sInit->i2sReceiveAddress;
 <#if __PROCESSOR?matches("PIC32M.*") == true>
+    /************ code specific to PIC32M. ********************/
     dObj->interruptTxDMA        = i2sInit->interruptTxDMA;
     dObj->interruptRxDMA        = i2sInit->interruptRxDMA;
+    /************ end of PIC32M. specific code ********************/
+<#elseif __PROCESSOR?matches("ATSAME54.*") == true >
+    /************ code specific to SAM E54 ********************/
+    dObj->interruptTxDMA        = i2sInit->interruptTxDMA;
+    dObj->interruptRxDMA        = i2sInit->interruptRxDMA;
+    /************ end of E54 specific code ********************/
 <#else>
-    //dObj->interruptDMA          = i2sInit->interruptDMA;
-    dObj->interruptTxDMA        = i2sInit->interruptTxDMA;
-    dObj->interruptRxDMA        = i2sInit->interruptRxDMA;
+    /************ code specific to SAM E70 ********************/
+    dObj->interruptDMA          = i2sInit->interruptDMA;
+    /************ end of E70 specific code ********************/
 </#if>
     dObj->dmaDataLength         = i2sInit->dmaDataLength;
     dObj->process               = DRV_I2S_TASK_PROCESS_NONE;

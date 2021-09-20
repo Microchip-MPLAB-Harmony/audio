@@ -296,21 +296,23 @@ typedef struct
     void * rxAddress;
     
 <#if __PROCESSOR?matches("PIC32M.*") == true>
-/******************* Start of Code Specific to PIC32M* ***********************/
+    /******************* Start of Code Specific to PIC32M* ***********************/
     /* This is the TX DMA channel interrupt source. */
     INT_SOURCE interruptRxDMA;
-
     /* This is the Rx DMA channel interrupt source. */
     INT_SOURCE interruptTxDMA;
-/******************* End of PIC32M* specific code ***********************/
-<#else>
-/************************ Start of code specific to ATSAM ********************/
-    //INT_SOURCE interruptDMA;
+    /******************* End of PIC32M* specific code ***********************/
+<#elseif __PROCESSOR?matches("ATSAME54.*") == true>
+    /************************ Start of code specific to ATSAM E54 ***********/
     /* This is the TX DMA channel interrupt source. */
     INT_SOURCE interruptTxDMA;
     /* This is the RX DMA channel interrupt source. */
     INT_SOURCE interruptRxDMA;
-/**************** End of SAM E70 specific code ********************/
+    /**************** End of SAM E54 specific code ********************/
+<#else>
+    /************ code specific to SAM E70 ********************/
+    INT_SOURCE interruptDMA;
+    /************ end of E70 specific code ********************/
 </#if>
 
     /* Size of DMA channel in I2S or SSC PLIB */
