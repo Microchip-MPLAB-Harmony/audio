@@ -280,7 +280,13 @@ typedef struct
     INT_SOURCE                  interruptRxDMA;
 <#else> 
     /* Interrupt source ID for DMA interrupt. */
-    INT_SOURCE                  interruptDMA;
+    //INT_SOURCE                  interruptDMA;
+
+    /* Interrupt source ID for DMA TX interrupt. */
+    INT_SOURCE                  interruptTxDMA;
+
+    /* Interrupt source ID for DMA Rx interrupt. */
+    INT_SOURCE                  interruptRxDMA;
 </#if>
 
     /* DMA data length from I2S or SSC PLIB */

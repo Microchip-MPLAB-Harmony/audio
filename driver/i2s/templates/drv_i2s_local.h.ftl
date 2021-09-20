@@ -297,15 +297,19 @@ typedef struct
     
 <#if __PROCESSOR?matches("PIC32M.*") == true>
 /******************* Start of Code Specific to PIC32M* ***********************/
-    /* This is the RX DMA channel interrupt source. */
+    /* This is the TX DMA channel interrupt source. */
     INT_SOURCE interruptRxDMA;
 
-    /* This is the DMA channel interrupt source. */
+    /* This is the Rx DMA channel interrupt source. */
     INT_SOURCE interruptTxDMA;
 /******************* End of PIC32M* specific code ***********************/
 <#else>
 /************************ Start of code specific to ATSAM ********************/
-    INT_SOURCE interruptDMA;
+    //INT_SOURCE interruptDMA;
+    /* This is the TX DMA channel interrupt source. */
+    INT_SOURCE interruptTxDMA;
+    /* This is the RX DMA channel interrupt source. */
+    INT_SOURCE interruptRxDMA;
 /**************** End of SAM E70 specific code ********************/
 </#if>
 

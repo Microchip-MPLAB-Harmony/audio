@@ -350,7 +350,8 @@ typedef void ( *DRV_I2S_BUFFER_EVENT_HANDLER )( DRV_I2S_BUFFER_EVENT event, DRV_
         .dmaChannelReceive = SYS_DMA_CHANNEL_NONE,
         .i2sTransmitAddress = I2S1_TRANSMIT_ADDRESS,
         .i2sReceiveAddress = I2S1_RECEIVE_ADDRESS,
-        .interruptDMA = XDMAC_IRQn
+        .interruptTxDMA = DMAC_0_IRQn
+        .interruptRxDMA = DMAC_1_IRQn
     };
 
     objectHandle = DRV_I2S_Initialize(DRV_I2S_INDEX_1,

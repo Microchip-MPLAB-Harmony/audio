@@ -51,9 +51,17 @@ DRV_I2S_INIT drvI2S${INDEX?string}InitData =
     .interruptRxDMA = _DMA${DRV_I2S_RX_DMA_CHANNEL}_VECTOR,
     </#if>
 <#else>
-    <#if DMA_INSTANCE_NAME?has_content>
-        .interruptDMA = ${core.DMA_INSTANCE_NAME}_IRQn,
+    <#if DRV_I2S_TX_DMA_CHANNEL?has_content>
+    .interruptTxDMA = DMAC_${DRV_I2S_TX_DMA_CHANNEL}_IRQn,
     </#if>
+    <#if DRV_I2S_RX_DMA_CHANNEL?has_content>
+    .interruptTxDMA = DMAC_${DRV_I2S_RX_DMA_CHANNEL}_IRQn,
+    </#if>
+    /*
+    <#if DMA_INSTANCE_NAME?has_content>
+    .interruptDMA = ${core.DMA_INSTANCE_NAME}_IRQn,
+    </#if>
+    */
 </#if>
     .dmaDataLength = DRV_I2S_DATA_LENGTH_IDX${INDEX?string},
 };

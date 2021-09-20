@@ -115,9 +115,17 @@ static bool _DRV_I2S_ResourceLock(DRV_I2S_OBJ * object)
         SYS_INT_SourceDisable(dObj->interruptRxDMA);
     }
 <#else>
-    if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    //if ((SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    //{
+    //    SYS_INT_SourceDisable(dObj->interruptDMA);
+    //}
+    if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
     {
-        SYS_INT_SourceDisable(dObj->interruptDMA);
+        SYS_INT_SourceDisable(dObj->interruptTxDMA);
+    }
+    if (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel)
+    {
+        SYS_INT_SourceDisable(dObj->interruptRxDMA);
     }
 </#if>
     return true;
@@ -138,10 +146,18 @@ static bool _DRV_I2S_ResourceUnlock(DRV_I2S_OBJ * object)
         SYS_INT_SourceEnable(dObj->interruptRxDMA);
     }
 <#else> 
-    if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    if (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel)
     {
-        SYS_INT_SourceEnable(dObj->interruptDMA);
+        SYS_INT_SourceEnable(dObj->interruptTxDMA);
     }
+    if (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel)
+    {
+        SYS_INT_SourceEnable(dObj->interruptRxDMA);
+    }
+    //if( (SYS_DMA_CHANNEL_NONE != dObj->txDMAChannel) || (SYS_DMA_CHANNEL_NONE != dObj->rxDMAChannel))
+    //{
+    //    SYS_INT_SourceEnable(dObj->interruptDMA);
+    //}
 </#if>
 
     OSAL_MUTEX_Unlock(&(dObj->mutexDriverInstance));
@@ -568,7 +584,9 @@ SYS_MODULE_OBJ DRV_I2S_Initialize( const SYS_MODULE_INDEX drvIndex, const SYS_MO
     dObj->interruptTxDMA        = i2sInit->interruptTxDMA;
     dObj->interruptRxDMA        = i2sInit->interruptRxDMA;
 <#else>
-    dObj->interruptDMA          = i2sInit->interruptDMA;
+    //dObj->interruptDMA          = i2sInit->interruptDMA;
+    dObj->interruptTxDMA        = i2sInit->interruptTxDMA;
+    dObj->interruptRxDMA        = i2sInit->interruptRxDMA;
 </#if>
     dObj->dmaDataLength         = i2sInit->dmaDataLength;
     dObj->process               = DRV_I2S_TASK_PROCESS_NONE;
