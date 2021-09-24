@@ -105,7 +105,7 @@ typedef int16_t i16; //Q16d0
 
 // FxQFloat32 pseudo floating point type (limited floating point)
 // NOTE:  Extended FxQflExt32 used with f2Qfloat32) 
-struct 
+typedef struct 
 {
   q15   man;
   i16   exp;
