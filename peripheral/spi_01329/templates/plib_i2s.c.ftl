@@ -50,6 +50,8 @@
 // *****************************************************************************
 // *****************************************************************************
 
+#define	MIN(a,b)	(((a) < (b)) ? (a) : (b)
+
 #define ${SPI_INSTANCE_NAME}_CON_FRMEN                      (1 << _${SPI_INSTANCE_NAME}CON_FRMEN_POSITION)      // always 1 for I2S
 #define ${SPI_INSTANCE_NAME}_CON_FRMSYNC                    (${I2S_SPICON_FRMSYNC} << _${SPI_INSTANCE_NAME}CON_FRMSYNC_POSITION)
 #define ${SPI_INSTANCE_NAME}_CON_FRMPOL                     (${I2S_SPICON_FRMPOL} << _${SPI_INSTANCE_NAME}CON_FRMPOL_POSITION)
@@ -151,8 +153,8 @@ uint32_t ${I2S_INSTANCE_NAME}_RefClockSet(uint32_t sysclk, uint32_t samplingRate
     uint32_t error_0 = abs(refclk_0 - refclk);
     uint32_t error_p1 = abs(refclk_p1 - refclk);
     
-    uint32_t minError = min(error_m1,error_0);
-    minError = min(minError,error_p1);
+    uint32_t minError = MIN(error_m1,error_0);
+    minError = MIN(minError,error_p1);
     
     if (minError == error_m1)
     {
