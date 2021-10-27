@@ -50,7 +50,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define	MIN(a,b)	(((a) < (b)) ? (a) : (b)
+#define	MIN(a,b)	(((a) < (b)) ? (a) : (b))
 
 #define ${SPI_INSTANCE_NAME}_CON_FRMEN                      (1 << _${SPI_INSTANCE_NAME}CON_FRMEN_POSITION)      // always 1 for I2S
 #define ${SPI_INSTANCE_NAME}_CON_FRMSYNC                    (${I2S_SPICON_FRMSYNC} << _${SPI_INSTANCE_NAME}CON_FRMSYNC_POSITION)
