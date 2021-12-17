@@ -1,11 +1,66 @@
 # Microchip MPLAB Harmony 3 Release Notes
+
+## Audio Release v3.6.0 (December, 2021)
+### Additions and Updates for 3.6.0:
+
+**As of audio release 3.6, applications that were previoyusly in the audio repository have been moved to the new audio_apps repository:**
+
+[Harmony audio repository, 3.1.0](https://github.com/Microchip-MPLAB-Harmony/audio_apps)
+
+- **Updated Drivers**
+
+The following table provides the list of updated audio drivers:
+
+| Driver | Description | MZ EF/C2 | E54 | E70 |
+| --- | --- | --- | --- | --- | 
+| AK4954 | Fix mic gain and missing function | x | x |  x |
+| AK4954 | Fix race condition | x | x |  x |
+| I2S | Fix macro problem | x | x |  x |
+| WM8904 | Fix missing break statements | x | x |  x |
+
+where:
+
+| |  Development Kit |
+| --- | --- | 
+|**MZ EF/C2**| [Curiosity PIC32MZEF Dev Board 2.0](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320209) |
+|**E54**| [SAM E54 Curiosity Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320210) |
+|**E70**| [SAM E70 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
+
+
+- **Updated Peripheral Libraries (PLIBs)**
+
+The following table provides the list of updated audio peripheral libraries:
+
+| PLIB | Description | MZ EF/C2 | E54 | E70 |
+| --- | --- | --- | --- | --- | 
+| spi_01329 | Supply local min function not provided by Linux | x |  |  |
+
+
+- **Updated Libraries**
+
+The following table provides the list of updated libraries:
+
+| Library | Description | MZ EF/C2 | E54 | E70 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Decoder Library | Added FLAC wrapper for Xiph FLAC Decoder Library | x | | x |
+
+
+### TESTED WITH:
+
+#### Software Dependencies
+
+Before using MPLAB Harmony Audio, ensure that the following are installed:
+
+- [MPLAB X IDE v5.50](https://www.microchip.com/mplab/mplab-x-ide) or later
+- [MPLAB XC32 C/C++ Compiler v3.01](https://www.microchip.com/mplab/compilers) or later
+- [Harmony audio repository, 3.6.0](https://github.com/Microchip-MPLAB-Harmony/audio)
+
+To build applications, you now need to also have the separate audio apps repository:
+
+- [Harmony audio repository, 3.1.0](https://github.com/Microchip-MPLAB-Harmony/audio_apps)
+
 ## Audio Release v3.5.1 (June, 2021)
-
-### UPDATES FOR 3.5.1:
-
-**Note**: This is an interim release only to allow other applications to build correctly with the latest Harmony repos and compilers.
-
-However no applications have been updated.  They will be moved to a separate audio_apps repo in an upcoming 3.6 release.  The audio apps have been retained in this release of the repo, and will build as is, but will not regenerate correctly.  For that, you must revert to the 3.5.0 version of the audio repo and use the respective older versions of other repos as specified in the package.xml file.
+### Updates for 3.5.1:
 
 - **Updated Drivers**
 
@@ -17,13 +72,11 @@ The following table provides the list of updated audio drivers:
 | AK4954 | Remove 32-bit data formats | x | x |  x | x | x | |
 | WM8904 | Always tries to open I2C Driver instance 0 | x | x |  x | x | x | x |
 
-
-
 - **Updated Peripheral Libraries (PLIBs)**
 
 The following table provides the list of updated audio peripheral libraries:
 
-| Driver | Description | BTADK | BTADK/MZ | MZ EF/C2 | E54 | E70 | V71 |
+| PLIB | Description | BTADK | BTADK/MZ | MZ EF/C2 | E54 | E70 | V71 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | All | Fixes for new compiler switches and XC32 3.0 compiler | x | x | x | x | x | x |
 | i2sc 11241 | Fix incorrect names being created for some functions | | | | | x | |
@@ -44,17 +97,6 @@ The following table provides the list of new applications/projects:
 | usb_speaker_bass_boost | New application, with variable bass boost | x | x |
 | usb_speaker_hi_res | Added FreeRTOS variation | | x |
 
-where:
-
-| |  Development Kit |
-| --- | --- | 
-|**BTADK**| [PIC32 Bluetooth Audio Development Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DV320032) |
-|**BTADK/MZ**| [BTADK with PIC32MZ EF Audio 144-pin PIM](https://www.microchip.com/developmenttools/ProductDetails/PartNO/MA320018)
-|**MEB II/MZ EF**| [Multimedia Expansion Board II](https://www.microchip.com/DevelopmentTools/ProductDetails/DM320005-5) with [ PIC32MZ EF Starter Kit](https://www.microchip.com/DevelopmentTools/ProductDetails/dm320007) |
-|**MZ EF/C2**| [Curiosity PIC32MZEF Dev Board 2.0](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320209) |
-|**E54**| [SAM E54 Curiosity Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320210) |
-|**E70**| [SAM E70 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
-|**V71**| [SAM V71 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/ATSAMV71-XULT) |
 
 - **Updated Applications/Projects**
 
@@ -68,7 +110,7 @@ The following table provides the list of updated applications/projects:
 
 The following table provides the list of new audio drivers:
 
-| Driver | Description | MEB II/MZ EF |
+| Driver | Description | MZ EF |
 | --- | --- | --- |
 | AK4953 | AK4953 | x |
 
@@ -82,11 +124,23 @@ The following table provides the list of updated audio drivers:
 | I2S | Fixed two issues with DMA | x | x | x | x | x | x |
 | AK4954 | Added delayed driver initialization | x | x |  x| x | x | |
 
+where:
+
+| |  Development Kit |
+| --- | --- | 
+|**BTADK**| [PIC32 Bluetooth Audio Development Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DV320032) |
+|**BTADK/MZ**| [BTADK with PIC32MZ EF Audio 144-pin PIM](https://www.microchip.com/developmenttools/ProductDetails/PartNO/MA320018)
+|**MZ EF/C2**| [Curiosity PIC32MZEF Dev Board 2.0](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320209) |
+|**E54**| [SAM E54 Curiosity Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320210) |
+|**E70**| [SAM E70 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
+|**V71**| [SAM V71 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/ATSAMV71-XULT) |
+
+
 - **Updated Peripheral Libraries (PLIBs)**
 
 The following table provides the list of updated audio peripheral libraries:
 
-| Driver | Description | MZ EF/C2 |
+| PLIB | Description | MZ EF/C2 |
 | --- | --- | --- |
 | spi_01329 | Added functions to set master clock | x |
 
@@ -115,110 +169,6 @@ The following table provides the list of updated templates:
 | ak4954 | Specify bit-banged I2C driver for MZ EF | x | |
 | ak4954 | Specify I2C driver for MZ EF/C2 | | x |
 
-### TESTED WITH:
-
-#### Software Dependencies
-
-Before using MPLAB Harmony Audio, ensure that the following are installed:
-
-- [MPLAB X IDE v5.30](https://www.microchip.com/mplab/mplab-x-ide) or later
-- [MPLAB XC32 C/C++ Compiler v2.30](https://www.microchip.com/mplab/compilers) or later
-- [Harmony audio repository, 3.5.0](https://github.com/Microchip-MPLAB-Harmony/audio)
-
-In order to regenerate source code for any of the applications, you will also need the following to be installed:
-
-| Tool | Version | Notes |
-| --- | --- | --- |
-| [MPLAB® Harmony Configurator (MHC)](https://github.com/Microchip-MPLAB-Harmony/mhc)| v3.3.5 |
-| MPLAB® Harmony Configurator (MHC) plug-in | v3.4.1 | |
-| [Harmony 3 BSP](https://github.com/Microchip-MPLAB-Harmony/bsp)| v3.6.0 | |
-| [Harmony 3 CSP](https://github.com/Microchip-MPLAB-Harmony/csp)| v3.6.0 | |
-| [Harmony 3 Core](https://github.com/Microchip-MPLAB-Harmony/core)| v3.6.0 | |
-| [Harmony 3 Dev_Packs](https://github.com/Microchip-MPLAB-Harmony/dev_packs)| v3.6.0 | |
-| [Harmony 3 Graphics ](https://github.com/Microchip-MPLAB-Harmony/gfx)| v3.5.1 | only if using graphics |
-| [Harmony 3 USB](https://github.com/Microchip-MPLAB-Harmony/usb)| v3.4.0 |only if using USB|
-| [Harmony 3 CMSIS-FreeRTOS](https://github.com/ARM-software/CMSIS-FreeRTOS)| v10.2.0 | only if using FreeRTOS |
-| [Harmony 3 MP3 Decoder Library](https://github.com/Microchip-MPLAB-Harmony/helix_mp3)| v1.0 |only if using MP3 decoder|
-
-#### Development Kit Support
-
-This release supports applications for the following development kits
-
-| Development Kits |
-| --- |
-| [PIC32 Bluetooth Audio Development Kit/BTADK (DV320032)](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DV320032) |
-| [PIC32MZ EF Audio 144-pin PIM for BTADK (MA320018)](https://www.microchip.com/developmenttools/ProductDetails/PartNO/MA320018)
-| [Curiosity PIC32MZEF Dev Board 2.0 (DM320209)](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320209) |
-| [SAM E54 Curiosity Ultra Evaluation Kit (DM320210)](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320210) |
-| [SAM E70 Xplained Ultra Evaluation Kit (DM320113)](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
-| [SAM V71 Xplained Ultra Evaluation Kit (ATSAMV71-XULT)](https://www.microchip.com/developmenttools/ProductDetails/PartNO/ATSAMV71-XULT) |
-
-### KNOWN ISSUES
-
-The current known issues are as follows:
-
-* Code is compliant to MISRA C 2012 Mandatory guidelines, except applications using graphics (Rule 9.1).
- - USB Speaker Bass Boost app fails Mandatory Rules 17.3 and 17.4, but these appear to be false positives as the same code passes using another tool (Coverity) 
-* The ICD4 loads the reset line of the SAM V71 Xplained Ultra board. When running demo projects using the V71, the ICD4 flex cable should be removed after programming to run the application.
-* Interactive help using the Show User Manual Entry in the Right-click menu for configuration options provided by the drivers and libraries is not yet available from within the MPLAB Harmony Configurator (MHC).  Please see the *Configuring the Library* section in the help documentation in the doc folder for the relevant Harmony 3 module instead.  Help is available in both CHM and PDF formats.
-* audio_enc demonstration:
-    - Audible artifacts may occur as a result of long period MSD writes.
-    - Functionality deteriorates as higher sampling rates.
-    - Audible artifacts may occur when using FreeRTOS.
-* audio_player_basic demonstration:
-    - Playback of files with more than 2 channels is not supported.
-    - Only CBR (Constant Bit Rate) encoding is supported.
-    - Audible artifacts and/or L/R channel swapping may occur for some configurations.
-* audio_signal_generator demonstration:
-    - Not all frequencies selected can be output. The nearest possible frequency to the one chosen will be used.
-    - Dropouts may occur when switching buffers. 
-* audio_tone demonstration:
-    - In both E54/WM8904 projects, only 32-bit audio has been tested.
-    - Dropouts or ticking sound may occur when switching buffers. 
-* audio_tone_linkeddma demonstration:
-    - When changing the frequency the first time, the pushbutton must be pressed twice.
-* microphone_loopback demonstration:
-    - In both E54/WM8904 projects, only 32-bit audio has been tested.
-* all usb_speaker demonstrations:
-    - Audible artifacts may occur as a result of buffer underflow/overflow conditions for E54 and E70 projects.  Clock tuning will be added in the future to handle this. 
-
-### RELEASE CONTENTS
-
-This topic lists the contents of this release and identifies each module.
-
-#### Description
-
-This table lists the contents of this release, including a brief description, and the release type (Alpha, Beta, Production, or Vendor).
-
-| Folder | Description | Release Type |
-| --- | --- | --- |
-| audio\apps\audio_enc | audio encoder application | Production |
-| audio\apps\audio_player_basic | audio_player_basic application | Production |
-| audio\apps\audio_signal_generator | audio signal generator application | Production |
-| audio\apps\audio_tone  | audio tone application | Production |
-| audio\apps\audio_tone_linkeddma | audio tone using linked dma application | Production |
-| audio\apps\microphone_loopback | microphone loopback application | Production |
-| audio\apps\universal_audio_decoders | universal audio decoders application | Beta |
-| audio\apps\usb_speaker | USB speaker application | Production |
-| audio\apps\usb_speaker_bass_boost | USB speaker bass boost application | Beta |
-| audio\apps\usb_speaker_hi_res | USB speaker application (hi-res) | Beta |
-| audio\driver\i2s | I2S Driver | Production |
-| audio\driver\codec\AK4954 | AK4954 Codec Driver | Production |
-| audio\driver\codec\Generic | Generic Codec Driver | Production |
-| audio\driver\codec\WM8904 | WM8904 Codec Driver | Production |
-| audio\peripheral\i2s_u2224 | I2S Peripheral Library (E54) | Production |
-| audio\peripheral\i2sc_11241 | I2SC Peripheral Library (E70) | Production |
-| audio\peripheral\spi_01329 | I2S Peripheral Library (MX/MZ)| Production |
-| audio\peripheral\ssc_6078 | SSC Peripheral Library (E70/V71) | Production |
-| audio\templates\ak4954 | Audio application template | Production |
-| audio\templates\generic | Audio application template | Production |
-| audio\templates\wm8904 | Audio application template | Production |
-| audio\decoder\audio_decoders\adpcm | Decoder Library | Production |
-| audio\decoder\audio_decoders\wav | Decoder Library | Production |
-| audio\decoder\audio_decoders\mp3 | Decoder Library | Beta |
-| audio\encoder\audio_encoders\adpcm | Encoder Library | Production |
-| audio\encoder\audio_encoders\pcm | Encoder Library | Production |
-
 ## Audio Release v3.4.0 (August, 2019)
 ### ADDITIONS AND UPDATES FOR 3.4.0:
 
@@ -233,17 +183,6 @@ The following table provides the list of new applications/projects:
 | usb_microphone | New application, bare-metal and FreeRTOS versions | | | | x |
 | usb_speaker | Added I2SC variation | | | | x |
 | usb_speaker_hi_res | New application; plays 96K audio from a USB host such as a PC | | | | x |
-
-where:
-
-| |  Development Kit |
-| --- | --- | 
-|**BTADK**| [PIC32 Bluetooth Audio Development Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DV320032) |
-|**BTADK/MZ**| [BTADK with PIC32MZ EF Audio 144-pin PIM](https://www.microchip.com/developmenttools/ProductDetails/PartNO/MA320018)
-|**C2/MZ**| [Curiosity PIC32MZEF Dev Board 2.0](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320209) |
-|**E54**| [SAM E54 Curiosity Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320210) |
-|**E70**| [SAM E70 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
-|**V71**| [SAM V71 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/ATSAMV71-XULT) |
 
 - **Updated Applications/Projects**
 
@@ -262,11 +201,6 @@ The following table provides the list of new audio drivers:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | I2S | I2S Driver | x | x | x | x | x | x |
 
-
-**NOTE:** The I2S driver listed above was previously in the core repo, and is now located in the audio repo instead.  All of the audio projects have been updated to use the new location.  Howevever if someone has copied an application from a previous version (e.g. 3.3) of the audio repo, it will need to be updated to reflect this change. After noting any special settings in the MHC dialog for the driver, the I2S driver should be removed from the project graph, and the same one selected again from the audio repo instead, and the appropriate connections restored.
-
-Although the codec drivers were already in the audio repo, their location was changed bwteen versions 3.3 and 3.4, so they need to be removed and then added back as well. 
-
 - **Updated Drivers**
 
 The following table provides the list of updated audio drivers:
@@ -280,14 +214,12 @@ The following table provides the list of updated audio drivers:
 
 The following table provides the list of new audio peripheral libraries:
 
-| Driver | Description | BTADK | BTADK/MZ | C2/MZ | E54 | E70 | V71 |
+| PLIB | Description | BTADK | BTADK/MZ | C2/MZ | E54 | E70 | V71 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | i2s_u2224 | I2S Peripheral Library | | | | x | | |
 | i2sc_11241 | I2SC Peripheral Library | | | | | x | x |
 | spi_01329 | I2S Peripheral Library | x | x | x | | | |
 | ssc_6078 |  SSC Peripheral Library | | | | | x | x |
-
-**NOTE:** The audio I2S-related peripheral libraries listed above were previously in the csp repo, and are now located in the audio repo instead.  All of the audio projects have been updated to use the new location.  Howevever if someone has copied an application from a previous version (e.g. 3.3) of the audio repo, it will need to be updated to reflect this change. After noting any special settings in the MHC dialog for the peripheral, any I2S-related PLIB should be removed from the project graph, and the same one selected again from the audio repo instead, and the appropriate connections restored..
 
 - **New Audio Application Templates**
 
