@@ -59,6 +59,14 @@
 #include "system/int/sys_int.h"
 #include "driver/driver_common.h"
 
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
+// DOM-IGNORE-END
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Data Types
@@ -2219,6 +2227,13 @@ int8_t* DRV_AK4954_VersionStrGet(void);
     None.
  */
 uint32_t DRV_AK4954_VersionGet(void);
+
+//DOM-IGNORE-BEGIN
+#ifdef __cplusplus
+}
+#endif
+//DOM-IGNORE-END
+
 
 #endif // #ifndef _DRV_AK4954_H
 /*******************************************************************************
