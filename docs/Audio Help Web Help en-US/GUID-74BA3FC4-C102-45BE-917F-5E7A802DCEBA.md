@@ -1,10 +1,18 @@
 # Microchip MPLAB Harmony 3 Release Notes
 
-## Audio Release v3.6.0 (May, 2022)
+## Audio Release v3.6.0 (May 2022)
 ### Additions and Updates for 3.6.0:
+- **New Applications/Projects**
 
-Added SDL support.
-**As of audio release 3.6, applications that were previoyusly in the audio repository have been moved to the new audio_apps repository:**
+The following table provides the list of new applications/projects:
+
+| Application | Description |
+| --- | --- |
+| universal_audio_decoders | Added XIPH FLAC Decoder Support |
+| usb_headset | PIC32MZ based headset |
+
+MCC Support, and SDL based Documentation has been added.
+**As of audio release 3.6, applications that were previously in the audio repository have been moved to the new audio_apps repository:**
 
 [Harmony audio apps repository, 3.1.0](https://github.com/Microchip-MPLAB-Harmony/audio_apps)
 
@@ -28,6 +36,7 @@ where:
 |**E70**| [SAM E70 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
 
 
+
 - **Updated Peripheral Libraries (PLIBs)**
 
 The following table provides the list of updated audio peripheral libraries:
@@ -42,7 +51,7 @@ The following table provides the list of updated audio peripheral libraries:
 The following table provides the list of updated libraries:
 
 | Library | Description | MZ EF/C2 | E54 | E70 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | Decoder Library | Added FLAC wrapper for Xiph FLAC Decoder Library | x | | x |
 
 
@@ -52,8 +61,8 @@ The following table provides the list of updated libraries:
 
 Before using MPLAB Harmony Audio, ensure that the following are installed:
 
-- [MPLAB X IDE v5.50](https://www.microchip.com/mplab/mplab-x-ide) or later
-- [MPLAB XC32 C/C++ Compiler v3.01](https://www.microchip.com/mplab/compilers) or later
+- [MPLAB X IDE v6.00](https://www.microchip.com/mplab/mplab-x-ide) or later
+- [MPLAB XC32 C/C++ Compiler v4.00](https://www.microchip.com/mplab/compilers) or later
 - [Harmony audio repository, 3.6.0](https://github.com/Microchip-MPLAB-Harmony/audio)
 
 To build applications, you now need to also have the separate audio apps repository:
@@ -347,7 +356,3 @@ The following table provides the list of new applications for the SAM V71:
 | --- | --- |
 | audio_tone |  Sine wave audio tone generator using SSC |
 | microphone_loopback | Outputs audio from microphone after optional delay using SSC |
-
-
-
-
