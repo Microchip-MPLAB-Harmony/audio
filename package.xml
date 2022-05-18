@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Package name="audio">
     <Dependencies>
-		<Dependency name="bsp" version="3.10.0"/>
-        <Dependency name="core" version="3.10.0"/>
-	    <Dependency name="csp" version="3.10.0"/>
+        <Dependency name="core" version="v3.10.0"/>
+        <Dependency name="usb" version="v3.9.0"/>
     </Dependencies>
 </Package>
 

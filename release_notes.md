@@ -4,7 +4,7 @@
 ### Additions and Updates for 3.6.0:
 
 Added SDL support.
-**As of audio release 3.6, applications that were previoyusly in the audio repository have been moved to the new audio_apps repository:**
+**As of audio release 3.6, applications that were previously in the audio repository have been moved to the new audio_apps repository:**
 
 [Harmony audio apps repository, 3.1.0](https://github.com/Microchip-MPLAB-Harmony/audio_apps)
 

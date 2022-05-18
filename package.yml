@@ -1,0 +1,16 @@
+package:
+  format-version: "1.0.0"
+  name: "audio"
+  version: "3.6.0"
+  type: "api"
+  status: "production"
+  
+  dependencies:
+    - name: "core"
+      type: "package"
+      version: "3.10.0"
+    - name: "usb"
+      type: "package"
+      version: "3.9.0"
+
+
