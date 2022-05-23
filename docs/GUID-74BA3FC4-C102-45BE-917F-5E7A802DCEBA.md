@@ -11,9 +11,8 @@ The following table provides the list of new applications/projects:
 | universal_audio_decoders | Added XIPH FLAC Decoder Support |
 | usb_headset | PIC32MZ based headset |
 
-MCC Support, and SDL based Documentation has been added.
-**As of audio release 3.6, applications that were previously in the audio repository have been moved to the new audio_apps repository:**
-
+- **MCC is Supported.**
+- **As of audio release 3.6, applications that were previously in the audio repository have been moved to the new audio_apps repository:**
 [Harmony audio apps repository, 3.1.0](https://github.com/Microchip-MPLAB-Harmony/audio_apps)
 
 - **Updated Drivers**
@@ -34,8 +33,7 @@ where:
 |**MZ EF/C2**| [Curiosity PIC32MZEF Dev Board 2.0](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320209) |
 |**E54**| [SAM E54 Curiosity Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320210) |
 |**E70**| [SAM E70 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM320113) |
-
-
+|**V71**| [SAM V71 Xplained Ultra Evaluation Kit](https://www.microchip.com/developmenttools/ProductDetails/PartNO/ATSAMV71-XULT) |
 
 - **Updated Peripheral Libraries (PLIBs)**
 
