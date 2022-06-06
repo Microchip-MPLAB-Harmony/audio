@@ -9,6 +9,8 @@
 <meta name="DC.type" content="topic" />
 <meta name="DC.title" content="Audio Encoder Library Help" />
 <meta name="DC.relation" scheme="URI" content="GUID-546D2D8B-EC03-4BF5-B23F-D618F41955FB.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-31C8AF39-41AC-44FF-887E-8918EFF00637.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-83FB58CF-A3A5-4EE2-BAEF-3C813EF3812E.html" />
 <meta name="DC.format" content="XHTML" />
 <meta name="DC.identifier" content="audio-encoder-library-help" />
 <link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
@@ -197,141 +199,17 @@
 <body id="audio-encoder-library-help">
 <h1 class="title topictitle1" id="ariaid-title1">Audio Encoder Library Help</h1><div class="body"></div>
 <div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="GUID-31C8AF39-41AC-44FF-887E-8918EFF00637.html">ADPCM Encoder Library</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-83FB58CF-A3A5-4EE2-BAEF-3C813EF3812E.html">PCM Encoder Library</a></strong><br />
+</li>
+</ul>
+
 <div class="familylinks">
 <div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-546D2D8B-EC03-4BF5-B23F-D618F41955FB.html">MPLAB® Harmony 3 Audio, Support Package</a></div>
 </div>
 </div><div class="topic nested1" aria-labelledby="ariaid-title2" id="purpose"><h2 class="title topictitle2" id="ariaid-title2">Purpose</h2><div class="body"><p class="p">This section provides descriptions of the software Encoder Libraries that are available in MPLAB Harmony.</p>
-</div>
-<div class="topic nested2" aria-labelledby="ariaid-title3" id="adpcm-encoder-library"><h3 class="title topictitle3" id="ariaid-title3">ADPCM Encoder Library</h3><div class="body"></div>
-<div class="topic nested3" aria-labelledby="ariaid-title4" id="introduction"><h4 class="title topictitle4" id="ariaid-title4"><em class="ph i">Introduction</em></h4><div class="body"><p class="p">Adaptive Differential Pulse Code Modulation (ADPCM) is a royalty-free audio codec. It is a lossy compression standard. It is a variant of Differential Pulse-Code Modulation (DPCM). The file format used to contain an ADPCM files, is the same as WAV.</p>
-<p class="p">Its popularity comes because it achieves compression of 4 to 1 but does not require high processing power.</p>
-<p class="p">Typical applications using ADPCM are for speech. This implementation currently supports 16 bit stereo.</p>
-<p class="p">ADPCM Ecncoder Library</p>
-<p class="p"><strong class="ph b"><em class="ph i">Using the Library</em></strong></p>
-</div>
-</div>
-<div class="topic nested3" aria-labelledby="ariaid-title5" id="library-interface"><h4 class="title topictitle4" id="ariaid-title5"><em class="ph i">Library Interface</em></h4><div class="body"><p class="p"><strong class="ph b">Functions</strong></p>
-
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d64816e58"><span><strong class="ph b">Name</strong></span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d64816e61"><span><strong class="ph b">Description</strong></span></th>
-</tr>
-</thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e58 "><span>adpcm_encoder_init</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e61 "><span>This is function adpcm_encoder_init.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e58 "><span>adpcm_encode_frame</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e61 "><span>This is function adpcm_encode_frame.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e58 "><span>adpcm_encoder_config_byteorder</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e61 "><span>This is function adpcm_encoder_config_byteorder.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e58 "><span>adpcm_encoder_free</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e61 "><span>This is function adpcm_encoder_free.</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="p"><strong class="ph b">Description</strong></p>
-</div>
-</div>
-<div class="topic nested3" aria-labelledby="ariaid-title6" id="functions"><h4 class="title topictitle4" id="ariaid-title6">Functions</h4><div class="body"></div>
-<div class="topic nested4" aria-labelledby="ariaid-title7" id="adpcm-encoder-init-function"><h5 class="title topictitle5" id="ariaid-title7">adpcm_encoder_init Function</h5><div class="body"><p class="p">This is function adpcm_encoder_init.</p>
-<p class="p"><strong class="ph b">bool</strong> <strong class="ph b">adpcm_encoder_init</strong>(void);</p>
-</div>
-</div>
-<div class="topic nested4" aria-labelledby="ariaid-title8" id="adpcm-encode-frame-function"><h5 class="title topictitle5" id="ariaid-title8">adpcm_encode_frame Function</h5><div class="body"><p class="p">This is function adpcm_encode_frame.</p>
-<p class="p"><strong class="ph b">bool</strong> <strong class="ph b">adpcm_encode_frame</strong>(<strong class="ph b">void</strong> * <strong class="ph b">pin</strong>, uint32_t <strong class="ph b">insize</strong>, <strong class="ph b">void</strong> * <strong class="ph b">pout</strong>, uint32_t * <strong class="ph b">outsize</strong>);</p>
-</div>
-</div>
-<div class="topic nested4" aria-labelledby="ariaid-title9" id="adpcm-encode-frame-function-1"><h5 class="title topictitle5" id="ariaid-title9">adpcm_encode_frame Function</h5><div class="body"><p class="p">adpcm_encoder_config_byteorder Function</p>
-<p class="p">This is function adpcm_encoder_config_byteorder.</p>
-<p class="p"><strong class="ph b">void</strong> <strong class="ph b">adpcm_encoder_config_byteorder</strong>(<strong class="ph b">bool</strong> <strong class="ph b">isLE</strong>);</p>
-</div>
-</div>
-<div class="topic nested4" aria-labelledby="ariaid-title10" id="adpcm-encode-frame-function-2"><h5 class="title topictitle5" id="ariaid-title10">adpcm_encode_frame Function</h5><div class="body"><p class="p">adpcm_encoder_free Function</p>
-<p class="p">This is function adpcm_encoder_free.</p>
-<p class="p"><strong class="ph b">bool</strong> <strong class="ph b">adpcm_encoder_free</strong>(void);</p>
-<p class="p"><strong class="ph b">Data Types and Constants</strong></p>
-</div>
-</div>
-</div>
-<div class="topic nested3" aria-labelledby="ariaid-title11" id="files"><h4 class="title topictitle4" id="ariaid-title11">Files</h4><div class="body"><p class="p"><strong class="ph b">Files</strong></p>
-
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d64816e189"><span><strong class="ph b">Name</strong></span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d64816e192"><span><strong class="ph b">Description</strong></span></th>
-</tr>
-</thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e189 "><span>adpcm_enc.h</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e192 "><span>Contains the ADPCM encoder specific defintions and function prototypes.</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="p"><strong class="ph b">Description</strong></p>
-</div>
-<div class="topic nested4" aria-labelledby="ariaid-title12" id="adpcm-ench"><h5 class="title topictitle5" id="ariaid-title12">adpcm_enc.h</h5><div class="body"><p class="p">adpcm_enc.h</p>
-<p class="p"><strong class="ph b">Summary</strong></p>
-<p class="p">Contains the ADPCM encoder specific defintions and function prototypes.</p>
-<p class="p"><strong class="ph b">Description</strong></p>
-<p class="p">ADPCM Decoder Header File</p>
-<p class="p">This file contains the ADPCM encoder specific defintions and function prototypes.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="topic nested2" aria-labelledby="ariaid-title13" id="pcm-encoder-library"><h3 class="title topictitle3" id="ariaid-title13">PCM Encoder Library</h3><div class="body"></div>
-<div class="topic nested3" aria-labelledby="ariaid-title14" id="introduction-1"><h4 class="title topictitle4" id="ariaid-title14"><em class="ph i">Introduction</em></h4><div class="body"><p class="p">The PCM encoder is a royalty-free audio codec. It is a lossless standard and there is no compression.</p>
-<p class="p">It can typically be used to share speech; share music; create files to playback by older/slower processors. This implementation currently supports 16 bit stereo. The sample rate can vary widely.</p>
-<p class="p"><strong class="ph b"><em class="ph i">Using the Library</em></strong></p>
-</div>
-</div>
-<div class="topic nested3" aria-labelledby="ariaid-title15" id="library-interface-1"><h4 class="title topictitle4" id="ariaid-title15"><em class="ph i">Library Interface</em></h4><div class="body"><p class="p"><strong class="ph b">Functions</strong></p>
-
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d64816e253"><span><strong class="ph b">Name</strong></span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d64816e256"><span><strong class="ph b">Description</strong></span></th>
-</tr>
-</thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e253 "><span>pcm_encoder_init</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e256 "><span>This is function pcm_encoder_init.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e253 "><span>pcm_encoder_free</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e256 "><span>This is function pcm_encoder_free.</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="p"><strong class="ph b">Description</strong></p>
-</div>
-</div>
-<div class="topic nested3" aria-labelledby="ariaid-title16" id="functions-1"><h4 class="title topictitle4" id="ariaid-title16">Functions</h4><div class="body"></div>
-<div class="topic nested4" aria-labelledby="ariaid-title17" id="pcm-encoder-init-function"><h5 class="title topictitle5" id="ariaid-title17">pcm_encoder_init Function</h5><div class="body"><p class="p">This is function pcm_encoder_init.</p>
-<p class="p"><strong class="ph b">bool</strong> <strong class="ph b">pcm_encoder_init</strong>(<strong class="ph b">int</strong> <strong class="ph b">channel</strong>, <strong class="ph b">int</strong> <strong class="ph b">inputSampleRate</strong>);</p>
-</div>
-</div>
-<div class="topic nested4" aria-labelledby="ariaid-title18" id="pcm-encode-frame-function"><h5 class="title topictitle5" id="ariaid-title18">pcm_encode_frame Function</h5><div class="body"><p class="p">This is function pcm_encode_frame.</p>
-<p class="p"><strong class="ph b">bool</strong> <strong class="ph b">pcm_encode_frame</strong>(<strong class="ph b">void</strong> * <strong class="ph b">pin</strong>, uint32_t <strong class="ph b">insize</strong>, <strong class="ph b">void</strong> * <strong class="ph b">pout</strong>, uint32_t * <strong class="ph b">outsize</strong>);</p>
-</div>
-</div>
-<div class="topic nested4" aria-labelledby="ariaid-title19" id="pcm-encoder-free-function"><h5 class="title topictitle5" id="ariaid-title19">pcm_encoder_free Function</h5><div class="body"><p class="p">This is function pcm_encoder_free.</p>
-<p class="p"><strong class="ph b">bool</strong> <strong class="ph b">pcm_encoder_free</strong>(void);</p>
-<p class="p"><strong class="ph b">Data Types and Constants</strong></p>
-</div>
-</div>
-</div>
-<div class="topic nested3" aria-labelledby="ariaid-title20" id="files-1"><h4 class="title topictitle4" id="ariaid-title20">Files</h4><div class="body"><p class="p"><strong class="ph b">Files</strong></p>
-
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d64816e363"><span><strong class="ph b">Name</strong></span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d64816e366"><span><strong class="ph b">Description</strong></span></th>
-</tr>
-</thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e363 "><span>pcm_enc.h</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d64816e366 "><span>WAV Encoder Header File</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
 </div>
 </div>
 </body>

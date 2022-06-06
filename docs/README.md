@@ -24,9 +24,7 @@ This repository contains support package for the MPLAB® Harmony 3 Audio. The au
 -   [MPLAB Harmony 3 Audio Demonstrations and API Help](https://microchip-mplab-harmony.github.io/audio)
 
 
--   **[MPLAB Harmony Audio Help](GUID-23C5EB60-853E-4A8D-BCA3-6E4B6AFDBD53.md)**  
-
--   **[MPLAB® Harmony 3 Audio, Support Package](GUID-05D434BC-20F3-4C28-A592-FA86C5E35787.md)**  
+-   **[MPLAB Harmony Audio Driver and Peripherals Help](GUID-23C5EB60-853E-4A8D-BCA3-6E4B6AFDBD53.md)**  
 
 -   **[Audio Encoder Library Help](GUID-E665572E-DE82-4115-9633-148A28654916.md)**  
 

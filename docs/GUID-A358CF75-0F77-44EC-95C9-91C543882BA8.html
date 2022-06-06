@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
+<meta name="DC.rights.owner" content="(C) Copyright 2022" />
+<meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Library Interface" />
+<meta name="DC.relation" scheme="URI" content="GUID-FCD21329-2085-4DCC-92F5-D0890D2062C8.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-3B0F59F6-B8A8-41DF-A4D6-7F2CAE6DD39B.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-13C63358-5496-4FDD-9B27-9D8DB0346BE0.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-34D48836-9EC2-4A6B-90B5-B34C24E5C34E.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-FBC05C6E-E138-428D-B05D-4C2C159ED382.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-A79E4F3D-F6EC-46E6-8136-BCC08A8A545F.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-EB001281-6EA6-45B7-862D-748EE59889CE.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-33C64228-11C3-4B7F-AE3B-EB64DD01B038.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-A7E23933-54B3-4EA5-9C1A-9849E6F4872B.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-9BBA5E07-DCA2-425F-B67F-0A25189A41D5.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-2E0AA6D2-7386-48D7-9C19-166D47B74BCC.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-06B19FC9-B33E-41B8-A06D-FF984E6513B0.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-A0CF2C71-C39D-4747-B847-7238DDDF8A29.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-09054CA8-688F-4C6D-840F-174F5E6382CA.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="library-interface" />
+<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>Library Interface</title>
+<meta name="Microsoft.Help.Id" content="GUID-9A1A39D4-F5A9-4AB5-89CC-20C51E2EECD5" />
+<meta name="Microsoft.Help.TocParent" content="GUID-9A1A39D4-F5A9-4AB5-89CC-20C51E2EECD5" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB® Harmony Audio Help Reference A 05/2022" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+        function cpy(id, button) {
+        
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                    button.textContent = "Copy";
+                    button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+              console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style></head>
+<body>
+<div class="nested0" aria-labelledby="ariaid-title1" id="library-interface"><h1 class="title topictitle1" id="ariaid-title1">Library Interface</h1><div class="body"><p class="p">This section lists the files that are available in the FLAC Decoder Library.</p>
+<p class="p"><strong class="ph b">Description</strong></p>
+<p class="p">This section lists the files that are available in the src folder of the FLAC Decoder Library. It lists which files need to be included in the build based on a configuration option selected by the system.</p>
+<p class="p">The following three tables list and describe the header (.h) and source (.c) files that implement this library. The parent folder for these files is src/config/&lt;config_dir&gt;/audio/decoder/</p>
+</div>
+<div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="GUID-3B0F59F6-B8A8-41DF-A4D6-7F2CAE6DD39B.html">FLAC_isDecoder_enabled Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-13C63358-5496-4FDD-9B27-9D8DB0346BE0.html">FLAC_Initialize Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-34D48836-9EC2-4A6B-90B5-B34C24E5C34E.html">FLAC_RegisterDecoderEventHandlerCallback Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-FBC05C6E-E138-428D-B05D-4C2C159ED382.html">FLAC_DecodeSingleFrame Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-A79E4F3D-F6EC-46E6-8136-BCC08A8A545F.html">FLAC_GetChannels Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-EB001281-6EA6-45B7-862D-748EE59889CE.html">FLAC_GetBitRate Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-33C64228-11C3-4B7F-AE3B-EB64DD01B038.html">FLAC_GetSamplingRate Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-A7E23933-54B3-4EA5-9C1A-9849E6F4872B.html">FLAC_GetBlockSize Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-9BBA5E07-DCA2-425F-B67F-0A25189A41D5.html">FLAC_GetBitdepth Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-2E0AA6D2-7386-48D7-9C19-166D47B74BCC.html">FLAC_GetDuration Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-06B19FC9-B33E-41B8-A06D-FF984E6513B0.html">FLAC_Cleanup Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-A0CF2C71-C39D-4747-B847-7238DDDF8A29.html">FLAC_DecoderIsFileValid Function</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-09054CA8-688F-4C6D-840F-174F5E6382CA.html">FLAC Data Types and Constants</a></strong><br />
+</li>
+</ul>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-FCD21329-2085-4DCC-92F5-D0890D2062C8.html">FLAC Decoder Library</a></div>
+</div>
+</div></div>
+<div class="topic nested0" aria-labelledby="ariaid-title2" id="interface-files"><h1 class="title topictitle1" id="ariaid-title2">Interface File(s)</h1><div class="body"><p class="p">This table lists and describes the header files that must be included (i.e., using #include) by any code that uses this library.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d60943e106"><span><strong class="ph b">Source File Name</strong></span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d60943e109"><span><strong class="ph b">Description</strong></span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e106 "><span>audio_decoders.h</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e109 "><span>Header file that includes the lower-level include files (e.g. flac_dec.h)</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e106 "><span>audio_decoders_config.h</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e109 "><span>Header file that contains #defines for each enabled decoder FLAC_DECODER_ENABLED)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="required-files"><h2 class="title topictitle2" id="ariaid-title3">Required File(s)</h2><div class="body"><p class="p"><img class="image" src="GUID-16F921D5-FD77-46BB-AB49-71217D6519D5-low.png" /><br /> <strong class="ph b"><em class="ph i">All of the required files listed in the following table are automatically added into the MPLAB X IDE project by the MHC when the library is selected for use.</em></strong></p>
+<p class="p">This table lists and describes the header and source files that must <em class="ph i">always</em> be included in the MPLAB X IDE project to build this library.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d60943e144"><span><strong class="ph b">Source File Name</strong></span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d60943e147"><span><strong class="ph b">Description</strong></span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e144 "><span>audio_decoders/flac/flac_dec.c,.h</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e147 "><span>These are public APIs for using the FLAC Decoder</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e144 "><span>audio_decoders/flac/flac_master/include/FLAC/format.h</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e147 "><span>This file configures decoding logic and format</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p">The FLAC Decoder Library files in the apps repository only contain a wrapper around the Xiph open-source FLAC Decoder, located in the xiph_flac repository. Files from the Harmony framework's xiph repo are copied into the local flac folder of the application when code is generated using MHC.</p>
+<p class="p"><img class="image" src="GUID-15053249-1DD1-44B6-841A-3FAF772FF940-low.png" /><br /> <strong class="ph b"><em class="ph i">If using the FLAC Decoder Library from the audio repository, the xiph_flac repository must also be downloaded.</em></strong></p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title4" id="library-interface-1"><h1 class="title topictitle1" id="ariaid-title4">Library Interface</h1><div class="body"><p class="p">This section describes the Application Programming Interface (API) functions of the FLAC Decoder Library, in this version of the release.</p>
+<p class="p"><strong class="ph b">Functions</strong></p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d60943e184"><span><strong class="ph b">Name</strong></span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d60943e187"><span><strong class="ph b">Description</strong></span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_isDecoder_enabled</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>Function to check if FLAC decoding is enabled.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_Initialize</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>Function to initialize FLAC library.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_RegisterDecoderEventHandlerCallback</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>Registers application defined Decoder Callbacks.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_DecodeSingleFrame</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>This function decodes one FLAC frame and returns the decoded data.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_GetChannels</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>This function returns number of channels.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_GetBitRate</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>This function returns the bit rate.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_GetSamplingRate</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>This function returns the sample rate.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_GetBlockSize</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>This Function returns the number of samples in a sub block.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_GetBitdepth</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>This function returns the resolution of the sound data.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_GetDuration</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>This function returns the track length of the FLAC audio file.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_Cleanup</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>This is the function for deallocating memory resources of a FLAC decoder.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e184 "><span>FLAC_DecoderIsFileValid</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e187 "><span>Function to check if a given FLAC file is valid or not.</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p"><strong class="ph b">Data Types and Constants</strong></p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d60943e261"><span><strong class="ph b">Name</strong></span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d60943e264"><span><strong class="ph b">Description</strong></span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e261 "><span>DecoderEventHandlerCB</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e264 "><span>The Callback function template for the application defined callback Functions.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e261 "><span>FLAC_DEC_APPLICATIONCB_SET</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e264 "><span>The set of callbacks an application would be interested for callback.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e261 "><span>FLAC_DEC_WRITE_EVT_CONTINUE</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e264 "><span>Write status Success upon decoder writecallback.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e261 "><span>FLAC_DEC_WRITE_EVT_ERR</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d60943e264 "><span>Write status Error upon decoder writecallback.</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

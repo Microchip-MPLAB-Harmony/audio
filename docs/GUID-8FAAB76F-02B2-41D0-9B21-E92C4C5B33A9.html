@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
+<meta name="DC.rights.owner" content="(C) Copyright 2022" />
+<meta name="DC.type" content="topic" />
+<meta name="DC.title" content="MP3 Decoder Library" />
+<meta name="DC.relation" scheme="URI" content="GUID-0C0A7F83-5C07-43CF-B754-3FBAA64FB5E9.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="mp3-decoder-library" />
+<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>MP3 Decoder Library</title>
+<meta name="Microsoft.Help.Id" content="GUID-9A1A39D4-F5A9-4AB5-89CC-20C51E2EECD5-mp3-decoder-library" />
+<meta name="Microsoft.Help.TocParent" content="GUID-9A1A39D4-F5A9-4AB5-89CC-20C51E2EECD5" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB® Harmony Audio Help Reference A 05/2022" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+        function cpy(id, button) {
+        
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                    button.textContent = "Copy";
+                    button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+              console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?GUID-8FAAB76F-02B2-41D0-9B21-E92C4C5B33A9"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style></head>
+<body id="mp3-decoder-library">
+<h1 class="title topictitle1" id="ariaid-title1">MP3 Decoder Library</h1><div class="body"></div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-0C0A7F83-5C07-43CF-B754-3FBAA64FB5E9.html">Audio Decoder Library Help</a></div>
+</div>
+</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="introduction"><h2 class="title topictitle2" id="ariaid-title2"><em class="ph i">Introduction</em></h2><div class="body"><p class="p">MP3 is a lossy compression standard. MP3 compression works by reducing (or approximating) the accuracy of certain components of sound that are considered (by psychoacoustic analysis) to be beyond the hearing capabilities of most humans. This method is commonly referred to as perceptual coding or as psychoacoustic modeling.<span class="xref"></span> The remaining audio information is then recorded in a space-efficient manner, using MDCT and FFT algorithms. Compared to CD-quality digital audio, MP3 compression can commonly achieve a 75 percent to 95 percent reduction in size.</p>
+<p class="p">In Harmony 3, the MP3 decoder is limited to 16-bit audio, typically recorded at either CD quality (44100 samples/second) or DVD quality (48000 samples/second).</p>
+<p class="p">In addition to audio, an MP3 file may contain metadata, called ID3 tags, which include the name of the song, name of the artist, name of the album, and other information.</p>
+<p class="p">An MP3 file is made up of MP3 frames, which consist of a header and a data block. This sequence of frames is called an elementary stream. Due to the "bit reservoir", frames are not independent items and cannot usually be extracted on arbitrary frame boundaries. The MP3 Data blocks contain the (compressed) audio information in terms of frequencies and amplitudes. The MP3 Header consists of a sync word, which is used to identify the beginning of a valid frame. This is followed by a bit indicating that this is the MPEG standard and two bits that indicate that layer 3 is used; hence MPEG-1 Audio Layer 3 or MP3.</p>
+<p class="p">MP3 was originally patented, but the last patent expired on April 16, 2017.</p>
+<p class="p">In Harmony 3, an open-source MP3 decoder called Helix MP3 is used. The main portion of the code is located in a separate repository called helix_mp3\. The MP3 Decoder Library in the audio repository is just a wrapper that calls functions in the main library (which is brought in automatically when you generate code in MHC, with the MP3 Decoder Library selected).</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="building-the-library"><h2 class="title topictitle2" id="ariaid-title3"><em class="ph i">Building the Library</em></h2><div class="body"><p class="p">This section lists the files that are available in the MP3 Decoder Library.</p>
+<p class="p"><strong class="ph b">Description</strong></p>
+<p class="p">This section lists the files that are available in the src folder of the MP3 Decoder Library. It lists which files need to be included in the build based on a configuration option selected by the system.</p>
+<p class="p">The following three tables list and describe the header (.h) and source (.c) files that implement this library. The parent folder for these files is src/config/&lt;config_dir&gt;/audio/decoder/</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title4" id="interface-files"><h2 class="title topictitle2" id="ariaid-title4">Interface File(s)</h2><div class="body"><p class="p">This table lists and describes the header files that must be included (i.e., using #include) by any code that uses this library.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d63230e63"><span><strong class="ph b">Source File Name</strong></span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d63230e66"><span><strong class="ph b">Description</strong></span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e63 "><span>audio_decoders.h</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e66 "><span>Header file that includes the lower-level include files (e.g. mp3_dec.h)</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e63 "><span>audio_decoders_config.h</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e66 "><span>Header file that contains #defines for each enabled decoder MP3_DECODER_ENABLED)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title5" id="required-files"><h3 class="title topictitle3" id="ariaid-title5">Required File(s)</h3><div class="body"><p class="p"><img class="image" src="GUID-16F921D5-FD77-46BB-AB49-71217D6519D5-low.png" /><br /> <strong class="ph b"><em class="ph i">All of the required files listed in the following table are automatically added into the MPLAB X IDE project by the MHC when the library is selected for use.</em></strong></p>
+<p class="p">This table lists and describes the header and source files that must <em class="ph i">always</em> be included in the MPLAB X IDE project to build this library.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d63230e101"><span><strong class="ph b">Source File Name</strong></span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d63230e104"><span><strong class="ph b">Description</strong></span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e101 "><span>audio_decoders/mp3/mp3_dec.c,.h</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e104 "><span>This file contains implementation of the API for the MP3 Decoder</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e101 "><span>audio_decoders/mp3/id3/id3.c,.h</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e104 "><span>This file contains implementation of the API for parsing ID3 tags</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e101 "><span>audio_decoders/mp3/id3/utils.c,.h</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e104 "><span>These files contain utility functions for parsing ID3 tags</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e101 "><span>audio_decoders/mp3/fixpnt/<em class="ph i">.</em></span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e104 "><span>Files from the Helix MP3 Decoder repository (see below)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p">The MP3 Decoder Library files in the apps repository only contain a wrapper around the Helix open-source MP3 Decoder, located in the helix_mp3 repository. Files from the fixpnt folder in that repo are copied into the fixpnt folder listed above when code is generated using MHC.</p>
+<p class="p"><img class="image" src="GUID-15053249-1DD1-44B6-841A-3FAF772FF940-low.png" /><br /> <strong class="ph b"><em class="ph i">If using the MP3 Decoder Library from the audio repository, the helix_mp3 repository must also be downloaded.</em></strong></p>
+</div>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title6" id="library-interface"><h2 class="title topictitle2" id="ariaid-title6">Library Interface</h2><div class="body"><p class="p">This section describes the Application Programming Interface (API) functions of the MP3 Decoder Library.</p>
+<p class="p"><strong class="ph b">Functions</strong></p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d63230e153"><span><strong class="ph b">Name</strong></span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d63230e156"><span><strong class="ph b">Description</strong></span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>isMP3decoder_enabled</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function isMP3decoder_enabled.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_Decoder</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_Decoder.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_FillReadBuffer</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_FillReadBuffer.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_FindSyncWord</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_FindSyncWord.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_GetAudioSize</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_GetAudioSize.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_GetBitRate</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_GetBitRate.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_GetBitsPerSample</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_GetBitsPerSample.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_GetChannels</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_GetChannels.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_GetDuration</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_GetDuration.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_GetSampleRate</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_GetSampleRate.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_HdrGetBytesPerSec</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_HdrGetBytesPerSec.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_HdrGetDataLen</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_HdrGetDataLen.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_HdrGetFileSize</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_HdrGetFileSize.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_HdrGetSamplesPerSec</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_HdrGetSamplesPerSec.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_Initialize</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_Initialize.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_Initialize_N</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_Initialize_N.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>MP3_UpdatePlaytime</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function MP3_UpdatePlaytime.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e153 "><span>read_ID3Tags</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d63230e156 "><span>This is function read_ID3Tags.</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p"><strong class="ph b">Description</strong></p>
+<p class="p">This section describes the Application Programming Interface (API) functions of the MP3 Decoder Library.</p>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title7" id="functions"><h3 class="title topictitle3" id="ariaid-title7">Functions</h3><div class="body"></div>
+<div class="topic nested3" aria-labelledby="ariaid-title8" id="ismp3decoder-enabled-function"><h4 class="title topictitle4" id="ariaid-title8"><em class="ph i">isMP3decoder_enabled Function</em></h4><div class="body"><p class="p">This is function isMP3decoder_enabled.</p>
+<p class="p"><strong class="ph b">bool</strong> <strong class="ph b">isMP3decoder_enabled</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title9" id="mp3-decoder-function"><h4 class="title topictitle4" id="ariaid-title9"><em class="ph i">MP3_Decoder Function</em></h4><div class="body"><p class="p">This is function MP3_Decoder.</p>
+<p class="p"><strong class="ph b">bool</strong> <strong class="ph b">MP3_Decoder</strong>(uint8_t * <strong class="ph b">input</strong>, uint16_t <strong class="ph b">inSize</strong>, uint16_t * <strong class="ph b">read</strong>, int16_t * <strong class="ph b">output</strong>, uint16_t * <strong class="ph b">written</strong>);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title10" id="mp3-fillreadbuffer-function"><h4 class="title topictitle4" id="ariaid-title10"><em class="ph i">MP3_FillReadBuffer Function</em></h4><div class="body"><p class="p">This is function MP3_FillReadBuffer.</p>
+<p class="p"><strong class="ph b">int</strong> <strong class="ph b">MP3_FillReadBuffer</strong>(<strong class="ph b">unsigned</strong> <strong class="ph b">char</strong> * <strong class="ph b">readBuf</strong>, <strong class="ph b">unsigned</strong> <strong class="ph b">char</strong> * <strong class="ph b">readPtr</strong>, <strong class="ph b">int</strong> <strong class="ph b">bufSize</strong>, <strong class="ph b">int</strong> <strong class="ph b">bytesLeft</strong>, SYS_FS_HANDLE <strong class="ph b">fileHandle</strong>);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title11" id="mp3-findsyncword-function"><h4 class="title topictitle4" id="ariaid-title11"><em class="ph i">MP3_FindSyncWord Function</em></h4><div class="body"><p class="p">This is function MP3_FindSyncWord.</p>
+<p class="p">int32_t <strong class="ph b">MP3_FindSyncWord</strong>(HMP3Decoder <strong class="ph b">hMP3Decoder</strong>, <strong class="ph b">unsigned</strong> <strong class="ph b">char</strong> * <strong class="ph b">readPtr</strong>, int32_t <strong class="ph b">bytesLeft</strong>);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title12" id="mp3-getaudiosize-function"><h4 class="title topictitle4" id="ariaid-title12"><em class="ph i">MP3_GetAudioSize Function</em></h4><div class="body"><p class="p">This is function MP3_GetAudioSize.</p>
+<p class="p">uint32_t <strong class="ph b">MP3_GetAudioSize</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title13" id="mp3-getbitrate-function"><h4 class="title topictitle4" id="ariaid-title13"><em class="ph i">MP3_GetBitRate Function</em></h4><div class="body"><p class="p">This is function MP3_GetBitRate.</p>
+<p class="p">uint32_t <strong class="ph b">MP3_GetBitRate</strong>(SYS_FS_HANDLE <strong class="ph b">fileHandle</strong>, uint32_t <strong class="ph b">firstframe</strong>, uint8_t * <strong class="ph b">heap</strong>);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title14" id="mp3-getbitspersample-function"><h4 class="title topictitle4" id="ariaid-title14"><em class="ph i">MP3_GetBitsPerSample Function</em></h4><div class="body"><p class="p">This is function MP3_GetBitsPerSample.</p>
+<p class="p"><strong class="ph b">int</strong> <strong class="ph b">MP3_GetBitsPerSample</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title15" id="mp3-getchannels-function"><h4 class="title topictitle4" id="ariaid-title15"><em class="ph i">MP3_GetChannels Function</em></h4><div class="body"><p class="p">This is function MP3_GetChannels.</p>
+<p class="p">uint8_t <strong class="ph b">MP3_GetChannels</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title16" id="mp3-getduration-function"><h4 class="title topictitle4" id="ariaid-title16"><em class="ph i">MP3_GetDuration Function</em></h4><div class="body"><p class="p">This is function MP3_GetDuration.</p>
+<p class="p">uint32_t <strong class="ph b">MP3_GetDuration</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title17" id="mp3-getsamplerate-function"><h4 class="title topictitle4" id="ariaid-title17"><em class="ph i">MP3_GetSampleRate Function</em></h4><div class="body"><p class="p">This is function MP3_GetSampleRate.</p>
+<p class="p">uint32_t <strong class="ph b">MP3_GetSampleRate</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title18" id="mp3-hdrgetbytespersec-function"><h4 class="title topictitle4" id="ariaid-title18"><em class="ph i">MP3_HdrGetBytesPerSec Function</em></h4><div class="body"><p class="p">This is function MP3_HdrGetBytesPerSec.</p>
+<p class="p"><strong class="ph b">int</strong> <strong class="ph b">MP3_HdrGetBytesPerSec</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title19" id="mp3-hdrgetdatalen-function"><h4 class="title topictitle4" id="ariaid-title19"><em class="ph i">MP3_HdrGetDataLen Function</em></h4><div class="body"><p class="p">This is function MP3_HdrGetDataLen.</p>
+<p class="p"><strong class="ph b">int</strong> <strong class="ph b">MP3_HdrGetDataLen</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title20" id="mp3-hdrgetfilesize-function"><h4 class="title topictitle4" id="ariaid-title20"><em class="ph i">MP3_HdrGetFileSize Function</em></h4><div class="body"><p class="p">This is function MP3_HdrGetFileSize.</p>
+<p class="p"><strong class="ph b">unsigned</strong> <strong class="ph b">int</strong> <strong class="ph b">MP3_HdrGetFileSize</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title21" id="mp3-hdrgetsamplespersec-function"><h4 class="title topictitle4" id="ariaid-title21"><em class="ph i">MP3_HdrGetSamplesPerSec Function</em></h4><div class="body"><p class="p">This is function MP3_HdrGetSamplesPerSec.</p>
+<p class="p"><strong class="ph b">int</strong> <strong class="ph b">MP3_HdrGetSamplesPerSec</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title22" id="mp3-initialize-function"><h4 class="title topictitle4" id="ariaid-title22"><em class="ph i">MP3_Initialize Function</em></h4><div class="body"><p class="p">This is function MP3_Initialize.</p>
+<p class="p"><strong class="ph b">void</strong> <strong class="ph b">MP3_Initialize</strong>(uint8_t * <strong class="ph b">input</strong>);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title23" id="mp3-initialize-n-function"><h4 class="title topictitle4" id="ariaid-title23"><em class="ph i">MP3_Initialize_N Function</em></h4><div class="body"><p class="p">This is function MP3_Initialize_N.</p>
+<p class="p"><strong class="ph b">void</strong> <strong class="ph b">MP3_Initialize_N</strong>(uint8_t * <strong class="ph b">input</strong>, SYS_FS_HANDLE <strong class="ph b">wavFilehandle</strong>);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title24" id="mp3-updateplaytime-function"><h4 class="title topictitle4" id="ariaid-title24"><em class="ph i">MP3_UpdatePlaytime Function</em></h4><div class="body"><p class="p">This is function MP3_UpdatePlaytime.</p>
+<p class="p">uint32_t <strong class="ph b">MP3_UpdatePlaytime</strong>(void);</p>
+</div>
+</div>
+<div class="topic nested3" aria-labelledby="ariaid-title25" id="read-id3tags-function"><h4 class="title topictitle4" id="ariaid-title25"><em class="ph i">read_ID3Tags Function</em></h4><div class="body"><p class="p">This is function read_ID3Tags.</p>
+<p class="p"><strong class="ph b">void</strong> <strong class="ph b">read_ID3Tags</strong>(SYS_FS_HANDLE <strong class="ph b">fileHandle</strong>, uint8_t * <strong class="ph b">heap</strong>, ID3_EVENT_HANDLER <strong class="ph b">eventHandler</strong>);</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
