@@ -212,8 +212,8 @@
 <p class="p">• Shorthand may eliminate the leading 0, such as in Q0.15, which may be shortened to Q15, and similarly Q0.31, which is shortened to Q31</p>
 <p class="p"><em class="ph i">Qn.m</em> numerical values are used by the library processing data as integers. In this format the n represents the number of integer bits, and the m represents the number of fractional bits. All values assume a sign bit in the most significant bit. Therefore, the range of the numerical value is:</p>
 <span class="undefined_element">-2<sup class="ph sup">(n-1)</sup> to [2<sup class="ph sup">(n-1)</sup>) - 2<sup class="ph sup">(-m)</sup>]; with a resolution of 2<sup class="ph sup">(-m)</sup>.</span><p class="p">A Q16 format number (Q15.16) would range from -32768.0 (0x8000 0000) to 32767.99998474 with a precision of 0.000015259 (or 2<sup class="ph sup">(-16)</sup>). For example, a numerical representation of the number 3.14159 in Q2.13 notation would be:</p>
-<span class="undefined_element">3.14159 \* 213<sup class="ph sup">(13)</sup> = 25735.9 =\\&gt; 0x6488</span><p class="p">And converting from the Q7.8 format with the value 0x1D89 would be:</p>
-<span class="undefined_element">0x1D89 / 2<sup class="ph sup">(8)</sup> = 7561 / 256 =\\&gt; 29.5316, accurate to 0.00391</span><p class="p">The majority of the math libraries uses functions with variables in Q15 or Q31 format. This limits the equivalent numerical range to roughly -1.0 to 0.999999999. It is possible to represent other number ranges, but scaling before and after the function call are necessary. All library functions will saturate the output if the value exceeds the maximum or is lower than the minimum allowable value for that resolution. Some prescaling may be necessary to prevent unwanted saturation in functions that may otherwise create calculation errors.</p>
+<span class="undefined_element">3.14159 * 213<sup class="ph sup">(13)</sup> = 25735.9 =&gt; 0x6488</span><p class="p">And converting from the Q7.8 format with the value 0x1D89 would be:</p>
+<span class="undefined_element">0x1D89 / 2<sup class="ph sup">(8)</sup> = 7561 / 256 =&gt; 29.5316, accurate to 0.00391</span><p class="p">The majority of the math libraries uses functions with variables in Q15 or Q31 format. This limits the equivalent numerical range to roughly -1.0 to 0.999999999. It is possible to represent other number ranges, but scaling before and after the function call are necessary. All library functions will saturate the output if the value exceeds the maximum or is lower than the minimum allowable value for that resolution. Some prescaling may be necessary to prevent unwanted saturation in functions that may otherwise create calculation errors.</p>
 <p class="p">Usually, a Q16, Q31 and version of each function is available. Floating point versions are also available for CMSIS-DSP.</p>
 </div>
 </div>
@@ -237,7 +237,7 @@
 </div>
 </div>
 <div class="topic nested2" aria-labelledby="ariaid-title10" id="library-source-files"><h3 class="title topictitle3" id="ariaid-title10">Library Source Files</h3><div class="body"><p class="p">The CMSIS-DSP Library source files are provided in the dev_packs repo under:</p>
-<p class="p">packs\arm\CMSIS\&amp;lt;Version Number\&gt;\CMSIS\DSP\Source</p>
+<p class="p">packs\arm\CMSIS&amp;lt;Version Number&gt;\CMSIS\DSP\Source</p>
 <p class="p">The source is not generated to the Harmony 3 project but will give the implementation details and the ability to rebuild the library.</p>
 </div>
 </div>
@@ -252,12 +252,12 @@
 <p class="p">libarm_cortexM7lfdp_math.a</p>
 <p class="p">libarm_cortexM7lfsp_math.a</p>
 <p class="p">The naming convention is as follows:</p>
-<p class="p">libarm_\&lt;ARM,cortex\&gt;\&lt;core\&gt;\&lt;codes\&gt;_math.a</p>
+<p class="p">libarm_&lt;ARM,cortex&gt;&lt;core&gt;&lt;codes&gt;_math.a</p>
 <p class="p">The cores are: M0,M3,M4, or M7,</p>
 <p class="p">The codes are as follows:</p>
-<p class="p">\&lt;l,b\&gt; - little or big endian byte order</p>
-<p class="p">\&lt;dp,sp\&gt; – double or single precision</p>
-<p class="p">\&lt;f\&gt; - Floating Point Unit on</p>
+<p class="p">&lt;l,b&gt; - little or big endian byte order</p>
+<p class="p">&lt;dp,sp&gt; – double or single precision</p>
+<p class="p">&lt;f&gt; - Floating Point Unit on</p>
 </div>
 </div>
 <div class="topic nested2" aria-labelledby="ariaid-title12" id="configuring-the-library-using-mhc"><h3 class="title topictitle3" id="ariaid-title12">Configuring the Library using MHC</h3><div class="body"><p class="p">Provides information on using MPLAB Harmony Configurator (MHC) to configure the library.</p>
@@ -337,11 +337,11 @@ must also be included in a project. The libq.h file is also installed with MPLAB
 <p class="p">• dsp_mips32_mz_ef_nfO3.a</p>
 <p class="p">• dsp_mips32_mz_ef_nfOs.a</p>
 <p class="p">The naming convention for these libraries is as follows:</p>
-<p class="p">\&lt;name\&gt;<em class="ph i">\&lt;arch\&gt;</em>\&lt;core\&gt;<em class="ph i">\&lt;fpu\&gt;</em>\&lt;codes\&gt;.a</p>
+<p class="p">&lt;name&gt;<em class="ph i">&lt;arch&gt;</em>&lt;core&gt;<em class="ph i">&lt;fpu&gt;</em>&lt;codes&gt;.a</p>
 <p class="p">where, "name" is the name of the library (DSP); "arch" is the 32 MIPS architecture (MIPS32); "core" is the microAptive core with</p>
 <p class="p">DSP ASE extensions (MZ); and "fpu" indicates that a Floating Point Unit(FPU) is available. The "codes" are as follows:</p>
-<p class="p">• \&lt;nf, fpu\&gt; - FPU disabled or enabled</p>
-<p class="p">• \&lt;O3,OS\&gt; - Fully optimized for speed or optimized for size.</p>
+<p class="p">• &lt;nf, fpu&gt; - FPU disabled or enabled</p>
+<p class="p">• &lt;O3,OS&gt; - Fully optimized for speed or optimized for size.</p>
 <p class="p"><strong class="ph b">Configuring the Library using MHC</strong></p>
 <p class="p">Select the Audio/Math/Math Libraries component to load the libq_c, libq/dsp libraries.</p>
 <p class="p">The project configuration should now contain the Math Libraries block.</p>
@@ -483,7 +483,7 @@ must also be included in a project. The libq.h file is also installed with MPLAB
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function DSP_ComplexAdd32:</p>
 <p class="p">void DSP_ComplexAdd32(int32c *indata1, int32c *indata2, int32c *Output);</p>
-<p class="p">Calculates the sum of two complex numbers, indata1 and indata2, and stores the complex result in Output. Complex numbers must be in the structural form that includes real and imaginary components. The function saturates the output values if maximum or minimum are exceeded. All values are in Q31 fractional data format. (a + bi) + (c + di) =\&gt; (a + c) + (b + d)i</p>
+<p class="p">Calculates the sum of two complex numbers, indata1 and indata2, and stores the complex result in Output. Complex numbers must be in the structural form that includes real and imaginary components. The function saturates the output values if maximum or minimum are exceeded. All values are in Q31 fractional data format. (a + bi) + (c + di) =&gt; (a + c) + (b + d)i</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">Complex numbers must be in the int32c format.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -514,7 +514,7 @@ must also be included in a project. The libq.h file is also installed with MPLAB
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">DSP_ComplexConj16:</p>
 <p class="p">void DSP_ComplexConj16(int16c *indata, int16c *Output);</p>
-<p class="p">CCalculates the complex conjugate of Indata, and stores the result in Outdata. Both numbers must be in the complex number data structure which includes real and imaginary components. Values are in Q15 fractional data format. The function will saturate the output if maximum or minimum values are exceeded. (a + bi) =\&gt; (a - bi)</p>
+<p class="p">CCalculates the complex conjugate of Indata, and stores the result in Outdata. Both numbers must be in the complex number data structure which includes real and imaginary components. Values are in Q15 fractional data format. The function will saturate the output if maximum or minimum values are exceeded. (a + bi) =&gt; (a - bi)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">Complex numbers must be in the int32c format.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -541,7 +541,7 @@ must also be included in a project. The libq.h file is also installed with MPLAB
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function DSP_ComplexConj32:</p>
 <p class="p">void DSP_ComplexConj32(int32c *indata, int32c *Output);</p>
-<p class="p">Calculates the complex conjugate of indata, and stores the result in Output. Both numbers must be in the complex number data structure, which includes real and imaginary components. Values are in Q31 fractional data format. The function will saturate the output if maximum or minimum values are exceeded. (a + bi) =\&gt; (a - bi)</p>
+<p class="p">Calculates the complex conjugate of indata, and stores the result in Output. Both numbers must be in the complex number data structure, which includes real and imaginary components. Values are in Q31 fractional data format. The function will saturate the output if maximum or minimum values are exceeded. (a + bi) =&gt; (a - bi)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">Complex numbers must be in the int32c format.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -570,7 +570,7 @@ must also be included in a project. The libq.h file is also installed with MPLAB
 <p class="p">void DSP_ComplexDotProd32(int32c *indata1, int32c *indata2, int32c *Output);</p>
 <p class="p">Calculates the dot product of two complex numbers, indata1 and indata2, and stores the result in Output. All numbers must be in complex structural format that includes real and imaginary components, and the numbers are in fractional Q31 format. The function will saturate the output if it exceeds maximum or minimum ratings. The formula for the dot product is as follows:</p>
 <p class="p">Output(real) = (Input1.re * Input2.re) + (Input1.im * Input2.im); Output(img) = <span class="xref"></span>i (a +</p>
-<p class="p">bi) dot (c + di) =\&gt; (a * c + b * d) + (a * d - b * c)i</p>
+<p class="p">bi) dot (c + di) =&gt; (a * c + b * d) + (a * d - b * c)i</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">Complex numbers must be in the int32c format.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -602,7 +602,7 @@ must also be included in a project. The libq.h file is also installed with MPLAB
 <p class="p">Function DSP_ComplexMult32:</p>
 <p class="p">void DSP_ComplexMult32(int32c *indata1, int32c *indata2, int32c *Output);</p>
 <p class="p">Multiplies two complex numbers, indata1 and indata2, and stores the complex result in Output. All numbers must be in the int32c complex data structure. All data is in Q31 fractional format. The function will saturate if maximum or minimum values are exceeded. Output(real) = (Input1.re * Input2.re) - (Input1.im * Input2.im); Output(img) = [(Input1.re * Input2.im) + (Input1.im *</p>
-<p class="p">Input2.re)]i (a + bi) x (c + di) =\&gt; (a * c - b * d) + (a * d + b * c)i</p>
+<p class="p">Input2.re)]i (a + bi) x (c + di) =&gt; (a * c - b * d) + (a * d + b * c)i</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">Complex numbers must be in the int32c format.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -634,7 +634,7 @@ must also be included in a project. The libq.h file is also installed with MPLAB
 <p class="p">Function DSP_ComplexScalarMult32:</p>
 <p class="p">void DSP_ComplexScalarMult32(int32c *indata, int32_t Scalar, int32c *Output);</p>
 <p class="p">Multiplies a complex number, indata, by a scalar number, Scalar, and stores the result in Output. indata and Output must be in</p>
-<p class="p">int32c structure with real and imaginary components. All data must be in the fractional Q31 format. The function will saturate if maximum or minimum values are exceeded. Output(real) = (Input1.re * Scalar); Output(img) = <span class="xref"></span>i (a + bi) * C =\&gt;</p>
+<p class="p">int32c structure with real and imaginary components. All data must be in the fractional Q31 format. The function will saturate if maximum or minimum values are exceeded. Output(real) = (Input1.re * Scalar); Output(img) = <span class="xref"></span>i (a + bi) * C =&gt;</p>
 <p class="p">(a * C + b * Ci)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">Complex numbers must be in the int32c format.</p>
@@ -664,7 +664,7 @@ must also be included in a project. The libq.h file is also installed with MPLAB
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function DSP_ComplexSub32:</p>
 <p class="p">void DSP_ComplexSub32(int32c *indata1, int32c *indata2, int32c *Output);</p>
-<p class="p">Calculates the difference of two complex numbers, indata1 less indata2, and stores the complex result in Output. Both numbers must be in a complex data structure, which includes real and imaginary components. The function saturates the output values if maximum or minimum are exceeded. Real and imaginary components are in the Q31 fractional data format. (a + bi) - (c + di) =\&gt; (a</p>
+<p class="p">Calculates the difference of two complex numbers, indata1 less indata2, and stores the complex result in Output. Both numbers must be in a complex data structure, which includes real and imaginary components. The function saturates the output values if maximum or minimum are exceeded. Real and imaginary components are in the Q31 fractional data format. (a + bi) - (c + di) =&gt; (a</p>
 <ul class="ul"><li class="li"><p class="p">c) + (b - d)i</p>
 </li>
 </ul>
@@ -720,7 +720,7 @@ must also be included in a project. The libq.h file is also installed with MPLAB
 <p class="p"><strong class="ph b">#define</strong> numPOINTS 256</p>
 <p class="p">int filterN = numPOINTS;</p>
 <p class="p">int filterK = TAPS;</p>
-<p class="p">int filterScale = 1; <em class="ph i">// scale output by 1/2^1 =\&gt; output * 0.5</em></p>
+<p class="p">int filterScale = 1; <em class="ph i">// scale output by 1/2^1 =&gt; output * 0.5</em></p>
 <p class="p">int32_t FilterCoefs<span class="xref"></span> = {0x40000000, 0x20000000, 0x20000000, 0x20000000,</p>
 <p class="p">0x40000000, 0x20000000, 0x20000000, 0x20000000};</p>
 <p class="p"><em class="ph i">// note repeated filter coefs, A B C D A B C D</em></p>
@@ -772,7 +772,7 @@ calculation, and must be initialized to zero prior to calling the filter. Both c
 <p class="p">int testFilterRate = SKIP; <em class="ph i">// decimation rate R</em></p>
 <p class="p">int32_t outFiltDataDec<span class="xref"></span>={0};</p>
 <p class="p">int32_t *inTestFilter<span class="xref"></span>;</p>
-<p class="p">int filtScaleNum = 1; <em class="ph i">// scale output (1 /2^n) =\&gt; Y * 0.5</em></p>
+<p class="p">int filtScaleNum = 1; <em class="ph i">// scale output (1 /2^n) =&gt; Y * 0.5</em></p>
 <p class="p">int32_t filtDelayTest<span class="xref"></span>={0}; <em class="ph i">// always initialize to zero</em></p>
 <p class="p"><em class="ph i">// get pointer to input buffer here //</em></p>
 <p class="p">inTestFilter = &amp;inputBuffer;</p>
@@ -787,8 +787,8 @@ calculation, and must be initialized to zero prior to calling the filter. Both c
 <p class="p">Function DSP_FilterFIRInterp32:</p>
 <p class="p">void DSP_FilterFIRInterp32(int32_t *outdata, int32_t *indata, int32_t *coeffs, int32_t *delayline, int N, int K, int scale, int rate);</p>
 <p class="p">Perform an interpolating FIR filter on the first N samples of indata, and stores the result in outdata. The number of output elements is N*rate. The number of filter taps, K, must be an even multiple of N. The coefficients array, Coeffs, must be K elements long. The delay line array, delayline, must be K/R elements long, and be initialized to zero. All data elements must be in Q31 fractional data format. Scaling is performed via binary shift on the input equivalent to (1/2^shift). The function will saturate the output if it exceeds maximum or minimum values. The function creates R output values for each input value processed. The delayline of previous values is processed with R elements of the coefficient array. Numerically:</p>
-<p class="p">Y(1,0) = X(0)*C(0) + X(-1)*C(rate) + X(-2)*C(2*rate) ... Y(1,1) = X(0)*C(1) + X(-1)*C(rate+1) + X(-2)*C(2*rate + 1) ... Y(1,rate) =</p>
-<p class="p">X(0)*C(N) + X(-1)*C(rate+N) + X(-2)*C(2*rate + N) ...</p>
+<p class="p">Y(1,0) = X(0)*C(0) + X(-1)*C(rate) + X(-2)<em class="ph i">C(2</em>rate) ... Y(1,1) = X(0)*C(1) + X(-1)*C(rate+1) + X(-2)<em class="ph i">C(2</em>rate + 1) ... Y(1,rate) =</p>
+<p class="p">X(0)*C(N) + X(-1)*C(rate+N) + X(-2)<em class="ph i">C(2</em>rate + N) ...</p>
 <p class="p">where output Y corresponds to (input,rate) different outputs, input X has (M/rate) sample delays and C is the coefficient array.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">The pointers outdata and indata must be aligned on 4-byte boundaries. delayline must have (K/R) elements, and be initialized to zero. K (taps) must be an even multiple of R (rate). outdata must have R*N elements.</p>
@@ -836,11 +836,11 @@ calculation, and must be initialized to zero prior to calling the filter. Both c
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function DSP_FilterIIR16:</p>
 <p class="p">int16_t DSP_FilterIIR16(int16_t in, int16_t *coeffs, int16_t *delayline, int B, int scale);</p>
-<p class="p">Performs a single element cascaded biquad IIR filter on the input, in. The filter contains B number of biquad sections, and cascades the output of one to the input of the next. B must be greater than 2 and a multiple of 2. The int16_t output generated by the function is the computation from the final biquad stage. Delay pipeline array delayline must contain 2*B values and be initialized to zero prior to use. The coefficient array must contain 4*B elements, and must be set up in order of biquad a1, a2, b1, b2. A binary (right shift) factor, scale, will scale the output equivalent to (1/2^scale). All numerical values must be in Q15 fractional data format. The function will saturate values if maximum or minimum values are exceeded.</p>
+<p class="p">Performs a single element cascaded biquad IIR filter on the input, in. The filter contains B number of biquad sections, and cascades the output of one to the input of the next. B must be greater than 2 and a multiple of 2. The int16_t output generated by the function is the computation from the final biquad stage. Delay pipeline array delayline must contain 2<em class="ph i">B values and be initialized to zero prior to use. The coefficient array must contain 4</em>B elements, and must be set up in order of biquad a1, a2, b1, b2. A binary (right shift) factor, scale, will scale the output equivalent to (1/2^scale). All numerical values must be in Q15 fractional data format. The function will saturate values if maximum or minimum values are exceeded.</p>
 <p class="p">Y = X0 + (b1 * X(-1)) + (b2 * X(-2) + (a1 * Y(-1)) + (a2 * Y(-2))</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">The pointers outdata and indata must be aligned on 4-byte boundaries. B must be greater than 2 and a multiple of 2. delayline</p>
-<p class="p">must have 2*B elements, and be initialized to zero. coeffs must have 4*B elements.</p>
+<p class="p">must have 2<em class="ph i">B elements, and be initialized to zero. coeffs must have 4</em>B elements.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">in input data element X (int16_t)</p>
@@ -858,7 +858,7 @@ calculation, and must be initialized to zero prior to calling the filter. Both c
 <p class="p">int16_t coefs<span class="xref"></span>= {0};</p>
 <p class="p">int16_t delaylines<span class="xref"></span>= {0};</p>
 <p class="p">int16_t Y, X;</p>
-<p class="p">int scaleBquad = 1; <em class="ph i">// scale output (1 /2^n) =\&gt; Y * 0.5</em></p>
+<p class="p">int scaleBquad = 1; <em class="ph i">// scale output (1 /2^n) =&gt; Y * 0.5</em></p>
 <p class="p"><em class="ph i">// do something to set up coefs, for instance this example //</em></p>
 <p class="p">for (j=0; jRemarks:Filter coefs must be stored within the array as a1, a2, b1, b2, a1, a2, b1, b2, in order of biquads form input to output. A function to translate the coeffs from biquad structure to coeffs is available in DSP_FilterIIRSetup16. The function updates the delayline array, which must be 2*B elements <strong class="ph b">long</strong>. The array should be initialized to zero prior to the first processing. It will contain values for processing cascaded filters within a loop.</p>
 <p class="p"><strong class="ph b">C</strong></p>
@@ -894,14 +894,14 @@ calculation, and must be initialized to zero prior to calling the filter. Both c
 <p class="p"><em class="ph i">// a1 = -1.848823142275648</em></p>
 <p class="p"><em class="ph i">// a2 = 0.8647765642900187</em></p>
 <p class="p"><em class="ph i">// note all coefs are half value of original design, gain handled in algorithm</em></p>
-<p class="p">ptrFiltEQ32-\&gt;b<span class="xref"></span>=0x0453; <em class="ph i">// feed forward b0 coef</em></p>
-<p class="p">ptrFiltEQ32-\&gt;b<span class="xref"></span>=0; <em class="ph i">// feed forward b1 coef</em></p>
-<p class="p">ptrFiltEQ32-\&gt;b<span class="xref"></span>=0xFBAD; <em class="ph i">// feed forward b2 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;b<span class="xref"></span>=0x0453; <em class="ph i">// feed forward b0 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;b<span class="xref"></span>=0; <em class="ph i">// feed forward b1 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;b<span class="xref"></span>=0xFBAD; <em class="ph i">// feed forward b2 coef</em></p>
 <p class="p"><em class="ph i">// note all coefs are half value of original design, gain handled in algorithm</em></p>
 <p class="p"><em class="ph i">// note subtract is handled in algorithm, so coefs go in at actual value</em></p>
-<p class="p">ptrFiltEQ32-\&gt;a<span class="xref"></span>=0x89AD; <em class="ph i">// feedback a1 coef</em></p>
-<p class="p">ptrFiltEQ32-\&gt;a<span class="xref"></span>=0x3758; <em class="ph i">// feedback a2 coef</em></p>
-<p class="p">for (i=0;i\&lt;256;i++)</p>
+<p class="p">ptrFiltEQ32-&gt;a<span class="xref"></span>=0x89AD; <em class="ph i">// feedback a1 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;a<span class="xref"></span>=0x3758; <em class="ph i">// feedback a2 coef</em></p>
+<p class="p">for (i=0;i&lt;256;i++)</p>
 <p class="p">{</p>
 <p class="p"><em class="ph i">// *** get some input data here</em></p>
 <p class="p">DataIn32 = three_hundred_hz<span class="xref"></span>;</p>
@@ -917,7 +917,7 @@ calculation, and must be initialized to zero prior to calling the filter. Both c
 <p class="p">int16_t DSP_FilterIIRBQ16_cascade8(int16_t Xin, PARM_EQUAL_FILTER *pFilter_Array);</p>
 <p class="p">Calculates a single pass IIR biquad cascade filter on Xin, and delivers the result as a 16-bit output. The cascade of filters is 8 unique biquad filters arranged in series such that the output of one is provided as the input to the next. A unique filter coefficient set is provided to each, and 32 bit delay lines are maintained for each. All math is performed using 32 bit instructions, which results truncated to 16-bits for the output. Global gain values are available on the output. Fracgain is a Q15 fractional gain value and expgain is a binary shift gain value. The combination of the two can be utilized to normalize the output as desired. All values
 are fractional Q15 and Q31, see data structure for specifics.</p>
-<p class="p">Y = Y7 \&lt;- Y6 \&lt;- Y5 \&lt;- Y4 \&lt;- Y3 \&lt;- Y2 \&lt;- Y1 \&lt;- Y0 where each Yn filter element represents a unique IIR biquad: Yn = Y(n-1)*b0 +</p>
+<p class="p">Y = Y7 &lt;- Y6 &lt;- Y5 &lt;- Y4 &lt;- Y3 &lt;- Y2 &lt;- Y1 &lt;- Y0 where each Yn filter element represents a unique IIR biquad: Yn = Y(n-1)*b0 +</p>
 <p class="p">(b1 * Y(n-2)) + (b2 * Y(n-3)) - (a1 * Yn(-1)) - (a2 * Yn(-2)) and: for Y0; Y(n-1) = Xin(0)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">Delay register values should be initialized to zero.</p>
@@ -934,7 +934,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">uint16_t dataY, dataX;</p>
 <p class="p"><em class="ph i">// example to use 2 filter blocks as notch filters</em></p>
 <p class="p"><em class="ph i">// fill entire Filter Array with coefs</em></p>
-<p class="p">for (i=0;i\&lt;8;i++)</p>
+<p class="p">for (i=0;i&lt;8;i++)</p>
 <p class="p">{</p>
 <p class="p">filtArray<span class="xref"></span>.Z<span class="xref"></span>=0;</p>
 <p class="p">filtArray<span class="xref"></span>.Z<span class="xref"></span>=0;</p>
@@ -975,7 +975,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// note subtract is handled in algorithm, so coefs go in at actual value</em></p>
 <p class="p">filtArray<span class="xref"></span>.a<span class="xref"></span>=0x8cdc; <em class="ph i">// feedback a1 coef</em></p>
 <p class="p">filtArray<span class="xref"></span>.a<span class="xref"></span>=0x3452; <em class="ph i">// feedback a2 coef</em></p>
-<p class="p">for (i=0;i\&lt;256;i++)</p>
+<p class="p">for (i=0;i&lt;256;i++)</p>
 <p class="p">{</p>
 <p class="p"><em class="ph i">// *** get input data here</em></p>
 <p class="p">dataX = compound_300_1K_hz16<span class="xref"></span>;</p>
@@ -990,7 +990,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_FilterIIRBQ16_cascade8_fast:</p>
 <p class="p">int16_t DSP_FilterIIRBQ16_cascade8_fast(int16_t Xin, PARM_EQUAL_FILTER_16 *pFilter_Array);</p>
 <p class="p">Calculates a single pass IIR biquad cascade filter on Xin, and delivers the result as a 16-bit output. The cascade of filters is 8 unique biquad filters arranged in series such that the output of one is provided as the input to the next. A unique filter coefficient set is provided to each, and 16 bit delay lines are maintained for each. All math is performed using 16 bit instructions, which results rounded to 16-bits for the output. All values are fractional Q15, see data structure for specifics. The function will saturate the output should it exceed maximum or minimum values.</p>
-<p class="p">Y = Y7 \&lt;- Y6 \&lt;- Y5 \&lt;- Y4 \&lt;- Y3 \&lt;- Y2 \&lt;- Y1 \&lt;- Y0 where each Yn filter element represents a unique IIR biquad: Yn = Y(n-1)*b0 +</p>
+<p class="p">Y = Y7 &lt;- Y6 &lt;- Y5 &lt;- Y4 &lt;- Y3 &lt;- Y2 &lt;- Y1 &lt;- Y0 where each Yn filter element represents a unique IIR biquad: Yn = Y(n-1)*b0 +</p>
 <p class="p">(b1 * Y(n-2)) + (b2 * Y(n-3)) - (a1 * Yn(-1)) - (a2 * Yn(-2)) and: for Y0; Y(n-1) = Xin(0)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">Delay register values should be initialized to zero.</p>
@@ -1007,7 +1007,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">uint16_t dataY, dataX;</p>
 <p class="p"><em class="ph i">// example to use 2 filter blocks as notch filters</em></p>
 <p class="p"><em class="ph i">// fill entire Filter Array with coefs</em></p>
-<p class="p">for (i=0;i\&lt;8;i++)</p>
+<p class="p">for (i=0;i&lt;8;i++)</p>
 <p class="p">{</p>
 <p class="p">filtArray<span class="xref"></span>.Z<span class="xref"></span>=0;</p>
 <p class="p">filtArray<span class="xref"></span>.Z<span class="xref"></span>=0;</p>
@@ -1048,7 +1048,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// note subtract is handled in algorithm, so coefs go in at actual value</em></p>
 <p class="p">filtArray<span class="xref"></span>.a<span class="xref"></span>=0x8cdc; <em class="ph i">// feedback a1 coef</em></p>
 <p class="p">filtArray<span class="xref"></span>.a<span class="xref"></span>=0x3452; <em class="ph i">// feedback a2 coef</em></p>
-<p class="p">for (i=0;i\&lt;256;i++)</p>
+<p class="p">for (i=0;i&lt;256;i++)</p>
 <p class="p">{</p>
 <p class="p"><em class="ph i">// *** get input data here</em></p>
 <p class="p">dataX = compound_300_1K_hz16<span class="xref"></span>;</p>
@@ -1088,14 +1088,14 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// a1 = -1.848823142275648</em></p>
 <p class="p"><em class="ph i">// a2 = 0.8647765642900187</em></p>
 <p class="p"><em class="ph i">// note all coefs are half value of original design, gain handled in algorithm</em></p>
-<p class="p">ptrFiltEQ32-\&gt;b<span class="xref"></span>=0x0453; <em class="ph i">// feed forward b0 coef</em></p>
-<p class="p">ptrFiltEQ32-\&gt;b<span class="xref"></span>=0; <em class="ph i">// feed forward b1 coef</em></p>
-<p class="p">ptrFiltEQ32-\&gt;b<span class="xref"></span>=0xFBAD; <em class="ph i">// feed forward b2 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;b<span class="xref"></span>=0x0453; <em class="ph i">// feed forward b0 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;b<span class="xref"></span>=0; <em class="ph i">// feed forward b1 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;b<span class="xref"></span>=0xFBAD; <em class="ph i">// feed forward b2 coef</em></p>
 <p class="p"><em class="ph i">// note all coefs are half value of original design, gain handled in algorithm</em></p>
 <p class="p"><em class="ph i">// note subtract is handled in algorithm, so coefs go in at actual value</em></p>
-<p class="p">ptrFiltEQ32-\&gt;a<span class="xref"></span>=0x89AD; <em class="ph i">// feedback a1 coef</em></p>
-<p class="p">ptrFiltEQ32-\&gt;a<span class="xref"></span>=0x3758; <em class="ph i">// feedback a2 coef</em></p>
-<p class="p">for (i=0;i\&lt;256;i++)</p>
+<p class="p">ptrFiltEQ32-&gt;a<span class="xref"></span>=0x89AD; <em class="ph i">// feedback a1 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;a<span class="xref"></span>=0x3758; <em class="ph i">// feedback a2 coef</em></p>
+<p class="p">for (i=0;i&lt;256;i++)</p>
 <p class="p">{</p>
 <p class="p"><em class="ph i">// *** get some input data here</em></p>
 <p class="p">DataIn32 = three_hundred_hz<span class="xref"></span>;</p>
@@ -1113,7 +1113,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Y = Y7/8 + Y6/8 + Y5/8 + Y4/8 + Y3/8 + Y2/8 + Y1/8 + Y0/8 where each Yn filter element represents a unique IIR biquad: Yn =</p>
 <p class="p">X(0)*b0 + (b1 * X(n-1)) + (b2 * X(n-2)) - (a1 * Yn(-1)) - (a2 * Yn(-2))</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
-<p class="p">Delay register values should be initialized to zero. The sum of all fracgain should be \&lt;= 1</p>
+<p class="p">Delay register values should be initialized to zero. The sum of all fracgain should be &lt;= 1</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">Xin input data element X (int16_t)</p>
@@ -1127,7 +1127,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">PARM_EQUAL_FILTER filtArrayPara<span class="xref"></span>;</p>
 <p class="p">uint16_t dataY, dataX;</p>
 <p class="p"><em class="ph i">// fill entire Filter Array with coefs</em></p>
-<p class="p">for (i=0;i\&lt;8;i++)</p>
+<p class="p">for (i=0;i&lt;8;i++)</p>
 <p class="p">{</p>
 <p class="p">filtArrayPara<span class="xref"></span>.Z<span class="xref"></span>=0;</p>
 <p class="p">filtArrayPara<span class="xref"></span>.Z<span class="xref"></span>=0;</p>
@@ -1163,7 +1163,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// note subtract is handled in algorithm, so coefs go in at actual value</em></p>
 <p class="p">filtArrayPara<span class="xref"></span>.a<span class="xref"></span>=0x8316; <em class="ph i">// feedback a1 coef</em></p>
 <p class="p">filtArrayPara<span class="xref"></span>.a<span class="xref"></span>=0x3d08; <em class="ph i">// feedback a2 coef</em></p>
-<p class="p">for (i=0;i\&lt;256;i++)</p>
+<p class="p">for (i=0;i&lt;256;i++)</p>
 <p class="p">{</p>
 <p class="p"><em class="ph i">// *** get input data here</em></p>
 <p class="p">dataX = compound_300_1K_hz16<span class="xref"></span>;</p>
@@ -1182,7 +1182,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Y = Y7/8 + Y6/8 + Y5/8 + Y4/8 + Y3/8 + Y2/8 + Y1/8 + Y0/8 where each Yn filter element represents a unique IIR biquad: Yn =</p>
 <p class="p">X(0)*b0 + (b1 * X(n-1)) + (b2 * X(n-2)) - (a1 * Yn(-1)) - (a2 * Yn(-2))</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
-<p class="p">Delay register values should be initialized to zero. The sum of all fracgain should be \&lt;= 1</p>
+<p class="p">Delay register values should be initialized to zero. The sum of all fracgain should be &lt;= 1</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">Xin input data element X (int16_t)</p>
@@ -1195,7 +1195,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">PARM_EQUAL_FILTER_16 filtArrayPara<span class="xref"></span>; <em class="ph i">// note change in data structure</em></p>
 <p class="p">uint16_t dataY, dataX;</p>
 <p class="p"><em class="ph i">// fill entire Filter Array with coefs</em></p>
-<p class="p">for (i=0;i\&lt;8;i++)</p>
+<p class="p">for (i=0;i&lt;8;i++)</p>
 <p class="p">{</p>
 <p class="p">filtArrayPara<span class="xref"></span>.Z<span class="xref"></span>=0;</p>
 <p class="p">filtArrayPara<span class="xref"></span>.Z<span class="xref"></span>=0;</p>
@@ -1231,7 +1231,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// note subtract is handled in algorithm, so coefs go in at actual value</em></p>
 <p class="p">filtArrayPara<span class="xref"></span>.a<span class="xref"></span>=0x8316; <em class="ph i">// feedback a1 coef</em></p>
 <p class="p">filtArrayPara<span class="xref"></span>.a<span class="xref"></span>=0x3d08; <em class="ph i">// feedback a2 coef</em></p>
-<p class="p">for (i=0;i\&lt;256;i++)</p>
+<p class="p">for (i=0;i&lt;256;i++)</p>
 <p class="p">{</p>
 <p class="p"><em class="ph i">// *** get input data here</em></p>
 <p class="p">dataX = compound_300_1K_hz16<span class="xref"></span>;</p>
@@ -1263,8 +1263,8 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">PARM_EQUAL_FILTER_32 FilterEQ32;</p>
 <p class="p">int32_t DataIn32, DataOut32;</p>
 <p class="p">ptrFiltEQ32 = &amp;FilterEQ32;</p>
-<p class="p">ptrFiltEQ32-\&gt;Z<span class="xref"></span>=0;</p>
-<p class="p">ptrFiltEQ32-\&gt;Z<span class="xref"></span>=0;</p>
+<p class="p">ptrFiltEQ32-&gt;Z<span class="xref"></span>=0;</p>
+<p class="p">ptrFiltEQ32-&gt;Z<span class="xref"></span>=0;</p>
 <p class="p"><em class="ph i">// 1000 Hz Q= 0.9 BP filter design, 44.1K sampling</em></p>
 <p class="p"><em class="ph i">//</em></p>
 <p class="p"><em class="ph i">// b0 = 0.07311778239751009 forward</em></p>
@@ -1273,14 +1273,14 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// a1 = -1.8349811166056893 back</em></p>
 <p class="p"><em class="ph i">// a2 = 0.8537644352049799</em></p>
 <p class="p"><em class="ph i">// note all coefs are half value of original design, gain handled in algorithm</em></p>
-<p class="p">ptrFiltEQ32-\&gt;b<span class="xref"></span>=0x04ADF635; <em class="ph i">// feed forward b0 coef</em></p>
-<p class="p">ptrFiltEQ32-\&gt;b<span class="xref"></span>=0; <em class="ph i">// feed forward b1 coef</em></p>
-<p class="p">ptrFiltEQ32-\&gt;b<span class="xref"></span>=0xFB5209CB; <em class="ph i">// feed forward b2 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;b<span class="xref"></span>=0x04ADF635; <em class="ph i">// feed forward b0 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;b<span class="xref"></span>=0; <em class="ph i">// feed forward b1 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;b<span class="xref"></span>=0xFB5209CB; <em class="ph i">// feed forward b2 coef</em></p>
 <p class="p"><em class="ph i">// note all coefs are half value of original design, gain handled in algorithm</em></p>
 <p class="p"><em class="ph i">// note subtract is handled in algorithm, so coefs go in at actual value</em></p>
-<p class="p">ptrFiltEQ32-\&gt;a<span class="xref"></span>=0x8A8FAB5D; <em class="ph i">// feedback a1 coef</em></p>
-<p class="p">ptrFiltEQ32-\&gt;a<span class="xref"></span>=0x36A41395; <em class="ph i">// feedback a2 coef</em></p>
-<p class="p">for (i=0;i\&lt;256;i++)</p>
+<p class="p">ptrFiltEQ32-&gt;a<span class="xref"></span>=0x8A8FAB5D; <em class="ph i">// feedback a1 coef</em></p>
+<p class="p">ptrFiltEQ32-&gt;a<span class="xref"></span>=0x36A41395; <em class="ph i">// feedback a2 coef</em></p>
+<p class="p">for (i=0;i&lt;256;i++)</p>
 <p class="p">{</p>
 <p class="p"><em class="ph i">// *** get input data here</em></p>
 <p class="p">DataIn32 = three_hundred_hz<span class="xref"></span>;</p>
@@ -1320,7 +1320,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">The function will saturate the output if it exceeds maximum or minimum values. The LMS will adapt its coefs to attempt to drive the output value toward the ref value. The rate of adaption on each pass depends on mu and the error from the previous calculation.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">The pointers outdata and indata must be aligned on 4-byte boundaries. delayline must have (K) elements, and be initialized to</p>
-<p class="p">zero. K (taps) must be a multiple of 4, and \&gt;= 8. mu must be positive.</p>
+<p class="p">zero. K (taps) must be a multiple of 4, and &gt;= 8. mu must be positive.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">in input data value (int16_t)</p>
@@ -1346,10 +1346,10 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">int16_t refVal = 0x0CCC; <em class="ph i">// some target value = 0.1</em></p>
 <p class="p">int16_t lmsAdapt = 0x3000;</p>
 <p class="p">ptrLMSError = &amp;lmsError;</p>
-<p class="p">for (i=0;i\&lt;200;i++)</p>
+<p class="p">for (i=0;i&lt;200;i++)</p>
 <p class="p">{</p>
 <p class="p"><em class="ph i">// get some input value here //</em></p>
-<p class="p"><strong class="ph b">if</strong> (i \&lt; 100)</p>
+<p class="p"><strong class="ph b">if</strong> (i &lt; 100)</p>
 <p class="p">{</p>
 <p class="p">inVal = 0x4233;</p>
 <p class="p">}</p>
@@ -1362,7 +1362,9 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">}</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">int16_t <strong class="ph b">DSP_FilterLMS16</strong> (int16_t <strong class="ph b">in</strong> , int16_t <strong class="ph b">ref</strong> , int16_t * <strong class="ph b">coeffs</strong> , int16_t * <strong class="ph b">delayline</strong> , int16_t</p>
-<p class="p">* <strong class="ph b">error</strong> , int  <strong class="ph b">K</strong> , int16_t <strong class="ph b">mu</strong> );</p>
+<ul class="ul"><li class="li"><p class="p"><strong class="ph b">error</strong> , int  <strong class="ph b">K</strong> , int16_t <strong class="ph b">mu</strong> );</p>
+</li>
+</ul>
 <p class="p"><strong class="ph b">DSP_MatrixAdd32 Function</strong></p>
 <p class="p">Addition of two matrices C = (A + B).</p>
 <p class="p"><strong class="ph b">Description</strong></p>
@@ -1393,15 +1395,15 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">resMat=&amp;mat;</p>
 <p class="p">srcMat1=&amp;mat2;</p>
 <p class="p">srcMat2=&amp;mat3;</p>
-<p class="p">srcMat1-\&gt;row=ROW;</p>
-<p class="p">srcMat1-\&gt;col=COL;</p>
-<p class="p">srcMat1-\&gt;pMatrix=matA;</p>
-<p class="p">srcMat2-\&gt;col=COL;</p>
-<p class="p">srcMat2-\&gt;row=ROW;</p>
-<p class="p">srcMat2-\&gt;pMatrix=matB;</p>
-<p class="p">resMat-\&gt;row=ROW;</p>
-<p class="p">resMat-\&gt;col=COL;</p>
-<p class="p">resMat-\&gt;pMatrix=result;</p>
+<p class="p">srcMat1-&gt;row=ROW;</p>
+<p class="p">srcMat1-&gt;col=COL;</p>
+<p class="p">srcMat1-&gt;pMatrix=matA;</p>
+<p class="p">srcMat2-&gt;col=COL;</p>
+<p class="p">srcMat2-&gt;row=ROW;</p>
+<p class="p">srcMat2-&gt;pMatrix=matB;</p>
+<p class="p">resMat-&gt;row=ROW;</p>
+<p class="p">resMat-&gt;col=COL;</p>
+<p class="p">resMat-&gt;pMatrix=result;</p>
 <p class="p">DSP_MatrixAdd32(resMat, srcMat1, srcMat2);</p>
 <p class="p"><em class="ph i">// result<span class="xref"></span> = matA<span class="xref"></span> + matB<span class="xref"></span> = {3,6,9,0xA}</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
@@ -1431,12 +1433,12 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">matrix32 mat, mat2;</p>
 <p class="p">resMat=&amp;mat;</p>
 <p class="p">srcMat1=&amp;mat2;</p>
-<p class="p">srcMat1-\&gt;row=ROW;</p>
-<p class="p">srcMat1-\&gt;col=COL;</p>
-<p class="p">srcMat1-\&gt;pMatrix=matA;</p>
-<p class="p">resMat-\&gt;row=ROW;</p>
-<p class="p">resMat-\&gt;col=COL;</p>
-<p class="p">resMat-\&gt;pMatrix=result;</p>
+<p class="p">srcMat1-&gt;row=ROW;</p>
+<p class="p">srcMat1-&gt;col=COL;</p>
+<p class="p">srcMat1-&gt;pMatrix=matA;</p>
+<p class="p">resMat-&gt;row=ROW;</p>
+<p class="p">resMat-&gt;col=COL;</p>
+<p class="p">resMat-&gt;pMatrix=result;</p>
 <p class="p">DSP_MatrixEqual32(resMat, srcMat1, srcMat2);</p>
 <p class="p"><em class="ph i">// result<span class="xref"></span> = matA<span class="xref"></span> = {5, 2, -3, 8}</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
@@ -1507,15 +1509,15 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">resMat=&amp;mat;</p>
 <p class="p">srcMat1=&amp;mat2;</p>
 <p class="p">srcMat2=&amp;mat3;</p>
-<p class="p">srcMat1-\&gt;row=ROW1;</p>
-<p class="p">srcMat1-\&gt;col=COL1;</p>
-<p class="p">srcMat1-\&gt;pMatrix=test_MatrixA;</p>
-<p class="p">srcMat2-\&gt;col=COL2;</p>
-<p class="p">srcMat2-\&gt;row=ROW2;</p>
-<p class="p">srcMat2-\&gt;pMatrix=test_MatrixB;</p>
-<p class="p">resMat-\&gt;row=ROW1; <em class="ph i">// note resulting matrix MUST have ROW1 &amp; COL2 format</em></p>
-<p class="p">resMat-\&gt;col=COL2;</p>
-<p class="p">resMat-\&gt;pMatrix=result;</p>
+<p class="p">srcMat1-&gt;row=ROW1;</p>
+<p class="p">srcMat1-&gt;col=COL1;</p>
+<p class="p">srcMat1-&gt;pMatrix=test_MatrixA;</p>
+<p class="p">srcMat2-&gt;col=COL2;</p>
+<p class="p">srcMat2-&gt;row=ROW2;</p>
+<p class="p">srcMat2-&gt;pMatrix=test_MatrixB;</p>
+<p class="p">resMat-&gt;row=ROW1; <em class="ph i">// note resulting matrix MUST have ROW1 &amp; COL2 format</em></p>
+<p class="p">resMat-&gt;col=COL2;</p>
+<p class="p">resMat-&gt;pMatrix=result;</p>
 <p class="p">DSP_MatrixMul32(resMat, srcMat1, srcMat2);</p>
 <p class="p"><em class="ph i">// result<span class="xref"></span> = matA<span class="xref"></span> x matB<span class="xref"></span> =</em></p>
 <p class="p"><em class="ph i">// { 0x23333333, 0x03333333 // 0.275, 0.025</em></p>
@@ -1582,15 +1584,15 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">resMat=&amp;mat;</p>
 <p class="p">srcMat1=&amp;mat2;</p>
 <p class="p">srcMat2=&amp;mat3;</p>
-<p class="p">srcMat1-\&gt;row=ROW;</p>
-<p class="p">srcMat1-\&gt;col=COL;</p>
-<p class="p">srcMat1-\&gt;pMatrix=matA;</p>
-<p class="p">srcMat2-\&gt;col=COL;</p>
-<p class="p">srcMat2-\&gt;row=ROW;</p>
-<p class="p">srcMat2-\&gt;pMatrix=matB;</p>
-<p class="p">resMat-\&gt;row=ROW;</p>
-<p class="p">resMat-\&gt;col=COL;</p>
-<p class="p">resMat-\&gt;pMatrix=result;</p>
+<p class="p">srcMat1-&gt;row=ROW;</p>
+<p class="p">srcMat1-&gt;col=COL;</p>
+<p class="p">srcMat1-&gt;pMatrix=matA;</p>
+<p class="p">srcMat2-&gt;col=COL;</p>
+<p class="p">srcMat2-&gt;row=ROW;</p>
+<p class="p">srcMat2-&gt;pMatrix=matB;</p>
+<p class="p">resMat-&gt;row=ROW;</p>
+<p class="p">resMat-&gt;col=COL;</p>
+<p class="p">resMat-&gt;pMatrix=result;</p>
 <p class="p">DSP_MatrixSub32(resMat, srcMat1, srcMat2);</p>
 <p class="p"><em class="ph i">// result<span class="xref"></span> = matA<span class="xref"></span> - matB<span class="xref"></span> = {3,0,-5,6}</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
@@ -1622,12 +1624,12 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">matrix32 mat, mat2;</p>
 <p class="p">resMat=&amp;mat;</p>
 <p class="p">srcMat1=&amp;mat2;</p>
-<p class="p">srcMat1-\&gt;row=ROW;</p>
-<p class="p">srcMat1-\&gt;col=COL;</p>
-<p class="p">srcMat1-\&gt;pMatrix=matA;</p>
-<p class="p">resMat-\&gt;row=COL; <em class="ph i">// note the shift in columns and rows</em></p>
-<p class="p">resMat-\&gt;col=ROW;</p>
-<p class="p">resMat-\&gt;pMatrix=result;</p>
+<p class="p">srcMat1-&gt;row=ROW;</p>
+<p class="p">srcMat1-&gt;col=COL;</p>
+<p class="p">srcMat1-&gt;pMatrix=matA;</p>
+<p class="p">resMat-&gt;row=COL; <em class="ph i">// note the shift in columns and rows</em></p>
+<p class="p">resMat-&gt;col=ROW;</p>
+<p class="p">resMat-&gt;pMatrix=result;</p>
 <p class="p">DSP_MatrixTranspose32(resMat, srcMat1);</p>
 <p class="p"><em class="ph i">// result<span class="xref"></span> = matA(T)<span class="xref"></span> = { 1, 5, -1,</em></p>
 <p class="p"><em class="ph i">// 2, 6, -3,</em></p>
@@ -1642,7 +1644,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">void DSP_TransformFFT16(int16c *dout, int16c *din, int16c *twiddles, int16c *scratch, int log2N);</p>
 <p class="p">Performs an complex FFT on the input, din, and stores the complex result in dout. Performs 2^log2N point calculation, and the working buffer scratch as well as the input and output must be 2^log2N in length. Coefficient twiddle factors come from twiddles, and may be loaded with the use of DSP_TransformFFT16_setup. All values are 16 bit (Q15) fractional.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
-<p class="p">din, dout, twiddles and scratch must have N elements N is calculated as 2^(log2N) log2N must be \&gt;= 3 FFT factors must be calculated in advance, use DSP_TransformFFT16_setup</p>
+<p class="p">din, dout, twiddles and scratch must have N elements N is calculated as 2^(log2N) log2N must be &gt;= 3 FFT factors must be calculated in advance, use DSP_TransformFFT16_setup</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">dout pointer to complex output array (int16c)</p>
@@ -1701,7 +1703,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">void DSP_TransformFFT32(int32c *dout, int32c *din, int32c *twiddles, int32c *scratch, int log2N);</p>
 <p class="p">Performs an complex FFT on the input, din, and stores the complex result in dout. Performs 2^log2N point calculation, and the working buffer scratch as well as the input and output must be 2^log2N in length. Coefficient twiddle factors come from twiddles, and may be loaded with the use of DSP_TransformFFT16_setup. All values are 16 bit (Q31) fractional.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
-<p class="p">din, dout, twiddles and scratch must have N elements N is calculated as 2^(log2N) log2N must be \&gt;= 3 FFT factors must be calculated in advance, use DSP_TransformFFT32_setup</p>
+<p class="p">din, dout, twiddles and scratch must have N elements N is calculated as 2^(log2N) log2N must be &gt;= 3 FFT factors must be calculated in advance, use DSP_TransformFFT32_setup</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">dout pointer to complex output array (int32c)</p>
@@ -1759,7 +1761,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">void DSP_TransformIFFT16(int16c *dout, int16c *din, int16c *twiddles, int16c *scratch, int log2N);</p>
 <p class="p">Performs an complex Inverse FFT on the input, din, and stores the complex result in dout. Performs 2^log2N point calculation, and the working buffer scratch as well as the input and output must be 2^log2N in length. Coefficient twiddle factors come from twiddles, and may be loaded with the use of DSP_TransformFFT16_setup. All values are 16 bit (Q15) fractional.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
-<p class="p">din, dout, twiddles and scratch must have N elements N is calculated as 2^(log2N) log2N must be \&gt;= 3 FFT factors must be calculated in advance, use DSP_TransformFFT16_setup</p>
+<p class="p">din, dout, twiddles and scratch must have N elements N is calculated as 2^(log2N) log2N must be &gt;= 3 FFT factors must be calculated in advance, use DSP_TransformFFT16_setup</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">dout pointer to complex output array (int16c)</p>
@@ -1814,7 +1816,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int16_t OutVector16<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector16<span class="xref"></span>= 0x4000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -1844,7 +1846,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int32_t OutVector32<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector32<span class="xref"></span>= 0x40000000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -1859,7 +1861,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWindow_Black16:</p>
 <p class="p">void DSP_TransformWindow_Black16(int16_t *OutVector, int16_t *InVector, int N);</p>
 <p class="p">Compute a Blackman Window on the first N samples of the input vector, InVector. The output is stored in OutVector. Operations are performed at higher resolution and rounded for the most accuracy possible. Input and output values are in Q15 fractional format. The Blackman Window follows the equation:</p>
-<p class="p">Window(n) = 0.42659 - 0.49656 * COS(2*Pi*n/(N-1)) + 0.076849 * COS(4*Pi*n/(N-1)) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
+<p class="p">Window(n) = 0.42659 - 0.49656 * COS(2<em class="ph i">Pi</em>n/(N-1)) + 0.076849 * COS(4<em class="ph i">Pi</em>n/(N-1)) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -1873,7 +1875,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int16_t OutVector16<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector16<span class="xref"></span>= 0x4000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -1887,7 +1889,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWindow_Black32:</p>
 <p class="p">void DSP_TransformWindow_Black32(int32_t *OutVector, int32_t *InVector, int N);</p>
 <p class="p">Compute a Blackman Window on the first N samples of the input vector, InVector. The output is stored in OutVector. Operations are performed at higher resolution and rounded for the most accuracy possible. Input and output values are in Q31 fractional format. The Blackman Window follows the equation:</p>
-<p class="p">Window(n) = 0.42659 - 0.49656 * COS(2*Pi*n/(N-1)) + 0.076849 * COS(4*Pi*n/(N-1)) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
+<p class="p">Window(n) = 0.42659 - 0.49656 * COS(2<em class="ph i">Pi</em>n/(N-1)) + 0.076849 * COS(4<em class="ph i">Pi</em>n/(N-1)) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -1901,7 +1903,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int32_t OutVector32<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector32<span class="xref"></span>= 0x40000000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -1932,7 +1934,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int16_t OutVector16<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector16<span class="xref"></span>= 0x4000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -1962,7 +1964,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int32_t OutVector32<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector32<span class="xref"></span>= 0x40000000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -1977,7 +1979,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWindow_Hamm16:</p>
 <p class="p">void DSP_TransformWindow_Hamm16(int16_t *OutVector, int16_t *InVector, int N);</p>
 <p class="p">Compute a Hamming Window on the first N samples of the input vector, InVector. The output is stored in OutVector. Operations are performed at higher resolution and rounded for the most accuracy possible. Input and output values are in Q15 fractional format. The Hamming Window follows the equation:</p>
-<p class="p">Window(n) = 0.54 - 0.46 * COS(2*Pi*n/N) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
+<p class="p">Window(n) = 0.54 - 0.46 * COS(2<em class="ph i">Pi</em>n/N) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -1991,7 +1993,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int16_t OutVector16<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector16<span class="xref"></span>= 0x4000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -2005,7 +2007,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWindow_Hamm32:</p>
 <p class="p">void DSP_TransformWindow_Hamm32(int32_t *OutVector, int32_t *InVector, int N);</p>
 <p class="p">Compute a Hamming Window on the first N samples of the input vector, InVector. The output is stored in OutVector. Operations are performed at higher resolution and rounded for the most accuracy possible. Input and output values are in Q31 fractional format. The Hamming Window follows the equation:</p>
-<p class="p">Window(n) = 0.54 - 0.46 * COS(2*Pi*n/N) where n is the window sample number N is the total number of samples The functional</p>
+<p class="p">Window(n) = 0.54 - 0.46 * COS(2<em class="ph i">Pi</em>n/N) where n is the window sample number N is the total number of samples The functional</p>
 <p class="p">output computes WinVector(n) = Window(n) * InVector(n)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
@@ -2020,7 +2022,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int32_t OutVector32<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector32<span class="xref"></span>= 0x40000000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -2036,7 +2038,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">void DSP_TransformWindow_Hann16(int16_t *OutVector, int16_t *InVector, int N);</p>
 <p class="p">Compute a Hanning Window on the first N samples of the input vector, InVector. The output is stored in OutVector. Operations are performed at higher resolution and rounded for the most accuracy possible. Input and output values are in Q15 fractional format.</p>
 <p class="p">The Hanning Window follows the equation:</p>
-<p class="p">Window(n) = 0.5 - 0.5 * COS(2*Pi*n/N) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
+<p class="p">Window(n) = 0.5 - 0.5 * COS(2<em class="ph i">Pi</em>n/N) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -2050,7 +2052,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int16_t OutVector16<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector16<span class="xref"></span>= 0x4000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -2065,7 +2067,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">void DSP_TransformWindow_Hann32(int32_t *OutVector, int32_t *InVector, int N);</p>
 <p class="p">Compute a Hanning Window on the first N samples of the input vector, InVector. The output is stored in OutVector. Operations are performed at higher resolution and rounded for the most accuracy possible. Input and output values are in Q31 fractional format.</p>
 <p class="p">The Hanning Window follows the equation:</p>
-<p class="p">Window(n) = 0.5 - 0.5 * COS(2*Pi*n/N) where n is the window sample number N is the total number of samples The functional</p>
+<p class="p">Window(n) = 0.5 - 0.5 * COS(2<em class="ph i">Pi</em>n/N) where n is the window sample number N is the total number of samples The functional</p>
 <p class="p">output computes WinVector(n) = Window(n) * InVector(n)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
@@ -2080,7 +2082,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int32_t OutVector32<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector32<span class="xref"></span>= 0x40000000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -2096,7 +2098,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">void DSP_TransformWindow_Kaiser16(int16_t *OutVector, int16_t *InVector, int N);</p>
 <p class="p">Compute a Kaiser Window on the first N samples of the input vector, InVector. The output is stored in OutVector. Operations are performed at higher resolution and rounded for the most accuracy possible. Input and output values are in Q15 fractional format.</p>
 <p class="p">The Kaiser Window follows the equation:</p>
-<p class="p">Window(n) = 0.402 - 0.498 * COS(2*Pi*n/N) + 0.098 * cos(4*Pi*n/N) + 0.001 * cos(6*Pi*n/N) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
+<p class="p">Window(n) = 0.402 - 0.498 * COS(2<em class="ph i">Pi</em>n/N) + 0.098 * cos(4<em class="ph i">Pi</em>n/N) + 0.001 * cos(6<em class="ph i">Pi</em>n/N) where n is the window sample number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -2110,7 +2112,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int16_t OutVector16<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector16<span class="xref"></span>= 0x4000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -2125,7 +2127,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">void DSP_TransformWindow_Kaiser32(int32_t *OutVector, int32_t *InVector, int N);</p>
 <p class="p">Compute a Kaiser Window on the first N samples of the input vector, InVector. The output is stored in OutVector. Operations are performed at higher resolution and rounded for the most accuracy possible. Input and output values are in Q31 fractional format.</p>
 <p class="p">The Kaiser Window follows the equation:</p>
-<p class="p">Window(n) = 0.402 - 0.498 * COS(2*Pi*n/N) + 0.098 * cos(4*Pi*n/N) + 0.001 * cos(6*Pi*n/N) where n is the window sample</p>
+<p class="p">Window(n) = 0.402 - 0.498 * COS(2<em class="ph i">Pi</em>n/N) + 0.098 * cos(4<em class="ph i">Pi</em>n/N) + 0.001 * cos(6<em class="ph i">Pi</em>n/N) where n is the window sample</p>
 <p class="p">number N is the total number of samples The functional output computes WinVector(n) = Window(n) * InVector(n)</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
@@ -2140,7 +2142,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">int32_t OutVector32<span class="xref"></span>={0};</p>
 <p class="p">int WindowN = 8;</p>
-<p class="p">for (i=0;i\&lt;WindowN;i++)</p>
+<p class="p">for (i=0;i&lt;WindowN;i++)</p>
 <p class="p">{</p>
 <p class="p">InVector32<span class="xref"></span>= 0x40000000; <em class="ph i">// constant 0.5 for functional testing</em></p>
 <p class="p">}</p>
@@ -2201,7 +2203,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">void DSP_TransformWinInit_Black16(int16_t *OutWindow, int N);</p>
 <p class="p">Create a N-element Blackman Window, and store the output to OutWindow. Operations are performed at higher resolution floating</p>
 <p class="p">point, and rounded for the most accuracy possible. Output values are Q16 fractional format. The Blackman Window follows the equation:</p>
-<p class="p">Window(n) = 0.42659 - 0.49656 * COS(2*Pi*n/(N-1)) + 0.076849 * COS(4*Pi*n/(N-1)) where n is the window sample number N is the total number of samples</p>
+<p class="p">Window(n) = 0.42659 - 0.49656 * COS(2<em class="ph i">Pi</em>n/(N-1)) + 0.076849 * COS(4<em class="ph i">Pi</em>n/(N-1)) where n is the window sample number N is the total number of samples</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -2222,7 +2224,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWinInit_Black32:</p>
 <p class="p">void DSP_TransformWinInit_Black32(int32_t *OutWindow, int N);</p>
 <p class="p">Create a N-element Blackman Window, and store the output to OutWindow. Operations are performed at higher resolution floating point, and rounded for the most accuracy possible. Output values are Q31 fractional format. The Blackman Window follows the equation:</p>
-<p class="p">Window(n) = 0.42659 - 0.49656 * COS(2*Pi*n/(N-1)) + 0.076849 * COS(4*Pi*n/(N-1)) where n is the window sample number N is</p>
+<p class="p">Window(n) = 0.42659 - 0.49656 * COS(2<em class="ph i">Pi</em>n/(N-1)) + 0.076849 * COS(4<em class="ph i">Pi</em>n/(N-1)) where n is the window sample number N is</p>
 <p class="p">the total number of samples</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
@@ -2286,7 +2288,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWinInit_Hamm16:</p>
 <p class="p">void DSP_TransformWinInit_Hamm16(int16_t *OutWindow, int N);</p>
 <p class="p">Create a N-element Hamming Window, and store the output to OutWindow. Operations are performed at higher resolution floating point, and rounded for the most accuracy possible. Output values are in Q15 fractional format. The Hamming Window follows the equation:</p>
-<p class="p">Window(n) = 0.54 - 0.46 * COS(2*Pi*n/N) where n is the window sample number N is the total number of samples</p>
+<p class="p">Window(n) = 0.54 - 0.46 * COS(2<em class="ph i">Pi</em>n/N) where n is the window sample number N is the total number of samples</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -2307,7 +2309,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWinInit_Hamm32:</p>
 <p class="p">void DSP_TransformWinInit_Hamm32(int32_t *OutWindow, int N);</p>
 <p class="p">Create a N-element Hamming Window, and store the output to OutWindow. Operations are performed at higher resolution floating point, and rounded for the most accuracy possible. Output values are in Q31 fractional format. The Hamming Window follows the equation:</p>
-<p class="p">Window(n) = 0.54 - 0.46 * COS(2*Pi*n/N) where n is the window sample number N is the total number of samples</p>
+<p class="p">Window(n) = 0.54 - 0.46 * COS(2<em class="ph i">Pi</em>n/N) where n is the window sample number N is the total number of samples</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -2328,7 +2330,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWinInit_Hann16:</p>
 <p class="p">void DSP_TransformWinInit_Hann16(int16_t *OutWindow, int N);</p>
 <p class="p">Create a N-element Hanning Window, and store the output to OutWindow. Operations are performed at higher resolution floating point, and rounded for the most accuracy possible. Output values are in Q15 fractional format. The Hanning Window follows the equation:</p>
-<p class="p">Window(n) = 0.5 - 0.5 * COS(2*Pi*n/N) where n is the window sample number N is the total number of samples</p>
+<p class="p">Window(n) = 0.5 - 0.5 * COS(2<em class="ph i">Pi</em>n/N) where n is the window sample number N is the total number of samples</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -2349,7 +2351,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWinInit_Hann32:</p>
 <p class="p">void DSP_TransformWinInit_Hann32(int32_t *OutWindow, int N);</p>
 <p class="p">Create a N-element Hanning Window, and store the output to OutWindow. Operations are performed at higher resolution floating point, and rounded for the most accuracy possible. Output values are in Q31 fractional format. The Hanning Window follows the equation:</p>
-<p class="p">Window(n) = 0.5 - 0.5 * COS(2*Pi*n/N) where n is the window sample number N is the total number of samples</p>
+<p class="p">Window(n) = 0.5 - 0.5 * COS(2<em class="ph i">Pi</em>n/N) where n is the window sample number N is the total number of samples</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -2370,7 +2372,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWinInit_Kaiser16:</p>
 <p class="p">void DSP_TransformWinInit_Kaiser16(int16_t *OutWindow, int N);</p>
 <p class="p">Create a N-element Kaiser Window, and store the output to OutWindow. Operations are performed at higher resolution floating point, and rounded for the most accuracy possible. Output values are in Q15 fractional format. The Kaiser Window follows the equation:</p>
-<p class="p">Window(n) = 0.402 - 0.498 * COS(2*Pi*n/N) + 0.098 * cos(4*Pi*n/N) + 0.001 * cos(6*Pi*n/N) where n is the window sample</p>
+<p class="p">Window(n) = 0.402 - 0.498 * COS(2<em class="ph i">Pi</em>n/N) + 0.098 * cos(4<em class="ph i">Pi</em>n/N) + 0.001 * cos(6<em class="ph i">Pi</em>n/N) where n is the window sample</p>
 <p class="p">number N is the total number of samples</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
@@ -2392,7 +2394,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function DSP_TransformWinInit_Kaiser32:</p>
 <p class="p">void DSP_TransformWinInit_Kaiser32(int32_t *OutWindow, int N);</p>
 <p class="p">Create a N-element Kaiser Window, and store the output to OutWindow. Operations are performed at higher resolution floating point, and rounded for the most accuracy possible. Output values are in Q31 fractional format. The Kaiser Window follows the equation:</p>
-<p class="p">Window(n) = 0.402 - 0.498 * COS(2*Pi*n/N) + 0.098 * cos(4*Pi*n/N) + 0.001 * cos(6*Pi*n/N) where n is the window sample</p>
+<p class="p">Window(n) = 0.402 - 0.498 * COS(2<em class="ph i">Pi</em>n/N) + 0.098 * cos(4<em class="ph i">Pi</em>n/N) + 0.001 * cos(6<em class="ph i">Pi</em>n/N) where n is the window sample</p>
 <p class="p">number N is the total number of samples</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">N must be a positive number. OutWindow must be declared with N elements or larger.</p>
@@ -3741,9 +3743,9 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">-2<sup class="ph sup">(n-1)</sup> to <span class="xref"></span>; with a resolution of 2(<sup class="ph sup">-m</sup>).</p>
 <p class="p">A _Q16 format number (_Q15_16) would range from -32768.0 (0x8000 0000) to 32767.99998474 with a precision of 0.000015259</p>
 <p class="p">(or 2<sup class="ph sup">-16</sup>). For example, a numerical representation of the number 3.14159 in _Q2_13 notation would be:</p>
-<p class="p">3.14159 * 2<sup class="ph sup">13</sup> = 25735.9 =\&gt; 0x6488</p>
+<p class="p">3.14159 * 2<sup class="ph sup">13</sup> = 25735.9 =&gt; 0x6488</p>
 <p class="p">And converting from the _Q7_8 format with the value 0x1D89 would be:</p>
-<p class="p">0x1D89 / 2<sup class="ph sup">8</sup> = 7561 / 256 =\&gt; 29.5316, accurate to 0.00391</p>
+<p class="p">0x1D89 / 2<sup class="ph sup">8</sup> = 7561 / 256 =&gt; 29.5316, accurate to 0.00391</p>
 <p class="p">Functions in the library are prefixed with the type of the return value. For example, _LIBQ_Q16Sqrt returns a _Q16 value equal to the square root of its argument. Argument types do not always match the return type. Refer to the function prototype for a specification of its arguments.</p>
 <p class="p">In cases where the return value is not a fixed-point type, the argument type is appended to the function name. For example, _LIBQ_ToFloatQ31 accepts a type _Q31 argument.</p>
 <p class="p">In some cases, both the return type and the argument type are specified within the function name. For example:</p>
@@ -3804,7 +3806,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q15_cos_Q2_13 returns the _Q15 fixed point result from the calculation cosine(x).</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 102 cycles Program Memory 224 bytes</p>
-<p class="p">Error \&lt;= 0.00003052 (accurate to least significant _Q15 bit)</p>
+<p class="p">Error &lt;= 0.00003052 (accurate to least significant _Q15 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q15 resultCos;</p>
 <p class="p">resultCos = _LIBQ_Q15_cos_Q2_13 ((_Q2_13)0x2171); _// <em class="ph i">LIBQ_Q15_cos_Q2_13(1.045044) = 0.501862</em></p>
@@ -3826,7 +3828,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q15_sin_Q2_13 returns the _Q15 fixed point result from the calculation sine(x).</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 100 typical (100 to 102) Program Memory 220 bytes</p>
-<p class="p">Error \&lt;= 0.00003052 (accurate to least significant _Q15 bit)</p>
+<p class="p">Error &lt;= 0.00003052 (accurate to least significant _Q15 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q15 resultSin;</p>
 <p class="p">resultSin = _LIBQ_Q15_sin_Q2_13 ((_Q2_13)0x4093); _// <em class="ph i">LIBQ_Q15_sin_Q2_13(2.017944) = 0.901672</em></p>
@@ -3924,7 +3926,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The functions _LIBQ_Q31_sin_Q2_29, _LIBQ_Q31_cos_Q2_29, and _LIBQ_Q16Div are called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 703 typical (22 to 796) Program Memory 88 bytes</p>
-<p class="p">Error \&lt;= 0.000015259 (accurate to least significant _Q16 bit for the input range -1.568 .. 1.568) Error rises from 0.0 to 0.065 for</p>
+<p class="p">Error &lt;= 0.000015259 (accurate to least significant _Q16 bit for the input range -1.568 .. 1.568) Error rises from 0.0 to 0.065 for</p>
 <p class="p">the input range -1.568 .. -1.570765808 and 1.568 .. 1.570765808)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q16 resultTan;</p>
@@ -3949,7 +3951,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The _LIBQ_Q16Div operation saturates its result.</p>
 <p class="p">Execution Time (cycles): 143 typical (80 to 244) Program Memory 204 bytes</p>
-<p class="p">Error \&lt;= 0.000015258789 (accurate to least significant _Q16 bit within the non-saturated range)</p>
+<p class="p">Error &lt;= 0.000015258789 (accurate to least significant _Q16 bit within the non-saturated range)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q16 quotient, dividend, divisor;</p>
 <p class="p">dividend = (_Q16)0x00010000; <em class="ph i">// 1</em></p>
@@ -3963,7 +3965,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q16Exp:</p>
 <p class="p">_Q16 _LIBQ_Q16Exp(_Q16 x);</p>
-<p class="p">Calculates the exponential function e^x. The calculation will saturate if the resulting value is outside the range of the _Q16 representation. For x \&gt; 10.3972015380859375, the resulting value will be saturated to 0x7fffffff. For x \&lt; -10.3972015380859375 the resulting value will be saturated to 0.</p>
+<p class="p">Calculates the exponential function e^x. The calculation will saturate if the resulting value is outside the range of the _Q16 representation. For x &gt; 10.3972015380859375, the resulting value will be saturated to 0x7fffffff. For x &lt; -10.3972015380859375 the resulting value will be saturated to 0.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -3974,7 +3976,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The function _LIBQ_Q16Div is called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 170 typical (18 to 292) Program Memory 446 bytes</p>
-<p class="p">Error \&lt;= 0.000015258789 (accurate to least significant _Q16 bit within the non-saturated range)</p>
+<p class="p">Error &lt;= 0.000015258789 (accurate to least significant _Q16 bit within the non-saturated range)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q16 expResult;</p>
 <p class="p">expResult = _LIBQ_Q16Exp((_Q16)0x00010000); _// <em class="ph i">LIBQ_Q16Exp(1.000000) = 2.718277 (0x0002b7e1)</em></p>
@@ -3996,7 +3998,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q16Power returns the _Q16 fixed point result from the calculation x raised to the y.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 882 typical (586 to 1042) Program Memory 1038 bytes</p>
-<p class="p">Error \&lt;= 0.000015258789 (accurate to least significant _Q16 bit within the non-saturated range)</p>
+<p class="p">Error &lt;= 0.000015258789 (accurate to least significant _Q16 bit within the non-saturated range)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q16 resultPower;</p>
 <p class="p">resultPower = _LIBQ_Q16Power ((_Q16)0x00020000, (_Q16)0xffff0000); _// <em class="ph i">LIBQ_Q16Power(2.000000,</em></p>
@@ -4018,7 +4020,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q16Sqrt returns the _Q16 fixed point value which is the square root of the input parameter.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 240 typical (104 to 258) Program Memory 152 bytes</p>
-<p class="p">Error \&lt;= 0.000015258789 (accurate to least significant _Q16 bit)</p>
+<p class="p">Error &lt;= 0.000015258789 (accurate to least significant _Q16 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q16 squareRoot;</p>
 <p class="p">squareRoot = _LIBQ_Q16Sqrt((_Q16)0x01000000); <em class="ph i">// The square root of 256.0 is 16.0 (0x00100000)</em></p>
@@ -4032,7 +4034,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q2_13_acos_Q15:</p>
 <p class="p">_Q2_13 _LIBQ_Q2_13_acos_Q15 (_Q15 x);</p>
-<p class="p">Calculates the acos(x), where x is of type _Q15 and the resulting value is of type _Q2_13. The output value will be radians in the range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">Calculates the acos(x), where x is of type _Q15 and the resulting value is of type _Q2_13. The output value will be radians in the range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4043,7 +4045,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The function _LIBQ_Q2_13_asin_Q15 is called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 588 typical (32 to 666) Program Memory 24 bytes</p>
-<p class="p">Error \&lt;= 0.00012207 (accurate to least significant _Q2_13 bit)</p>
+<p class="p">Error &lt;= 0.00012207 (accurate to least significant _Q2_13 bit)</p>
 <p class="p">A higher precision function with equivalent performance exists, see _LIBQ_Q2_29_acos_Q31_Fast</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_13 resultAcos;</p>
@@ -4056,7 +4058,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q2_13_asin_Q15:</p>
 <p class="p">_Q2_13 _LIBQ_Q2_13_asin_Q15 (_Q15 x);</p>
-<p class="p">Calculates asin(x), where x is of type _Q15 and the resulting value is of type _Q2_13. The output value will be radians in the range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">Calculates asin(x), where x is of type _Q15 and the resulting value is of type _Q2_13. The output value will be radians in the range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4067,7 +4069,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The functions _LIBQ_Q16Sqrt and _LIBQ_Q16Div are called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 578 typical (22 to 656) Program Memory 336 bytes</p>
-<p class="p">Error \&lt;= 0.00012207 (accurate to least significant _Q2_13 bit)</p>
+<p class="p">Error &lt;= 0.00012207 (accurate to least significant _Q2_13 bit)</p>
 <p class="p">A higher resolution version of this function exists with equivalent performance, see _LIBQ_Q2_29_asin_Q31_Fast</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_13 resultAsin;</p>
@@ -4081,7 +4083,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function _LIBQ_Q2_13_atan_Q7_8:</p>
 <p class="p">_Q2_13 _LIBQ_Q2_13_atan_Q7_8 (_Q7_8 x);</p>
 <p class="p">Calculates the atan(x), where x is of type _Q7_8 and the resulting value is of type _Q2_13. The output value will be radians in the</p>
-<p class="p">range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4092,7 +4094,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The function _LIBQ_Q2_13_atan2_Q7_8 is called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 240 typical (202 to 256) Program Memory 16 bytes</p>
-<p class="p">Error \&lt;= 0.00012207 (accurate to least significant _Q2_13 bit)</p>
+<p class="p">Error &lt;= 0.00012207 (accurate to least significant _Q2_13 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_13 resultAtan;</p>
 <p class="p">resultAtan = _LIBQ_Q2_13_atan_Q7_8 ((_Q7_8)0x0097); _// <em class="ph i">LIBQ_Q2_13_atan_Q7_8(0.589844) =</em></p>
@@ -4104,7 +4106,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q2_13_atan2_Q7_8:</p>
 <p class="p">_Q2_13 _LIBQ_Q2_13_atan2_Q7_8 (_Q7_8 y, _Q7_8 x);</p>
-<p class="p">Calculates the atan2(y, x), where y and x are of type _Q7_8 and the resulting value is of type _Q2_13. The output value will be radians in the range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">Calculates the atan2(y, x), where y and x are of type _Q7_8 and the resulting value is of type _Q2_13. The output value will be radians in the range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4116,7 +4118,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The function _LIBQ_Q16Div is called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 220 typical (22 to 250) Program Memory 288 bytes</p>
-<p class="p">Error \&lt;= 0.00012207 (accurate to least significant _Q2_13 bit)</p>
+<p class="p">Error &lt;= 0.00012207 (accurate to least significant _Q2_13 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_13 resultAtan2;</p>
 <p class="p">resultAtan2 = _LIBQ_Q2_13_atan2_Q7_8 ((_Q7_8)0x589d, (_Q7_8)0xf878); <em class="ph i">//</em></p>
@@ -4128,7 +4130,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q2_29_acos_Q31:</p>
 <p class="p">_Q2_29 _LIBQ_Q2_29_acos_Q31 (_Q31 x);</p>
-<p class="p">Calculates the acos(x), where x is of type _Q31 and the resulting value is of type _Q2_29. The output value will be radians in the range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">Calculates the acos(x), where x is of type _Q31 and the resulting value is of type _Q2_29. The output value will be radians in the range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4139,7 +4141,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The functions _LIBQ_Q2_29_asin_Q31_Fast and _LIBQ_Q31_cos_Q2_29 are called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 3370 typical (70 to 4824) Program Memory 142 bytes</p>
-<p class="p">Error \&lt;= 0.0000000019 (accurate to least significant _Q2_29 bit for the range -0.9993..0.9993) Error \&lt;= 0.0000000355 (accurate to 5th least significant _Q2_29 bit for the range -1.0 .. -0.9993 and 0.9993 .. 1.0)</p>
+<p class="p">Error &lt;= 0.0000000019 (accurate to least significant _Q2_29 bit for the range -0.9993..0.9993) Error &lt;= 0.0000000355 (accurate to 5th least significant _Q2_29 bit for the range -1.0 .. -0.9993 and 0.9993 .. 1.0)</p>
 <p class="p">A similar function with higher performance and reduced precision exists, see _LIBQ_Q2_29_acos_Q31_Fast</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_29 resultAcos;</p>
@@ -4152,7 +4154,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q2_29_acos_Q31_Fast:</p>
 <p class="p">_Q2_29 _LIBQ_Q2_29_acos_Q31_Fast (_Q31 x);</p>
-<p class="p">Calculates the acos(x), where x is of type _Q31 and the resulting value is of type _Q2_29. The output value will be radians in the range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">Calculates the acos(x), where x is of type _Q31 and the resulting value is of type _Q2_29. The output value will be radians in the range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4163,7 +4165,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The function _LIBQ_Q2_29_asin_Q31_Fast is called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 517 typical (32 to 1310) Program Memory 28 bytes</p>
-<p class="p">Error \&lt;= 0.000000911 (accurate to 9 least significant _Q2_29 bits)</p>
+<p class="p">Error &lt;= 0.000000911 (accurate to 9 least significant _Q2_29 bits)</p>
 <p class="p">A higher precision function with reduced performance exists, see _LIBQ_Q2_29_acos_Q31</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_29 resultAcos;</p>
@@ -4176,7 +4178,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q2_29_asin_Q31:</p>
 <p class="p">_Q2_29 _LIBQ_Q2_29_asin_Q31 (_Q31 x);</p>
-<p class="p">Calculates the asin(x), where x is of type _Q31 and the resulting value is of type _Q2_29. The output value will be in radians the range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">Calculates the asin(x), where x is of type _Q31 and the resulting value is of type _Q2_29. The output value will be in radians the range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4187,7 +4189,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The functions _LIBQ_Q2_29_asin_Q31_Fast and_LIBQ_Q31_sin_Q2_29 are called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 2525 typical (286 to 4330) Program Memory 138 bytes</p>
-<p class="p">Error \&lt;= 0.0000000019 (accurate to least significant _Q2_29 bit for the range -0.9993..0.9993) Error \&lt;= 0.0000000346 (accurate to 5th least significant _Q2_29 bit for the range -1.0 .. -0.9993 and 0.9993 .. 1.0)</p>
+<p class="p">Error &lt;= 0.0000000019 (accurate to least significant _Q2_29 bit for the range -0.9993..0.9993) Error &lt;= 0.0000000346 (accurate to 5th least significant _Q2_29 bit for the range -1.0 .. -0.9993 and 0.9993 .. 1.0)</p>
 <p class="p">A faster version of this function exists with modestly reduced accuracy, see _LIBQ_Q2_29_asin_Q31_Fast</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_29 resultAsin;</p>
@@ -4200,7 +4202,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q2_29_asin_Q31_Fast:</p>
 <p class="p">_Q2_29 _LIBQ_Q2_29_asin_Q31_Fast (_Q31 x);</p>
-<p class="p">Calculates the asin(x), where x is of type _Q31 and the resulting value is of type _Q2_29. The output value will be in radians the range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">Calculates the asin(x), where x is of type _Q31 and the resulting value is of type _Q2_29. The output value will be in radians the range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4210,7 +4212,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q2_29_asin_Q31_Fast returns the _Q2_29 fixed point result from the calculation asin(x).</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 507 typical (22 to 1300) Program Memory 638 bytes</p>
-<p class="p">Error \&lt;= 0.000000911 (accurate to 9 least significant _Q2_29 bits)</p>
+<p class="p">Error &lt;= 0.000000911 (accurate to 9 least significant _Q2_29 bits)</p>
 <p class="p">A higher resolution version of this function exists with reduced performance, see _LIBQ_Q2_29_asin_Q31</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_29 resultAsin;</p>
@@ -4223,7 +4225,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q2_29_atan_Q16:</p>
 <p class="p">_Q2_29 _LIBQ_Q2_29_atan_Q16 (_Q16 x);</p>
-<p class="p">Calculates the atan(x), where x is of type _Q16 and the resulting value is of type _Q2_29. The output value will be radians in the range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">Calculates the atan(x), where x is of type _Q16 and the resulting value is of type _Q2_29. The output value will be radians in the range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4234,7 +4236,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The function _LIBQ_Q2_29_atan2_Q16 is called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 354 typical (178 to 360) Program Memory 16 bytes</p>
-<p class="p">Error \&lt;= 0.000000003 (accurate within one least significant _Q2_29 bit)</p>
+<p class="p">Error &lt;= 0.000000003 (accurate within one least significant _Q2_29 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_29 resultAtan;</p>
 <p class="p">resultAtan = _LIBQ_Q2_29_atan_Q16 ((_Q16)0x00098b31); _// <em class="ph i">LIBQ_Q2_29_atan_Q16(9.543716) =</em></p>
@@ -4246,7 +4248,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function _LIBQ_Q2_29_atan2_Q16:</p>
 <p class="p">_Q2_29 _LIBQ_Q2_29_atan2_Q16 (_Q16 y, _Q16 x);</p>
-<p class="p">Calculates the atan(y, x), where y and x are of type _Q16 and the resulting value is of type _Q2_29. The output value will be radians in the range pi \&gt;= result \&gt;= -pi.</p>
+<p class="p">Calculates the atan(y, x), where y and x are of type _Q16 and the resulting value is of type _Q2_29. The output value will be radians in the range pi &gt;= result &gt;= -pi.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -4258,7 +4260,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">The C function __divdi3 is called by this routine and thus must be linked into the executable image.</p>
 <p class="p">Execution Time (cycles): 348 typical (20 to 376) Program Memory 464 bytes</p>
-<p class="p">Error \&lt;= 0.000000003 (accurate within one least significant _Q2_29 bit)</p>
+<p class="p">Error &lt;= 0.000000003 (accurate within one least significant _Q2_29 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q2_29 resultAtan2;</p>
 <p class="p">resultAtan2 = _LIBQ_Q2_29_atan2_Q16 ((_Q16)0xf6276270, x(_Q16)0x34b4b4c0); <em class="ph i">//</em></p>
@@ -4280,7 +4282,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q3_12_log10_Q16 returns the _Q3_12 fixed point result from the calculation log10(x).</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 301 typical (14 to 346) Program Memory 176 bytes</p>
-<p class="p">Error \&lt;= 0.000244140625 (accurate to least significant _Q3_12 bit)</p>
+<p class="p">Error &lt;= 0.000244140625 (accurate to least significant _Q3_12 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q3_12 resultLog10;</p>
 <p class="p">resultLog10 = _LIBQ_Q3_12_log10_Q16 ((_Q16)0x12ed7d91); _// <em class="ph i">LIBQ_Q3_12_log10_Q16(4845.490494)</em></p>
@@ -4302,7 +4304,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q31_cos_Q2_29 returns the _Q31 fixed point result from the calculation sine(x).</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 265 typical (22 to 288) Program Memory 746 bytes</p>
-<p class="p">Error \&lt;= 0.00000000047 (accurate to least significant _Q31 bit)</p>
+<p class="p">Error &lt;= 0.00000000047 (accurate to least significant _Q31 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q31 resultCos;</p>
 <p class="p">resultCos = _LIBQ_Q31_cos_Q2_29 ((_Q2_29)0x07e2e1c2); _// <em class="ph i">LIBQ_Q31_cos_Q2_29( 0.246445540) =</em></p>
@@ -4324,7 +4326,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q31_sin_Q2_29 returns the _Q31 fixed point result from the calculation sine(x).</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 246 typical (244 to 266) Program Memory 598 bytes</p>
-<p class="p">Error \&lt;= 0.00000000047 (accurate to least significant _Q31 bit)</p>
+<p class="p">Error &lt;= 0.00000000047 (accurate to least significant _Q31 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q31 resultSin;</p>
 <p class="p">resultSin = _LIBQ_Q31_sin_Q2_29 ((_Q2_29)0x5a637cfe); _// <em class="ph i">LIBQ_Q31_sin_Q2_29( 2.824644562) =</em></p>
@@ -4395,7 +4397,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q4_11_ln_Q16 returns the _Q4_11 fixed point result from the calculation ln(x).</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 301 typical (14 to 346) Program Memory 176 bytes</p>
-<p class="p">Error \&lt;= 0.00048828 (accurate to least significant _Q4_11 bit)</p>
+<p class="p">Error &lt;= 0.00048828 (accurate to least significant _Q4_11 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q4_11 resultLN;</p>
 <p class="p">resultLN = _LIBQ_Q4_11_ln_Q16 ((_Q16)0x00004000); _// <em class="ph i">LIBQ_Q4_11_LN_Q16(0.250000) = -1.386230</em></p>
@@ -4417,7 +4419,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q5_10_log2_Q16 returns the _Q5_10 fixed point result from the calculation log2(x).</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 227 typical (14 to 268) Program Memory 164 bytes</p>
-<p class="p">Error \&lt;= 0.0009765625 (accurate to least significant _Q5_10 bit)</p>
+<p class="p">Error &lt;= 0.0009765625 (accurate to least significant _Q5_10 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q5_10 resultLog2;</p>
 <p class="p">resultLog2 = _LIBQ_Q5_10_log2_Q16 ((_Q16)0x40000000); _// <em class="ph i">LIBQ_Q5_10_log2_Q16(16384.000000) =</em></p>
@@ -4439,7 +4441,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">_LIBQ_Q7_8_tan_Q2_13 returns the _Q7_8 fixed point result from the calculation tan(x).</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
 <p class="p">Execution Time (cycles): 288 typical (18 to 346) Program Memory 980 bytes</p>
-<p class="p">Error \&lt;= 0.00390625 (accurate to least significant _Q7_8 bit)</p>
+<p class="p">Error &lt;= 0.00390625 (accurate to least significant _Q7_8 bit)</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">_Q7_8 resultTan;</p>
 <p class="p">resultTan = _LIBQ_Q7_8_tan_Q2_13 ((_Q2_13)0x2e20); _// <em class="ph i">LIBQ_Q7_8_tan_Q2_13(1.441406) =</em></p>
@@ -4538,7 +4540,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">• i16 is signed integer, i.e. Q16d0</p>
 <p class="p">In addition, A pseudo floating point 32 bit format (FxQFloat32) is defined that consists of 16 mantissa and a 16 bit exponent (base</p>
 <p class="p">2). Functions in the library are prefixed with the type of the return value and followed by argument types (in order):</p>
-<p class="p">libq_\&lt;result\&gt;<em class="ph i">\&lt;name\&gt;</em>\&lt;args\&gt;</p>
+<p class="p">libq_&lt;result&gt;<em class="ph i">&lt;name&gt;</em>&lt;args&gt;</p>
 <p class="p">For example, libq_q1d15_Sin_q10d6 returns a Q1.15 value equal to the to the sine of an angle specified as a Q10.6 value (in degrees between 0 and 360).</p>
 <p class="p">For arbitrary scaled types (q15, q16, q31, and q32) the scaling of the result will depend on the function and the scaling of the</p>
 <p class="p">arguments. For instance, libq_q15_Add_q15_q15(a,b) will return a scaled value type that is the two input types (which must have</p>
@@ -4666,7 +4668,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">float</strong> theta0 = 0;</p>
 <p class="p">int32_t i;</p>
 <p class="p">int32_t x;</p>
-<p class="p">for ( i = 0; i \&lt; nTests; i++ )</p>
+<p class="p">for ( i = 0; i &lt; nTests; i++ )</p>
 <p class="p">{</p>
 <p class="p">theta = theta0 + i*delta_theta;</p>
 <p class="p">x = theta*(32768/512); <em class="ph i">//Q9.6</em></p>
@@ -4696,13 +4698,13 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Y = Fract_10toX_Q15bfp(X);</p>
 <p class="p"><em class="ph i">// Y.m = 0x6532 = 25906</em></p>
 <p class="p"><em class="ph i">// Y.e = 2</em></p>
-<p class="p"><em class="ph i">// Y = ( 25906 / 32768 )\&lt;\&lt;2 = 3.162353 (vs. 3.162277) , rel error = 1/41688</em></p>
+<p class="p"><em class="ph i">// Y = ( 25906 / 32768 )&lt;&lt;2 = 3.162353 (vs. 3.162277) , rel error = 1/41688</em></p>
 <p class="p">X.m = 0x6488; <em class="ph i">// (3.14159/4)</em></p>
 <p class="p">X.e = 2;</p>
 <p class="p">Y = Fract_10toX_Q15bfp(X);</p>
 <p class="p"><em class="ph i">// Y.m = 0x5697 = 22167 / 32768 = 0.676483</em></p>
 <p class="p"><em class="ph i">// Y.e = 0x000B = 11</em></p>
-<p class="p"><em class="ph i">// Y = (22167 / 32768)\&lt;\&lt;11 = 1385.4375 (vs. 1385.435475), rel error = 1/684,023</em></p>
+<p class="p"><em class="ph i">// Y = (22167 / 32768)&lt;&lt;11 = 1385.4375 (vs. 1385.435475), rel error = 1/684,023</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_10toX_Q15bfp</strong> (fract_q15bfp_t <strong class="ph b">x</strong> );</p>
 <p class="p"><strong class="ph b">Fract_10toX_Q15bfpFromQ15d16 Function</strong></p>
@@ -4726,12 +4728,12 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Y = Fract_10toX_Q15bfpFromQ15d16(x);</p>
 <p class="p"><em class="ph i">// Y.m = 0x6532 = 25906</em></p>
 <p class="p"><em class="ph i">// Y.e = 2</em></p>
-<p class="p"><em class="ph i">// Y = ( 25906 / 32768 )\&lt;\&lt;2 = 3.162353 (vs. 3.162277) , rel error = 1/41688</em></p>
+<p class="p"><em class="ph i">// Y = ( 25906 / 32768 )&lt;&lt;2 = 3.162353 (vs. 3.162277) , rel error = 1/41688</em></p>
 <p class="p">x = 0x0003243F; <em class="ph i">// 205,887 / 65536 = 3.141586 (vs. 3.14159)</em></p>
 <p class="p">Y = Fract_10toX_Q15bfpFromQ15d16(x);</p>
 <p class="p"><em class="ph i">// Y.m = 0x5696 = 22167 / 32768 = 0.676483</em></p>
 <p class="p"><em class="ph i">// Y.e = 0x000B = 11</em></p>
-<p class="p"><em class="ph i">// Y = (22167 / 32768)\&lt;\&lt;11 = 1385.4375 (vs. 1385.435475), rel error = 1/684,023</em></p>
+<p class="p"><em class="ph i">// Y = (22167 / 32768)&lt;&lt;11 = 1385.4375 (vs. 1385.435475), rel error = 1/684,023</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_10toX_Q15bfpFromQ15d16</strong> (fract_q15d16_t <strong class="ph b">x</strong> );</p>
 <p class="p"><strong class="ph b">Fract_10toX_Q15d16 Function</strong></p>
@@ -4769,11 +4771,11 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
-<p class="p">x Exponent in calculating 2^-x. If x \&lt; 0 then -x is used.</p>
+<p class="p">x Exponent in calculating 2^-x. If x &lt; 0 then -x is used.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
 <p class="p">Value of pow(2,-x)</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
-<p class="p">If 0 \&lt;= x \&lt; 1, then pow(2,-x) is in the range 0.5 \&lt; pow(2,-x) \&lt;= 1.</p>
+<p class="p">If 0 &lt;= x &lt; 1, then pow(2,-x) is in the range 0.5 &lt; pow(2,-x) &lt;= 1.</p>
 <p class="p"><strong class="ph b">Example</strong></p>
 <p class="p">fract_q15_t x,y;</p>
 <p class="p">x = 3277; <em class="ph i">// 0.1</em></p>
@@ -4841,14 +4843,14 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// pow(2,0.5) = sqrt(2) = 46341/32768;</em></p>
 <p class="p"><em class="ph i">// y.m = 0x5A85 = 23173</em></p>
 <p class="p"><em class="ph i">// y.e = 1</em></p>
-<p class="p"><em class="ph i">// y = (23173/32768)\&lt;\&lt;1 = 1.414368 (vs. 1.414214)</em></p>
+<p class="p"><em class="ph i">// y = (23173/32768)&lt;&lt;1 = 1.414368 (vs. 1.414214)</em></p>
 <p class="p">x.m = 24576; <em class="ph i">// 0.75</em></p>
 <p class="p">x.e = 0;</p>
 <p class="p">y = Fract_2toX_Q15bfp(x);</p>
 <p class="p"><em class="ph i">// pow(2,0.75) = 1.681793 = 55109/32768;</em></p>
 <p class="p"><em class="ph i">// y.m = 0x6BA4 = 27556</em></p>
 <p class="p"><em class="ph i">// y.e = 1</em></p>
-<p class="p"><em class="ph i">// y = (27556/32768)\&lt;\&lt;1 = 1.681885 (vs. 1.681793)</em></p>
+<p class="p"><em class="ph i">// y = (27556/32768)&lt;&lt;1 = 1.681885 (vs. 1.681793)</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_2toX_Q15bfp</strong> (fract_q15bfp_t <strong class="ph b">x</strong> );</p>
 <p class="p"><strong class="ph b">Fract_2toX_Q15bfpFromQ15d16 Function</strong></p>
@@ -4871,16 +4873,16 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">fract_q15bfp_t Y;</p>
 <p class="p">x = 0x00008000; <em class="ph i">// 0.5 in Q15.16</em></p>
 <p class="p">Y = Fract_2toX_Q15bfpFromQ15d16(x);</p>
-<p class="p"><em class="ph i">// pow(2,0.5) = sqrt(2) = 1.414213 = 46341 / 32768 = 0x5A82\&lt;\&lt;1</em></p>
+<p class="p"><em class="ph i">// pow(2,0.5) = sqrt(2) = 1.414213 = 46341 / 32768 = 0x5A82&lt;&lt;1</em></p>
 <p class="p"><em class="ph i">// Y.m = 0x5A85 = 23173</em></p>
 <p class="p"><em class="ph i">// Y.e = 1</em></p>
-<p class="p"><em class="ph i">// Y = ( 23173 / 32768 )\&lt;\&lt;1 = 1.414367 (vs. 1.414213)</em></p>
+<p class="p"><em class="ph i">// Y = ( 23173 / 32768 )&lt;&lt;1 = 1.414367 (vs. 1.414213)</em></p>
 <p class="p">x = 0x00014000; <em class="ph i">// 1.25 in Q15.16</em></p>
 <p class="p">Y = Fract_2toX_Q15bfpFromQ15d16(x);</p>
-<p class="p"><em class="ph i">// pow(2,1.25) = 2.378414 = 77936 / 32768 = 0x4C1C\&lt;\&lt;2</em></p>
+<p class="p"><em class="ph i">// pow(2,1.25) = 2.378414 = 77936 / 32768 = 0x4C1C&lt;&lt;2</em></p>
 <p class="p"><em class="ph i">// Y.m = 0x4C1 = 19484</em></p>
 <p class="p"><em class="ph i">// Y.e = 2</em></p>
-<p class="p"><em class="ph i">// Y = ( 19484/32768 ) \&lt;\&lt; 2 = 2.378418 (vs. 2.378414)</em></p>
+<p class="p"><em class="ph i">// Y = ( 19484/32768 ) &lt;&lt; 2 = 2.378418 (vs. 2.378414)</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_2toX_Q15bfpFromQ15d16</strong> (fract_q15d16_t <strong class="ph b">x</strong> );</p>
 <p class="p"><strong class="ph b">Fract_2toX_Q15d16 Function</strong></p>
@@ -4929,7 +4931,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">fract_q15d16_t x_Q15d16;</p>
 <p class="p">fract_q15bfp_t x_Q15bfp;</p>
 <p class="p">x_Q15bfp.m = 0x4000; <em class="ph i">// 1/2</em></p>
-<p class="p">x_Q15bfp.e = -1; <em class="ph i">// 1/2\&gt;\&gt;1 = 1/4</em></p>
+<p class="p">x_Q15bfp.e = -1; <em class="ph i">// 1/2&gt;&gt;1 = 1/4</em></p>
 <p class="p">x_Q15d16 = Fract_Convert_Q15bfpToQ15d16( x_Q15bfp );</p>
 <p class="p"><em class="ph i">// x_Q15d16 = 0x0000 4000</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
@@ -4973,7 +4975,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">x_Q15d16 = 0xFFFFC000; <em class="ph i">//-1/4</em></p>
 <p class="p">x_Q15bfp = Fract_Convert_Q15d16ToQ15bfp(x_Q15d16);</p>
 <p class="p"><em class="ph i">//x_Q15bfp.m = 0xC000 // -1/2</em></p>
-<p class="p"><em class="ph i">//x_Q15bfp.e = 0xFFFF = -1; // -1/2\&gt;\&gt;1 = -1/4</em></p>
+<p class="p"><em class="ph i">//x_Q15bfp.e = 0xFFFF = -1; // -1/2&gt;&gt;1 = -1/4</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_Convert_Q15d16ToQ15bfp</strong> (fract_q15d16_t <strong class="ph b">x</strong> );</p>
 <p class="p"><strong class="ph b">Fract_Convert_Q15ToQ15bfp Function</strong></p>
@@ -4997,7 +4999,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">x_Q15 = 0xE000; <em class="ph i">//-1/4</em></p>
 <p class="p">x_Q15bfp = Fract_Convert_Q15d16ToQ15bfp(x_Q15d16);</p>
 <p class="p"><em class="ph i">//x_Q15bfp.m = 0xC000 // -1/2</em></p>
-<p class="p"><em class="ph i">//x_Q15bfp.e = 0xFFFF = -1; // -1/2\&gt;\&gt;1 = -1/4</em></p>
+<p class="p"><em class="ph i">//x_Q15bfp.e = 0xFFFF = -1; // -1/2&gt;&gt;1 = -1/4</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_Convert_Q15ToQ15bfp</strong> (fract_q15_t <strong class="ph b">x</strong> );</p>
 <p class="p"><strong class="ph b">Fract_InversePower Function</strong></p>
@@ -5021,7 +5023,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// Answer = pow(5,-3) = 1/125</em></p>
 <p class="p"><em class="ph i">// Answer.m = 0x4189 = 16777</em></p>
 <p class="p"><em class="ph i">// Answer.e = 0xFFFA = -6</em></p>
-<p class="p"><em class="ph i">// Answer = (16777/32768)\&gt;\&gt;6 = 1/(125.001609)</em></p>
+<p class="p"><em class="ph i">// Answer = (16777/32768)&gt;&gt;6 = 1/(125.001609)</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_InversePower</strong> (uint16_t <strong class="ph b">nBase</strong> , uint16_t <strong class="ph b">nExponent</strong> );</p>
 <p class="p"><strong class="ph b">Fract_log10fix Function</strong></p>
@@ -5036,7 +5038,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">x Fixed point input, if x == 0, function returns INT32_MIN to represent negative</p>
 <p class="p">infinity. If x is input as a negative number it will be cast to be a unsigned 32 bit integer.</p>
-<p class="p">precision number of fractional bits in input and output, 1\&lt;= precision \&lt;= 31. if precision \&lt; 1 or precision \&gt; 31 function returns INT32_MAX.</p>
+<p class="p">precision number of fractional bits in input and output, 1&lt;= precision &lt;= 31. if precision &lt; 1 or precision &gt; 31 function returns INT32_MAX.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
 <p class="p">Logarithm base 10 of input, in same Q format as input.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
@@ -5057,9 +5059,9 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">X32 Fixed point input, if x == 0, function returns INT32_MIN to represent negative</p>
-<p class="p">infinity. If x \&lt; 0 function returns INT32_MAX as error.</p>
-<p class="p">precision number of fractional bits in input and output, 1\&lt;= precision \&lt;= 31. if precision \&lt; 1 or</p>
-<p class="p">precision \&gt; 31 function returns INT32_MAX as error.</p>
+<p class="p">infinity. If x &lt; 0 function returns INT32_MAX as error.</p>
+<p class="p">precision number of fractional bits in input and output, 1&lt;= precision &lt;= 31. if precision &lt; 1 or</p>
+<p class="p">precision &gt; 31 function returns INT32_MAX as error.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
 <p class="p">Logarithm base 2 of input, in same Q format as input. The Q format used is based on the value of precision. For example, if</p>
 <p class="p">precision == 16 then the Q format used is Q15.16.</p>
@@ -5073,7 +5075,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">#define</strong> STRING_MAX_SIZE 133</p>
 <p class="p"><strong class="ph b">char</strong> ioString<span class="xref"></span>;</p>
 <p class="p"><strong class="ph b">double</strong> Xdouble;</p>
-<p class="p"><strong class="ph b">double</strong> scale = 1U \&lt;\&lt; PRECISION;</p>
+<p class="p"><strong class="ph b">double</strong> scale = 1U &lt;&lt; PRECISION;</p>
 <p class="p"><strong class="ph b">float</strong> Xfloat;</p>
 <p class="p">int16_t X16;</p>
 <p class="p">int32_t X32;</p>
@@ -5090,13 +5092,13 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">SendDataBuffer(ioString, strlen(ioString) );</p>
 <p class="p"><strong class="ph b">return</strong> 0;</p>
 <p class="p">}</p>
-<p class="p"><strong class="ph b">else if</strong> ( Xdouble \&lt; 0 )</p>
+<p class="p"><strong class="ph b">else if</strong> ( Xdouble &lt; 0 )</p>
 <p class="p">{</p>
 <p class="p">sprintf(ioString,"%f is Negative!rn",Xdouble);</p>
 <p class="p">SendDataBuffer(ioString, strlen(ioString) );</p>
 <p class="p"><strong class="ph b">continue</strong> ;</p>
 <p class="p">}</p>
-<p class="p"><strong class="ph b">else if</strong> ( Xdouble \&gt;= 1 \&lt;\&lt; (32 - PRECISION) )</p>
+<p class="p"><strong class="ph b">else if</strong> ( Xdouble &gt;= 1 &lt;&lt; (32 - PRECISION) )</p>
 <p class="p">{</p>
 <p class="p">sprintf(ioString, "%f is too bigrn", Xdouble);</p>
 <p class="p">SendDataBuffer(ioString, strlen(ioString) );</p>
@@ -5139,7 +5141,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Summary</strong></p>
 <p class="p">Fixed point Q15 squareroot.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
-<p class="p">Returns square root of Q15 (Q0.15) fraction. Since -1 \&lt;= X \&lt; 1, we know that the 0\&lt;= SquareRoot(||X||) \&lt; 1.</p>
+<p class="p">Returns square root of Q15 (Q0.15) fraction. Since -1 &lt;= X &lt; 1, we know that the 0&lt;= SquareRoot(||X||) &lt; 1.</p>
 <p class="p"><strong class="ph b">Preconditions</strong></p>
 <p class="p">None.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -5153,11 +5155,11 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">---- * ---- = ----</p>
 <p class="p">2^15 2^15 2^15</p>
 <p class="p">This is equivalent to</p>
-<p class="p">Y * Y = X * 2^15 = X\&lt;\&lt;15</p>
+<p class="p">Y * Y = X * 2^15 = X&lt;&lt;15</p>
 <p class="p">So as integers:</p>
-<p class="p">Y = integer sqrt(X\&lt;\&lt;15)</p>
+<p class="p">Y = integer sqrt(X&lt;&lt;15)</p>
 <p class="p">thus</p>
-<p class="p">fixed_point_sqrt(X) = integer_sqrt(X\&lt;\&lt;15)</p>
+<p class="p">fixed_point_sqrt(X) = integer_sqrt(X&lt;&lt;15)</p>
 <p class="p">For X = 0,1,...32767, define</p>
 <p class="p">ErrSqrt = (sqrt(X/32768.0) - FixedPointSQRT(X))/sqrt(X/32768.0)</p>
 <p class="p">This error ranges from 0 to 0.015259, with an average error of 0.0054096</p>
@@ -5192,7 +5194,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">XminusY = Fract_XminusY_Q15bfp( X, Y );</p>
 <p class="p"><em class="ph i">// XplusY.m = 0xC000 = -16384/32768 = -0.5</em></p>
 <p class="p"><em class="ph i">// XPlusY.e = 3</em></p>
-<p class="p"><em class="ph i">// XPlusY = -0.5\&lt;\&lt;3 = -4</em></p>
+<p class="p"><em class="ph i">// XPlusY = -0.5&lt;&lt;3 = -4</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_XminusY_Q15bfp</strong> (fract_q15bfp_t <strong class="ph b">x</strong> , fract_q15bfp_t <strong class="ph b">y</strong> );</p>
 <p class="p"><strong class="ph b">Fract_XoverY_Q15bfp Function</strong></p>
@@ -5222,7 +5224,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// x/y = 4660/22136 = 6898/32768 = 0.210516</em></p>
 <p class="p"><em class="ph i">// XoverY.m = 0x6BC8 = 27592</em></p>
 <p class="p"><em class="ph i">// XoverY.e = 0xFFFE = -2</em></p>
-<p class="p"><em class="ph i">// XoverY = (27592/32768)\&gt;\&gt;2 = 0.210510</em></p>
+<p class="p"><em class="ph i">// XoverY = (27592/32768)&gt;&gt;2 = 0.210510</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_XoverY_Q15bfp</strong> (fract_q15bfp_t <strong class="ph b">x</strong> , fract_q15bfp_t <strong class="ph b">y</strong> );</p>
 <p class="p"><strong class="ph b">Fract_XoverY_Q15bfpFromQ15 Function</strong></p>
@@ -5250,7 +5252,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><em class="ph i">// x/y = 4660/22136 = 6898/32768 = 0.210516</em></p>
 <p class="p"><em class="ph i">// XoverY.m = 0x6BC8 = 27592</em></p>
 <p class="p"><em class="ph i">// XoverY.e = 0xFFFE = -2</em></p>
-<p class="p"><em class="ph i">// XoverY = (27592/32768)\&gt;\&gt;2 = 0.210510</em></p>
+<p class="p"><em class="ph i">// XoverY = (27592/32768)&gt;&gt;2 = 0.210510</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_XoverY_Q15bfpFromQ15</strong> (fract_q15_t <strong class="ph b">x</strong> , fract_q15_t <strong class="ph b">y</strong> );</p>
 <p class="p"><strong class="ph b">Fract_XoverY_Q15d16FromQ15 Function</strong></p>
@@ -5305,7 +5307,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">XplusY = Fract_XplusY_Q15bfp( X, Y );</p>
 <p class="p"><em class="ph i">// XplusY.m = 0x5000 = 20480/32768 = 0.625</em></p>
 <p class="p"><em class="ph i">// XPlusY.e = 4</em></p>
-<p class="p"><em class="ph i">// XPlusY = 0.625\&lt;\&lt;4 = 10</em></p>
+<p class="p"><em class="ph i">// XPlusY = 0.625&lt;&lt;4 = 10</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_XplusY_Q15bfp</strong> (fract_q15bfp_t <strong class="ph b">x</strong> , fract_q15bfp_t <strong class="ph b">y</strong> );</p>
 <p class="p"><strong class="ph b">Fract_XtimesY_Q15 Function</strong></p>
@@ -5358,7 +5360,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">XtimesY = Fract_XtimesY_Q15bfp(X,Y);</p>
 <p class="p"><em class="ph i">// XtimesY.m = 0x6260 = 25184/32768 = 0.768554</em></p>
 <p class="p"><em class="ph i">// XtimesY.e = 0xFFFD = -3</em></p>
-<p class="p"><em class="ph i">// XtimesY = 0.768554\&gt;\&gt;3 = 0.096069</em></p>
+<p class="p"><em class="ph i">// XtimesY = 0.768554&gt;&gt;3 = 0.096069</em></p>
 <p class="p"><em class="ph i">// X*Y = 0.142219 * 0.675537 = 0.096069</em></p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15bfp_t <strong class="ph b">Fract_XtimesY_Q15bfp</strong> (fract_q15bfp_t <strong class="ph b">x</strong> , fract_q15bfp_t <strong class="ph b">y</strong> );</p>
@@ -5403,7 +5405,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function Fx16Norm:</p>
 <p class="p">Produces then number of left shifts needed to Normalize the 16-bit fully fractional input. If the input a is a positive number, it will produce the number of left shifts required to normalized it to the range of a minimum of <span class="xref"></span> to a maximum of <span class="xref"></span>. If the input a is a negative number, it will produce the number of left shifts required to normalized it to the range of a minimum of <span class="xref"></span> to a maximum of <span class="xref"></span>. This function does not actually normalize the input, it just produces the number of left shifts required. To actually normalize the value the left shift function should be used with the value returned From this function.</p>
-<p class="p">the 16-bit input on range: 0 =\&gt; result \&lt; 16 (i.e. NUMBITSFRACT16) If a\&gt;0: 0x4000 \&gt; Normalized Value \&lt;= 0x7fff i.e. (MAXFRACT16+1)/2 \&gt; aNorm \&lt;= MAXFRACT16 If a\&lt;0: 0x8000 \&gt;= Normalilzed Value \&lt; 0xC000 i.e. MINFRACT16\&gt;= aNorm \&lt;</p>
+<p class="p">the 16-bit input on range: 0 =&gt; result &lt; 16 (i.e. NUMBITSFRACT16) If a&gt;0: 0x4000 &gt; Normalized Value &lt;= 0x7fff i.e. (MAXFRACT16+1)/2 &gt; aNorm &lt;= MAXFRACT16 If a&lt;0: 0x8000 &gt;= Normalilzed Value &lt; 0xC000 i.e. MINFRACT16&gt;= aNorm &lt;</p>
 <p class="p">MINFRACT16/2</p>
 <p class="p">This function relates to the ETSI norm_s function.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -5418,9 +5420,9 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function Fx32Norm:</p>
 <p class="p">Produces then number of left shifts needed to Normalize the 32-bit fractional input. If the input a is a positive number, it will produce the number of left shifts required to normalized it to the range of a minimum of <span class="xref"></span> to a maximum of <span class="xref"></span>. If the input a is a negative number, it will produce the number of left shifts required to normalized it to the range of a minimum of <span class="xref"></span> to a maximum of <span class="xref"></span>. This function does not actually normalize the input, it just produces the number of left shifts required. To actually normalize the value the left-shift function should be used with the value returned From this function.</p>
-<p class="p">32-bit input on range: 0 =\&gt; result \&lt; 32 (i.e. NUMBITSFRACT32) If a\&gt;0: 0x40000000 \&gt; Normalized Value \&lt;= 0x7fffffff i.e.</p>
-<p class="p">(MAXFRACT32+1)/2 \&gt; aNorm \&lt;= MAXFRACT32 If a\&lt;0: 0x80000000 \&gt;= Normalized Value \&lt; 0xC0000000 i.e. MINFRACT32\&gt;=</p>
-<p class="p">aNorm \&lt; MINFRACT32/2</p>
+<p class="p">32-bit input on range: 0 =&gt; result &lt; 32 (i.e. NUMBITSFRACT32) If a&gt;0: 0x40000000 &gt; Normalized Value &lt;= 0x7fffffff i.e.</p>
+<p class="p">(MAXFRACT32+1)/2 &gt; aNorm &lt;= MAXFRACT32 If a&lt;0: 0x80000000 &gt;= Normalized Value &lt; 0xC0000000 i.e. MINFRACT32&gt;=</p>
+<p class="p">aNorm &lt; MINFRACT32/2</p>
 <p class="p">This function relates to the ETSI norm_l function.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
@@ -5438,7 +5440,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
 <p class="p">q15 a input argument</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
-<p class="p">q15 result - abs(input) \&lt;= MAXFRACT16</p>
+<p class="p">q15 result - abs(input) &lt;= MAXFRACT16</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">q15 <strong class="ph b">libq_q15_Abs_q15</strong> (q15);</p>
 <p class="p"><strong class="ph b">libq_q15_Add_q15_q15 Function</strong></p>
@@ -5447,7 +5449,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function libq_q15_Add_q15_q15: f</p>
 <p class="p">Add two 16-bit 2s-complement fractional (op1 + op2) to produce a 16-bit 2s-complement fractional result with saturation. The saturation is for handling the overflow/underflow cases, where the result is set to MAX16 when an overflow occurs and the result is set to MIN16 when an underflow occurs. This function does not produce any status flag to indicate when an overflow or underflow has occured. It is assumed that the binary point is in exactly the same bit position for both 16-bit inputs and the resulting 16-bit output.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
-<p class="p">q15 - a+b on Range: MINFRACT16 \&lt;= result \&lt;= MAXFRACT16</p>
+<p class="p">q15 - a+b on Range: MINFRACT16 &lt;= result &lt;= MAXFRACT16</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">q15 <strong class="ph b">libq_q15_Add_q15_q15</strong> (q15, q15);</p>
 <p class="p"><strong class="ph b">libq_q15_DivisionWithSaturation_q15_q15 Function</strong></p>
@@ -5485,7 +5487,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">q15 X(k) New value to be averaged in</p>
 <p class="p">q15 L exponential averaging constant in Q1.15</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
-<p class="p">q15 result - S(k+1) = S(k)*L + X(k)*(1-L)</p>
+<p class="p">q15 result - S(k+1) = S(k)<em class="ph i">L + X(k)</em>(1-L)</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">q15 <strong class="ph b">libq_q15_ExpAvg_q15_q15_q1d15</strong> (q15 <strong class="ph b">prevAvgQ15</strong> , q15 <strong class="ph b">newMeasQ15</strong> , q15 <strong class="ph b">lamdaQ1d15</strong> );</p>
 <p class="p"><strong class="ph b">libq_q15_ExtractH_q31 Function</strong></p>
@@ -5541,7 +5543,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">fractional multiplication of two 16-bit fractional values giving a 16 bit rounded result.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function libq_q15_MultiplyR2_q15_q15:</p>
-<p class="p">Performs fractional multiplication of two 16-bit fractional values and returns a ROUNDED 16-bit fractional result. The function performs a Q15xQ15-\&gt;Q30 bit multiply with a left shift by 1 to give a Q31 result. This automatic shift left is done to get rid of the extra sign bit that occurs in the interpretation of the fractional multiply result. Saturation is applied to any 32-bit result that overflows. Rounding is applied to the 32-bit SHIFTED result by adding in a weight factor of 2^15, again any overflows are saturated. The TOP 16-bits are extracted and returned. This function is for fractional Qtype data only and it therefore will not give the correct results for true integers (because left shift by 1). This function assumes that the binary point in the 32-bit shifted multiplier output is between bit_16 and bit_15 when the rounding factor is added. For the special case where both inputs equal the MINFACT16, the function returns a value equal to MAXFACT16, i.e. 0x7fff = libq_q15_Mult2_q15_q15(0x8000,0x8000). This function internally calls the libq_q15_mult_q15_q31() routine to perform the actual multiplication and the rounding routine to perform the actual rounding.</p>
+<p class="p">Performs fractional multiplication of two 16-bit fractional values and returns a ROUNDED 16-bit fractional result. The function performs a Q15xQ15-&gt;Q30 bit multiply with a left shift by 1 to give a Q31 result. This automatic shift left is done to get rid of the extra sign bit that occurs in the interpretation of the fractional multiply result. Saturation is applied to any 32-bit result that overflows. Rounding is applied to the 32-bit SHIFTED result by adding in a weight factor of 2^15, again any overflows are saturated. The TOP 16-bits are extracted and returned. This function is for fractional Qtype data only and it therefore will not give the correct results for true integers (because left shift by 1). This function assumes that the binary point in the 32-bit shifted multiplier output is between bit_16 and bit_15 when the rounding factor is added. For the special case where both inputs equal the MINFACT16, the function returns a value equal to MAXFACT16, i.e. 0x7fff = libq_q15_Mult2_q15_q15(0x8000,0x8000). This function internally calls the libq_q15_mult_q15_q31() routine to perform the actual multiplication and the rounding routine to perform the actual rounding.</p>
 <p class="p">This function relates to the ETSI mult_r function.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
@@ -5557,7 +5559,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function libq_q15_Negate_q15:</p>
 <p class="p">Negate 16-bit 2s-complement fractional value with saturation. The saturation is for handling the case where negating a MINFRACT16 is greater than MAXFRACT16, or the allowable range of values. This function relates to the ETSI negate function.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
-<p class="p">q15 result on range: MINFRACT16 \&lt;= result \&lt;= MAXFRACT16</p>
+<p class="p">q15 result on range: MINFRACT16 &lt;= result &lt;= MAXFRACT16</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">q15 <strong class="ph b">libq_q15_Negate_q15</strong> (q15);</p>
 <p class="p"><strong class="ph b">libq_q15_RoundL_q31 Function</strong></p>
@@ -5589,8 +5591,8 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Arithmetic RIGHT Shift on a 16-bit value.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function libq_q15_ShiftRight_q15_q15:</p>
-<p class="p">Performs an Arithmetic RIGHT Shift on a 16-bit input by b bit positions. For positive shift directions (b\&gt;0), b Lsb-bits are shifted out to the right and b sign-extended Msb-bits fill in From the left. For negative shift directions (b\&lt;0), b Lsbs are shifted to the LEFT with 0s filling in the empty lsb position. The left shifting causes b Msb-bits to fall off to the left, saturation is applied to any shift left value that overflows. This function calls the left-shift function to perform any 16-bit left shifts. This function does not provide any status-type information to indicate when overflows occur.</p>
-<p class="p">positive value: # of bits to right shift (sign extend) { To get all sign bits, b\&gt;=15 } negative value: # of bits to left shift (zeros inserted</p>
+<p class="p">Performs an Arithmetic RIGHT Shift on a 16-bit input by b bit positions. For positive shift directions (b&gt;0), b Lsb-bits are shifted out to the right and b sign-extended Msb-bits fill in From the left. For negative shift directions (b&lt;0), b Lsbs are shifted to the LEFT with 0s filling in the empty lsb position. The left shifting causes b Msb-bits to fall off to the left, saturation is applied to any shift left value that overflows. This function calls the left-shift function to perform any 16-bit left shifts. This function does not provide any status-type information to indicate when overflows occur.</p>
+<p class="p">positive value: # of bits to right shift (sign extend) { To get all sign bits, b&gt;=15 } negative value: # of bits to left shift (zeros inserted</p>
 <p class="p">at LSBs)</p>
 <p class="p">This function relates to the ETSI shr function.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -5605,8 +5607,8 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Performs an Arithmetic RIGHT Shift on a 16-bit input.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function libq_q15_ShiftRightR_q15_q15:</p>
-<p class="p">Performs an Arithmetic RIGHT Shift on a 16-bit input by b bits with Rounding applied. The rounding occurs by adding a bit weight of "1/2 Lsb", where the "Lsb" is the Ending (shifted) Lsb. For example: The initial Bit#(b) is after the right shift Bit#(0), so the rounding bit weight is Bit#(b-1). Rounding does not occur on either left shifts or on no shift needed cases. For positive shift directions (b\&gt;0), b Lsb-bits are shifted out to the right and b sign-extended Msb-bits fill in From the left. For negative shift directions (b\&lt;0), b Lsbs are shifted to the LEFT with 0s filling in the empty lsb position. The left shifting causes b Msb-bits to fall off to the left, saturation is applied to any shift left value that overflows. This function calls the left-shift function to perform the actual 16-bit left shift. This function does not provide any status-type information to indicate when overflows occur.</p>
-<p class="p">positive value: # of bits to right shift (sign extend) {b \&gt; 15, results in all sign bits} negative value: # of bits to left shift (zeros</p>
+<p class="p">Performs an Arithmetic RIGHT Shift on a 16-bit input by b bits with Rounding applied. The rounding occurs by adding a bit weight of "1/2 Lsb", where the "Lsb" is the Ending (shifted) Lsb. For example: The initial Bit#(b) is after the right shift Bit#(0), so the rounding bit weight is Bit#(b-1). Rounding does not occur on either left shifts or on no shift needed cases. For positive shift directions (b&gt;0), b Lsb-bits are shifted out to the right and b sign-extended Msb-bits fill in From the left. For negative shift directions (b&lt;0), b Lsbs are shifted to the LEFT with 0s filling in the empty lsb position. The left shifting causes b Msb-bits to fall off to the left, saturation is applied to any shift left value that overflows. This function calls the left-shift function to perform the actual 16-bit left shift. This function does not provide any status-type information to indicate when overflows occur.</p>
+<p class="p">positive value: # of bits to right shift (sign extend) {b &gt; 15, results in all sign bits} negative value: # of bits to left shift (zeros</p>
 <p class="p">inserted at LSBs)</p>
 <p class="p">This function relates to the ETSI shr_r function.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -5623,7 +5625,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function libq_q15_Sub_q15_q15:</p>
 <p class="p">Subtract two 16-bit 2s-complement fractional (op1 - op2) to produce a 16-bit 2s-complement fractional difference result with saturation. The saturation is for handling the overflow/underflow cases, where the result is set to MAX16 when an overflow occurs and the result is set to MIN16 when an underflow occurs. This function does not produce any status flag to indicate when an overflow or underflow has occured. It is assumed that the binary point is in exactly the same bit position for both 16-bit inputs and the resulting 16-bit output. This function relates to the ETSI sub function.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
-<p class="p">q15 result a+b on range: MINFRACT16 \&lt;= result \&lt;= MAXFRACT16</p>
+<p class="p">q15 result a+b on range: MINFRACT16 &lt;= result &lt;= MAXFRACT16</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">q15 <strong class="ph b">libq_q15_Sub_q15_q15</strong> (q15, q15);</p>
 <p class="p"><strong class="ph b">libq_q1d15_Sin_q10d6 Function</strong></p>
@@ -5634,7 +5636,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <ul class="ul"><li class="li"><p class="p">0.5446778x^4 + 1.800293x^5. The approximation is accurate for any value of x from 0 degrees to 90 degrees. Because sin(-x) =</p>
 </li>
 </ul>
-<ul class="ul"><li class="li"><p class="p">sin(x) and sin(x) = sin(180 - x), the sine of any angle can be inferred from an angle in the first quadrant. Therefore, any angle \&gt;</p>
+<ul class="ul"><li class="li"><p class="p">sin(x) and sin(x) = sin(180 - x), the sine of any angle can be inferred from an angle in the first quadrant. Therefore, any angle &gt;</p>
 </li>
 </ul>
 <p class="p">90 is converted to an angle between 0 &amp; 90. The coefficients of the algorithm have been scaled by 1/8 to fit a Q1d15 format. So the result is scaled up by 8 to obtain the proper magnitudes. The algorithm expects the angle to be in degrees and represented in Q10.6 format. The computed sine value is returned in Q1.15 format.</p>
@@ -5668,7 +5670,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Creates a saturated Absolute value. It takes the absolute value of the 32-bit 2s-complement fractional input with saturation. The saturation is for handling the case where taking the absolute value of MINFRACT32 is greater than MAXFRACT32, or the allowable range of 32-bit values.</p>
 <p class="p">This function relates to the ETSI L_abs function.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
-<p class="p">q31 result - abs(a) \&lt;= MAXFRACT32</p>
+<p class="p">q31 result - abs(a) &lt;= MAXFRACT32</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">q31 <strong class="ph b">libq_q31_Abs_q31</strong> (q31);</p>
 <p class="p"><strong class="ph b">libq_q31_Add_q31_q31 Function</strong></p>
@@ -5678,7 +5680,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Add two 32-bit 2s-complement fractional (op1 + op2) to produce a 32-bit 2s-complement fractional result with saturation. The saturation is for handling the overflow/underflow cases, where the result is set to MAX32 when an overflow occurs and the result is set to MIN32 when an underflow occurs. This function does not produce any status flag to indicate when an overflow or underflow has occured. It is assumed that the binary point is in exactly the same bit position for both 32-bit inputs and the resulting 32-bit</p>
 <p class="p">output. This function relates to the ETSI L_add function.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
-<p class="p">q31 result a+b on range: MINFRACT32 \&lt;= result \&lt;= MAXFRACT32</p>
+<p class="p">q31 result a+b on range: MINFRACT32 &lt;= result &lt;= MAXFRACT32</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">q31 <strong class="ph b">libq_q31_Add_q31_q31</strong> (q31, q31);</p>
 <p class="p"><strong class="ph b">libq_q31_DepositH_q15 Function</strong></p>
@@ -5724,7 +5726,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">fractional multiplication of two 16-bit fractional values.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function libq_q31_Mult2_q15_q15:</p>
-<p class="p">Performs fractional multiplication of two 16-bit fractional values and returns the 32-bit fractional scaled result. The function performs the Q15xQ15-\&gt;Q30 fractional bit multiply. It then shifts the result left by 1, to give a Q31 type result, (the lsb is zero-filled). This automatic shift left is done to get rid of the extra sign bit that occurs in the interpretation of the fractional multiply result. Saturation is applied to any results that overflow, and then the function returns the 32-bit fractional q31 result. This function is for fractional Q data only and it therefore will not give correct results for true integers (because left shift by 1). For the special case where both inputs equal the MINFRACT16, the function returns a value equal to MAXFACT32, i.e. 0x7fffffff = libq_q15_mult_q15_q31(0x8000,0x8000).</p>
+<p class="p">Performs fractional multiplication of two 16-bit fractional values and returns the 32-bit fractional scaled result. The function performs the Q15xQ15-&gt;Q30 fractional bit multiply. It then shifts the result left by 1, to give a Q31 type result, (the lsb is zero-filled). This automatic shift left is done to get rid of the extra sign bit that occurs in the interpretation of the fractional multiply result. Saturation is applied to any results that overflow, and then the function returns the 32-bit fractional q31 result. This function is for fractional Q data only and it therefore will not give correct results for true integers (because left shift by 1). For the special case where both inputs equal the MINFRACT16, the function returns a value equal to MAXFACT32, i.e. 0x7fffffff = libq_q15_mult_q15_q31(0x8000,0x8000).</p>
 <p class="p">This function relates to the ETSI L_mult function.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
 <p class="p"><strong class="ph b">Parameters Description</strong></p>
@@ -5741,7 +5743,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Implement 16 bit by 32 bit multiply as shown below The s and u notation shows the processing of signed and unsigned numbers.</p>
 <p class="p">-B1- -B0- s u 2nd argument is 32 bits -A0- s 1st argument is 16 bits</p>
 <p class="p"><strong class="ph b">------------</strong></p>
-<p class="p">A0B0 A0B0 s=s*u 1st 32-bit product is A0*B0 A0B1 A0B1 s=s*s 2nd 32-bit product is A0*B1</p>
+<p class="p">A0B0 A0B0 s=s<em class="ph i">u 1st 32-bit product is A0</em>B0 A0B1 A0B1 s=s<em class="ph i">s 2nd 32-bit product is A0</em>B1</p>
 <p class="p"><strong class="ph b">------------</strong></p>
 <p class="p">-S2- -S1- -S0- s=s+s 48-bit result is the sum of products -P1- -P0- 32-bit return is the most significant bits of sum</p>
 <p class="p">The algorithm is implemented entirely with the fractional arithmetic library. The unsigned by signed multiply is implemented by shifting bits 15:1 to bits 14:0 of a 16-bit positive fractional number, which throws away bit 0 of the 32-bit number. Since that affects result bits that are used for rounding, rounding processing is included. Saturation processing is handled implicitly in the fractional arithmetic library, except for the case of maximum negative numbers.</p>
@@ -5755,7 +5757,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function libq_q31_Negate_q31:</p>
 <p class="p">Negate 32-bit 2s-complement fractional value with saturation. The saturation is for handling the case where negating a MINFRACT32 is greater than MAXFRACT32, or the allowable range of values. This function relates to the ETSI L_negate function.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
-<p class="p">q31 result on range: MINFRACT32 \&lt;= result \&lt;= MAXFRACT32</p>
+<p class="p">q31 result on range: MINFRACT32 &lt;= result &lt;= MAXFRACT32</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">q31 <strong class="ph b">libq_q31_Negate_q31</strong> (q31);</p>
 <p class="p"><strong class="ph b">libq_q31_ShiftLeft_q31_i16 Function</strong></p>
@@ -5778,7 +5780,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Arithmetic RIGHT Shift on a 32-bit value.</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function libq_q31_ShiftRight_q31_q15:</p>
-<p class="p">Performs an Arithmetic RIGHT Shift on a 32-bit input by b bit positions. For positive shift directions (b\&gt;0), b Lsb-bits are shifted out to the right and b sign-extended Msb-bits fill in From the left. For negative shift directions (b\&lt;0), b Lsbs are shifted to the LEFT with 0s filling in the empty lsb position. The left shifting causes b Msb-bits to fall off to the left, saturation is applied to any shift left value that overflows. This function calls the left-shift function to perform any 32-bit left shifts. This function does not provide any status-type information to indicate when overflows occur.</p>
+<p class="p">Performs an Arithmetic RIGHT Shift on a 32-bit input by b bit positions. For positive shift directions (b&gt;0), b Lsb-bits are shifted out to the right and b sign-extended Msb-bits fill in From the left. For negative shift directions (b&lt;0), b Lsbs are shifted to the LEFT with 0s filling in the empty lsb position. The left shifting causes b Msb-bits to fall off to the left, saturation is applied to any shift left value that overflows. This function calls the left-shift function to perform any 32-bit left shifts. This function does not provide any status-type information to indicate when overflows occur.</p>
 <p class="p">positive value: # of bits to right shift (sign extend) negative value: # of bits to left shift (zeros inserted at LSBs)</p>
 <p class="p">This function relates to the ETSI L_shr function.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -5793,7 +5795,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Arithmetic RIGHT Shift on a 32-bit value</p>
 <p class="p"><strong class="ph b">Description</strong></p>
 <p class="p">Function libq_q31_ShiftRightR_q31_q15:</p>
-<p class="p">Performs an Arithmetic RIGHT Shift on a 32-bit input by b bits with Rounding applied. The rounding occurs before any shift by adding a bit weight of "1/2 Lsb", where the "Lsb" is the Ending (shifted) Lsb. For example: The initial Bit#(i+b) is after the right shift Bit#(i), so the rounding bit weight is Bit#(i+b-1). Rounding does not occur on left shifts, when b is negative. After rounding, this function calls the right-shift function to perform the actual 32-bit right shift. For positive shift directions (b\&gt;0), b Lsb-bits are shifted out to the right and b sign-extended Msb-bits fill in From the left. For negative shift directions (b\&lt;0), b Lsbs are shifted to the LEFT with 0s filling in the empty lsb position. The left shifting causes b Msb-bits to fall off to the left, saturation is applied to any shift left value that overflows. This function calls the left-shift function to perform the actual 32-bit left shift. This function does not provide any status-type flag to indicate occurence of overflow.</p>
+<p class="p">Performs an Arithmetic RIGHT Shift on a 32-bit input by b bits with Rounding applied. The rounding occurs before any shift by adding a bit weight of "1/2 Lsb", where the "Lsb" is the Ending (shifted) Lsb. For example: The initial Bit#(i+b) is after the right shift Bit#(i), so the rounding bit weight is Bit#(i+b-1). Rounding does not occur on left shifts, when b is negative. After rounding, this function calls the right-shift function to perform the actual 32-bit right shift. For positive shift directions (b&gt;0), b Lsb-bits are shifted out to the right and b sign-extended Msb-bits fill in From the left. For negative shift directions (b&lt;0), b Lsbs are shifted to the LEFT with 0s filling in the empty lsb position. The left shifting causes b Msb-bits to fall off to the left, saturation is applied to any shift left value that overflows. This function calls the left-shift function to perform the actual 32-bit left shift. This function does not provide any status-type flag to indicate occurence of overflow.</p>
 <p class="p">positive value: # of bits to right shift (sign extend) negative value: # of bits to left shift (zeros inserted at LSBs)</p>
 <p class="p">This function relates to the ETSI L_shr_r function.</p>
 <p class="p"><strong class="ph b">Parameters</strong></p>
@@ -5810,7 +5812,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p">Function libq_q31_Sub_q31_q31:</p>
 <p class="p">Subtract two 32-bit 2s-complement fractional (op1 - op2) to produce a 16-bit 2s-complement fractional difference result with saturation. The saturation is for handling the overflow/underflow cases, where the result is set to MAX32 when an overflow occurs and the result is set to MIN32 when an underflow occurs. This function does not produce any status flag to indicate when an overflow or underflow has occured. It is assumed that the binary point is in exactly the same bit position for both 16-bit inputs and the resulting 16-bit output. This function relates to the ETSI sub function.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
-<p class="p">q31 result a-b on range: MINFRACT31 \&lt;= result \&lt;= MAXFRACT31</p>
+<p class="p">q31 result a-b on range: MINFRACT31 &lt;= result &lt;= MAXFRACT31</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">q31 <strong class="ph b">libq_q31_Sub_q31_q31</strong> (q31, q31);</p>
 <p class="p"><strong class="ph b">LUTwInterpolation_Q15 Function</strong></p>
@@ -5833,10 +5835,10 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">Returns</strong></p>
 <p class="p">y = f(x) based on the LUT using linear interpolation between table entries.</p>
 <p class="p"><strong class="ph b">Remarks</strong></p>
-<p class="p">It is assumed that X LUT vector is in strictly monotonically increasing order. That is: pX_LUT_Vector<span class="xref"></span> \&lt; pX_LUT_Vector<span class="xref"></span> for i = 0,1,...nLUTSize-2</p>
+<p class="p">It is assumed that X LUT vector is in strictly monotonically increasing order. That is: pX_LUT_Vector<span class="xref"></span> &lt; pX_LUT_Vector<span class="xref"></span> for i = 0,1,...nLUTSize-2</p>
 <p class="p">Internal math is done in signed 32 integers and truncated to Q15.</p>
-<p class="p">If x \&lt;= pX_LUT_Vector<span class="xref"></span> then pY_LUT_Vector<span class="xref"></span> is returned.</p>
-<p class="p">if pX_LUT_Vector<span class="xref"></span> \&lt;= x then pY_LUT_Vector<span class="xref"></span> is returned.</p>
+<p class="p">If x &lt;= pX_LUT_Vector<span class="xref"></span> then pY_LUT_Vector<span class="xref"></span> is returned.</p>
+<p class="p">if pX_LUT_Vector<span class="xref"></span> &lt;= x then pY_LUT_Vector<span class="xref"></span> is returned.</p>
 <p class="p">WARNING: It is strongly recommended that you test out the LUT and compare actual vs. desired values in Matlab/Octave or Excel! You may need to add additional rows where the interpolation does not produce the needed accuracy.</p>
 <p class="p"><strong class="ph b">C</strong></p>
 <p class="p">fract_q15_t <strong class="ph b">LUTwInterpolation_Q15</strong> (fract_q15_t <strong class="ph b">x</strong> , <strong class="ph b">const</strong> fract_q15_t * <strong class="ph b">pX_LUT_Vector</strong> , <strong class="ph b">const</strong></p>
@@ -5863,7 +5865,7 @@ are fractional Q15 and Q31, see data structure for specifics.</p>
 <p class="p"><strong class="ph b">float</strong> theta0 = 0;</p>
 <p class="p">int32_t i;</p>
 <p class="p">int32_t x;</p>
-<p class="p">for ( i = 0; i \&lt; nTests; i++ )</p>
+<p class="p">for ( i = 0; i &lt; nTests; i++ )</p>
 <p class="p">{</p>
 <p class="p">theta = theta0 + i*delta_theta;</p>
 <p class="p">x = theta*(32768/512); <em class="ph i">//Q9.6</em></p>
