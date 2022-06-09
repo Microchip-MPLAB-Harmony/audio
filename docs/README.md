@@ -30,6 +30,8 @@ This repository contains support package for the MPLAB® Harmony 3 Audio. The au
 
 -   **[Audio Decoder Library Help](GUID-0C0A7F83-5C07-43CF-B754-3FBAA64FB5E9.md)**  
 
+-   **[Math Libraries Help](GUID-95E9D1C6-B2E2-4086-9E56-1D468B7F83ED.md)**  
+
 
 # Features
 
