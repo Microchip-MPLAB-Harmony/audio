@@ -25,7 +25,7 @@ import os.path
 
 # Capability of different peripherals that higher level layers depends on
 peripherals = {
-                "CLASSD_1183"   : ["CLASSD"],
+                "CLASSD_11283"   : ["CLASSD"],
                 "I2S_U2224"     : ["I2S"],
                 "I2SC_11241"    : ["I2S"],
                 "SPI_01329"     : ["I2S"],
