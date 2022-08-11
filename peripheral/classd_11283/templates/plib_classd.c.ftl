@@ -47,7 +47,7 @@
 // *****************************************************************************
 #include "plib_classd.h"
 <#if tr == "dma">
-#include "../xdmac/plib_xdmac.h"
+#include "../src/config/${__CONFIGURATION_NAME}/peripheral/xdmac/plib_xdmac.h"
 
 typedef struct
 {
