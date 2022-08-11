@@ -1,0 +1,1 @@
+    CLASSD_Initialize();
