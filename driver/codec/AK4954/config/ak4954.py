@@ -247,18 +247,28 @@ def instantiateComponent(ak4954Component):
     ak4954SystemTaskFile.setSourcePath("codec/AK4954/templates/system/system_tasks.c.ftl")
     ak4954SystemTaskFile.setMarkup(True)
 
-# this callback occurs when user connects I2C or I2S driver to AK4954 driver block in Project Graph    
-def onDependencyConnected(info):
-    if info["dependencyID"] == "DRV_I2S":
-        drvUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2S")
-        i2sOri2cId = info["remoteComponent"].getID().upper()
+# this callback occurs when user connects I2C or I2S driver to AK4954 driver block in Project Graph
+def onAttachmentConnected(source, target):
+
+    localComponent = source["component"]
+    remoteComponent = target["component"]
+    remoteID = remoteComponent.getID()
+    connectID = source["id"]
+    targetID = target["id"]
+
+    global drvUsed
+    global drvIndexUsed
+
+    if connectID == "DRV_I2S":
+        drvUsed = localComponent.getSymbolByID("DRV_AK4954_I2S")
+        i2sOri2cId = remoteComponent.getID().upper()
         i2sOri2cId = i2sOri2cId.replace("A_","")    # I2S driver in audio repo have an "a_" prefix
-        drvIndexUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2S_INDEX")
+        drvIndexUsed = localComponent.getSymbolByID("DRV_AK4954_I2S_INDEX")
         i2sOri2cIndex = i2sOri2cId.replace("I2S_","I2S_INDEX_")    # DRV_I2S_1 => DRV_I2S_INDEX_1
-    elif info["dependencyID"] == "DRV_I2C":
-        drvUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2C")
-        i2sOri2cId = info["remoteComponent"].getID().upper()
-        drvIndexUsed = info["localComponent"].getSymbolByID("DRV_AK4954_I2C_INDEX")
+    elif connectID == "DRV_I2C":
+        drvUsed = localComponent.getSymbolByID("DRV_AK4954_I2C")
+        i2sOri2cId = remoteComponent.getID().upper()
+        drvIndexUsed = localComponent.getSymbolByID("DRV_AK4954_I2C_INDEX")
         i2sOri2cIndex = i2sOri2cId.replace("I2C_","I2C_INDEX_")    # DRV_I2C_0 => DRV_I2C_INDEX_0   
     drvUsed.setValue(i2sOri2cId, 1)
     drvIndexUsed.setValue(i2sOri2cIndex, 1)

@@ -163,14 +163,21 @@ def instantiateComponent(genericcodecComponent):
     genericcodecSystemTaskFile.setSourcePath("codec/Generic/templates/system/system_tasks.c.ftl")
     genericcodecSystemTaskFile.setMarkup(True)
 
-# this callback occurs when user connects I2C or I2S driver to GENERICCODEC driver block in Project Graph    
-def onDependencyConnected(info):
-    global i2sPlibId
-    if info["dependencyID"] == "DRV_I2S":
-        plibUsed = info["localComponent"].getSymbolByID("DRV_GENERICCODEC_I2S")
-        i2sOri2cId = info["remoteComponent"].getID().upper()
+# this callback occurs when user connects I2C or I2S driver to GENERICCODEC driver block in Project Graph
+def onAttachmentConnected(source, target):
+
+    localComponent = source["component"]
+    remoteComponent = target["component"]
+    remoteID = remoteComponent.getID()
+    connectID = source["id"]
+    targetID = target["id"]
+
+    global plibUsed
+    if connectID == "DRV_I2S":
+        plibUsed = localComponent.getSymbolByID("DRV_GENERICCODEC_I2S")
+        i2sOri2cId = remoteComponent.getID().upper()
         i2sOri2cId = i2sOri2cId.replace("A_","")    # I2S driver in audio repo have an "a_" prefix
-    elif info["dependencyID"] == "DRV_I2C":
-        plibUsed = info["localComponent"].getSymbolByID("DRV_GENERICCODEC_I2C")
-        i2sOri2cId = info["remoteComponent"].getID().upper()
+    elif connectID == "DRV_I2C":
+        plibUsed = localComponent.getSymbolByID("DRV_GENERICCODEC_I2C")
+        i2sOri2cId = remoteComponent.getID().upper()
     plibUsed.setValue(i2sOri2cId, 1)

@@ -122,7 +122,7 @@ def instantiateComponent(i2sComponent, index):
 
     # Enable "Generate Harmony System Service Common Files" option in MHC
     if Database.getSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON") == False:
-        Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON")
+        Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON", True)
 
     i2sSymIndex = i2sComponent.createIntegerSymbol("INDEX", None)
     i2sSymIndex.setVisible(False)
@@ -307,48 +307,55 @@ def instantiateComponent(i2sComponent, index):
     driverHeaderCommonFile.setOverwrite(True)
 
 # this callback occurs when user connects SSC or I2SCx block to I2S driver block in Project Graph    
-def onDependencyConnected(info):
-    global i2sPlibId
-    if info["dependencyID"] == "drv_i2s_I2S_dependency":
-        plibUsed = info["localComponent"].getSymbolByID("DRV_I2S_PLIB")
-        # info["remoteComponent"].getID() returns ssc or 12sc1 for example
-        i2sPlibId = info["remoteComponent"].getID().upper()
+def onAttachmentConnected(source, target):
+    localComponent = source["component"]
+    remoteComponent = target["component"]
+    remoteID = remoteComponent.getID()
+    connectID = source["id"]
+    targetID = target["id"]
+
+    if connectID == "drv_i2s_I2S_dependency":
+        # remoteComponent.getID() returns ssc or 12sc1 for example
+        plibUsed = localComponent.getSymbolByID("DRV_I2S_PLIB")
+        plibUsed.clearValue()
+        i2sPlibId = remoteID.upper()
         i2sPlibId = i2sPlibId.replace("A_","")    # PLIBs in audio repo have an "a_" prefix 
         plibUsed.setValue(i2sPlibId)
+
         if i2sPlibId[:3] == "SSC":
-            dataLength = info["remoteComponent"].getSymbolValue("SSC_DATA_LENGTH")
-            i2sDataWidth = info["localComponent"].getSymbolByID("I2S_DATA_LENGTH")
+            dataLength = remoteComponent.getSymbolValue("SSC_DATA_LENGTH")
+            i2sDataWidth = localComponent.getSymbolByID("I2S_DATA_LENGTH")
             i2sDataWidth.setValue(dataLength)
             # force DMA channels to be allocated
-            i2sTXRXDMA = info["localComponent"].getSymbolByID("DRV_I2S_TX_RX_DMA")
+            i2sTXRXDMA = localComponent.getSymbolByID("DRV_I2S_TX_RX_DMA")
             i2sTXRXDMA.setValue(True)
         elif i2sPlibId[:4] == "I2SC":
-            dataLengthIdx = info["remoteComponent"].getSymbolValue("I2SC_MR_DATALENGTH")
-            i2sDataWidth = info["localComponent"].getSymbolByID("I2S_DATA_LENGTH")
+            dataLengthIdx = remoteComponent.getSymbolValue("I2SC_MR_DATALENGTH")
+            i2sDataWidth = localComponent.getSymbolByID("I2S_DATA_LENGTH")
             if dataLengthIdx==0:
                 i2sDataWidth.setValue(32)
             elif dataLengthIdx==4:
                 i2sDataWidth.setValue(16)
             # force DMA channels to be allocated
-            i2sTXRXDMA = info["localComponent"].getSymbolByID("DRV_I2S_TX_RX_DMA")
+            i2sTXRXDMA = localComponent.getSymbolByID("DRV_I2S_TX_RX_DMA")
             i2sTXRXDMA.setValue(True)
         elif i2sPlibId[:3] == "I2S":
-            dataLengthIdx = info["remoteComponent"].getSymbolValue("I2SC_MR_DATALENGTH")
-            i2sDataWidth = info["localComponent"].getSymbolByID("I2S_DATA_LENGTH")
+            dataLengthIdx = remoteComponent.getSymbolValue("I2SC_MR_DATALENGTH")
+            i2sDataWidth = localComponent.getSymbolByID("I2S_DATA_LENGTH")
             if dataLengthIdx==0:
                 i2sDataWidth.setValue(32)
             elif dataLengthIdx==4:
                 i2sDataWidth.setValue(16)
             # force DMA channels to be allocated
-            i2sTXRXDMA = info["localComponent"].getSymbolByID("DRV_I2S_TX_RX_DMA")
+            i2sTXRXDMA = localComponent.getSymbolByID("DRV_I2S_TX_RX_DMA")
             i2sTXRXDMA.setValue(True)
         elif i2sPlibId[:3] == "SPI":
             # force DMA channels to be allocated
-            i2sTXRXDMA = info["localComponent"].getSymbolByID("DRV_I2S_TX_RX_DMA")
+            i2sTXRXDMA = localComponent.getSymbolByID("DRV_I2S_TX_RX_DMA")
             i2sTXRXDMA.setValue(True)
 
 # this callback occurs when user disconnects SSC or I2SCx block from I2S driver block in Project Graph (or I2S driver is destroyed)    
-def onDependencyDisconnected(info):
+def onAttachmentDisconnected(source, target):
     global dmaChannelRequests
     for dmaChannelRequest in dmaChannelRequests:
         Database.setSymbolValue("core", dmaChannelRequest , False)
