@@ -380,7 +380,7 @@ bool DRV_AK4954_ClientReady(uint32_t iClient)
 {
     DRV_AK4954_CLIENT_OBJ *hClient;
 
-    //KEEP THIS - MHC Typo
+    //KEEP THIS - MCC Typo
     hClient = (DRV_AK4954_CLIENT_OBJ *)&gDrvak4954ClientObj[iClient];
     /* Return the readiness of the driver client*/
     return hClient->inUse;
@@ -498,7 +498,7 @@ void DRV_AK4954_EnableInitialization(SYS_MODULE_OBJ object)
    If the AK4954 codec is sharing a RESET line with another peripheral, such as
    a Bluetooth module with its own driver, then the codec driver initialization
    has to be delayed until after the Bluetooth module has toggled its RESET pin.
-   This function returns true if that option has been selected in MHC in the
+   This function returns true if that option has been selected in MCC in the
    checkbox: "Delay driver initialization (due to shared RESET pin)"
 
   Precondition:

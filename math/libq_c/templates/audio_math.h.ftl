@@ -14,7 +14,7 @@
     Audio math header file.
     
   Remarks:
-    This file is auto generated depends on libraries selected in MHC.
+    This file is auto generated depends on libraries selected in MCC.
     
 *******************************************************************************/
 

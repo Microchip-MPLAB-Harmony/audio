@@ -77,25 +77,25 @@ def instantiateComponent(genericcodecComponent):
     genericcodecFormat.setOutputMode("Key")
     genericcodecFormat.setDefaultValue(1) 
 
-    # Enable "Generate Harmony Application Files" option in MHC
+    # Enable "Generate Harmony Application Files" option in MCC
     Database.setSymbolValue("HarmonyCore", "ENABLE_APP_FILE", True, 1)
 
-    # Enable "Generate Harmony Driver Common Files" option in MHC
+    # Enable "Generate Harmony Driver Common Files" option in MCC
     Database.setSymbolValue("HarmonyCore", "ENABLE_DRV_COMMON", True, 1)
 
-    # Enable "Generate Harmony System Service Common Files" option in MHC
+    # Enable "Generate Harmony System Service Common Files" option in MCC
     Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON", True, 1)
 
-    # Enable "Enable System Interrupt" option in MHC
+    # Enable "Enable System Interrupt" option in MCC
     Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_INT", True, 1)
 
-    # Enable "Enable System Ports" option in MHC
+    # Enable "Enable System Ports" option in MCC
     Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_PORTS", True, 1)
 
-    # Enable "Enable System DMA" option in MHC
+    # Enable "Enable System DMA" option in MCC
     Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_DMA", True, 1)
 
-    # Enable "Enable OSAL" option in MHC
+    # Enable "Enable OSAL" option in MCC
     Database.setSymbolValue("HarmonyCore", "ENABLE_OSAL", True, 1)
 
     ############################################################################

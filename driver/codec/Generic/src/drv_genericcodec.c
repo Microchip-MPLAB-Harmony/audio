@@ -19,7 +19,7 @@
     Areas where code needs to be added or changed are marked with TO-DO!!
 
     Note: this module assumes the codec is controlled over an I2C interface.
-    The I2C Driver will need to be enabled in the MHC Project Graph.  If another 
+    The I2C Driver will need to be enabled in the MCC Project Graph.  If another
     type of interface is used, the user will need to modify the code to suit.
     This module also makes use of SYS_TIME.  It will need to be enabled in the
     Project Graph.

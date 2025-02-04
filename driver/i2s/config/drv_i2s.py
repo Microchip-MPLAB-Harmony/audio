@@ -116,11 +116,11 @@ def instantiateComponent(i2sComponent, index):
     series = ATDF.getNode("/avr-tools-device-file/devices/device").getAttribute("series")
     processor = Variables.get( "__PROCESSOR" )
         
-    # Enable "Generate Harmony Driver Common Files" option in MHC
+    # Enable "Generate Harmony Driver Common Files" option in MCC
     if Database.getSymbolValue("HarmonyCore", "ENABLE_DRV_COMMON") == False:
         Database.setSymbolValue("HarmonyCore", "ENABLE_DRV_COMMON", True)
 
-    # Enable "Generate Harmony System Service Common Files" option in MHC
+    # Enable "Generate Harmony System Service Common Files" option in MCC
     if Database.getSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON") == False:
         Database.setSymbolValue("HarmonyCore", "ENABLE_SYS_COMMON", True)
 

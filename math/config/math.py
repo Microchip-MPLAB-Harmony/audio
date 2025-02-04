@@ -1,6 +1,6 @@
 # coding: utf-8
 #
-# math.py  - Creates the math component of MHC Version 3 
+# math.py  - Creates the math component of MCC Version 3
 # 
 # NOTES(s):
 #   1)  Library component in audio/math
@@ -319,7 +319,7 @@ def enableDspNFOS(symbol, event):
 def instantiateComponent(mathComponent):
 
     #NOTE:  1) The component consists of symbols whose configuration values are 
-    #       set using the MHC GUI.  
+    #       set using the MCC GUI.
     #       2) Each symbol has a default value and
     #       a visibility.
     #       3) The configuration symbol are placed in a tree hierarchy under
@@ -390,7 +390,7 @@ def instantiateComponent(mathComponent):
     # Start of Code Generation - Audio Math Component    
     #
     # NOTES: 1) Unique File Symbols are created
-    #        2) The File Symbols are enabled based on the MHC configutation
+    #        2) The File Symbols are enabled based on the MCC configutation
     #           symbol values.  The file will be generated if the file symbol
     #           is enabled.
     #        3) The type of file determines where in the project it will be

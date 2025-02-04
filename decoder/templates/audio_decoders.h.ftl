@@ -14,7 +14,7 @@
     Audio decoder abstracted middleware header file.
     
   Remarks:
-    This file is auto generated depends on decoders selected in MHC.
+    This file is auto generated depends on decoders selected in MCC.
     
 *******************************************************************************/
 
