@@ -1,5 +1,25 @@
 # Microchip MPLAB Harmony 3 Release Notes
 
+## Audio Release v3.7.0 (July, 2025)
+
+### New Features
+
+- Class-D library support for MPU devices
+
+### Bug fixes
+- None
+
+### Known Issues
+
+- None
+
+### Development Tools
+
+- [MPLAB® X IDE 6.25](https://www.microchip.com/mplab/mplab-x-ide)
+- MPLAB® X IDE plug-ins:
+  - MPLAB® Code Configurator (MCC) 5.5.2 or higher
+- [MPLAB® XC32 C/C++ Compiler 4.5](https://www.microchip.com/mplab/compilers)
+
 ## Audio Release v3.6.2 (Feb, 2025)
 
 Updated dependency version

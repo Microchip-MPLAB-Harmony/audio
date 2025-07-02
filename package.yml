@@ -1,7 +1,7 @@
 package:
   format-version: "1.0.0"
   name: "audio"
-  version: "v3.6.2"
+  version: "v3.7.0"
   type: "api"
   status: "production"
 
